@@ -1,0 +1,82 @@
+package de.fourtyseveneleven.ones.model;
+
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@MappedSuperclass
+public abstract class AbstractBaseEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 6552323927493879022L;
+
+    private long id;
+    private int version;
+    private LocalDateTime created;
+    private LocalDateTime lastModified;
+
+    protected abstract boolean canEqual(Object other);
+
+    @Id
+    public abstract long getId();
+
+    protected long doGetId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Version
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    @Override
+    public final int hashCode() {
+
+        return Long.hashCode(getId());
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof AbstractBaseEntity other)) {
+            return false;
+        }
+        if (!other.canEqual(this)) {
+            return false;
+        }
+        return getId() == other.getId();
+    }
+}
