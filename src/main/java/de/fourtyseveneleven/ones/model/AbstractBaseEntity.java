@@ -3,6 +3,7 @@ package de.fourtyseveneleven.ones.model;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public abstract class AbstractBaseEntity implements Serializable {
     protected abstract boolean canEqual(Object other);
 
     @Id
+    @NotNull
     public abstract long getId();
 
     protected long doGetId() {
@@ -32,6 +34,7 @@ public abstract class AbstractBaseEntity implements Serializable {
     }
 
     @Version
+    @NotNull
     public int getVersion() {
         return version;
     }
@@ -40,6 +43,7 @@ public abstract class AbstractBaseEntity implements Serializable {
         this.version = version;
     }
 
+    @NotNull
     public LocalDateTime getCreated() {
         return created;
     }
@@ -48,6 +52,7 @@ public abstract class AbstractBaseEntity implements Serializable {
         this.created = created;
     }
 
+    @NotNull
     public LocalDateTime getLastModified() {
         return lastModified;
     }

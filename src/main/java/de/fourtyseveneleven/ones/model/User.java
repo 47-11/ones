@@ -1,6 +1,13 @@
 package de.fourtyseveneleven.ones.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serial;
 
 @Entity
@@ -13,6 +20,8 @@ public class User extends AbstractBaseEntity {
     private String emailAddress;
     private String password;
 
+    @NotBlank
+    @Email
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -21,6 +30,7 @@ public class User extends AbstractBaseEntity {
         this.emailAddress = emailAddress;
     }
 
+    @NotBlank
     public String getPassword() {
         return password;
     }
