@@ -1,27 +1,9 @@
 image: maven:3.8-openjdk-16
 
 stages:
-  - init
-  - validate
-  - build
-  - test
+  - ci
 
-init:
-  stage: init
+clean:
+  stage: ci
   script:
-    - mvn clean
-
-validate:
-  stage: validate
-  script:
-    - mvn validate
-
-build:
-  stage: build
-  script:
-    - mvn compile
-
-test:
-  stage: test
-  script:
-    - mvn test verify
+    - mvn clean compile test verify
