@@ -3,7 +3,7 @@ image: maven:3.8-openjdk-16
 stages:
   - ci
 
-clean:
+ci:
   stage: ci
   script:
     - mvn clean compile test verify
