@@ -14,10 +14,10 @@ public abstract class AbstractBaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 6552323927493879022L;
 
-    private long id;
-    private int version;
-    private LocalDateTime created;
-    private LocalDateTime lastModified;
+    private long id = 0;
+    private int version = 1;
+    private LocalDateTime created = LocalDateTime.now();
+    private LocalDateTime lastModified = LocalDateTime.now();
 
     protected abstract boolean canEqual(Object other);
 

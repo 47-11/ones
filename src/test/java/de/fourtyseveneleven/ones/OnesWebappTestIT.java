@@ -1,0 +1,16 @@
+package de.fourtyseveneleven.ones;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+class OnesWebappTestIT {
+
+    @Test
+    void contextLoads() {
+        // Nothing to do here, we are just verifying that the Spring Boot context loads.
+    }
+}
