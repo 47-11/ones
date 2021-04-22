@@ -5,5 +5,11 @@ stages:
 
 ci:
   stage: ci
+  variables:
+    MAVEN_OPTS: '-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository'
   script:
     - mvn clean compile test verify
+  cache:
+    key: 'maven-local-repository'
+    paths:
+      - '.m2/repository'
