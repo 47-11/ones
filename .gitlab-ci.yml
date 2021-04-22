@@ -19,6 +19,8 @@ build-maven:
 
 build-docker:
   stage: build-docker
+  only:
+    - master
   dependencies:
     - build-maven
   image:
