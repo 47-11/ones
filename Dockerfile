@@ -1,4 +1,4 @@
-FROM openjdk:16
+FROM adoptopenjdk:16-jre-openj9
 
 WORKDIR /opt/ones
 
