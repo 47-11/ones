@@ -8,6 +8,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serial;
 
 @Entity
@@ -19,6 +21,8 @@ public class User extends AbstractBaseEntity {
 
     private String emailAddress;
     private String password;
+    private boolean registrationConfirmed;
+    private String registrationConfirmationCode;
 
     @NotBlank
     @Email
@@ -37,6 +41,24 @@ public class User extends AbstractBaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @NotNull
+    public boolean isRegistrationConfirmed() {
+        return registrationConfirmed;
+    }
+
+    public void setRegistrationConfirmed(boolean registrationConfirmed) {
+        this.registrationConfirmed = registrationConfirmed;
+    }
+
+    @Size(max = 255)
+    public String getRegistrationConfirmationCode() {
+        return registrationConfirmationCode;
+    }
+
+    public void setRegistrationConfirmationCode(String registrationConfirmationCode) {
+        this.registrationConfirmationCode = registrationConfirmationCode;
     }
 
     @Override

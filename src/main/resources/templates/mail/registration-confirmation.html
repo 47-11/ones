@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<meta content="text/html; charset=UTF-8"/>
+
+<body style="font-family: Calibre, sans-serif;">
+    <h4 th:text="#{registration.confirmation.greeting}"></h4>
+
+    <p th:text="#{registration.confirmation.introduction}"></p>
+
+    <p><a th:href="${confirmationUri}" th:text="#{registration.confirmation.instructions}"></a></p>
+
+    <p th:text="#{registration.confirmation.did-not-sign-up}"></p>
+</body>
