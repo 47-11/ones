@@ -6,4 +6,4 @@ COPY ./target/ones-backend.jar ./
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "-Dspring.profiles.active=production", "-Dspring.config.location=/config/", "./ones-backend.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=production", "-Dspring.config.location=classpath:/,/config/", "./ones-backend.jar"]
