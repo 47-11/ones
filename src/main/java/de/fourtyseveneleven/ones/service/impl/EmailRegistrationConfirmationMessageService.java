@@ -61,7 +61,7 @@ public class EmailRegistrationConfirmationMessageService implements Registration
         context.setVariable("confirmationUri", buildConfirmationUri(user));
         context.setLocale(locale);
 
-        return templateEngine.process("/mail/registration-confirmation", context);
+        return templateEngine.process("mail/registration-confirmation", context);
     }
 
     private String buildConfirmationUri(User user) {
