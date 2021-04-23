@@ -60,6 +60,11 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -177,6 +182,12 @@
                 <artifactId>h2</artifactId>
                 <version>1.4.200</version>
             </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.2.20</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
