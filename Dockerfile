@@ -2,7 +2,7 @@ FROM adoptopenjdk:16-jre-openj9
 
 WORKDIR /opt/ones
 
-COPY ./target/ones-backend.jar ./
+COPY ./ones-webapp/target/ones-webapp.jar ./
 
 EXPOSE 8080
 
