@@ -2,6 +2,7 @@ package de.fourtyseveneleven.ones.configuration.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,9 +31,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
+                        "/",
+                        "/index.html",
                         "/api/docs/**",
                         "/api/v1/register/**",
                         "/api/v1/login")
+                .permitAll()
+                // All routes that do not start with 'api/' or '/api/'
+                .regexMatchers(HttpMethod.GET, "^(?!\\/?api\\/).*")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
