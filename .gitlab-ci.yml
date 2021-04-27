@@ -20,6 +20,8 @@ build-maven:
     reports:
       junit:
         - 'ones-frontend/junit.xml'
+        - 'ones-webapp/target/surefire-reports/TEST-*.xml'
+        - 'ones-webapp/target/failsafe-reports/TEST-*.xml'
 
 build-docker:
   stage: build-docker
