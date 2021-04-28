@@ -1,6 +1,7 @@
 package de.fourtyseveneleven.ones.repository;
 
-import de.fourtyseveneleven.ones.model.User;
+import de.fourtyseveneleven.ones.user.model.User;
+import de.fourtyseveneleven.ones.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 

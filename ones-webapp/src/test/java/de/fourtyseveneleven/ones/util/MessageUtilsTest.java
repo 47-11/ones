@@ -1,7 +1,7 @@
 package de.fourtyseveneleven.ones.util;
 
-import static de.fourtyseveneleven.ones.util.MessageUtils.getExceptionMessage;
-import static de.fourtyseveneleven.ones.util.MessageUtils.getLocale;
+import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
+import static de.fourtyseveneleven.ones.message.MessageUtils.getLocale;
 import static java.util.Locale.ENGLISH;
 import static java.util.Locale.GERMAN;
 import static java.util.Locale.GERMANY;
