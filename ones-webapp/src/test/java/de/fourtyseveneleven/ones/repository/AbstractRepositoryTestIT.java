@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.repository;
 
-import de.fourtyseveneleven.ones.model.AbstractBaseEntity;
+import de.fourtyseveneleven.ones.common.model.AbstractBaseEntity;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
