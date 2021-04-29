@@ -67,7 +67,8 @@ public class EmailRegistrationConfirmationMessageService implements Registration
     private String buildConfirmationUri(User user) {
 
         return ServletUriComponentsBuilder.fromCurrentContextPath()
-                .pathSegment("api", "v1", "register", "confirm")
-                .queryParam("code", user.getRegistrationConfirmationCode()).toUriString();
+                .pathSegment("verified")
+                .queryParam("code", user.getRegistrationConfirmationCode())
+                .toUriString();
     }
 }
