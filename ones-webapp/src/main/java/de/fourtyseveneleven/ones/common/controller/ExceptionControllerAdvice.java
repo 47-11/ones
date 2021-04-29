@@ -7,13 +7,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.joining;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
@@ -68,5 +73,29 @@ public class ExceptionControllerAdvice {
 
         return new ErrorDto(e.getMessage(), e.getMessage(),
                 e.getClass().getName());
+    }
+
+    @ExceptionHandler({TransactionSystemException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorDto handleTransactionSystemException(TransactionSystemException e) {
+
+        final Throwable rootCause = e.getRootCause();
+        if (rootCause instanceof ConstraintViolationException constraintViolationException) {
+            return handleConstraintViolationException(constraintViolationException);
+        } else {
+            return new ErrorDto(e.getMessage(), e.getMessage(), e.getClass().getSimpleName());
+        }
+    }
+
+    @ExceptionHandler({ConstraintViolationException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorDto handleConstraintViolationException(ConstraintViolationException e) {
+
+        final String userMessage = e.getConstraintViolations()
+                .stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(joining("\n"));
+
+        return new ErrorDto(userMessage, e.getMessage(), e.getClass().getSimpleName());
     }
 }
