@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <additionalParameters>
+      <param>
+        <option name="enabled" value="true" />
+        <option name="name" value="ones.message.email.password" />
+        <option name="value" value="smtp password here" />
+      </param>
+      <param>
+        <option name="enabled" value="true" />
+        <option name="name" value="ones.message.email.override-recipient-address" />
+        <option name="value" value="Email address here (or leave empty to send mails to the actual recipient)" />
+      </param>
+    </additionalParameters>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
