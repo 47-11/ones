@@ -31,6 +31,7 @@
                             <inputSpec>${project.parent.basedir}/ones-frontend/src/openapi/api-docs.json</inputSpec>
                             <generatorName>typescript-axios</generatorName>
                             <output>${project.parent.basedir}/ones-frontend/src/openapi/generated</output>
+                            <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
                         </configuration>
                     </execution>
                 </executions>
