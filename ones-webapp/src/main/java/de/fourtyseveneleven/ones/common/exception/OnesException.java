@@ -12,4 +12,8 @@ public class OnesException extends RuntimeException {
     public OnesException(String message) {
         super(message);
     }
+
+    public OnesException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

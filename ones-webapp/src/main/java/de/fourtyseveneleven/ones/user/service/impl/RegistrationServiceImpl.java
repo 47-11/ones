@@ -1,54 +1,59 @@
 package de.fourtyseveneleven.ones.user.service.impl;
 
+import de.fourtyseveneleven.ones.common.exception.ElementAlreadyPresentException;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.model.dto.RegistrationDto;
 import de.fourtyseveneleven.ones.user.exception.RegistrationException;
-import de.fourtyseveneleven.ones.user.repository.UserRepository;
 import de.fourtyseveneleven.ones.user.service.RegistrationConfirmationMessageService;
 import de.fourtyseveneleven.ones.user.service.RegistrationService;
+import de.fourtyseveneleven.ones.user.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
-import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private final UserRepository userRepository;
+    private static final Logger LOG = LoggerFactory.getLogger(RegistrationServiceImpl.class);
+
     private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
     private final RegistrationConfirmationMessageService registrationConfirmationMessageService;
 
     private final SecureRandom secureRandom = new SecureRandom();
 
-    public RegistrationServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RegistrationConfirmationMessageService registrationConfirmationMessageService) {
-        this.userRepository = userRepository;
+    public RegistrationServiceImpl(PasswordEncoder passwordEncoder, UserService userService,
+                                   RegistrationConfirmationMessageService registrationConfirmationMessageService) {
+
         this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
         this.registrationConfirmationMessageService = registrationConfirmationMessageService;
     }
 
     @Override
-    @Transactional
     public void createRegistration(RegistrationDto registrationDto) {
 
-        requireNewUser(registrationDto);
-        final User user = createUser(registrationDto);
+        final User user = createNewUser(registrationDto);
         sendRegistrationEmail(user);
     }
 
-    private void requireNewUser(RegistrationDto registrationDto) {
+    private User createNewUser(RegistrationDto registrationDto) {
 
-        final Optional<User> existingUser = userRepository.findOneByEmailAddress(registrationDto.getEmailAddress());
-        if (existingUser.isPresent()) {
-            throw new RegistrationException(getExceptionMessage("registration.email-address-already-in-use", registrationDto.getEmailAddress()));
+        try {
+            return doCreateUser(registrationDto);
+        } catch (ElementAlreadyPresentException e) {
+            throw new RegistrationException(getExceptionMessage("registration.email-address-already-in-use", registrationDto.getEmailAddress()), e);
         }
     }
 
-    private User createUser(RegistrationDto registrationDto) {
+    private User doCreateUser(RegistrationDto registrationDto) {
 
         final var user = new User();
         user.setEmailAddress(registrationDto.getEmailAddress());
@@ -56,7 +61,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         user.setRegistrationConfirmed(false);
         user.setRegistrationConfirmationCode(newRegistrationConfirmationCode());
 
-        return userRepository.save(user);
+        return userService.createNewUser(user);
     }
 
     private String newRegistrationConfirmationCode() {
@@ -73,10 +78,10 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Transactional
     public void confirmRegistration(String registrationConfirmationCode) {
 
-        final User user = userRepository.findOneByRegistrationConfirmationCodeAndRegistrationConfirmedIsFalse(registrationConfirmationCode)
+        final User user = userService.findByIncompleteRegistration(registrationConfirmationCode)
                 .orElseThrow(() -> new RegistrationException(getExceptionMessage("registration.confirmation.invalid-code")));
         user.setRegistrationConfirmed(true);
         user.setRegistrationConfirmationCode(null);
-        userRepository.save(user);
+        userService.updateUser(user);
     }
 }
