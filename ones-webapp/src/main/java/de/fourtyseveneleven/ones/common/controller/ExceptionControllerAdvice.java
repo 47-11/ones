@@ -50,10 +50,10 @@ public class ExceptionControllerAdvice {
         final String exceptionType;
         if (isNull(cause)) {
             exceptionMessage = e.getMessage();
-            exceptionType = e.getClass().getName();
+            exceptionType = e.getClass().getSimpleName();
         } else {
             exceptionMessage = cause.getMessage();
-            exceptionType = cause.getClass().getName();
+            exceptionType = cause.getClass().getSimpleName();
 
             if (cause instanceof OnesException) {
                 LOG.debug("Handling OnesException", e);
@@ -72,7 +72,7 @@ public class ExceptionControllerAdvice {
             Exception e) {
 
         return new ErrorDto(e.getMessage(), e.getMessage(),
-                e.getClass().getName());
+                e.getClass().getSimpleName());
     }
 
     @ExceptionHandler({TransactionSystemException.class})
