@@ -5,14 +5,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { CheckboxInputEvent } from '@/customTypes/inputEvent';
 
 @Component
 export default class VCheckbox extends Vue {
     @Prop() private disabled!: boolean;
     @Prop() public value = false;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-    handleInput (e: any): void {
+    handleInput (e: CheckboxInputEvent): void {
         this.$emit('input', e.target.value);
     }
 }

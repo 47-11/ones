@@ -5,14 +5,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { InputEvent } from '@/customTypes/inputEvent';
 
 @Component
 export default class VInput extends Vue {
     @Prop() public disabled!: boolean;
     @Prop() public value = '';
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-    handleInput (e: any): void {
+    handleInput (e: InputEvent): void {
         this.$emit('input', e.target.value);
     }
 }
