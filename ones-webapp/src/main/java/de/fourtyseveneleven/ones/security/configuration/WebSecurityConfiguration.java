@@ -37,6 +37,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/v1/register/**",
                         "/api/v1/login")
                 .permitAll()
+                // Pre-flight requests
+                .antMatchers(HttpMethod.OPTIONS)
+                .permitAll()
                 // All routes that do not start with 'api/' or '/api/'
                 .regexMatchers(HttpMethod.GET, "^(?!\\/?api\\/).*")
                 .permitAll()
