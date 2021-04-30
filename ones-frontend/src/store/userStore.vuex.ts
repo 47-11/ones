@@ -61,6 +61,6 @@ export class UserStore extends VuexModule {
 
     @action
     async verify (payload: VerificationPayload): Promise<void> {
-        await new RegistrationControllerApi().createRegistration1(payload.code);
+        await new RegistrationControllerApi().confirmRegistration(payload.code);
     }
 }
