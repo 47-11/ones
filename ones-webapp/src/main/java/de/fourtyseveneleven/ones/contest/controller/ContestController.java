@@ -25,7 +25,7 @@ public class ContestController {
     }
 
     @GetMapping("")
-    public List<ContestDto> findAll(ContestFilterDto filter) {
+    public List<ContestDto> findAll(@RequestParam(required = false) ContestFilterDto filter) {
 
         return contestService.findAll(filter);
     }
