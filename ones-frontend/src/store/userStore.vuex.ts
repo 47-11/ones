@@ -22,7 +22,7 @@ export interface VerificationPayload {
 }
 
 export class UserStore extends VuexModule {
-    private token?: string = this.getLastToken();
+    public token?: string = this.getLastToken();
 
     private getLastToken (): string | undefined {
         return sessionStorage.getItem('jwsToken') ||

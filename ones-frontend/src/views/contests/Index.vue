@@ -4,20 +4,18 @@
             <v-table>
                 <thead class="bg-gray-50">
                 <tr>
-                    <v-th>Datum</v-th>
+                    <v-th>Start</v-th>
+                    <v-th>Ende</v-th>
                     <v-th>Ritt</v-th>
-                    <v-th>Rittarten</v-th>
-                    <v-th>Region</v-th>
                     <v-th>Dokumente</v-th>
                     <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="contest in contests" :key="contest.id">
-                    <v-td>{{contest.date }}</v-td>
-                    <v-td>{{contest.name }}</v-td>
-                    <v-td>{{contest.type }}</v-td>
-                    <v-td>{{contest.location }}</v-td>
+                <tr v-for="contest in contests.all" :key="contest.id">
+                    <v-td>{{new Date(contest.start).toLocaleDateString(locale) }}</v-td>
+                    <v-td>{{new Date(contest.end).toLocaleDateString(locale) }}</v-td>
+                    <v-td>{{contest.title }}</v-td>
                     <v-td>
                         <v-link to="#">Ausschreibung</v-link>
                     </v-td>
@@ -58,6 +56,7 @@ import VTd from '@/components/table/VTd.vue';
 import Pagination from '@/components/Pagination.vue';
 import VButton from '@/components/VButton.vue';
 import VLink from '@/components/VLink.vue';
+import { vxm } from '@/store';
 
 @Component({
     components: {
@@ -72,28 +71,11 @@ import VLink from '@/components/VLink.vue';
     }
 })
 export default class Home extends Vue {
-    contests = [
-        {
-            id: 1,
-            date: '27.02.2021',
-            name: 'Trechwitzer Wald- und Wiesenritt',
-            type: 'Distanzfahrt',
-            location: 'Berlin - Brandenburg'
-        },
-        {
-            id: 2,
-            date: '02.04. bis 04.04.2021',
-            name: 'Pferdeparadies am Arendsee Ostern',
-            type: 'Distanzfahrt',
-            location: 'Westfalen'
-        },
-        {
-            id: 3,
-            date: '10.04.2021',
-            name: '4. Aprilscherz in der Geest',
-            type: 'Kartenritt',
-            location: 'Niedersachsen Nord'
-        }
-    ];
+    contests = vxm.contests;
+    locale = window.navigator.language;
+
+    mounted (): void {
+        vxm.contests.fetch();
+    }
 }
 </script>
