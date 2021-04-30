@@ -264,13 +264,11 @@ export const ContestControllerApiAxiosParamCreator = function (configuration?: C
     return {
         /**
          * 
-         * @param {ContestFilterDto} filter 
+         * @param {ContestFilterDto} [filter] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll: async (filter: ContestFilterDto, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'filter' is not null or undefined
-            assertParamExists('findAll', 'filter', filter)
+        findAll: async (filter?: ContestFilterDto, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/contest`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -343,11 +341,11 @@ export const ContestControllerApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {ContestFilterDto} filter 
+         * @param {ContestFilterDto} [filter] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findAll(filter: ContestFilterDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
+        async findAll(filter?: ContestFilterDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(filter, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -373,11 +371,11 @@ export const ContestControllerApiFactory = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {ContestFilterDto} filter 
+         * @param {ContestFilterDto} [filter] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll(filter: ContestFilterDto, options?: any): AxiosPromise<Array<ContestDto>> {
+        findAll(filter?: ContestFilterDto, options?: any): AxiosPromise<Array<ContestDto>> {
             return localVarFp.findAll(filter, options).then((request) => request(axios, basePath));
         },
         /**
@@ -401,12 +399,12 @@ export const ContestControllerApiFactory = function (configuration?: Configurati
 export class ContestControllerApi extends BaseAPI {
     /**
      * 
-     * @param {ContestFilterDto} filter 
+     * @param {ContestFilterDto} [filter] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContestControllerApi
      */
-    public findAll(filter: ContestFilterDto, options?: any) {
+    public findAll(filter?: ContestFilterDto, options?: any) {
         return ContestControllerApiFp(this.configuration).findAll(filter, options).then((request) => request(this.axios, this.basePath));
     }
 
