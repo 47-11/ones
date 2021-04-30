@@ -24,7 +24,7 @@ public class RegistrationController {
 
     @PostMapping("/confirm")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void createRegistration(@RequestParam(name = "code") String registrationConfirmationCode) {
+    public void confirmRegistration(@RequestParam(name = "code") String registrationConfirmationCode) {
 
         registrationService.confirmRegistration(registrationConfirmationCode);
     }
