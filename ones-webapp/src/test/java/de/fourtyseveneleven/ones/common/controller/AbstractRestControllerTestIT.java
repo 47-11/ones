@@ -20,10 +20,10 @@ abstract class AbstractRestControllerTestIT {
    protected MockMvc mvc = null;
 
    @Autowired
-   WebApplicationContext webApplicationContext;
+   private WebApplicationContext webApplicationContext;
 
    @Autowired
-   ObjectMapper objectMapper;
+   private ObjectMapper objectMapper;
 
    @BeforeEach
    void setup() {
