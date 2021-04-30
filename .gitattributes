@@ -1,2 +1,1 @@
-# Force OpenAPI spec file to have LF line endings, so the checksum is not different on Windows and Linux
-ones-frontend/src/openapi/api-docs.json text eol=lf
+* text=auto
