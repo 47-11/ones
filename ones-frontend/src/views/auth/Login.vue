@@ -65,11 +65,12 @@ export default class Login extends Vue {
     password = '';
     remember = Boolean();
     error = '';
+    user = vxm.user;
 
     public async login (): Promise<void> {
         try {
             this.error = '';
-            await vxm.user.login({
+            await this.user.login({
                 email: this.email,
                 password: this.password,
                 staySignedIn: this.remember

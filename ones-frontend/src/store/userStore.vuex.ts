@@ -1,5 +1,5 @@
 import { LoginControllerApi, RegistrationControllerApi } from '@/openapi/generated';
-import { action, createModule, getter } from 'vuex-class-component';
+import { action, createModule } from 'vuex-class-component';
 
 const VuexModule = createModule({
     namespaced: 'user',
@@ -22,10 +22,15 @@ export interface VerificationPayload {
 }
 
 export class UserStore extends VuexModule {
-    private token?: string;
+    private token?: string = this.getLastToken();
 
-    @getter
-    isAuthenticated (): boolean {
+    private getLastToken (): string | undefined {
+        return sessionStorage.getItem('jwsToken') ||
+            localStorage.getItem('jwsToken') ||
+            undefined;
+    }
+
+    get isAuthenticated (): boolean {
         return this.token !== undefined;
     }
 
@@ -37,6 +42,13 @@ export class UserStore extends VuexModule {
         });
         const jwsToken = loginResult.data;
         this.token = jwsToken;
+        if (payload.staySignedIn) {
+            localStorage.setItem('jwsToken', jwsToken);
+            sessionStorage.removeItem('jwsToken');
+        } else {
+            localStorage.removeItem('jwsToken');
+            sessionStorage.setItem('jwsToken', jwsToken);
+        }
     }
 
     @action
