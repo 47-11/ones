@@ -2,9 +2,15 @@
     <guest-layout>
         <auth-card>
             <div class="px-6 py-5">
+
+                <feedback color="danger" class="mb-5" v-if="error.length > 0">
+                    <h2 class="text-lg">Oops! Etwas ist schief gelaufen.</h2>
+                    {{ error }}
+                </feedback>
+
                 <div>
                     <v-label>E-Mail</v-label>
-                    <v-input type="text" class="w-full"></v-input>
+                    <v-input type="text" class="w-full" v-model="email"></v-input>
                     <v-hint>
                         Bereits an Veranstaltungen teilgenommen? Nutzen Sie die gleiche E-Mail, sodass Daten übernommen werden.
                     </v-hint>
@@ -12,7 +18,7 @@
 
                 <div class="mt-5">
                     <v-label>Passwort</v-label>
-                    <v-input type="password" class="w-full"></v-input>
+                    <v-input type="password" class="w-full" v-model="password"></v-input>
                 </div>
 
                 <div class="bg-gray-200 w-full h-1.5 flex items-stretch mt-3 rounded overflow-hidden">
@@ -23,7 +29,7 @@
 
                 <div class="mt-5">
                     <v-label>Passwort wiederholen</v-label>
-                    <v-input type="password" class="w-full"></v-input>
+                    <v-input type="password" class="w-full" v-model="passwordRepeat"></v-input>
                 </div>
 
                 <div class="block mt-4">
@@ -37,7 +43,7 @@
             </div>
 
             <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <v-button>Registrieren</v-button>
+                <v-button @click.native="register">Registrieren</v-button>
             </div>
         </auth-card>
     </guest-layout>
@@ -52,6 +58,7 @@ import VInput from '@/components/forms/VInput.vue';
 import VButton from '@/components/VButton.vue';
 import VHint from '@/components/forms/VHint.vue';
 import VCheckbox from '@/components/forms/VCheckbox.vue';
+import { vxm } from '@/store';
 
 @Component({
     components: {
@@ -65,5 +72,25 @@ import VCheckbox from '@/components/forms/VCheckbox.vue';
     }
 })
 export default class Register extends Vue {
+    email = '';
+    password = '';
+    passwordRepeat = '';
+    remember = false;
+    error = '';
+
+    public async register (): Promise<void> {
+        try {
+            await vxm.user.register({
+                email: this.email,
+                password: this.password
+            });
+        } catch (error) {
+            if (error.response?.data?.userMessage) {
+                this.error = error.response?.data?.userMessage;
+            } else {
+                this.error = error.message;
+            }
+        }
+    }
 }
 </script>
