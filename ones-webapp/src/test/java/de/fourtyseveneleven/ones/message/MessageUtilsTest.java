@@ -1,4 +1,4 @@
-package de.fourtyseveneleven.ones.util;
+package de.fourtyseveneleven.ones.message;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 import static de.fourtyseveneleven.ones.message.MessageUtils.getLocale;

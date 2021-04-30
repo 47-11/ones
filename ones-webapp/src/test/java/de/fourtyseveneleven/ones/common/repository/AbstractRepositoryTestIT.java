@@ -1,4 +1,4 @@
-package de.fourtyseveneleven.ones.repository;
+package de.fourtyseveneleven.ones.common.repository;
 
 import de.fourtyseveneleven.ones.common.model.AbstractBaseEntity;
 import org.junit.jupiter.api.AfterEach;

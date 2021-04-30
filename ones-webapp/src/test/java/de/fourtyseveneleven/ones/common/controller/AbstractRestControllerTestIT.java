@@ -1,4 +1,4 @@
-package de.fourtyseveneleven.ones.controller;
+package de.fourtyseveneleven.ones.common.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
