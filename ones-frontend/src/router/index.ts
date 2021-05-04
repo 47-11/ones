@@ -7,6 +7,7 @@ import ForgotPassword from "@/views/auth/ForgotPassword.vue";
 import ResetPassword from "@/views/auth/ResetPassword.vue";
 import Verified from "@/views/auth/Verified.vue";
 import ContestIndex from "@/views/contests/Index.vue";
+import ContestDetail from "@/views/contests/Detail.vue";
 import { vxm } from "@/store";
 
 Vue.use(VueRouter);
@@ -54,6 +55,11 @@ const routes: Array<RouteConfig> = [
         path: "/contests",
         name: "Wettbewerbe",
         component: ContestIndex
+    },
+    {
+        path: '/contests/:id',
+        name: 'Wettbewerb',
+        component: ContestDetail
     }
 ];
 
