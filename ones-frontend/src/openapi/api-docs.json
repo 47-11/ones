@@ -28,16 +28,6 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -48,8 +38,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -60,6 +50,16 @@
           },
           "500": {
             "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -91,16 +91,6 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -111,8 +101,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -123,6 +113,16 @@
           },
           "500": {
             "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -154,16 +154,6 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -174,8 +164,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -186,6 +176,16 @@
           },
           "500": {
             "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -215,25 +215,68 @@
         "operationId": "findAll",
         "parameters": [
           {
-            "name": "filter",
+            "name": "titleContains",
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContestFilterDto"
+              "type": "string"
+            }
+          },
+          {
+            "name": "descriptionContains",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startsBefore",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "startsAfter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endsBefore",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endsAfter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "organizerId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -244,8 +287,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -256,6 +299,16 @@
           },
           "500": {
             "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -303,16 +356,6 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "404": {
             "description": "Not Found",
             "content": {
@@ -323,8 +366,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -335,6 +378,16 @@
           },
           "500": {
             "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -397,37 +450,6 @@
           },
           "password": {
             "type": "string"
-          }
-        }
-      },
-      "ContestFilterDto": {
-        "type": "object",
-        "properties": {
-          "titleContains": {
-            "type": "string"
-          },
-          "descriptionContains": {
-            "type": "string"
-          },
-          "startsBefore": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "startsAfter": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endsBefore": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endsAfter": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "organizerId": {
-            "type": "integer",
-            "format": "int64"
           }
         }
       },

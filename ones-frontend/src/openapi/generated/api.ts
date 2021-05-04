@@ -85,55 +85,6 @@ export interface ContestDto {
 /**
  * 
  * @export
- * @interface ContestFilterDto
- */
-export interface ContestFilterDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestFilterDto
-     */
-    titleContains?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestFilterDto
-     */
-    descriptionContains?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestFilterDto
-     */
-    startsBefore?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestFilterDto
-     */
-    startsAfter?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestFilterDto
-     */
-    endsBefore?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestFilterDto
-     */
-    endsAfter?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestFilterDto
-     */
-    organizerId?: number;
-}
-/**
- * 
- * @export
  * @interface ErrorDto
  */
 export interface ErrorDto {
@@ -264,11 +215,17 @@ export const ContestControllerApiAxiosParamCreator = function (configuration?: C
     return {
         /**
          * 
-         * @param {ContestFilterDto} [filter] 
+         * @param {string} [titleContains] 
+         * @param {string} [descriptionContains] 
+         * @param {string} [startsBefore] 
+         * @param {string} [startsAfter] 
+         * @param {string} [endsBefore] 
+         * @param {string} [endsAfter] 
+         * @param {number} [organizerId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll: async (filter?: ContestFilterDto, options: any = {}): Promise<RequestArgs> => {
+        findAll: async (titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/contest`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -285,8 +242,40 @@ export const ContestControllerApiAxiosParamCreator = function (configuration?: C
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (filter !== undefined) {
-                localVarQueryParameter['filter'] = filter;
+            if (titleContains !== undefined) {
+                localVarQueryParameter['titleContains'] = titleContains;
+            }
+
+            if (descriptionContains !== undefined) {
+                localVarQueryParameter['descriptionContains'] = descriptionContains;
+            }
+
+            if (startsBefore !== undefined) {
+                localVarQueryParameter['startsBefore'] = (startsBefore as any instanceof Date) ?
+                    (startsBefore as any).toISOString() :
+                    startsBefore;
+            }
+
+            if (startsAfter !== undefined) {
+                localVarQueryParameter['startsAfter'] = (startsAfter as any instanceof Date) ?
+                    (startsAfter as any).toISOString() :
+                    startsAfter;
+            }
+
+            if (endsBefore !== undefined) {
+                localVarQueryParameter['endsBefore'] = (endsBefore as any instanceof Date) ?
+                    (endsBefore as any).toISOString() :
+                    endsBefore;
+            }
+
+            if (endsAfter !== undefined) {
+                localVarQueryParameter['endsAfter'] = (endsAfter as any instanceof Date) ?
+                    (endsAfter as any).toISOString() :
+                    endsAfter;
+            }
+
+            if (organizerId !== undefined) {
+                localVarQueryParameter['organizerId'] = organizerId;
             }
 
 
@@ -349,12 +338,18 @@ export const ContestControllerApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {ContestFilterDto} [filter] 
+         * @param {string} [titleContains] 
+         * @param {string} [descriptionContains] 
+         * @param {string} [startsBefore] 
+         * @param {string} [startsAfter] 
+         * @param {string} [endsBefore] 
+         * @param {string} [endsAfter] 
+         * @param {number} [organizerId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findAll(filter?: ContestFilterDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(filter, options);
+        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -379,12 +374,18 @@ export const ContestControllerApiFactory = function (configuration?: Configurati
     return {
         /**
          * 
-         * @param {ContestFilterDto} [filter] 
+         * @param {string} [titleContains] 
+         * @param {string} [descriptionContains] 
+         * @param {string} [startsBefore] 
+         * @param {string} [startsAfter] 
+         * @param {string} [endsBefore] 
+         * @param {string} [endsAfter] 
+         * @param {number} [organizerId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll(filter?: ContestFilterDto, options?: any): AxiosPromise<Array<ContestDto>> {
-            return localVarFp.findAll(filter, options).then((request) => request(axios, basePath));
+        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): AxiosPromise<Array<ContestDto>> {
+            return localVarFp.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -407,13 +408,19 @@ export const ContestControllerApiFactory = function (configuration?: Configurati
 export class ContestControllerApi extends BaseAPI {
     /**
      * 
-     * @param {ContestFilterDto} [filter] 
+     * @param {string} [titleContains] 
+     * @param {string} [descriptionContains] 
+     * @param {string} [startsBefore] 
+     * @param {string} [startsAfter] 
+     * @param {string} [endsBefore] 
+     * @param {string} [endsAfter] 
+     * @param {number} [organizerId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContestControllerApi
      */
-    public findAll(filter?: ContestFilterDto, options?: any) {
-        return ContestControllerApiFp(this.configuration).findAll(filter, options).then((request) => request(this.axios, this.basePath));
+    public findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any) {
+        return ContestControllerApiFp(this.configuration).findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
