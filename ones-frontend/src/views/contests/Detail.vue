@@ -26,7 +26,7 @@
                 </div>
             </div>
         </template>
-        <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-12">
+        <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div>
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Details</h2>
