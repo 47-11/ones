@@ -3,9 +3,9 @@
         <template v-slot:header>
             <div class="ml-0 w-full">
                 <div class="flex items-center">
-                    <div class="pr-8">
+                    <div class="pr-4 md:pr-8">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"
-                             class="w-7 h-7 text-gray-400 svg-inline--fa fa-chevron-left fa-w-10" role="img"
+                             class="w-6 h-6 md:w-7 md:h-7 text-gray-400 svg-inline--fa fa-chevron-left fa-w-10" role="img"
                              xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 320 512">
                             <path fill="currentColor"
@@ -25,17 +25,17 @@
                 </div>
             </div>
         </template>
-        <div class="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto py-12">
-            <div class="grid grid-cols-3 gap-10">
+        <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div>
-                    <h2 class="text-xl font-bold text-gray-700">Details</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Details</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Zeitraum</th>
                                 <td class="text-left px-5 py-1">
-                                    13. - 16.05.2021
-                                    <badge class="bg-lime-600 text-white text-xs ml-2">
+                                    <span class="mr-2">13. - 16.05.2021</span>
+                                    <badge class="bg-lime-600 text-white text-xs">
                                         <span class="font-normal">steht fest</span>
                                     </badge>
                                 </td>
@@ -63,7 +63,7 @@
                         </table>
 
                         <div class="text-xs px-5 my-4">
-                            <v-button class="flex items-center">
+                            <v-button class="flex items-center my-1 mr-2">
                                 <span class="mr-1.5">VDD-Nennung</span>
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="file-pdf"
                                      class="w-4 h-4 svg-inline--fa fa-file-pdf fa-w-12" role="img"
@@ -73,7 +73,7 @@
                                 </svg>
                             </v-button>
 
-                            <v-button class="flex items-center ml-2" color="secondary">
+                            <v-button class="flex items-center my-1" color="secondary">
                                 <span class="mr-1.5">Ausschreibung</span>
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="file-pdf"
                                      class="w-4 h-4 svg-inline--fa fa-file-pdf fa-w-12" role="img"
@@ -92,7 +92,7 @@
                 </div>
 
                 <div>
-                    <h2 class="text-xl font-bold text-gray-700">Rittdaten</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 mt-4 lg:mt-0">Rittdaten</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
@@ -129,8 +129,8 @@
                     </card>
                 </div>
 
-                <div>
-                    <h2 class="text-xl font-bold text-gray-700">Veranstaltung</h2>
+                <div class="md:col-span-2 lg:col-span-1">
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 mt-4 lg:mt-0">Veranstaltung</h2>
                     <card class="mt-3 py-1 text-sm">
                         <div class="px-5 py-2 border-b">
                             <div class="font-bold mb-0.5 text-gray-700">Veranstalter</div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <h2 class="text-xl font-bold text-gray-700 mt-12">Wettbewerbe</h2>
+            <h2 class="text-xl font-bold text-gray-700 px-4 md:px-0 mt-12">Wettbewerbe</h2>
 
             <v-table class="mt-2">
                 <thead class="bg-gray-50">
