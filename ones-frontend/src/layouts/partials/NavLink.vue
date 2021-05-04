@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="to" class="inline-flex items-center px-1 pt-1 border-b-2 leading-5 focus:outline-none"
+    <router-link :to="to" class="inline-flex items-center px-1 pt-1 border-b-2 leading-5 focus:outline-none font-medium"
                  v-bind:class="{ active: active, inactive: !active }">
         <slot></slot>
     </router-link>

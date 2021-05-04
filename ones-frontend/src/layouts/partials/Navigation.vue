@@ -12,6 +12,10 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <nav-link to="/" :active="true">Dashboard</nav-link>
                     </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <nav-link to="/">Wettbewerbe</nav-link>
+                    </div>
                 </div>
 
                 <!-- Settings Dropdown -->

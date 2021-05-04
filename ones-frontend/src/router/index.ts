@@ -6,6 +6,7 @@ import Login from '../views/auth/Login.vue';
 import ForgotPassword from '@/views/auth/ForgotPassword.vue';
 import ResetPassword from '@/views/auth/ResetPassword.vue';
 import Verified from '@/views/auth/Verified.vue';
+import ContestIndex from '@/views/contests/Index.vue';
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,11 @@ const routes: Array<RouteConfig> = [
         path: '/verified',
         name: 'E-Mail bestätigt',
         component: Verified
+    },
+    {
+        path: '/contests',
+        name: 'Wettbewerbe',
+        component: ContestIndex
     }
 ];
 

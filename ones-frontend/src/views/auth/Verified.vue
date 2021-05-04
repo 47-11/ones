@@ -24,6 +24,7 @@ import VButton from '@/components/VButton.vue';
 import VHint from '@/components/forms/VHint.vue';
 import VCheckbox from '@/components/forms/VCheckbox.vue';
 import Feedback from '@/components/Feedback.vue';
+import { vxm } from '@/store';
 
 @Component({
     components: {
@@ -38,5 +39,9 @@ import Feedback from '@/components/Feedback.vue';
     }
 })
 export default class Verified extends Vue {
+    mounted (): void {
+        const code = this.$route.query.code as string;
+        vxm.user.verify({ code }).catch(console.error);
+    }
 }
 </script>
