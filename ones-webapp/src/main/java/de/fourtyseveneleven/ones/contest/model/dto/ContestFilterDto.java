@@ -13,6 +13,18 @@ public class ContestFilterDto {
     private LocalDateTime endsAfter;
     private Long organizerId;
 
+    public ContestFilterDto(String titleContains, String descriptionContains, LocalDateTime startsBefore,
+                            LocalDateTime startsAfter, LocalDateTime endsBefore, LocalDateTime endsAfter,
+                            Long organizerId) {
+        this.titleContains = titleContains;
+        this.descriptionContains = descriptionContains;
+        this.startsBefore = startsBefore;
+        this.startsAfter = startsAfter;
+        this.endsBefore = endsBefore;
+        this.endsAfter = endsAfter;
+        this.organizerId = organizerId;
+    }
+
     public String getTitleContains() {
         return titleContains;
     }
