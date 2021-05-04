@@ -23,31 +23,37 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        authorizeRequests(http);
+
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Safe to disable, since we use JWT tokens.
         http.csrf().disable();
 
-        http.authorizeRequests()
-                .antMatchers(
-                        "/",
-                        "/index.html",
-                        "/api/docs/**",
-                        "/api/v1/register/**",
-                        "/api/v1/login")
-                .permitAll()
-                // Pre-flight requests
-                .antMatchers(HttpMethod.OPTIONS)
-                .permitAll()
-                // All routes that do not start with 'api/' or '/api/'
-                .regexMatchers(HttpMethod.GET, "^(?!\\/?api\\/).*")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
-
         http.apply(new JwtTokenFilterConfigurer());
         http.authenticationProvider(jwtTokenAuthenticationProvider);
+    }
+
+    private void authorizeRequests(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+                // Pre-flight requests do not need authentication
+                .antMatchers(HttpMethod.OPTIONS)
+                .permitAll()
+                // These special API endpoints do not need authentication
+                .antMatchers(
+                        "/api/v1/register",
+                        "/api/v1/register/confirm",
+                        "/api/v1/login",
+                        "/api/docs/**")
+                .permitAll()
+                // All other API endpoints need authentication
+                .antMatchers("/api/**")
+                .authenticated()
+                // All other paths can be accessed without authentication
+                .anyRequest()
+                .permitAll();
     }
 
     @Bean
