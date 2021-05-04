@@ -92,7 +92,7 @@
                 </div>
 
                 <div>
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 mt-4 lg:mt-0">Rittdaten</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-4 lg:mt-0">Rittdaten</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
