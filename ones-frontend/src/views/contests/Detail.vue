@@ -239,7 +239,7 @@
                 </tbody>
             </v-table>
 
-            <div class="mt-4 text-xs text-gray-400">
+            <div class="mt-4 text-xs text-gray-400 px-4 md:px-0">
                 <table>
                     <tr>
                         <td class="pr-3">1)</td>
