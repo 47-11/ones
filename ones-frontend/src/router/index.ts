@@ -67,6 +67,11 @@ router.beforeEach((to, f, next) => {
     if (needsAuth(to) && !vxm.user.authenticated) {
         next('login');
     }
+
+    if (vxm.user.authenticated && to.path === '/register') {
+        next('login');
+    }
+
     next();
 });
 
