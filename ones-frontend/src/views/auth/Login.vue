@@ -39,7 +39,7 @@
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <router-link to="register">
-                        <span class="text-blue-600">Registrieren</span>
+                        <span class="text-blue-600 hover:underline">Registrieren</span>
                     </router-link>
                     <div class="flex-grow"></div>
                     <v-button @click.native="login" :disabled="inputsDisabled">Einloggen</v-button>
