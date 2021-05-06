@@ -1,5 +1,5 @@
 import { LoginControllerApi, RegistrationControllerApi } from '@/openapi/generated';
-import { action, createModule } from 'vuex-class-component';
+import { action, createModule, mutation } from 'vuex-class-component';
 
 const VuexModule = createModule({
     namespaced: 'user',
@@ -22,11 +22,12 @@ export interface VerificationPayload {
 }
 
 export class UserStore extends VuexModule {
+    private static readonly TOKEN_STORAGE_NAME = 'jwtToken';
     public token?: string = this.getLastToken();
 
     private getLastToken (): string | undefined {
-        return sessionStorage.getItem('jwsToken') ||
-            localStorage.getItem('jwsToken') ||
+        return sessionStorage.getItem(UserStore.TOKEN_STORAGE_NAME) ||
+            localStorage.getItem(UserStore.TOKEN_STORAGE_NAME) ||
             undefined;
     }
 
@@ -43,11 +44,11 @@ export class UserStore extends VuexModule {
         const jwsToken = loginResult.data;
         this.token = jwsToken;
         if (payload.staySignedIn) {
-            localStorage.setItem('jwsToken', jwsToken);
-            sessionStorage.removeItem('jwsToken');
+            localStorage.setItem(UserStore.TOKEN_STORAGE_NAME, jwsToken);
+            sessionStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
         } else {
-            localStorage.removeItem('jwsToken');
-            sessionStorage.setItem('jwsToken', jwsToken);
+            localStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
+            sessionStorage.setItem(UserStore.TOKEN_STORAGE_NAME, jwsToken);
         }
     }
 
@@ -62,5 +63,12 @@ export class UserStore extends VuexModule {
     @action
     async verify (payload: VerificationPayload): Promise<void> {
         await new RegistrationControllerApi().confirmRegistration(payload.code);
+    }
+
+    @mutation
+    logout (): void {
+        this.token = undefined;
+        localStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
+        sessionStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
     }
 }
