@@ -35,25 +35,14 @@
                         <div class="bg-lime-600" style="width: 70%;"></div>
                     </div>
 
-                    <div class="text-xs text-gray-500 mt-1 font-bold">Super starkes Passwort!</div>
-
                     <div class="mt-5">
                         <v-label>Passwort wiederholen</v-label>
                         <v-input type="password" class="w-full" v-model="passwordRepeat" :disabled="inputsDisabled"></v-input>
                     </div>
 
-                    <div class="block mt-4">
-                        <label for="accept_policy_conditions" class="inline-flex items-center">
-                            <v-checkbox id="accept_policy_conditions" name="dataProtectionAccepted" v-model="dataProtectionAccepted" :disabled="inputsDisabled"/>
-                            <span class="ml-2 text-sm text-gray-600">
-                                Ich stimme den <router-link to="/">Datenschutzbestimmungen</router-link> zu.
-                            </span>
-                        </label>
+                    <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <v-button @click.native="register" :disabled="inputsDisabled">Registrieren</v-button>
                     </div>
-                </div>
-
-                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-button @click.native="register" :disabled="inputsDisabled">Registrieren</v-button>
                 </div>
             </form>
         </auth-card>
