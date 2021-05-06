@@ -20,7 +20,9 @@
                         <v-link to="#">Ausschreibung</v-link>
                     </v-td>
                     <v-td>
-                        <v-button>Details</v-button>
+                        <router-link :to="'contests/' + contest.id">
+                            <v-button>Details</v-button>
+                        </router-link>
                     </v-td>
                 </tr>
                 </tbody>

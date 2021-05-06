@@ -1,6 +1,6 @@
 <template>
-    <router-link :to="to" class="block pl-3 pr-4 py-2 border-l-4 text-base focus:outline-none ease-in-out"
-                 v-bind:class="{ active: active, inactive: !active }">
+    <router-link :to="to" class="block pl-3 border-b-0 pr-4 py-2 border-l-4 text-base focus:outline-none ease-in-out"
+                 v-bind:class="{ active: isActive(), inactive: !isActive() }">
         <slot></slot>
     </router-link>
 </template>
@@ -11,7 +11,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class ResponsiveNavLink extends Vue {
     @Prop() public to!: string;
-    @Prop() public active!: boolean;
+
+    isActive () {
+        if (this.$route.path === '/') {
+            return this.to === '/';
+        }
+
+        return this.to.startsWith(this.$route.path);
+    }
 }
 </script>
 

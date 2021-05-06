@@ -1,6 +1,6 @@
 <template>
     <router-link :to="to" class="inline-flex items-center px-1 pt-1 border-b-2 leading-5 focus:outline-none font-medium"
-                 v-bind:class="{ active: active, inactive: !active }">
+                 v-bind:class="{ active: isActive(), inactive: !isActive() }">
         <slot></slot>
     </router-link>
 </template>
@@ -11,7 +11,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class NavLink extends Vue {
     @Prop() private to!: string;
-    @Prop() public active!: boolean;
+
+    isActive () {
+        if (this.$route.path === '/') {
+            return this.to === '/';
+        }
+
+        return this.to.startsWith(this.$route.path);
+    }
 }
 </script>
 
