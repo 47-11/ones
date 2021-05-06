@@ -30,7 +30,7 @@ export class UserStore extends VuexModule {
             undefined;
     }
 
-    get isAuthenticated (): boolean {
+    get authenticated (): boolean {
         return this.token !== undefined;
     }
 
