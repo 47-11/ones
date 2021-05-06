@@ -40,9 +40,9 @@
                         <v-input type="password" class="w-full" v-model="passwordRepeat" :disabled="inputsDisabled"></v-input>
                     </div>
 
-                    <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <v-button @click.native="register" :disabled="inputsDisabled">Registrieren</v-button>
-                    </div>
+                </div>
+                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <v-button @click.native="register" :disabled="inputsDisabled">Registrieren</v-button>
                 </div>
             </form>
         </auth-card>

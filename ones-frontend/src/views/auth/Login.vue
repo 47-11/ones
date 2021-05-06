@@ -35,10 +35,10 @@
                         </span>
                         </label>
                     </div>
+                </div>
 
-                    <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <v-button @click.native="login" :disabled="inputsDisabled">Einloggen</v-button>
-                    </div>
+                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <v-button @click.native="login" :disabled="inputsDisabled">Einloggen</v-button>
                 </div>
             </form>
         </auth-card>
