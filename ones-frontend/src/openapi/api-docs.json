@@ -418,8 +418,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -597,20 +597,19 @@
         ]
       }
     },
-    "/api/v1/contest/{id}": {
+    "/api/v1/contest/{uuid}": {
       "get": {
         "tags": [
           "contest-controller"
         ],
-        "operationId": "findOneById",
+        "operationId": "getDetails",
         "parameters": [
           {
-            "name": "id",
+            "name": "uuid",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
@@ -745,26 +744,10 @@
       "ContestDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "version": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastModified": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "title": {
+          "uuid": {
             "type": "string"
           },
-          "description": {
+          "title": {
             "type": "string"
           },
           "start": {
@@ -835,36 +818,17 @@
       "RiderDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
+          "contest": {
+            "$ref": "#/components/schemas/ContestDto"
           },
-          "version": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastModified": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "emailAddress": {
+          "description": {
             "type": "string"
           },
-          "firstName": {
+          "organizerName": {
             "type": "string"
           },
-          "lastName": {
+          "contactInformation": {
             "type": "string"
-          },
-          "initialDataSetupCompleted": {
-            "type": "boolean"
-          },
-          "allNecessaryDataPresent": {
-            "type": "boolean"
           }
         }
       }

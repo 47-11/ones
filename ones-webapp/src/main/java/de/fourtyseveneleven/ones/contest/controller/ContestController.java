@@ -1,8 +1,9 @@
 package de.fourtyseveneleven.ones.contest.controller;
 
-import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
+import de.fourtyseveneleven.ones.contest.model.dto.ContestDetailDto;
 import de.fourtyseveneleven.ones.contest.model.dto.ContestDto;
 import de.fourtyseveneleven.ones.contest.model.dto.ContestFilterDto;
+import de.fourtyseveneleven.ones.contest.service.ContestDetailService;
 import de.fourtyseveneleven.ones.contest.service.ContestService;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +19,11 @@ import java.util.List;
 public class ContestController {
 
     private final ContestService contestService;
+    private final ContestDetailService contestDetailService;
 
-    public ContestController(ContestService contestService) {
+    public ContestController(ContestService contestService, ContestDetailService contestDetailService) {
         this.contestService = contestService;
-    }
-
-    @GetMapping("/{id}")
-    public ContestDto findOneById(@PathVariable long id) {
-
-        return contestService.findOneById(id).orElseThrow(ElementNotFoundException::new);
+        this.contestDetailService = contestDetailService;
     }
 
     @GetMapping("")
@@ -42,5 +39,12 @@ public class ContestController {
                 endsBefore, endsAfter, organizerId);
 
         return contestService.findAll(filter);
+    }
+
+    @GetMapping("/{uuid}")
+    public ContestDetailDto getDetails(@PathVariable String uuid) {
+
+        return contestDetailService.findOneByContestUuid(uuid)
+                .orElse(null);
     }
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ContestService {
 
-    Optional<ContestDto> findOneById(long id);
+    Optional<ContestDto> findOneByUuid(String contestUuid);
 
     List<ContestDto> findAll(ContestFilterDto filter);
 }

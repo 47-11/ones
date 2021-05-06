@@ -17,16 +17,15 @@ import java.util.Optional;
 @Service
 public class MockContestService implements ContestService {
 
-    private final Map<Long, ContestDto> mockContests;
+    private final Map<String, ContestDto> mockContests;
 
     public MockContestService() {
         mockContests = createMockContests();
     }
 
     @Override
-    public Optional<ContestDto> findOneById(long id) {
-
-        return Optional.ofNullable(mockContests.get(id));
+    public Optional<ContestDto> findOneByUuid(String contestUuid) {
+        return Optional.empty();
     }
 
     @Override
@@ -35,11 +34,12 @@ public class MockContestService implements ContestService {
         return new ArrayList<>(mockContests.values());
     }
 
-    private Map<Long, ContestDto> createMockContests() {
+    private Map<String, ContestDto> createMockContests() {
 
-        final Map<Long, ContestDto> result = new HashMap<>();
+        final Map<String, ContestDto> result = new HashMap<>();
         for (long i = 1; i < 20; i++) {
-            result.put(i, createMockContest(i));
+            final ContestDto contest = createMockContest(i);
+            result.put(contest.getUuid(), contest);
         }
 
         return result;
@@ -48,14 +48,10 @@ public class MockContestService implements ContestService {
     private ContestDto createMockContest(long id) {
 
         final var contestDto = new ContestDto();
-        contestDto.setId(id);
-        contestDto.setVersion(1);
-        contestDto.setCreated(LocalDateTime.now().minusDays(14));
-        contestDto.setLastModified(LocalDateTime.now());
+        contestDto.setUuid("UUID " + id);
 
         final char contestLetter = (char)(65 + id);
         contestDto.setTitle("Wettbewerb " + contestLetter);
-        contestDto.setDescription(MessageFormat.format("Dies ist die Beschreibung für Wettbewerb {0}. Lorem Ipsum etc.", contestLetter));
 
         final LocalDateTime now = LocalDateTime.now();
         contestDto.setStart(now.plusDays(id));
