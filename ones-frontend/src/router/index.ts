@@ -70,6 +70,11 @@ router.beforeEach((to, f, next) => {
         next('/');
     }
 
+    if (to.path === '/logout') {
+        vxm.user.logout();
+        next('login');
+    }
+
     next();
 });
 
