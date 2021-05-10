@@ -1,14 +1,6 @@
 <template>
     <guest-layout>
-        <auth-card v-if="user.authenticated">
-            <div class="px-6 py-5">
-                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <span class="flex-grow text-left">Benutzer bereits angemeldet.</span>
-                    <v-button @click.native="logout">Ausloggen</v-button>
-                </div>
-            </div>
-        </auth-card>
-        <auth-card v-else>
+        <auth-card>
             <form @submit.prevent="login">
                 <div class="px-6 py-5">
 
