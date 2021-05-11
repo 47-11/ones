@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueRouter, { RouteConfig } from 'vue-router';
+import VueRouter, { Route, RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import Register from '../views/auth/Register.vue';
 import Login from '../views/auth/Login.vue';
@@ -7,6 +7,7 @@ import ForgotPassword from '@/views/auth/ForgotPassword.vue';
 import ResetPassword from '@/views/auth/ResetPassword.vue';
 import Verified from '@/views/auth/Verified.vue';
 import ContestIndex from '@/views/contests/Index.vue';
+import { vxm } from '@/store';
 
 Vue.use(VueRouter);
 
@@ -61,5 +62,25 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 });
+
+router.beforeEach((to, f, next) => {
+    if (needsAuth(to) && !vxm.user.authenticated) {
+        next('login');
+    } else if (!needsAuth(to) && vxm.user.authenticated) {
+        next('/');
+    }
+
+    if (to.path === '/logout') {
+        vxm.user.logout();
+        next('login');
+    }
+
+    next();
+});
+
+function needsAuth (to: Route) {
+    const needsNoAuth = ['/login', '/register', '/forgot-password', '/reset-password', '/verified'].includes(to.path);
+    return !needsNoAuth;
+}
 
 export default router;

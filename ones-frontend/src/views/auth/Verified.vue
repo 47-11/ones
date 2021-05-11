@@ -1,14 +1,34 @@
 <template>
     <guest-layout>
         <auth-card>
-            <div class="px-6 py-5">
+            <div class="px-6 py-5" v-if="error.length === 0 && !verified">
+                <feedback color="danger" class="mb-5">
+                    <h2 class="text-lg">Bitte warten...</h2>
+                    Authentifizierung läuft...
+                </feedback>
+            </div>
+            <div class="px-6 py-5" v-if="error.length > 0">
+                <feedback color="danger" class="mb-5" >
+                    <h2 class="text-lg">Oops! Etwas ist schief gelaufen.</h2>
+                    {{ error }}
+                </feedback>
+            </div>
+            <div class="px-6 py-5" v-if="verified && error.length === 0">
                 <div class="text-sm text-gray-600">
                     <h1 class="text-xl">E-Mail erfolgreich bestätigt.</h1>
                 </div>
             </div>
 
-            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <v-button>zum Login</v-button>
+            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6" v-if="error.length > 0">
+                <router-link to="login">
+                    <v-button>Erneut registrieren</v-button>
+                </router-link>
+            </div>
+
+            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6"  v-if="verified && error.length === 0">
+                <router-link to="login">
+                    <v-button>zum Login</v-button>
+                </router-link>
             </div>
         </auth-card>
     </guest-layout>
@@ -39,9 +59,24 @@ import { vxm } from '@/store';
     }
 })
 export default class Verified extends Vue {
-    mounted (): void {
+    verified = true;
+    error = '';
+
+    async mounted (): Promise<void> {
+        this.error = '';
+        this.verified = false;
         const code = this.$route.query.code as string;
-        vxm.user.verify({ code }).catch(console.error);
+
+        try {
+            await vxm.user.verify({ code });
+            this.verified = true;
+        } catch (error) {
+            if (error.response?.data?.userMessage) {
+                this.error = error.response?.data?.userMessage;
+            } else {
+                this.error = error.message;
+            }
+        }
     }
 }
 </script>

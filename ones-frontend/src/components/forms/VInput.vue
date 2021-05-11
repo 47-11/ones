@@ -1,5 +1,5 @@
 <template>
-    <input class="rounded-md shadow-sm border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50" v-bind:value="value" @input="handleInput"
+    <input class="rounded-md shadow-sm border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50" v-bind:value="value" @input="handleInput" :disabled="disabled"
            v-bind:class="{ 'bg-gray-100': disabled }">
 </template>
 
