@@ -110,6 +110,31 @@ export interface ErrorDto {
 /**
  * 
  * @export
+ * @interface HorseDto
+ */
+export interface HorseDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
+    uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
+    lifeNumber?: string;
+}
+/**
+ * 
+ * @export
  * @interface LoginDto
  */
 export interface LoginDto {
@@ -144,6 +169,37 @@ export interface RegistrationDto {
      * @memberof RegistrationDto
      */
     password?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ResultDto
+ */
+export interface ResultDto {
+    /**
+     * 
+     * @type {ContestDto}
+     * @memberof ResultDto
+     */
+    contest?: ContestDto;
+    /**
+     * 
+     * @type {HorseDto}
+     * @memberof ResultDto
+     */
+    horse?: HorseDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof ResultDto
+     */
+    placement?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ResultDto
+     */
+    averageSpeed?: number;
 }
 /**
  * 
@@ -704,6 +760,104 @@ export class RegistrationControllerApi extends BaseAPI {
      */
     public createRegistration(registrationDto: RegistrationDto, options?: any) {
         return RegistrationControllerApiFp(this.configuration).createRegistration(registrationDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ResultControllerApi - axios parameter creator
+ * @export
+ */
+export const ResultControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyResults: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/results/my`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ResultControllerApi - functional programming interface
+ * @export
+ */
+export const ResultControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ResultControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMyResults(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ResultDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyResults(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ResultControllerApi - factory interface
+ * @export
+ */
+export const ResultControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ResultControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyResults(options?: any): AxiosPromise<Array<ResultDto>> {
+            return localVarFp.getMyResults(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ResultControllerApi - object-oriented interface
+ * @export
+ * @class ResultControllerApi
+ * @extends {BaseAPI}
+ */
+export class ResultControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ResultControllerApi
+     */
+    public getMyResults(options?: any) {
+        return ResultControllerApiFp(this.configuration).getMyResults(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
