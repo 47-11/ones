@@ -108,7 +108,7 @@ class ExceptionControllerAdviceTestIT extends AbstractRestControllerTestIT {
 
     private MockHttpServletResponse get() throws Exception {
 
-        return mvc.perform(MockMvcRequestBuilders.get(ExceptionThrowingController.EXCEPTION_URL)
+        return getMvc().perform(MockMvcRequestBuilders.get(ExceptionThrowingController.EXCEPTION_URL)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn().getResponse();
     }
 

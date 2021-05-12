@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
+public abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
 
     private static final List<Long> TEST_ENTITY_IDS;
     static {
@@ -26,9 +26,9 @@ abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
         TEST_ENTITY_IDS = Arrays.asList(ids);
     }
 
-    abstract JpaRepository<T, Long> getRepository();
+    protected abstract JpaRepository<T, Long> getRepository();
 
-    abstract T getTestEntity(long id);
+    protected abstract T getTestEntity(long id);
 
     @BeforeEach
     void setup() {

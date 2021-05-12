@@ -13,6 +13,8 @@ public class ContestFilterDto {
     private LocalDateTime endsAfter;
     private Long organizerId;
 
+    public ContestFilterDto() {}
+
     public ContestFilterDto(String titleContains, String descriptionContains, LocalDateTime startsBefore,
                             LocalDateTime startsAfter, LocalDateTime endsBefore, LocalDateTime endsAfter,
                             Long organizerId) {

@@ -3,6 +3,7 @@ package de.fourtyseveneleven.ones.contest.model.dto;
 import de.fourtyseveneleven.ones.rider.model.dto.RiderDto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class ContestDto {
 
@@ -17,6 +18,13 @@ public class ContestDto {
     private LocalDateTime end;
 
     private RiderDto organizer;
+
+    public ContestDto() {
+    }
+
+    public ContestDto(long id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;
@@ -88,5 +96,22 @@ public class ContestDto {
 
     public void setOrganizer(RiderDto organizer) {
         this.organizer = organizer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContestDto that = (ContestDto) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
