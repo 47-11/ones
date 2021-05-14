@@ -1,6 +1,7 @@
 package de.fourtyseveneleven.ones.user.service.impl;
 
 import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
+import de.fourtyseveneleven.ones.user.exception.ForgotPasswordException;
 import de.fourtyseveneleven.ones.user.model.ForgotPasswordRequest;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.repository.ForgotPasswordRequestRepository;
@@ -100,24 +101,41 @@ public class PasswordServiceImpl implements PasswordService {
     }
 
     @Override
+    @Transactional
     public void forgotPasswordSetNewPassword(String confirmationCode, String newPassword) {
 
-        final var forgotPasswordRequest = forgotPasswordRequestRepository.findOneByConfirmationCode(confirmationCode)
-                .orElseThrow(IllegalArgumentException::new);
-        verifyForgotPasswordRequest(forgotPasswordRequest);
+        final var forgotPasswordRequest = getValidForgotPasswordRequest(confirmationCode);
 
         final var user = forgotPasswordRequest.getUser();
         doChangePassword(user, newPassword);
+
+        invalidateForgotPasswordRequest(forgotPasswordRequest);
+    }
+
+    private ForgotPasswordRequest getValidForgotPasswordRequest(String confirmationCode) {
+
+        final var forgotPasswordRequest = forgotPasswordRequestRepository.findOneByConfirmationCode(confirmationCode)
+                .orElseThrow(() -> new ForgotPasswordException(getExceptionMessage("forgot-password.code-invalid")));
+
+        verifyForgotPasswordRequest(forgotPasswordRequest);
+
+        return forgotPasswordRequest;
     }
 
     private void verifyForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest) {
 
         if (isNull(forgotPasswordRequest.getValidUntil())) {
-            throw new IllegalArgumentException("code has already been used.");
+            throw new ForgotPasswordException(getExceptionMessage("forgot-password.code-already-used"));
         }
 
         if (LocalDateTime.now().isAfter(forgotPasswordRequest.getValidUntil())) {
-            throw new IllegalArgumentException("code has already been used.");
+            throw new ForgotPasswordException(getExceptionMessage("forgot-password.code-expired"));
         }
+    }
+
+    private void invalidateForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest) {
+
+        forgotPasswordRequest.setValidUntil(null);
+        forgotPasswordRequestRepository.save(forgotPasswordRequest);
     }
 }
