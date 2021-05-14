@@ -68,4 +68,13 @@ describe('Contests-Store', () => {
 
         expect(contestStore.list).toEqual(contests);
     });
+
+    it('fetches a contest by its id', async () => {
+        const expectedContest = { id: 42, title: 'Olympic games' } as Contest;
+        axiosMock.request.mockResolvedValue({ data: expectedContest });
+
+        const actualContest = await contestStore.byId(42);
+
+        expect(actualContest).toEqual(expectedContest);
+    });
 });

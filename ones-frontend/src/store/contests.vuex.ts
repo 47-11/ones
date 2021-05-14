@@ -61,4 +61,12 @@ export class ContestsStore extends VuexModule {
             this.filter[filterProp] = undefined;
         }
     }
+
+    @action
+    async byId (id: number): Promise<Contest> {
+        return (await new ContestControllerApi({
+            accessToken: createProxy(this.$store, UserStore).token || '',
+            isJsonMime: () => true
+        }).findOneById(id)).data;
+    }
 }
