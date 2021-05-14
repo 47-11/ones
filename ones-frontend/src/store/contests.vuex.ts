@@ -25,12 +25,16 @@ export class ContestsStore extends VuexModule {
         return this.contests;
     }
 
-    @action
-    async fetch (): Promise<void> {
-        const fetchResponse = await new ContestControllerApi({
+    private get controller (): ContestControllerApi {
+        return new ContestControllerApi({
             accessToken: createProxy(this.$store, UserStore).token || '',
             isJsonMime: () => true
-        }).findAll(...this.filterAsArray);
+        });
+    }
+
+    @action
+    async fetch (): Promise<void> {
+        const fetchResponse = await this.controller.findAll(...this.filterAsArray);
         this.contests = fetchResponse.data;
     }
 
@@ -64,9 +68,6 @@ export class ContestsStore extends VuexModule {
 
     @action
     async byId (id: number): Promise<Contest> {
-        return (await new ContestControllerApi({
-            accessToken: createProxy(this.$store, UserStore).token || '',
-            isJsonMime: () => true
-        }).findOneById(id)).data;
+        return (await this.controller.findOneById(id)).data;
     }
 }
