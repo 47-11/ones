@@ -1,6 +1,6 @@
-import { action, createModule, mutation } from 'vuex-class-component';
+import { action, createModule, createProxy, mutation } from 'vuex-class-component';
 import { ContestControllerApi, ContestDto as Contest } from '@/openapi/generated/api';
-import { vxm } from '.';
+import { UserStore } from './userStore.vuex';
 
 interface FilterType {
     titleContains?: string;
@@ -21,20 +21,20 @@ export class ContestsStore extends VuexModule {
     private contests: Contest[] = [];
     private filter = {} as FilterType;
 
-    get all (): Contest[] {
+    get list (): Contest[] {
         return this.contests;
     }
 
     @action
     async fetch (): Promise<void> {
         const fetchResponse = await new ContestControllerApi({
-            accessToken: vxm.user.token || '',
+            accessToken: createProxy(this.$store, UserStore).token || '',
             isJsonMime: () => true
-        }).findAll(...this.getFilterAsArray());
+        }).findAll(...this.filterAsArray);
         this.contests = fetchResponse.data;
     }
 
-    private getFilterAsArray (): Parameters<ContestControllerApi['findAll']> {
+    private get filterAsArray (): Parameters<ContestControllerApi['findAll']> {
         return [
             this.filter.titleContains,
             this.filter.descriptionContains,
@@ -48,7 +48,11 @@ export class ContestsStore extends VuexModule {
 
     @mutation
     addFilter (modification: FilterType): void {
-        this.filter = Object.assign(this.filter, modification);
+        const newFilter = Object.assign({}, this.filter);
+        for (const [key, value] of Object.entries(modification)) {
+            newFilter[key as keyof FilterType] = value;
+        }
+        this.filter = newFilter;
     }
 
     @mutation
