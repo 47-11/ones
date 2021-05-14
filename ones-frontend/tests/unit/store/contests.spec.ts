@@ -1,11 +1,11 @@
-import { ContestDto as Contest, LoginControllerApi, LoginControllerApiFactory } from '@/openapi/generated';
+import { ContestDto as Contest } from '@/openapi/generated';
 import { ContestsStore } from '@/store/contests.vuex';
 import { UserStore } from '@/store/userStore.vuex';
 import { createLocalVue } from '@vue/test-utils';
 import axios from 'axios';
 import Vuex, { Store } from 'vuex';
 import { clearProxyCache, createProxy, extractVuexModule } from 'vuex-class-component';
-import { ProxyWatchers, VuexModule } from 'vuex-class-component/dist/interfaces';
+import { ProxyWatchers } from 'vuex-class-component/dist/interfaces';
 
 jest.mock('axios');
 
