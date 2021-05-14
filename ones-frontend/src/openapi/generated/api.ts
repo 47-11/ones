@@ -77,6 +77,12 @@ export interface ContestDto {
     end?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ContestDto
+     */
+    distance?: number;
+    /**
+     * 
      * @type {RiderDto}
      * @memberof ContestDto
      */
@@ -198,6 +204,31 @@ export interface ResultDto {
      * 
      * @type {number}
      * @memberof ResultDto
+     */
+    averageSpeed?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ResultOverviewDto
+ */
+export interface ResultOverviewDto {
+    /**
+     * 
+     * @type {Array<ResultDto>}
+     * @memberof ResultOverviewDto
+     */
+    results?: Array<ResultDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ResultOverviewDto
+     */
+    totalDistance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ResultOverviewDto
      */
     averageSpeed?: number;
 }
@@ -818,7 +849,7 @@ export const ResultControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMyResults(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ResultDto>>> {
+        async getMyResults(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResultOverviewDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMyResults(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -837,7 +868,7 @@ export const ResultControllerApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyResults(options?: any): AxiosPromise<Array<ResultDto>> {
+        getMyResults(options?: any): AxiosPromise<ResultOverviewDto> {
             return localVarFp.getMyResults(options).then((request) => request(axios, basePath));
         },
     };
