@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 8081",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --maxWorkers=1",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
