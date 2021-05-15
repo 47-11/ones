@@ -70,7 +70,7 @@ export default class ForgotPassword extends Vue {
     inputsDisabled = true;
 
     mounted(): void {
-        this.mailSend = true;
+        this.mailSend = false;
         this.inputsDisabled = false;
     }
 
