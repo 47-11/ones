@@ -75,11 +75,11 @@ export default class Login extends Vue {
     user = vxm.user;
     inputsDisabled = true;
 
-    mounted (): void {
+    mounted(): void {
         this.inputsDisabled = false;
     }
 
-    public async login (): Promise<void> {
+    public async login(): Promise<void> {
         try {
             this.inputsDisabled = true;
             this.error = "";
@@ -99,7 +99,7 @@ export default class Login extends Vue {
         this.inputsDisabled = false;
     }
 
-    public logout (): void {
+    public logout(): void {
         this.user.logout();
     }
 }

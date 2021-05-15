@@ -76,7 +76,7 @@ export default class Home extends Vue {
     contests = vxm.contests;
     locale = window.navigator.language;
 
-    mounted (): void {
+    mounted(): void {
         vxm.contests.fetch();
     }
 }

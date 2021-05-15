@@ -33,7 +33,7 @@ describe("Contests-Store", () => {
         clearProxyCache(ContestsStore);
     });
 
-    it("fetches contests unfiltered", async () => {
+    it("fetches contests unfiltered", async() => {
         axiosMock.request.mockResolvedValue({ data: [] as Contest[] });
 
         await contestStore.fetch();
@@ -41,7 +41,7 @@ describe("Contests-Store", () => {
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: "/api/v1/contest" }));
     });
 
-    it("fetches contests filtered", async () => {
+    it("fetches contests filtered", async() => {
         axiosMock.request.mockResolvedValue({ data: [] as Contest[] });
         contestStore.addFilter({
             titleContains: "Olympic games",
@@ -55,7 +55,7 @@ describe("Contests-Store", () => {
         }));
     });
 
-    it("lists fetched contests", async () => {
+    it("lists fetched contests", async() => {
         const contests = [
             { id: 42, title: "Olympic games" },
             { id: 43, title: "Paralympics" }
@@ -69,7 +69,7 @@ describe("Contests-Store", () => {
         expect(contestStore.list).toEqual(contests);
     });
 
-    it("fetches a contest by its id", async () => {
+    it("fetches a contest by its id", async() => {
         const expectedContest = { id: 42, title: "Olympic games" } as Contest;
         axiosMock.request.mockResolvedValue({ data: expectedContest });
 

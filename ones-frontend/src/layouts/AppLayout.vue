@@ -26,7 +26,7 @@ import Navigation from "@/layouts/partials/Navigation.vue";
     components: { Navigation }
 })
 export default class AppLayout extends Vue {
-    hasHeader (): boolean {
+    hasHeader(): boolean {
         return Boolean(this.$slots.header);
     }
 }

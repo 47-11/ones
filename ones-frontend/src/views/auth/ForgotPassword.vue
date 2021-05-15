@@ -50,7 +50,7 @@ import Feedback from "@/components/Feedback.vue";
     }
 })
 export default class ForgotPassword extends Vue {
-    submit (): void {
+    submit(): void {
         // Do something ...
     }
 }

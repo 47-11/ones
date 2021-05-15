@@ -91,13 +91,13 @@ export default class Register extends Vue {
     inputsDisabled = true;
     registrationDone = true;
 
-    mounted (): void {
+    mounted(): void {
         this.inputsDisabled = false;
         this.dataProtectionAccepted = false;
         this.registrationDone = false;
     }
 
-    public async register (): Promise<void> {
+    public async register(): Promise<void> {
         this.inputsDisabled = true;
         this.error = "";
         try {
@@ -117,11 +117,11 @@ export default class Register extends Vue {
         this.inputsDisabled = false;
     }
 
-    public nextRegistration (): void {
+    public nextRegistration(): void {
         this.registrationDone = false;
     }
 
-    private assertValid (): void {
+    private assertValid(): void {
         if (this.email === "") {
             throw new Error("E-Mail ist erforderlich.");
         } else if (this.password.length < 8) {

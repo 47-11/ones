@@ -12,7 +12,7 @@ export default class VInput extends Vue {
     @Prop() public disabled!: boolean;
     @Prop() public value = "";
 
-    handleInput (e: InputEvent): void {
+    handleInput(e: InputEvent): void {
         this.$emit("input", e.target.value);
     }
 }

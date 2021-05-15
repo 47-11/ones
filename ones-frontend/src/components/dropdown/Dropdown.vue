@@ -19,7 +19,7 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Dropdown extends Vue {
     opened = false;
 
-    toggle (): void {
+    toggle(): void {
         this.opened = !this.opened;
     }
 }

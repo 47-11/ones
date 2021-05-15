@@ -17,11 +17,11 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Card extends Vue {
-    hasHeader (): boolean {
+    hasHeader(): boolean {
         return Boolean(this.$slots.header);
     }
 
-    hasFooter (): boolean {
+    hasFooter(): boolean {
         return Boolean(this.$slots.footer);
     }
 }

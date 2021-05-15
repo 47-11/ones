@@ -19,7 +19,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class VTable extends Vue {
-    hasPagination (): boolean {
+    hasPagination(): boolean {
         return Boolean(this.$slots.pagination);
     }
 }

@@ -78,7 +78,7 @@ router.beforeEach((to, f, next) => {
     next();
 });
 
-function needsAuth (to: Route) {
+function needsAuth(to: Route) {
     const needsNoAuth = ["/login", "/register", "/forgot-password", "/reset-password", "/verified"].includes(to.path);
     return !needsNoAuth;
 }

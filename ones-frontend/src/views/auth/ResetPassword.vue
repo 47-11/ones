@@ -57,7 +57,7 @@ import Feedback from "@/components/Feedback.vue";
     }
 })
 export default class ResetPassword extends Vue {
-    submit (): void {
+    submit(): void {
         // Do something ...
     }
 }

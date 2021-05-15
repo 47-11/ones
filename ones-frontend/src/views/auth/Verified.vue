@@ -62,7 +62,7 @@ export default class Verified extends Vue {
     verified = true;
     error = "";
 
-    async mounted (): Promise<void> {
+    async mounted(): Promise<void> {
         this.error = "";
         this.verified = false;
         const code = this.$route.query.code as string;

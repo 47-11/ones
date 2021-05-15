@@ -12,7 +12,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class ResponsiveNavLink extends Vue {
     @Prop() public to!: string;
 
-    isActive (): boolean {
+    isActive(): boolean {
         if (this.$route.path === "/") {
             return this.to === "/";
         }

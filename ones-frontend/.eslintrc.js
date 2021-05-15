@@ -18,7 +18,8 @@ module.exports = {
         "@typescript-eslint/indent": ["error", 4],
         semi: "off",
         "@typescript-eslint/semi": ["error", "always"],
-        quotes: ["error", "double"]
+        quotes: ["error", "double"],
+        "space-before-function-paren": ["error", "never"]
     },
     overrides: [
         {
