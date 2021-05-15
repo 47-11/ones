@@ -1,4 +1,5 @@
-import { ResultDto as Result } from '@/openapi/generated';
+import { ResultDto as Result, ResultOverviewDto } from '@/openapi/generated';
+import { vxm } from '@/store';
 import { ContestsStore } from '@/store/contests.vuex';
 import { ResultsStore } from '@/store/results.vuex';
 import { UserStore } from '@/store/userStore.vuex';
@@ -43,16 +44,20 @@ describe('ResultsStore', () => {
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: '/api/v1/results/my' }));
     });
 
-    it('lists own results', async () => {
-        const results = [
-            { placement: 1, horse: { name: 'Jolly Jumper' } }
-        ] as Result[];
+    it('lists own data', async () => {
+        const resultOverview = {
+            averageSpeed: 15,
+            totalDistance: 42,
+            results: [{ placement: 1, horse: { name: 'Jolly Jumper' } }]
+        } as ResultOverviewDto;
         axiosMock.request.mockResolvedValue({
-            data: results
+            data: resultOverview
         });
 
         await resultsStore.fetchOwn();
 
-        expect(resultsStore.listOwn).toEqual(results);
+        expect(resultsStore.list).toEqual(resultOverview.results);
+        expect(resultsStore.averageSpeed).toEqual(resultOverview.averageSpeed);
+        expect(resultsStore.totalDistance).toEqual(resultOverview.totalDistance);
     });
 });

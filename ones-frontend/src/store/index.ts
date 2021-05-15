@@ -25,5 +25,6 @@ export default store;
 
 export const vxm = {
     user: createProxy(store, UserStore),
-    contests: createProxy(store, ContestsStore)
+    contests: createProxy(store, ContestsStore),
+    results: createProxy(store, ResultsStore)
 };
