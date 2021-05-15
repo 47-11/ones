@@ -1,12 +1,11 @@
 import { ResultDto as Result, ResultOverviewDto } from '@/openapi/generated';
-import { vxm } from '@/store';
 import { ContestsStore } from '@/store/contests.vuex';
 import { ResultsStore } from '@/store/results.vuex';
 import { UserStore } from '@/store/userStore.vuex';
 import { createLocalVue } from '@vue/test-utils';
 import axios from 'axios';
 import Vuex, { Store } from 'vuex';
-import { extractVuexModule, createProxy, clearProxyCache } from 'vuex-class-component';
+import { clearProxyCache, createProxy, extractVuexModule } from 'vuex-class-component';
 import { ProxyWatchers } from 'vuex-class-component/dist/interfaces';
 
 jest.mock('axios');
