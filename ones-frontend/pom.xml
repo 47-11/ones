@@ -74,11 +74,11 @@
                     <execution>
                         <id>npm run tests</id>
                         <goals>
-                            <goal>npx</goal>
+                            <goal>npm</goal>
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <arguments>jest --ci --reporters=default --reporters=jest-junit</arguments>
+                            <arguments>npm run test:unit -- --ci --reporters=default --reporters=jest-junit</arguments>
                         </configuration>
                     </execution>
                     <execution>
