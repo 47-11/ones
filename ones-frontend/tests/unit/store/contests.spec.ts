@@ -1,15 +1,15 @@
-import { ContestDto as Contest } from '@/openapi/generated';
-import { ContestsStore } from '@/store/contests.vuex';
-import { UserStore } from '@/store/userStore.vuex';
-import { createLocalVue } from '@vue/test-utils';
-import axios from 'axios';
-import Vuex, { Store } from 'vuex';
-import { clearProxyCache, createProxy, extractVuexModule } from 'vuex-class-component';
-import { ProxyWatchers } from 'vuex-class-component/dist/interfaces';
+import { ContestDto as Contest } from "@/openapi/generated";
+import { ContestsStore } from "@/store/contests.vuex";
+import { UserStore } from "@/store/userStore.vuex";
+import { createLocalVue } from "@vue/test-utils";
+import axios from "axios";
+import Vuex, { Store } from "vuex";
+import { clearProxyCache, createProxy, extractVuexModule } from "vuex-class-component";
+import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
 
-jest.mock('axios');
+jest.mock("axios");
 
-describe('Contests-Store', () => {
+describe("Contests-Store", () => {
     let store: Store<unknown>;
     let contestStore: ContestsStore & ProxyWatchers;
     let axiosMock: jest.Mocked<typeof axios>;
@@ -33,32 +33,32 @@ describe('Contests-Store', () => {
         clearProxyCache(ContestsStore);
     });
 
-    it('fetches contests unfiltered', async () => {
+    it("fetches contests unfiltered", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Contest[] });
 
         await contestStore.fetch();
 
-        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: '/api/v1/contest' }));
+        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: "/api/v1/contest" }));
     });
 
-    it('fetches contests filtered', async () => {
+    it("fetches contests filtered", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Contest[] });
         contestStore.addFilter({
-            titleContains: 'Olympic games',
+            titleContains: "Olympic games",
             organizerId: 42
         });
 
         await contestStore.fetch();
 
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
-            url: '/api/v1/contest?titleContains=Olympic+games&organizerId=42'
+            url: "/api/v1/contest?titleContains=Olympic+games&organizerId=42"
         }));
     });
 
-    it('lists fetched contests', async () => {
+    it("lists fetched contests", async () => {
         const contests = [
-            { id: 42, title: 'Olympic games' },
-            { id: 43, title: 'Paralympics' }
+            { id: 42, title: "Olympic games" },
+            { id: 43, title: "Paralympics" }
         ] as Contest[];
         axiosMock.request.mockResolvedValue({
             data: contests
@@ -69,8 +69,8 @@ describe('Contests-Store', () => {
         expect(contestStore.list).toEqual(contests);
     });
 
-    it('fetches a contest by its id', async () => {
-        const expectedContest = { id: 42, title: 'Olympic games' } as Contest;
+    it("fetches a contest by its id", async () => {
+        const expectedContest = { id: 42, title: "Olympic games" } as Contest;
         axiosMock.request.mockResolvedValue({ data: expectedContest });
 
         const actualContest = await contestStore.byId(42);

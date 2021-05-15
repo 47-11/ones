@@ -1,23 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const colors = require('tailwindcss/colors');
+const colors = require("tailwindcss/colors");
 
 module.exports = {
     purge: [
-        './public/**/*.html',
-        './src/**/*.vue'
+        "./public/**/*.html",
+        "./src/**/*.vue"
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
             fontSize: {
-                xs: '0.875rem',
-                sm: '0.925rem'
+                xs: "0.875rem",
+                sm: "0.925rem"
             },
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans]
+                sans: ["Nunito", ...defaultTheme.fontFamily.sans]
             },
             colors: {
                 lime: colors.lime,
@@ -27,8 +27,8 @@ module.exports = {
     },
     variants: {
         extend: {
-            borderWidth: ['hover']
+            borderWidth: ["hover"]
         }
     },
-    plugins: [require('@tailwindcss/forms')]
+    plugins: [require("@tailwindcss/forms")]
 };

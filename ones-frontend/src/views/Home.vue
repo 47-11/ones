@@ -19,9 +19,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Card from '@/components/Card.vue';
-import AppLayout from '@/layouts/AppLayout.vue';
+import { Component, Vue } from "vue-property-decorator";
+import Card from "@/components/Card.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
 
 @Component({
     components: {

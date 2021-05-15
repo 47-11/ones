@@ -6,15 +6,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class NavLink extends Vue {
     @Prop() private to!: string;
 
     isActive (): boolean {
-        if (this.$route.path === '/') {
-            return this.to === '/';
+        if (this.$route.path === "/") {
+            return this.to === "/";
         }
 
         return this.to.startsWith(this.$route.path);

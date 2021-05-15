@@ -1,6 +1,6 @@
-import { action, createModule, createProxy, mutation } from 'vuex-class-component';
-import { ContestControllerApi, ContestDto as Contest } from '@/openapi/generated/api';
-import { UserStore } from './userStore.vuex';
+import { action, createModule, createProxy, mutation } from "vuex-class-component";
+import { ContestControllerApi, ContestDto as Contest } from "@/openapi/generated/api";
+import { UserStore } from "./userStore.vuex";
 
 interface FilterType {
     titleContains?: string;
@@ -13,7 +13,7 @@ interface FilterType {
 }
 
 const VuexModule = createModule({
-    namespaced: 'contests',
+    namespaced: "contests",
     strict: false
 });
 
@@ -27,7 +27,7 @@ export class ContestsStore extends VuexModule {
 
     private get controller (): ContestControllerApi {
         return new ContestControllerApi({
-            accessToken: createProxy(this.$store, UserStore).token || '',
+            accessToken: createProxy(this.$store, UserStore).token || "",
             isJsonMime: () => true
         });
     }
@@ -38,7 +38,7 @@ export class ContestsStore extends VuexModule {
         this.contests = fetchResponse.data;
     }
 
-    private get filterAsArray (): Parameters<ContestControllerApi['findAll']> {
+    private get filterAsArray (): Parameters<ContestControllerApi["findAll"]> {
         return [
             this.filter.titleContains,
             this.filter.descriptionContains,

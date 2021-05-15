@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import { createProxy, extractVuexModule } from 'vuex-class-component';
-import { ContestsStore } from './contests.vuex';
-import { UserStore } from './userStore.vuex';
+import Vue from "vue";
+import Vuex from "vuex";
+import { createProxy, extractVuexModule } from "vuex-class-component";
+import { ContestsStore } from "./contests.vuex";
+import { UserStore } from "./userStore.vuex";
 
 Vue.use(Vuex);
 

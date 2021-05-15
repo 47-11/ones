@@ -4,16 +4,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { InputEvent } from '@/customTypes/inputEvent';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { InputEvent } from "@/customTypes/inputEvent";
 
 @Component
 export default class VInput extends Vue {
     @Prop() public disabled!: boolean;
-    @Prop() public value = '';
+    @Prop() public value = "";
 
     handleInput (e: InputEvent): void {
-        this.$emit('input', e.target.value);
+        this.$emit("input", e.target.value);
     }
 }
 </script>

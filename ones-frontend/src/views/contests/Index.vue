@@ -49,16 +49,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Card from '@/components/Card.vue';
-import AppLayout from '@/layouts/AppLayout.vue';
-import VTable from '@/components/table/VTable.vue';
-import VTh from '@/components/table/VTh.vue';
-import VTd from '@/components/table/VTd.vue';
-import Pagination from '@/components/Pagination.vue';
-import VButton from '@/components/VButton.vue';
-import VLink from '@/components/VLink.vue';
-import { vxm } from '@/store';
+import { Component, Vue } from "vue-property-decorator";
+import Card from "@/components/Card.vue";
+import AppLayout from "@/layouts/AppLayout.vue";
+import VTable from "@/components/table/VTable.vue";
+import VTh from "@/components/table/VTh.vue";
+import VTd from "@/components/table/VTd.vue";
+import Pagination from "@/components/Pagination.vue";
+import VButton from "@/components/VButton.vue";
+import VLink from "@/components/VLink.vue";
+import { vxm } from "@/store";
 
 @Component({
     components: {

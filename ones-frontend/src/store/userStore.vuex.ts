@@ -1,8 +1,8 @@
-import { LoginControllerApi, RegistrationControllerApi } from '@/openapi/generated';
-import { action, createModule, mutation } from 'vuex-class-component';
+import { LoginControllerApi, RegistrationControllerApi } from "@/openapi/generated";
+import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
-    namespaced: 'user',
+    namespaced: "user",
     strict: false
 });
 
@@ -22,7 +22,7 @@ export interface VerificationPayload {
 }
 
 export class UserStore extends VuexModule {
-    private static readonly TOKEN_STORAGE_NAME = 'jwtToken';
+    private static readonly TOKEN_STORAGE_NAME = "jwtToken";
     public token?: string = this.getLastToken();
 
     private getLastToken (): string | undefined {

@@ -42,17 +42,17 @@
 </template>
 
 <script lang="ts">
-import AuthCard from '@/components/AuthCard.vue';
-import Feedback from '@/components/Feedback.vue';
-import VCheckbox from '@/components/forms/VCheckbox.vue';
-import VHint from '@/components/forms/VHint.vue';
-import VInput from '@/components/forms/VInput.vue';
-import VLabel from '@/components/forms/VLabel.vue';
-import VButton from '@/components/VButton.vue';
-import GuestLayout from '@/layouts/GuestLayout.vue';
-import store, { vxm } from '@/store';
-import router from '@/router';
-import { Component, Vue } from 'vue-property-decorator';
+import AuthCard from "@/components/AuthCard.vue";
+import Feedback from "@/components/Feedback.vue";
+import VCheckbox from "@/components/forms/VCheckbox.vue";
+import VHint from "@/components/forms/VHint.vue";
+import VInput from "@/components/forms/VInput.vue";
+import VLabel from "@/components/forms/VLabel.vue";
+import VButton from "@/components/VButton.vue";
+import GuestLayout from "@/layouts/GuestLayout.vue";
+import store, { vxm } from "@/store";
+import router from "@/router";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
     components: {
@@ -68,10 +68,10 @@ import { Component, Vue } from 'vue-property-decorator';
     store
 })
 export default class Login extends Vue {
-    email = '';
-    password = '';
+    email = "";
+    password = "";
     remember = Boolean();
-    error = '';
+    error = "";
     user = vxm.user;
     inputsDisabled = true;
 
@@ -82,13 +82,13 @@ export default class Login extends Vue {
     public async login (): Promise<void> {
         try {
             this.inputsDisabled = true;
-            this.error = '';
+            this.error = "";
             await this.user.login({
                 email: this.email,
                 password: this.password,
                 staySignedIn: this.remember
             });
-            router.push('/');
+            router.push("/");
         } catch (error) {
             if (error.response?.data?.userMessage) {
                 this.error = error.response?.data?.userMessage;

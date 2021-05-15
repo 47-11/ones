@@ -27,15 +27,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import GuestLayout from '@/layouts/GuestLayout.vue';
-import AuthCard from '@/components/AuthCard.vue';
-import VLabel from '@/components/forms/VLabel.vue';
-import VInput from '@/components/forms/VInput.vue';
-import VButton from '@/components/VButton.vue';
-import VHint from '@/components/forms/VHint.vue';
-import VCheckbox from '@/components/forms/VCheckbox.vue';
-import Feedback from '@/components/Feedback.vue';
+import { Component, Vue } from "vue-property-decorator";
+import GuestLayout from "@/layouts/GuestLayout.vue";
+import AuthCard from "@/components/AuthCard.vue";
+import VLabel from "@/components/forms/VLabel.vue";
+import VInput from "@/components/forms/VInput.vue";
+import VButton from "@/components/VButton.vue";
+import VHint from "@/components/forms/VHint.vue";
+import VCheckbox from "@/components/forms/VCheckbox.vue";
+import Feedback from "@/components/Feedback.vue";
 
 @Component({
     components: {
