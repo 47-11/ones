@@ -78,7 +78,7 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <arguments>npm run test:unit -- --ci --reporters=default --reporters=jest-junit</arguments>
+                            <arguments>run test:unit -- --ci --reporters=default --reporters=jest-junit</arguments>
                         </configuration>
                     </execution>
                     <execution>
