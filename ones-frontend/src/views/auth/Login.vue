@@ -30,9 +30,7 @@
                 </div>
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <router-link to="register">
-                        <span class="text-blue-600 hover:underline">Registrieren</span>
-                    </router-link>
+                    <v-link to="register">Registrieren</v-link>
                     <div class="flex-grow"></div>
                     <v-button @click.native="login" :disabled="inputsDisabled" class="flex items-center">
                         Einloggen
@@ -58,9 +56,11 @@ import router from "@/router";
 import { Component, Vue } from "vue-property-decorator";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import VLink from "@/components/VLink.vue";
 
 @Component({
     components: {
+        VLink,
         Feedback,
         VCheckbox,
         VHint,
