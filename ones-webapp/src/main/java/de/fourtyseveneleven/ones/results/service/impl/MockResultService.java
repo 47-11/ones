@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 import static java.util.stream.Collectors.toList;
 
@@ -23,6 +24,8 @@ public class MockResultService implements ResultService {
     private final ContestService contestService;
 
     private final ResultOverviewDto mockResultOverview;
+
+    private final Random random = new Random();
 
     public MockResultService(EventService eventService, ContestService contestService) {
         this.eventService = eventService;
@@ -54,8 +57,8 @@ public class MockResultService implements ResultService {
 
         result.setContest(contest);
         result.setHorse(buildMockHorse());
-        result.setPlacement((int) (Math.random() * 20));
-        result.setAverageSpeed(BigDecimal.valueOf((Math.random() * 20) + 10));
+        result.setPlacement(3);
+        result.setAverageSpeed(BigDecimal.valueOf(18));
 
         return result;
     }
