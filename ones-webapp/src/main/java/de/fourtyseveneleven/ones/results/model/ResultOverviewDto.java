@@ -9,10 +9,7 @@ import java.math.RoundingMode;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ResultOverviewDto implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -5474871140959182153L;
+public class ResultOverviewDto {
 
     private List<ResultDto> results = new LinkedList<>();
 
