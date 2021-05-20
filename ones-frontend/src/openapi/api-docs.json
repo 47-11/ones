@@ -28,28 +28,11 @@
           "required": true
         },
         "responses": {
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -68,8 +51,25 @@
               }
             }
           },
-          "204": {
-            "description": "No Content"
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
           }
         }
       }
@@ -91,28 +91,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -131,8 +114,25 @@
               }
             }
           },
-          "204": {
-            "description": "No Content"
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
           }
         }
       }
@@ -154,28 +154,18 @@
           "required": true
         },
         "responses": {
-          "404": {
-            "description": "Not Found",
+          "200": {
+            "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "type": "string"
                 }
               }
             }
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -194,17 +184,92 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
           }
         }
+      }
+    },
+    "/api/v1/results/my": {
+      "get": {
+        "tags": [
+          "result-controller"
+        ],
+        "operationId": "getMyResults",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultOverviewDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/v1/contest": {
@@ -277,28 +342,21 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found",
+          "200": {
+            "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContestDto"
+                  }
                 }
               }
             }
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -317,15 +375,22 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContestDto"
-                  }
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -356,28 +421,18 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found",
+          "200": {
+            "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/ContestDto"
                 }
               }
             }
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -396,12 +451,22 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContestDto"
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -486,8 +551,60 @@
             "type": "string",
             "format": "date-time"
           },
+          "distance": {
+            "type": "number"
+          },
           "organizer": {
             "$ref": "#/components/schemas/RiderDto"
+          }
+        }
+      },
+      "HorseDto": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lifeNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "ResultDto": {
+        "type": "object",
+        "properties": {
+          "contest": {
+            "$ref": "#/components/schemas/ContestDto"
+          },
+          "horse": {
+            "$ref": "#/components/schemas/HorseDto"
+          },
+          "placement": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageSpeed": {
+            "type": "number"
+          }
+        }
+      },
+      "ResultOverviewDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResultDto"
+            }
+          },
+          "totalDistance": {
+            "type": "number"
+          },
+          "averageSpeed": {
+            "type": "number"
           }
         }
       },

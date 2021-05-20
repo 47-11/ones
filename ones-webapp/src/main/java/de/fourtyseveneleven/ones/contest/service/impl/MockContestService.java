@@ -5,6 +5,7 @@ import de.fourtyseveneleven.ones.contest.model.dto.ContestFilterDto;
 import de.fourtyseveneleven.ones.contest.service.ContestService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -59,6 +60,8 @@ public class MockContestService implements ContestService {
         final LocalDateTime now = LocalDateTime.now();
         contestDto.setStart(now.plusDays(id));
         contestDto.setEnd(now.plusDays(id + 2));
+
+        contestDto.setDistance(BigDecimal.valueOf(Math.random() * 100));
 
         return contestDto;
     }

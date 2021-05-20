@@ -6,7 +6,6 @@ describe("Card.vue", () => {
         const wrapper: Wrapper<Card> = shallowMount(Card, {
             slots: {}
         });
-        console.dir(wrapper.element);
         expect(wrapper.element.children[0]).toBeUndefined();
     });
 });
