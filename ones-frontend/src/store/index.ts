@@ -15,8 +15,7 @@ const store = new Vuex.Store({
     },
     modules: {
         ...extractVuexModule(ContestsStore),
-        ...extractVuexModule(UserStore),
-        ...extractVuexModule(ResultsStore)
+        ...extractVuexModule(UserStore)
     }
 });
 
@@ -24,6 +23,5 @@ export default store;
 
 export const vxm = {
     user: createProxy(store, UserStore),
-    contests: createProxy(store, ContestsStore),
-    results: createProxy(store, ResultsStore)
+    contests: createProxy(store, ContestsStore)
 };
