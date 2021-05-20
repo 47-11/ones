@@ -34,7 +34,7 @@
                         <span class="text-blue-600 hover:underline">Registrieren</span>
                     </router-link>
                     <div class="flex-grow"></div>
-                    <v-button @click.native="login" :disabled="inputsDisabled">
+                    <v-button @click.native="login" :disabled="inputsDisabled" class="flex items-center">
                         Einloggen
                         <font-awesome-icon :icon="myIcon"/>
                     </v-button>
