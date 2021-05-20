@@ -272,14 +272,14 @@
 </template>
 <script lang="ts">
 
-import { Component, Vue } from 'vue-property-decorator';
-import AppLayout from '@/layouts/AppLayout.vue';
-import Card from '@/components/Card.vue';
-import Badge from '@/components/Badge.vue';
-import VButton from '@/components/VButton.vue';
-import VTable from '@/components/table/VTable.vue';
-import VTh from '@/components/table/VTh.vue';
-import VTd from '@/components/table/VTd.vue';
+import { Component, Vue } from "vue-property-decorator";
+import AppLayout from "@/layouts/AppLayout.vue";
+import Card from "@/components/Card.vue";
+import Badge from "@/components/Badge.vue";
+import VButton from "@/components/VButton.vue";
+import VTable from "@/components/table/VTable.vue";
+import VTh from "@/components/table/VTh.vue";
+import VTd from "@/components/table/VTd.vue";
 
 @Component({
     components: {

@@ -38,8 +38,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -48,8 +48,8 @@
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -101,8 +101,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -111,8 +111,8 @@
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -163,6 +163,33 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/v1/forgot-password": {
+      "post": {
+        "tags": [
+          "forgot-password-controller"
+        ],
+        "operationId": "forgotPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDto"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
           },
           "403": {
             "description": "Forbidden",
@@ -200,119 +227,6 @@
               "*/*": {
                 "schema": {
                   "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/forgot-password": {
-      "post": {
-        "tags": [
-          "forgot-password-controller"
-        ],
-        "operationId": "forgotPassword",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
-    "/api/v1/forgot-password/change-password": {
-      "post": {
-        "tags": [
-          "forgot-password-controller"
-        ],
-        "operationId": "forgotPasswordSetNewPassword",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordSetNewPasswordDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
                 }
               }
             }
@@ -360,16 +274,6 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "500": {
             "description": "Internal Server Error",
             "content": {
@@ -380,8 +284,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -428,12 +332,12 @@
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
+          "200": {
+            "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
+                  "$ref": "#/components/schemas/ResultOverviewDto"
                 }
               }
             }
@@ -466,10 +370,10 @@
         ]
       }
     },
-    "/api/v1/contest": {
+    "/api/v1/event": {
       "get": {
         "tags": [
-          "contest-controller"
+          "event-controller"
         ],
         "operationId": "findAll",
         "parameters": [
@@ -546,8 +450,161 @@
               }
             }
           },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/event/{uuid}": {
+      "get": {
+        "tags": [
+          "event-controller"
+        ],
+        "operationId": "getDetails",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/event/{eventUuid}/contests": {
+      "get": {
+        "tags": [
+          "event-controller"
+        ],
+        "operationId": "getContests",
+        "parameters": [
+          {
+            "name": "eventUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -585,81 +642,6 @@
                   "items": {
                     "$ref": "#/components/schemas/ContestDto"
                   }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/api/v1/contest/{uuid}": {
-      "get": {
-        "tags": [
-          "contest-controller"
-        ],
-        "operationId": "getDetails",
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContestDto"
                 }
               }
             }
@@ -744,25 +726,53 @@
       "ContestDto": {
         "type": "object",
         "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "start": {
+          "contestType": {
             "type": "string",
-            "format": "date-time"
+            "enum": [
+              "EFR",
+              "KDR",
+              "MDR",
+              "LDR"
+            ]
           },
-          "end": {
+          "date": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           },
           "distance": {
             "type": "number"
           },
-          "organizer": {
-            "$ref": "#/components/schemas/RiderDto"
+          "altitudeDifference": {
+            "type": "number"
+          },
+          "qualificationLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "participationPrice": {
+            "type": "number"
+          },
+          "startPrice": {
+            "type": "number"
+          },
+          "maximumDuration": {
+            "type": "string"
+          },
+          "minimumHorseAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minimumParticipantAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentParticipants": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumParticipants": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -815,19 +825,108 @@
           }
         }
       },
-      "RiderDto": {
+      "EventDto": {
         "type": "object",
         "properties": {
-          "contest": {
-            "$ref": "#/components/schemas/ContestDto"
-          },
-          "description": {
+          "uuid": {
             "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AddressDto": {
+        "type": "object",
+        "properties": {
+          "locationName": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "EventDetailDto": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/EventDto"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "participationDocumentUrl": {
+            "type": "string"
+          },
+          "tenderDocumentUrl": {
+            "type": "string"
+          },
+          "mdr": {
+            "type": "string"
+          },
+          "ldr": {
+            "type": "string"
+          },
+          "mtr": {
+            "type": "string"
+          },
+          "rideTypes": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "DISTANCE_RIDE",
+                "DISTANCE_DRIVE"
+              ]
+            }
+          },
+          "additionalRideInformation": {
+            "type": "string"
+          },
+          "eventInitiatorName": {
+            "type": "string"
+          },
+          "eventInitiatorAddress": {
+            "$ref": "#/components/schemas/AddressDto"
           },
           "organizerName": {
             "type": "string"
           },
-          "contactInformation": {
+          "organizerAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "contactPersonName": {
+            "type": "string"
+          },
+          "contactPersonAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "contactPhoneNumber": {
+            "type": "string"
+          },
+          "contactEmailAddress": {
             "type": "string"
           }
         }

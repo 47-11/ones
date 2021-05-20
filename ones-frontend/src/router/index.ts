@@ -57,8 +57,8 @@ const routes: Array<RouteConfig> = [
         component: ContestIndex
     },
     {
-        path: '/contests/:id',
-        name: 'Wettbewerb',
+        path: "/contests/:id",
+        name: "Wettbewerb",
         component: ContestDetail
     }
 ];

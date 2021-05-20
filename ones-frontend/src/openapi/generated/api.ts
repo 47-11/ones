@@ -24,33 +24,45 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  *
  * @export
- * @interface ContestDetailDto
+ * @interface AddressDto
  */
-export interface ContestDetailDto {
-    /**
-     *
-     * @type {ContestDto}
-     * @memberof ContestDetailDto
-     */
-    contest?: ContestDto;
+export interface AddressDto {
     /**
      *
      * @type {string}
-     * @memberof ContestDetailDto
+     * @memberof AddressDto
      */
-    description?: string;
+    locationName?: string;
     /**
      *
      * @type {string}
-     * @memberof ContestDetailDto
+     * @memberof AddressDto
      */
-    organizerName?: string;
+    street?: string;
     /**
      *
      * @type {string}
-     * @memberof ContestDetailDto
+     * @memberof AddressDto
      */
-    contactInformation?: string;
+    zipCode?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof AddressDto
+     */
+    city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof AddressDto
+     */
+    region?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof AddressDto
+     */
+    country?: string;
 }
 /**
  *
@@ -63,26 +75,91 @@ export interface ContestDto {
      * @type {string}
      * @memberof ContestDto
      */
-    uuid?: string;
+    contestType?: ContestDtoContestTypeEnum;
     /**
      *
      * @type {string}
      * @memberof ContestDto
      */
-    title?: string;
+    date?: string;
+    /**
+<<<<<<< HEAD
+     *
+     * @type {string}
+=======
+     *
+     * @type {number}
+>>>>>>> 11cfaa7 (Update generated API client)
+     * @memberof ContestDto
+     */
+    distance?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    altitudeDifference?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    qualificationLevel?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    participationPrice?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    startPrice?: number;
     /**
      *
      * @type {string}
      * @memberof ContestDto
      */
-    start?: string;
+    maximumDuration?: string;
     /**
      *
-     * @type {string}
+     * @type {number}
      * @memberof ContestDto
      */
-    end?: string;
+    minimumHorseAge?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    minimumParticipantAge?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    currentParticipants?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ContestDto
+     */
+    maximumParticipants?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ContestDtoContestTypeEnum {
+    Efr = 'EFR',
+    Kdr = 'KDR',
+    Mdr = 'MDR',
+    Ldr = 'LDR'
+}
+
 /**
  *
  * @export
@@ -139,6 +216,156 @@ export interface ForgotPasswordSetNewPasswordDto {
      * @memberof ForgotPasswordSetNewPasswordDto
      */
     newPassword?: string;
+}
+/**
+ *
+ * @export
+ * @interface EventDetailDto
+ */
+export interface EventDetailDto {
+    /**
+     *
+     * @type {EventDto}
+     * @memberof EventDetailDto
+     */
+    event?: EventDto;
+    /**
+     *
+     * @type {AddressDto}
+     * @memberof EventDetailDto
+     */
+    address?: AddressDto;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    participationDocumentUrl?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    tenderDocumentUrl?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    mdr?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    ldr?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    mtr?: string;
+    /**
+     *
+     * @type {Set<string>}
+     * @memberof EventDetailDto
+     */
+    rideTypes?: Set<EventDetailDtoRideTypesEnum>;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    additionalRideInformation?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    eventInitiatorName?: string;
+    /**
+     *
+     * @type {AddressDto}
+     * @memberof EventDetailDto
+     */
+    eventInitiatorAddress?: AddressDto;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    organizerName?: string;
+    /**
+     *
+     * @type {AddressDto}
+     * @memberof EventDetailDto
+     */
+    organizerAddress?: AddressDto;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    contactPersonName?: string;
+    /**
+     *
+     * @type {AddressDto}
+     * @memberof EventDetailDto
+     */
+    contactPersonAddress?: AddressDto;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    contactPhoneNumber?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDetailDto
+     */
+    contactEmailAddress?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum EventDetailDtoRideTypesEnum {
+    Ride = 'DISTANCE_RIDE',
+    Drive = 'DISTANCE_DRIVE'
+}
+
+/**
+ *
+ * @export
+ * @interface EventDto
+ */
+export interface EventDto {
+    /**
+     *
+     * @type {string}
+     * @memberof EventDto
+     */
+    uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDto
+     */
+    title?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDto
+     */
+    start?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EventDto
+     */
+    end?: string;
 }
 /**
  *
@@ -203,7 +430,6 @@ export interface RegistrationDto {
      */
     password?: string;
 }
-
 /**
  *
  * @export
@@ -253,6 +479,7 @@ export interface ResultOverviewDto {
      * @memberof ResultOverviewDto
      */
     averageSpeed?: number;
+<<<<<<< HEAD
     /**
      *
      * @type {number}
@@ -272,9 +499,12 @@ export interface RiderDto {
      * @memberof RiderDto
      */
     id?: number;
+=======
+>>>>>>> 11cfaa7 (Update generated API client)
     /**
      *
      * @type {number}
+<<<<<<< HEAD
      * @memberof RiderDto
      */
     version?: number;
@@ -318,11 +548,15 @@ export interface RiderDto {
      *
      * @type {boolean}
      * @memberof RiderDto
+=======
+     * @memberof ResultOverviewDto
+>>>>>>> 11cfaa7 (Update generated API client)
      */
-    allNecessaryDataPresent?: boolean;
+    totalDistance?: number;
 }
 
 /**
+<<<<<<< HEAD
  * ChangePasswordControllerApi - axios parameter creator
  * @export
  */
@@ -431,9 +665,12 @@ export class ChangePasswordControllerApi extends BaseAPI {
 
 /**
  * ContestControllerApi - axios parameter creator
+=======
+ * EventControllerApi - axios parameter creator
+>>>>>>> 11cfaa7 (Update generated API client)
  * @export
  */
-export const ContestControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+export const EventControllerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          *
@@ -448,7 +685,7 @@ export const ContestControllerApiAxiosParamCreator = function (configuration?: C
          * @throws {RequiredError}
          */
         findAll: async (titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/contest`;
+            const localVarPath = `/api/v1/event`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -512,15 +749,57 @@ export const ContestControllerApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
+<<<<<<< HEAD
          *
          * @param {string} uuid
+=======
+         *
+         * @param {string} eventUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getContests: async (eventUuid: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'eventUuid' is not null or undefined
+            assertParamExists('getContests', 'eventUuid', eventUuid)
+            const localVarPath = `/api/v1/event/{eventUuid}/contests`
+                .replace(`{${"eventUuid"}}`, encodeURIComponent(String(eventUuid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @param {string} uuid
+>>>>>>> 11cfaa7 (Update generated API client)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getDetails: async (uuid: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'uuid' is not null or undefined
             assertParamExists('getDetails', 'uuid', uuid)
-            const localVarPath = `/api/v1/contest/{uuid}`
+            const localVarPath = `/api/v1/event/{uuid}`
                 .replace(`{${"uuid"}}`, encodeURIComponent(String(uuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -552,11 +831,16 @@ export const ContestControllerApiAxiosParamCreator = function (configuration?: C
 };
 
 /**
- * ContestControllerApi - functional programming interface
+ * EventControllerApi - functional programming interface
  * @export
  */
+<<<<<<< HEAD
 export const ContestControllerApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = ContestControllerApiAxiosParamCreator(configuration)
+=======
+export const EventControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = EventControllerApiAxiosParamCreator(configuration)
+>>>>>>> 11cfaa7 (Update generated API client)
     return {
         /**
          *
@@ -570,17 +854,32 @@ export const ContestControllerApiFp = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
+        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EventDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+<<<<<<< HEAD
+         *
+         * @param {string} uuid
+=======
+         *
+         * @param {string} eventUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getContests(eventUuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getContests(eventUuid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          *
          * @param {string} uuid
+>>>>>>> 11cfaa7 (Update generated API client)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDetails(uuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContestDetailDto>> {
+        async getDetails(uuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventDetailDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDetails(uuid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -588,11 +887,11 @@ export const ContestControllerApiFp = function (configuration?: Configuration) {
 };
 
 /**
- * ContestControllerApi - factory interface
+ * EventControllerApi - factory interface
  * @export
  */
-export const ContestControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ContestControllerApiFp(configuration)
+export const EventControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = EventControllerApiFp(configuration)
     return {
         /**
          *
@@ -606,28 +905,42 @@ export const ContestControllerApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): AxiosPromise<Array<ContestDto>> {
+        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): AxiosPromise<Array<EventDto>> {
             return localVarFp.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(axios, basePath));
+        },
+        /**
+<<<<<<< HEAD
+         *
+         * @param {string} uuid
+=======
+         *
+         * @param {string} eventUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getContests(eventUuid: string, options?: any): AxiosPromise<Array<ContestDto>> {
+            return localVarFp.getContests(eventUuid, options).then((request) => request(axios, basePath));
         },
         /**
          *
          * @param {string} uuid
+>>>>>>> 11cfaa7 (Update generated API client)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDetails(uuid: string, options?: any): AxiosPromise<ContestDetailDto> {
+        getDetails(uuid: string, options?: any): AxiosPromise<EventDetailDto> {
             return localVarFp.getDetails(uuid, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ContestControllerApi - object-oriented interface
+ * EventControllerApi - object-oriented interface
  * @export
- * @class ContestControllerApi
+ * @class EventControllerApi
  * @extends {BaseAPI}
  */
-export class ContestControllerApi extends BaseAPI {
+export class EventControllerApi extends BaseAPI {
     /**
      *
      * @param {string} [titleContains]
@@ -639,10 +952,21 @@ export class ContestControllerApi extends BaseAPI {
      * @param {number} [organizerId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ContestControllerApi
+     * @memberof EventControllerApi
      */
     public findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any) {
-        return ContestControllerApiFp(this.configuration).findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(this.axios, this.basePath));
+        return EventControllerApiFp(this.configuration).findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @param {string} eventUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventControllerApi
+     */
+    public getContests(eventUuid: string, options?: any) {
+        return EventControllerApiFp(this.configuration).getContests(eventUuid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -650,10 +974,10 @@ export class ContestControllerApi extends BaseAPI {
      * @param {string} uuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ContestControllerApi
+     * @memberof EventControllerApi
      */
     public getDetails(uuid: string, options?: any) {
-        return ContestControllerApiFp(this.configuration).getDetails(uuid, options).then((request) => request(this.axios, this.basePath));
+        return EventControllerApiFp(this.configuration).getDetails(uuid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
