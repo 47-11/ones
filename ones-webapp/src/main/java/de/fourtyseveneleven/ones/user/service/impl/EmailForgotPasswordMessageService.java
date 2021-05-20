@@ -71,7 +71,7 @@ public class EmailForgotPasswordMessageService implements ForgotPasswordMessageS
     private String buildResetUri(ForgotPasswordRequest forgotPasswordRequest) {
 
         return ServletUriComponentsBuilder.fromCurrentContextPath()
-                .pathSegment("forgot-password", "change-password")
+                .pathSegment("reset-password")
                 .queryParam("code", forgotPasswordRequest.getConfirmationCode())
                 .toUriString();
     }
