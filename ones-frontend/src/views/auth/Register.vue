@@ -40,16 +40,13 @@
                         <label for="accept_policy_conditions" class="inline-flex items-center">
                             <v-checkbox id="accept_policy_conditions" name="remember" v-model="dataProtectionAccepted" :disabled="inputsDisabled"/>
                             <span class="ml-2 text-sm text-gray-600">
-                                Ich stimme den <router-link to="/">Datenschutzbestimmungen</router-link> zu.
+                                Ich stimme den <v-link to="/">Datenschutzbestimmungen</v-link> zu.
                             </span>
                         </label>
                     </div>
-
                 </div>
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <router-link to="login">
-                        <span class="text-blue-600 hover:underline">Login</span>
-                    </router-link>
+                    <v-link to="login">Login</v-link>
                     <div class="flex-grow"></div>
                     <v-button @click.native="register" :disabled="inputsDisabled">Registrieren</v-button>
                 </div>
@@ -69,9 +66,11 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import { vxm } from "@/store";
+import VLink from "@/components/VLink.vue";
 
 @Component({
     components: {
+        VLink,
         VCheckbox,
         VHint,
         VButton,
