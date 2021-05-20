@@ -1,16 +1,16 @@
-import { ResultDto as Result, ResultOverviewDto } from '@/openapi/generated';
-import { ContestsStore } from '@/store/contests.vuex';
-import { ResultsStore } from '@/store/results.vuex';
-import { UserStore } from '@/store/userStore.vuex';
-import { createLocalVue } from '@vue/test-utils';
-import axios from 'axios';
-import Vuex, { Store } from 'vuex';
-import { clearProxyCache, createProxy, extractVuexModule } from 'vuex-class-component';
-import { ProxyWatchers } from 'vuex-class-component/dist/interfaces';
+import { ResultDto as Result, ResultOverviewDto } from "@/openapi/generated";
+import { ContestsStore } from "@/store/contests.vuex";
+import { ResultsStore } from "@/store/results.vuex";
+import { UserStore } from "@/store/userStore.vuex";
+import { createLocalVue } from "@vue/test-utils";
+import axios from "axios";
+import Vuex, { Store } from "vuex";
+import { clearProxyCache, createProxy, extractVuexModule } from "vuex-class-component";
+import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
 
-jest.mock('axios');
+jest.mock("axios");
 
-describe('ResultsStore', () => {
+describe("ResultsStore", () => {
     let store: Store<unknown>;
     let resultsStore: ResultsStore & ProxyWatchers;
     let axiosMock: jest.Mocked<typeof axios>;
@@ -35,19 +35,19 @@ describe('ResultsStore', () => {
         clearProxyCache(ResultsStore);
     });
 
-    it('fetches own results', async () => {
+    it("fetches own results", async() => {
         axiosMock.request.mockResolvedValue({ data: [] as Result[] });
 
         await resultsStore.fetchOwn();
 
-        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: '/api/v1/results/my' }));
+        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: "/api/v1/results/my" }));
     });
 
-    it('lists own data', async () => {
+    it("lists own data", async() => {
         const resultOverview = {
             averageSpeed: 15,
             totalDistance: 42,
-            results: [{ placement: 1, horse: { name: 'Jolly Jumper' } }]
+            results: [{ placement: 1, horse: { name: "Jolly Jumper" } }]
         } as ResultOverviewDto;
         axiosMock.request.mockResolvedValue({
             data: resultOverview
