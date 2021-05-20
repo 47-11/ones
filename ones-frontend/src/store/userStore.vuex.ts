@@ -1,8 +1,8 @@
-import { LoginControllerApi, RegistrationControllerApi } from '@/openapi/generated';
-import { action, createModule, mutation } from 'vuex-class-component';
+import { LoginControllerApi, RegistrationControllerApi } from "@/openapi/generated";
+import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
-    namespaced: 'user',
+    namespaced: "user",
     strict: false
 });
 
@@ -22,21 +22,21 @@ export interface VerificationPayload {
 }
 
 export class UserStore extends VuexModule {
-    private static readonly TOKEN_STORAGE_NAME = 'jwtToken';
+    private static readonly TOKEN_STORAGE_NAME = "jwtToken";
     public token?: string = this.getLastToken();
 
-    private getLastToken (): string | undefined {
+    private getLastToken(): string | undefined {
         return sessionStorage.getItem(UserStore.TOKEN_STORAGE_NAME) ||
             localStorage.getItem(UserStore.TOKEN_STORAGE_NAME) ||
             undefined;
     }
 
-    get authenticated (): boolean {
+    get authenticated(): boolean {
         return this.token !== undefined;
     }
 
     @action
-    async login (payload: LoginPayload): Promise<void> {
+    async login(payload: LoginPayload): Promise<void> {
         const loginResult = await new LoginControllerApi().login({
             emailAddress: payload.email,
             password: payload.password
@@ -53,7 +53,7 @@ export class UserStore extends VuexModule {
     }
 
     @action
-    async register (payload: RegistrationPayload): Promise<void> {
+    async register(payload: RegistrationPayload): Promise<void> {
         await new RegistrationControllerApi().createRegistration({
             emailAddress: payload.email,
             password: payload.password
@@ -61,12 +61,12 @@ export class UserStore extends VuexModule {
     }
 
     @action
-    async verify (payload: VerificationPayload): Promise<void> {
+    async verify(payload: VerificationPayload): Promise<void> {
         await new RegistrationControllerApi().confirmRegistration(payload.code);
     }
 
     @mutation
-    logout (): void {
+    logout(): void {
         this.token = undefined;
         localStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
         sessionStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);

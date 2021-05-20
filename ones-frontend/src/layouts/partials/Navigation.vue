@@ -91,11 +91,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import NavLink from '@/layouts/partials/NavLink.vue';
-import ResponsiveNavLink from '@/layouts/partials/ResponsiveNavLink.vue';
-import Dropdown from '@/components/dropdown/Dropdown.vue';
-import DropdownLink from '@/components/dropdown/DropdownLink.vue';
+import { Component, Vue } from "vue-property-decorator";
+import NavLink from "@/layouts/partials/NavLink.vue";
+import ResponsiveNavLink from "@/layouts/partials/ResponsiveNavLink.vue";
+import Dropdown from "@/components/dropdown/Dropdown.vue";
+import DropdownLink from "@/components/dropdown/DropdownLink.vue";
 
 @Component({
     components: {

@@ -19,14 +19,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Navigation from '@/layouts/partials/Navigation.vue';
+import { Component, Vue } from "vue-property-decorator";
+import Navigation from "@/layouts/partials/Navigation.vue";
 
 @Component({
     components: { Navigation }
 })
 export default class AppLayout extends Vue {
-    hasHeader (): boolean {
+    hasHeader(): boolean {
         return Boolean(this.$slots.header);
     }
 }

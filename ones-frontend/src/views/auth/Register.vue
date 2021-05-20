@@ -59,16 +59,16 @@
 </template>
 
 <script lang="ts">
-import Feedback from '@/components/Feedback.vue';
-import { Component, Vue } from 'vue-property-decorator';
-import GuestLayout from '@/layouts/GuestLayout.vue';
-import AuthCard from '@/components/AuthCard.vue';
-import VLabel from '@/components/forms/VLabel.vue';
-import VInput from '@/components/forms/VInput.vue';
-import VButton from '@/components/VButton.vue';
-import VHint from '@/components/forms/VHint.vue';
-import VCheckbox from '@/components/forms/VCheckbox.vue';
-import { vxm } from '@/store';
+import Feedback from "@/components/Feedback.vue";
+import { Component, Vue } from "vue-property-decorator";
+import GuestLayout from "@/layouts/GuestLayout.vue";
+import AuthCard from "@/components/AuthCard.vue";
+import VLabel from "@/components/forms/VLabel.vue";
+import VInput from "@/components/forms/VInput.vue";
+import VButton from "@/components/VButton.vue";
+import VHint from "@/components/forms/VHint.vue";
+import VCheckbox from "@/components/forms/VCheckbox.vue";
+import { vxm } from "@/store";
 
 @Component({
     components: {
@@ -83,23 +83,23 @@ import { vxm } from '@/store';
     }
 })
 export default class Register extends Vue {
-    email = '';
-    password = '';
-    passwordRepeat = '';
+    email = "";
+    password = "";
+    passwordRepeat = "";
     dataProtectionAccepted = true;
-    error = '';
+    error = "";
     inputsDisabled = true;
     registrationDone = true;
 
-    mounted (): void {
+    mounted(): void {
         this.inputsDisabled = false;
         this.dataProtectionAccepted = false;
         this.registrationDone = false;
     }
 
-    public async register (): Promise<void> {
+    public async register(): Promise<void> {
         this.inputsDisabled = true;
-        this.error = '';
+        this.error = "";
         try {
             this.assertValid();
             await vxm.user.register({
@@ -117,19 +117,19 @@ export default class Register extends Vue {
         this.inputsDisabled = false;
     }
 
-    public nextRegistration (): void {
+    public nextRegistration(): void {
         this.registrationDone = false;
     }
 
-    private assertValid (): void {
-        if (this.email === '') {
-            throw new Error('E-Mail ist erforderlich.');
+    private assertValid(): void {
+        if (this.email === "") {
+            throw new Error("E-Mail ist erforderlich.");
         } else if (this.password.length < 8) {
-            throw new Error('Passwort muss aus mindestens 8 Zeichen bestehen.');
+            throw new Error("Passwort muss aus mindestens 8 Zeichen bestehen.");
         } else if (this.password !== this.passwordRepeat) {
-            throw new Error('Password Wiederholung nicht identisch mit Passwort.');
+            throw new Error("Password Wiederholung nicht identisch mit Passwort.");
         } else if (!this.dataProtectionAccepted) {
-            throw new Error('Datenschutzbedingungen müssen akzeptiert werden.');
+            throw new Error("Datenschutzbedingungen müssen akzeptiert werden.");
         }
     }
 }

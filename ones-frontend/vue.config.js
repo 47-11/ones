@@ -1,8 +1,8 @@
 module.exports = {
-    outputDir: 'target/classes/public',
-    assetsDir: 'assets',
-    indexPath: '../templates/index.html',
+    outputDir: "target/classes/public",
+    assetsDir: "assets",
+    indexPath: "../templates/index.html",
     configureWebpack: {
-        devtool: 'source-map'
+        devtool: "source-map"
     }
 };

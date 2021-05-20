@@ -4,16 +4,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { CheckboxInputEvent } from '@/customTypes/inputEvent';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { CheckboxInputEvent } from "@/customTypes/inputEvent";
 
 @Component
 export default class VCheckbox extends Vue {
     @Prop() private disabled!: boolean;
     @Prop() public value = false;
 
-    handleInput (e: CheckboxInputEvent): void {
-        this.$emit('input', e.target.value);
+    handleInput(e: CheckboxInputEvent): void {
+        this.$emit("input", e.target.value);
     }
 }
 </script>

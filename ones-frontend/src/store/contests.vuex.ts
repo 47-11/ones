@@ -1,6 +1,6 @@
-import { action, createModule, createProxy, mutation } from 'vuex-class-component';
-import { ContestControllerApi, ContestDto as Contest } from '@/openapi/generated/api';
-import { UserStore } from './userStore.vuex';
+import { action, createModule, createProxy, mutation } from "vuex-class-component";
+import { ContestControllerApi, ContestDto as Contest } from "@/openapi/generated/api";
+import { UserStore } from "./userStore.vuex";
 
 interface FilterType {
     titleContains?: string;
@@ -13,7 +13,7 @@ interface FilterType {
 }
 
 const VuexModule = createModule({
-    namespaced: 'contests',
+    namespaced: "contests",
     strict: false
 });
 
@@ -21,24 +21,24 @@ export class ContestsStore extends VuexModule {
     private contests: Contest[] = [];
     private filter = {} as FilterType;
 
-    get list (): Contest[] {
+    get list(): Contest[] {
         return this.contests;
     }
 
-    private get controller (): ContestControllerApi {
+    private get controller(): ContestControllerApi {
         return new ContestControllerApi({
-            accessToken: createProxy(this.$store, UserStore).token || '',
+            accessToken: createProxy(this.$store, UserStore).token || "",
             isJsonMime: () => true
         });
     }
 
     @action
-    async fetch (): Promise<void> {
+    async fetch(): Promise<void> {
         const fetchResponse = await this.controller.findAll(...this.filterAsArray);
         this.contests = fetchResponse.data;
     }
 
-    private get filterAsArray (): Parameters<ContestControllerApi['findAll']> {
+    private get filterAsArray(): Parameters<ContestControllerApi["findAll"]> {
         return [
             this.filter.titleContains,
             this.filter.descriptionContains,
@@ -51,7 +51,7 @@ export class ContestsStore extends VuexModule {
     }
 
     @mutation
-    addFilter (modification: FilterType): void {
+    addFilter(modification: FilterType): void {
         const newFilter = Object.assign({}, this.filter);
         for (const [key, value] of Object.entries(modification)) {
             newFilter[key as keyof FilterType] = value;
@@ -60,14 +60,14 @@ export class ContestsStore extends VuexModule {
     }
 
     @mutation
-    removeFilter (...filterPropsToClear: Array<keyof FilterType>): void {
+    removeFilter(...filterPropsToClear: Array<keyof FilterType>): void {
         for (const filterProp of filterPropsToClear) {
             this.filter[filterProp] = undefined;
         }
     }
 
     @action
-    async byId (id: number): Promise<Contest> {
+    async byId(id: number): Promise<Contest> {
         return (await this.controller.findOneById(id)).data;
     }
 }
