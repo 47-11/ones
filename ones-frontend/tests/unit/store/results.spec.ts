@@ -1,5 +1,5 @@
 import { ResultDto as Result, ResultOverviewDto } from "@/openapi/generated";
-import { ContestsStore } from "@/store/contests.vuex";
+import { EventsStore } from "@/store/events.vuex";
 import { ResultsStore } from "@/store/results.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
@@ -21,7 +21,7 @@ describe("ResultsStore", () => {
         localVue.use(Vuex);
         store = new Vuex.Store({
             modules: {
-                ...extractVuexModule(ContestsStore),
+                ...extractVuexModule(EventsStore),
                 ...extractVuexModule(UserStore),
                 ...extractVuexModule(ResultsStore)
             }
@@ -35,7 +35,7 @@ describe("ResultsStore", () => {
         clearProxyCache(ResultsStore);
     });
 
-    it("fetches own results", async() => {
+    it("fetches own results", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Result[] });
 
         await resultsStore.fetchOwn();
@@ -43,7 +43,7 @@ describe("ResultsStore", () => {
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: "/api/v1/results/my" }));
     });
 
-    it("lists own data", async() => {
+    it("lists own data", async () => {
         const resultOverview = {
             averageSpeed: 15,
             totalDistance: 42,

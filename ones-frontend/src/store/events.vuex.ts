@@ -1,5 +1,5 @@
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
-import { ContestControllerApi, ContestDto as Contest } from "@/openapi/generated/api";
+import { EventControllerApi, EventDto as Event } from "@/openapi/generated/api";
 import { UserStore } from "./userStore.vuex";
 
 interface FilterType {
@@ -13,20 +13,20 @@ interface FilterType {
 }
 
 const VuexModule = createModule({
-    namespaced: "contests",
+    namespaced: "events",
     strict: false
 });
 
-export class ContestsStore extends VuexModule {
-    private contests: Contest[] = [];
+export class EventsStore extends VuexModule {
+    private events: Event[] = [];
     private filter = {} as FilterType;
 
-    get list(): Contest[] {
-        return this.contests;
+    get list(): Event[] {
+        return this.events;
     }
 
-    private get controller(): ContestControllerApi {
-        return new ContestControllerApi({
+    private get controller(): EventControllerApi {
+        return new EventControllerApi({
             accessToken: createProxy(this.$store, UserStore).token || "",
             isJsonMime: () => true
         });
@@ -35,10 +35,10 @@ export class ContestsStore extends VuexModule {
     @action
     async fetch(): Promise<void> {
         const fetchResponse = await this.controller.findAll(...this.filterAsArray);
-        this.contests = fetchResponse.data;
+        this.events = fetchResponse.data;
     }
 
-    private get filterAsArray(): Parameters<ContestControllerApi["findAll"]> {
+    private get filterAsArray(): Parameters<EventControllerApi["findAll"]> {
         return [
             this.filter.titleContains,
             this.filter.descriptionContains,
@@ -64,10 +64,5 @@ export class ContestsStore extends VuexModule {
         for (const filterProp of filterPropsToClear) {
             this.filter[filterProp] = undefined;
         }
-    }
-
-    @action
-    async byId(id: number): Promise<Contest> {
-        return (await this.controller.findOneById(id)).data;
     }
 }

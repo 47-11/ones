@@ -19,7 +19,7 @@ module.exports = {
         semi: "off",
         "@typescript-eslint/semi": ["error", "always"],
         quotes: ["error", "double"],
-        "space-before-function-paren": ["error", "never"]
+        "space-before-function-paren": ["error", { anonymous: "always", named: "never" }]
     },
     overrides: [
         {
