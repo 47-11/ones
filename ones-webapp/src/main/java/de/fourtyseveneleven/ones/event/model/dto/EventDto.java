@@ -1,11 +1,10 @@
-package de.fourtyseveneleven.ones.contest.model.dto;
+package de.fourtyseveneleven.ones.event.model.dto;
 
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class ContestDto {
+public class EventDto {
 
     private String uuid;
     private String title;
@@ -52,7 +51,7 @@ public class ContestDto {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ContestDto that = (ContestDto) o;
+        EventDto that = (EventDto) o;
         return uuid.equals(that.uuid);
     }
 

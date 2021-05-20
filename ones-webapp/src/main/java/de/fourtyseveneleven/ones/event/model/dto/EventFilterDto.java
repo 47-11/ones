@@ -1,9 +1,8 @@
-package de.fourtyseveneleven.ones.contest.model.dto;
-
+package de.fourtyseveneleven.ones.event.model.dto;
 
 import java.time.LocalDateTime;
 
-public class ContestFilterDto {
+public class EventFilterDto {
 
     private String titleContains;
     private String descriptionContains;
@@ -13,11 +12,12 @@ public class ContestFilterDto {
     private LocalDateTime endsAfter;
     private Long organizerId;
 
-    public ContestFilterDto() {}
+    public EventFilterDto() {
+    }
 
-    public ContestFilterDto(String titleContains, String descriptionContains, LocalDateTime startsBefore,
-                            LocalDateTime startsAfter, LocalDateTime endsBefore, LocalDateTime endsAfter,
-                            Long organizerId) {
+    public EventFilterDto(String titleContains, String descriptionContains, LocalDateTime startsBefore,
+                          LocalDateTime startsAfter, LocalDateTime endsBefore, LocalDateTime endsAfter,
+                          Long organizerId) {
         this.titleContains = titleContains;
         this.descriptionContains = descriptionContains;
         this.startsBefore = startsBefore;

@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.results.model;
 
-import de.fourtyseveneleven.ones.contest.model.dto.ContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.ContestDto;
 import de.fourtyseveneleven.ones.horse.model.HorseDto;
 
 import java.math.BigDecimal;

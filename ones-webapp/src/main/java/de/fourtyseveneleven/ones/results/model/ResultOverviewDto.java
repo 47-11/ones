@@ -1,9 +1,7 @@
 package de.fourtyseveneleven.ones.results.model;
 
-import de.fourtyseveneleven.ones.contest.model.dto.ContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.ContestDto;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.LinkedList;
