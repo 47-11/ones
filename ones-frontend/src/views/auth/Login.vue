@@ -36,7 +36,7 @@
                     <div class="flex-grow"></div>
                     <v-button @click.native="login" :disabled="inputsDisabled" class="flex items-center">
                         Einloggen
-                        <font-awesome-icon :icon="myIcon"/>
+                        <font-awesome-icon :icon="myIcon" class="ml-2"/>
                     </v-button>
                 </div>
             </form>
