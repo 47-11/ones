@@ -34,7 +34,10 @@
                         <span class="text-blue-600 hover:underline">Registrieren</span>
                     </router-link>
                     <div class="flex-grow"></div>
-                    <v-button @click.native="login" :disabled="inputsDisabled">Einloggen</v-button>
+                    <v-button @click.native="login" :disabled="inputsDisabled" class="flex items-center">
+                        Einloggen
+                        <font-awesome-icon :icon="myIcon" class="ml-2"/>
+                    </v-button>
                 </div>
             </form>
         </auth-card>
@@ -53,6 +56,8 @@ import GuestLayout from "@/layouts/GuestLayout.vue";
 import store, { vxm } from "@/store";
 import router from "@/router";
 import { Component, Vue } from "vue-property-decorator";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     components: {
@@ -63,7 +68,8 @@ import { Component, Vue } from "vue-property-decorator";
         VInput,
         VLabel,
         AuthCard,
-        GuestLayout
+        GuestLayout,
+        FontAwesomeIcon
     },
     store
 })
@@ -74,6 +80,7 @@ export default class Login extends Vue {
     error = "";
     user = vxm.user;
     inputsDisabled = true;
+    myIcon= faSignInAlt;
 
     mounted(): void {
         this.inputsDisabled = false;
