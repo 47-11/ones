@@ -2,6 +2,7 @@ package de.fourtyseveneleven.ones.contest.model.dto;
 
 import de.fourtyseveneleven.ones.rider.model.dto.RiderDto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,6 +17,10 @@ public class ContestDto {
     private String description;
     private LocalDateTime start;
     private LocalDateTime end;
+    /**
+     *  In km
+     */
+    private BigDecimal distance;
 
     private RiderDto organizer;
 
@@ -88,6 +93,14 @@ public class ContestDto {
 
     public void setEnd(LocalDateTime end) {
         this.end = end;
+    }
+
+    public BigDecimal getDistance() {
+        return distance;
+    }
+
+    public void setDistance(BigDecimal distance) {
+        this.distance = distance;
     }
 
     public RiderDto getOrganizer() {
