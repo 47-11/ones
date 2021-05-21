@@ -24,6 +24,47 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface AccommodationDto
+ */
+export interface AccommodationDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccommodationDto
+     */
+    type?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccommodationDto
+     */
+    fee?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccommodationDto
+     */
+    feeUnit?: AccommodationDtoFeeUnitEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccommodationDto
+     */
+    pledgeFee?: number;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum AccommodationDtoFeeUnitEnum {
+    Night = 'PER_NIGHT',
+    Horse = 'PER_HORSE'
+}
+
+/**
+ * 
+ * @export
  * @interface AddressDto
  */
 export interface AddressDto {
@@ -86,97 +127,6 @@ export interface ChangePasswordDto {
 /**
  * 
  * @export
- * @interface ContestDto
- */
-export interface ContestDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestDto
-     */
-    contestType?: ContestDtoContestTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestDto
-     */
-    date?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    distance?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    altitudeDifference?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    qualificationLevel?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    participationPrice?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    startPrice?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ContestDto
-     */
-    maximumDuration?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    minimumHorseAge?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    minimumParticipantAge?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    currentParticipants?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ContestDto
-     */
-    maximumParticipants?: number;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ContestDtoContestTypeEnum {
-    Efr = 'EFR',
-    Kdr = 'KDR',
-    Mdr = 'MDR',
-    Ldr = 'LDR'
-}
-
-/**
- * 
- * @export
  * @interface ErrorDto
  */
 export interface ErrorDto {
@@ -198,156 +148,6 @@ export interface ErrorDto {
      * @memberof ErrorDto
      */
     exceptionType?: string;
-}
-/**
- * 
- * @export
- * @interface EventDetailDto
- */
-export interface EventDetailDto {
-    /**
-     * 
-     * @type {EventDto}
-     * @memberof EventDetailDto
-     */
-    event?: EventDto;
-    /**
-     * 
-     * @type {AddressDto}
-     * @memberof EventDetailDto
-     */
-    address?: AddressDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    participationDocumentUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    tenderDocumentUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    mdr?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    ldr?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    mtr?: string;
-    /**
-     * 
-     * @type {Set<string>}
-     * @memberof EventDetailDto
-     */
-    rideTypes?: Set<EventDetailDtoRideTypesEnum>;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    additionalRideInformation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    eventInitiatorName?: string;
-    /**
-     * 
-     * @type {AddressDto}
-     * @memberof EventDetailDto
-     */
-    eventInitiatorAddress?: AddressDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    organizerName?: string;
-    /**
-     * 
-     * @type {AddressDto}
-     * @memberof EventDetailDto
-     */
-    organizerAddress?: AddressDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    contactPersonName?: string;
-    /**
-     * 
-     * @type {AddressDto}
-     * @memberof EventDetailDto
-     */
-    contactPersonAddress?: AddressDto;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    contactPhoneNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDetailDto
-     */
-    contactEmailAddress?: string;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum EventDetailDtoRideTypesEnum {
-    Ride = 'DISTANCE_RIDE',
-    Drive = 'DISTANCE_DRIVE'
-}
-
-/**
- * 
- * @export
- * @interface EventDto
- */
-export interface EventDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDto
-     */
-    uuid?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDto
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDto
-     */
-    start?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventDto
-     */
-    end?: string;
 }
 /**
  * 
@@ -380,6 +180,230 @@ export interface ForgotPasswordSetNewPasswordDto {
      * @memberof ForgotPasswordSetNewPasswordDto
      */
     newPassword?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FullContestDto
+ */
+export interface FullContestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof FullContestDto
+     */
+    uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullContestDto
+     */
+    contestType?: FullContestDtoContestTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    distance?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullContestDto
+     */
+    start?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullContestDto
+     */
+    canStartLater?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    altitudeDifference?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    qualificationLevel?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    participationApplicationFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    startFee?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullContestDto
+     */
+    maximumDuration?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    minimumHorseAge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    minimumParticipantAge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    currentParticipants?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    maximumParticipants?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullContestDto
+     */
+    cardRide?: boolean;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum FullContestDtoContestTypeEnum {
+    IntroductionRide = 'INTRODUCTION_RIDE',
+    IntroductionDrive = 'INTRODUCTION_DRIVE',
+    ShortDistanceRide = 'SHORT_DISTANCE_RIDE',
+    ShortDistanceDrive = 'SHORT_DISTANCE_DRIVE',
+    MediumDistanceRide = 'MEDIUM_DISTANCE_RIDE',
+    MediumDistanceDrive = 'MEDIUM_DISTANCE_DRIVE',
+    LongDistanceRide = 'LONG_DISTANCE_RIDE',
+    LongDistanceDrive = 'LONG_DISTANCE_DRIVE',
+    MultipleDayRide = 'MULTIPLE_DAY_RIDE',
+    MultipleDayDrive = 'MULTIPLE_DAY_DRIVE'
+}
+
+/**
+ * 
+ * @export
+ * @interface FullEventDto
+ */
+export interface FullEventDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    start?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    end?: string;
+    /**
+     * 
+     * @type {AddressDto}
+     * @memberof FullEventDto
+     */
+    address?: AddressDto;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullEventDto
+     */
+    isNationalChampionship?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullEventDto
+     */
+    isInternational?: boolean;
+    /**
+     * 
+     * @type {Array<SimpleContestDto>}
+     * @memberof FullEventDto
+     */
+    contests?: Array<SimpleContestDto>;
+    /**
+     * 
+     * @type {PersonDto}
+     * @memberof FullEventDto
+     */
+    eventHost?: PersonDto;
+    /**
+     * 
+     * @type {PersonDto}
+     * @memberof FullEventDto
+     */
+    eventOrganizer?: PersonDto;
+    /**
+     * 
+     * @type {PersonDto}
+     * @memberof FullEventDto
+     */
+    contactPerson?: PersonDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    participationApplicationDeadline?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullEventDto
+     */
+    participationApplicationDeadlineMissedFee?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullEventDto
+     */
+    isVaccinationMandatory?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullEventDto
+     */
+    isHelmetMandatory?: boolean;
+    /**
+     * 
+     * @type {Array<AccommodationDto>}
+     * @memberof FullEventDto
+     */
+    availableAccommodations?: Array<AccommodationDto>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FullEventDto
+     */
+    additionalComments?: Array<string>;
 }
 /**
  * 
@@ -428,6 +452,37 @@ export interface LoginDto {
 /**
  * 
  * @export
+ * @interface PersonDto
+ */
+export interface PersonDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {AddressDto}
+     * @memberof PersonDto
+     */
+    address?: AddressDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonDto
+     */
+    phoneNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonDto
+     */
+    emailAddress?: string;
+}
+/**
+ * 
+ * @export
  * @interface RegistrationDto
  */
 export interface RegistrationDto {
@@ -452,10 +507,10 @@ export interface RegistrationDto {
 export interface ResultDto {
     /**
      * 
-     * @type {ContestDto}
+     * @type {SimpleContestDto}
      * @memberof ResultDto
      */
-    contest?: ContestDto;
+    contest?: SimpleContestDto;
     /**
      * 
      * @type {HorseDto}
@@ -499,6 +554,110 @@ export interface ResultOverviewDto {
      * @memberof ResultOverviewDto
      */
     averageSpeed?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SimpleContestDto
+ */
+export interface SimpleContestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleContestDto
+     */
+    uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleContestDto
+     */
+    contestType?: SimpleContestDtoContestTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof SimpleContestDto
+     */
+    distance?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleContestDto
+     */
+    cardRide?: boolean;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum SimpleContestDtoContestTypeEnum {
+    IntroductionRide = 'INTRODUCTION_RIDE',
+    IntroductionDrive = 'INTRODUCTION_DRIVE',
+    ShortDistanceRide = 'SHORT_DISTANCE_RIDE',
+    ShortDistanceDrive = 'SHORT_DISTANCE_DRIVE',
+    MediumDistanceRide = 'MEDIUM_DISTANCE_RIDE',
+    MediumDistanceDrive = 'MEDIUM_DISTANCE_DRIVE',
+    LongDistanceRide = 'LONG_DISTANCE_RIDE',
+    LongDistanceDrive = 'LONG_DISTANCE_DRIVE',
+    MultipleDayRide = 'MULTIPLE_DAY_RIDE',
+    MultipleDayDrive = 'MULTIPLE_DAY_DRIVE'
+}
+
+/**
+ * 
+ * @export
+ * @interface SimpleEventDto
+ */
+export interface SimpleEventDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleEventDto
+     */
+    uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleEventDto
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleEventDto
+     */
+    start?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleEventDto
+     */
+    end?: string;
+    /**
+     * 
+     * @type {AddressDto}
+     * @memberof SimpleEventDto
+     */
+    address?: AddressDto;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleEventDto
+     */
+    isNationalChampionship?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleEventDto
+     */
+    isInternational?: boolean;
+    /**
+     * 
+     * @type {Array<SimpleContestDto>}
+     * @memberof SimpleEventDto
+     */
+    contests?: Array<SimpleContestDto>;
 }
 
 /**
@@ -696,9 +855,9 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContests: async (eventUuid: string, options: any = {}): Promise<RequestArgs> => {
+        getFullContests: async (eventUuid: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'eventUuid' is not null or undefined
-            assertParamExists('getContests', 'eventUuid', eventUuid)
+            assertParamExists('getFullContests', 'eventUuid', eventUuid)
             const localVarPath = `/api/v1/event/{eventUuid}/contests`
                 .replace(`{${"eventUuid"}}`, encodeURIComponent(String(eventUuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -733,9 +892,9 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDetails: async (uuid: string, options: any = {}): Promise<RequestArgs> => {
+        getFullEvent: async (uuid: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'uuid' is not null or undefined
-            assertParamExists('getDetails', 'uuid', uuid)
+            assertParamExists('getFullEvent', 'uuid', uuid)
             const localVarPath = `/api/v1/event/{uuid}`
                 .replace(`{${"uuid"}}`, encodeURIComponent(String(uuid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -786,7 +945,7 @@ export const EventControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<EventDto>>> {
+        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SimpleEventDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -796,8 +955,8 @@ export const EventControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getContests(eventUuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestDto>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getContests(eventUuid, options);
+        async getFullContests(eventUuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FullContestDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFullContests(eventUuid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -806,8 +965,8 @@ export const EventControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDetails(uuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventDetailDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDetails(uuid, options);
+        async getFullEvent(uuid: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FullEventDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFullEvent(uuid, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -832,7 +991,7 @@ export const EventControllerApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): AxiosPromise<Array<EventDto>> {
+        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): AxiosPromise<Array<SimpleEventDto>> {
             return localVarFp.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -841,8 +1000,8 @@ export const EventControllerApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContests(eventUuid: string, options?: any): AxiosPromise<Array<ContestDto>> {
-            return localVarFp.getContests(eventUuid, options).then((request) => request(axios, basePath));
+        getFullContests(eventUuid: string, options?: any): AxiosPromise<Array<FullContestDto>> {
+            return localVarFp.getFullContests(eventUuid, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -850,8 +1009,8 @@ export const EventControllerApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDetails(uuid: string, options?: any): AxiosPromise<EventDetailDto> {
-            return localVarFp.getDetails(uuid, options).then((request) => request(axios, basePath));
+        getFullEvent(uuid: string, options?: any): AxiosPromise<FullEventDto> {
+            return localVarFp.getFullEvent(uuid, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -887,8 +1046,8 @@ export class EventControllerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventControllerApi
      */
-    public getContests(eventUuid: string, options?: any) {
-        return EventControllerApiFp(this.configuration).getContests(eventUuid, options).then((request) => request(this.axios, this.basePath));
+    public getFullContests(eventUuid: string, options?: any) {
+        return EventControllerApiFp(this.configuration).getFullContests(eventUuid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -898,8 +1057,8 @@ export class EventControllerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventControllerApi
      */
-    public getDetails(uuid: string, options?: any) {
-        return EventControllerApiFp(this.configuration).getDetails(uuid, options).then((request) => request(this.axios, this.basePath));
+    public getFullEvent(uuid: string, options?: any) {
+        return EventControllerApiFp(this.configuration).getFullEvent(uuid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

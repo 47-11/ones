@@ -28,8 +28,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -38,8 +38,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -91,8 +91,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -101,8 +101,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -154,8 +154,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -164,8 +164,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -224,8 +224,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -234,8 +234,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -287,8 +287,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -297,8 +297,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -350,8 +350,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -360,8 +360,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -408,8 +408,8 @@
         ],
         "operationId": "getMyResults",
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -418,8 +418,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -536,8 +536,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -546,8 +546,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -583,7 +583,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/EventDto"
+                    "$ref": "#/components/schemas/SimpleEventDto"
                   }
                 }
               }
@@ -602,7 +602,7 @@
         "tags": [
           "event-controller"
         ],
-        "operationId": "getDetails",
+        "operationId": "getFullEvent",
         "parameters": [
           {
             "name": "uuid",
@@ -614,8 +614,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -624,8 +624,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -659,7 +659,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/EventDetailDto"
+                  "$ref": "#/components/schemas/FullEventDto"
                 }
               }
             }
@@ -677,7 +677,7 @@
         "tags": [
           "event-controller"
         ],
-        "operationId": "getContests",
+        "operationId": "getFullContests",
         "parameters": [
           {
             "name": "eventUuid",
@@ -689,8 +689,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -699,8 +699,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -736,7 +736,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ContestDto"
+                    "$ref": "#/components/schemas/FullContestDto"
                   }
                 }
               }
@@ -819,59 +819,6 @@
           }
         }
       },
-      "ContestDto": {
-        "type": "object",
-        "properties": {
-          "contestType": {
-            "type": "string",
-            "enum": [
-              "EFR",
-              "KDR",
-              "MDR",
-              "LDR"
-            ]
-          },
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "distance": {
-            "type": "number"
-          },
-          "altitudeDifference": {
-            "type": "number"
-          },
-          "qualificationLevel": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "participationPrice": {
-            "type": "number"
-          },
-          "startPrice": {
-            "type": "number"
-          },
-          "maximumDuration": {
-            "type": "string"
-          },
-          "minimumHorseAge": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "minimumParticipantAge": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "currentParticipants": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "maximumParticipants": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "HorseDto": {
         "type": "object",
         "properties": {
@@ -890,7 +837,7 @@
         "type": "object",
         "properties": {
           "contest": {
-            "$ref": "#/components/schemas/ContestDto"
+            "$ref": "#/components/schemas/SimpleContestDto"
           },
           "horse": {
             "$ref": "#/components/schemas/HorseDto"
@@ -921,22 +868,32 @@
           }
         }
       },
-      "EventDto": {
+      "SimpleContestDto": {
         "type": "object",
         "properties": {
           "uuid": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
-          },
-          "start": {
+          "contestType": {
             "type": "string",
-            "format": "date-time"
+            "enum": [
+              "INTRODUCTION_RIDE",
+              "INTRODUCTION_DRIVE",
+              "SHORT_DISTANCE_RIDE",
+              "SHORT_DISTANCE_DRIVE",
+              "MEDIUM_DISTANCE_RIDE",
+              "MEDIUM_DISTANCE_DRIVE",
+              "LONG_DISTANCE_RIDE",
+              "LONG_DISTANCE_DRIVE",
+              "MULTIPLE_DAY_RIDE",
+              "MULTIPLE_DAY_DRIVE"
+            ]
           },
-          "end": {
-            "type": "string",
-            "format": "date-time"
+          "distance": {
+            "type": "number"
+          },
+          "cardRide": {
+            "type": "boolean"
           }
         }
       },
@@ -963,67 +920,211 @@
           }
         }
       },
-      "EventDetailDto": {
+      "SimpleEventDto": {
         "type": "object",
         "properties": {
-          "event": {
-            "$ref": "#/components/schemas/EventDto"
+          "uuid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
           },
           "address": {
             "$ref": "#/components/schemas/AddressDto"
           },
-          "participationDocumentUrl": {
-            "type": "string"
+          "isNationalChampionship": {
+            "type": "boolean"
           },
-          "tenderDocumentUrl": {
-            "type": "string"
+          "isInternational": {
+            "type": "boolean"
           },
-          "mdr": {
-            "type": "string"
-          },
-          "ldr": {
-            "type": "string"
-          },
-          "mtr": {
-            "type": "string"
-          },
-          "rideTypes": {
-            "uniqueItems": true,
+          "contests": {
             "type": "array",
             "items": {
-              "type": "string",
-              "enum": [
-                "DISTANCE_RIDE",
-                "DISTANCE_DRIVE"
-              ]
+              "$ref": "#/components/schemas/SimpleContestDto"
+            }
+          }
+        }
+      },
+      "AccommodationDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "number"
+          },
+          "feeUnit": {
+            "type": "string",
+            "enum": [
+              "PER_NIGHT",
+              "PER_HORSE"
+            ]
+          },
+          "pledgeFee": {
+            "type": "number"
+          }
+        }
+      },
+      "FullEventDto": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "isNationalChampionship": {
+            "type": "boolean"
+          },
+          "isInternational": {
+            "type": "boolean"
+          },
+          "contests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimpleContestDto"
             }
           },
-          "additionalRideInformation": {
+          "eventHost": {
+            "$ref": "#/components/schemas/PersonDto"
+          },
+          "eventOrganizer": {
+            "$ref": "#/components/schemas/PersonDto"
+          },
+          "contactPerson": {
+            "$ref": "#/components/schemas/PersonDto"
+          },
+          "participationApplicationDeadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "participationApplicationDeadlineMissedFee": {
+            "type": "number"
+          },
+          "isVaccinationMandatory": {
+            "type": "boolean"
+          },
+          "isHelmetMandatory": {
+            "type": "boolean"
+          },
+          "availableAccommodations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccommodationDto"
+            }
+          },
+          "additionalComments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PersonDto": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string"
           },
-          "eventInitiatorName": {
-            "type": "string"
-          },
-          "eventInitiatorAddress": {
+          "address": {
             "$ref": "#/components/schemas/AddressDto"
           },
-          "organizerName": {
+          "phoneNumber": {
             "type": "string"
           },
-          "organizerAddress": {
-            "$ref": "#/components/schemas/AddressDto"
-          },
-          "contactPersonName": {
+          "emailAddress": {
+            "type": "string"
+          }
+        }
+      },
+      "FullContestDto": {
+        "type": "object",
+        "properties": {
+          "uuid": {
             "type": "string"
           },
-          "contactPersonAddress": {
-            "$ref": "#/components/schemas/AddressDto"
+          "contestType": {
+            "type": "string",
+            "enum": [
+              "INTRODUCTION_RIDE",
+              "INTRODUCTION_DRIVE",
+              "SHORT_DISTANCE_RIDE",
+              "SHORT_DISTANCE_DRIVE",
+              "MEDIUM_DISTANCE_RIDE",
+              "MEDIUM_DISTANCE_DRIVE",
+              "LONG_DISTANCE_RIDE",
+              "LONG_DISTANCE_DRIVE",
+              "MULTIPLE_DAY_RIDE",
+              "MULTIPLE_DAY_DRIVE"
+            ]
           },
-          "contactPhoneNumber": {
+          "distance": {
+            "type": "number"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "canStartLater": {
+            "type": "boolean"
+          },
+          "altitudeDifference": {
+            "type": "number"
+          },
+          "qualificationLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "participationApplicationFee": {
+            "type": "number"
+          },
+          "startFee": {
+            "type": "number"
+          },
+          "maximumDuration": {
             "type": "string"
           },
-          "contactEmailAddress": {
-            "type": "string"
+          "minimumHorseAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minimumParticipantAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentParticipants": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumParticipants": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cardRide": {
+            "type": "boolean"
           }
         }
       }
