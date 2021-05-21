@@ -1,4 +1,4 @@
-import { ContestDto as Contest, ContestDtoContestTypeEnum, EventDetailDto, EventDto as Event } from "@/openapi/generated";
+import { FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated";
 import { BASE_PATH } from "@/openapi/generated/base";
 import { EventsStore } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
@@ -68,7 +68,7 @@ describe("Events-Store", () => {
         const events = [
             { uuid: "42", title: "Olympic games" },
             { uuid: "43", title: "Paralympics" }
-        ] as Event[];
+        ] as SimpleEvent[];
         axiosMock.request.mockResolvedValue({
             data: events
         });
@@ -80,9 +80,9 @@ describe("Events-Store", () => {
 
     it("fetches an events contests", async () => {
         const contests = [
-            { contestType: ContestDtoContestTypeEnum.Mdr },
-            { contestType: ContestDtoContestTypeEnum.Efr }
-        ] as Contest[];
+            { contestType: FullContestDtoContestTypeEnum.MultipleDayRide },
+            { contestType: FullContestDtoContestTypeEnum.IntroductionDrive }
+        ] as FullContest[];
         axiosMock.request.mockResolvedValue({
             data: contests
         });
@@ -97,7 +97,7 @@ describe("Events-Store", () => {
     it("fetches an events details", async () => {
         const details = {
             organizerName: "Olympic committee"
-        } as EventDetailDto;
+        } as FullEvent;
         axiosMock.request.mockResolvedValue({
             data: details
         });
