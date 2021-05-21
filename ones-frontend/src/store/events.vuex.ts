@@ -1,5 +1,5 @@
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
-import { EventControllerApi, EventDto as Event } from "@/openapi/generated/api";
+import { ContestDto as Contest, EventControllerApi, EventDto as Event } from "@/openapi/generated/api";
 import { UserStore } from "./userStore.vuex";
 
 interface FilterType {
@@ -64,5 +64,10 @@ export class EventsStore extends VuexModule {
         for (const filterProp of filterPropsToClear) {
             this.filter[filterProp] = undefined;
         }
+    }
+
+    @action
+    async getContestsOf(eventId: string): Promise<Contest[]> {
+        return (await this.controller.getContests(eventId)).data;
     }
 }

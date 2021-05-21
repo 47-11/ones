@@ -1,4 +1,4 @@
-import { EventDto as Event } from "@/openapi/generated";
+import { ContestDto as Contest, ContestDtoContestTypeEnum, EventDto as Event } from "@/openapi/generated";
 import { EventsStore } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
@@ -27,6 +27,8 @@ describe("Events-Store", () => {
 
         eventsStore = createProxy(store, EventsStore);
         axiosMock = axios as jest.Mocked<typeof axios>;
+
+        axiosMock.request.mockReset();
     });
 
     afterEach(() => {
@@ -67,5 +69,23 @@ describe("Events-Store", () => {
         await eventsStore.fetch();
 
         expect(eventsStore.list).toEqual(events);
+    });
+
+    it("fetches an events contests", async () => {
+        const contests = [
+            { contestType: ContestDtoContestTypeEnum.Mdr },
+            { contestType: ContestDtoContestTypeEnum.Efr }
+        ] as Contest[];
+        axiosMock.request.mockResolvedValue({
+            data: contests
+        });
+        const eventId = "5";
+
+        const fetchedContests = await eventsStore.getContestsOf(eventId);
+
+        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `/api/v1/event/${eventId}/contests`
+        }));
+        expect(fetchedContests).toEqual(contests);
     });
 });
