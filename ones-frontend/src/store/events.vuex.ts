@@ -1,5 +1,5 @@
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
-import { FullContestDto as Contest, EventControllerApi, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, FullContestDto } from "@/openapi/generated/api";
+import { FullContestDto as Contest, EventControllerApi, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, FullContestDto as FullContest } from "@/openapi/generated/api";
 import { UserStore } from "./userStore.vuex";
 
 interface FilterType {
@@ -20,14 +20,19 @@ const VuexModule = createModule({
 export class EventsStore extends VuexModule {
     private events: SimpleEvent[] = [];
     private filter = {} as FilterType;
-    private contests: FullContestDto[] = [];
+    private contests: FullContest[] = [];
+    private details: FullEvent | undefined;
 
     get list(): SimpleEvent[] {
         return this.events;
     }
 
-    get eventContests(): FullContestDto[] {
+    get eventContests(): FullContest[] {
         return this.contests;
+    }
+
+    get eventDetails(): FullEvent | undefined {
+        return this.details;
     }
 
     private get controller(): EventControllerApi {
@@ -85,5 +90,6 @@ export class EventsStore extends VuexModule {
     @action
     async fetchEvent(eventId: string): Promise<void> {
         this.contests = (await this.controller.getFullContests(eventId)).data;
+        this.details = (await this.controller.getFullEvent(eventId)).data;
     }
 }

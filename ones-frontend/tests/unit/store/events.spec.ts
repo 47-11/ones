@@ -117,7 +117,7 @@ describe("Events-Store", () => {
         expect(fetchedContests).toEqual(contests);
     });
 
-    it("fetches an events details", async () => {
+    it("fetches an events details when an event is selected", async () => {
         const details = {
             organizerName: "Olympic committee"
         } as FullEvent;
@@ -126,7 +126,9 @@ describe("Events-Store", () => {
         });
         const eventId = "5";
 
-        const fetchedContests = await eventsStore.getDetailsOf(eventId);
+        await eventsStore.fetchEvent(eventId);
+
+        const fetchedContests = eventsStore.eventDetails;
 
         expect(axiosMock.request).toHaveBeenCalledWith(url(`event/${eventId}`));
         expect(fetchedContests).toEqual(details);
