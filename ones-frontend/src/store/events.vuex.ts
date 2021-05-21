@@ -78,18 +78,22 @@ export class EventsStore extends VuexModule {
     }
 
     @action
-    async getContestsOf(eventId: string): Promise<Contest[]> {
-        return (await this.controller.getFullContests(eventId)).data;
+    private async fetchContestsOf(eventId: string): Promise<void> {
+        const response = await this.controller.getFullContests(eventId);
+        this.contests = response.data;
     }
 
     @action
-    async getDetailsOf(eventId: string): Promise<FullEvent> {
-        return (await this.controller.getFullEvent(eventId)).data;
+    private async fetchDetailsOf(eventId: string): Promise<void> {
+        const response = await this.controller.getFullEvent(eventId);
+        this.details = response.data;
     }
 
     @action
     async fetchEvent(eventId: string): Promise<void> {
-        this.contests = (await this.controller.getFullContests(eventId)).data;
-        this.details = (await this.controller.getFullEvent(eventId)).data;
+        await Promise.all([
+            this.fetchContestsOf(eventId),
+            this.fetchDetailsOf(eventId)
+        ]);
     }
 }
