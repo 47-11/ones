@@ -100,7 +100,7 @@ describe("Events-Store", () => {
         expect(eventsStore.list).toEqual(events);
     });
 
-    it("fetches an events contests", async () => {
+    it("fetches events contests when event is set", async () => {
         const contests = [
             { contestType: FullContestDtoContestTypeEnum.MultipleDayRide },
             { contestType: FullContestDtoContestTypeEnum.IntroductionDrive }
@@ -110,8 +110,9 @@ describe("Events-Store", () => {
         });
         const eventId = "5";
 
-        const fetchedContests = await eventsStore.getContestsOf(eventId);
+        await eventsStore.fetchEvent(eventId);
 
+        const fetchedContests = eventsStore.eventContests;
         expect(axiosMock.request).toHaveBeenCalledWith(url(`event/${eventId}/contests`));
         expect(fetchedContests).toEqual(contests);
     });
