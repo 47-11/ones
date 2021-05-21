@@ -5,8 +5,8 @@ import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
 import Vuex, { Store } from "vuex";
-import { clearProxyCache, createProxy, extractVuexModule } from "vuex-class-component";
-import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
+import { createProxy, extractVuexModule } from "vuex-class-component";
+import { ProxyWatchers, VuexModuleConstructor, VuexModule } from "vuex-class-component/dist/interfaces";
 
 jest.mock("axios");
 
@@ -15,6 +15,29 @@ const url = (path: string) => {
         url: `${BASE_PATH}/api/v1/${path.trim()}`
     });
 };
+
+/**
+ * This function is used to clear the proxy cache of the handed vuex module
+ * to prevent the reuse of a vuex store between the tests.
+ * Unfortunately, the original clearProxyCache function has no implementation.
+ * This implementation was taken from
+ * https://github.com/Glandos/vuex-class-component/commit/a22dd89513b7f292cd3e62cd3883da1316938963
+ * A corresponding issue has been opened at
+ * https://github.com/michaelolof/vuex-class-component/issues/101
+ * @param cls The vuex module to clear the cache for.
+ */
+function clearProxyCache<T extends typeof VuexModule>(cls: T) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const VuexClass = cls as VuexModuleConstructor;
+    delete VuexClass.prototype.__vuex_module_cache__;
+    delete VuexClass.prototype.__vuex_proxy_cache__;
+    delete VuexClass.prototype.__store_cache__;
+    delete VuexClass.prototype.__vuex_local_proxy_cache__;
+    for (const submodule of Object.values(VuexClass.prototype.__submodules_cache__)) {
+        clearProxyCache(submodule);
+    }
+}
 
 describe("Events-Store", () => {
     let store: Store<unknown>;
