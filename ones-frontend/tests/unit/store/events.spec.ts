@@ -1,4 +1,5 @@
 import { ContestDto as Contest, ContestDtoContestTypeEnum, EventDetailDto, EventDto as Event } from "@/openapi/generated";
+import { BASE_PATH } from "@/openapi/generated/base";
 import { EventsStore } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
@@ -8,6 +9,12 @@ import { clearProxyCache, createProxy, extractVuexModule } from "vuex-class-comp
 import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
 
 jest.mock("axios");
+
+const url = (path: string) => {
+    return expect.objectContaining({
+        url: `${BASE_PATH}/api/v1/${path.trim()}`
+    });
+};
 
 describe("Events-Store", () => {
     let store: Store<unknown>;
@@ -40,7 +47,7 @@ describe("Events-Store", () => {
 
         await eventsStore.fetch();
 
-        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({ url: "/api/v1/event" }));
+        expect(axiosMock.request).toHaveBeenCalledWith(url("event"));
     });
 
     it("fetches events filtered", async () => {
@@ -83,9 +90,7 @@ describe("Events-Store", () => {
 
         const fetchedContests = await eventsStore.getContestsOf(eventId);
 
-        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
-            url: `/api/v1/event/${eventId}/contests`
-        }));
+        expect(axiosMock.request).toHaveBeenCalledWith(url(`event/${eventId}/contests`));
         expect(fetchedContests).toEqual(contests);
     });
 
@@ -100,9 +105,7 @@ describe("Events-Store", () => {
 
         const fetchedContests = await eventsStore.getDetailsOf(eventId);
 
-        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
-            url: `/api/v1/event/${eventId}`
-        }));
+        expect(axiosMock.request).toHaveBeenCalledWith(url(`event/${eventId}`));
         expect(fetchedContests).toEqual(details);
     });
 });
