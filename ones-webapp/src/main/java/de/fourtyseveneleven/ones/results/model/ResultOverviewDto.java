@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.results.model;
 
-import de.fourtyseveneleven.ones.event.model.dto.ContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -34,7 +34,7 @@ public class ResultOverviewDto {
 
         return results.stream()
                 .map(ResultDto::getContest)
-                .map(ContestDto::getDistance)
+                .map(SimpleContestDto::getDistance)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

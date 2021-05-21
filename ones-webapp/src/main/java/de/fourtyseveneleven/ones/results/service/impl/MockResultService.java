@@ -1,10 +1,10 @@
 package de.fourtyseveneleven.ones.results.service.impl;
 
-import de.fourtyseveneleven.ones.event.model.dto.ContestDto;
-import de.fourtyseveneleven.ones.event.model.dto.EventDto;
+import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
-import de.fourtyseveneleven.ones.event.service.ContestService;
-import de.fourtyseveneleven.ones.event.service.EventService;
+import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.horse.model.HorseDto;
 import de.fourtyseveneleven.ones.results.model.ResultDto;
 import de.fourtyseveneleven.ones.results.model.ResultOverviewDto;
@@ -13,23 +13,18 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
 public class MockResultService implements ResultService {
 
-    private final EventService eventService;
-    private final ContestService contestService;
+    private final SimpleEventService simpleEventService;
 
     private final ResultOverviewDto mockResultOverview;
 
-    private final Random random = new Random();
-
-    public MockResultService(EventService eventService, ContestService contestService) {
-        this.eventService = eventService;
-        this.contestService = contestService;
+    public MockResultService(SimpleEventService simpleEventService) {
+        this.simpleEventService = simpleEventService;
         this.mockResultOverview = buildMockResultOverview();
     }
 
@@ -40,18 +35,16 @@ public class MockResultService implements ResultService {
 
     private List<ResultDto> buildMockResults() {
 
-        return eventService.findAll(new EventFilterDto())
+        return simpleEventService.findAll(new EventFilterDto())
                 .subList(4, 10)
                 .stream()
-                .map(EventDto::getUuid)
-                .map(contestService::getContestsForEvent)
-                .filter(contests -> !contests.isEmpty())
-                .map(contests -> contests.get(0))
+                .map(SimpleEventDto::getContests)
+                .flatMap(List::stream)
                 .map(this::buildMockResultForContest)
                 .collect(toList());
     }
 
-    private ResultDto buildMockResultForContest(ContestDto contest) {
+    private ResultDto buildMockResultForContest(SimpleContestDto contest) {
 
         final var result = new ResultDto();
 

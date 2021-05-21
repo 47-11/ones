@@ -1,26 +1,22 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
-import de.fourtyseveneleven.ones.event.model.ContestType;
-
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class ContestDto {
+public class FullContestDto extends SimpleContestDto{
 
-    private ContestType contestType;
-
-    private LocalDate date;
+    private LocalDateTime start;
+    private boolean canStartLater;
 
     /**
-     * In km
+     * In m
      */
-    private BigDecimal distance;
     private BigDecimal altitudeDifference;
 
     private Integer qualificationLevel;
 
-    private BigDecimal participationPrice;
-    private BigDecimal startPrice;
+    private BigDecimal participationApplicationFee;
+    private BigDecimal startFee;
 
     private String maximumDuration;
 
@@ -30,28 +26,20 @@ public class ContestDto {
     private int currentParticipants;
     private int maximumParticipants;
 
-    public ContestType getContestType() {
-        return contestType;
+    public LocalDateTime getStart() {
+        return start;
     }
 
-    public void setContestType(ContestType contestType) {
-        this.contestType = contestType;
+    public void setStart(LocalDateTime start) {
+        this.start = start;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public boolean isCanStartLater() {
+        return canStartLater;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public BigDecimal getDistance() {
-        return distance;
-    }
-
-    public void setDistance(BigDecimal distance) {
-        this.distance = distance;
+    public void setCanStartLater(boolean canStartLater) {
+        this.canStartLater = canStartLater;
     }
 
     public BigDecimal getAltitudeDifference() {
@@ -70,20 +58,20 @@ public class ContestDto {
         this.qualificationLevel = qualificationLevel;
     }
 
-    public BigDecimal getParticipationPrice() {
-        return participationPrice;
+    public BigDecimal getParticipationApplicationFee() {
+        return participationApplicationFee;
     }
 
-    public void setParticipationPrice(BigDecimal participationPrice) {
-        this.participationPrice = participationPrice;
+    public void setParticipationApplicationFee(BigDecimal participationApplicationFee) {
+        this.participationApplicationFee = participationApplicationFee;
     }
 
-    public BigDecimal getStartPrice() {
-        return startPrice;
+    public BigDecimal getStartFee() {
+        return startFee;
     }
 
-    public void setStartPrice(BigDecimal startPrice) {
-        this.startPrice = startPrice;
+    public void setStartFee(BigDecimal startFee) {
+        this.startFee = startFee;
     }
 
     public String getMaximumDuration() {
