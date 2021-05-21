@@ -73,14 +73,13 @@ describe("Events-Store", () => {
         expect(axiosMock.request).toHaveBeenCalledWith(url("event"));
     });
 
-    it("fetches events filtered", async () => {
+    it("fetches events when setting filter", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Event[] });
-        eventsStore.addFilter({
+
+        await eventsStore.addFilter({
             titleContains: "Olympic games",
             organizerId: 42
         });
-
-        await eventsStore.fetch();
 
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
             url: "/api/v1/event?titleContains=Olympic+games&organizerId=42"

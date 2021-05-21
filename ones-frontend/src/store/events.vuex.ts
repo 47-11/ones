@@ -50,13 +50,14 @@ export class EventsStore extends VuexModule {
         ];
     }
 
-    @mutation
-    addFilter(modification: FilterType): void {
+    @action
+    async addFilter(modification: FilterType): Promise<void> {
         const newFilter = Object.assign({}, this.filter);
         for (const [key, value] of Object.entries(modification)) {
             newFilter[key as keyof FilterType] = value;
         }
         this.filter = newFilter;
+        await this.fetch();
     }
 
     @mutation
