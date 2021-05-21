@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User updateUser(User updatedUser) {
 
-        final User toUpdate = userRepository.findOnyById(updatedUser.getId()).orElseThrow(ElementNotFoundException::new);
+        final User toUpdate = userRepository.findOneById(updatedUser.getId()).orElseThrow(ElementNotFoundException::new);
         BeanUtils.copyProperties(updatedUser, toUpdate);
         return userRepository.save(toUpdate);
     }

@@ -17,10 +17,9 @@ public class UserRepositoryTestIT extends AbstractRepositoryTestIT<User> {
     }
 
     @Override
-    protected User getTestEntity(long id) {
+    protected User getTestEntity() {
 
         final var user = new User();
-        user.setId(id);
         user.setEmailAddress("testy@mctesticles.de");
         user.setPassword("some-pw-hash");
         return user;

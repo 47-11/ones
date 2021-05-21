@@ -17,6 +17,10 @@
                     <div class="mt-5">
                         <v-label>Passwort</v-label>
                         <v-input type="password" class="w-full" v-model="password" :disabled="inputsDisabled"></v-input>
+
+                        <router-link to="forgot-password">
+                            <span class="text-blue-600 hover:underline">Passwort vergessen?</span>
+                        </router-link>
                     </div>
 
                     <div class="block mt-4">

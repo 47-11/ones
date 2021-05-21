@@ -1,25 +1,38 @@
 <template>
     <guest-layout>
-        <auth-card>
-            <form @submit.prevent="submit">
+        <auth-card v-if="mailSend">
+            <div class="px-6 py-5">
+                <feedback color="success" class="mb-5">
+                    Eine E-Mail ist auf dem Weg ...
+                </feedback>
+            </div>
+            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <router-link to="login">
+                    <v-button>zum Login</v-button>
+                </router-link>
+            </div>
+        </auth-card>
+        <auth-card v-else>
+            <form @submit.prevent="sendForgotMail">
                 <div class="px-6 py-5">
                     <div class="mb-4 text-sm text-gray-600">
                         <h1 class="text-xl mb-2">Passwort vergessen?</h1>
                         <p>Kein Problem. Nenn uns deine E-Mail Adresse und wir schicken dir einen Link zum Zurücksetzen des Passworts.</p>
                     </div>
 
-                    <feedback color="success" class="mb-5">
-                        Eine E-Mail ist auf dem Weg ...
+                    <feedback color="danger" class="mb-5" v-if="error.length > 0">
+                        <h2 class="text-lg">Oops! Etwas ist schief gelaufen.</h2>
+                        {{ error }}
                     </feedback>
 
                     <div>
                         <v-label>E-Mail</v-label>
-                        <v-input type="text" class="w-full"></v-input>
+                        <v-input type="text" class="w-full" v-model="email" :disabled="inputsDisabled"></v-input>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-button>Passwort zurücksetzen</v-button>
+                    <v-button @click.native="sendForgotMail" :disabled="inputsDisabled">Passwort zurücksetzen</v-button>
                 </div>
             </form>
         </auth-card>
@@ -36,6 +49,7 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Feedback from "@/components/Feedback.vue";
+import { vxm } from "@/store";
 
 @Component({
     components: {
@@ -50,8 +64,32 @@ import Feedback from "@/components/Feedback.vue";
     }
 })
 export default class ForgotPassword extends Vue {
-    submit(): void {
-        // Do something ...
+    error = "";
+    mailSend = true;
+    email = "";
+    inputsDisabled = true;
+
+    mounted(): void {
+        this.mailSend = false;
+        this.inputsDisabled = false;
+    }
+
+    async sendForgotMail(): Promise<void> {
+        this.error = "";
+        this.inputsDisabled = true;
+
+        try {
+            await vxm.user.forgotPassword({ email: this.email });
+            this.mailSend = true;
+        } catch (error) {
+            if (error.response?.data?.userMessage) {
+                this.error = error.response?.data?.userMessage;
+            } else {
+                this.error = error.message;
+            }
+        }
+
+        this.inputsDisabled = false;
     }
 }
 </script>

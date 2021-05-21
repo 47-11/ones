@@ -1,4 +1,4 @@
-import { LoginControllerApi, RegistrationControllerApi } from "@/openapi/generated";
+import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi } from "@/openapi/generated";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -19,6 +19,15 @@ export interface RegistrationPayload {
 
 export interface VerificationPayload {
     code: string;
+}
+
+export interface ForgotPassPayload {
+    email: string;
+}
+
+export interface NewPassByCodePayload {
+    code: string;
+    password: string;
 }
 
 export class UserStore extends VuexModule {
@@ -70,5 +79,20 @@ export class UserStore extends VuexModule {
         this.token = undefined;
         localStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
         sessionStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
+    }
+
+    @action
+    async forgotPassword(payload: ForgotPassPayload): Promise<void> {
+        await new ForgotPasswordControllerApi().forgotPassword({
+            emailAddress: payload.email
+        });
+    }
+
+    @action
+    async setNewPasswordByCode(payload: NewPassByCodePayload): Promise<void> {
+        await new ForgotPasswordControllerApi().forgotPasswordSetNewPassword({
+            code: payload.code,
+            newPassword: payload.password
+        });
     }
 }

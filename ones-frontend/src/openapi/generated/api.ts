@@ -24,6 +24,25 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface ChangePasswordDto
+ */
+export interface ChangePasswordDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChangePasswordDto
+     */
+    oldPassword?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ChangePasswordDto
+     */
+    newPassword?: string;
+}
+/**
+ * 
+ * @export
  * @interface ContestDto
  */
 export interface ContestDto {
@@ -112,6 +131,38 @@ export interface ErrorDto {
      * @memberof ErrorDto
      */
     exceptionType?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ForgotPasswordDto
+ */
+export interface ForgotPasswordDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ForgotPasswordDto
+     */
+    emailAddress?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ForgotPasswordSetNewPasswordDto
+ */
+export interface ForgotPasswordSetNewPasswordDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ForgotPasswordSetNewPasswordDto
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ForgotPasswordSetNewPasswordDto
+     */
+    newPassword?: string;
 }
 /**
  * 
@@ -224,13 +275,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
 }
 /**
  * 
@@ -293,6 +344,113 @@ export interface RiderDto {
      */
     allNecessaryDataPresent?: boolean;
 }
+
+/**
+ * ChangePasswordControllerApi - axios parameter creator
+ * @export
+ */
+export const ChangePasswordControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {ChangePasswordDto} changePasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changePassword: async (changePasswordDto: ChangePasswordDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'changePasswordDto' is not null or undefined
+            assertParamExists('changePassword', 'changePasswordDto', changePasswordDto)
+            const localVarPath = `/api/v1/change-password`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(changePasswordDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ChangePasswordControllerApi - functional programming interface
+ * @export
+ */
+export const ChangePasswordControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ChangePasswordControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {ChangePasswordDto} changePasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async changePassword(changePasswordDto: ChangePasswordDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.changePassword(changePasswordDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ChangePasswordControllerApi - factory interface
+ * @export
+ */
+export const ChangePasswordControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ChangePasswordControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {ChangePasswordDto} changePasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        changePassword(changePasswordDto: ChangePasswordDto, options?: any): AxiosPromise<void> {
+            return localVarFp.changePassword(changePasswordDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ChangePasswordControllerApi - object-oriented interface
+ * @export
+ * @class ChangePasswordControllerApi
+ * @extends {BaseAPI}
+ */
+export class ChangePasswordControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {ChangePasswordDto} changePasswordDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChangePasswordControllerApi
+     */
+    public changePassword(changePasswordDto: ChangePasswordDto, options?: any) {
+        return ChangePasswordControllerApiFp(this.configuration).changePassword(changePasswordDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * ContestControllerApi - axios parameter creator
@@ -519,6 +677,174 @@ export class ContestControllerApi extends BaseAPI {
      */
     public findOneById(id: number, options?: any) {
         return ContestControllerApiFp(this.configuration).findOneById(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ForgotPasswordControllerApi - axios parameter creator
+ * @export
+ */
+export const ForgotPasswordControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {ForgotPasswordDto} forgotPasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        forgotPassword: async (forgotPasswordDto: ForgotPasswordDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'forgotPasswordDto' is not null or undefined
+            assertParamExists('forgotPassword', 'forgotPasswordDto', forgotPasswordDto)
+            const localVarPath = `/api/v1/forgot-password`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(forgotPasswordDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {ForgotPasswordSetNewPasswordDto} forgotPasswordSetNewPasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        forgotPasswordSetNewPassword: async (forgotPasswordSetNewPasswordDto: ForgotPasswordSetNewPasswordDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'forgotPasswordSetNewPasswordDto' is not null or undefined
+            assertParamExists('forgotPasswordSetNewPassword', 'forgotPasswordSetNewPasswordDto', forgotPasswordSetNewPasswordDto)
+            const localVarPath = `/api/v1/forgot-password/change-password`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(forgotPasswordSetNewPasswordDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ForgotPasswordControllerApi - functional programming interface
+ * @export
+ */
+export const ForgotPasswordControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ForgotPasswordControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {ForgotPasswordDto} forgotPasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async forgotPassword(forgotPasswordDto: ForgotPasswordDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.forgotPassword(forgotPasswordDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {ForgotPasswordSetNewPasswordDto} forgotPasswordSetNewPasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async forgotPasswordSetNewPassword(forgotPasswordSetNewPasswordDto: ForgotPasswordSetNewPasswordDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.forgotPasswordSetNewPassword(forgotPasswordSetNewPasswordDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ForgotPasswordControllerApi - factory interface
+ * @export
+ */
+export const ForgotPasswordControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ForgotPasswordControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {ForgotPasswordDto} forgotPasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        forgotPassword(forgotPasswordDto: ForgotPasswordDto, options?: any): AxiosPromise<void> {
+            return localVarFp.forgotPassword(forgotPasswordDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {ForgotPasswordSetNewPasswordDto} forgotPasswordSetNewPasswordDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        forgotPasswordSetNewPassword(forgotPasswordSetNewPasswordDto: ForgotPasswordSetNewPasswordDto, options?: any): AxiosPromise<void> {
+            return localVarFp.forgotPasswordSetNewPassword(forgotPasswordSetNewPasswordDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ForgotPasswordControllerApi - object-oriented interface
+ * @export
+ * @class ForgotPasswordControllerApi
+ * @extends {BaseAPI}
+ */
+export class ForgotPasswordControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {ForgotPasswordDto} forgotPasswordDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ForgotPasswordControllerApi
+     */
+    public forgotPassword(forgotPasswordDto: ForgotPasswordDto, options?: any) {
+        return ForgotPasswordControllerApiFp(this.configuration).forgotPassword(forgotPasswordDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {ForgotPasswordSetNewPasswordDto} forgotPasswordSetNewPasswordDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ForgotPasswordControllerApi
+     */
+    public forgotPasswordSetNewPassword(forgotPasswordSetNewPasswordDto: ForgotPasswordSetNewPasswordDto, options?: any) {
+        return ForgotPasswordControllerApiFp(this.configuration).forgotPasswordSetNewPassword(forgotPasswordSetNewPasswordDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

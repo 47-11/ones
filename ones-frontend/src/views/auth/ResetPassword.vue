@@ -1,8 +1,25 @@
 <template>
     <guest-layout>
-        <auth-card>
+        <auth-card v-if="changeDone">
+            <div class="px-6 py-5">
+                <feedback color="success" class="mb-5">
+                    Passwort geändert.
+                </feedback>
+            </div>
+            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <router-link to="login">
+                    <v-button>zum Login</v-button>
+                </router-link>
+            </div>
+        </auth-card>
+        <auth-card v-else>
             <form @submit.prevent="submit">
                 <div class="px-6 py-5">
+                    <feedback color="danger" class="mb-5" v-if="error.length > 0">
+                        <h2 class="text-lg">Oops! Etwas ist schief gelaufen.</h2>
+                        {{ error }}
+                    </feedback>
+
                     <div class="mb-4 text-sm text-gray-600">
                         <h1 class="text-xl font-bold">Passwort zurücksetzen</h1>
                         <p>Wähle ein starkes und sicheres Passwort aus.</p>
@@ -10,23 +27,17 @@
 
                     <div>
                         <v-label>Neues Passwort</v-label>
-                        <v-input type="password" class="w-full"></v-input>
+                        <v-input type="password" class="w-full" v-model="password" :disabled="inputsDisabled"></v-input>
                     </div>
-
-                    <div class="bg-gray-200 w-full h-1.5 flex items-stretch mt-3 rounded overflow-hidden">
-                        <div class="bg-lime-600" style="width: 70%;"></div>
-                    </div>
-
-                    <div class="text-xs text-gray-500 mt-1 font-bold">Super starkes Passwort!</div>
 
                     <div class="mt-5">
                         <v-label>Passwort wiederholen</v-label>
-                        <v-input type="password" class="w-full"></v-input>
+                        <v-input type="password" class="w-full" v-model="passwordRepeat" :disabled="inputsDisabled"></v-input>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-button>Passwort speichern</v-button>
+                    <v-button @click.native="resetPassword">Passwort speichern</v-button>
                 </div>
             </form>
         </auth-card>
@@ -43,6 +54,7 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Feedback from "@/components/Feedback.vue";
+import { vxm } from "@/store";
 
 @Component({
     components: {
@@ -57,8 +69,44 @@ import Feedback from "@/components/Feedback.vue";
     }
 })
 export default class ResetPassword extends Vue {
-    submit(): void {
-        // Do something ...
+    error = "";
+    password = "";
+    passwordRepeat = "";
+    inputsDisabled = true;
+    changeDone = true;
+
+    mounted(): void {
+        this.inputsDisabled = false;
+        this.changeDone = false;
+    }
+
+    async resetPassword(): Promise<void> {
+        this.inputsDisabled = true;
+        this.error = "";
+        const code = this.$route.query.code as string;
+
+        try {
+            this.assertValid();
+            await vxm.user.setNewPasswordByCode({
+                password: this.password,
+                code
+            });
+            this.changeDone = true;
+        } catch (error) {
+            if (error.response?.data?.userMessage) {
+                this.error = error.response?.data?.userMessage;
+            }
+            this.error = error.message;
+        }
+        this.inputsDisabled = false;
+    }
+
+    private assertValid(): void {
+        if (this.password.length < 8) {
+            throw new Error("Passwort muss aus mindestens 8 Zeichen bestehen.");
+        } else if (this.password !== this.passwordRepeat) {
+            throw new Error("Password Wiederholung nicht identisch mit Passwort.");
+        }
     }
 }
 </script>

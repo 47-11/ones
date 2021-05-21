@@ -28,12 +28,19 @@ public abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
 
     protected abstract JpaRepository<T, Long> getRepository();
 
-    protected abstract T getTestEntity(long id);
+    protected abstract T getTestEntity();
 
     @BeforeEach
     void setup() {
 
         getRepository().saveAll(getTestEntities());
+    }
+
+    private T getTestEntity(long id) {
+
+        final T testEntity = getTestEntity();
+        testEntity.setId(id);
+        return testEntity;
     }
 
     @AfterEach
