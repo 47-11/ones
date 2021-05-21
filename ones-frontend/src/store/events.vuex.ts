@@ -1,5 +1,5 @@
+import { EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
-import { FullContestDto as Contest, EventControllerApi, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, FullContestDto as FullContest } from "@/openapi/generated/api";
 import { UserStore } from "./userStore.vuex";
 
 interface FilterType {
