@@ -1,0 +1,17 @@
+{
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "vue"
+    ],
+    "cSpell.words": [
+        "Openapi",
+        "Webservice",
+        "compat",
+        "tailwindcss",
+        "vuex"
+    ],
+    "javascript.preferences.quoteStyle": "double",
+    "typescript.preferences.quoteStyle": "double"
+}
