@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "msjsdiag.debugger-for-chrome",
+        "msjsdiag.debugger-for-edge",
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker-german",
+        "eg2.vscode-npm-script",
+        "octref.vetur"
+    ]
+}
