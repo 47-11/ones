@@ -36,7 +36,7 @@
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <v-link to="register">Registrieren</v-link>
                     <div class="flex-grow"></div>
-                    <v-button @click.native="login" :disabled="inputsDisabled" class="flex items-center">
+                    <v-button type="submit" :disabled="inputsDisabled" class="flex items-center">
                         Einloggen
                         <font-awesome-icon :icon="myIcon" class="ml-2"/>
                     </v-button>
