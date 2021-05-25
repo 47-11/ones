@@ -13,5 +13,6 @@
         "vuex"
     ],
     "javascript.preferences.quoteStyle": "double",
-    "typescript.preferences.quoteStyle": "double"
+    "typescript.preferences.quoteStyle": "double",
+    "vetur.validation.style": false
 }
