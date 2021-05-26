@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,7 +14,6 @@ import javax.validation.constraints.Size;
 import java.io.Serial;
 
 @Entity
-@Table(name = "user")
 public class User extends AbstractBaseEntity {
 
     @Serial
@@ -28,6 +26,7 @@ public class User extends AbstractBaseEntity {
 
     @NotBlank
     @Email
+    @Size(max = 255)
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -37,6 +36,7 @@ public class User extends AbstractBaseEntity {
     }
 
     @NotBlank
+    @Size(max = 60)
     public String getPassword() {
         return password;
     }
@@ -54,7 +54,7 @@ public class User extends AbstractBaseEntity {
         this.registrationConfirmed = registrationConfirmed;
     }
 
-    @Size(max = 255)
+    @Size(min=255, max = 255)
     public String getRegistrationConfirmationCode() {
         return registrationConfirmationCode;
     }

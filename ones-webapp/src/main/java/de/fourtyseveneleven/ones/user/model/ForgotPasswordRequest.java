@@ -1,6 +1,7 @@
 package de.fourtyseveneleven.ones.user.model;
 
 import de.fourtyseveneleven.ones.common.model.AbstractBaseEntity;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,12 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "forgot_password_request")
 public class ForgotPasswordRequest extends AbstractBaseEntity {
 
     @Serial
@@ -24,6 +25,7 @@ public class ForgotPasswordRequest extends AbstractBaseEntity {
     private LocalDateTime validUntil;
 
     @ManyToOne
+    @NotNull
     public User getUser() {
         return user;
     }
@@ -32,6 +34,8 @@ public class ForgotPasswordRequest extends AbstractBaseEntity {
         this.user = user;
     }
 
+    @NotBlank
+    @Length(min = 255, max = 255)
     public String getConfirmationCode() {
         return confirmationCode;
     }
