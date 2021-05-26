@@ -45,3 +45,5 @@ target/
 
 ### JRebel ###
 rebel.xml
+
+VERSION.txt
