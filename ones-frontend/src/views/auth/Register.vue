@@ -48,7 +48,7 @@
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <v-link to="login">Login</v-link>
                     <div class="flex-grow"></div>
-                    <v-button @click.native="register" :disabled="inputsDisabled">Registrieren</v-button>
+                    <v-button role="submit" :disabled="inputsDisabled">Registrieren</v-button>
                 </div>
             </form>
         </auth-card>
@@ -114,6 +114,10 @@ export default class Register extends Vue {
             }
         }
         this.inputsDisabled = false;
+    }
+
+    public log(): void {
+        console.log("Call");
     }
 
     public nextRegistration(): void {
