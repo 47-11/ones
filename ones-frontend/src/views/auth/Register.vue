@@ -28,8 +28,13 @@
 
                     <div class="mt-5">
                         <v-label>Passwort</v-label>
-                        <v-input type="password" class="w-full" v-model="password" :disabled="inputsDisabled"></v-input>
+                        <v-input type="password" class="w-full" v-model="password" @input="calculatePasswordStrength" :disabled="inputsDisabled"></v-input>
                     </div>
+
+                    <div class="bg-gray-200 w-full h-1.5 flex items-stretch mt-3 rounded overflow-hidden">
+                        <div v-bind:class="{ 'bg-red-600': score === 0, 'bg-yellow-600': score === 1, 'bg-yellow-300': score === 3, 'bg-lime-600': score === 4 }" :style="passwordBarStyle"></div>
+                    </div>
+                     <div class="text-xs text-gray-500 mt-1 font-bold">Super starkes Passwort!</div>
 
                     <div class="mt-5">
                         <v-label>Passwort wiederholen</v-label>
@@ -67,6 +72,10 @@ import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import { vxm } from "@/store";
 import VLink from "@/components/VLink.vue";
+import { zxcvbn, ZxcvbnOptions } from "@zxcvbn-ts/core";
+import zxcvbnCommonPackage from "@zxcvbn-ts/language-common";
+import zxcvbnEnPackage from "@zxcvbn-ts/language-en";
+import zxcvbnDePackage from "@zxcvbn-ts/language-de";
 
 @Component({
     components: {
@@ -84,16 +93,30 @@ import VLink from "@/components/VLink.vue";
 export default class Register extends Vue {
     email = "";
     password = "";
+    passwordBarStyle = {
+        width: "10%"
+    };
+
     passwordRepeat = "";
     dataProtectionAccepted = true;
     error = "";
     inputsDisabled = true;
     registrationDone = true;
+    score = 0;
 
     mounted(): void {
         this.inputsDisabled = false;
         this.dataProtectionAccepted = false;
         this.registrationDone = false;
+
+        ZxcvbnOptions.setOptions({
+            translations: zxcvbnEnPackage.translations,
+            dictionary: {
+                ...zxcvbnCommonPackage.dictionary,
+                ...zxcvbnEnPackage.dictionary,
+                ...zxcvbnDePackage.dictionary
+            }
+        });
     }
 
     public async register(): Promise<void> {
@@ -116,10 +139,6 @@ export default class Register extends Vue {
         this.inputsDisabled = false;
     }
 
-    public log(): void {
-        console.log("Call");
-    }
-
     public nextRegistration(): void {
         this.registrationDone = false;
     }
@@ -134,6 +153,18 @@ export default class Register extends Vue {
         } else if (!this.dataProtectionAccepted) {
             throw new Error("Datenschutzbedingungen müssen akzeptiert werden.");
         }
+    }
+
+    private calculatePasswordStrength(): void {
+        if (this.password.length === 0) {
+            this.passwordBarStyle.width = "10%";
+            this.score = 0;
+            return;
+        }
+
+        const result = zxcvbn(this.password);
+        this.passwordBarStyle.width = Math.max(result.score * 25, 10) + "%";
+        this.score = result.score;
     }
 }
 </script>
