@@ -4,14 +4,9 @@
             <div class="ml-0 w-full">
                 <div class="flex items-center">
                     <div class="pr-4 md:pr-8">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"
-                             class="w-6 h-6 md:w-7 md:h-7 text-gray-400 svg-inline--fa fa-chevron-left fa-w-10"
-                             role="img"
-                             xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 320 512">
-                            <path fill="currentColor"
-                                  d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
-                        </svg>
+                        <router-link to="/events">
+                            <font-awesome-icon :icon="'chevron-left'" class="text-2xl"/>
+                        </router-link>
                     </div>
                     <div>
                         <div class="text-sm text-gray-700">
@@ -66,22 +61,12 @@
                         <div class="text-xs px-5 my-4">
                             <v-button class="flex items-center my-1 mr-2">
                                 <span class="mr-1.5">VDD-Nennung</span>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="file-pdf"
-                                     class="w-4 h-4 svg-inline--fa fa-file-pdf fa-w-12" role="img"
-                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                    <path fill="currentColor"
-                                          d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"></path>
-                                </svg>
+                                <font-awesome-icon :icon="'file-pdf'"/>
                             </v-button>
 
                             <v-button class="flex items-center my-1" color="secondary">
                                 <span class="mr-1.5">Ausschreibung</span>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="file-pdf"
-                                     class="w-4 h-4 svg-inline--fa fa-file-pdf fa-w-12" role="img"
-                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                    <path fill="currentColor"
-                                          d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"></path>
-                                </svg>
+                                <font-awesome-icon :icon="'file-pdf'"/>
                             </v-button>
                         </div>
 
@@ -158,25 +143,13 @@
                                 <table class="mt-3">
                                     <tr>
                                         <td>
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                 data-icon="phone"
-                                                 class="w-3.5 h-3.5 text-gray-400 svg-inline--fa fa-phone fa-w-16"
-                                                 role="img"
-                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                      d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"></path>
-                                            </svg>
+                                            <font-awesome-icon :icon="'phone'" class="text-gray-400"/>
                                         </td>
                                         <td class="pl-3">+49 151 14773681</td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="at"
-                                                 class="w-3.5 h-3.5 text-gray-400 svg-inline--fa fa-at fa-w-16" role="img"
-                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                      d="M256 8C118.941 8 8 118.919 8 256c0 137.059 110.919 248 248 248 48.154 0 95.342-14.14 135.408-40.223 12.005-7.815 14.625-24.288 5.552-35.372l-10.177-12.433c-7.671-9.371-21.179-11.667-31.373-5.129C325.92 429.757 291.314 440 256 440c-101.458 0-184-82.542-184-184S154.542 72 256 72c100.139 0 184 57.619 184 160 0 38.786-21.093 79.742-58.17 83.693-17.349-.454-16.91-12.857-13.476-30.024l23.433-121.11C394.653 149.75 383.308 136 368.225 136h-44.981a13.518 13.518 0 0 0-13.432 11.993l-.01.092c-14.697-17.901-40.448-21.775-59.971-21.775-74.58 0-137.831 62.234-137.831 151.46 0 65.303 36.785 105.87 96 105.87 26.984 0 57.369-15.637 74.991-38.333 9.522 34.104 40.613 34.103 70.71 34.103C462.609 379.41 504 307.798 504 232 504 95.653 394.023 8 256 8zm-21.68 304.43c-22.249 0-36.07-15.623-36.07-40.771 0-44.993 30.779-72.729 58.63-72.729 22.292 0 35.601 15.241 35.601 40.77 0 45.061-33.875 72.73-58.161 72.73z"></path>
-                                            </svg>
+                                            <font-awesome-icon :icon="'at'" class="text-gray-400"/>
                                         </td>
                                         <td class="pl-3 text-indigo-500">
                                             <a href="mailto:example@example.de">
@@ -280,6 +253,7 @@ import VButton from "@/components/VButton.vue";
 import VTable from "@/components/table/VTable.vue";
 import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
+import { vxm } from "@/store";
 
 @Component({
     components: {
@@ -293,5 +267,14 @@ import VTd from "@/components/table/VTd.vue";
     }
 })
 export default class Detail extends Vue {
+    eventId = this.$route.params.eventId;
+    details = vxm.events.eventDetails;
+    contests = vxm.events.eventContests;
+
+    mounted(): void {
+        vxm.events.fetchEvent(this.eventId).then(() => {
+            console.dir(vxm.events.eventDetails);
+        });
+    }
 }
 </script>

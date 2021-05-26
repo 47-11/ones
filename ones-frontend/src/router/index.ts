@@ -57,7 +57,7 @@ const routes: Array<RouteConfig> = [
         component: EventsIndex
     },
     {
-        path: "/events/:id",
+        path: "/events/:eventId",
         name: "Wettbewerb",
         component: EventDetail
     }

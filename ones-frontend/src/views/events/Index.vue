@@ -12,7 +12,7 @@
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <tr v-for="event in events.all" :key="event.id">
+          <tr v-for="event in events.list" :key="event.uuid">
             <v-td>{{
               new Date(event.start).toLocaleDateString(locale)
             }}</v-td>
@@ -22,7 +22,7 @@
               <v-link to="#">Ausschreibung</v-link>
             </v-td>
             <v-td>
-              <router-link :to="'events/' + event.id">
+              <router-link :to="'/events/' + event.uuid">
                 <v-button>Details</v-button>
               </router-link>
             </v-td>
