@@ -3,6 +3,7 @@ package de.fourtyseveneleven.ones.event.service.impl;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
+import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
 import de.fourtyseveneleven.ones.event.model.ContestType;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
@@ -38,7 +39,7 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest) {
+    public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
         final Collection<SimpleEventDto> allElements = mockEvents.values();
 

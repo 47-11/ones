@@ -1,6 +1,8 @@
 package de.fourtyseveneleven.ones.results.service.impl;
 
+import de.fourtyseveneleven.ones.common.model.SortDirection;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
+import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
@@ -35,9 +37,8 @@ public class MockResultService implements ResultService {
 
     private List<ResultDto> buildMockResults() {
 
-        return simpleEventService.findAll(new EventFilterDto(), new PageRequest(1, 10))
+        return simpleEventService.findAll(new EventFilterDto(), new PageRequest(0, 10), new SortRequest("start", SortDirection.ASCENDING))
                 .getElements()
-                .subList(4, 10)
                 .stream()
                 .map(SimpleEventDto::getContests)
                 .flatMap(List::stream)
