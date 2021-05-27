@@ -1,6 +1,8 @@
 package de.fourtyseveneleven.ones.event.service.impl;
 
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
+import de.fourtyseveneleven.ones.common.model.dto.PageDto;
+import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.event.model.ContestType;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
@@ -10,16 +12,18 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class MockSimpleEventServiceImpl implements SimpleEventService {
 
-    private static final int NUMBER_OF_MOCK_EVENTS = 80;
+    private static final int NUMBER_OF_MOCK_EVENTS = 31;
 
     private final Map<String, SimpleEventDto> mockEvents;
 
@@ -34,9 +38,29 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    public List<SimpleEventDto> findAll(EventFilterDto filter) {
+    public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest) {
 
-        return new LinkedList<>(mockEvents.values());
+        final Collection<SimpleEventDto> allElements = mockEvents.values();
+
+        final int pageNumber = pageRequest.getPageNumber();
+        final int pageSize = pageRequest.getPageSize();
+        final int totalPages = (int) Math.ceil(( (double) allElements.size()) / pageSize);
+        final int skipElements = pageNumber * pageSize;
+
+        final List<SimpleEventDto> pageElements = allElements
+                .stream()
+                .skip(skipElements)
+                .limit(pageSize)
+                .collect(toList());
+
+        final PageDto<SimpleEventDto> page = new PageDto<>();
+        page.setElements(pageElements);
+
+        page.setPageNumber(pageRequest.getPageNumber());
+        page.setPageSize(pageElements.size());
+        page.setTotalPages(totalPages);
+
+        return page;
     }
 
     private Map<String, SimpleEventDto> buildMockEvents() {

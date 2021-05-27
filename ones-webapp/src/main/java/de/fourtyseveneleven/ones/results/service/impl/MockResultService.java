@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.results.service.impl;
 
-import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
+import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
@@ -35,7 +35,8 @@ public class MockResultService implements ResultService {
 
     private List<ResultDto> buildMockResults() {
 
-        return simpleEventService.findAll(new EventFilterDto())
+        return simpleEventService.findAll(new EventFilterDto(), new PageRequest(1, 10))
+                .getElements()
                 .subList(4, 10)
                 .stream()
                 .map(SimpleEventDto::getContests)
