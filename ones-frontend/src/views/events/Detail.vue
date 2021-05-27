@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout v-if="event.details">
         <template v-slot:header>
             <div class="ml-0 w-full">
                 <div class="flex items-center">
@@ -8,160 +8,155 @@
                             <font-awesome-icon :icon="'chevron-left'" class="text-2xl"/>
                         </router-link>
                     </div>
-                    <div>
-                        <div class="text-sm text-gray-700">
-                            13. - 16.05.2021
+                    <div class="flex items-center">
+                        <div>
+                            <div class="text-sm text-gray-700">
+                                <date-range :start="event.details.start" :end="event.details.end"/>
+                            </div>
+                            <h1 class="text-xl">
+                                {{ event.details.address.locationName }}
+                            </h1>
                         </div>
-                        <h1 class="text-xl">
-                            Ortsausgang Stuck
-                        </h1>
-                    </div>
+                        <badge v-if="event.details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                            Landesmeisterschaft
+                        </badge>
 
-                    <v-button class="ml-auto">Merken</v-button>
+                        <badge v-if="event.details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                            Weltmeisterschaft
+                        </badge>
+                    </div>
                 </div>
             </div>
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3">
                 <div>
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Details</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Ort und Zeit</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Zeitraum</th>
                                 <td class="text-left px-5 py-1">
-                                    <span class="mr-2">13. - 16.05.2021</span>
-                                    <badge class="bg-lime-600 text-white text-xs">
-                                        <span class="font-normal">steht fest</span>
-                                    </badge>
+                                    <span class="mr-2">
+                                        <date-range :start="event.details.start" :end="event.details.end"/>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Region</th>
                                 <td class="text-left px-5 py-1">
-                                    Mecklenburg-Vorpommern
+                                    {{ event.details.address.region }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Land</th>
                                 <td class="text-left px-5 py-1">
-                                    Deutschland
+                                    {{ event.details.address.country }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Ort</th>
                                 <td class="text-left px-5 py-1">
-                                    Ortsausgang Stuck <br>
-                                    Lenzenerstraße <br>
-                                    19294 Stuck
+                                    {{ event.details.address.locationName }} <br>
+                                    {{ event.details.address.street }} <br>
+                                    {{ event.details.address.zipCode }} {{ event.details.address.city }}
                                 </td>
                             </tr>
                         </table>
 
-                        <div class="text-xs px-5 my-4">
-                            <v-button class="flex items-center my-1 mr-2">
-                                <span class="mr-1.5">VDD-Nennung</span>
-                                <font-awesome-icon :icon="'file-pdf'"/>
-                            </v-button>
-
-                            <v-button class="flex items-center my-1" color="secondary">
-                                <span class="mr-1.5">Ausschreibung</span>
-                                <font-awesome-icon :icon="'file-pdf'"/>
-                            </v-button>
-                        </div>
-
                         <div class="bg-indigo-50 px-5 py-3 mt-4 text-gray-600 text-sm">
-                            Ab dem 01. Januar 2018 gilt der VDD-<a href="#"
-                                                                   class="text-indigo-500">Qualifikationsweg</a>.
+                            Ab dem 01. Januar 2018 gilt der VDD-<a href="#" class="text-indigo-500">Qualifikationsweg</a>.
                         </div>
                     </card>
                 </div>
 
                 <div>
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-0">Rittdaten</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Details</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">MDR</th>
+                                <th class="text-left px-5 py-1 align-top">Nennschluss</th>
                                 <td class="text-left px-5 py-1">
-                                    62 <span class="text-gray-400 text-xs font-normal">km</span>
+                                    {{ deadline.format("DD.MM.YYYY") }}
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">
-                                    LDR
+                                <th class="text-left px-5 py-1 align-top leading-5">
+                                    Nenngeld <br>
+                                    <span class="text-xs text-gray-400 font-normal">
+                                        falls Nennschluss verpasst
+                                    </span>
                                 </th>
-                                <td class="text-left px-5 py-1 align-top">
-                                    82, 100, 120 <span class="text-gray-400 text-xs font-normal">km</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">MTR</th>
                                 <td class="text-left px-5 py-1">
-                                    124 (62/62), 164 (82/82) <span class="text-gray-400 text-xs font-normal">km</span>
+                                    {{ event.details.participationApplicationDeadlineMissedFee }} EUR
                                 </td>
                             </tr>
                         </table>
 
-                        <div class="-mx-1 px-5 mt-3">
-                            <badge class="bg-gray-200 mx-1 text-gray-700 text-sm">Distanzritt</badge>
-                            <badge class="bg-gray-200 mx-1 text-gray-700 text-sm">Distanzfahrt</badge>
+                        <div class="px-5 text-sm text-gray-400">
+                            Unterbringungen
                         </div>
 
-                        <div class="bg-gray-100 px-5 py-3 mt-4 text-gray-600 text-sm">
-                            <span class="text-xs text-gray-400">Bemerkung</span> <br>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, dolore sed diam nonumy eirmod.
-                        </div>
-                    </card>
-                </div>
+                        <table class="mb-4">
+                            <tr v-for="(accommodation, index) in event.details.availableAccommodations" :key="index">
+                                <th class="text-left px-5 py-1 align-top">{{ accommodation.type }}</th>
+                                <td class="text-left px-5 py-1">
+                                    {{ accommodation.fee }} {{ accommodation.feeUnit }}
+                                </td>
+                                <td class="text-left px-5 py-1">
+                                    {{ accommodation.pledgeFee }} EUR <span class="text-xs text-gray-500">Pfand</span>
+                                </td>
+                            </tr>
+                        </table>
 
-                <div class="md:col-span-2 lg:col-span-1">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 mt-4 lg:mt-0">Veranstaltung</h2>
-                    <card class="mt-3 py-1 text-sm">
-                        <div class="px-5 py-2 border-b">
-                            <div class="font-bold mb-0.5 text-gray-700">Veranstalter</div>
-                            <div class="leading-5 mt-1">
-                                Vivien und Wiebke Angelbeck <br>
-                                <span class="text-xs text-gray-400">Eldena Straße 6 - 19294 Stuck (DE)</span>
-                            </div>
-                        </div>
+                        <div class="px-5 pb-5">
+                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="event.details.isVaccinationMandatory">
+                                Impfpflicht
+                            </badge>
 
-                        <div class="px-5 py-2 border-b">
-                            <div class="font-bold mb-0.5 text-gray-700">Organisator</div>
-                            <div class="leading-5 mt-1">
-                                Vivien und Wiebke Angelbeck <br>
-                                <span class="text-xs text-gray-400">Eldena Straße 6 - 19294 Stuck (DE)</span>
-                            </div>
-                        </div>
+                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!event.details.isVaccinationMandatory">
+                                keine Impfpflicht
+                            </badge>
 
-                        <div class="px-5 py-2">
-                            <div class="font-bold mb-0.5 text-gray-700">Infos und Nennungen</div>
-                            <div class="leading-5 mt-1">
-                                Vivien und Wiebke Angelbeck <br>
-                                <span class="text-xs text-gray-400">Eldena Straße 6 - 19294 Stuck (DE)</span> <br>
+                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="event.details.isHelmetMandatory">
+                                Helmpflicht
+                            </badge>
 
-                                <table class="mt-3">
-                                    <tr>
-                                        <td>
-                                            <font-awesome-icon :icon="'phone'" class="text-gray-400"/>
-                                        </td>
-                                        <td class="pl-3">+49 151 14773681</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <font-awesome-icon :icon="'at'" class="text-gray-400"/>
-                                        </td>
-                                        <td class="pl-3 text-indigo-500">
-                                            <a href="mailto:example@example.de">
-                                                wiebke.angelbeck@gmx.de
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!event.details.isHelmetMandatory">
+                                keine Helmpflicht
+                            </badge>
                         </div>
                     </card>
                 </div>
+
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-1">
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Notizen</h2>
+                    <card class="mt-3">
+                        <div class="px-5 py-2 border-b" v-for="(comment, index) in event.details.additionalComments" :key="index">
+                            {{ comment }}
+                        </div>
+                    </card>
+                </div>
+            </div>
+
+            <div class="mt-10">
+                <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-0">Kontaktdaten</h2>
+                <card class="mt-3 text-sm flex items-stretch flex-col md:flex-row">
+                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
+                        <div class="font-bold mb-0.5 text-gray-700">Veranstalter</div>
+                        <person :person="event.details.eventHost"/>
+                    </div>
+
+                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
+                        <div class="font-bold mb-0.5 text-gray-700">Organisator</div>
+                        <person :person="event.details.eventOrganizer"/>
+                    </div>
+
+                    <div class="px-6 py-4 w-full">
+                        <div class="font-bold mb-0.5 text-gray-700">Infos und Nennungen</div>
+                        <person :person="event.details.contactPerson"/>
+                    </div>
+                </card>
             </div>
 
             <h2 class="text-xl font-bold text-gray-700 px-4 md:px-0 mt-12">Wettbewerbe</h2>
@@ -169,12 +164,12 @@
             <v-table class="mt-2">
                 <thead class="bg-gray-50">
                 <tr>
+                    <v-th></v-th>
                     <v-th>WB</v-th>
                     <v-th>Distanz</v-th>
                     <v-th>Datum</v-th>
                     <v-th>Quali-Stufe</v-th>
                     <v-th>Höhenmeter<sup class="text-gray-400">1</sup></v-th>
-                    <v-th>Kosten<sup class="text-gray-400">2</sup></v-th>
                     <v-th>Startgeld<sup class="text-gray-400">3</sup></v-th>
                     <v-th>Höchstzeit<sup class="texts text-gray-400">4</sup></v-th>
                     <v-th>min. Alter Pferd</v-th>
@@ -183,31 +178,25 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <v-td class="font-bold">EFR</v-td>
-                    <v-td>40km</v-td>
-                    <v-td>08.05.</v-td>
-                    <v-td>1</v-td>
-                    <v-td></v-td>
-                    <v-td>20,00 €</v-td>
-                    <v-td>20,00 €</v-td>
-                    <v-td>T8</v-td>
-                    <v-td>5</v-td>
-                    <v-td></v-td>
-                    <v-td></v-td>
-                </tr>
-                <tr>
-                    <v-td class="font-bold">MDR</v-td>
-                    <v-td>82km</v-td>
-                    <v-td>08.05.</v-td>
-                    <v-td>2</v-td>
-                    <v-td></v-td>
-                    <v-td>30,00 €</v-td>
-                    <v-td>30,00 €</v-td>
-                    <v-td>T8</v-td>
-                    <v-td>7</v-td>
-                    <v-td></v-td>
-                    <v-td></v-td>
+                <tr v-for="contest in event.contests" :key="contest.uuid">
+                    <v-td>
+                        <font-awesome-icon :icon="'trailer'" v-if="!isRide(contest)" class="text-gray-400 text-lg"/>
+                        <font-awesome-icon :icon="'horse-head'" v-if="isRide(contest)" class="text-gray-400 text-lg"/>
+                    </v-td>
+                    <v-td class="font-bold">
+                        {{ contest.contestType }}
+                    </v-td>
+                    <v-td>{{ contest.distance }} km</v-td>
+                    <v-td>{{ toMoment(contest.start).format("DD.MM.") }}</v-td>
+                    <v-td>{{ contest.qualificationLevel }}</v-td>
+                    <v-td>{{ contest.altitudeDifference }} m</v-td>
+                    <v-td>{{ contest.startFee }} EUR</v-td>
+                    <v-td>{{ contest.maximumDuration }}</v-td>
+                    <v-td>{{ contest.minimumHorseAge }}</v-td>
+                    <v-td>{{ contest.minimumParticipantAge }}</v-td>
+                    <v-td>
+                        {{ contest.currentParticipants }} / {{ contest.maximumParticipants }}
+                    </v-td>
                 </tr>
                 </tbody>
             </v-table>
@@ -221,7 +210,7 @@
                     <tr>
                         <td class="pr-3">2)</td>
                         <td>
-                            Bei GEspannen und Handpferderitten wird Nenngeld pro Pferd erhoben,
+                            Bei Gespannen und Handpferderitten wird Nenngeld pro Pferd erhoben,
                             Stardgeld pro Gespann. Nenn- und Startgeld max 1,00 € pro km;
                             VDD Nichtmitglieder zahlen zusätzlich zum Startgeld: EFR/F 7,50 €,
                             KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, Jugend bis 21 Jahre: 6 €
@@ -253,7 +242,11 @@ import VButton from "@/components/VButton.vue";
 import VTable from "@/components/table/VTable.vue";
 import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
+import DateRange from "@/components/DateRange.vue";
+import Person from "./partials/Person.vue";
 import { vxm } from "@/store";
+import moment from "moment";
+import { SimpleContestDto as Contest } from "@/openapi/generated/api";
 
 @Component({
     components: {
@@ -263,18 +256,39 @@ import { vxm } from "@/store";
         Card,
         AppLayout,
         VTh,
-        VTd
+        VTd,
+        DateRange,
+        Person
     }
 })
 export default class Detail extends Vue {
     eventId = this.$route.params.eventId;
-    details = vxm.events.eventDetails;
-    contests = vxm.events.eventContests;
+
+    event = {
+        details: vxm.events.eventDetails,
+        contests: vxm.events.eventContests
+    };
 
     mounted(): void {
         vxm.events.fetchEvent(this.eventId).then(() => {
-            console.dir(vxm.events.eventDetails);
+            this.event.details = vxm.events.eventDetails;
+            this.event.contests = vxm.events.eventContests;
+
+            console.log(this.event.details);
+            console.log(this.event.contests);
         });
+    }
+
+    get deadline(): moment.Moment {
+        return moment(this.event.details?.participationApplicationDeadline);
+    }
+
+    toMoment(date: string): moment.Moment {
+        return moment(date);
+    }
+
+    isRide(contest: Contest): boolean {
+        return contest.contestType?.endsWith("_RIDE") ?? false;
     }
 }
 </script>
