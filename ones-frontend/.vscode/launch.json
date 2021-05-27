@@ -29,6 +29,19 @@
                 "webpack:///./src/*": "${webRoot}/*",
                 "webpack:///./node_modules/*": "${webRoot}/node_modules/*"
             }
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against devServer",
+            "url": "http://localhost:8081",
+            "webRoot": "${workspaceFolder}/src",
+            "preLaunchTask": "npm: serve",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/*",
+                "webpack:///./src/*": "${webRoot}/*",
+                "webpack:///./node_modules/*": "${webRoot}/node_modules/*"
+            }
         }
     ]
 }

@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/contests">Wettbewerbe</nav-link>
+                        <nav-link to="/events">Wettbewerbe</nav-link>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
         <div v-show="showMenu" class="sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
                 <responsive-nav-link to="/">Dashboard</responsive-nav-link>
-                <responsive-nav-link to="/contests">Wettbewerbe</responsive-nav-link>
+                <responsive-nav-link to="/events">Wettbewerbe</responsive-nav-link>
             </div>
 
             <!-- Responsive Settings Options -->

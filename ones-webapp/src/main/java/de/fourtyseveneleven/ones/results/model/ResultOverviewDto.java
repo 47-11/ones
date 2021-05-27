@@ -1,9 +1,7 @@
 package de.fourtyseveneleven.ones.results.model;
 
-import de.fourtyseveneleven.ones.contest.model.dto.ContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.LinkedList;
@@ -36,7 +34,7 @@ public class ResultOverviewDto {
 
         return results.stream()
                 .map(ResultDto::getContest)
-                .map(ContestDto::getDistance)
+                .map(SimpleContestDto::getDistance)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

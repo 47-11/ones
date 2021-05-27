@@ -1,8 +1,10 @@
 package de.fourtyseveneleven.ones.results.service.impl;
 
-import de.fourtyseveneleven.ones.contest.model.dto.ContestDto;
-import de.fourtyseveneleven.ones.contest.model.dto.ContestFilterDto;
-import de.fourtyseveneleven.ones.contest.service.ContestService;
+import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
+import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
+import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.horse.model.HorseDto;
 import de.fourtyseveneleven.ones.results.model.ResultDto;
 import de.fourtyseveneleven.ones.results.model.ResultOverviewDto;
@@ -17,12 +19,12 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class MockResultService implements ResultService {
 
-    private final ContestService contestService;
+    private final SimpleEventService simpleEventService;
 
     private final ResultOverviewDto mockResultOverview;
 
-    public MockResultService(ContestService contestService) {
-        this.contestService = contestService;
+    public MockResultService(SimpleEventService simpleEventService) {
+        this.simpleEventService = simpleEventService;
         this.mockResultOverview = buildMockResultOverview();
     }
 
@@ -33,21 +35,23 @@ public class MockResultService implements ResultService {
 
     private List<ResultDto> buildMockResults() {
 
-        return contestService.findAll(new ContestFilterDto())
+        return simpleEventService.findAll(new EventFilterDto())
                 .subList(4, 10)
                 .stream()
+                .map(SimpleEventDto::getContests)
+                .flatMap(List::stream)
                 .map(this::buildMockResultForContest)
                 .collect(toList());
     }
 
-    private ResultDto buildMockResultForContest(ContestDto contest) {
+    private ResultDto buildMockResultForContest(SimpleContestDto contest) {
 
         final var result = new ResultDto();
 
         result.setContest(contest);
         result.setHorse(buildMockHorse());
-        result.setPlacement((int) contest.getId());
-        result.setAverageSpeed(BigDecimal.valueOf((Math.random() * 20) + 10));
+        result.setPlacement(3);
+        result.setAverageSpeed(BigDecimal.valueOf(18));
 
         return result;
     }

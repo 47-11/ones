@@ -1,13 +1,14 @@
 package de.fourtyseveneleven.ones.results.model;
 
-import de.fourtyseveneleven.ones.contest.model.dto.ContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.horse.model.HorseDto;
 
 import java.math.BigDecimal;
 
 public class ResultDto {
 
-    private ContestDto contest;
+    private SimpleContestDto contest;
     private HorseDto horse;
 
     private int placement;
@@ -16,11 +17,11 @@ public class ResultDto {
      */
     private BigDecimal averageSpeed;
 
-    public ContestDto getContest() {
+    public SimpleContestDto getContest() {
         return contest;
     }
 
-    public void setContest(ContestDto contest) {
+    public void setContest(SimpleContestDto contest) {
         this.contest = contest;
     }
 
