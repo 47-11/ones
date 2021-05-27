@@ -273,9 +273,6 @@ export default class Detail extends Vue {
         vxm.events.fetchEvent(this.eventId).then(() => {
             this.event.details = vxm.events.eventDetails;
             this.event.contests = vxm.events.eventContests;
-
-            console.log(this.event.details);
-            console.log(this.event.contests);
         });
     }
 
