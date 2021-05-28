@@ -161,8 +161,8 @@ export default class Register extends Vue {
     private assertValid(): void {
         if (this.email === "") {
             throw new Error("E-Mail ist erforderlich.");
-        } else if (this.password.length < 8) {
-            throw new Error("Passwort muss aus mindestens 8 Zeichen bestehen.");
+        } else if (this.score < 4) {
+            throw new Error("Passwort ist zu schwach.");
         } else if (this.password !== this.passwordRepeat) {
             throw new Error("Password Wiederholung nicht identisch mit Passwort.");
         } else if (!this.dataProtectionAccepted) {
