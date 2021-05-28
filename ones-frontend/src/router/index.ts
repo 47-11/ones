@@ -71,14 +71,14 @@ const router = new VueRouter({
 
 router.beforeEach((to, f, next) => {
     if (needsAuth(to) && !vxm.user.authenticated) {
-        next("login");
+        next("/login");
     } else if (!needsAuth(to) && vxm.user.authenticated) {
         next("/");
     }
 
     if (to.path === "/logout") {
         vxm.user.logout();
-        next("login");
+        next("/login");
     }
 
     next();
