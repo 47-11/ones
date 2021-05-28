@@ -21,7 +21,7 @@ export class EventsStore extends VuexModule {
     private events: SimpleEvent[] = [];
     private filter = {} as FilterType;
     private contests: FullContest[] = [];
-    private details: FullEvent | undefined;
+    private details: FullEvent | null = null;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -31,7 +31,7 @@ export class EventsStore extends VuexModule {
         return this.contests;
     }
 
-    get eventDetails(): FullEvent | undefined {
+    get eventDetails(): FullEvent | null {
         return this.details;
     }
 

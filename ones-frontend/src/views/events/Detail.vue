@@ -1,5 +1,5 @@
 <template>
-    <app-layout v-if="event.details">
+    <app-layout>
         <template v-slot:header>
             <div class="ml-0 w-full">
                 <div class="flex items-center">
@@ -8,27 +8,27 @@
                             <font-awesome-icon :icon="'chevron-left'" class="text-2xl"/>
                         </router-link>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center" v-if="details">
                         <div>
                             <div class="text-sm text-gray-700">
-                                <date-range :start="event.details.start" :end="event.details.end"/>
+                                <date-range :start="details.start" :end="details.end"/>
                             </div>
                             <h1 class="text-xl">
-                                {{ event.details.address.locationName }}
+                                {{ details.address.locationName }}
                             </h1>
                         </div>
-                        <badge v-if="event.details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                        <badge v-if="details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
                             Landesmeisterschaft
                         </badge>
 
-                        <badge v-if="event.details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                        <badge v-if="details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
                             Weltmeisterschaft
                         </badge>
                     </div>
                 </div>
             </div>
         </template>
-        <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10">
+        <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10" v-if="details">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3">
                 <div>
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Ort und Zeit</h2>
@@ -38,28 +38,28 @@
                                 <th class="text-left px-5 py-1 align-top">Zeitraum</th>
                                 <td class="text-left px-5 py-1">
                                     <span class="mr-2">
-                                        <date-range :start="event.details.start" :end="event.details.end"/>
+                                        <date-range :start="details.start" :end="details.end"/>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Region</th>
                                 <td class="text-left px-5 py-1">
-                                    {{ event.details.address.region }}
+                                    {{ details.address.region }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Land</th>
                                 <td class="text-left px-5 py-1">
-                                    {{ event.details.address.country }}
+                                    {{ details.address.country }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">Ort</th>
                                 <td class="text-left px-5 py-1">
-                                    {{ event.details.address.locationName }} <br>
-                                    {{ event.details.address.street }} <br>
-                                    {{ event.details.address.zipCode }} {{ event.details.address.city }}
+                                    {{ details.address.locationName }} <br>
+                                    {{ details.address.street }} <br>
+                                    {{ details.address.zipCode }} {{ details.address.city }}
                                 </td>
                             </tr>
                         </table>
@@ -88,7 +88,7 @@
                                     </span>
                                 </th>
                                 <td class="text-left px-5 py-1">
-                                    {{ event.details.participationApplicationDeadlineMissedFee }} EUR
+                                    {{ details.participationApplicationDeadlineMissedFee }} EUR
                                 </td>
                             </tr>
                         </table>
@@ -98,7 +98,7 @@
                         </div>
 
                         <table class="mb-4">
-                            <tr v-for="(accommodation, index) in event.details.availableAccommodations" :key="index">
+                            <tr v-for="(accommodation, index) in details.availableAccommodations" :key="index">
                                 <th class="text-left px-5 py-1 align-top">{{ accommodation.type }}</th>
                                 <td class="text-left px-5 py-1">
                                     {{ accommodation.fee }} {{ accommodation.feeUnit }}
@@ -110,19 +110,19 @@
                         </table>
 
                         <div class="px-5 pb-5">
-                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="event.details.isVaccinationMandatory">
+                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isVaccinationMandatory">
                                 Impfpflicht
                             </badge>
 
-                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!event.details.isVaccinationMandatory">
+                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isVaccinationMandatory">
                                 keine Impfpflicht
                             </badge>
 
-                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="event.details.isHelmetMandatory">
+                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isHelmetMandatory">
                                 Helmpflicht
                             </badge>
 
-                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!event.details.isHelmetMandatory">
+                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isHelmetMandatory">
                                 keine Helmpflicht
                             </badge>
                         </div>
@@ -132,7 +132,7 @@
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-1">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Notizen</h2>
                     <card class="mt-3">
-                        <div class="px-5 py-2 border-b" v-for="(comment, index) in event.details.additionalComments" :key="index">
+                        <div class="px-5 py-2 border-b" v-for="(comment, index) in details.additionalComments" :key="index">
                             {{ comment }}
                         </div>
                     </card>
@@ -144,17 +144,17 @@
                 <card class="mt-3 text-sm flex items-stretch flex-col md:flex-row">
                     <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
                         <div class="font-bold mb-0.5 text-gray-700">Veranstalter</div>
-                        <person :person="event.details.eventHost"/>
+                        <person :person="details.eventHost"/>
                     </div>
 
                     <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
                         <div class="font-bold mb-0.5 text-gray-700">Organisator</div>
-                        <person :person="event.details.eventOrganizer"/>
+                        <person :person="details.eventOrganizer"/>
                     </div>
 
                     <div class="px-6 py-4 w-full">
                         <div class="font-bold mb-0.5 text-gray-700">Infos und Nennungen</div>
-                        <person :person="event.details.contactPerson"/>
+                        <person :person="details.contactPerson"/>
                     </div>
                 </card>
             </div>
@@ -178,7 +178,7 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="contest in event.contests" :key="contest.uuid">
+                <tr v-for="contest in contests" :key="contest.uuid">
                     <v-td>
                         <font-awesome-icon :icon="'trailer'" v-if="!isRide(contest)" class="text-gray-400 text-lg"/>
                         <font-awesome-icon :icon="'horse-head'" v-if="isRide(contest)" class="text-gray-400 text-lg"/>
@@ -246,7 +246,7 @@ import DateRange from "@/components/DateRange.vue";
 import Person from "./partials/Person.vue";
 import { vxm } from "@/store";
 import moment from "moment";
-import { SimpleContestDto as Contest } from "@/openapi/generated/api";
+import { FullContestDto, FullEventDto, SimpleContestDto as Contest } from "@/openapi/generated/api";
 
 @Component({
     components: {
@@ -264,20 +264,20 @@ import { SimpleContestDto as Contest } from "@/openapi/generated/api";
 export default class Detail extends Vue {
     eventId = this.$route.params.eventId;
 
-    event = {
-        details: vxm.events.eventDetails,
-        contests: vxm.events.eventContests
-    };
+    get details(): FullEventDto | null {
+        return vxm.events.eventDetails;
+    }
+
+    get contests(): FullContestDto[] {
+        return vxm.events.eventContests;
+    }
 
     mounted(): void {
-        vxm.events.fetchEvent(this.eventId).then(() => {
-            this.event.details = vxm.events.eventDetails;
-            this.event.contests = vxm.events.eventContests;
-        });
+        vxm.events.fetchEvent(this.eventId);
     }
 
     get deadline(): moment.Moment {
-        return moment(this.event.details?.participationApplicationDeadline);
+        return moment(this.details?.participationApplicationDeadline);
     }
 
     toMoment(date: string): moment.Moment {
