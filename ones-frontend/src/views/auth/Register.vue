@@ -28,7 +28,7 @@
 
                     <div class="mt-5">
                         <v-label>Passwort</v-label>
-                        <v-input type="password" class="w-full" v-model="password" @input="calculatePasswordStrength" :disabled="inputsDisabled"></v-input>
+                        <v-input type="password" class="w-full" v-model="password" @input="passwordChanged" :disabled="inputsDisabled"></v-input>
                     </div>
 
                     <div class="bg-gray-200 w-full h-1.5 flex items-stretch mt-3 rounded overflow-hidden">
@@ -89,6 +89,25 @@ import zxcvbnCommonPackage from "@zxcvbn-ts/language-common";
 import zxcvbnEnPackage from "@zxcvbn-ts/language-en";
 import zxcvbnDePackage from "@zxcvbn-ts/language-de";
 
+type EvaluationType = {
+    feedback: {
+        warning: string,
+        suggestions: string[]
+    },
+    score: number
+};
+
+const EvaluationForEmptyPassword: EvaluationType = {
+    feedback: {
+        warning: "",
+        suggestions: ["Password too short."]
+    },
+    score: 0
+};
+
+// Translation error in german dictionary "Dies ist ein weniger häufig verwendetes Passwort." is fixed by not released yet.
+zxcvbnDePackage.translations.warnings.common = "Dies ist ein häufig verwendetes Passwort.";
+
 @Component({
     components: {
         VLink,
@@ -105,19 +124,39 @@ import zxcvbnDePackage from "@zxcvbn-ts/language-de";
 export default class Register extends Vue {
     email = "";
     password = "";
-    passwordBarStyle = {
-        width: "10%"
-    };
-
-    passwordSuggestions = ["Password too short"] as string[];
-    passwordWarning = "";
 
     passwordRepeat = "";
     dataProtectionAccepted = true;
     error = "";
     inputsDisabled = true;
     registrationDone = true;
-    score = 0;
+    passwordDebounceTimeout: number | undefined;
+    debouncedPassword = "";
+
+    get passwordEvaluation(): EvaluationType {
+        if (this.debouncedPassword.length === 0) {
+            return EvaluationForEmptyPassword;
+        }
+        return zxcvbn(this.debouncedPassword);
+    }
+
+    get score(): number {
+        return this.passwordEvaluation.score;
+    }
+
+    get passwordBarStyle(): {width: string} {
+        return {
+            width: Math.max(this.passwordEvaluation.score * 25, 10) + "%"
+        };
+    }
+
+    get passwordWarning(): string {
+        return this.passwordEvaluation.feedback.warning;
+    }
+
+    get passwordSuggestions(): string[] {
+        return this.passwordEvaluation.feedback.suggestions || "Good password.";
+    }
 
     mounted(): void {
         this.inputsDisabled = false;
@@ -170,20 +209,21 @@ export default class Register extends Vue {
         }
     }
 
-    private calculatePasswordStrength(): void {
-        if (this.password.length === 0) {
-            this.passwordBarStyle.width = "10%";
-            this.passwordSuggestions = ["Password too short"];
-            this.passwordWarning = "";
-            this.score = 0;
-            return;
-        }
+    passwordChanged(newPassword: string): void {
+        this.clearPasswordDebounce();
+        this.setPasswordDebounce(newPassword);
+    }
 
-        const result = zxcvbn(this.password);
-        this.passwordBarStyle.width = Math.max(result.score * 25, 10) + "%";
-        this.passwordSuggestions = result.feedback.suggestions || ["Strong password"];
-        this.passwordWarning = result.feedback.warning || "";
-        this.score = result.score;
+    private clearPasswordDebounce(): void {
+        if (this.passwordDebounceTimeout) {
+            clearTimeout(this.passwordDebounceTimeout);
+        }
+    }
+
+    private setPasswordDebounce(newPassword: string): void {
+        this.passwordDebounceTimeout = setTimeout(() => {
+            this.debouncedPassword = newPassword;
+        }, 300);
     }
 }
 </script>
