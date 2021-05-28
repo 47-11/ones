@@ -32,9 +32,15 @@
                     </div>
 
                     <div class="bg-gray-200 w-full h-1.5 flex items-stretch mt-3 rounded overflow-hidden">
-                        <div v-bind:class="{ 'bg-red-600': score === 0, 'bg-yellow-600': score === 1, 'bg-yellow-300': score === 3, 'bg-lime-600': score === 4 }" :style="passwordBarStyle"></div>
+                        <div id="passwordBar" v-bind:class="{ 'bg-red-600': score === 0, 'bg-yellow-700': score === 1, 'bg-yellow-600': score === 2, 'bg-yellow-300': score === 3, 'bg-lime-600': score === 4 }" :style="passwordBarStyle"></div>
                     </div>
-                     <div class="text-xs text-gray-500 mt-1 font-bold">Super starkes Passwort!</div>
+                    <div class="text-xs text-yellow-500 mt-1 font-bold" v-if="passwordWarning">
+                        <font-awesome-icon :icon="'exclamation-triangle'" class="ml-2"/>
+                        {{passwordWarning}}
+                    </div>
+                    <div v-for="(suggestion, index) in passwordSuggestions" :key="index">
+                        <div class="text-xs text-gray-500 mt-1 font-bold">{{suggestion}}</div>
+                    </div>
 
                     <div class="mt-5">
                         <v-label>Passwort wiederholen</v-label>
@@ -59,6 +65,12 @@
         </auth-card>
     </guest-layout>
 </template>
+
+<style scoped>
+#passwordBar {
+    transition: background-color, width 0.5s ease-in-out;
+}
+</style>
 
 <script lang="ts">
 import Feedback from "@/components/Feedback.vue";
@@ -96,6 +108,9 @@ export default class Register extends Vue {
     passwordBarStyle = {
         width: "10%"
     };
+
+    passwordSuggestions = ["Password too short"] as string[];
+    passwordWarning = "";
 
     passwordRepeat = "";
     dataProtectionAccepted = true;
@@ -158,12 +173,16 @@ export default class Register extends Vue {
     private calculatePasswordStrength(): void {
         if (this.password.length === 0) {
             this.passwordBarStyle.width = "10%";
+            this.passwordSuggestions = ["Password too short"];
+            this.passwordWarning = "";
             this.score = 0;
             return;
         }
 
         const result = zxcvbn(this.password);
         this.passwordBarStyle.width = Math.max(result.score * 25, 10) + "%";
+        this.passwordSuggestions = result.feedback.suggestions || ["Strong password"];
+        this.passwordWarning = result.feedback.warning || "";
         this.score = result.score;
     }
 }
