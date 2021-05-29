@@ -16,5 +16,9 @@
     ],
     "javascript.preferences.quoteStyle": "double",
     "typescript.preferences.quoteStyle": "double",
-    "vetur.validation.style": false
+    "vetur.validation.style": false,
+    "i18n-ally.localesPaths": [
+        "src/assets/i18n"
+    ],
+    "i18n-ally.keystyle": "nested"
 }

@@ -10,11 +10,11 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/">Dashboard</nav-link>
+                        <nav-link to="/">{{$t("navigation.dashboard")}}</nav-link>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/events">Wettbewerbe</nav-link>
+                        <nav-link to="/events">{{$t("navigation.events")}}</nav-link>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                         </template>
 
                         <dropdown-link to="/logout">
-                            Ausloggen
+                            {{ $t("navigation.logout")}}
                         </dropdown-link>
                     </dropdown>
                 </div>
