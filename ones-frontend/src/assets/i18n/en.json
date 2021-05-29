@@ -1,7 +1,9 @@
 {
-  "navigation": {
-    "dashboard": "Dashboard",
-    "events": "Events",
-    "logout": "Logout"
-  }
+    "navigation": {
+        "dashboard": "Dashboard",
+        "events": "Events",
+        "logout": "Logout",
+        "user": "User",
+        "mail": "E-Mail"
+    }
 }
