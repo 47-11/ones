@@ -2,7 +2,7 @@
     <div>
         <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
             <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <span class="sr-only">Zurück</span>
+                <span class="sr-only">{{$t("pagination.back")}}</span>
 
                 <!-- TODO: Replace with Font Awesome -->
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -13,7 +13,7 @@
                 {{ index + 1 }}
             </a>
             <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <span class="sr-only">Weiter</span>
+                <span class="sr-only">{{$t("pagination.forward")}}</span>
 
                 <!-- TODO: Replace with Font Awesome -->
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

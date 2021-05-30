@@ -18,11 +18,11 @@
                             </h1>
                         </div>
                         <badge v-if="details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
-                            Landesmeisterschaft
+                            {{$t('details.nationalChampionship')}}
                         </badge>
 
                         <badge v-if="details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
-                            Weltmeisterschaft
+                            {{$t('details.internationalChampionship')}}
                         </badge>
                     </div>
                 </div>
@@ -31,11 +31,11 @@
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10" v-if="details">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3">
                 <div>
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Ort und Zeit</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.placeAndTime')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">Zeitraum</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.timeRange')}}</th>
                                 <td class="text-left px-5 py-1">
                                     <span class="mr-2">
                                         <date-range :start="details.start" :end="details.end"/>
@@ -43,19 +43,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">Region</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.region')}}</th>
                                 <td class="text-left px-5 py-1">
                                     {{ details.address.region }}
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">Land</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
                                 <td class="text-left px-5 py-1">
                                     {{ details.address.country }}
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">Ort</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.city')}}</th>
                                 <td class="text-left px-5 py-1">
                                     {{ details.address.locationName }} <br>
                                     {{ details.address.street }} <br>
@@ -65,26 +65,30 @@
                         </table>
 
                         <div class="bg-indigo-50 px-5 py-3 mt-4 text-gray-600 text-sm">
-                            Ab dem 01. Januar 2018 gilt der VDD-<a href="#" class="text-indigo-500">Qualifikationsweg</a>.
+                            <i18n path="details.vddQualificationInfo">
+                                <template v-slot:qualification>
+                                    <a href="#" class="text-indigo-500">{{$t('details.vddQualification')}}</a>
+                                </template>
+                            </i18n>
                         </div>
                     </card>
                 </div>
 
                 <div>
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Details</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.details')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">Nennschluss</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.signUpDeadline')}}</th>
                                 <td class="text-left px-5 py-1">
                                     {{ deadline.format("DD.MM.YYYY") }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top leading-5">
-                                    Nenngeld <br>
+                                    {{$t('details.signUpFee')}} <br>
                                     <span class="text-xs text-gray-400 font-normal">
-                                        falls Nennschluss verpasst
+                                        {{$t('details.caseSignUpDeadlineMissed')}}
                                     </span>
                                 </th>
                                 <td class="text-left px-5 py-1">
@@ -94,7 +98,7 @@
                         </table>
 
                         <div class="px-5 text-sm text-gray-400">
-                            Unterbringungen
+                            {{$t('details.accomodation')}}
                         </div>
 
                         <table class="mb-4">
@@ -104,33 +108,33 @@
                                     {{ accommodation.fee }} {{ accommodation.feeUnit }}
                                 </td>
                                 <td class="text-left px-5 py-1">
-                                    {{ accommodation.pledgeFee }} EUR <span class="text-xs text-gray-500">Pfand</span>
+                                    {{ accommodation.pledgeFee }} EUR <span class="text-xs text-gray-500">{{$t('details.deposit')}}</span>
                                 </td>
                             </tr>
                         </table>
 
                         <div class="px-5 pb-5">
                             <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isVaccinationMandatory">
-                                Impfpflicht
+                                {{$t('details.vaccinationMandatory')}}
                             </badge>
 
                             <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isVaccinationMandatory">
-                                keine Impfpflicht
+                                {{$t('details.vaccinationNotMandatory')}}
                             </badge>
 
                             <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isHelmetMandatory">
-                                Helmpflicht
+                                {{$t('details.helmetMandatory')}}
                             </badge>
 
                             <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isHelmetMandatory">
-                                keine Helmpflicht
+                                {{$t('details.helmetNotMandatory')}}
                             </badge>
                         </div>
                     </card>
                 </div>
 
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-1">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">Notizen</h2>
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.notes')}}</h2>
                     <card class="mt-3">
                         <div class="px-5 py-2 border-b" v-for="(comment, index) in details.additionalComments" :key="index">
                             {{ comment }}
@@ -140,41 +144,41 @@
             </div>
 
             <div class="mt-10">
-                <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-0">Kontaktdaten</h2>
+                <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-0">{{$t('details.contacts')}}</h2>
                 <card class="mt-3 text-sm flex items-stretch flex-col md:flex-row">
                     <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
-                        <div class="font-bold mb-0.5 text-gray-700">Veranstalter</div>
+                        <div class="font-bold mb-0.5 text-gray-700">{{$t('details.host')}}</div>
                         <person :person="details.eventHost"/>
                     </div>
 
                     <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
-                        <div class="font-bold mb-0.5 text-gray-700">Organisator</div>
+                        <div class="font-bold mb-0.5 text-gray-700">{{$t('details.organizer')}}</div>
                         <person :person="details.eventOrganizer"/>
                     </div>
 
                     <div class="px-6 py-4 w-full">
-                        <div class="font-bold mb-0.5 text-gray-700">Infos und Nennungen</div>
+                        <div class="font-bold mb-0.5 text-gray-700">{{$t('details.infoAndSignUp')}}</div>
                         <person :person="details.contactPerson"/>
                     </div>
                 </card>
             </div>
 
-            <h2 class="text-xl font-bold text-gray-700 px-4 md:px-0 mt-12">Wettbewerbe</h2>
+            <h2 class="text-xl font-bold text-gray-700 px-4 md:px-0 mt-12">{{$t('details.contests')}}</h2>
 
             <v-table class="mt-2">
                 <thead class="bg-gray-50">
                 <tr>
                     <v-th></v-th>
-                    <v-th>WB</v-th>
-                    <v-th>Distanz</v-th>
-                    <v-th>Datum</v-th>
-                    <v-th>Quali-Stufe</v-th>
-                    <v-th>Höhenmeter<sup class="text-gray-400">1</sup></v-th>
-                    <v-th>Startgeld<sup class="text-gray-400">3</sup></v-th>
-                    <v-th>Höchstzeit<sup class="texts text-gray-400">4</sup></v-th>
-                    <v-th>min. Alter Pferd</v-th>
-                    <v-th>min. Alter TN</v-th>
-                    <v-th>TN/max TN</v-th>
+                    <v-th>{{$t('details.contestShort')}}</v-th>
+                    <v-th>{{$t('details.distance')}}</v-th>
+                    <v-th>{{$t('details.date')}}</v-th>
+                    <v-th>{{$t('details.qualification')}}</v-th>
+                    <v-th>{{$t('details.elevation')}}<sup class="text-gray-400">1</sup></v-th>
+                    <v-th>{{$t('details.startFee')}}<sup class="text-gray-400">3</sup></v-th>
+                    <v-th>{{$t('details.maximumTime')}}<sup class="texts text-gray-400">4</sup></v-th>
+                    <v-th>{{$t('details.minHorseAge')}}</v-th>
+                    <v-th>{{$t('details.minRiderAge')}}</v-th>
+                    <v-th>{{$t('details.maximumParticipants')}}</v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -205,27 +209,23 @@
                 <table>
                     <tr>
                         <td class="pr-3">1)</td>
-                        <td>Höhenmeterangabe = Summe aus Aufstieg und Abstieg</td>
+                        <td>{{$t('details.elevationInfo')}}</td>
                     </tr>
                     <tr>
                         <td class="pr-3">2)</td>
                         <td>
-                            Bei Gespannen und Handpferderitten wird Nenngeld pro Pferd erhoben,
-                            Stardgeld pro Gespann. Nenn- und Startgeld max 1,00 € pro km;
-                            VDD Nichtmitglieder zahlen zusätzlich zum Startgeld: EFR/F 7,50 €,
-                            KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, Jugend bis 21 Jahre: 6 €
+                            {{$t('details.signUpFeeInfo')}}
                         </td>
                     </tr>
                     <tr>
                         <td class="pr-3">3)</td>
                         <td>
-                            Höchstzeit in min/km = langsamste erlaubte Zeit um in der Wertung
-                            zu bleiben (Empfehlung lt. VDD-Regelment: T8 - T9)
+                            {{$t('details.maximumTimeInfo')}}
                         </td>
                     </tr>
                     <tr>
                         <td class="pr-3">4)</td>
-                        <td>nach Absprache mit dem Veranstalter</td>
+                        <td>{{$t('details.inCommunicationWithHost')}}</td>
                     </tr>
                 </table>
             </div>

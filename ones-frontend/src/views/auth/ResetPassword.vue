@@ -3,12 +3,12 @@
         <auth-card v-if="changeDone">
             <div class="px-6 py-5">
                 <feedback color="success" class="mb-5">
-                    Passwort geändert.
+                    {{$t("resetPassword.success")}}
                 </feedback>
             </div>
             <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <router-link to="login">
-                    <v-button>zum Login</v-button>
+                    <v-button>{{$t('resetPassword.toLogin')}}</v-button>
                 </router-link>
             </div>
         </auth-card>
@@ -16,25 +16,25 @@
             <form @submit.prevent="submit">
                 <div class="px-6 py-5">
                     <feedback color="danger" class="mb-5" v-if="error.length > 0">
-                        <h2 class="text-lg">Oops! Etwas ist schief gelaufen.</h2>
+                        <h2 class="text-lg">{{$t('resetPassword.error')}}</h2>
                         {{ error }}
                     </feedback>
 
                     <div class="mb-4 text-sm text-gray-600">
-                        <h1 class="text-xl font-bold">Passwort zurücksetzen</h1>
-                        <p>Wähle ein starkes und sicheres Passwort aus.</p>
+                        <h1 class="text-xl font-bold">{{$t('resetPassword.resetPassword')}}</h1>
+                        <p>{{$t('resetPassword.chooseStrongPassword')}}</p>
                     </div>
 
                     <v-password v-bind:label="'Neues Passwort'" v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
 
                     <div class="mt-5">
-                        <v-label>Passwort wiederholen</v-label>
+                        <v-label>{{$t('resetPassword.passwordRepeat')}}</v-label>
                         <v-input type="password" class="w-full" v-model="passwordRepeat" :disabled="inputsDisabled"></v-input>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-button @click.native="resetPassword">Passwort speichern</v-button>
+                    <v-button @click.native="resetPassword">{{$t('resetPassword.savePassword')}}</v-button>
                 </div>
             </form>
         </auth-card>
