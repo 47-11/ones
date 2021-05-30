@@ -18,6 +18,11 @@
             <artifactId>ones-frontend</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>de.fourtyseveneleven</groupId>
+            <artifactId>ones-ecm-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,2536 @@
+openapi: 3.0.1
+info:
+  description: Rest-Interface for ONES
+  title: vdd4ones
+  version: 1.0a
+servers:
+- description: Generated server url
+  url: https://vdd4ones.de:8080
+paths:
+  /rest/application/register/account/unlock:
+    put:
+      operationId: putRegisterAccountUnlock
+      parameters:
+      - explode: true
+        in: query
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: code
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerResponce'
+          description: OK
+      tags:
+      - application-account-controller
+      x-accepts: application/json
+  /rest/masterdata/register/horse:
+    post:
+      operationId: postRegisterHorse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerHorse'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - masterdata-horse-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/masterdata/register/contact/stable:
+    post:
+      operationId: postRegisterContactStable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerContact'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - masterdata-contact-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/masterdata/register/contact/horseOwner:
+    post:
+      operationId: postRegisterContactHorseOwner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerContact'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - masterdata-contact-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/masterdata/register/contact/contestant:
+    post:
+      operationId: postRegisterContactContestant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerContact'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - masterdata-contact-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/application/register/account:
+    post:
+      operationId: postRegisterAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerAccount'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerResponce'
+          description: OK
+      tags:
+      - application-account-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/masterdata/horse/{uuid}:
+    get:
+      operationId: getHorseByUuid
+      parameters:
+      - explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MasterdataHorse'
+          description: OK
+      tags:
+      - masterdata-horse-controller
+      x-accepts: '*/*'
+  /rest/masterdata/contact/{uuid}:
+    get:
+      operationId: getContactByUuid
+      parameters:
+      - explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MasterdataContact'
+          description: OK
+      tags:
+      - masterdata-contact-controller
+      x-accepts: '*/*'
+  /rest/event/contests:
+    get:
+      operationId: getContestByYear
+      parameters:
+      - explode: true
+        in: query
+        name: year
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageNo
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          default: beginning
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/EventContest_Plain'
+                type: array
+          description: OK
+      tags:
+      - event-contest-controller
+      x-accepts: '*/*'
+  /rest/event/contest:
+    get:
+      operationId: getContestByUuid
+      parameters:
+      - explode: true
+        in: query
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EventContest'
+          description: OK
+      tags:
+      - event-contest-controller
+      x-accepts: '*/*'
+components:
+  schemas:
+    registerResponce:
+      example:
+        state: state
+        reasonCode: 0
+        justification: justification
+        registerObjectUuid: registerObjectUuid
+        uuid: uuid
+      properties:
+        uuid:
+          maxLength: 255
+          minLength: 0
+          type: string
+        state:
+          maxLength: 255
+          minLength: 1
+          type: string
+        reasonCode:
+          format: int32
+          type: integer
+        justification:
+          maxLength: 255
+          minLength: 0
+          type: string
+        registerObjectUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+      type: object
+    registerAddress:
+      properties:
+        country:
+          maxLength: 255
+          minLength: 0
+          type: string
+        zipCode:
+          maxLength: 255
+          minLength: 0
+          type: string
+        city:
+          maxLength: 255
+          minLength: 0
+          type: string
+        street:
+          maxLength: 255
+          minLength: 0
+          type: string
+        houseNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+      required:
+      - city
+      - street
+      type: object
+    registerContact:
+      properties:
+        surname:
+          maxLength: 255
+          minLength: 1
+          type: string
+        forename:
+          maxLength: 255
+          minLength: 0
+          type: string
+        salutation:
+          maxLength: 255
+          minLength: 0
+          type: string
+        birthday:
+          format: date
+          type: string
+        email:
+          maxLength: 255
+          minLength: 6
+          type: string
+        phoneNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        phoneNumberMobile:
+          maxLength: 255
+          minLength: 0
+          type: string
+        postalAddress:
+          $ref: '#/components/schemas/registerAddress'
+      required:
+      - surname
+      type: object
+    registerHorse:
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        passportId:
+          maxLength: 255
+          minLength: 0
+          type: string
+        breed:
+          maxLength: 255
+          minLength: 0
+          type: string
+        gender:
+          maxLength: 255
+          minLength: 0
+          type: string
+        color:
+          maxLength: 255
+          minLength: 0
+          type: string
+        yearOfBirth:
+          format: int32
+          type: integer
+        stickSize:
+          format: int32
+          type: integer
+        owner:
+          $ref: '#/components/schemas/registerContact'
+        stable:
+          $ref: '#/components/schemas/registerContact'
+      required:
+      - name
+      - passportId
+      type: object
+    registerAccount:
+      properties:
+        uuid:
+          readOnly: true
+          type: string
+        loginIdentification:
+          maxLength: 255
+          minLength: 1
+          type: string
+        loginKeyword:
+          maxLength: 255
+          minLength: 1
+          type: string
+        nativeLanguage:
+          maxLength: 5
+          minLength: 0
+          type: string
+        vddMemberNumber:
+          maxLength: 10
+          minLength: 0
+          type: string
+        user:
+          $ref: '#/components/schemas/registerContact'
+      required:
+      - loginIdentification
+      - loginKeyword
+      type: object
+    MasterdataContact:
+      example:
+        _addresses:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          country: country
+          city: city
+          kind: 7
+          houseNumber: houseNumber
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 2
+          zipcodeCode: zipcodeCode
+          countryCode: countryCode
+          street: street
+          masterdataContactUuid: masterdataContactUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          federalStateCode: federalStateCode
+          federalState: federalState
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          country: country
+          city: city
+          kind: 7
+          houseNumber: houseNumber
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 2
+          zipcodeCode: zipcodeCode
+          countryCode: countryCode
+          street: street
+          masterdataContactUuid: masterdataContactUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          federalStateCode: federalStateCode
+          federalState: federalState
+        phonePrivate: phonePrivate
+        emailBusiness: emailBusiness
+        uuid: uuid
+        changeCounter: 5
+        forename: forename
+        faxPrivate: faxPrivate
+        emailPrivate: emailPrivate
+        surname: surname
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        titleAddition: titleAddition
+        kind: 5
+        nickName: nickName
+        display: display
+        _roles:
+        - changeCounter: 9
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 9
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        bornDate: 2000-01-23T04:56:07.000+00:00
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        titleBusiness: titleBusiness
+        info9: info9
+        info8: info8
+        info7: info7
+        info6: info6
+        nationality: nationality
+        bornName: bornName
+        info1: info1
+        cellPhonePrivate: cellPhonePrivate
+        artistName: artistName
+        salutation: salutation
+        titleAcademic: titleAcademic
+        phoneBusiness: phoneBusiness
+        faxBusiness: faxBusiness
+        info5: info5
+        info4: info4
+        titleNobility: titleNobility
+        info3: info3
+        cellPhoneBusiness: cellPhoneBusiness
+        info2: info2
+      properties:
+        uuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        kind:
+          format: int32
+          type: integer
+        salutation:
+          type: string
+        surname:
+          type: string
+        forename:
+          type: string
+        bornName:
+          type: string
+        bornDate:
+          format: date-time
+          type: string
+        nationality:
+          type: string
+        titleAddition:
+          type: string
+        titleNobility:
+          type: string
+        titleAcademic:
+          type: string
+        titleBusiness:
+          type: string
+        artistName:
+          type: string
+        nickName:
+          type: string
+        phonePrivate:
+          type: string
+        phoneBusiness:
+          type: string
+        cellPhonePrivate:
+          type: string
+        cellPhoneBusiness:
+          type: string
+        faxPrivate:
+          type: string
+        faxBusiness:
+          type: string
+        emailPrivate:
+          type: string
+        emailBusiness:
+          type: string
+        info1:
+          type: string
+        info2:
+          type: string
+        info3:
+          type: string
+        info4:
+          type: string
+        info5:
+          type: string
+        info6:
+          type: string
+        info7:
+          type: string
+        info8:
+          type: string
+        info9:
+          type: string
+        display:
+          type: string
+        _addresses:
+          items:
+            $ref: '#/components/schemas/MasterdataContactAddress'
+          type: array
+        _roles:
+          items:
+            $ref: '#/components/schemas/MasterdataContactRole'
+          type: array
+      type: object
+    MasterdataContactAddress:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        country: country
+        city: city
+        kind: 7
+        houseNumber: houseNumber
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 2
+        zipcodeCode: zipcodeCode
+        countryCode: countryCode
+        street: street
+        masterdataContactUuid: masterdataContactUuid
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        federalStateCode: federalStateCode
+        federalState: federalState
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        masterdataContactUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        kind:
+          format: int32
+          type: integer
+        countryCode:
+          maxLength: 255
+          minLength: 0
+          type: string
+        country:
+          maxLength: 255
+          minLength: 0
+          type: string
+        city:
+          maxLength: 255
+          minLength: 0
+          type: string
+        federalStateCode:
+          maxLength: 5
+          minLength: 0
+          type: string
+        federalState:
+          maxLength: 255
+          minLength: 0
+          type: string
+        street:
+          maxLength: 255
+          minLength: 0
+          type: string
+        houseNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+        zipcodeCode:
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    MasterdataContactRole:
+      example:
+        changeCounter: 9
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        role: role
+        masterdataContactUuid: masterdataContactUuid
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        masterdataContactUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        role:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    MasterdataHorse:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        gender: gender
+        color: color
+        display: display
+        _ownersx:
+        - changeCounter: 1
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          ownershipUntil: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          display: display
+          contact:
+            _addresses:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            phonePrivate: phonePrivate
+            emailBusiness: emailBusiness
+            uuid: uuid
+            changeCounter: 5
+            forename: forename
+            faxPrivate: faxPrivate
+            emailPrivate: emailPrivate
+            surname: surname
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            titleAddition: titleAddition
+            kind: 5
+            nickName: nickName
+            display: display
+            _roles:
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            bornDate: 2000-01-23T04:56:07.000+00:00
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            titleBusiness: titleBusiness
+            info9: info9
+            info8: info8
+            info7: info7
+            info6: info6
+            nationality: nationality
+            bornName: bornName
+            info1: info1
+            cellPhonePrivate: cellPhonePrivate
+            artistName: artistName
+            salutation: salutation
+            titleAcademic: titleAcademic
+            phoneBusiness: phoneBusiness
+            faxBusiness: faxBusiness
+            info5: info5
+            info4: info4
+            titleNobility: titleNobility
+            info3: info3
+            cellPhoneBusiness: cellPhoneBusiness
+            info2: info2
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          ownershipFrom: 2000-01-23T04:56:07.000+00:00
+          remark: remark
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 1
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          ownershipUntil: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          display: display
+          contact:
+            _addresses:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            phonePrivate: phonePrivate
+            emailBusiness: emailBusiness
+            uuid: uuid
+            changeCounter: 5
+            forename: forename
+            faxPrivate: faxPrivate
+            emailPrivate: emailPrivate
+            surname: surname
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            titleAddition: titleAddition
+            kind: 5
+            nickName: nickName
+            display: display
+            _roles:
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            bornDate: 2000-01-23T04:56:07.000+00:00
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            titleBusiness: titleBusiness
+            info9: info9
+            info8: info8
+            info7: info7
+            info6: info6
+            nationality: nationality
+            bornName: bornName
+            info1: info1
+            cellPhonePrivate: cellPhonePrivate
+            artistName: artistName
+            salutation: salutation
+            titleAcademic: titleAcademic
+            phoneBusiness: phoneBusiness
+            faxBusiness: faxBusiness
+            info5: info5
+            info4: info4
+            titleNobility: titleNobility
+            info3: info3
+            cellPhoneBusiness: cellPhoneBusiness
+            info2: info2
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          ownershipFrom: 2000-01-23T04:56:07.000+00:00
+          remark: remark
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        _stables:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          display: display
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 3
+          masterdataHorseUuid: masterdataHorseUuid
+          accommodationFrom: 2000-01-23T04:56:07.000+00:00
+          contact:
+            _addresses:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            phonePrivate: phonePrivate
+            emailBusiness: emailBusiness
+            uuid: uuid
+            changeCounter: 5
+            forename: forename
+            faxPrivate: faxPrivate
+            emailPrivate: emailPrivate
+            surname: surname
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            titleAddition: titleAddition
+            kind: 5
+            nickName: nickName
+            display: display
+            _roles:
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            bornDate: 2000-01-23T04:56:07.000+00:00
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            titleBusiness: titleBusiness
+            info9: info9
+            info8: info8
+            info7: info7
+            info6: info6
+            nationality: nationality
+            bornName: bornName
+            info1: info1
+            cellPhonePrivate: cellPhonePrivate
+            artistName: artistName
+            salutation: salutation
+            titleAcademic: titleAcademic
+            phoneBusiness: phoneBusiness
+            faxBusiness: faxBusiness
+            info5: info5
+            info4: info4
+            titleNobility: titleNobility
+            info3: info3
+            cellPhoneBusiness: cellPhoneBusiness
+            info2: info2
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          accommodationUntil: 2000-01-23T04:56:07.000+00:00
+          remarks: remarks
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          display: display
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 3
+          masterdataHorseUuid: masterdataHorseUuid
+          accommodationFrom: 2000-01-23T04:56:07.000+00:00
+          contact:
+            _addresses:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              country: country
+              city: city
+              kind: 7
+              houseNumber: houseNumber
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 2
+              zipcodeCode: zipcodeCode
+              countryCode: countryCode
+              street: street
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              federalStateCode: federalStateCode
+              federalState: federalState
+            phonePrivate: phonePrivate
+            emailBusiness: emailBusiness
+            uuid: uuid
+            changeCounter: 5
+            forename: forename
+            faxPrivate: faxPrivate
+            emailPrivate: emailPrivate
+            surname: surname
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            titleAddition: titleAddition
+            kind: 5
+            nickName: nickName
+            display: display
+            _roles:
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 9
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              role: role
+              masterdataContactUuid: masterdataContactUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            bornDate: 2000-01-23T04:56:07.000+00:00
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            titleBusiness: titleBusiness
+            info9: info9
+            info8: info8
+            info7: info7
+            info6: info6
+            nationality: nationality
+            bornName: bornName
+            info1: info1
+            cellPhonePrivate: cellPhonePrivate
+            artistName: artistName
+            salutation: salutation
+            titleAcademic: titleAcademic
+            phoneBusiness: phoneBusiness
+            faxBusiness: faxBusiness
+            info5: info5
+            info4: info4
+            titleNobility: titleNobility
+            info3: info3
+            cellPhoneBusiness: cellPhoneBusiness
+            info2: info2
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          accommodationUntil: 2000-01-23T04:56:07.000+00:00
+          remarks: remarks
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        breed: breed
+        changeUserUuid: changeUserUuid
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        name: name
+        passportId: passportId
+        stickSize: 6
+        yearOfBirth: 0
+      properties:
+        uuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          readOnly: true
+          type: string
+        changeUserUuid:
+          type: string
+        display:
+          type: string
+        name:
+          type: string
+        passportId:
+          type: string
+        breed:
+          type: string
+        gender:
+          type: string
+        yearOfBirth:
+          format: int32
+          type: integer
+        stickSize:
+          format: int32
+          type: integer
+        color:
+          type: string
+        _ownersx:
+          items:
+            $ref: '#/components/schemas/MasterdataHorseOwner'
+          type: array
+        _stables:
+          items:
+            $ref: '#/components/schemas/MasterdataHorseStable'
+          type: array
+      type: object
+    MasterdataHorseOwner:
+      example:
+        changeCounter: 1
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        ownershipUntil: 2000-01-23T04:56:07.000+00:00
+        masterdataHorseUuid: masterdataHorseUuid
+        display: display
+        contact:
+          _addresses:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            country: country
+            city: city
+            kind: 7
+            houseNumber: houseNumber
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 2
+            zipcodeCode: zipcodeCode
+            countryCode: countryCode
+            street: street
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            federalStateCode: federalStateCode
+            federalState: federalState
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            country: country
+            city: city
+            kind: 7
+            houseNumber: houseNumber
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 2
+            zipcodeCode: zipcodeCode
+            countryCode: countryCode
+            street: street
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            federalStateCode: federalStateCode
+            federalState: federalState
+          phonePrivate: phonePrivate
+          emailBusiness: emailBusiness
+          uuid: uuid
+          changeCounter: 5
+          forename: forename
+          faxPrivate: faxPrivate
+          emailPrivate: emailPrivate
+          surname: surname
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          titleAddition: titleAddition
+          kind: 5
+          nickName: nickName
+          display: display
+          _roles:
+          - changeCounter: 9
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 9
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          bornDate: 2000-01-23T04:56:07.000+00:00
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          titleBusiness: titleBusiness
+          info9: info9
+          info8: info8
+          info7: info7
+          info6: info6
+          nationality: nationality
+          bornName: bornName
+          info1: info1
+          cellPhonePrivate: cellPhonePrivate
+          artistName: artistName
+          salutation: salutation
+          titleAcademic: titleAcademic
+          phoneBusiness: phoneBusiness
+          faxBusiness: faxBusiness
+          info5: info5
+          info4: info4
+          titleNobility: titleNobility
+          info3: info3
+          cellPhoneBusiness: cellPhoneBusiness
+          info2: info2
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        ownershipFrom: 2000-01-23T04:56:07.000+00:00
+        remark: remark
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        display:
+          maxLength: 255
+          minLength: 0
+          type: string
+        ownershipFrom:
+          format: date-time
+          type: string
+        ownershipUntil:
+          format: date-time
+          type: string
+        remark:
+          maxLength: 16777216
+          minLength: 0
+          type: string
+        contact:
+          $ref: '#/components/schemas/MasterdataContact'
+        masterdataHorseUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    MasterdataHorseStable:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        kind: kind
+        display: display
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 3
+        masterdataHorseUuid: masterdataHorseUuid
+        accommodationFrom: 2000-01-23T04:56:07.000+00:00
+        contact:
+          _addresses:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            country: country
+            city: city
+            kind: 7
+            houseNumber: houseNumber
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 2
+            zipcodeCode: zipcodeCode
+            countryCode: countryCode
+            street: street
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            federalStateCode: federalStateCode
+            federalState: federalState
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            country: country
+            city: city
+            kind: 7
+            houseNumber: houseNumber
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 2
+            zipcodeCode: zipcodeCode
+            countryCode: countryCode
+            street: street
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            federalStateCode: federalStateCode
+            federalState: federalState
+          phonePrivate: phonePrivate
+          emailBusiness: emailBusiness
+          uuid: uuid
+          changeCounter: 5
+          forename: forename
+          faxPrivate: faxPrivate
+          emailPrivate: emailPrivate
+          surname: surname
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          titleAddition: titleAddition
+          kind: 5
+          nickName: nickName
+          display: display
+          _roles:
+          - changeCounter: 9
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 9
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          bornDate: 2000-01-23T04:56:07.000+00:00
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          titleBusiness: titleBusiness
+          info9: info9
+          info8: info8
+          info7: info7
+          info6: info6
+          nationality: nationality
+          bornName: bornName
+          info1: info1
+          cellPhonePrivate: cellPhonePrivate
+          artistName: artistName
+          salutation: salutation
+          titleAcademic: titleAcademic
+          phoneBusiness: phoneBusiness
+          faxBusiness: faxBusiness
+          info5: info5
+          info4: info4
+          titleNobility: titleNobility
+          info3: info3
+          cellPhoneBusiness: cellPhoneBusiness
+          info2: info2
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        accommodationUntil: 2000-01-23T04:56:07.000+00:00
+        remarks: remarks
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        masterdataHorseUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        kind:
+          maxLength: 5
+          minLength: 0
+          type: string
+        display:
+          maxLength: 255
+          minLength: 0
+          type: string
+        accommodationFrom:
+          format: date-time
+          type: string
+        accommodationUntil:
+          format: date-time
+          type: string
+        remarks:
+          maxLength: 16777216
+          minLength: 0
+          type: string
+        contact:
+          $ref: '#/components/schemas/MasterdataContact'
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    EventContestCompetitionStage_Plain:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        beginning: 2000-01-23T04:56:07.000+00:00
+        breaksTotalNumbers: 2
+        contestantLimitiationMax: 5
+        kind: kind
+        minutesMaximum: 8
+        penaltyPointsTimeUnderrun: 3
+        penaltyPointsAtPulseRateOf: 6
+        penaltyPointsPulseRateExceeded: 1
+        contestantLimitiationMin: 6
+        title: title
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 9
+        ending: 2000-01-23T04:56:07.000+00:00
+        minutesAllowed: 9
+        responsibleVeterinarianUuid: responsibleVeterinarianUuid
+        penaltyPointsTimeout: 6
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        breaksTotalMinutes: 6
+        currentState: 9
+        raiseLength: 6
+      properties:
+        uuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          type: string
+        kind:
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        raiseLength:
+          format: int32
+          type: integer
+        minutesMaximum:
+          format: int32
+          type: integer
+        minutesAllowed:
+          format: int32
+          type: integer
+        penaltyPointsTimeout:
+          format: int32
+          type: integer
+        penaltyPointsTimeUnderrun:
+          format: int32
+          type: integer
+        penaltyPointsAtPulseRateOf:
+          format: int32
+          type: integer
+        penaltyPointsPulseRateExceeded:
+          format: int32
+          type: integer
+        breaksTotalNumbers:
+          format: int32
+          type: integer
+        breaksTotalMinutes:
+          format: int32
+          type: integer
+        responsibleVeterinarianUuid:
+          type: string
+        contestantLimitiationMin:
+          format: int32
+          type: integer
+        contestantLimitiationMax:
+          format: int32
+          type: integer
+      type: object
+    EventContestCompetition_Plain:
+      example:
+        beginning: 2000-01-23T04:56:07.000+00:00
+        breaksTotalNumbers: 7
+        minutesMaximum: 4
+        penaltyPointsTimeUnderrun: 1
+        eventContestUuid: eventContestUuid
+        penaltyPointsPulseRateExceeded: 6
+        contestantLimitiationMin: 4
+        title: title
+        uuid: uuid
+        changeCounter: 9
+        minutesAllowed: 7
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        raiseLength: 2
+        competitionUuidToReduce: competitionUuidToReduce
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        contestantLimitiationMax: 5
+        kind: kind
+        competitionUuidToExtend: competitionUuidToExtend
+        _stages:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 2
+          contestantLimitiationMax: 5
+          kind: kind
+          minutesMaximum: 8
+          penaltyPointsTimeUnderrun: 3
+          penaltyPointsAtPulseRateOf: 6
+          penaltyPointsPulseRateExceeded: 1
+          contestantLimitiationMin: 6
+          title: title
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 9
+          ending: 2000-01-23T04:56:07.000+00:00
+          minutesAllowed: 9
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 6
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          breaksTotalMinutes: 6
+          currentState: 9
+          raiseLength: 6
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 2
+          contestantLimitiationMax: 5
+          kind: kind
+          minutesMaximum: 8
+          penaltyPointsTimeUnderrun: 3
+          penaltyPointsAtPulseRateOf: 6
+          penaltyPointsPulseRateExceeded: 1
+          contestantLimitiationMin: 6
+          title: title
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 9
+          ending: 2000-01-23T04:56:07.000+00:00
+          minutesAllowed: 9
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 6
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          breaksTotalMinutes: 6
+          currentState: 9
+          raiseLength: 6
+        penaltyPointsAtPulseRateOf: 1
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        ending: 2000-01-23T04:56:07.000+00:00
+        responsibleVeterinarianUuid: responsibleVeterinarianUuid
+        penaltyPointsTimeout: 1
+        breaksTotalMinutes: 1
+        currentState: 3
+      properties:
+        uuid:
+          type: string
+        eventContestUuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          type: string
+        kind:
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        raiseLength:
+          format: int32
+          type: integer
+        minutesMaximum:
+          format: int32
+          type: integer
+        minutesAllowed:
+          format: int32
+          type: integer
+        penaltyPointsTimeout:
+          format: int32
+          type: integer
+        penaltyPointsTimeUnderrun:
+          format: int32
+          type: integer
+        penaltyPointsAtPulseRateOf:
+          format: int32
+          type: integer
+        penaltyPointsPulseRateExceeded:
+          format: int32
+          type: integer
+        breaksTotalNumbers:
+          format: int32
+          type: integer
+        breaksTotalMinutes:
+          format: int32
+          type: integer
+        responsibleVeterinarianUuid:
+          type: string
+        competitionUuidToExtend:
+          type: string
+        competitionUuidToReduce:
+          type: string
+        contestantLimitiationMin:
+          format: int32
+          type: integer
+        contestantLimitiationMax:
+          format: int32
+          type: integer
+        _stages:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionStage_Plain'
+          type: array
+          uniqueItems: true
+      type: object
+    EventContest_Plain:
+      example:
+        country: country
+        isCei: true
+        approvalDate: 2000-01-23T04:56:07.000+00:00
+        beginning: 2000-01-23T04:56:07.000+00:00
+        promoterEventUrl: promoterEventUrl
+        approvalInfo: approvalInfo
+        promoterEventTitle: promoterEventTitle
+        feeCurrency: feeCurrency
+        title: title
+        uuid: uuid
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 0
+        stateCommissionerDescription: stateCommissionerDescription
+        organizerContactUuid: organizerContactUuid
+        startingFee: 5.962133916683182
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        requestDate: 2000-01-23T04:56:07.000+00:00
+        requestInfo: requestInfo
+        initialEvent: initialEvent
+        startingFeeUnit: startingFeeUnit
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        vddPortalUrl: vddPortalUrl
+        regionCommissionerDescription: regionCommissionerDescription
+        surchargeNonMembers: 7.061401241503109
+        promoterContactUuid: promoterContactUuid
+        isCountryChampionship: true
+        registrationFee: 1.4658129805029452
+        promoterContactDescription: promoterContactDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        locationDesciption: locationDesciption
+        regionCommissionerUuid: regionCommissionerUuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        lateRegistrationFee: 5.637376656633329
+        _competitions:
+        - beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 7
+          minutesMaximum: 4
+          penaltyPointsTimeUnderrun: 1
+          eventContestUuid: eventContestUuid
+          penaltyPointsPulseRateExceeded: 6
+          contestantLimitiationMin: 4
+          title: title
+          uuid: uuid
+          changeCounter: 9
+          minutesAllowed: 7
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          raiseLength: 2
+          competitionUuidToReduce: competitionUuidToReduce
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          contestantLimitiationMax: 5
+          kind: kind
+          competitionUuidToExtend: competitionUuidToExtend
+          _stages:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          penaltyPointsAtPulseRateOf: 1
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          ending: 2000-01-23T04:56:07.000+00:00
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 1
+          breaksTotalMinutes: 1
+          currentState: 3
+        - beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 7
+          minutesMaximum: 4
+          penaltyPointsTimeUnderrun: 1
+          eventContestUuid: eventContestUuid
+          penaltyPointsPulseRateExceeded: 6
+          contestantLimitiationMin: 4
+          title: title
+          uuid: uuid
+          changeCounter: 9
+          minutesAllowed: 7
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          raiseLength: 2
+          competitionUuidToReduce: competitionUuidToReduce
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          contestantLimitiationMax: 5
+          kind: kind
+          competitionUuidToExtend: competitionUuidToExtend
+          _stages:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          penaltyPointsAtPulseRateOf: 1
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          ending: 2000-01-23T04:56:07.000+00:00
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 1
+          breaksTotalMinutes: 1
+          currentState: 3
+        ending: 2000-01-23T04:56:07.000+00:00
+        organizerContactDescription: organizerContactDescription
+        promoterTenderingTitle: promoterTenderingTitle
+        registrationDescription: registrationDescription
+        changeRegistrationFee: 2.3021358869347655
+        isCard: true
+        currentState: 6
+        remarks: remarks
+      properties:
+        uuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        country:
+          type: string
+        countryRegion:
+          type: string
+        locationDesciption:
+          type: string
+        isCountryChampionship:
+          type: boolean
+        isCei:
+          type: boolean
+        isCard:
+          type: boolean
+        vddPortalUrl:
+          type: string
+        vddPortalTitle:
+          type: string
+        promoterTenderingUrl:
+          type: string
+        promoterTenderingTitle:
+          type: string
+        promoterEventUrl:
+          type: string
+        promoterEventTitle:
+          type: string
+        promoterContactUuid:
+          type: string
+        promoterContactDescription:
+          type: string
+        organizerContactUuid:
+          type: string
+        organizerContactDescription:
+          type: string
+        registrationDescription:
+          type: string
+        remarks:
+          type: string
+        initialEvent:
+          type: string
+        requestDate:
+          format: date-time
+          type: string
+        requestInfo:
+          type: string
+        approvalDate:
+          format: date-time
+          type: string
+        approvalInfo:
+          type: string
+        stateCommissionerUuid:
+          type: string
+        stateCommissionerDescription:
+          type: string
+        regionCommissionerUuid:
+          type: string
+        regionCommissionerDescription:
+          type: string
+        feeCurrency:
+          type: string
+        registrationFee:
+          type: number
+        startingFee:
+          type: number
+        startingFeeUnit:
+          type: string
+        lateRegistrationFee:
+          type: number
+        changeRegistrationFee:
+          type: number
+        surchargeNonMembers:
+          type: number
+        _competitions:
+          items:
+            $ref: '#/components/schemas/EventContestCompetition_Plain'
+          type: array
+          uniqueItems: true
+      type: object
+    EventContest:
+      example:
+        country: country
+        isCei: true
+        approvalDate: 2000-01-23T04:56:07.000+00:00
+        beginning: 2000-01-23T04:56:07.000+00:00
+        promoterEventUrl: promoterEventUrl
+        approvalInfo: approvalInfo
+        promoterEventTitle: promoterEventTitle
+        feeCurrency: feeCurrency
+        title: title
+        uuid: uuid
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 0
+        stateCommissionerDescription: stateCommissionerDescription
+        organizerContactUuid: organizerContactUuid
+        startingFee: 5.962133916683182
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        requestDate: 2000-01-23T04:56:07.000+00:00
+        requestInfo: requestInfo
+        initialEvent: initialEvent
+        startingFeeUnit: startingFeeUnit
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        vddPortalUrl: vddPortalUrl
+        regionCommissionerDescription: regionCommissionerDescription
+        surchargeNonMembers: 7.061401241503109
+        promoterContactUuid: promoterContactUuid
+        isCountryChampionship: true
+        registrationFee: 1.4658129805029452
+        promoterContactDescription: promoterContactDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        locationDesciption: locationDesciption
+        regionCommissionerUuid: regionCommissionerUuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        lateRegistrationFee: 5.637376656633329
+        _competitions:
+        - beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 7
+          minutesMaximum: 4
+          penaltyPointsTimeUnderrun: 1
+          eventContestUuid: eventContestUuid
+          penaltyPointsPulseRateExceeded: 6
+          contestantLimitiationMin: 4
+          title: title
+          uuid: uuid
+          changeCounter: 9
+          minutesAllowed: 7
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          raiseLength: 2
+          competitionUuidToReduce: competitionUuidToReduce
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          contestantLimitiationMax: 5
+          kind: kind
+          competitionUuidToExtend: competitionUuidToExtend
+          _stages:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          penaltyPointsAtPulseRateOf: 1
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          ending: 2000-01-23T04:56:07.000+00:00
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 1
+          breaksTotalMinutes: 1
+          currentState: 3
+        - beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 7
+          minutesMaximum: 4
+          penaltyPointsTimeUnderrun: 1
+          eventContestUuid: eventContestUuid
+          penaltyPointsPulseRateExceeded: 6
+          contestantLimitiationMin: 4
+          title: title
+          uuid: uuid
+          changeCounter: 9
+          minutesAllowed: 7
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          raiseLength: 2
+          competitionUuidToReduce: competitionUuidToReduce
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          contestantLimitiationMax: 5
+          kind: kind
+          competitionUuidToExtend: competitionUuidToExtend
+          _stages:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 2
+            contestantLimitiationMax: 5
+            kind: kind
+            minutesMaximum: 8
+            penaltyPointsTimeUnderrun: 3
+            penaltyPointsAtPulseRateOf: 6
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 6
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 9
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 9
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 6
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 6
+            currentState: 9
+            raiseLength: 6
+          penaltyPointsAtPulseRateOf: 1
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          ending: 2000-01-23T04:56:07.000+00:00
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 1
+          breaksTotalMinutes: 1
+          currentState: 3
+        ending: 2000-01-23T04:56:07.000+00:00
+        organizerContactDescription: organizerContactDescription
+        promoterTenderingTitle: promoterTenderingTitle
+        registrationDescription: registrationDescription
+        changeRegistrationFee: 2.3021358869347655
+        isCard: true
+        currentState: 6
+        remarks: remarks
+      properties:
+        uuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        country:
+          type: string
+        countryRegion:
+          type: string
+        locationDesciption:
+          type: string
+        isCountryChampionship:
+          type: boolean
+        isCei:
+          type: boolean
+        isCard:
+          type: boolean
+        vddPortalUrl:
+          type: string
+        vddPortalTitle:
+          type: string
+        promoterTenderingUrl:
+          type: string
+        promoterTenderingTitle:
+          type: string
+        promoterEventUrl:
+          type: string
+        promoterEventTitle:
+          type: string
+        promoterContactUuid:
+          type: string
+        promoterContactDescription:
+          type: string
+        organizerContactUuid:
+          type: string
+        organizerContactDescription:
+          type: string
+        registrationDescription:
+          type: string
+        remarks:
+          type: string
+        initialEvent:
+          type: string
+        requestDate:
+          format: date-time
+          type: string
+        requestInfo:
+          type: string
+        approvalDate:
+          format: date-time
+          type: string
+        approvalInfo:
+          type: string
+        stateCommissionerUuid:
+          type: string
+        stateCommissionerDescription:
+          type: string
+        regionCommissionerUuid:
+          type: string
+        regionCommissionerDescription:
+          type: string
+        feeCurrency:
+          type: string
+        registrationFee:
+          type: number
+        startingFee:
+          type: number
+        startingFeeUnit:
+          type: string
+        lateRegistrationFee:
+          type: number
+        changeRegistrationFee:
+          type: number
+        surchargeNonMembers:
+          type: number
+        _competitions:
+          items:
+            $ref: '#/components/schemas/EventContestCompetition'
+          type: array
+          uniqueItems: true
+      type: object
+    EventContestCompetition:
+      example:
+        beginning: 2000-01-23T04:56:07.000+00:00
+        breaksTotalNumbers: 7
+        minutesMaximum: 4
+        penaltyPointsTimeUnderrun: 1
+        eventContestUuid: eventContestUuid
+        penaltyPointsPulseRateExceeded: 6
+        contestantLimitiationMin: 4
+        title: title
+        uuid: uuid
+        changeCounter: 9
+        minutesAllowed: 7
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        raiseLength: 2
+        competitionUuidToReduce: competitionUuidToReduce
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        contestantLimitiationMax: 5
+        kind: kind
+        competitionUuidToExtend: competitionUuidToExtend
+        _stages:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 2
+          contestantLimitiationMax: 5
+          kind: kind
+          minutesMaximum: 8
+          penaltyPointsTimeUnderrun: 3
+          penaltyPointsAtPulseRateOf: 6
+          penaltyPointsPulseRateExceeded: 1
+          contestantLimitiationMin: 6
+          title: title
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 9
+          ending: 2000-01-23T04:56:07.000+00:00
+          minutesAllowed: 9
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 6
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          breaksTotalMinutes: 6
+          currentState: 9
+          raiseLength: 6
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 2
+          contestantLimitiationMax: 5
+          kind: kind
+          minutesMaximum: 8
+          penaltyPointsTimeUnderrun: 3
+          penaltyPointsAtPulseRateOf: 6
+          penaltyPointsPulseRateExceeded: 1
+          contestantLimitiationMin: 6
+          title: title
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 9
+          ending: 2000-01-23T04:56:07.000+00:00
+          minutesAllowed: 9
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 6
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          breaksTotalMinutes: 6
+          currentState: 9
+          raiseLength: 6
+        penaltyPointsAtPulseRateOf: 1
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        ending: 2000-01-23T04:56:07.000+00:00
+        responsibleVeterinarianUuid: responsibleVeterinarianUuid
+        penaltyPointsTimeout: 1
+        breaksTotalMinutes: 1
+        currentState: 3
+      properties:
+        uuid:
+          type: string
+        eventContestUuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          type: string
+        kind:
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        raiseLength:
+          format: int32
+          type: integer
+        minutesMaximum:
+          format: int32
+          type: integer
+        minutesAllowed:
+          format: int32
+          type: integer
+        penaltyPointsTimeout:
+          format: int32
+          type: integer
+        penaltyPointsTimeUnderrun:
+          format: int32
+          type: integer
+        penaltyPointsAtPulseRateOf:
+          format: int32
+          type: integer
+        penaltyPointsPulseRateExceeded:
+          format: int32
+          type: integer
+        breaksTotalNumbers:
+          format: int32
+          type: integer
+        breaksTotalMinutes:
+          format: int32
+          type: integer
+        responsibleVeterinarianUuid:
+          type: string
+        competitionUuidToExtend:
+          type: string
+        competitionUuidToReduce:
+          type: string
+        contestantLimitiationMin:
+          format: int32
+          type: integer
+        contestantLimitiationMax:
+          format: int32
+          type: integer
+        _stages:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionStage'
+          type: array
+          uniqueItems: true
+      type: object
+    EventContestCompetitionStage:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        beginning: 2000-01-23T04:56:07.000+00:00
+        breaksTotalNumbers: 2
+        contestantLimitiationMax: 5
+        kind: kind
+        minutesMaximum: 8
+        penaltyPointsTimeUnderrun: 3
+        penaltyPointsAtPulseRateOf: 6
+        penaltyPointsPulseRateExceeded: 1
+        contestantLimitiationMin: 6
+        title: title
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 9
+        ending: 2000-01-23T04:56:07.000+00:00
+        minutesAllowed: 9
+        responsibleVeterinarianUuid: responsibleVeterinarianUuid
+        penaltyPointsTimeout: 6
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        breaksTotalMinutes: 6
+        currentState: 9
+        raiseLength: 6
+      properties:
+        uuid:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          type: string
+        kind:
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        raiseLength:
+          format: int32
+          type: integer
+        minutesMaximum:
+          format: int32
+          type: integer
+        minutesAllowed:
+          format: int32
+          type: integer
+        penaltyPointsTimeout:
+          format: int32
+          type: integer
+        penaltyPointsTimeUnderrun:
+          format: int32
+          type: integer
+        penaltyPointsAtPulseRateOf:
+          format: int32
+          type: integer
+        penaltyPointsPulseRateExceeded:
+          format: int32
+          type: integer
+        breaksTotalNumbers:
+          format: int32
+          type: integer
+        breaksTotalMinutes:
+          format: int32
+          type: integer
+        responsibleVeterinarianUuid:
+          type: string
+        contestantLimitiationMin:
+          format: int32
+          type: integer
+        contestantLimitiationMax:
+          format: int32
+          type: integer
+      type: object
+
