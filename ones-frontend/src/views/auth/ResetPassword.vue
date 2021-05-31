@@ -17,7 +17,7 @@
                 <div class="px-6 py-5">
                     <feedback color="danger" class="mb-5" v-if="error.length > 0">
                         <h2 class="text-lg">{{$t('resetPassword.error')}}</h2>
-                        {{ error }}
+                        {{ $t(error) }}
                     </feedback>
 
                     <div class="mb-4 text-sm text-gray-600">
@@ -103,9 +103,9 @@ export default class ResetPassword extends Vue {
 
     private assertValid(): void {
         if (this.score < 4) {
-            throw new Error("Passwort ist zu schwach.");
+            throw new Error("resetPassword.tooWeak");
         } else if (this.password !== this.passwordRepeat) {
-            throw new Error("Password Wiederholung nicht identisch mit Passwort.");
+            throw new Error("resetPassword.notIdentical");
         }
     }
 

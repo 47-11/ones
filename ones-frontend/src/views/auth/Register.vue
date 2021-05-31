@@ -17,7 +17,7 @@
                 <div class="px-6 py-5">
                     <feedback color="danger" class="mb-5" v-if="error.length > 0">
                         <h2 class="text-lg">{{$t("register.error")}}</h2>
-                        {{ error }}
+                        {{ $t(error) }}
                     </feedback>
 
                     <div>
@@ -139,13 +139,13 @@ export default class Register extends Vue {
 
     private assertValid(): void {
         if (this.email === "") {
-            throw new Error("E-Mail ist erforderlich.");
+            throw new Error("register.mailRequired");
         } else if (this.score < 4) {
-            throw new Error("Passwort ist zu schwach.");
+            throw new Error("register.tooWeak");
         } else if (this.password !== this.passwordRepeat) {
-            throw new Error("Password Wiederholung nicht identisch mit Passwort.");
+            throw new Error("register.notIdentical");
         } else if (!this.dataProtectionAccepted) {
-            throw new Error("Datenschutzbedingungen müssen akzeptiert werden.");
+            throw new Error("register.acceptanceRequired");
         }
     }
 }

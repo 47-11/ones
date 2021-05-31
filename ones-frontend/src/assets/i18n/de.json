@@ -38,7 +38,11 @@
         "agreeToPolicy": "Ich stimme den {policy} zu.",
         "privacyPolicy": "Datenschutzbestimmungen",
         "login": "Login",
-        "submit": "Registrieren"
+        "submit": "Registrieren",
+        "mailRequired": "E-Mail ist erforderlich.",
+        "tooWeak": "Passwort ist nicht stark genug.",
+        "notIdentical": "Passwort Wiederholung nicht identisch mit Passwort.",
+        "acceptanceRequired": "Datenschutzbedingungen müssen akzeptiert werden."
     },
     "resetPassword": {
         "success": "Passwort geändert.",
@@ -48,7 +52,9 @@
         "chooseStrongPassword": "Wähle ein starkes und sicheres Passwort aus.",
         "newPassword": "Neues Passwort",
         "passwordRepeat": "Passwort wiederholen",
-        "savePassword": "Passwort speichern"
+        "savePassword": "Passwort speichern",
+        "tooShort": "Passwort muss aus mindestens 8 Zeichen bestehen.",
+        "notIdentical": "Password Wiederholung nicht identisch mit Passwort."
     },
     "verified": {
         "wait": "Bitte warten...",
