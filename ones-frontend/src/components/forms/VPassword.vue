@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="mt-5">
-        <v-label>Passwort</v-label>
+        <v-label>{{label}}</v-label>
         <v-input type="password" class="w-full" v-model="password" @input="passwordChanged" :disabled="disabled"></v-input>
     </div>
 
@@ -53,6 +53,7 @@ zxcvbnDePackage.translations.warnings.common = "Dies ist ein häufig verwendetes
 export default class VPassword extends Vue {
     @Prop() public disabled!: boolean;
     @Prop() public value = "";
+    @Prop() public label = "Passwort";
 
     passwordDebounceTimeout: number | undefined;
     debouncedPassword = "";
