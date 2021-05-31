@@ -19,7 +19,7 @@ Vue.use(VueI18n);
 
 const i18n = new VueI18n({
     locale: navigator.language,
-    fallbackLocale: "de",
+    fallbackLocale: "en",
     messages: {
         en: require("@/assets/i18n/en"),
         de: require("@/assets/i18n/de")
