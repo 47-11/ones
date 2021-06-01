@@ -45,7 +45,7 @@ export class EventsStore extends VuexModule {
     @action
     async fetch(): Promise<void> {
         const fetchResponse = await this.controller.findAll(...this.filterAsArray);
-        this.events = fetchResponse.data;
+        this.events = fetchResponse.data.elements || [];
     }
 
     private get filterAsArray(): Parameters<EventControllerApi["findAll"]> {
