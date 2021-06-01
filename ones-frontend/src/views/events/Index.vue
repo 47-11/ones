@@ -4,10 +4,10 @@
       <v-table>
         <thead class="bg-gray-50">
           <tr>
-            <v-th>Start</v-th>
-            <v-th>Ende</v-th>
-            <v-th>Ritt</v-th>
-            <v-th>Dokumente</v-th>
+            <v-th>{{$t('events.start')}}</v-th>
+            <v-th>{{$t('events.end')}}</v-th>
+            <v-th>{{$t('events.ride')}}</v-th>
+            <v-th>{{$t('events.documents')}}</v-th>
             <v-th></v-th>
           </tr>
         </thead>
@@ -19,11 +19,11 @@
             <v-td>{{ new Date(event.end).toLocaleDateString(locale) }}</v-td>
             <v-td>{{ event.title }}</v-td>
             <v-td>
-              <v-link to="#">Ausschreibung</v-link>
+              <v-link to="#">{{$t('events.callForTenders')}}</v-link>
             </v-td>
             <v-td>
               <router-link :to="'/events/' + event.uuid">
-                <v-button>Details</v-button>
+                <v-button>{{$t('events.details')}}</v-button>
               </router-link>
             </v-td>
           </tr>
@@ -35,13 +35,19 @@
           >
             <div>
               <p class="text-sm text-gray-700">
-                Zeigt
-                <span class="font-medium">1</span>
-                bis
-                <span class="font-medium">10</span>
-                von
-                <span class="font-medium">97</span>
-                Ergebnissen
+                <i18n path="events.pagination">
+                  <template v-slot:from>
+                    <span class="font-medium">1</span>
+                  </template>
+
+                  <template v-slot:to>
+                    <span class="font-medium">10</span>
+                  </template>
+
+                  <template v-slot:of>
+                    <span class="font-medium">97</span>
+                  </template>
+                </i18n>
               </p>
             </div>
             <pagination></pagination>

@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAt, faChevronLeft, faFilePdf, faPhone, faTrailer, faHorseHead, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vue from "vue";
+import VueI18n from "vue-i18n";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
@@ -14,8 +15,20 @@ library.add(faChevronLeft, faPhone, faAt, faFilePdf, faTrailer, faHorseHead, faE
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+    locale: navigator.language,
+    fallbackLocale: "en",
+    messages: {
+        en: require("@/assets/i18n/en"),
+        de: require("@/assets/i18n/de")
+    }
+});
+
 new Vue({
     router,
     store,
+    i18n,
     render: h => h(App)
 }).$mount("#app");

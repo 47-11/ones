@@ -10,11 +10,11 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/">Dashboard</nav-link>
+                        <nav-link to="/">{{$t("navigation.dashboard")}}</nav-link>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/events">Wettbewerbe</nav-link>
+                        <nav-link to="/events">{{$t("navigation.events")}}</nav-link>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                         </template>
 
                         <dropdown-link to="/logout">
-                            Ausloggen
+                            {{ $t("navigation.logout")}}
                         </dropdown-link>
                     </dropdown>
                 </div>
@@ -60,8 +60,8 @@
         <!-- Responsive Navigation Menu -->
         <div v-show="showMenu" class="sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
-                <responsive-nav-link to="/">Dashboard</responsive-nav-link>
-                <responsive-nav-link to="/events">Wettbewerbe</responsive-nav-link>
+                <responsive-nav-link to="/">{{$t("navigation.dashboard")}}</responsive-nav-link>
+                <responsive-nav-link to="/events">{{$t("navigation.events")}}</responsive-nav-link>
             </div>
 
             <!-- Responsive Settings Options -->
@@ -77,13 +77,13 @@
                     </div>
 
                     <div class="ml-3">
-                        <div class="font-medium text-base text-gray-800">User</div>
-                        <div class="font-medium text-sm text-gray-500">Mail</div>
+                        <div class="font-medium text-base text-gray-800">{{$t("navigation.user")}}</div>
+                        <div class="font-medium text-sm text-gray-500">{{$t("navigation.mail")}}</div>
                     </div>
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <responsive-nav-link to="/logout">Ausloggen</responsive-nav-link>
+                    <responsive-nav-link to="/logout">{{$t("navigation.logout")}}</responsive-nav-link>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="mt-5">
-        <v-label>{{label}}</v-label>
+        <v-label>{{labelOrDefault}}</v-label>
         <v-input type="password" class="w-full" v-model="password" @input="passwordChanged" :disabled="disabled"></v-input>
     </div>
 
@@ -25,6 +25,7 @@ import zxcvbnEnPackage from "@zxcvbn-ts/language-en";
 import zxcvbnDePackage from "@zxcvbn-ts/language-de";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import VInput from "./VInput.vue";
+import VLabel from "./VLabel.vue";
 
 type EvaluationType = {
     feedback: {
@@ -37,7 +38,7 @@ type EvaluationType = {
 const EvaluationForEmptyPassword: EvaluationType = {
     feedback: {
         warning: "",
-        suggestions: ["Password too short."]
+        suggestions: []
     },
     score: 0
 };
@@ -47,14 +48,20 @@ zxcvbnDePackage.translations.warnings.common = "Dies ist ein häufig verwendetes
 
 @Component({
     components: {
-        VInput
+        VInput,
+        VLabel
     }
 })
 export default class VPassword extends Vue {
     @Prop() public disabled!: boolean;
     @Prop() public value = "";
-    @Prop() public label = "Passwort";
+    @Prop() public label!: string;
 
+    get labelOrDefault(): string {
+        return this.label || this.$t("password.password").toString();
+    }
+
+    password = "";
     passwordDebounceTimeout: number | undefined;
     debouncedPassword = "";
 
@@ -85,8 +92,9 @@ export default class VPassword extends Vue {
     }
 
     mounted(): void {
+        const translations = navigator.language.startsWith("de") ? zxcvbnDePackage.translations : zxcvbnEnPackage.translations;
         ZxcvbnOptions.setOptions({
-            translations: zxcvbnEnPackage.translations,
+            translations,
             dictionary: {
                 ...zxcvbnCommonPackage.dictionary,
                 ...zxcvbnEnPackage.dictionary,

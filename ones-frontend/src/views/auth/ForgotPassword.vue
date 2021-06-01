@@ -3,36 +3,36 @@
         <auth-card v-if="mailSend">
             <div class="px-6 py-5">
                 <feedback color="success" class="mb-5">
-                    Eine E-Mail ist auf dem Weg ...
+                    {{ $t("forgotPassword.success") }}
                 </feedback>
             </div>
             <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <router-link to="login">
-                    <v-button>zum Login</v-button>
+                    <v-button>{{$t("forgotPassword.toLogin")}}</v-button>
                 </router-link>
             </div>
         </auth-card>
         <auth-card v-else>
             <form @submit.prevent="sendForgotMail">
                 <div class="px-6 py-5">
-                    <div class="mb-4 text-sm text-gray-600">
-                        <h1 class="text-xl mb-2">Passwort vergessen?</h1>
-                        <p>Kein Problem. Nenn uns deine E-Mail Adresse und wir schicken dir einen Link zum Zurücksetzen des Passworts.</p>
-                    </div>
-
                     <feedback color="danger" class="mb-5" v-if="error.length > 0">
-                        <h2 class="text-lg">Oops! Etwas ist schief gelaufen.</h2>
+                        <h2 class="text-lg">{{$t("forgotPassword.error")}}}</h2>
                         {{ error }}
                     </feedback>
 
+                    <div class="mb-4 text-sm text-gray-600">
+                        <h1 class="text-xl mb-2">{{$t("forgotPassword.title")}}</h1>
+                        <p>{{$t("forgotPassword.message")}}</p>
+                    </div>
+
                     <div>
-                        <v-label>E-Mail</v-label>
+                        <v-label>{{$t("forgotPassword.email")}}</v-label>
                         <v-input type="text" class="w-full" v-model="email" :disabled="inputsDisabled"></v-input>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-button @click.native="sendForgotMail" :disabled="inputsDisabled">Passwort zurücksetzen</v-button>
+                    <v-button @click.native="sendForgotMail" :disabled="inputsDisabled">{{$t("forgotPassword.submit")}}</v-button>
                 </div>
             </form>
         </auth-card>
