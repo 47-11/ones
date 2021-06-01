@@ -92,7 +92,9 @@ describe("Events-Store", () => {
             { uuid: "43", title: "Paralympics" }
         ] as SimpleEvent[];
         axiosMock.request.mockResolvedValue({
-            data: events
+            data: {
+                elements: events
+            }
         });
 
         await eventsStore.fetch();
