@@ -25,10 +25,7 @@
                         <p>Wähle ein starkes und sicheres Passwort aus.</p>
                     </div>
 
-                    <div>
-                        <v-label>Neues Passwort</v-label>
-                        <v-input type="password" class="w-full" v-model="password" :disabled="inputsDisabled"></v-input>
-                    </div>
+                    <v-password v-bind:label="'Neues Passwort'" v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
 
                     <div class="mt-5">
                         <v-label>Passwort wiederholen</v-label>
@@ -50,6 +47,7 @@ import GuestLayout from "@/layouts/GuestLayout.vue";
 import AuthCard from "@/components/AuthCard.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import VInput from "@/components/forms/VInput.vue";
+import VPassword from "@/components/forms/VPassword.vue";
 import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
@@ -65,7 +63,8 @@ import { vxm } from "@/store";
         VInput,
         VLabel,
         AuthCard,
-        GuestLayout
+        GuestLayout,
+        VPassword
     }
 })
 export default class ResetPassword extends Vue {
@@ -74,6 +73,7 @@ export default class ResetPassword extends Vue {
     passwordRepeat = "";
     inputsDisabled = true;
     changeDone = true;
+    score = 0;
 
     mounted(): void {
         this.inputsDisabled = false;
@@ -102,11 +102,15 @@ export default class ResetPassword extends Vue {
     }
 
     private assertValid(): void {
-        if (this.password.length < 8) {
-            throw new Error("Passwort muss aus mindestens 8 Zeichen bestehen.");
+        if (this.score < 4) {
+            throw new Error("Passwort ist zu schwach.");
         } else if (this.password !== this.passwordRepeat) {
             throw new Error("Password Wiederholung nicht identisch mit Passwort.");
         }
+    }
+
+    public scoreChanged(newScore: number): void {
+        this.score = newScore;
     }
 }
 </script>

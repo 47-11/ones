@@ -9,6 +9,8 @@
         "Openapi",
         "Webservice",
         "compat",
+        "fontawesome",
+        "fortawesome",
         "tailwindcss",
         "vuex"
     ],

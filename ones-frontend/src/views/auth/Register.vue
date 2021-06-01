@@ -26,10 +26,7 @@
                         </v-hint>
                     </div>
 
-                    <div class="mt-5">
-                        <v-label>Passwort</v-label>
-                        <v-input type="password" class="w-full" v-model="password" :disabled="inputsDisabled"></v-input>
-                    </div>
+                    <v-password v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
 
                     <div class="mt-5">
                         <v-label>Passwort wiederholen</v-label>
@@ -55,6 +52,12 @@
     </guest-layout>
 </template>
 
+<style scoped>
+#passwordBar {
+    transition: background-color, width 0.5s ease-in-out;
+}
+</style>
+
 <script lang="ts">
 import Feedback from "@/components/Feedback.vue";
 import { Component, Vue } from "vue-property-decorator";
@@ -62,6 +65,7 @@ import GuestLayout from "@/layouts/GuestLayout.vue";
 import AuthCard from "@/components/AuthCard.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import VInput from "@/components/forms/VInput.vue";
+import VPassword from "@/components/forms/VPassword.vue";
 import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
@@ -78,12 +82,15 @@ import VLink from "@/components/VLink.vue";
         VLabel,
         AuthCard,
         GuestLayout,
-        Feedback
+        Feedback,
+        VPassword
     }
 })
 export default class Register extends Vue {
     email = "";
     password = "";
+    score = 0;
+
     passwordRepeat = "";
     dataProtectionAccepted = true;
     error = "";
@@ -116,19 +123,19 @@ export default class Register extends Vue {
         this.inputsDisabled = false;
     }
 
-    public log(): void {
-        console.log("Call");
-    }
-
     public nextRegistration(): void {
         this.registrationDone = false;
+    }
+
+    public scoreChanged(newScore: number): void {
+        this.score = newScore;
     }
 
     private assertValid(): void {
         if (this.email === "") {
             throw new Error("E-Mail ist erforderlich.");
-        } else if (this.password.length < 8) {
-            throw new Error("Passwort muss aus mindestens 8 Zeichen bestehen.");
+        } else if (this.score < 4) {
+            throw new Error("Passwort ist zu schwach.");
         } else if (this.password !== this.passwordRepeat) {
             throw new Error("Password Wiederholung nicht identisch mit Passwort.");
         } else if (!this.dataProtectionAccepted) {
