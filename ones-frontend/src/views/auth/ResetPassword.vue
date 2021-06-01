@@ -25,7 +25,7 @@
                         <p>{{$t('resetPassword.chooseStrongPassword')}}</p>
                     </div>
 
-                    <v-password v-bind:label="'Neues Passwort'" v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
+                    <v-password v-bind:label="$t('resetPassword.newPassword')" v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
 
                     <div class="mt-5">
                         <v-label>{{$t('resetPassword.passwordRepeat')}}</v-label>

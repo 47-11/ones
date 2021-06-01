@@ -113,5 +113,8 @@
         "callForTenders": "Ausschreibung",
         "details": "Details",
         "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen."
+    },
+    "password": {
+        "pasword": "Passwort"
     }
 }

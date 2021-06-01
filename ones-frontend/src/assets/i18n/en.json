@@ -114,5 +114,8 @@
         "callForTenders": "Call for Tenders",
         "details": "Details",
         "pagination": "Shows {from} to {to} of {of} events."
+    },
+    "password": {
+        "password": "Password"
     }
 }
