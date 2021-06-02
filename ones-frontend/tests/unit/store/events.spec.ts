@@ -1,19 +1,16 @@
 import { FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated";
-import { BASE_PATH } from "@/openapi/generated/base";
 import { EventsStore } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
 import Vuex, { Store } from "vuex";
 import { createProxy, extractVuexModule } from "vuex-class-component";
-import { ProxyWatchers, VuexModuleConstructor, VuexModule } from "vuex-class-component/dist/interfaces";
+import { ProxyWatchers, VuexModule, VuexModuleConstructor } from "vuex-class-component/dist/interfaces";
 
 jest.mock("axios");
 
-const url = (path: string) => {
-    return expect.objectContaining({
-        url: `${BASE_PATH}/api/v1/${path.trim()}`
-    });
+const escaped = (text: string): string => {
+    return text.replace(" ", "+");
 };
 
 /**
@@ -70,20 +67,24 @@ describe("Events-Store", () => {
 
         await eventsStore.fetch();
 
-        expect(axiosMock.request).toHaveBeenCalledWith(url("event"));
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain("event");
+        expect(requestOptions.url).toContain("page=0");
     });
 
     it("fetches events when setting filter", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Event[] });
-
-        await eventsStore.addFilter({
+        const filter = {
             titleContains: "Olympic games",
             organizerId: 42
-        });
+        };
 
-        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
-            url: "/api/v1/event?titleContains=Olympic+games&organizerId=42"
-        }));
+        await eventsStore.addFilter(filter);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain("event");
+        expect(requestOptions.url).toContain(`titleContains=${escaped(filter.titleContains)}`);
+        expect(requestOptions.url).toContain(`organizerId=${filter.organizerId}`);
     });
 
     it("lists fetched events", async () => {
@@ -114,9 +115,9 @@ describe("Events-Store", () => {
 
         await eventsStore.fetchEvent(eventId);
 
-        const fetchedContests = eventsStore.eventContests;
-        expect(axiosMock.request).toHaveBeenCalledWith(url(`event/${eventId}/contests`));
-        expect(fetchedContests).toEqual(contests);
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`${eventId}/contests`);
+        expect(eventsStore.eventContests).toEqual(contests);
     });
 
     it("fetches an events details when an event is selected", async () => {
@@ -130,9 +131,8 @@ describe("Events-Store", () => {
 
         await eventsStore.fetchEvent(eventId);
 
-        const fetchedContests = eventsStore.eventDetails;
-
-        expect(axiosMock.request).toHaveBeenCalledWith(url(`event/${eventId}`));
-        expect(fetchedContests).toEqual(details);
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`event/${eventId}`);
+        expect(eventsStore.eventDetails).toEqual(details);
     });
 });

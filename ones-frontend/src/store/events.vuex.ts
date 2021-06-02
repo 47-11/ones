@@ -56,7 +56,8 @@ export class EventsStore extends VuexModule {
             this.filter.startsAfter,
             this.filter.endsBefore,
             this.filter.endsAfter,
-            this.filter.organizerId
+            this.filter.organizerId,
+            0
         ];
     }
 
