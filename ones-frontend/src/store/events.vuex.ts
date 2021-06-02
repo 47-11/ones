@@ -17,6 +17,8 @@ export enum SortDirection {
     Descending = "DESCENDING"
 }
 
+export const FirstPage = 0;
+
 const VuexModule = createModule({
     namespaced: "events",
     strict: false
@@ -27,7 +29,7 @@ export class EventsStore extends VuexModule {
     private filter = {} as FilterType;
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
-    private selectedPage = 0;
+    private selectedPage = FirstPage;
     private selectedPageSize = 10;
     private sortCriterion: keyof SimpleEvent = "start";
     private sortDirection: SortDirection = SortDirection.Ascending;
@@ -134,14 +136,14 @@ export class EventsStore extends VuexModule {
 
     @action
     async sortBy(criterion: keyof SimpleEvent): Promise<void> {
-        this.selectedPage = 0;
+        this.selectedPage = FirstPage;
         this.sortCriterion = criterion;
         await this.fetch();
     }
 
     @action
     async sortInDirection(direction: SortDirection): Promise<void> {
-        this.selectedPage = 0;
+        this.selectedPage = FirstPage;
         this.sortDirection = direction;
         await this.fetch();
     }

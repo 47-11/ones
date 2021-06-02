@@ -1,5 +1,5 @@
 import { EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
-import { EventsStore, SortDirection } from "@/store/events.vuex";
+import { EventsStore, FirstPage, SortDirection } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
@@ -68,14 +68,17 @@ describe("Events-Store", () => {
         clearProxyCache(EventsStore);
     });
 
-    it("fetches events unfiltered", async () => {
+    it("fetches events with default values", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Event[] });
 
         await eventsStore.fetch();
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain("event");
-        expect(requestOptions.url).toContain("page=0");
+        expect(requestOptions.url).toContain(`page=${FirstPage}`);
+        expect(requestOptions.url).toContain(`pageSize=${10}`);
+        expect(requestOptions.url).toContain("sortBy=start");
+        expect(requestOptions.url).toContain("sortDirection=ASCENDING");
     });
 
     it("fetches events when setting filter", async () => {
@@ -154,7 +157,7 @@ describe("Events-Store", () => {
 
     it("fetches the next page", async () => {
         axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
-        const currentPage = 0;
+        const currentPage = FirstPage;
 
         await eventsStore.nextPage();
 
@@ -203,7 +206,7 @@ describe("Events-Store", () => {
         await eventsStore.sortBy(criterion);
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
-        expect(requestOptions.url).toContain(`page=${0}`);
+        expect(requestOptions.url).toContain(`page=${FirstPage}`);
     });
 
     it("fetches with the selected sort criterion", async () => {
@@ -225,6 +228,6 @@ describe("Events-Store", () => {
         await eventsStore.sortInDirection(direction);
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
-        expect(requestOptions.url).toContain(`page=${0}`);
+        expect(requestOptions.url).toContain(`page=${FirstPage}`);
     });
 });
