@@ -173,4 +173,14 @@ describe("Events-Store", () => {
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain(`page=${currentPage - 1}`);
     });
+
+    it("fetches with the selected page size", async () => {
+        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
+        const selectedPageSize = 20;
+
+        await eventsStore.selectPageSize(selectedPageSize);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`pageSize=${selectedPageSize}`);
+    });
 });

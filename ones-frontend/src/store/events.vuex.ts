@@ -23,6 +23,7 @@ export class EventsStore extends VuexModule {
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private selectedPage = 0;
+    private selectedPageSize = 10;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -58,7 +59,8 @@ export class EventsStore extends VuexModule {
             this.filter.endsBefore,
             this.filter.endsAfter,
             this.filter.organizerId,
-            this.selectedPage
+            this.selectedPage,
+            this.selectedPageSize
         ];
     }
 
@@ -114,6 +116,12 @@ export class EventsStore extends VuexModule {
     @action
     async prevPage(): Promise<void> {
         this.selectedPage = this.selectedPage - 1;
+        await this.fetch();
+    }
+
+    @action
+    async selectPageSize(pageSize: number): Promise<void> {
+        this.selectedPageSize = pageSize;
         await this.fetch();
     }
 }
