@@ -62,6 +62,22 @@ export class EventsStore extends VuexModule {
         return this.selectedSortDirection;
     }
 
+    get elementCount(): number {
+        return 97;
+    }
+
+    get hasNextPage(): boolean {
+        return true;
+    }
+
+    get hasPrevPage(): boolean {
+        return true;
+    }
+
+    get pageCount(): number {
+        return 10;
+    }
+
     private get controller(): EventControllerApi {
         return new EventControllerApi({
             accessToken: createProxy(this.$store, UserStore).token || "",
