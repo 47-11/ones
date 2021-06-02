@@ -31,8 +31,8 @@ export class EventsStore extends VuexModule {
     private details: FullEvent | null = null;
     private selectedPage = FirstPage;
     private selectedPageSize = 10;
-    private sortCriterion: keyof SimpleEvent = "start";
-    private sortDirection: SortDirection = SortDirection.Ascending;
+    private selectedSortCriterion: keyof SimpleEvent = "start";
+    private selectedSortDirection: SortDirection = SortDirection.Ascending;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -44,6 +44,22 @@ export class EventsStore extends VuexModule {
 
     get eventDetails(): FullEvent | null {
         return this.details;
+    }
+
+    get page(): number {
+        return this.selectedPage;
+    }
+
+    get pageSize(): number {
+        return this.selectedPageSize;
+    }
+
+    get sortCriterion(): keyof SimpleEvent {
+        return this.selectedSortCriterion;
+    }
+
+    get sortDirection(): SortDirection {
+        return this.selectedSortDirection;
     }
 
     private get controller(): EventControllerApi {
@@ -70,8 +86,8 @@ export class EventsStore extends VuexModule {
             this.filter.organizerId,
             this.selectedPage,
             this.selectedPageSize,
-            this.sortCriterion,
-            this.sortDirection
+            this.selectedSortCriterion,
+            this.selectedSortDirection
         ];
     }
 
@@ -137,14 +153,14 @@ export class EventsStore extends VuexModule {
     @action
     async sortBy(criterion: keyof SimpleEvent): Promise<void> {
         this.selectedPage = FirstPage;
-        this.sortCriterion = criterion;
+        this.selectedSortCriterion = criterion;
         await this.fetch();
     }
 
     @action
     async sortInDirection(direction: SortDirection): Promise<void> {
         this.selectedPage = FirstPage;
-        this.sortDirection = direction;
+        this.selectedSortDirection = direction;
         await this.fetch();
     }
 }
