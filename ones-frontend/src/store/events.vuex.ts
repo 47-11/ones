@@ -12,6 +12,11 @@ interface FilterType {
     organizerId?: number;
 }
 
+export enum SortDirection {
+    Ascending = "ASCENDING",
+    Descending = "DESCENDING"
+}
+
 const VuexModule = createModule({
     namespaced: "events",
     strict: false
@@ -25,6 +30,7 @@ export class EventsStore extends VuexModule {
     private selectedPage = 0;
     private selectedPageSize = 10;
     private sortCriterion: keyof SimpleEvent = "start";
+    private sortDirection: SortDirection = SortDirection.Ascending;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -62,7 +68,8 @@ export class EventsStore extends VuexModule {
             this.filter.organizerId,
             this.selectedPage,
             this.selectedPageSize,
-            this.sortCriterion
+            this.sortCriterion,
+            this.sortDirection
         ];
     }
 
@@ -129,6 +136,13 @@ export class EventsStore extends VuexModule {
     async sortBy(criterion: keyof SimpleEvent): Promise<void> {
         this.selectedPage = 0;
         this.sortCriterion = criterion;
+        await this.fetch();
+    }
+
+    @action
+    async sortInDirection(direction: SortDirection): Promise<void> {
+        this.selectedPage = 0;
+        this.sortDirection = direction;
         await this.fetch();
     }
 }
