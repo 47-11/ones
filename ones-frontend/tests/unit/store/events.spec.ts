@@ -38,6 +38,10 @@ function clearProxyCache<T extends typeof VuexModule>(cls: T) {
     }
 }
 
+const EmptyFindAllResponse = {
+    data: { elements: [] as SimpleEventDto }
+} as Resolved<ReturnType<EventControllerApi["findAll"]>>;
+
 describe("Events-Store", () => {
     let store: Store<unknown>;
     let eventsStore: EventsStore & ProxyWatchers;
@@ -139,14 +143,34 @@ describe("Events-Store", () => {
     });
 
     it("fetches the selected page", async () => {
-        axiosMock.request.mockResolvedValue({
-            data: { elements: [] as SimpleEventDto }
-        } as Resolved<ReturnType<EventControllerApi["findAll"]>>);
+        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const pageToSelect = 5;
 
         await eventsStore.selectPage(pageToSelect);
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
-        expect(requestOptions.url).toContain(`page=${pageToSelect}`)
+        expect(requestOptions.url).toContain(`page=${pageToSelect}`);
+    });
+
+    it("fetches the next page", async () => {
+        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
+        const currentPage = 0;
+
+        await eventsStore.nextPage();
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`page=${currentPage + 1}`);
+    });
+
+    it("fetches the previous page", async () => {
+        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
+        const currentPage = 5;
+        await eventsStore.selectPage(currentPage);
+        axiosMock.request.mockClear();
+
+        await eventsStore.prevPage();
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`page=${currentPage - 1}`);
     });
 });

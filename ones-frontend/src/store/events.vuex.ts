@@ -104,4 +104,16 @@ export class EventsStore extends VuexModule {
         this.selectedPage = page;
         await this.fetch();
     }
+
+    @action
+    async nextPage(): Promise<void> {
+        this.selectedPage = this.selectedPage + 1;
+        await this.fetch();
+    }
+
+    @action
+    async prevPage(): Promise<void> {
+        this.selectedPage = this.selectedPage - 1;
+        await this.fetch();
+    }
 }
