@@ -1,4 +1,4 @@
-import { FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated";
+import { EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
 import { EventsStore } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
@@ -12,6 +12,8 @@ jest.mock("axios");
 const escaped = (text: string): string => {
     return text.replace(" ", "+");
 };
+
+type Resolved<T> = T extends Promise<infer C> ? C : never;
 
 /**
  * This function is used to clear the proxy cache of the handed vuex module
@@ -134,5 +136,17 @@ describe("Events-Store", () => {
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain(`event/${eventId}`);
         expect(eventsStore.eventDetails).toEqual(details);
+    });
+
+    it("fetches the selected page", async () => {
+        axiosMock.request.mockResolvedValue({
+            data: { elements: [] as SimpleEventDto }
+        } as Resolved<ReturnType<EventControllerApi["findAll"]>>);
+        const pageToSelect = 5;
+
+        await eventsStore.selectPage(pageToSelect);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`page=${pageToSelect}`)
     });
 });

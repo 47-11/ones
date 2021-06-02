@@ -22,6 +22,7 @@ export class EventsStore extends VuexModule {
     private filter = {} as FilterType;
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
+    private selectedPage = 0;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -57,7 +58,7 @@ export class EventsStore extends VuexModule {
             this.filter.endsBefore,
             this.filter.endsAfter,
             this.filter.organizerId,
-            0
+            this.selectedPage
         ];
     }
 
@@ -96,5 +97,11 @@ export class EventsStore extends VuexModule {
             this.fetchContestsOf(eventId),
             this.fetchDetailsOf(eventId)
         ]);
+    }
+
+    @action
+    async selectPage(page: number): Promise<void> {
+        this.selectedPage = page;
+        await this.fetch();
     }
 }
