@@ -24,6 +24,7 @@ export class EventsStore extends VuexModule {
     private details: FullEvent | null = null;
     private selectedPage = 0;
     private selectedPageSize = 10;
+    private sortCriterion: keyof SimpleEvent = "start";
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -60,7 +61,8 @@ export class EventsStore extends VuexModule {
             this.filter.endsAfter,
             this.filter.organizerId,
             this.selectedPage,
-            this.selectedPageSize
+            this.selectedPageSize,
+            this.sortCriterion
         ];
     }
 
@@ -120,6 +122,13 @@ export class EventsStore extends VuexModule {
     @action
     async selectPageSize(pageSize: number): Promise<void> {
         this.selectedPageSize = pageSize;
+        await this.fetch();
+    }
+
+    @action
+    async sortBy(criterion: keyof SimpleEvent): Promise<void> {
+        this.selectedPage = 0;
+        this.sortCriterion = criterion;
         await this.fetch();
     }
 }

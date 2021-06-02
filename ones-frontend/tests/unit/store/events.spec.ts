@@ -183,4 +183,26 @@ describe("Events-Store", () => {
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain(`pageSize=${selectedPageSize}`);
     });
+
+    it("fetches with the selected sort criterion", async () => {
+        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
+        const criterion = "title";
+
+        await eventsStore.sortBy(criterion);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`sortBy=${criterion}`);
+    });
+
+    it("resets the page to 0 when the sort criterion is changed", async () => {
+        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
+        await eventsStore.selectPage(5);
+        axiosMock.request.mockClear();
+        const criterion = "title";
+
+        await eventsStore.sortBy(criterion);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain(`page=${0}`);
+    });
 });
