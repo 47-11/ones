@@ -54,14 +54,14 @@ zxcvbnDePackage.translations.warnings.common = "Dies ist ein häufig verwendetes
 })
 export default class VPassword extends Vue {
     @Prop() public disabled!: boolean;
-    @Prop() public value = "";
+    @Prop() public value!: string;
     @Prop() public label!: string;
 
     get labelOrDefault(): string {
         return this.label || this.$t("password.password").toString();
     }
 
-    password = "";
+    password = this.value;
     passwordDebounceTimeout: number | undefined;
     debouncedPassword = "";
 
