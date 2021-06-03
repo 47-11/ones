@@ -9,7 +9,7 @@ public class PageDto<T> {
 
     private int pageNumber;
     private int pageSize;
-    private int totalPages;
+    private int totalElements;
 
     public List<T> getElements() {
         return elements;
@@ -35,11 +35,11 @@ public class PageDto<T> {
         this.pageSize = pageSize;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    public int getTotalElements() {
+        return totalElements;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public void setTotalElements(int totalElements) {
+        this.totalElements = totalElements;
     }
 }

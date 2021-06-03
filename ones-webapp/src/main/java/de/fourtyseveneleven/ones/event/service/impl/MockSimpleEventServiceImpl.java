@@ -45,7 +45,6 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
 
         final int pageNumber = pageRequest.getPageNumber();
         final int pageSize = pageRequest.getPageSize();
-        final int totalPages = (int) Math.ceil(( (double) allElements.size()) / pageSize);
         final int skipElements = pageNumber * pageSize;
 
         final List<SimpleEventDto> pageElements = allElements
@@ -56,10 +55,9 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
 
         final PageDto<SimpleEventDto> page = new PageDto<>();
         page.setElements(pageElements);
-
         page.setPageNumber(pageRequest.getPageNumber());
         page.setPageSize(pageElements.size());
-        page.setTotalPages(totalPages);
+        page.setTotalElements(pageElements.size());
 
         return page;
     }
