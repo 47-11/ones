@@ -110,6 +110,8 @@ export default class Register extends Vue {
     }
 
     public async register(): Promise<void> {
+        const loader = this.$loading.show();
+
         this.inputsDisabled = true;
         this.error = "";
         try {
@@ -125,7 +127,10 @@ export default class Register extends Vue {
             } else {
                 this.error = error.message;
             }
+        } finally {
+            loader.hide();
         }
+
         this.inputsDisabled = false;
     }
 

@@ -81,6 +81,8 @@ export default class ResetPassword extends Vue {
     }
 
     async resetPassword(): Promise<void> {
+        const loader = this.$loading.show();
+
         this.inputsDisabled = true;
         this.error = "";
         const code = this.$route.query.code as string;
@@ -97,7 +99,10 @@ export default class ResetPassword extends Vue {
                 this.error = error.response?.data?.userMessage;
             }
             this.error = error.message;
+        } finally {
+            loader.hide();
         }
+
         this.inputsDisabled = false;
     }
 

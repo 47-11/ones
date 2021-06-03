@@ -75,6 +75,8 @@ export default class ForgotPassword extends Vue {
     }
 
     async sendForgotMail(): Promise<void> {
+        const loader = this.$loading.show();
+
         this.error = "";
         this.inputsDisabled = true;
 
@@ -87,6 +89,8 @@ export default class ForgotPassword extends Vue {
             } else {
                 this.error = error.message;
             }
+        } finally {
+            loader.hide();
         }
 
         this.inputsDisabled = false;
