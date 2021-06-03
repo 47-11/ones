@@ -57,7 +57,7 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
         page.setElements(pageElements);
         page.setPageNumber(pageRequest.getPageNumber());
         page.setPageSize(pageElements.size());
-        page.setTotalElements(pageElements.size());
+        page.setTotalElements(allElements.size());
 
         return page;
     }
