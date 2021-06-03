@@ -91,6 +91,8 @@ export default class Login extends Vue {
     }
 
     public async login(): Promise<void> {
+        const loader = this.$loading.show();
+
         try {
             this.inputsDisabled = true;
             this.error = "";
@@ -99,6 +101,7 @@ export default class Login extends Vue {
                 password: this.password,
                 staySignedIn: this.remember
             });
+
             router.push("/");
         } catch (error) {
             if (error.response?.data?.userMessage) {
@@ -106,6 +109,8 @@ export default class Login extends Vue {
             } else {
                 this.error = error.message;
             }
+        } finally {
+            loader.hide();
         }
         this.inputsDisabled = false;
     }

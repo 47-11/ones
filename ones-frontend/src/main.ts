@@ -8,6 +8,8 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import VueLoading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 Vue.config.productionTip = false;
 
@@ -16,6 +18,11 @@ library.add(faChevronLeft, faPhone, faAt, faFilePdf, faTrailer, faHorseHead, faE
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.use(VueI18n);
+Vue.use(VueLoading, {
+    color: "rgb(79, 70, 229)",
+    loader: "dots",
+    backgroundColor: "#ffffff"
+});
 
 const i18n = new VueI18n({
     locale: navigator.language,

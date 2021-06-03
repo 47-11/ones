@@ -63,6 +63,8 @@ export default class Verified extends Vue {
     error = "";
 
     async mounted(): Promise<void> {
+        const loader = this.$loading.show();
+
         this.error = "";
         this.verified = false;
         const code = this.$route.query.code as string;
@@ -76,6 +78,8 @@ export default class Verified extends Vue {
             } else {
                 this.error = error.message;
             }
+        } finally {
+            loader.hide();
         }
     }
 }
