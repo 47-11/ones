@@ -63,20 +63,28 @@ export class EventsStore extends VuexModule {
         return this.selectedSortDirection;
     }
 
-    get totalCount(): number {
+    get totalElementCount(): number {
         return this._totalCount;
     }
 
     get hasNextPage(): boolean {
-        return true;
+        return this.selectedPage + 1 < this.pageCount;
     }
 
     get hasPrevPage(): boolean {
-        return true;
+        return this.selectedPage > 0;
     }
 
     get pageCount(): number {
-        return 10;
+        return Math.ceil(this.totalElementCount / this.selectedPageSize);
+    }
+
+    get firstElementIndex(): number {
+        return this.selectedPage * this.selectedPageSize;
+    }
+
+    get lastElementIndex(): number {
+        return this.firstElementIndex + this.list.length - 1;
     }
 
     private get controller(): EventControllerApi {

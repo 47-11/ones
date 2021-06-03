@@ -242,9 +242,27 @@ describe("Events-Store", () => {
                 totalElements: 3
             }
         } as FindAllResponse);
+        await eventsStore.selectPage(FirstPage + 1);
 
-        await eventsStore.selectPage(2);
+        expect(eventsStore.totalElementCount).toBe(3);
+    });
 
-        expect(eventsStore.totalCount).toBe(3);
+    it("calculates fitting page boundaries for not full last page", async () => {
+        axiosMock.request.mockResolvedValue({
+            data: {
+                elements: [
+                    { uuid: "3" }
+                ] as SimpleEventDto[],
+                totalElements: 3
+            }
+        } as FindAllResponse);
+        await eventsStore.selectPageSize(2);
+        await eventsStore.selectPage(FirstPage + 1);
+
+        expect(eventsStore.pageCount).toBe(2);
+        expect(eventsStore.firstElementIndex).toBe(2);
+        expect(eventsStore.lastElementIndex).toBe(2);
+        expect(eventsStore.hasNextPage).toBe(false);
+        expect(eventsStore.hasPrevPage).toBe(true);
     });
 });
