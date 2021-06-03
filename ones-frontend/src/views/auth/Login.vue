@@ -18,8 +18,8 @@
                         <v-label>{{$t("login.password")}}</v-label>
                         <v-input type="password" class="w-full" v-model="password" :disabled="inputsDisabled"></v-input>
 
-                        <router-link to="forgot-password" class="mt-2 block">
-                            <span class="text-blue-600 hover:underline">{{$t("login.forgotPassword")}}</span>
+                        <router-link to="forgot-password" class="mt-2 inline-block">
+                            <span class="text-blue-600">{{$t("login.forgotPassword")}}</span>
                         </router-link>
                     </div>
 
