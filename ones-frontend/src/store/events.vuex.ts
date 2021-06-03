@@ -1,6 +1,8 @@
 import { EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
 import { UserStore } from "./userStore.vuex";
+import { Paginateable } from "@/components/pagination/paginateable";
+import { Sortable } from "@/components/table/sortable";
 
 interface FilterType {
     titleContains?: string;
@@ -24,14 +26,14 @@ const VuexModule = createModule({
     strict: false
 });
 
-export class EventsStore extends VuexModule {
+export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
     private filter = {} as FilterType;
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private _totalCount = 0;
     private selectedPage = FirstPage;
-    private selectedPageSize = 10;
+    private selectedPageSize = 3;
     private selectedSortCriterion: keyof SimpleEvent = "start";
     private selectedSortDirection: SortDirection = SortDirection.Ascending;
 
@@ -187,6 +189,17 @@ export class EventsStore extends VuexModule {
     async sortInDirection(direction: SortDirection): Promise<void> {
         this.selectedPage = FirstPage;
         this.selectedSortDirection = direction;
+        await this.fetch();
+    }
+
+    @action
+    async toggleSortDirection(): Promise<void> {
+        this.selectedPage = FirstPage;
+
+        this.selectedSortDirection = this.selectedSortDirection === SortDirection.Ascending
+            ? SortDirection.Descending
+            : SortDirection.Ascending;
+
         await this.fetch();
     }
 }

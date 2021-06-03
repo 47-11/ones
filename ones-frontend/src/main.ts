@@ -1,6 +1,15 @@
 import "@/assets/css/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAt, faChevronLeft, faFilePdf, faPhone, faTrailer, faHorseHead, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons/";
+import {
+    faAt,
+    faChevronLeft,
+    faFilePdf,
+    faPhone,
+    faTrailer,
+    faHorseHead,
+    faExclamationTriangle,
+    faChevronRight, faChevronDown, faChevronUp
+} from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
@@ -13,7 +22,18 @@ import "vue-loading-overlay/dist/vue-loading.css";
 
 Vue.config.productionTip = false;
 
-library.add(faChevronLeft, faPhone, faAt, faFilePdf, faTrailer, faHorseHead, faExclamationTriangle);
+library.add(
+    faChevronLeft,
+    faChevronRight,
+    faChevronDown,
+    faChevronUp,
+    faPhone,
+    faAt,
+    faFilePdf,
+    faTrailer,
+    faHorseHead,
+    faExclamationTriangle
+);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
