@@ -33,7 +33,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private details: FullEvent | null = null;
     private _totalCount = 0;
     private selectedPage = FirstPage;
-    private selectedPageSize = 3;
+    private selectedPageSize = 10;
     private selectedSortCriterion: keyof SimpleEvent = "start";
     private selectedSortDirection: SortDirection = SortDirection.Ascending;
 

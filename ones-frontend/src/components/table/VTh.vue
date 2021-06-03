@@ -22,11 +22,11 @@ import { SortDirection } from "@/store/events.vuex";
 
 @Component
 export default class Pagination extends Vue {
-    @Prop() public sortable!: Sortable|null;
-    @Prop() public sortKey!: string|null;
+    @Prop() public sortable!: Sortable;
+    @Prop() public sortKey!: string;
 
     sort(criterion: keyof SimpleEvent): void {
-        if (!this.sortable && !this.sortKey) {
+        if (this.sortable !== undefined && this.sortKey !== undefined) {
             return;
         }
 
@@ -38,11 +38,11 @@ export default class Pagination extends Vue {
     }
 
     isSortedBy(criterion: keyof SimpleEvent): boolean {
-        return this.sortable.sortCriterion === criterion;
+        return this.sortable?.sortCriterion === criterion;
     }
 
     get isSortedAscending(): boolean {
-        return this.sortable.sortDirection === SortDirection.Ascending;
+        return this.sortable?.sortDirection === SortDirection.Ascending;
     }
 }
 </script>

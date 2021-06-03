@@ -8,9 +8,10 @@
                 <font-awesome-icon :icon="'chevron-left'" class="text-xs mx-2"/>
             </a>
 
-            <a @click="paginateable.selectPage(index)" v-for="index in paginateable.pageCount" :key="index"
+            <a @click="paginateable.selectPage(page - 1)" v-for="page in paginateable.pageCount" :key="page"
+               v-bind:class="{ 'rounded-l-md': !paginateable.hasPrevPage && page === 1, 'rounded-r-md': !paginateable.hasNextPage && page === paginateable.pageCount }"
                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                {{ index }}
+                {{ page }}
             </a>
 
             <a @click="paginateable.nextPage()" v-if="paginateable.hasNextPage"
