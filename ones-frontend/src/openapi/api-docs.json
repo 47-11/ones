@@ -976,7 +976,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "totalPages": {
+          "totalElements": {
             "type": "integer",
             "format": "int32"
           }

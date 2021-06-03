@@ -478,7 +478,7 @@ export interface PageDtoSimpleEventDto {
      * @type {number}
      * @memberof PageDtoSimpleEventDto
      */
-    totalPages?: number;
+    totalElements?: number;
 }
 /**
  * 
