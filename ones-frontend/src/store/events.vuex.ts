@@ -29,6 +29,7 @@ export class EventsStore extends VuexModule {
     private filter = {} as FilterType;
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
+    private _totalCount = 0;
     private selectedPage = FirstPage;
     private selectedPageSize = 10;
     private selectedSortCriterion: keyof SimpleEvent = "start";
@@ -62,8 +63,8 @@ export class EventsStore extends VuexModule {
         return this.selectedSortDirection;
     }
 
-    get elementCount(): number {
-        return 97;
+    get totalCount(): number {
+        return this._totalCount;
     }
 
     get hasNextPage(): boolean {
@@ -89,6 +90,7 @@ export class EventsStore extends VuexModule {
     async fetch(): Promise<void> {
         const fetchResponse = await this.controller.findAll(...this.optionsAsArray);
         this.events = fetchResponse.data.elements || [];
+        this._totalCount = fetchResponse.data.totalElements || 0;
     }
 
     private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {

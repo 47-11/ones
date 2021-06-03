@@ -38,9 +38,11 @@ function clearProxyCache<T extends typeof VuexModule>(cls: T) {
     }
 }
 
-const EmptyFindAllResponse = {
-    data: { elements: [] as SimpleEventDto }
-} as Resolved<ReturnType<EventControllerApi["findAll"]>>;
+type FindAllResponse = Partial<Resolved<ReturnType<EventControllerApi["findAll"]>>>;
+
+const EmptyFindAllResponse: FindAllResponse = {
+    data: { elements: [] }
+};
 
 describe("Events-Store", () => {
     let store: Store<unknown>;
@@ -229,5 +231,20 @@ describe("Events-Store", () => {
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain(`page=${FirstPage}`);
+    });
+
+    it("fetches the total amount of elements", async () => {
+        axiosMock.request.mockResolvedValue({
+            data: {
+                elements: [
+                    { uuid: "3" }
+                ] as SimpleEventDto[],
+                totalElements: 3
+            }
+        } as FindAllResponse);
+
+        await eventsStore.selectPage(2);
+
+        expect(eventsStore.totalCount).toBe(3);
     });
 });
