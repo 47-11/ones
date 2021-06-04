@@ -452,6 +452,37 @@ export interface LoginDto {
 /**
  * 
  * @export
+ * @interface PageDtoSimpleEventDto
+ */
+export interface PageDtoSimpleEventDto {
+    /**
+     * 
+     * @type {Array<SimpleEventDto>}
+     * @memberof PageDtoSimpleEventDto
+     */
+    elements?: Array<SimpleEventDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageDtoSimpleEventDto
+     */
+    pageNumber?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageDtoSimpleEventDto
+     */
+    pageSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageDtoSimpleEventDto
+     */
+    totalElements?: number;
+}
+/**
+ * 
+ * @export
  * @interface PersonDto
  */
 export interface PersonDto {
@@ -547,13 +578,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
 }
 /**
  * 
@@ -782,10 +813,14 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
          * @param {string} [endsBefore] 
          * @param {string} [endsAfter] 
          * @param {number} [organizerId] 
+         * @param {number} [page] 
+         * @param {number} [pageSize] 
+         * @param {string} [sortBy] 
+         * @param {'ASCENDING' | 'DESCENDING'} [sortDirection] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll: async (titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options: any = {}): Promise<RequestArgs> => {
+        findAll: async (titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/event`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -836,6 +871,22 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
 
             if (organizerId !== undefined) {
                 localVarQueryParameter['organizerId'] = organizerId;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
+            }
+
+            if (sortDirection !== undefined) {
+                localVarQueryParameter['sortDirection'] = sortDirection;
             }
 
 
@@ -942,11 +993,15 @@ export const EventControllerApiFp = function(configuration?: Configuration) {
          * @param {string} [endsBefore] 
          * @param {string} [endsAfter] 
          * @param {number} [organizerId] 
+         * @param {number} [page] 
+         * @param {number} [pageSize] 
+         * @param {string} [sortBy] 
+         * @param {'ASCENDING' | 'DESCENDING'} [sortDirection] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SimpleEventDto>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options);
+        async findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageDtoSimpleEventDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, page, pageSize, sortBy, sortDirection, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -988,11 +1043,15 @@ export const EventControllerApiFactory = function (configuration?: Configuration
          * @param {string} [endsBefore] 
          * @param {string} [endsAfter] 
          * @param {number} [organizerId] 
+         * @param {number} [page] 
+         * @param {number} [pageSize] 
+         * @param {string} [sortBy] 
+         * @param {'ASCENDING' | 'DESCENDING'} [sortDirection] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any): AxiosPromise<Array<SimpleEventDto>> {
-            return localVarFp.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(axios, basePath));
+        findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any): AxiosPromise<PageDtoSimpleEventDto> {
+            return localVarFp.findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, page, pageSize, sortBy, sortDirection, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1031,12 +1090,16 @@ export class EventControllerApi extends BaseAPI {
      * @param {string} [endsBefore] 
      * @param {string} [endsAfter] 
      * @param {number} [organizerId] 
+     * @param {number} [page] 
+     * @param {number} [pageSize] 
+     * @param {string} [sortBy] 
+     * @param {'ASCENDING' | 'DESCENDING'} [sortDirection] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventControllerApi
      */
-    public findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, options?: any) {
-        return EventControllerApiFp(this.configuration).findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, options).then((request) => request(this.axios, this.basePath));
+    public findAll(titleContains?: string, descriptionContains?: string, startsBefore?: string, startsAfter?: string, endsBefore?: string, endsAfter?: string, organizerId?: number, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any) {
+        return EventControllerApiFp(this.configuration).findAll(titleContains, descriptionContains, startsBefore, startsAfter, endsBefore, endsAfter, organizerId, page, pageSize, sortBy, sortDirection, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

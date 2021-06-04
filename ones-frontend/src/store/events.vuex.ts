@@ -1,6 +1,8 @@
 import { EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
 import { UserStore } from "./userStore.vuex";
+import { Paginateable } from "@/components/pagination/paginateable";
+import { Sortable } from "@/components/table/sortable";
 
 interface FilterType {
     titleContains?: string;
@@ -12,16 +14,28 @@ interface FilterType {
     organizerId?: number;
 }
 
+export enum SortDirection {
+    Ascending = "ASCENDING",
+    Descending = "DESCENDING"
+}
+
+export const FirstPage = 0;
+
 const VuexModule = createModule({
     namespaced: "events",
     strict: false
 });
 
-export class EventsStore extends VuexModule {
+export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
     private filter = {} as FilterType;
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
+    private _totalCount = 0;
+    private selectedPage = FirstPage;
+    private selectedPageSize = 10;
+    private selectedSortCriterion: keyof SimpleEvent = "start";
+    private selectedSortDirection: SortDirection = SortDirection.Ascending;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -35,6 +49,46 @@ export class EventsStore extends VuexModule {
         return this.details;
     }
 
+    get page(): number {
+        return this.selectedPage;
+    }
+
+    get pageSize(): number {
+        return this.selectedPageSize;
+    }
+
+    get sortCriterion(): keyof SimpleEvent {
+        return this.selectedSortCriterion;
+    }
+
+    get sortDirection(): SortDirection {
+        return this.selectedSortDirection;
+    }
+
+    get totalElementCount(): number {
+        return this._totalCount;
+    }
+
+    get hasNextPage(): boolean {
+        return this.selectedPage + 1 < this.pageCount;
+    }
+
+    get hasPrevPage(): boolean {
+        return this.selectedPage > 0;
+    }
+
+    get pageCount(): number {
+        return Math.ceil(this.totalElementCount / this.selectedPageSize);
+    }
+
+    get firstElementIndex(): number {
+        return this.selectedPage * this.selectedPageSize;
+    }
+
+    get lastElementIndex(): number {
+        return this.firstElementIndex + this.list.length - 1;
+    }
+
     private get controller(): EventControllerApi {
         return new EventControllerApi({
             accessToken: createProxy(this.$store, UserStore).token || "",
@@ -44,11 +98,12 @@ export class EventsStore extends VuexModule {
 
     @action
     async fetch(): Promise<void> {
-        const fetchResponse = await this.controller.findAll(...this.filterAsArray);
-        this.events = fetchResponse.data;
+        const fetchResponse = await this.controller.findAll(...this.optionsAsArray);
+        this.events = fetchResponse.data.elements || [];
+        this._totalCount = fetchResponse.data.totalElements || 0;
     }
 
-    private get filterAsArray(): Parameters<EventControllerApi["findAll"]> {
+    private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {
         return [
             this.filter.titleContains,
             this.filter.descriptionContains,
@@ -56,7 +111,11 @@ export class EventsStore extends VuexModule {
             this.filter.startsAfter,
             this.filter.endsBefore,
             this.filter.endsAfter,
-            this.filter.organizerId
+            this.filter.organizerId,
+            this.selectedPage,
+            this.selectedPageSize,
+            this.selectedSortCriterion,
+            this.selectedSortDirection
         ];
     }
 
@@ -95,5 +154,52 @@ export class EventsStore extends VuexModule {
             this.fetchContestsOf(eventId),
             this.fetchDetailsOf(eventId)
         ]);
+    }
+
+    @action
+    async selectPage(page: number): Promise<void> {
+        this.selectedPage = page;
+        await this.fetch();
+    }
+
+    @action
+    async nextPage(): Promise<void> {
+        await this.selectPage(this.selectedPage + 1);
+    }
+
+    @action
+    async prevPage(): Promise<void> {
+        await this.selectPage(this.selectedPage - 1);
+    }
+
+    @action
+    async selectPageSize(pageSize: number): Promise<void> {
+        this.selectedPageSize = pageSize;
+        await this.fetch();
+    }
+
+    @action
+    async sortBy(criterion: keyof SimpleEvent): Promise<void> {
+        this.selectedPage = FirstPage;
+        this.selectedSortCriterion = criterion;
+        await this.fetch();
+    }
+
+    @action
+    async sortInDirection(direction: SortDirection): Promise<void> {
+        this.selectedPage = FirstPage;
+        this.selectedSortDirection = direction;
+        await this.fetch();
+    }
+
+    @action
+    async toggleSortDirection(): Promise<void> {
+        this.selectedPage = FirstPage;
+
+        this.selectedSortDirection = this.selectedSortDirection === SortDirection.Ascending
+            ? SortDirection.Descending
+            : SortDirection.Ascending;
+
+        await this.fetch();
     }
 }

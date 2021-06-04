@@ -1,5 +1,9 @@
 package de.fourtyseveneleven.ones.event.controller;
 
+import de.fourtyseveneleven.ones.common.model.SortDirection;
+import de.fourtyseveneleven.ones.common.model.dto.PageDto;
+import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
+import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
 import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
@@ -33,18 +37,24 @@ public class EventController {
     }
 
     @GetMapping("")
-    public List<SimpleEventDto> findAll(@RequestParam(required = false) String titleContains,
-                                        @RequestParam(required = false) String descriptionContains,
-                                        @RequestParam(required = false) LocalDateTime startsBefore,
-                                        @RequestParam(required = false) LocalDateTime startsAfter,
-                                        @RequestParam(required = false) LocalDateTime endsBefore,
-                                        @RequestParam(required = false) LocalDateTime endsAfter,
-                                        @RequestParam(required = false) Long organizerId) {
+    public PageDto<SimpleEventDto> findAll(@RequestParam(required = false) String titleContains,
+                                           @RequestParam(required = false) String descriptionContains,
+                                           @RequestParam(required = false) LocalDateTime startsBefore,
+                                           @RequestParam(required = false) LocalDateTime startsAfter,
+                                           @RequestParam(required = false) LocalDateTime endsBefore,
+                                           @RequestParam(required = false) LocalDateTime endsAfter,
+                                           @RequestParam(required = false) Long organizerId,
+                                           @RequestParam(required = false, defaultValue = "0") int page,
+                                           @RequestParam(required = false, defaultValue = "10") int pageSize,
+                                           @RequestParam(required = false, defaultValue = "start") String sortBy,
+                                           @RequestParam(required = false, defaultValue = "ASCENDING") SortDirection sortDirection) {
 
         final var filter = new EventFilterDto(titleContains, descriptionContains, startsBefore, startsAfter,
                 endsBefore, endsAfter, organizerId);
+        final var pageRequest = new PageRequest(page, pageSize);
+        final var sortRequest = new SortRequest(sortBy, sortDirection);
 
-        return simpleEventService.findAll(filter);
+        return simpleEventService.findAll(filter, pageRequest, sortRequest);
     }
 
     @GetMapping("/{uuid}")
