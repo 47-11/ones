@@ -2,7 +2,7 @@
 <div>
     <div class="mt-5">
         <v-label>{{labelOrDefault}}</v-label>
-        <v-input type="password" class="w-full" v-bind:value="password" @input="passwordChanged" :disabled="disabled"></v-input>
+        <v-input type="password" class="w-full" v-bind:value="value" @input="passwordChanged" :disabled="disabled"></v-input>
     </div>
 
     <div class="bg-gray-200 w-full h-1.5 flex items-stretch mt-3 rounded overflow-hidden">
@@ -61,7 +61,6 @@ export default class VPassword extends Vue {
         return this.label || this.$t("password.password").toString();
     }
 
-    password = this.value;
     passwordDebounceTimeout: number | undefined;
     debouncedPassword = "";
 
@@ -101,6 +100,8 @@ export default class VPassword extends Vue {
                 ...zxcvbnDePackage.dictionary
             }
         });
+
+        this.passwordChanged(this.value);
     }
 
     passwordChanged(newPassword: string): void {
