@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FrontendController {
 
-    @GetMapping({"{_:^(?!index\\.html).+$}", "{_:^(?!api|assets).+$}/**"})
+    @GetMapping({"{_:^(?!api|assets|img|index\\.html|service-worker\\.js|manifest\\.json).+$}/**"})
     public String redirectToFrontend() {
         return "forward:/";
     }
