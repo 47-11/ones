@@ -26,7 +26,7 @@ export default class Pagination extends Vue {
     @Prop() public sortKey!: string;
 
     sort(criterion: keyof SimpleEvent): void {
-        if (this.sortable !== undefined && this.sortKey !== undefined) {
+        if (this.sortable === undefined || this.sortKey === undefined) {
             return;
         }
 
