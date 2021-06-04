@@ -7,7 +7,7 @@
                         <i>{{email}}</i>
                     </template>
                 </i18n>
-                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
                     <v-button @click.native="nextRegistration">{{$t("register.nextRegistration")}}</v-button>
                 </div>
             </div>
