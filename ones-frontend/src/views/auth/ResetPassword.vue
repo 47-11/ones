@@ -13,7 +13,7 @@
             </div>
         </auth-card>
         <auth-card v-else>
-            <form @submit.prevent="submit">
+            <form @submit.prevent="resetPassword">
                 <div class="px-6 py-5">
                     <feedback color="danger" class="mb-5" v-if="error.length > 0">
                         <h2 class="text-lg">{{$t('resetPassword.error')}}</h2>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-button @click.native="resetPassword">{{$t('resetPassword.savePassword')}}</v-button>
+                    <v-button type="submit">{{$t('resetPassword.savePassword')}}</v-button>
                 </div>
             </form>
         </auth-card>
