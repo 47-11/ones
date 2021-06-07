@@ -19,6 +19,7 @@
     <modules>
         <module>ones-webapp</module>
         <module>ones-frontend</module>
+        <module>ones-ecm-api</module>
     </modules>
 
     <properties>
@@ -63,6 +64,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>1.4.2.Final</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.12.0</version>
@@ -88,6 +95,38 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/ecm-api-docs.json</inputSpec>
+                            <output>${project.basedir}/ones-ecm-api</output>
+                            <generatorName>java</generatorName>
+                            <groupId>de.fourtyseveneleven</groupId>
+                            <artifactId>ones-ecm-api</artifactId>
+                            <artifactVersion>${project.version}</artifactVersion>
+                            <apiPackage>de.fourtyseveneleven.ones.ecm.generated.api</apiPackage>
+                            <modelPackage>de.fourtyseveneleven.ones.ecm.generated.model</modelPackage>
+                            <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+                            <configOptions>
+                                <java8>true</java8>
+                                <library>native</library>
+                                <dateLibrary>java8</dateLibrary>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
