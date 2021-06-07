@@ -128,4 +128,10 @@
                 incrementBy="1"/>
     </changeSet>
 
+    <changeSet id="make valid_until in forgot_password_request nullable" author="Nikos Epping">
+        <dropNotNullConstraint
+                tableName="forgot_password_request"
+                columnName="valid_until" />
+    </changeSet>
+
 </databaseChangeLog>
