@@ -17,7 +17,7 @@ import java.io.Serial;
 public class User extends AbstractBaseEntity {
 
     @Serial
-    private static final long serialVersionUID = 4695286136876273732L;
+    private static final long serialVersionUID = -2934189468164010417L;
 
     private String emailAddress;
     private String password;
