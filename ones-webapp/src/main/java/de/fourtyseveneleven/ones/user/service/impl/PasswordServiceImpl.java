@@ -1,6 +1,5 @@
 package de.fourtyseveneleven.ones.user.service.impl;
 
-import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
 import de.fourtyseveneleven.ones.user.exception.ForgotPasswordException;
 import de.fourtyseveneleven.ones.user.model.ForgotPasswordRequest;
 import de.fourtyseveneleven.ones.user.model.User;
@@ -75,12 +74,12 @@ public class PasswordServiceImpl implements PasswordService {
     @Transactional
     public void forgotPassword(String emailAddress) {
 
-        final User user = userService.findOneByEmailAddress(emailAddress).orElseThrow(ElementNotFoundException::new);
-        final var forgotPasswordRequest = createForgotPasswordRequest(user);
-        forgotPasswordMessageService.sendForgotPasswordMessage(forgotPasswordRequest);
+        userService.findOneByEmailAddress(emailAddress)
+                .map(this::createForgotPasswordRequest)
+                .ifPresent(forgotPasswordMessageService::sendForgotPasswordMessage);
     }
 
-    private ForgotPasswordRequest createForgotPasswordRequest(User user){
+    private ForgotPasswordRequest createForgotPasswordRequest(User user) {
 
         final var forgotPasswordRequest = new ForgotPasswordRequest();
         forgotPasswordRequest.setUser(user);
