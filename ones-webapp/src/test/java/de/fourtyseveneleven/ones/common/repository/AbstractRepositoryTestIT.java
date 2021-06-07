@@ -1,6 +1,7 @@
 package de.fourtyseveneleven.ones.common.repository;
 
 import de.fourtyseveneleven.ones.common.model.AbstractBaseEntity;
+import de.fourtyseveneleven.ones.common.model.BaseEntity;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,11 +11,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -22,11 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 public abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
 
-    private static final List<Long> TEST_ENTITY_IDS;
-    static {
-        final Long[] ids = {1L, 4711L, Long.MAX_VALUE};
-        TEST_ENTITY_IDS = Arrays.asList(ids);
-    }
+    private static final int NUMBER_OF_TEST_ENTITIES = 10;
 
     protected abstract JpaRepository<T, Long> getRepository();
 
@@ -35,14 +34,9 @@ public abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
     @BeforeEach
     void setup() {
 
-        getRepository().saveAll(getTestEntities());
-    }
-
-    private T getTestEntity(long id) {
-
-        final T testEntity = getTestEntity();
-        testEntity.setId(id);
-        return testEntity;
+        for (int i = 0; i < NUMBER_OF_TEST_ENTITIES; i++) {
+            getRepository().save(getTestEntity());
+        }
     }
 
     @AfterEach
@@ -51,15 +45,10 @@ public abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
         getRepository().deleteAll();
     }
 
-    private List<T> getTestEntities() {
-
-        return TEST_ENTITY_IDS.stream().map(this::getTestEntity).collect(Collectors.toList());
-    }
-
     @Test
     void testGetOne() {
 
-        final Long testId = TEST_ENTITY_IDS.get(0);
+        final long testId = getRepository().findAll().get(0).getId();
 
         final T entity = getRepository().getOne(testId);
         assertThat(entity).isNotNull();
@@ -69,57 +58,77 @@ public abstract class AbstractRepositoryTestIT<T extends AbstractBaseEntity> {
     @Test
     void testFindById() {
 
-        final Long testId = TEST_ENTITY_IDS.get(0);
+        final long testId = getRepository().findAll().get(1).getId();
 
         final Optional<T> entity = getRepository().findById(testId);
         assertThat(entity).isPresent();
         assertThat(entity.get().getId()).isEqualTo(testId);
 
-        assertThat(getRepository().findById(1234L)).isEmpty();
+        assertThat(getRepository().findById(12345678L)).isEmpty();
     }
 
     @Test
     void testFindAll() {
 
-        final List<T> foundEntities = getRepository().findAll();
-        final List<Long> idsOfFoundEntities = foundEntities.stream().map(T::getId).collect(Collectors.toList());
-
-        assertThat(idsOfFoundEntities).containsExactlyElementsOf(TEST_ENTITY_IDS);
+        final List<T> foundEntities = getRepository().findAll()
+                .stream()
+                .distinct()
+                .toList();
+        assertThat(foundEntities).hasSize(NUMBER_OF_TEST_ENTITIES);
     }
 
     @Test
     void testFindAllById() {
 
-        final List<Long> ids = TEST_ENTITY_IDS.subList(1, 3);
+        final List<Long> testIds = getRepository().findAll()
+                .stream()
+                .skip(2)
+                .limit(2)
+                .map(BaseEntity::getId)
+                .toList();
 
-        final List<T> foundEntities = getRepository().findAllById(ids);
-        final List<Long> idsOfFoundEntities = foundEntities.stream().map(T::getId).collect(Collectors.toList());
+        final List<T> foundEntities = getRepository().findAllById(testIds);
+        final List<Long> idsOfFoundEntities = foundEntities.stream().map(T::getId).collect(toList());
 
-        assertThat(idsOfFoundEntities).containsExactlyElementsOf(ids);
+        assertThat(idsOfFoundEntities).containsExactlyElementsOf(testIds);
     }
 
     @Test
     void testSave() {
 
-        final T entity = getTestEntity(4);
+        final long highestId = getRepository().findAll()
+                .stream()
+                .map(BaseEntity::getId)
+                .max(Comparator.naturalOrder())
+                .orElseThrow();
+        final long expectedId = highestId + 1;
+
+        final T entity = getTestEntity();
 
         final T savedEntity = getRepository().save(entity);
         assertThat(savedEntity).isNotNull();
 
         final Long idOfSavedEntity = savedEntity.getId();
-        assertThat(idOfSavedEntity).isEqualTo(4);
+        assertThat(idOfSavedEntity).isEqualTo(expectedId);
     }
 
     @Test
     void testDelete() {
 
-        final T toDelete = getRepository().getOne(TEST_ENTITY_IDS.get(0));
+        final List<T> allEntities = getRepository().findAll();
+        final long testId = allEntities.get(4).getId();
+
+        final T toDelete = getRepository().getOne(testId);
         getRepository().delete(toDelete);
 
         final List<T> entitiesAfterDeletion = getRepository().findAll();
-        final List<Long> idsOfEntitiesAfterDeletion = entitiesAfterDeletion.stream().map(T::getId).distinct().collect(Collectors.toList());
+        final List<Long> idsOfEntitiesAfterDeletion = entitiesAfterDeletion.stream().map(T::getId).distinct().collect(toList());
 
-        final List<Long> expectedIdsAfterDeletion = TEST_ENTITY_IDS.subList(1, 3);
+        final List<Long> expectedIdsAfterDeletion = allEntities.stream()
+                .map(BaseEntity::getId)
+                .filter(id -> id != testId)
+                .toList();
+
         assertThat(idsOfEntitiesAfterDeletion).containsExactlyElementsOf(expectedIdsAfterDeletion);
     }
 

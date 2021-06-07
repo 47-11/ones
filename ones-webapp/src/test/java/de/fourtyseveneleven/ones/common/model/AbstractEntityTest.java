@@ -164,7 +164,7 @@ public abstract class AbstractEntityTest<T extends AbstractBaseEntity> {
     private static class TestEntity extends AbstractBaseEntity {
 
         @Serial
-        private static final long serialVersionUID = -2488397215779740164L;
+        private static final long serialVersionUID = 738038948274571602L;
 
         private TestEntity(long id) {
 
