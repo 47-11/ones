@@ -1,6 +1,5 @@
 package de.fourtyseveneleven.ones.common.model.dto;
 
-
 public class AddressDto {
 
     private String locationName;

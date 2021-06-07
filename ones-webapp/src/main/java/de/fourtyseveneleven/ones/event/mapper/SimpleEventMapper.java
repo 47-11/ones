@@ -5,12 +5,12 @@ import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
-public interface SimpleEventMapper extends BaseMapper {
-
-    SimpleEventMapper INSTANCE = Mappers.getMapper(SimpleEventMapper.class);
+@Mapper(
+        componentModel = "spring",
+        uses = BaseMapper.class
+)
+public interface SimpleEventMapper {
 
     @Mapping(source = "beginning", target = "start")
     @Mapping(source = "ending", target = "end")

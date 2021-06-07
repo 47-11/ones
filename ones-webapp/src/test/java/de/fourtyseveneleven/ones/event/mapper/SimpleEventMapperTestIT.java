@@ -3,19 +3,28 @@ package de.fourtyseveneleven.ones.event.mapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SimpleEventMapperTest {
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+class SimpleEventMapperTestIT {
+
+    @Autowired
+    private SimpleEventMapper simpleEventMapper;
 
     @Test
     void testFromEcmDto() {
 
         final EventContestPlain eventContestPlain = buildEventContestPlain();
-        final SimpleEventDto simpleEventDto = SimpleEventMapper.INSTANCE.fromEcmDto(eventContestPlain);
+        final SimpleEventDto simpleEventDto = simpleEventMapper.fromEcmDto(eventContestPlain);
 
         assertThat(simpleEventDto).isNotNull();
         assertThat(simpleEventDto.getUuid()).isEqualTo(eventContestPlain.getUuid());

@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BaseMapper {
 
     default LocalDateTime mapOffsetDateTimeToLocalDateTime(OffsetDateTime offsetDateTime) {
