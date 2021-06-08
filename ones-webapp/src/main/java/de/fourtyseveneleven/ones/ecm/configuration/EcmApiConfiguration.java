@@ -1,5 +1,7 @@
 package de.fourtyseveneleven.ones.ecm.configuration;
 
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerApi;
 import de.fourtyseveneleven.ones.settings.OnesSettings;
 import de.fourtyseveneleven.ones.settings.ecm.EcmSettings;
@@ -9,21 +11,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EcmApiConfiguration {
 
-    private final String apiUser;
-    private final String apiPassword;
+    @Bean
+    public EventContestControllerApi eventContestControllerApi(ApiClient apiClient) {
 
-    public EcmApiConfiguration(OnesSettings onesSettings) {
-
-        final EcmSettings ecmSettings = onesSettings.getEcm();
-        apiUser = ecmSettings.getApiUser();
-        apiPassword = ecmSettings.getApiPassword();
+        return new EventContestControllerApi(apiClient);
     }
 
     @Bean
-    public MasterdataContactControllerApi masterdataContactControllerApi() {
+    public MasterdataContactControllerApi masterdataContactControllerApi(ApiClient apiClient) {
 
-        // TODO: Specify authentication information here as soon as ECM api is changed
-        return new MasterdataContactControllerApi();
+        return new MasterdataContactControllerApi(apiClient);
     }
 
+    @Bean
+    public ApiClient apiClient(OnesSettings onesSettings) {
+
+        final EcmSettings ecmSettings = onesSettings.getEcm();
+        // TODO: Specify authentication information here as soon as ECM api is changed
+        return new ApiClient();
+    }
 }

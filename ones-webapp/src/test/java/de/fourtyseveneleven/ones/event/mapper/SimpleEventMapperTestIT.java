@@ -24,7 +24,7 @@ class SimpleEventMapperTestIT {
     void testFromEcmDto() {
 
         final EventContestPlain eventContestPlain = buildEventContestPlain();
-        final SimpleEventDto simpleEventDto = simpleEventMapper.fromEcmDto(eventContestPlain);
+        final SimpleEventDto simpleEventDto = simpleEventMapper.eventContestPlainToSimpleEventDto(eventContestPlain);
 
         assertThat(simpleEventDto).isNotNull();
         assertThat(simpleEventDto.getUuid()).isEqualTo(eventContestPlain.getUuid());
