@@ -13,6 +13,7 @@ import de.fourtyseveneleven.ones.event.mapper.SimpleEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,9 @@ import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 
-@Primary
 @Service
+@Primary
+@Qualifier("ecmApiSimpleEventServiceImpl")
 public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private final EventContestControllerApi eventContestControllerApi;

@@ -9,6 +9,7 @@ import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@Qualifier("mockSimpleEventServiceImpl")
 public class MockSimpleEventServiceImpl implements SimpleEventService {
 
     private static final int NUMBER_OF_MOCK_EVENTS = 31;

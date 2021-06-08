@@ -11,6 +11,7 @@ import de.fourtyseveneleven.ones.horse.model.HorseDto;
 import de.fourtyseveneleven.ones.results.model.ResultDto;
 import de.fourtyseveneleven.ones.results.model.ResultOverviewDto;
 import de.fourtyseveneleven.ones.results.service.ResultService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,8 +26,8 @@ public class MockResultService implements ResultService {
 
     private final ResultOverviewDto mockResultOverview;
 
-    public MockResultService(SimpleEventService simpleEventService) {
-        this.simpleEventService = simpleEventService;
+    public MockResultService(@Qualifier("mockSimpleEventServiceImpl") SimpleEventService mockSimpleEventServiceImpl) {
+        this.simpleEventService = mockSimpleEventServiceImpl;
         this.mockResultOverview = buildMockResultOverview();
     }
 
