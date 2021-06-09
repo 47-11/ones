@@ -17,6 +17,7 @@ build-maven:
       - '.m2/repository'
       - 'ones-frontend/node'
   artifacts:
+    expire_in: 1 hour
     paths:
       - ones-webapp/target/ones-webapp.jar
       - VERSION.txt
