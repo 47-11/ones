@@ -51,7 +51,7 @@ public class MockResultService implements ResultService {
         final var result = new ResultDto();
 
         result.setContest(contest);
-        result.setHorse(buildMockHorse());
+        result.setHorses(List.of(buildMockHorse()));
         result.setPlacement(3);
         result.setAverageSpeed(BigDecimal.valueOf(18));
 

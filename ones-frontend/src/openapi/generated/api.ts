@@ -544,10 +544,10 @@ export interface ResultDto {
     contest?: SimpleContestDto;
     /**
      * 
-     * @type {HorseDto}
+     * @type {Array<HorseDto>}
      * @memberof ResultDto
      */
-    horse?: HorseDto;
+    horses?: Array<HorseDto>;
     /**
      * 
      * @type {number}
@@ -578,13 +578,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
 }
 /**
  * 

@@ -47,7 +47,7 @@ describe("ResultsStore", () => {
         const resultOverview = {
             averageSpeed: 15,
             totalDistance: 42,
-            results: [{ placement: 1, horse: { name: "Jolly Jumper" } }]
+            results: [{ placement: 1, horses: [{ name: "Jolly Jumper" }] }]
         } as ResultOverviewDto;
         axiosMock.request.mockResolvedValue({
             data: resultOverview
