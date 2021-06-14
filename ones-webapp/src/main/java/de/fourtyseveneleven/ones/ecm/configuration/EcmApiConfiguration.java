@@ -5,8 +5,13 @@ import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerApi;
 import de.fourtyseveneleven.ones.settings.OnesSettings;
 import de.fourtyseveneleven.ones.settings.ecm.EcmSettings;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import java.net.http.HttpClient;
 
 @Configuration
 public class EcmApiConfiguration {
@@ -24,10 +29,26 @@ public class EcmApiConfiguration {
     }
 
     @Bean
-    public ApiClient apiClient(OnesSettings onesSettings) {
+    public ApiClient apiClient(@Qualifier("ecmApiAuthenticator") Authenticator ecmApiAuthenticator) {
+
+        final HttpClient.Builder httpClientBuilder = HttpClient.newBuilder()
+                .authenticator(ecmApiAuthenticator);
+
+        final ApiClient apiClient = de.fourtyseveneleven.ones.ecm.generated.Configuration.getDefaultApiClient();
+        apiClient.setHttpClientBuilder(httpClientBuilder);
+        return apiClient;
+    }
+
+    @Bean
+    @Qualifier("ecmApiAuthenticator")
+    public Authenticator ecmApiAuthenticator(OnesSettings onesSettings) {
 
         final EcmSettings ecmSettings = onesSettings.getEcm();
-        // TODO: Specify authentication information here as soon as ECM api is changed
-        return new ApiClient();
+        return new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(ecmSettings.getApiUser(), ecmSettings.getApiPassword().toCharArray());
+            }
+        };
     }
 }
