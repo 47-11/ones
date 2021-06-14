@@ -17,10 +17,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 import java.util.Objects;
 import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
+import static java.util.Collections.emptyList;
 
 @Service
 @Primary
@@ -72,15 +75,15 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
-        final Integer year = getYearFromFilter(filter);
+        final int year = getYearFromFilter(filter);
         return eventContestControllerApi
-                .getContestByYear(year, pageRequest.getPageNumber(), pageRequest.getPageSize(), null);
+                .getContestByYear(year, null, null, emptyList(), null, null, null, pageRequest.getPageNumber(), pageRequest.getPageSize(), null);
     }
 
-    private Integer getYearFromFilter(EventFilterDto filter) {
+    private int getYearFromFilter(EventFilterDto filter) {
 
         if (Objects.isNull(filter.getEndsAfter())) {
-            return null;
+            return LocalDate.now().getYear();
         } else {
             return filter.getEndsAfter().getYear();
         }
