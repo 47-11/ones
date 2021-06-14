@@ -31,6 +31,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "promoterContactUuid", target = "eventHost", qualifiedByName = "contactUuidToPersonDto")
     @Mapping(source = "organizerContactUuid", target = "eventOrganizer", qualifiedByName = "contactUuidToPersonDto")
     @Mapping(source = "organizerContactUuid", target = "contactPerson", qualifiedByName = "contactUuidToPersonDto")
+    // TODO: @Mapping(source = "???", target = "participationApplicationDeadline")
     @Mapping(source = "lateRegistrationFee", target = "participationApplicationDeadlineMissedFee")
     @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
     @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
