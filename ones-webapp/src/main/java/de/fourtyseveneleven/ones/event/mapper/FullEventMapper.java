@@ -6,6 +6,9 @@ import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Mapper(
         componentModel = "spring",
@@ -25,8 +28,14 @@ public abstract class FullEventMapper {
     @Mapping(source = "isCei", target = "isInternational")
     @Mapping(source = "promoterContactUuid", target = "eventHost", qualifiedByName = "contactUuidToPersonDto")
     @Mapping(source = "lateRegistrationFee", target = "participationApplicationDeadlineMissedFee")
-    // TODO: @Mapping(source = "isVaccinationMandatory", target = "???")
-    // TODO: @Mapping(source = "isHelmetMandatory", target = "???")
+    @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
+    @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
+
+    @Named(value = "obligationInfoToBoolean")
+    public boolean obligationInfoToBoolean(String obligationInfo) {
+
+        return isNotBlank(obligationInfo);
+    }
 }
 
