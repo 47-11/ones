@@ -1,5 +1,6 @@
 package de.fourtyseveneleven.ones.event.mapper;
 
+import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.ContactMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
@@ -14,7 +15,8 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
         componentModel = "spring",
         uses = {
                 DateTimeFormatMapper.class,
-                ContactMapper.class
+                ContactMapper.class,
+                CommonMapper.class
         }
 )
 public abstract class FullEventMapper {
@@ -30,6 +32,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "lateRegistrationFee", target = "participationApplicationDeadlineMissedFee")
     @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
     @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
+    @Mapping(source = "remarks", target = "additionalComments")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     @Named(value = "obligationInfoToBoolean")
