@@ -37,7 +37,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "lateRegistrationFee", target = "participationApplicationDeadlineMissedFee")
     // TODO: @Mapping(source = "isVaccinationMandatory", target = "???")
     // TODO: @Mapping(source = "isHelmetMandatory", target = "???")
-    public abstract FullEventDto fromEcmDto(EventContest eventContest);
+    public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     @Named(value = "contactUuidToPersonDto")
     public PersonDto contactUuidToAddressDto(String contactUuid) throws ApiException {
