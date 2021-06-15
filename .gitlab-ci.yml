@@ -6,7 +6,7 @@ stages:
 semgrep:
   stage: semgrep
   image: returntocorp/semgrep-agent:latest
-  script: semgrep-agent
+  script: semgrep-agent --gitlab-json > gl-sast-report.json || true
   variables:
     SEMGREP_RULES: >- # more at semgrep.dev/explore
       p/r2c-ci
