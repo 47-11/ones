@@ -1,6 +1,22 @@
 stages:
+  - semgrep
   - build-maven
   - build-docker
+
+semgrep:
+  stage: semgrep
+  image: returntocorp/semgrep-agent:latest
+  script: semgrep-agent
+  variables:
+    SEMGREP_RULES: >- # more at semgrep.dev/explore
+      p/r2c-ci
+      p/r2c-security-audit
+      p/command-injection
+      p/jwt
+      p/xss
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
 
 build-maven:
   stage: build-maven
@@ -32,6 +48,7 @@ build-docker:
   only:
     - master
   dependencies:
+    - semgrep
     - build-maven
   image:
     name: gcr.io/kaniko-project/executor:debug
