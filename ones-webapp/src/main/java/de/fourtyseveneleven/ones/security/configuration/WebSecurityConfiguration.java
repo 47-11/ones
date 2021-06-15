@@ -29,7 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Safe to disable, since we use JWT tokens.
-        http.csrf().disable();
+        http.csrf().disable(); // nosemgrep: java.spring.security.audit.spring-csrf-disabled.spring-csrf-disabled
 
         http.apply(new JwtTokenFilterConfigurer());
         http.authenticationProvider(jwtTokenAuthenticationProvider);
