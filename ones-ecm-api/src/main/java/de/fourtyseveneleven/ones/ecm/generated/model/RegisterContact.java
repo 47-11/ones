@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterContact.JSON_PROPERTY_PHONE_NUMBER_MOBILE,
   RegisterContact.JSON_PROPERTY_POSTAL_ADDRESS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class RegisterContact {
   public static final String JSON_PROPERTY_SURNAME = "surname";
   private String surname;
@@ -87,6 +87,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SURNAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSurname(String surname) {
     this.surname = surname;
   }
@@ -111,6 +113,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FORENAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setForename(String forename) {
     this.forename = forename;
   }
@@ -135,6 +139,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SALUTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSalutation(String salutation) {
     this.salutation = salutation;
   }
@@ -159,6 +165,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BIRTHDAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBirthday(LocalDate birthday) {
     this.birthday = birthday;
   }
@@ -183,6 +191,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(String email) {
     this.email = email;
   }
@@ -207,6 +217,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
@@ -231,6 +243,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER_MOBILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhoneNumberMobile(String phoneNumberMobile) {
     this.phoneNumberMobile = phoneNumberMobile;
   }
@@ -255,6 +269,8 @@ public class RegisterContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_POSTAL_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPostalAddress(RegisterAddress postalAddress) {
     this.postalAddress = postalAddress;
   }

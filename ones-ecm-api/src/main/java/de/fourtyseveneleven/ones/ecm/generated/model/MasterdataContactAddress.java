@@ -49,7 +49,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataContactAddress.JSON_PROPERTY_HOUSE_NUMBER,
   MasterdataContactAddress.JSON_PROPERTY_ZIPCODE_CODE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class MasterdataContactAddress {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -118,6 +118,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -142,6 +144,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MASTERDATA_CONTACT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMasterdataContactUuid(String masterdataContactUuid) {
     this.masterdataContactUuid = masterdataContactUuid;
   }
@@ -165,6 +169,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -189,6 +195,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -213,6 +221,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
   }
@@ -237,6 +247,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -261,6 +273,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
   }
@@ -285,6 +299,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKind(Integer kind) {
     this.kind = kind;
   }
@@ -309,6 +325,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNTRY_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountryCode(String countryCode) {
     this.countryCode = countryCode;
   }
@@ -333,6 +351,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNTRY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountry(String country) {
     this.country = country;
   }
@@ -357,6 +377,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCity(String city) {
     this.city = city;
   }
@@ -381,6 +403,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FEDERAL_STATE_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFederalStateCode(String federalStateCode) {
     this.federalStateCode = federalStateCode;
   }
@@ -405,6 +429,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FEDERAL_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFederalState(String federalState) {
     this.federalState = federalState;
   }
@@ -429,6 +455,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STREET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStreet(String street) {
     this.street = street;
   }
@@ -453,6 +481,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHouseNumber(String houseNumber) {
     this.houseNumber = houseNumber;
   }
@@ -477,6 +507,8 @@ public class MasterdataContactAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ZIPCODE_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setZipcodeCode(String zipcodeCode) {
     this.zipcodeCode = zipcodeCode;
   }

@@ -52,7 +52,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataHorse.JSON_PROPERTY_OWNERSX,
   MasterdataHorse.JSON_PROPERTY_STABLES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class MasterdataHorse {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -119,6 +119,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -143,6 +145,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -167,6 +171,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -207,6 +213,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -231,6 +239,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DISPLAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDisplay(String display) {
     this.display = display;
   }
@@ -255,6 +265,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -279,6 +291,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PASSPORT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPassportId(String passportId) {
     this.passportId = passportId;
   }
@@ -303,6 +317,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BREED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBreed(String breed) {
     this.breed = breed;
   }
@@ -327,6 +343,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GENDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGender(String gender) {
     this.gender = gender;
   }
@@ -351,6 +369,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_YEAR_OF_BIRTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setYearOfBirth(Integer yearOfBirth) {
     this.yearOfBirth = yearOfBirth;
   }
@@ -375,6 +395,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STICK_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStickSize(Integer stickSize) {
     this.stickSize = stickSize;
   }
@@ -399,6 +421,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COLOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setColor(String color) {
     this.color = color;
   }
@@ -431,6 +455,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNERSX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwnersx(List<MasterdataHorseOwner> ownersx) {
     this.ownersx = ownersx;
   }
@@ -463,6 +489,8 @@ public class MasterdataHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STABLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStables(List<MasterdataHorseStable> stables) {
     this.stables = stables;
   }

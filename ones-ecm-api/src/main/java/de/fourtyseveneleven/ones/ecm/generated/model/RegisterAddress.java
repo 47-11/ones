@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterAddress.JSON_PROPERTY_STREET,
   RegisterAddress.JSON_PROPERTY_HOUSE_NUMBER
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class RegisterAddress {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   private String country;
@@ -74,6 +74,8 @@ public class RegisterAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNTRY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountry(String country) {
     this.country = country;
   }
@@ -98,6 +100,8 @@ public class RegisterAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ZIP_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setZipCode(String zipCode) {
     this.zipCode = zipCode;
   }
@@ -121,6 +125,8 @@ public class RegisterAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCity(String city) {
     this.city = city;
   }
@@ -144,6 +150,8 @@ public class RegisterAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STREET)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStreet(String street) {
     this.street = street;
   }
@@ -168,6 +176,8 @@ public class RegisterAddress {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_HOUSE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHouseNumber(String houseNumber) {
     this.houseNumber = houseNumber;
   }

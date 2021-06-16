@@ -46,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataHorseOwner.JSON_PROPERTY_CONTACT,
   MasterdataHorseOwner.JSON_PROPERTY_MASTERDATA_HORSE_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class MasterdataHorseOwner {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -103,6 +103,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -126,6 +128,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -150,6 +154,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -174,6 +180,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
   }
@@ -198,6 +206,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -222,6 +232,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
   }
@@ -246,6 +258,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DISPLAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDisplay(String display) {
     this.display = display;
   }
@@ -270,6 +284,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNERSHIP_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwnershipFrom(OffsetDateTime ownershipFrom) {
     this.ownershipFrom = ownershipFrom;
   }
@@ -294,6 +310,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNERSHIP_UNTIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwnershipUntil(OffsetDateTime ownershipUntil) {
     this.ownershipUntil = ownershipUntil;
   }
@@ -318,6 +336,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REMARK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRemark(String remark) {
     this.remark = remark;
   }
@@ -342,6 +362,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTACT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContact(MasterdataContact contact) {
     this.contact = contact;
   }
@@ -366,6 +388,8 @@ public class MasterdataHorseOwner {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MASTERDATA_HORSE_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMasterdataHorseUuid(String masterdataHorseUuid) {
     this.masterdataHorseUuid = masterdataHorseUuid;
   }
