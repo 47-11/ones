@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataContactRole.JSON_PROPERTY_CHANGE_COUNTER,
   MasterdataContactRole.JSON_PROPERTY_ROLE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class MasterdataContactRole {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -86,6 +86,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -110,6 +112,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MASTERDATA_CONTACT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMasterdataContactUuid(String masterdataContactUuid) {
     this.masterdataContactUuid = masterdataContactUuid;
   }
@@ -133,6 +137,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -157,6 +163,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -181,6 +189,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
   }
@@ -205,6 +215,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -229,6 +241,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
   }
@@ -253,6 +267,8 @@ public class MasterdataContactRole {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRole(String role) {
     this.role = role;
   }

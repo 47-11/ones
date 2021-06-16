@@ -64,7 +64,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX,
   EventContestCompetitionPlain.JSON_PROPERTY_STAGES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -167,6 +167,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -191,6 +193,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEventContestUuid(String eventContestUuid) {
     this.eventContestUuid = eventContestUuid;
   }
@@ -215,6 +219,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -239,6 +245,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -263,6 +271,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
   }
@@ -287,6 +297,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -311,6 +323,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
   }
@@ -335,6 +349,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrentState(Integer currentState) {
     this.currentState = currentState;
   }
@@ -359,6 +375,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitle(String title) {
     this.title = title;
   }
@@ -383,6 +401,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKind(String kind) {
     this.kind = kind;
   }
@@ -407,6 +427,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BEGINNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBeginning(OffsetDateTime beginning) {
     this.beginning = beginning;
   }
@@ -431,6 +453,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ENDING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnding(OffsetDateTime ending) {
     this.ending = ending;
   }
@@ -455,6 +479,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_RAISE_LENGTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRaiseLength(Integer raiseLength) {
     this.raiseLength = raiseLength;
   }
@@ -479,6 +505,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MINUTES_MAXIMUM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMinutesMaximum(Integer minutesMaximum) {
     this.minutesMaximum = minutesMaximum;
   }
@@ -503,6 +531,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_MINUTES_ALLOWED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMinutesAllowed(Integer minutesAllowed) {
     this.minutesAllowed = minutesAllowed;
   }
@@ -527,6 +557,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPenaltyPointsTimeout(Integer penaltyPointsTimeout) {
     this.penaltyPointsTimeout = penaltyPointsTimeout;
   }
@@ -551,6 +583,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_TIME_UNDERRUN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPenaltyPointsTimeUnderrun(Integer penaltyPointsTimeUnderrun) {
     this.penaltyPointsTimeUnderrun = penaltyPointsTimeUnderrun;
   }
@@ -575,6 +609,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_AT_PULSE_RATE_OF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPenaltyPointsAtPulseRateOf(Integer penaltyPointsAtPulseRateOf) {
     this.penaltyPointsAtPulseRateOf = penaltyPointsAtPulseRateOf;
   }
@@ -599,6 +635,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_PULSE_RATE_EXCEEDED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPenaltyPointsPulseRateExceeded(Integer penaltyPointsPulseRateExceeded) {
     this.penaltyPointsPulseRateExceeded = penaltyPointsPulseRateExceeded;
   }
@@ -623,6 +661,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BREAKS_TOTAL_NUMBERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBreaksTotalNumbers(Integer breaksTotalNumbers) {
     this.breaksTotalNumbers = breaksTotalNumbers;
   }
@@ -647,6 +687,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BREAKS_TOTAL_MINUTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBreaksTotalMinutes(Integer breaksTotalMinutes) {
     this.breaksTotalMinutes = breaksTotalMinutes;
   }
@@ -671,6 +713,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResponsibleVeterinarianUuid(String responsibleVeterinarianUuid) {
     this.responsibleVeterinarianUuid = responsibleVeterinarianUuid;
   }
@@ -695,6 +739,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COMPETITION_UUID_TO_EXTEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompetitionUuidToExtend(String competitionUuidToExtend) {
     this.competitionUuidToExtend = competitionUuidToExtend;
   }
@@ -719,6 +765,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COMPETITION_UUID_TO_REDUCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompetitionUuidToReduce(String competitionUuidToReduce) {
     this.competitionUuidToReduce = competitionUuidToReduce;
   }
@@ -743,6 +791,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContestantLimitiationMin(Integer contestantLimitiationMin) {
     this.contestantLimitiationMin = contestantLimitiationMin;
   }
@@ -767,6 +817,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContestantLimitiationMax(Integer contestantLimitiationMax) {
     this.contestantLimitiationMax = contestantLimitiationMax;
   }
@@ -799,6 +851,8 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STAGES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStages(Set<EventContestCompetitionStagePlain> stages) {
     this.stages = stages;
   }

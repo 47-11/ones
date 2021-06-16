@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterResponce.JSON_PROPERTY_JUSTIFICATION,
   RegisterResponce.JSON_PROPERTY_REGISTER_OBJECT_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class RegisterResponce {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -74,6 +74,8 @@ public class RegisterResponce {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -98,6 +100,8 @@ public class RegisterResponce {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setState(String state) {
     this.state = state;
   }
@@ -122,6 +126,8 @@ public class RegisterResponce {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REASON_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReasonCode(Integer reasonCode) {
     this.reasonCode = reasonCode;
   }
@@ -146,6 +152,8 @@ public class RegisterResponce {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_JUSTIFICATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setJustification(String justification) {
     this.justification = justification;
   }
@@ -170,6 +178,8 @@ public class RegisterResponce {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGISTER_OBJECT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegisterObjectUuid(String registerObjectUuid) {
     this.registerObjectUuid = registerObjectUuid;
   }

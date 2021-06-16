@@ -76,7 +76,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataContact.JSON_PROPERTY_ADDRESSES,
   MasterdataContact.JSON_PROPERTY_ROLES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class MasterdataContact {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -215,6 +215,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -239,6 +241,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -263,6 +267,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -287,6 +293,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
   }
@@ -311,6 +319,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -335,6 +345,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
   }
@@ -359,6 +371,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKind(Integer kind) {
     this.kind = kind;
   }
@@ -383,6 +397,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SALUTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSalutation(String salutation) {
     this.salutation = salutation;
   }
@@ -407,6 +423,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SURNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSurname(String surname) {
     this.surname = surname;
   }
@@ -431,6 +449,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FORENAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setForename(String forename) {
     this.forename = forename;
   }
@@ -455,6 +475,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BORN_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBornName(String bornName) {
     this.bornName = bornName;
   }
@@ -479,6 +501,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BORN_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBornDate(OffsetDateTime bornDate) {
     this.bornDate = bornDate;
   }
@@ -503,6 +527,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NATIONALITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNationality(String nationality) {
     this.nationality = nationality;
   }
@@ -527,6 +553,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE_ADDITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitleAddition(String titleAddition) {
     this.titleAddition = titleAddition;
   }
@@ -551,6 +579,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE_NOBILITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitleNobility(String titleNobility) {
     this.titleNobility = titleNobility;
   }
@@ -575,6 +605,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE_ACADEMIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitleAcademic(String titleAcademic) {
     this.titleAcademic = titleAcademic;
   }
@@ -599,6 +631,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE_BUSINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitleBusiness(String titleBusiness) {
     this.titleBusiness = titleBusiness;
   }
@@ -623,6 +657,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ARTIST_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtistName(String artistName) {
     this.artistName = artistName;
   }
@@ -647,6 +683,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NICK_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNickName(String nickName) {
     this.nickName = nickName;
   }
@@ -671,6 +709,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PHONE_PRIVATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhonePrivate(String phonePrivate) {
     this.phonePrivate = phonePrivate;
   }
@@ -695,6 +735,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PHONE_BUSINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhoneBusiness(String phoneBusiness) {
     this.phoneBusiness = phoneBusiness;
   }
@@ -719,6 +761,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CELL_PHONE_PRIVATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCellPhonePrivate(String cellPhonePrivate) {
     this.cellPhonePrivate = cellPhonePrivate;
   }
@@ -743,6 +787,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CELL_PHONE_BUSINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCellPhoneBusiness(String cellPhoneBusiness) {
     this.cellPhoneBusiness = cellPhoneBusiness;
   }
@@ -767,6 +813,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FAX_PRIVATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFaxPrivate(String faxPrivate) {
     this.faxPrivate = faxPrivate;
   }
@@ -791,6 +839,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FAX_BUSINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFaxBusiness(String faxBusiness) {
     this.faxBusiness = faxBusiness;
   }
@@ -815,6 +865,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EMAIL_PRIVATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmailPrivate(String emailPrivate) {
     this.emailPrivate = emailPrivate;
   }
@@ -839,6 +891,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_EMAIL_BUSINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmailBusiness(String emailBusiness) {
     this.emailBusiness = emailBusiness;
   }
@@ -863,6 +917,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO1)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo1(String info1) {
     this.info1 = info1;
   }
@@ -887,6 +943,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO2)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo2(String info2) {
     this.info2 = info2;
   }
@@ -911,6 +969,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO3)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo3(String info3) {
     this.info3 = info3;
   }
@@ -935,6 +995,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO4)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo4(String info4) {
     this.info4 = info4;
   }
@@ -959,6 +1021,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO5)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo5(String info5) {
     this.info5 = info5;
   }
@@ -983,6 +1047,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO6)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo6(String info6) {
     this.info6 = info6;
   }
@@ -1007,6 +1073,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO7)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo7(String info7) {
     this.info7 = info7;
   }
@@ -1031,6 +1099,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO8)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo8(String info8) {
     this.info8 = info8;
   }
@@ -1055,6 +1125,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INFO9)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo9(String info9) {
     this.info9 = info9;
   }
@@ -1079,6 +1151,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_DISPLAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDisplay(String display) {
     this.display = display;
   }
@@ -1111,6 +1185,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ADDRESSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAddresses(List<MasterdataContactAddress> addresses) {
     this.addresses = addresses;
   }
@@ -1143,6 +1219,8 @@ public class MasterdataContact {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoles(List<MasterdataContactRole> roles) {
     this.roles = roles;
   }

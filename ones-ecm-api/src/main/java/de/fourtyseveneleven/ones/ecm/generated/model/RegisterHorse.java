@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterHorse.JSON_PROPERTY_OWNER,
   RegisterHorse.JSON_PROPERTY_STABLE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class RegisterHorse {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -90,6 +90,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -113,6 +115,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PASSPORT_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPassportId(String passportId) {
     this.passportId = passportId;
   }
@@ -137,6 +141,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BREED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBreed(String breed) {
     this.breed = breed;
   }
@@ -161,6 +167,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_GENDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGender(String gender) {
     this.gender = gender;
   }
@@ -185,6 +193,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COLOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setColor(String color) {
     this.color = color;
   }
@@ -209,6 +219,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_YEAR_OF_BIRTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setYearOfBirth(Integer yearOfBirth) {
     this.yearOfBirth = yearOfBirth;
   }
@@ -233,6 +245,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STICK_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStickSize(Integer stickSize) {
     this.stickSize = stickSize;
   }
@@ -257,6 +271,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOwner(RegisterContact owner) {
     this.owner = owner;
   }
@@ -281,6 +297,8 @@ public class RegisterHorse {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStable(RegisterContact stable) {
     this.stable = stable;
   }

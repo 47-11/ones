@@ -39,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterAccount.JSON_PROPERTY_VDD_MEMBER_NUMBER,
   RegisterAccount.JSON_PROPERTY_USER
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class RegisterAccount {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -94,6 +94,8 @@ public class RegisterAccount {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOGIN_IDENTIFICATION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLoginIdentification(String loginIdentification) {
     this.loginIdentification = loginIdentification;
   }
@@ -117,6 +119,8 @@ public class RegisterAccount {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOGIN_KEYWORD)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLoginKeyword(String loginKeyword) {
     this.loginKeyword = loginKeyword;
   }
@@ -141,6 +145,8 @@ public class RegisterAccount {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NATIVE_LANGUAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNativeLanguage(String nativeLanguage) {
     this.nativeLanguage = nativeLanguage;
   }
@@ -165,6 +171,8 @@ public class RegisterAccount {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_VDD_MEMBER_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVddMemberNumber(String vddMemberNumber) {
     this.vddMemberNumber = vddMemberNumber;
   }
@@ -189,6 +197,8 @@ public class RegisterAccount {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUser(RegisterContact user) {
     this.user = user;
   }

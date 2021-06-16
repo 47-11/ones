@@ -83,7 +83,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContest.JSON_PROPERTY_SURCHARGE_NON_MEMBERS,
   EventContest.JSON_PROPERTY_COMPETITIONS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-30T14:01:51.063115102+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
 public class EventContest {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -240,6 +240,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -264,6 +266,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -288,6 +292,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
   }
@@ -312,6 +318,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
   }
@@ -336,6 +344,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
   }
@@ -360,6 +370,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
   }
@@ -384,6 +396,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrentState(Integer currentState) {
     this.currentState = currentState;
   }
@@ -408,6 +422,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitle(String title) {
     this.title = title;
   }
@@ -432,6 +448,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_BEGINNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBeginning(OffsetDateTime beginning) {
     this.beginning = beginning;
   }
@@ -456,6 +474,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ENDING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnding(OffsetDateTime ending) {
     this.ending = ending;
   }
@@ -480,6 +500,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNTRY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountry(String country) {
     this.country = country;
   }
@@ -504,6 +526,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COUNTRY_REGION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountryRegion(String countryRegion) {
     this.countryRegion = countryRegion;
   }
@@ -528,6 +552,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LOCATION_DESCIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocationDesciption(String locationDesciption) {
     this.locationDesciption = locationDesciption;
   }
@@ -552,6 +578,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_COUNTRY_CHAMPIONSHIP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsCountryChampionship(Boolean isCountryChampionship) {
     this.isCountryChampionship = isCountryChampionship;
   }
@@ -576,6 +604,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_CEI)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsCei(Boolean isCei) {
     this.isCei = isCei;
   }
@@ -600,6 +630,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_IS_CARD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsCard(Boolean isCard) {
     this.isCard = isCard;
   }
@@ -624,6 +656,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_VDD_PORTAL_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVddPortalUrl(String vddPortalUrl) {
     this.vddPortalUrl = vddPortalUrl;
   }
@@ -648,6 +682,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_VDD_PORTAL_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVddPortalTitle(String vddPortalTitle) {
     this.vddPortalTitle = vddPortalTitle;
   }
@@ -672,6 +708,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROMOTER_TENDERING_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterTenderingUrl(String promoterTenderingUrl) {
     this.promoterTenderingUrl = promoterTenderingUrl;
   }
@@ -696,6 +734,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROMOTER_TENDERING_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterTenderingTitle(String promoterTenderingTitle) {
     this.promoterTenderingTitle = promoterTenderingTitle;
   }
@@ -720,6 +760,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROMOTER_EVENT_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterEventUrl(String promoterEventUrl) {
     this.promoterEventUrl = promoterEventUrl;
   }
@@ -744,6 +786,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROMOTER_EVENT_TITLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterEventTitle(String promoterEventTitle) {
     this.promoterEventTitle = promoterEventTitle;
   }
@@ -768,6 +812,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROMOTER_CONTACT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterContactUuid(String promoterContactUuid) {
     this.promoterContactUuid = promoterContactUuid;
   }
@@ -792,6 +838,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_PROMOTER_CONTACT_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterContactDescription(String promoterContactDescription) {
     this.promoterContactDescription = promoterContactDescription;
   }
@@ -816,6 +864,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ORGANIZER_CONTACT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOrganizerContactUuid(String organizerContactUuid) {
     this.organizerContactUuid = organizerContactUuid;
   }
@@ -840,6 +890,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ORGANIZER_CONTACT_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOrganizerContactDescription(String organizerContactDescription) {
     this.organizerContactDescription = organizerContactDescription;
   }
@@ -864,6 +916,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistrationDescription(String registrationDescription) {
     this.registrationDescription = registrationDescription;
   }
@@ -888,6 +942,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REMARKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRemarks(String remarks) {
     this.remarks = remarks;
   }
@@ -912,6 +968,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_INITIAL_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInitialEvent(String initialEvent) {
     this.initialEvent = initialEvent;
   }
@@ -936,6 +994,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REQUEST_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequestDate(OffsetDateTime requestDate) {
     this.requestDate = requestDate;
   }
@@ -960,6 +1020,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REQUEST_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequestInfo(String requestInfo) {
     this.requestInfo = requestInfo;
   }
@@ -984,6 +1046,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_APPROVAL_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setApprovalDate(OffsetDateTime approvalDate) {
     this.approvalDate = approvalDate;
   }
@@ -1008,6 +1072,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_APPROVAL_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setApprovalInfo(String approvalInfo) {
     this.approvalInfo = approvalInfo;
   }
@@ -1032,6 +1098,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATE_COMMISSIONER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStateCommissionerUuid(String stateCommissionerUuid) {
     this.stateCommissionerUuid = stateCommissionerUuid;
   }
@@ -1056,6 +1124,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATE_COMMISSIONER_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStateCommissionerDescription(String stateCommissionerDescription) {
     this.stateCommissionerDescription = stateCommissionerDescription;
   }
@@ -1080,6 +1150,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGION_COMMISSIONER_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegionCommissionerUuid(String regionCommissionerUuid) {
     this.regionCommissionerUuid = regionCommissionerUuid;
   }
@@ -1104,6 +1176,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegionCommissionerDescription(String regionCommissionerDescription) {
     this.regionCommissionerDescription = regionCommissionerDescription;
   }
@@ -1128,6 +1202,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FEE_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFeeCurrency(String feeCurrency) {
     this.feeCurrency = feeCurrency;
   }
@@ -1152,6 +1228,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistrationFee(BigDecimal registrationFee) {
     this.registrationFee = registrationFee;
   }
@@ -1176,6 +1254,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STARTING_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartingFee(BigDecimal startingFee) {
     this.startingFee = startingFee;
   }
@@ -1200,6 +1280,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STARTING_FEE_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartingFeeUnit(String startingFeeUnit) {
     this.startingFeeUnit = startingFeeUnit;
   }
@@ -1224,6 +1306,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LATE_REGISTRATION_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLateRegistrationFee(BigDecimal lateRegistrationFee) {
     this.lateRegistrationFee = lateRegistrationFee;
   }
@@ -1248,6 +1332,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_CHANGE_REGISTRATION_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangeRegistrationFee(BigDecimal changeRegistrationFee) {
     this.changeRegistrationFee = changeRegistrationFee;
   }
@@ -1272,6 +1358,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_SURCHARGE_NON_MEMBERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSurchargeNonMembers(BigDecimal surchargeNonMembers) {
     this.surchargeNonMembers = surchargeNonMembers;
   }
@@ -1304,6 +1392,8 @@ public class EventContest {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_COMPETITIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompetitions(Set<EventContestCompetition> competitions) {
     this.competitions = competitions;
   }
