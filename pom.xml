@@ -25,6 +25,7 @@
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
+        <mapstruct-version>1.4.2.Final</mapstruct-version>
     </properties>
 
     <dependencyManagement>
@@ -66,7 +67,7 @@
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
-                <version>1.4.2.Final</version>
+                <version>${mapstruct-version}</version>
             </dependency>
 
             <dependency>
