@@ -18,7 +18,11 @@ import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
 import de.fourtyseveneleven.ones.ecm.generated.Pair;
 
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionResult;
+import java.time.OffsetDateTime;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNomination;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +41,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-17T11:45:53.590955+02:00[Europe/Berlin]")
 public class EventContestControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -67,6 +71,75 @@ public class EventContestControllerApi {
     return new ApiException(response.statusCode(), msgPrefix, response.headers(), body);
   }
 
+  /**
+   * 
+   * 
+   * @param uuid  (required)
+   * @return List&lt;EventContestCompetitionResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<EventContestCompetitionResult> getContactContestCompetitionsResults(String uuid) throws ApiException {
+    ApiResponse<List<EventContestCompetitionResult>> localVarResponse = getContactContestCompetitionsResultsWithHttpInfo(uuid);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param uuid  (required)
+   * @return ApiResponse&lt;List&lt;EventContestCompetitionResult&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<EventContestCompetitionResult>> getContactContestCompetitionsResultsWithHttpInfo(String uuid) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getContactContestCompetitionsResultsRequestBuilder(uuid);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw createApiException(localVarResponse, "getContactContestCompetitionsResults call received non-success response");
+      }
+      return new ApiResponse<List<EventContestCompetitionResult>>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<EventContestCompetitionResult>>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getContactContestCompetitionsResultsRequestBuilder(String uuid) throws ApiException {
+    // verify the required parameter 'uuid' is set
+    if (uuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'uuid' when calling getContactContestCompetitionsResults");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/event/contest/result/contact/{uuid}"
+        .replace("{uuid}", ApiClient.urlEncode(uuid.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
   /**
    * 
    * 
@@ -148,14 +221,20 @@ public class EventContestControllerApi {
    * 
    * 
    * @param year  (required)
+   * @param fromDate  (optional)
+   * @param untilDate  (optional)
+   * @param countryRegions  (optional
+   * @param isCountryChampionship  (optional)
+   * @param isCEI  (optional)
+   * @param isCard  (optional)
    * @param pageNo  (optional, default to 0)
    * @param pageSize  (optional, default to 10)
    * @param sortBy  (optional, default to beginning)
-   * @return List&lt;EventContestPlain&gt;
+   * @return ResponcePageContestsPlain
    * @throws ApiException if fails to make API call
    */
-  public List<EventContestPlain> getContestByYear(Integer year, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
-    ApiResponse<List<EventContestPlain>> localVarResponse = getContestByYearWithHttpInfo(year, pageNo, pageSize, sortBy);
+  public ResponcePageContestsPlain getContestByYear(Integer year, OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, Integer isCountryChampionship, Integer isCEI, Integer isCard, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+    ApiResponse<ResponcePageContestsPlain> localVarResponse = getContestByYearWithHttpInfo(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
     return localVarResponse.getData();
   }
 
@@ -163,14 +242,20 @@ public class EventContestControllerApi {
    * 
    * 
    * @param year  (required)
+   * @param fromDate  (optional)
+   * @param untilDate  (optional)
+   * @param countryRegions  (optional
+   * @param isCountryChampionship  (optional)
+   * @param isCEI  (optional)
+   * @param isCard  (optional)
    * @param pageNo  (optional, default to 0)
    * @param pageSize  (optional, default to 10)
    * @param sortBy  (optional, default to beginning)
-   * @return ApiResponse&lt;List&lt;EventContestPlain&gt;&gt;
+   * @return ApiResponse&lt;ResponcePageContestsPlain&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<List<EventContestPlain>> getContestByYearWithHttpInfo(Integer year, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getContestByYearRequestBuilder(year, pageNo, pageSize, sortBy);
+  public ApiResponse<ResponcePageContestsPlain> getContestByYearWithHttpInfo(Integer year, OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, Integer isCountryChampionship, Integer isCEI, Integer isCard, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getContestByYearRequestBuilder(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -181,10 +266,10 @@ public class EventContestControllerApi {
       if (localVarResponse.statusCode()/ 100 != 2) {
         throw createApiException(localVarResponse, "getContestByYear call received non-success response");
       }
-      return new ApiResponse<List<EventContestPlain>>(
+      return new ApiResponse<ResponcePageContestsPlain>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<EventContestPlain>>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ResponcePageContestsPlain>() {})
         );
     } catch (IOException e) {
       throw new ApiException(e);
@@ -195,7 +280,7 @@ public class EventContestControllerApi {
     }
   }
 
-  private HttpRequest.Builder getContestByYearRequestBuilder(Integer year, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+  private HttpRequest.Builder getContestByYearRequestBuilder(Integer year, OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, Integer isCountryChampionship, Integer isCEI, Integer isCard, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
     // verify the required parameter 'year' is set
     if (year == null) {
       throw new ApiException(400, "Missing the required parameter 'year' when calling getContestByYear");
@@ -207,6 +292,12 @@ public class EventContestControllerApi {
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     localVarQueryParams.addAll(ApiClient.parameterToPairs("year", year));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("untilDate", untilDate));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("multi", "countryRegions", countryRegions));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("isCountryChampionship", isCountryChampionship));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("isCEI", isCEI));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("isCard", isCard));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageNo", pageNo));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("sortBy", sortBy));
@@ -222,6 +313,142 @@ public class EventContestControllerApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+  /**
+   * 
+   * 
+   * @return List&lt;EventContestCompetitionResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<EventContestCompetitionResult> getCurrentContestCompetitionsResults() throws ApiException {
+    ApiResponse<List<EventContestCompetitionResult>> localVarResponse = getCurrentContestCompetitionsResultsWithHttpInfo();
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @return ApiResponse&lt;List&lt;EventContestCompetitionResult&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<EventContestCompetitionResult>> getCurrentContestCompetitionsResultsWithHttpInfo() throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCurrentContestCompetitionsResultsRequestBuilder();
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw createApiException(localVarResponse, "getCurrentContestCompetitionsResults call received non-success response");
+      }
+      return new ApiResponse<List<EventContestCompetitionResult>>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<EventContestCompetitionResult>>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCurrentContestCompetitionsResultsRequestBuilder() throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/event/contest/result/current";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+  /**
+   * 
+   * 
+   * @param registerNomination  (required)
+   * @return RegisterResponce
+   * @throws ApiException if fails to make API call
+   */
+  public RegisterResponce postRegisterNomination(RegisterNomination registerNomination) throws ApiException {
+    ApiResponse<RegisterResponce> localVarResponse = postRegisterNominationWithHttpInfo(registerNomination);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param registerNomination  (required)
+   * @return ApiResponse&lt;RegisterResponce&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisterResponce> postRegisterNominationWithHttpInfo(RegisterNomination registerNomination) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = postRegisterNominationRequestBuilder(registerNomination);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw createApiException(localVarResponse, "postRegisterNomination call received non-success response");
+      }
+      return new ApiResponse<RegisterResponce>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder postRegisterNominationRequestBuilder(RegisterNomination registerNomination) throws ApiException {
+    // verify the required parameter 'registerNomination' is set
+    if (registerNomination == null) {
+      throw new ApiException(400, "Missing the required parameter 'registerNomination' when calling postRegisterNomination");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/event/register/nomination";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(registerNomination);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

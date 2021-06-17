@@ -22,27 +22,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContact;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * RegisterAccount
+ * RegisterAccount4Member
  */
 @JsonPropertyOrder({
-  RegisterAccount.JSON_PROPERTY_UUID,
-  RegisterAccount.JSON_PROPERTY_LOGIN_IDENTIFICATION,
-  RegisterAccount.JSON_PROPERTY_LOGIN_KEYWORD,
-  RegisterAccount.JSON_PROPERTY_NATIVE_LANGUAGE,
-  RegisterAccount.JSON_PROPERTY_VDD_MEMBER_NUMBER,
-  RegisterAccount.JSON_PROPERTY_USER
+  RegisterAccount4Member.JSON_PROPERTY_UUID,
+  RegisterAccount4Member.JSON_PROPERTY_VDD_MEMBER_NUMBER,
+  RegisterAccount4Member.JSON_PROPERTY_LOGIN_IDENTIFICATION,
+  RegisterAccount4Member.JSON_PROPERTY_LOGIN_KEYWORD,
+  RegisterAccount4Member.JSON_PROPERTY_EMAIL
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-17T11:45:53.590955+02:00[Europe/Berlin]")
-public class RegisterAccount {
+public class RegisterAccount4Member {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
+
+  public static final String JSON_PROPERTY_VDD_MEMBER_NUMBER = "vddMemberNumber";
+  private Integer vddMemberNumber;
 
   public static final String JSON_PROPERTY_LOGIN_IDENTIFICATION = "loginIdentification";
   private String loginIdentification;
@@ -50,14 +51,8 @@ public class RegisterAccount {
   public static final String JSON_PROPERTY_LOGIN_KEYWORD = "loginKeyword";
   private String loginKeyword;
 
-  public static final String JSON_PROPERTY_NATIVE_LANGUAGE = "nativeLanguage";
-  private String nativeLanguage;
-
-  public static final String JSON_PROPERTY_VDD_MEMBER_NUMBER = "vddMemberNumber";
-  private String vddMemberNumber;
-
-  public static final String JSON_PROPERTY_USER = "user";
-  private RegisterContact user;
+  public static final String JSON_PROPERTY_EMAIL = "email";
+  private String email;
 
 
    /**
@@ -76,7 +71,35 @@ public class RegisterAccount {
 
 
 
-  public RegisterAccount loginIdentification(String loginIdentification) {
+  public RegisterAccount4Member vddMemberNumber(Integer vddMemberNumber) {
+    this.vddMemberNumber = vddMemberNumber;
+    return this;
+  }
+
+   /**
+   * Get vddMemberNumber
+   * minimum: 0
+   * maximum: 10
+   * @return vddMemberNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_VDD_MEMBER_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getVddMemberNumber() {
+    return vddMemberNumber;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_VDD_MEMBER_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVddMemberNumber(Integer vddMemberNumber) {
+    this.vddMemberNumber = vddMemberNumber;
+  }
+
+
+  public RegisterAccount4Member loginIdentification(String loginIdentification) {
     this.loginIdentification = loginIdentification;
     return this;
   }
@@ -101,7 +124,7 @@ public class RegisterAccount {
   }
 
 
-  public RegisterAccount loginKeyword(String loginKeyword) {
+  public RegisterAccount4Member loginKeyword(String loginKeyword) {
     this.loginKeyword = loginKeyword;
     return this;
   }
@@ -126,86 +149,34 @@ public class RegisterAccount {
   }
 
 
-  public RegisterAccount nativeLanguage(String nativeLanguage) {
-    this.nativeLanguage = nativeLanguage;
+  public RegisterAccount4Member email(String email) {
+    this.email = email;
     return this;
   }
 
    /**
-   * Get nativeLanguage
-   * @return nativeLanguage
+   * Get email
+   * @return email
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NATIVE_LANGUAGE)
+  @JsonProperty(JSON_PROPERTY_EMAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getNativeLanguage() {
-    return nativeLanguage;
+  public String getEmail() {
+    return email;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NATIVE_LANGUAGE)
+  @JsonProperty(JSON_PROPERTY_EMAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNativeLanguage(String nativeLanguage) {
-    this.nativeLanguage = nativeLanguage;
-  }
-
-
-  public RegisterAccount vddMemberNumber(String vddMemberNumber) {
-    this.vddMemberNumber = vddMemberNumber;
-    return this;
-  }
-
-   /**
-   * Get vddMemberNumber
-   * @return vddMemberNumber
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_VDD_MEMBER_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getVddMemberNumber() {
-    return vddMemberNumber;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VDD_MEMBER_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVddMemberNumber(String vddMemberNumber) {
-    this.vddMemberNumber = vddMemberNumber;
-  }
-
-
-  public RegisterAccount user(RegisterContact user) {
-    this.user = user;
-    return this;
-  }
-
-   /**
-   * Get user
-   * @return user
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public RegisterContact getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(RegisterContact user) {
-    this.user = user;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
   /**
-   * Return true if this registerAccount object is equal to o.
+   * Return true if this registerAccount4Member object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -215,30 +186,28 @@ public class RegisterAccount {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterAccount registerAccount = (RegisterAccount) o;
-    return Objects.equals(this.uuid, registerAccount.uuid) &&
-        Objects.equals(this.loginIdentification, registerAccount.loginIdentification) &&
-        Objects.equals(this.loginKeyword, registerAccount.loginKeyword) &&
-        Objects.equals(this.nativeLanguage, registerAccount.nativeLanguage) &&
-        Objects.equals(this.vddMemberNumber, registerAccount.vddMemberNumber) &&
-        Objects.equals(this.user, registerAccount.user);
+    RegisterAccount4Member registerAccount4Member = (RegisterAccount4Member) o;
+    return Objects.equals(this.uuid, registerAccount4Member.uuid) &&
+        Objects.equals(this.vddMemberNumber, registerAccount4Member.vddMemberNumber) &&
+        Objects.equals(this.loginIdentification, registerAccount4Member.loginIdentification) &&
+        Objects.equals(this.loginKeyword, registerAccount4Member.loginKeyword) &&
+        Objects.equals(this.email, registerAccount4Member.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, loginIdentification, loginKeyword, nativeLanguage, vddMemberNumber, user);
+    return Objects.hash(uuid, vddMemberNumber, loginIdentification, loginKeyword, email);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegisterAccount {\n");
+    sb.append("class RegisterAccount4Member {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    vddMemberNumber: ").append(toIndentedString(vddMemberNumber)).append("\n");
     sb.append("    loginIdentification: ").append(toIndentedString(loginIdentification)).append("\n");
     sb.append("    loginKeyword: ").append(toIndentedString(loginKeyword)).append("\n");
-    sb.append("    nativeLanguage: ").append(toIndentedString(nativeLanguage)).append("\n");
-    sb.append("    vddMemberNumber: ").append(toIndentedString(vddMemberNumber)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }

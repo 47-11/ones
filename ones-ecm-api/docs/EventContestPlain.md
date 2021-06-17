@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **isCountryChampionship** | **Boolean** |  |  [optional]
 **isCei** | **Boolean** |  |  [optional]
 **isCard** | **Boolean** |  |  [optional]
+**infoHelmetObligation** | **String** |  |  [optional]
+**infoVaccinationObligation** | **String** |  |  [optional]
 **vddPortalUrl** | **String** |  |  [optional]
 **vddPortalTitle** | **String** |  |  [optional]
 **promoterTenderingUrl** | **String** |  |  [optional]

@@ -174,6 +174,22 @@ public class EventContestPlainTest {
     }
 
     /**
+     * Test the property 'infoHelmetObligation'
+     */
+    @Test
+    public void infoHelmetObligationTest() {
+        // TODO: test infoHelmetObligation
+    }
+
+    /**
+     * Test the property 'infoVaccinationObligation'
+     */
+    @Test
+    public void infoVaccinationObligationTest() {
+        // TODO: test infoVaccinationObligation
+    }
+
+    /**
      * Test the property 'vddPortalUrl'
      */
     @Test

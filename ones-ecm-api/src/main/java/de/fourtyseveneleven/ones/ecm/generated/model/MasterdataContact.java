@@ -76,7 +76,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataContact.JSON_PROPERTY_ADDRESSES,
   MasterdataContact.JSON_PROPERTY_ROLES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-17T11:45:53.590955+02:00[Europe/Berlin]")
 public class MasterdataContact {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;

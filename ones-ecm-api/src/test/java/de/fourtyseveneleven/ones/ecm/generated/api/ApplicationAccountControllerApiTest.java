@@ -15,6 +15,7 @@ package de.fourtyseveneleven.ones.ecm.generated.api;
 
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount4Member;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -47,6 +48,23 @@ public class ApplicationAccountControllerApiTest {
         RegisterAccount registerAccount = null;
         RegisterResponce response = 
         api.postRegisterAccount(registerAccount);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void postRegisterAccount4MemberTest() throws ApiException {
+        RegisterAccount4Member registerAccount4Member = null;
+        RegisterResponce response = 
+        api.postRegisterAccount4Member(registerAccount4Member);
         
         // TODO: test validations
     }
