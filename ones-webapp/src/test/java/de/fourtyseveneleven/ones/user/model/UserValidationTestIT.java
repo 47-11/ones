@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.transaction.Transactional;
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 class UserValidationTestIT extends AbstractValidationTestIT<User> {
@@ -34,15 +36,16 @@ class UserValidationTestIT extends AbstractValidationTestIT<User> {
     void emailAddressNotBlank() {
 
         final User user = buildValidEntity();
+        final String expectedMessage = "E-Mail address must not be blank.";
 
         user.setEmailAddress("");
-        assertValidationFails(user);
-
-        user.setEmailAddress("   \n  \t  \r");
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, expectedMessage);
 
         user.setEmailAddress(null);
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, expectedMessage);
+
+        user.setEmailAddress("   \n  \t  \r");
+        assertValidationFailsWithMessages(user, expectedMessage, "E-Mail address must be a valid E-Mail address.");
     }
 
     @Test
@@ -51,7 +54,7 @@ class UserValidationTestIT extends AbstractValidationTestIT<User> {
         final User user = buildValidEntity();
 
         user.setEmailAddress("dies ist keine E-Mail-Adresse!");
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, "E-Mail address must be a valid E-Mail address.");
 
         user.setEmailAddress("test+ones@example.com");
         assertValidationSucceeds(user);
@@ -62,40 +65,48 @@ class UserValidationTestIT extends AbstractValidationTestIT<User> {
 
         final User user = buildValidEntity();
         user.setEmailAddress("X".repeat(256));
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, "E-Mail address must not be longer than 255 characters.", "E-Mail address must be a valid E-Mail address.");
     }
 
     @Test
     void passwordNotBlank() {
 
         final User user = buildValidEntity();
+        final String expectedMessage = "Password must not be blank.";
 
-        user.setPassword("");
-        assertValidationFails(user);
+        user.setPassword(" ".repeat(60));
+        assertValidationFailsWithMessages(user, expectedMessage);
 
-        user.setPassword("   \n  \t  \r");
-        assertValidationFails(user);
+        user.setPassword("\n\t\r".repeat(20));
+        assertValidationFailsWithMessages(user, expectedMessage);
 
         user.setPassword(null);
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, expectedMessage);
     }
 
     @Test
     void passwordSize() {
 
         final User user = buildValidEntity();
+        final String expectedMessage = "Password hash is not valid. Should be 60 characters long.";
+
         user.setPassword("*".repeat(61));
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, expectedMessage);
+
+        user.setPassword("*".repeat(59));
+        assertValidationFailsWithMessages(user, expectedMessage);
     }
 
     @Test
     void registrationConfirmationCodeSize() {
 
         final User user = buildValidEntity();
+        final String expectedMessage = "Generated confirmation code is not valid. Should be 255 characters long.";
+
         user.setRegistrationConfirmationCode("*".repeat(254));
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, expectedMessage);
 
         user.setRegistrationConfirmationCode("*".repeat(256));
-        assertValidationFails(user);
+        assertValidationFailsWithMessages(user, expectedMessage);
     }
 }

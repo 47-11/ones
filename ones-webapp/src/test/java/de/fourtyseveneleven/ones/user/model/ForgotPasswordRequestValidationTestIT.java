@@ -27,6 +27,8 @@ class ForgotPasswordRequestValidationTestIT extends AbstractValidationTestIT<For
     @BeforeEach
     @Override
     protected void setUp() {
+        super.setUp();
+
         userRepository.deleteAll();
 
         final var user = new User();
@@ -65,33 +67,35 @@ class ForgotPasswordRequestValidationTestIT extends AbstractValidationTestIT<For
 
         final var forgotPasswordRequest = buildValidEntity();
         forgotPasswordRequest.setUser(null);
-        assertValidationFails(forgotPasswordRequest);
+        assertValidationFailsWithMessages(forgotPasswordRequest, "User must not be null.");
     }
 
     @Test
     void confirmationCodeNotBlank() {
 
         final var forgotPasswordRequest = buildValidEntity();
+        final String expectedMessage = "Generated confirmation code is not valid. Should be 255 characters long.";
 
-        forgotPasswordRequest.setConfirmationCode("");
-        assertValidationFails(forgotPasswordRequest);
+        forgotPasswordRequest.setConfirmationCode(" ".repeat(255));
+        assertValidationFailsWithMessages(forgotPasswordRequest, expectedMessage);
 
-        forgotPasswordRequest.setConfirmationCode("   \n  \t  \r");
-        assertValidationFails(forgotPasswordRequest);
+        forgotPasswordRequest.setConfirmationCode("\n\t\r".repeat(85));
+        assertValidationFailsWithMessages(forgotPasswordRequest, expectedMessage);
 
         forgotPasswordRequest.setConfirmationCode(null);
-        assertValidationFails(forgotPasswordRequest);
+        assertValidationFailsWithMessages(forgotPasswordRequest, expectedMessage);
     }
 
     @Test
     void ConfirmationCodeSize() {
 
         final var forgotPasswordRequest = buildValidEntity();
+        final String expectedMessage = "Generated confirmation code is not valid. Should be 255 characters long.";
 
         forgotPasswordRequest.setConfirmationCode("*".repeat(254));
-        assertValidationFails(forgotPasswordRequest);
+        assertValidationFailsWithMessages(forgotPasswordRequest, expectedMessage);
 
         forgotPasswordRequest.setConfirmationCode("*".repeat(256));
-        assertValidationFails(forgotPasswordRequest);
+        assertValidationFailsWithMessages(forgotPasswordRequest, expectedMessage);
     }
 }
