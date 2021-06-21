@@ -57,14 +57,24 @@ const i18n = new VueI18n({
     }
 });
 
-axios.interceptors.response.use(undefined, (res) => {
-    if (res.response.status === 403) {
+axios.interceptors.response.use(res => {
+    vxm.app.isOffline = false;
+    return res;
+}, (res) => {
+    if (res.message === "Network Error") {
+        vxm.app.isOffline = true;
+        throw new Error(i18n.t("offlineWarning.noConnection").toString());
+    } else {
+        vxm.app.isOffline = false;
+    }
+
+    if (res.response?.status === 403) {
         if (vxm.user.authenticated) {
             router.push("/logout").catch(() => { /* ignore error that occurs because logout will redirect us to login in the end" */ });
-            throw new Error("Token is invalid or has expired");
+            throw new Error("Token is invalid or has expired.");
         }
     }
-    return res;
+    throw res;
 });
 
 new Vue({

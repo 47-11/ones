@@ -1,11 +1,11 @@
 <template>
     <div id="app" class="font-sans">
-        <div class="bg-red-600 text-white text-center p-2 w-full">
+        <div class="bg-red-600 text-white text-center p-2 w-full" v-if="app.isOffline">
             <h2 class="text-lg">
                 <font-awesome-icon :icon="'exclamation-triangle'" class="ml-2"/>
-                {{ "No connection" }}
+                {{ $t("offlineWarning.noConnection") }}
             </h2>
-            {{ "Looks like you are offline."}}
+            {{ $t("offlineWarning.message")}}
         </div>
         <router-view/>
     </div>
@@ -39,3 +39,12 @@
     font-bold;
 }
 </style>
+
+<script lang="ts">
+import Vue from "vue";
+import { vxm } from "./store";
+
+export default class App extends Vue {
+    app = vxm.app;
+}
+</script>

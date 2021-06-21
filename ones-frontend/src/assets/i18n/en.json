@@ -136,5 +136,9 @@
     },
     "shared": {
         "error": "An error occurred"
+    },
+    "offlineWarning": {
+        "noConnection": "No connection.",
+        "message": "Cannot reach the server. Are you offline?"
     }
 }
