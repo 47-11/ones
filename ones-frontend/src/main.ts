@@ -19,6 +19,7 @@ import router from "./router";
 import store from "./store";
 import VueLoading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import axios from "axios";
 
 Vue.config.productionTip = false;
 
@@ -51,6 +52,14 @@ const i18n = new VueI18n({
         en: require("@/assets/i18n/en"),
         de: require("@/assets/i18n/de")
     }
+});
+
+axios.interceptors.response.use(undefined, (res) => {
+    if (res.response.status === 403) {
+        router.push("/logout").catch(() => { /* ignore error that occurs because logout will redirect us to login in the end" */ });
+        throw new Error("Token is invalid or has expired");
+    }
+    return res;
 });
 
 new Vue({
