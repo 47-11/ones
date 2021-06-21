@@ -57,7 +57,7 @@ const i18n = new VueI18n({
 axios.interceptors.response.use(undefined, (res) => {
     if (res.response.status === 403) {
         if (vxm.user.authenticated) {
-            router.push("/logout").catch(() => { /* ignore error that occurs because logout will redirect us to login in the end" */ });;
+            router.push("/logout").catch(() => { /* ignore error that occurs because logout will redirect us to login in the end" */ });
             throw new Error("Token is invalid or has expired");
         }
     }
