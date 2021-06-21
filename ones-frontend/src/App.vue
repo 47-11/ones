@@ -1,5 +1,12 @@
 <template>
     <div id="app" class="font-sans">
+        <div class="bg-red-600 text-white text-center p-2 w-full">
+            <h2 class="text-lg">
+                <font-awesome-icon :icon="'exclamation-triangle'" class="ml-2"/>
+                {{ "No connection" }}
+            </h2>
+            {{ "Looks like you are offline."}}
+        </div>
         <router-view/>
     </div>
 </template>
