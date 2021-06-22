@@ -15,12 +15,10 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
     {
         path: "/",
-        name: "Home",
         component: Home
     },
     {
         path: "/about",
-        name: "About",
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -28,37 +26,30 @@ const routes: Array<RouteConfig> = [
     },
     {
         path: "/register",
-        name: "Register",
         component: Register
     },
     {
         path: "/login",
-        name: "Login",
         component: Login
     },
     {
         path: "/forgot-password",
-        name: "Passwort vergessen",
         component: ForgotPassword
     },
     {
         path: "/reset-password",
-        name: "Passwort zurücksetzen",
         component: ResetPassword
     },
     {
         path: "/verified",
-        name: "E-Mail bestätigt",
         component: Verified
     },
     {
         path: "/events",
-        name: "Wettbewerbe",
         component: EventsIndex
     },
     {
         path: "/events/:eventId",
-        name: "Wettbewerb",
         component: EventDetail
     }
 ];
