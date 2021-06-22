@@ -1,12 +1,5 @@
 <template>
     <div id="app" class="font-sans">
-        <div class="bg-red-600 text-white text-center p-2 w-full" v-if="app.isOffline">
-            <h2 class="text-lg">
-                <font-awesome-icon :icon="'exclamation-triangle'" class="ml-2"/>
-                {{ $t("offlineWarning.noConnection") }}
-            </h2>
-            {{ $t("offlineWarning.message")}}
-        </div>
         <router-view/>
     </div>
 </template>
@@ -44,7 +37,7 @@
 import Vue from "vue";
 import { vxm } from "./store";
 
-export default class App extends Vue {
+export default class App extends Vue.extend() {
     app = vxm.app;
 }
 </script>
