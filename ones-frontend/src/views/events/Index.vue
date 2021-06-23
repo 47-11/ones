@@ -99,7 +99,7 @@
             <v-table>
                 <thead class="bg-gray-50">
                 <tr>
-                    <v-th :sortable="events" :sortKey="state">
+                    <v-th>
                         {{ $t("events.state") }}
                     </v-th>
                     <v-th :sortable="events" sortKey="start">
@@ -205,6 +205,7 @@ import VTable from "@/components/table/VTable.vue";
 import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
 import Badge from "@/components/Badge.vue";
+import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
 import VLink from "@/components/VLink.vue";
@@ -228,6 +229,8 @@ import Multiselect from "vue-multiselect/src/Multiselect.vue";
         AppLayout,
         Card,
         VButton,
+        Badge,
+        VCheckbox
         Badge
         VButton,
         VSelect,
