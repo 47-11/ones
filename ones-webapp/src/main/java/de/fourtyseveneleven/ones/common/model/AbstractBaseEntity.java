@@ -86,6 +86,11 @@ public abstract class AbstractBaseEntity implements BaseEntity {
         return getId() == other.getId();
     }
 
+    @Override
+    public String toString() {
+        return Long.toString(getId());
+    }
+
     @PrePersist
     protected void setCreatedAndLastModifiedOnCreate() {
 
