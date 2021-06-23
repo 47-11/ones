@@ -99,6 +99,9 @@
             <v-table>
                 <thead class="bg-gray-50">
                 <tr>
+                    <v-th :sortable="events" :sortKey="state">
+                        {{ $t("events.state") }}
+                    </v-th>
                     <v-th :sortable="events" sortKey="start">
                         {{ $t('events.start') }}
                     </v-th>
@@ -108,20 +111,51 @@
                     <v-th :sortable="events" sortKey="title">
                         {{ $t('events.ride') }}
                     </v-th>
-                    <v-th>{{ $t('events.documents') }}</v-th>
+                    <v-th :sortable="events" sortKey="region">
+                        {{ $t('events.region') }}
+                    </v-th>
+                    <v-th>
+                        {{ $t('events.rideType') }}
+                    </v-th>
+                    <v-th>
+                        {{ $t('events.categories') }}
+                    </v-th>
+                    <v-th>
+                        {{ $t('events.mapRide') }}
+                    </v-th>
+                    <v-th>
+                        {{ $t('events.internationalRide') }}
+                    </v-th>
                     <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="event in events.list" :key="event.uuid">
+                    <v-td>
+                        {{$t("events.states." + event.state)}}
+                    </v-td>
                     <v-td>{{
                             new Date(event.start).toLocaleDateString(locale)
                         }}
                     </v-td>
                     <v-td>{{ new Date(event.end).toLocaleDateString(locale) }}</v-td>
                     <v-td>{{ event.title }}</v-td>
+                    <v-td>{{ event.region || "Buxtehude" }}</v-td>
                     <v-td>
-                        <v-link to="#">{{ $t('events.callForTenders') }}</v-link>
+                        <badge v-for="rideType in rideTypes(event)" :key="rideType" class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" >
+                            {{rideType}}
+                        </badge>
+                    </v-td>
+                    <v-td>
+                        <badge v-for="category in categories(event)" :key="category" class="bg-red-700 text-white text-xs font-medium mr-2 mb-2" >
+                            {{category}}
+                        </badge>
+                    </v-td>
+                    <v-td>
+                        {{ $t(event.mapRide ? "events.yes" : "events.no")}}
+                    </v-td>
+                    <v-td>
+                        {{ $t(event.internationalRide ? "events.yes" : "events.no")}}
                     </v-td>
                     <v-td>
                         <router-link :to="'/events/' + event.uuid">
@@ -170,10 +204,12 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import VTable from "@/components/table/VTable.vue";
 import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
+import Badge from "@/components/Badge.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
 import VLink from "@/components/VLink.vue";
 import { vxm } from "@/store";
+import { SimpleEventDto } from "@/openapi/generated";
 import VSelect from "@/components/forms/VSelect.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import VRadio from "@/components/forms/VRadio.vue";
@@ -191,6 +227,8 @@ import Multiselect from "vue-multiselect/src/Multiselect.vue";
         VTd,
         AppLayout,
         Card,
+        VButton,
+        Badge
         VButton,
         VSelect,
         VLabel,
@@ -214,6 +252,22 @@ export default class Home extends Vue {
 
     mounted(): void {
         vxm.events.fetch();
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public rideTypes(event: SimpleEventDto): string[] {
+        return [
+            "Fahrt",
+            "Ritt"
+        ];
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public categories(event: SimpleEventDto): string[] {
+        return [
+            "EFR",
+            "MTR"
+        ];
     }
 
     async resetFilter(): Promise<void> {
