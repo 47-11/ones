@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.time.LocalDateTime;
 
@@ -25,7 +26,7 @@ public class ForgotPasswordRequest extends AbstractBaseEntity {
     private LocalDateTime validUntil;
 
     @ManyToOne
-    @NotNull
+    @NotNull(message = "{forgot-password-request.user.not-null}")
     public User getUser() {
         return user;
     }
@@ -34,8 +35,8 @@ public class ForgotPasswordRequest extends AbstractBaseEntity {
         this.user = user;
     }
 
-    @NotBlank
-    @Length(min = 255, max = 255)
+    @NotBlank(message = "{forgot-password-request.confirmation-code.not-blank}")
+    @Size(min = 255, max = 255, message = "{forgot-password-request.confirmation-code.size}")
     public String getConfirmationCode() {
         return confirmationCode;
     }

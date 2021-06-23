@@ -24,9 +24,9 @@ public class User extends AbstractBaseEntity {
     private boolean registrationConfirmed;
     private String registrationConfirmationCode;
 
-    @NotBlank
-    @Email
-    @Size(max = 255)
+    @NotBlank(message = "{user.email-address.not-blank}")
+    @Email(message = "{user.email-address.email}")
+    @Size(max = 255, message = "{user.email-address.size}")
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -35,8 +35,8 @@ public class User extends AbstractBaseEntity {
         this.emailAddress = emailAddress;
     }
 
-    @NotBlank
-    @Size(max = 60)
+    @NotBlank(message = "{user.password.not-blank}")
+    @Size(min = 60, max = 60, message = "{user.password.size}")
     public String getPassword() {
         return password;
     }
@@ -45,7 +45,6 @@ public class User extends AbstractBaseEntity {
         this.password = password;
     }
 
-    @NotNull
     public boolean isRegistrationConfirmed() {
         return registrationConfirmed;
     }
@@ -54,7 +53,7 @@ public class User extends AbstractBaseEntity {
         this.registrationConfirmed = registrationConfirmed;
     }
 
-    @Size(min=255, max = 255)
+    @Size(min=255, max = 255, message = "{user.registration-confirmation-code.size}")
     public String getRegistrationConfirmationCode() {
         return registrationConfirmationCode;
     }

@@ -21,7 +21,7 @@ public class UserRepositoryTestIT extends AbstractRepositoryTestIT<User> {
 
         final var user = new User();
         user.setEmailAddress("testy@mctesticles.de");
-        user.setPassword("some-pw-hash");
+        user.setPassword("*".repeat(60));
         return user;
     }
 }
