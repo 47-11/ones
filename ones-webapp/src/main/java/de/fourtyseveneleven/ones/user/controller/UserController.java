@@ -1,10 +1,15 @@
 package de.fourtyseveneleven.ones.user.controller;
 
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
+import de.fourtyseveneleven.ones.user.model.dto.PersonalDataDto;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @AuthenticatedApiController
 @RequestMapping("/api/v1/user")
@@ -20,5 +25,12 @@ public class UserController {
     public UserDto getCurrentUser() {
 
         return userService.getCurrentUser();
+    }
+
+    @PatchMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setPersonalData(@RequestBody PersonalDataDto personalData) {
+
+        userService.setPersonalDataForCurrentUser(personalData);
     }
 }
