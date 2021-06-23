@@ -1,6 +1,7 @@
 package de.fourtyseveneleven.ones.ecm.configuration;
 
 import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerApi;
 import de.fourtyseveneleven.ones.settings.OnesSettings;
@@ -26,6 +27,12 @@ public class EcmApiConfiguration {
     public MasterdataContactControllerApi masterdataContactControllerApi(ApiClient apiClient) {
 
         return new MasterdataContactControllerApi(apiClient);
+    }
+
+    @Bean
+    public ApplicationAccountControllerApi applicationAccountControllerApi(ApiClient apiClient) {
+
+        return new ApplicationAccountControllerApi(apiClient);
     }
 
     @Bean
