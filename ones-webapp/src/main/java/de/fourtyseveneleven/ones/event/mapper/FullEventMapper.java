@@ -1,8 +1,8 @@
 package de.fourtyseveneleven.ones.event.mapper;
 
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
-import de.fourtyseveneleven.ones.common.mapper.ContactMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
+import de.fourtyseveneleven.ones.common.mapper.PersonDtoMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import org.mapstruct.Mapper;
@@ -21,7 +21,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
         componentModel = "spring",
         uses = {
                 DateTimeFormatMapper.class,
-                ContactMapper.class,
+                PersonDtoMapper.class,
                 CommonMapper.class
         }
 )
