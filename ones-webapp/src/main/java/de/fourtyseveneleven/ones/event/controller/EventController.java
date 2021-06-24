@@ -4,16 +4,27 @@ import de.fourtyseveneleven.ones.common.model.SortDirection;
 import de.fourtyseveneleven.ones.common.model.dto.PageDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
-import de.fourtyseveneleven.ones.event.model.dto.*;
+import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
+import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
+import de.fourtyseveneleven.ones.event.model.dto.SignupDto;
+import de.fourtyseveneleven.ones.event.model.dto.SignupRequestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.FullContestService;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
 import de.fourtyseveneleven.ones.event.service.SignupService;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @AuthenticatedApiController
@@ -35,23 +46,20 @@ public class EventController {
     }
 
     @GetMapping("")
-    public PageDto<SimpleEventDto> findAll(@RequestParam(required = false) String titleContains,
-                                           @RequestParam(required = false) String descriptionContains,
-                                           @RequestParam(required = false) LocalDateTime startsBefore,
-                                           @RequestParam(required = false) LocalDateTime startsAfter,
-                                           @RequestParam(required = false) LocalDateTime endsBefore,
-                                           @RequestParam(required = false) LocalDateTime endsAfter,
-                                           @RequestParam(required = false) Long organizerId,
+    public PageDto<SimpleEventDto> findAll(@RequestParam(required = false) LocalDate from,
+                                           @RequestParam(required = false) LocalDate until,
+                                           @RequestParam(required = false) Boolean isCountryChampionship,
+                                           @RequestParam(required = false) Boolean isInternational,
+                                           @RequestParam(required = false) Boolean isCard,
+                                           @RequestParam(required = false) List<String> regions,
                                            @RequestParam(required = false, defaultValue = "0") int page,
                                            @RequestParam(required = false, defaultValue = "10") int pageSize,
                                            @RequestParam(required = false, defaultValue = "start") String sortBy,
                                            @RequestParam(required = false, defaultValue = "ASCENDING") SortDirection sortDirection) {
 
-        final var filter = new EventFilterDto(titleContains, descriptionContains, startsBefore, startsAfter,
-                endsBefore, endsAfter, organizerId);
+        final var filter = new EventFilterDto(from, until, isCountryChampionship, isInternational, isCard, regions);
         final var pageRequest = new PageRequest(page, pageSize);
         final var sortRequest = new SortRequest(sortBy, sortDirection);
-
         return simpleEventService.findAll(filter, pageRequest, sortRequest);
     }
 

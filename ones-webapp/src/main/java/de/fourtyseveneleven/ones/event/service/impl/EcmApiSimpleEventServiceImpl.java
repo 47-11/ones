@@ -19,11 +19,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-import java.util.Objects;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
-import static java.util.Collections.emptyList;
+import static java.util.Objects.isNull;
 
 @Service
 @Primary
@@ -75,18 +75,69 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
-        final int year = getYearFromFilter(filter);
         return eventContestControllerApi
-                .getContestByYear(year, null, null, emptyList(), null, null, null, pageRequest.getPageNumber(), pageRequest.getPageSize(), null);
+                .getContestByYear(getYearFromFilter(filter),
+                        atStartOfDay(filter.getFrom()),
+                        atEndOfDay(filter.getUntil()),
+                        filter.getRegions(),
+                        booleanToInteger(filter.getIsCountryChampionship()),
+                        booleanToInteger(filter.getIsInternational()),
+                        booleanToInteger(filter.getIsCard()),
+                        pageRequest.getPageNumber(),
+                        pageRequest.getPageSize(),
+                        getSortByValue(sortRequest.getAttributeName()));
     }
 
     private int getYearFromFilter(EventFilterDto filter) {
 
-        if (Objects.isNull(filter.getEndsAfter())) {
+        if (isNull(filter.getFrom())) {
             return LocalDate.now().getYear();
         } else {
-            return filter.getEndsAfter().getYear();
+            return filter.getFrom().getYear();
         }
+    }
+
+    private OffsetDateTime atStartOfDay(LocalDate localDate) {
+
+        if (isNull(localDate)) {
+            return null;
+        } else {
+            return OffsetDateTime.from(localDate.atStartOfDay());
+        }
+    }
+
+    private OffsetDateTime atEndOfDay(LocalDate localDate) {
+
+        if (isNull(localDate)) {
+            return null;
+        } else {
+            return OffsetDateTime.from(localDate.atTime(23, 59, 59));
+        }
+    }
+
+    private Integer booleanToInteger(Boolean filterValue) {
+
+        if (isNull(filterValue)) {
+            return null;
+        } else if (filterValue) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private String getSortByValue(String sortBy) {
+
+        if (isNull(sortBy)) {
+            return null;
+        }
+
+        return switch (sortBy.toLowerCase().trim()) {
+            case "title" -> "title";
+            case "start" -> "beginning";
+            case "end" -> "ending";
+            default -> throw new IllegalArgumentException("Can't sort by " + sortBy);
+        };
     }
 
     private PageDto<SimpleEventDto> pageDtoFromResponcePageContestsPlain(ResponcePageContestsPlain responcePageContestsPlain, PageRequest pageRequest) {

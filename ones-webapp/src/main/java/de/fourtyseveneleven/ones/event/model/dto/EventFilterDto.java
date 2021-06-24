@@ -1,85 +1,75 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 public class EventFilterDto {
 
-    private String titleContains;
-    private String descriptionContains;
-    private LocalDateTime startsBefore;
-    private LocalDateTime startsAfter;
-    private LocalDateTime endsBefore;
-    private LocalDateTime endsAfter;
-    private Long organizerId;
+    private LocalDate from;
+    private LocalDate until;
+    private Boolean isCountryChampionship;
+    private Boolean isInternational;
+    private Boolean isCard;
+    private List<String> regions;
 
     public EventFilterDto() {
     }
 
-    public EventFilterDto(String titleContains, String descriptionContains, LocalDateTime startsBefore,
-                          LocalDateTime startsAfter, LocalDateTime endsBefore, LocalDateTime endsAfter,
-                          Long organizerId) {
-        this.titleContains = titleContains;
-        this.descriptionContains = descriptionContains;
-        this.startsBefore = startsBefore;
-        this.startsAfter = startsAfter;
-        this.endsBefore = endsBefore;
-        this.endsAfter = endsAfter;
-        this.organizerId = organizerId;
+    public EventFilterDto(LocalDate from, LocalDate until, Boolean isCountryChampionship, Boolean isInternational,
+                          Boolean isCard, List<String> regions) {
+        this.from = from;
+        this.until = until;
+        this.isCountryChampionship = isCountryChampionship;
+        this.isInternational = isInternational;
+        this.isCard = isCard;
+        this.regions = regions;
     }
 
-    public String getTitleContains() {
-        return titleContains;
+    public LocalDate getFrom() {
+        return from;
     }
 
-    public void setTitleContains(String titleContains) {
-        this.titleContains = titleContains;
+    public void setFrom(LocalDate from) {
+        this.from = from;
     }
 
-    public String getDescriptionContains() {
-        return descriptionContains;
+    public LocalDate getUntil() {
+        return until;
     }
 
-    public void setDescriptionContains(String descriptionContains) {
-        this.descriptionContains = descriptionContains;
+    public void setUntil(LocalDate until) {
+        this.until = until;
     }
 
-    public LocalDateTime getStartsBefore() {
-        return startsBefore;
+    public Boolean getIsCountryChampionship() {
+        return isCountryChampionship;
     }
 
-    public void setStartsBefore(LocalDateTime startsBefore) {
-        this.startsBefore = startsBefore;
+    public void setIsCountryChampionship(Boolean countryChampionship) {
+        isCountryChampionship = countryChampionship;
     }
 
-    public LocalDateTime getStartsAfter() {
-        return startsAfter;
+    public Boolean getIsInternational() {
+        return isInternational;
     }
 
-    public void setStartsAfter(LocalDateTime startsAfter) {
-        this.startsAfter = startsAfter;
+    public void setIsInternational(Boolean international) {
+        isInternational = international;
     }
 
-    public LocalDateTime getEndsBefore() {
-        return endsBefore;
+    public Boolean getIsCard() {
+        return isCard;
     }
 
-    public void setEndsBefore(LocalDateTime endsBefore) {
-        this.endsBefore = endsBefore;
+    public void setIsCard(Boolean card) {
+        isCard = card;
     }
 
-    public LocalDateTime getEndsAfter() {
-        return endsAfter;
+    public List<String> getRegions() {
+        return regions;
     }
 
-    public void setEndsAfter(LocalDateTime endsAfter) {
-        this.endsAfter = endsAfter;
-    }
-
-    public Long getOrganizerId() {
-        return organizerId;
-    }
-
-    public void setOrganizerId(Long organizerId) {
-        this.organizerId = organizerId;
+    public void setRegions(List<String> regions) {
+        this.regions = regions;
     }
 }
