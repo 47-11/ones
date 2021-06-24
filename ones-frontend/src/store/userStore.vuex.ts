@@ -1,4 +1,4 @@
-import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi } from "@/openapi/generated";
+import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -34,6 +34,7 @@ export interface NewPassByCodePayload {
 export class UserStore extends VuexModule {
     private static readonly TOKEN_STORAGE_NAME = "jwtToken";
     public token?: string = this.getLastToken();
+    private _current: UserDto | null = null;
 
     private getLastToken(): string | undefined {
         return sessionStorage.getItem(UserStore.TOKEN_STORAGE_NAME) ||
@@ -43,6 +44,10 @@ export class UserStore extends VuexModule {
 
     get authenticated(): boolean {
         return this.token !== undefined;
+    }
+
+    get current(): User | null {
+        return this._current;
     }
 
     @action
@@ -96,5 +101,10 @@ export class UserStore extends VuexModule {
             code: payload.code,
             newPassword: payload.password
         });
+    }
+
+    @action
+    async fetchCurrent(): Promise<void> {
+        this._current = (await new UserControllerApi().getCurrentUser()).data;
     }
 }
