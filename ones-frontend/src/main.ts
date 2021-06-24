@@ -1,5 +1,13 @@
 import "@/assets/css/tailwind.css";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import VLabel from "@/components/forms/VLabel.vue";
+import PageHeader from "@/components/PageHeader.vue";
+import VTable from "@/components/table/VTable.vue";
+import VTbody from "@/components/table/VTbody.vue";
+import VTd from "@/components/table/VTd.vue";
+import VTh from "@/components/table/VTh.vue";
+import VThead from "@/components/table/VThead.vue";
+import VTr from "@/components/table/VTr.vue";
 import Modal from "@/layouts/Modal.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -37,13 +45,6 @@ import { UserDto } from "./openapi/generated";
 import "./registerServiceWorker";
 import router from "./router";
 import store, { vxm } from "./store";
-import VTable from "@/components/table/VTable.vue";
-import VTh from "@/components/table/VTh.vue";
-import VTd from "@/components/table/VTd.vue";
-import VTr from "@/components/table/VTr.vue";
-import VTbody from "@/components/table/VTbody.vue";
-import VThead from "@/components/table/VThead.vue";
-import VLabel from "@/components/forms/VLabel.vue";
 
 Vue.config.productionTip = false;
 
@@ -71,6 +72,7 @@ library.add(
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("error-message", ErrorMessage);
+Vue.component("page-header", PageHeader);
 
 Vue.component("v-table", VTable);
 Vue.component("v-tbody", VTbody);
