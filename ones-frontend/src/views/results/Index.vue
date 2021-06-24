@@ -1,7 +1,7 @@
 <template>
     <app-layout>
-        <div class="max-w-6xl m-auto py-12">
-            <page-header>{{ $t("results.title") }}</page-header>
+        <div class="max-w-7xl m-auto py-12">
+            <page-header>{{ $t("navigation.results") }}</page-header>
 
             <v-table>
                 <thead class="bg-gray-50">

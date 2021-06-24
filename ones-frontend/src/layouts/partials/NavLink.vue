@@ -17,7 +17,11 @@ export default class NavLink extends Vue {
             return this.to === "/";
         }
 
-        return this.to.startsWith(this.$route.path);
+        if (this.to === "/") {
+            return false;
+        }
+
+        return this.$route.path.startsWith(this.to);
     }
 }
 </script>

@@ -30,6 +30,8 @@
             </div>
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10">
+            <page-header>{{ $t('signUp.title') }}</page-header>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3">
                 <card>
                     <div class="px-5 py-4 mb-3 text-lg bg-gray-50">
@@ -39,6 +41,14 @@
                     </div>
 
                     <table>
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top">
+                                {{$t('details.details')}}
+                                </th>
+                            <td class="text-left px-5 py-1">
+                                {{ details.address.locationName }} <br> {{ start.format("DD.MM.YYYY") }}
+                            </td>
+                        </tr>
                         <tr>
                             <th class="text-left px-5 py-1 align-top">
                                 {{$t('details.distance')}}
