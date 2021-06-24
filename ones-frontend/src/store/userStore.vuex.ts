@@ -15,6 +15,7 @@ export interface LoginPayload {
 export interface RegistrationPayload {
     email: string;
     password: string;
+    vddNumber?: number;
 }
 
 export interface VerificationPayload {
@@ -65,7 +66,8 @@ export class UserStore extends VuexModule {
     async register(payload: RegistrationPayload): Promise<void> {
         await new RegistrationControllerApi().createRegistration({
             emailAddress: payload.email,
-            password: payload.password
+            password: payload.password,
+            vddMemberNumber: payload.vddNumber
         });
     }
 
