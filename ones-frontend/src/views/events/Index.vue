@@ -10,7 +10,7 @@
                     <v-th :sortable="events" sortKey="end">
                         {{ $t('events.end') }}
                     </v-th>
-                    <v-th :sortable="events" sortKey="ride">
+                    <v-th :sortable="events" sortKey="title">
                         {{ $t('events.ride') }}
                     </v-th>
                     <v-th>{{ $t('events.documents') }}</v-th>
