@@ -1,5 +1,5 @@
 import { UserControllerApi, UserDto } from "@/openapi/generated";
-import { UserStore } from "@/store/userStore.vuex";
+import { UserStore } from "@/store/user.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
 import Vuex, { Store } from "vuex";

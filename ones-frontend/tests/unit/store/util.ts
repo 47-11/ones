@@ -2,7 +2,7 @@ import { VuexModule, VuexModuleConstructor } from "vuex-class-component/dist/int
 import Vuex, { Store } from "vuex";
 import { extractVuexModule } from "vuex-class-component";
 import { EventsStore } from "@/store/events.vuex";
-import { UserStore } from "@/store/userStore.vuex";
+import { UserStore } from "@/store/user.vuex";
 import { HorseStore } from "@/store/horse.vuex";
 import { ResultsStore } from "@/store/results.vuex";
 import { AppStore } from "@/store/app.vuex";

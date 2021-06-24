@@ -5,7 +5,7 @@ import { AppStore } from "./app.vuex";
 import { EventsStore } from "./events.vuex";
 import { HorseStore } from "./horse.vuex";
 import { ResultsStore } from "./results.vuex";
-import { UserStore } from "./userStore.vuex";
+import { UserStore } from "./user.vuex";
 
 Vue.use(Vuex);
 
