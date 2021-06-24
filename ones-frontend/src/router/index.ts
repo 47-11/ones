@@ -7,8 +7,9 @@ import SignUp from "@/views/contests/SignUp.vue";
 import EventDetail from "@/views/events/Detail.vue";
 import EventsIndex from "@/views/events/Index.vue";
 import HorsesIndex from "@/views/horses/Index.vue";
-import ProfileIndex from "@/views/profile/Index.vue";
 import ProfileEdit from "@/views/profile/Edit.vue";
+import ProfileIndex from "@/views/profile/Index.vue";
+import ResultsIndex from "@/views/results/Index.vue";
 import Vue from "vue";
 import VueRouter, { Route, RouteConfig } from "vue-router";
 import Login from "../views/auth/Login.vue";
@@ -47,6 +48,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/verified",
         component: Verified
+    },
+    {
+        path: "/results",
+        component: ResultsIndex
     },
     {
         path: "/events",

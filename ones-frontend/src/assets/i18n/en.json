@@ -2,6 +2,7 @@
   "navigation": {
     "dashboard": "Dashboard",
     "events": "Events",
+    "results": "Results",
     "logout": "Logout",
     "user": "User",
     "mail": "E-Mail",
@@ -218,6 +219,16 @@
     },
     "title": "Events",
     "selectedRegions": "{count} regions selected."
+  },
+  "results": {
+    "title": "Results",
+    "date": "Date",
+    "name": "Name",
+    "contestType": "Contest Type",
+    "horses": "Horses",
+    "distance": "Distance",
+    "placement": "Placement",
+    "averageSpeed": "Ø-Speed"
   },
   "signUp": {
     "title": "Sign up",
