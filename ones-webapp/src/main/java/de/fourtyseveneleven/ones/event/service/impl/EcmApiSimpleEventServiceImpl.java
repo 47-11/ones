@@ -1,5 +1,6 @@
 package de.fourtyseveneleven.ones.event.service.impl;
 
+import de.fourtyseveneleven.ones.common.model.SortDirection;
 import de.fourtyseveneleven.ones.common.model.dto.PageDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
@@ -85,7 +86,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
                         booleanToInteger(filter.getIsCard()),
                         pageRequest.getPageNumber(),
                         pageRequest.getPageSize(),
-                        getSortByValue(sortRequest.getAttributeName()));
+                        getSortByValue(sortRequest));
     }
 
     private int getYearFromFilter(EventFilterDto filter) {
@@ -126,17 +127,33 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         }
     }
 
-    private String getSortByValue(String sortBy) {
+    private String getSortByValue(SortRequest sortRequest) {
 
-        if (isNull(sortBy)) {
+        final String attributeName = sortRequest.getAttributeName();
+        if (isNull(attributeName)) {
             return null;
         }
 
-        return switch (sortBy.toLowerCase().trim()) {
+        final String mappedAttributeName = mapSortByAttributeName(attributeName);
+        final String sortDirectionSuffix = getSortDirectionSuffix(sortRequest.getSortDirection());
+        return mappedAttributeName +  sortDirectionSuffix;
+    }
+
+    private String mapSortByAttributeName(String attributeName) {
+
+        return switch (attributeName.toLowerCase().trim()) {
             case "title" -> "title";
             case "start" -> "beginning";
             case "end" -> "ending";
-            default -> throw new IllegalArgumentException("Can't sort by " + sortBy);
+            default -> throw new IllegalArgumentException("Can't sort by " + attributeName);
+        };
+    }
+
+    private String getSortDirectionSuffix(SortDirection sortDirection) {
+
+        return " " + switch (sortDirection) {
+            case ASCENDING -> "ASC";
+            case DESCENDING -> "DESC";
         };
     }
 
