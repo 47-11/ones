@@ -1,7 +1,6 @@
 package de.fourtyseveneleven.ones.event.service.impl;
 
 import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
-import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.FullContestService;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -45,7 +43,7 @@ public class MockFullContestServiceImpl implements FullContestService {
         fullContest.setCanStartLater(true);
         fullContest.setAltitudeDifference(BigDecimal.TEN);
         fullContest.setQualificationLevel(1);
-        fullContest.setParticipationApplicationFee(BigDecimal.TEN);
+        fullContest.setSignupFee(BigDecimal.TEN);
         fullContest.setStartFee(BigDecimal.TEN);
         fullContest.setMaximumDuration("T8");
         fullContest.setMinimumHorseAge(6);

@@ -92,7 +92,7 @@
                                     </span>
                                 </th>
                                 <td class="text-left px-5 py-1">
-                                    {{ details.participationApplicationDeadlineMissedFee }} EUR
+                                    {{ details.signUpDeadlineMissedFee }} EUR
                                 </td>
                             </tr>
                         </table>
@@ -179,6 +179,7 @@
                     <v-th>{{$t('details.minHorseAge')}}</v-th>
                     <v-th>{{$t('details.minRiderAge')}}</v-th>
                     <v-th>{{$t('details.maximumParticipants')}}</v-th>
+                    <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -200,6 +201,11 @@
                     <v-td>{{ contest.minimumParticipantAge }}</v-td>
                     <v-td>
                         {{ contest.currentParticipants }} / {{ contest.maximumParticipants }}
+                    </v-td>
+                    <v-td>
+                        <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'">
+                            <v-button>Anmelden</v-button>
+                        </router-link>
                     </v-td>
                 </tr>
                 </tbody>
@@ -277,7 +283,7 @@ export default class Detail extends Vue {
     }
 
     get deadline(): moment.Moment {
-        return moment(this.details?.participationApplicationDeadline);
+        return moment(this.details?.signupDeadline);
     }
 
     toMoment(date: string): moment.Moment {

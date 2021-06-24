@@ -1,42 +1,13 @@
 import { EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
 import { EventsStore, FirstPage, SortDirection } from "@/store/events.vuex";
-import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
 import Vuex, { Store } from "vuex";
-import { createProxy, extractVuexModule } from "vuex-class-component";
-import { ProxyWatchers, VuexModule, VuexModuleConstructor } from "vuex-class-component/dist/interfaces";
+import { createProxy } from "vuex-class-component";
+import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
+import { clearProxyCache, createTestStore, escaped, Resolved } from "./util";
 
 jest.mock("axios");
-
-const escaped = (text: string): string => {
-    return text.replace(" ", "+");
-};
-
-type Resolved<T> = T extends Promise<infer C> ? C : never;
-
-/**
- * This function is used to clear the proxy cache of the handed vuex module
- * to prevent the reuse of a vuex store between the tests.
- * Unfortunately, the original clearProxyCache function has no implementation.
- * This implementation was taken from
- * https://github.com/Glandos/vuex-class-component/commit/a22dd89513b7f292cd3e62cd3883da1316938963
- * A corresponding issue has been opened at
- * https://github.com/michaelolof/vuex-class-component/issues/101
- * @param cls The vuex module to clear the cache for.
- */
-function clearProxyCache<T extends typeof VuexModule>(cls: T) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const VuexClass = cls as VuexModuleConstructor;
-    delete VuexClass.prototype.__vuex_module_cache__;
-    delete VuexClass.prototype.__vuex_proxy_cache__;
-    delete VuexClass.prototype.__store_cache__;
-    delete VuexClass.prototype.__vuex_local_proxy_cache__;
-    for (const submodule of Object.values(VuexClass.prototype.__submodules_cache__)) {
-        clearProxyCache(submodule);
-    }
-}
 
 type FindAllResponse = Partial<Resolved<ReturnType<EventControllerApi["findAll"]>>>;
 
@@ -53,12 +24,7 @@ describe("Events-Store", () => {
     beforeEach(() => {
         localVue = createLocalVue();
         localVue.use(Vuex);
-        store = new Vuex.Store({
-            modules: {
-                ...extractVuexModule(EventsStore),
-                ...extractVuexModule(UserStore)
-            }
-        });
+        store = createTestStore();
 
         eventsStore = createProxy(store, EventsStore);
         axiosMock = axios as jest.Mocked<typeof axios>;
@@ -264,5 +230,21 @@ describe("Events-Store", () => {
         expect(eventsStore.lastElementIndex).toBe(2);
         expect(eventsStore.hasNextPage).toBe(false);
         expect(eventsStore.hasPrevPage).toBe(true);
+    });
+
+    it("signs up for a contest", async () => {
+        const contestToSignUpTo = "3";
+        const horseIdToSignUp = "5";
+        axiosMock.request.mockResolvedValue(undefined);
+
+        await eventsStore.signUp({
+            contestUuid: contestToSignUpTo,
+            horseUuids: [horseIdToSignUp]
+        });
+
+        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `/api/v1/event/contest/${contestToSignUpTo}/signup`,
+            data: expect.stringContaining(`"horseUuids":["${horseIdToSignUp}"]`)
+        }));
     });
 });

@@ -4,10 +4,7 @@
             <form @submit.prevent="login">
                 <div class="px-6 py-5">
 
-                    <feedback color="danger" class="mb-5" v-if="error.length > 0">
-                        <h2 class="text-lg">{{ $t("login.error") }}</h2>
-                        {{ error}}
-                    </feedback>
+                    <error-message :error="error"/>
 
                     <div>
                         <v-label>{{$t("login.email")}}</v-label>
@@ -81,7 +78,7 @@ export default class Login extends Vue {
     email = "";
     password = "";
     remember = Boolean();
-    error = "";
+    error = null;
     user = vxm.user;
     inputsDisabled = true;
     myIcon= faSignInAlt;
@@ -94,8 +91,9 @@ export default class Login extends Vue {
         const loader = this.$loading.show();
 
         try {
+            this.error = null;
             this.inputsDisabled = true;
-            this.error = "";
+
             await this.user.login({
                 email: this.email,
                 password: this.password,

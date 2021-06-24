@@ -15,7 +15,7 @@ public class FullContestDto extends SimpleContestDto{
 
     private Integer qualificationLevel;
 
-    private BigDecimal participationApplicationFee;
+    private BigDecimal signupFee;
     private BigDecimal startFee;
 
     private String maximumDuration;
@@ -58,12 +58,12 @@ public class FullContestDto extends SimpleContestDto{
         this.qualificationLevel = qualificationLevel;
     }
 
-    public BigDecimal getParticipationApplicationFee() {
-        return participationApplicationFee;
+    public BigDecimal getSignupFee() {
+        return signupFee;
     }
 
-    public void setParticipationApplicationFee(BigDecimal participationApplicationFee) {
-        this.participationApplicationFee = participationApplicationFee;
+    public void setSignupFee(BigDecimal signupFee) {
+        this.signupFee = signupFee;
     }
 
     public BigDecimal getStartFee() {

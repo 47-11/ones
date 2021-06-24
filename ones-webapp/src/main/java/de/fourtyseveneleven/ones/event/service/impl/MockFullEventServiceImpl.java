@@ -38,8 +38,8 @@ public class MockFullEventServiceImpl implements FullEventService {
         fullEvent.setEventHost(buildPerson());
         fullEvent.setEventOrganizer(fullEvent.getEventHost());
         fullEvent.setContactPerson(fullEvent.getEventHost());
-        fullEvent.setParticipationApplicationDeadline(fullEvent.getStart().minusDays(1));
-        fullEvent.setParticipationApplicationDeadlineMissedFee(BigDecimal.TEN);
+        fullEvent.setSignupDeadline(fullEvent.getStart().minusDays(1));
+        fullEvent.setSignupDeadlineMissedFee(BigDecimal.TEN);
         fullEvent.setIsVaccinationMandatory(true);
         fullEvent.setIsHelmetMandatory(false);
         fullEvent.setAvailableAccommodations(buildAccommodations());

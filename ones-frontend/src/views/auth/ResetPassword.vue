@@ -15,10 +15,7 @@
         <auth-card v-else>
             <form @submit.prevent="resetPassword">
                 <div class="px-6 py-5">
-                    <feedback color="danger" class="mb-5" v-if="error.length > 0">
-                        <h2 class="text-lg">{{$t('resetPassword.error')}}</h2>
-                        {{ $t(error) }}
-                    </feedback>
+                    <error-message :error="error"/>
 
                     <div class="mb-4 text-sm text-gray-600">
                         <h1 class="text-xl font-bold">{{$t('resetPassword.resetPassword')}}</h1>
@@ -68,7 +65,7 @@ import { vxm } from "@/store";
     }
 })
 export default class ResetPassword extends Vue {
-    error = "";
+    error = null;
     password = "";
     passwordRepeat = "";
     inputsDisabled = true;
@@ -84,7 +81,7 @@ export default class ResetPassword extends Vue {
         const loader = this.$loading.show();
 
         this.inputsDisabled = true;
-        this.error = "";
+        this.error = null;
         const code = this.$route.query.code as string;
 
         try {
@@ -95,10 +92,7 @@ export default class ResetPassword extends Vue {
             });
             this.changeDone = true;
         } catch (error) {
-            if (error.response?.data?.userMessage) {
-                this.error = error.response?.data?.userMessage;
-            }
-            this.error = error.message;
+            this.error = error;
         } finally {
             loader.hide();
         }

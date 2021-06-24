@@ -100,6 +100,7 @@
         "minHorseAge": "min. Alter Pferd",
         "minRiderAge": "min. Alter TN",
         "maximumParticipants": "TN/max TN",
+        "participants": "Teilnehmer",
         "elevationInfo": "Höhenmeterangabe = Summe aus Aufstieg und Abstieg",
         "signUpFeeInfo": "Bei Gespannen und Handpferderitten wird Nenngeld pro Pferd erhoben, Startgeld pro Gespann. Nenn- und Startgeld max 1,00 € pro km; VDD Nichtmitglieder zahlen zusätzlich zum Startgeld: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, Jugend bis 21 Jahre: 6 €",
         "maximumTimeInfo": "Höchstzeit in min/km = langsamste erlaubte Zeit um in der Wertung zu bleiben (Empfehlung lt. VDD-Regelment: T8 - T9)",
@@ -114,7 +115,25 @@
         "details": "Details",
         "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen."
     },
+    "signUp": {
+        "title": "Anmeldung zum Wettbewerb",
+        "requirements": {
+            "title": "Voraussetzungen",
+            "minimumHorseAge": "Pferd min. {age} Jahre",
+            "minimumParticipantAge": "Teilnehmer min. {age} Jahre"
+        },
+        "selectHorse": {
+            "title": "Pferd auswählen",
+            "subtitle": "Bitte wählen Sie das Pferd aus, mit welchem Sie teilnehmen wollen.",
+            "lifeNumber": "Lebens-Nr."
+        },
+        "minHorses": "Sie müssen mindestens ein Pferd auswählen.",
+        "submit": "Jetzt anmelden"
+    },
     "password": {
         "pasword": "Passwort"
+    },
+    "shared": {
+        "error": "Es ist ein Fehler aufgetreten"
     }
 }

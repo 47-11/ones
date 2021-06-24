@@ -15,10 +15,7 @@
         <auth-card v-else>
             <form @submit.prevent="register">
                 <div class="px-6 py-5">
-                    <feedback color="danger" class="mb-5" v-if="error.length > 0">
-                        <h2 class="text-lg">{{$t("register.error")}}</h2>
-                        {{ $t(error) }}
-                    </feedback>
+                    <error-message :error="error"/>
 
                     <div>
                         <v-label>{{ $t("register.email") }}</v-label>
@@ -99,7 +96,7 @@ export default class Register extends Vue {
 
     passwordRepeat = "";
     dataProtectionAccepted = true;
-    error = "";
+    error = null;
     inputsDisabled = true;
     registrationDone = true;
 
@@ -113,7 +110,7 @@ export default class Register extends Vue {
         const loader = this.$loading.show();
 
         this.inputsDisabled = true;
-        this.error = "";
+        this.error = null;
         try {
             this.assertValid();
             await vxm.user.register({
@@ -122,11 +119,7 @@ export default class Register extends Vue {
             });
             this.registrationDone = true;
         } catch (error) {
-            if (error.response?.data?.userMessage) {
-                this.error = error.response?.data?.userMessage;
-            } else {
-                this.error = error.message;
-            }
+            this.error = error;
         } finally {
             loader.hide();
         }

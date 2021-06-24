@@ -6,6 +6,15 @@ public class HorseDto {
     private String name;
     private String lifeNumber;
 
+    public HorseDto() {
+    }
+
+    public HorseDto(String uuid, String name, String lifeNumber) {
+        this.uuid = uuid;
+        this.name = name;
+        this.lifeNumber = lifeNumber;
+    }
+
     public String getUuid() {
         return uuid;
     }

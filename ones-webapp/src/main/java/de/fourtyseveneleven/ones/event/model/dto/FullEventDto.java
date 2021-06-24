@@ -13,8 +13,8 @@ public class FullEventDto extends SimpleEventDto {
     private PersonDto eventOrganizer;
     private PersonDto contactPerson;
 
-    private LocalDateTime participationApplicationDeadline;
-    private BigDecimal participationApplicationDeadlineMissedFee;
+    private LocalDateTime signupDeadline;
+    private BigDecimal signupDeadlineMissedFee;
 
     private boolean isVaccinationMandatory;
     private boolean isHelmetMandatory;
@@ -47,20 +47,20 @@ public class FullEventDto extends SimpleEventDto {
         this.contactPerson = contactPerson;
     }
 
-    public LocalDateTime getParticipationApplicationDeadline() {
-        return participationApplicationDeadline;
+    public LocalDateTime getSignupDeadline() {
+        return signupDeadline;
     }
 
-    public void setParticipationApplicationDeadline(LocalDateTime participationApplicationDeadline) {
-        this.participationApplicationDeadline = participationApplicationDeadline;
+    public void setSignupDeadline(LocalDateTime signupDeadline) {
+        this.signupDeadline = signupDeadline;
     }
 
-    public BigDecimal getParticipationApplicationDeadlineMissedFee() {
-        return participationApplicationDeadlineMissedFee;
+    public BigDecimal getSignupDeadlineMissedFee() {
+        return signupDeadlineMissedFee;
     }
 
-    public void setParticipationApplicationDeadlineMissedFee(BigDecimal participationApplicationDeadlineMissedFee) {
-        this.participationApplicationDeadlineMissedFee = participationApplicationDeadlineMissedFee;
+    public void setSignupDeadlineMissedFee(BigDecimal signupDeadlineMissedFee) {
+        this.signupDeadlineMissedFee = signupDeadlineMissedFee;
     }
 
     public boolean getIsVaccinationMandatory() {

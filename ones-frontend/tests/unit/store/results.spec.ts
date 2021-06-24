@@ -1,12 +1,11 @@
 import { ResultDto as Result, ResultOverviewDto } from "@/openapi/generated";
-import { EventsStore } from "@/store/events.vuex";
 import { ResultsStore } from "@/store/results.vuex";
-import { UserStore } from "@/store/userStore.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
 import Vuex, { Store } from "vuex";
-import { clearProxyCache, createProxy, extractVuexModule } from "vuex-class-component";
+import { clearProxyCache, createProxy } from "vuex-class-component";
 import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
+import { createTestStore } from "./util";
 
 jest.mock("axios");
 
@@ -19,16 +18,11 @@ describe("ResultsStore", () => {
     beforeEach(() => {
         localVue = createLocalVue();
         localVue.use(Vuex);
-        store = new Vuex.Store({
-            modules: {
-                ...extractVuexModule(EventsStore),
-                ...extractVuexModule(UserStore),
-                ...extractVuexModule(ResultsStore)
-            }
-        });
+        store = createTestStore();
 
         resultsStore = createProxy(store, ResultsStore);
         axiosMock = axios as jest.Mocked<typeof axios>;
+        axiosMock.request.mockReset();
     });
 
     afterEach(() => {
@@ -47,7 +41,7 @@ describe("ResultsStore", () => {
         const resultOverview = {
             averageSpeed: 15,
             totalDistance: 42,
-            results: [{ placement: 1, horses: [{ name: "Jolly Jumper" }] }]
+            results: [{ placement: 1 }]
         } as ResultOverviewDto;
         axiosMock.request.mockResolvedValue({
             data: resultOverview

@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { createProxy, extractVuexModule } from "vuex-class-component";
 import { EventsStore } from "./events.vuex";
+import { HorseStore } from "./horse.vuex";
+import { ResultsStore } from "./results.vuex";
 import { UserStore } from "./userStore.vuex";
 
 Vue.use(Vuex);
@@ -15,7 +17,9 @@ const store = new Vuex.Store({
     },
     modules: {
         ...extractVuexModule(EventsStore),
-        ...extractVuexModule(UserStore)
+        ...extractVuexModule(UserStore),
+        ...extractVuexModule(HorseStore),
+        ...extractVuexModule(ResultsStore)
     }
 });
 
@@ -23,5 +27,7 @@ export default store;
 
 export const vxm = {
     user: createProxy(store, UserStore),
-    events: createProxy(store, EventsStore)
+    events: createProxy(store, EventsStore),
+    horses: createProxy(store, HorseStore),
+    results: createProxy(store, ResultsStore)
 };
