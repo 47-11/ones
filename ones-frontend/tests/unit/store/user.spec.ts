@@ -11,6 +11,19 @@ jest.mock("axios");
 
 type GetCurrentUserResponse = Partial<Resolved<ReturnType<UserControllerApi["getCurrentUser"]>>>;
 
+const sampleUser: UserDto = {
+    name: "Lucky Luke",
+    address: {
+        locationName: "Where he wants",
+        street: "Around the corner",
+        city: "Hot city",
+        region: "Wild West",
+        zipCode: "12345",
+        country: "'Murica"
+    }
+};
+const sampleResponse: GetCurrentUserResponse = { data: sampleUser };
+
 describe("UserStore", () => {
     let store: Store<unknown>;
     let userStore: UserStore & ProxyWatchers;
@@ -32,45 +45,12 @@ describe("UserStore", () => {
     });
 
     it("requests the user's data", async () => {
-        const userData: UserDto = {
-            name: "Lucky Luke",
-            address: {
-                locationName: "Where he wants",
-                street: "Around the corner",
-                city: "Hot city",
-                region: "Wild West",
-                zipCode: "12345",
-                country: "'Murica"
-            }
-        };
-        axiosMock.request.mockResolvedValue({
-            data: userData
-        } as GetCurrentUserResponse);
+        axiosMock.request.mockResolvedValue(sampleResponse);
 
         await userStore.fetchCurrent();
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain("/user/me");
-    });
-
-    it("showsCurrent", async () => {
-        const userData: UserDto = {
-            name: "Lucky Luke",
-            address: {
-                locationName: "Where he wants",
-                street: "Around the corner",
-                city: "Hot city",
-                region: "Wild West",
-                zipCode: "12345",
-                country: "'Murica"
-            }
-        };
-        axiosMock.request.mockResolvedValue({
-            data: userData
-        } as GetCurrentUserResponse);
-
-        await userStore.fetchCurrent();
-
-        expect(userStore.current).toEqual(userData);
+        expect(userStore.current).toEqual(sampleUser);
     });
 });
