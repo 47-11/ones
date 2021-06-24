@@ -53,4 +53,17 @@ describe("UserStore", () => {
         expect(requestOptions.url).toContain("/user/me");
         expect(userStore.current).toEqual(sampleUser);
     });
+
+    it("sets personal data", async () => {
+        axiosMock.request.mockResolvedValue({});
+        const personalData = {
+            firstName: "Lucky",
+            lastName: "Luke"
+        };
+
+        await userStore.setPersonalData(personalData);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(JSON.parse(requestOptions.data)).toEqual(personalData);
+    });
 });

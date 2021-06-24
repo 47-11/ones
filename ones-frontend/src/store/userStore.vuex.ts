@@ -1,4 +1,4 @@
-import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
+import { ForgotPasswordControllerApi, LoginControllerApi, PersonalDataDto as PersonalData, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -106,5 +106,10 @@ export class UserStore extends VuexModule {
     @action
     async fetchCurrent(): Promise<void> {
         this._current = (await new UserControllerApi().getCurrentUser()).data;
+    }
+
+    @action
+    async setPersonalData(payload: PersonalData): Promise<void> {
+        await new UserControllerApi().setPersonalData(payload);
     }
 }
