@@ -8,6 +8,7 @@ import ResetPassword from "@/views/auth/ResetPassword.vue";
 import Verified from "@/views/auth/Verified.vue";
 import EventsIndex from "@/views/events/Index.vue";
 import EventDetail from "@/views/events/Detail.vue";
+import SignUp from "@/views/contests/SignUp.vue";
 import { vxm } from "@/store";
 
 Vue.use(VueRouter);
@@ -49,6 +50,11 @@ const routes: Array<RouteConfig> = [
         component: EventsIndex
     },
     {
+        path: "/events/:eventId/contests/:contestId/sign-up",
+        name: "Anmeldung zum Wettbewerb",
+        component: SignUp
+    },
+    {
         path: "/events/:eventId",
         component: EventDetail
     }
@@ -69,6 +75,7 @@ router.beforeEach((to, f, next) => {
 
     if (to.path === "/logout") {
         vxm.user.logout();
+        router.go(0);
         next("/login");
     }
 

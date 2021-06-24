@@ -11,9 +11,11 @@ import {
     faChevronRight, faChevronDown, faChevronUp
 } from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import ErrorMessage from "@/components/ErrorMessage.vue";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 import App from "./App.vue";
+
 import "./registerServiceWorker";
 import router from "./router";
 import store, { vxm } from "./store";
@@ -37,6 +39,7 @@ library.add(
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("error-message", ErrorMessage);
 
 Vue.use(VueI18n);
 Vue.use(VueLoading, {

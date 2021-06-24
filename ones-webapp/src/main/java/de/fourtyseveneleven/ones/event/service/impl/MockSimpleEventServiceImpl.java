@@ -108,6 +108,7 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
     private SimpleContestDto buildMdrContest() {
 
         final var contest = new SimpleContestDto();
+        contest.setUuid("uuid_mdr");
         contest.setContestType(ContestType.MEDIUM_DISTANCE_RIDE);
         contest.setDistance(new BigDecimal("54.6"));
         contest.setCardRide(true);
@@ -118,6 +119,7 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
     private SimpleContestDto buildEfrContest() {
 
         final var contest = new SimpleContestDto();
+        contest.setUuid("uuid_efr");
         contest.setContestType(ContestType.INTRODUCTION_RIDE);
         contest.setDistance(new BigDecimal("8.2"));
         contest.setCardRide(false);

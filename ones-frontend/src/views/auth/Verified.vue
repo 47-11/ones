@@ -60,12 +60,12 @@ import { vxm } from "@/store";
 })
 export default class Verified extends Vue {
     verified = true;
-    error = "";
+    error = null;
 
     async mounted(): Promise<void> {
         const loader = this.$loading.show();
 
-        this.error = "";
+        this.error = null;
         this.verified = false;
         const code = this.$route.query.code as string;
 
@@ -73,11 +73,7 @@ export default class Verified extends Vue {
             await vxm.user.verify({ code });
             this.verified = true;
         } catch (error) {
-            if (error.response?.data?.userMessage) {
-                this.error = error.response?.data?.userMessage;
-            } else {
-                this.error = error.message;
-            }
+            this.error = error;
         } finally {
             loader.hide();
         }

@@ -15,10 +15,7 @@
         <auth-card v-else>
             <form @submit.prevent="sendForgotMail">
                 <div class="px-6 py-5">
-                    <feedback color="danger" class="mb-5" v-if="error.length > 0">
-                        <h2 class="text-lg">{{$t("forgotPassword.error")}}}</h2>
-                        {{ error }}
-                    </feedback>
+                    <error-message :error="error"/>
 
                     <div class="mb-4 text-sm text-gray-600">
                         <h1 class="text-xl mb-2">{{$t("forgotPassword.title")}}</h1>
@@ -64,7 +61,7 @@ import { vxm } from "@/store";
     }
 })
 export default class ForgotPassword extends Vue {
-    error = "";
+    error = null;
     mailSend = true;
     email = "";
     inputsDisabled = true;
@@ -77,18 +74,15 @@ export default class ForgotPassword extends Vue {
     async sendForgotMail(): Promise<void> {
         const loader = this.$loading.show();
 
-        this.error = "";
         this.inputsDisabled = true;
 
         try {
+            this.error = null;
+
             await vxm.user.forgotPassword({ email: this.email });
             this.mailSend = true;
         } catch (error) {
-            if (error.response?.data?.userMessage) {
-                this.error = error.response?.data?.userMessage;
-            } else {
-                this.error = error.message;
-            }
+            this.error = error;
         } finally {
             loader.hide();
         }

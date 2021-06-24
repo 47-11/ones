@@ -10,7 +10,7 @@ import { CheckboxInputEvent } from "@/customTypes/inputEvent";
 @Component
 export default class VCheckbox extends Vue {
     @Prop() private disabled!: boolean;
-    @Prop() public value = false;
+    @Prop() public value!: boolean;
 
     handleInput(e: CheckboxInputEvent): void {
         this.$emit("input", e.target.value);

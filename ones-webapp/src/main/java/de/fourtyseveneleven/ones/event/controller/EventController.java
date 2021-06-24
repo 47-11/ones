@@ -4,18 +4,14 @@ import de.fourtyseveneleven.ones.common.model.SortDirection;
 import de.fourtyseveneleven.ones.common.model.dto.PageDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
-import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
-import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
-import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
-import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
+import de.fourtyseveneleven.ones.event.model.dto.*;
 import de.fourtyseveneleven.ones.event.service.FullContestService;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
+import de.fourtyseveneleven.ones.event.service.SignupService;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,13 +23,15 @@ public class EventController {
     private final SimpleEventService simpleEventService;
     private final FullEventService fullEventService;
     private final FullContestService fullContestService;
+    private final SignupService signupService;
 
     public EventController(SimpleEventService simpleEventService, FullEventService fullEventService,
-                           FullContestService fullContestService) {
+                           FullContestService fullContestService, SignupService signupService) {
 
         this.simpleEventService = simpleEventService;
         this.fullEventService = fullEventService;
         this.fullContestService = fullContestService;
+        this.signupService = signupService;
     }
 
     @GetMapping("")
@@ -68,5 +66,14 @@ public class EventController {
     public List<FullContestDto> getFullContests(@PathVariable String eventUuid) {
 
         return fullContestService.getContestsForEvent(eventUuid);
+    }
+
+    @PostMapping("/contest/{contestUuid}/signup")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void signUp(@PathVariable String contestUuid,
+                       @RequestBody SignupRequestDto request) {
+
+        final SignupDto signupDto = new SignupDto(contestUuid, request);
+        signupService.signup(signupDto);
     }
 }

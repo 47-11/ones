@@ -36,6 +36,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private selectedPageSize = 10;
     private selectedSortCriterion: keyof SimpleEvent = "start";
     private selectedSortDirection: SortDirection = SortDirection.Ascending;
+    private _selectedContest: string | null = null;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -87,6 +88,10 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     get lastElementIndex(): number {
         return this.firstElementIndex + this.list.length - 1;
+    }
+
+    get selectedContest(): FullContest | null {
+        return this.contests.find(contest => contest.uuid === this._selectedContest) || null;
     }
 
     private get controller(): EventControllerApi {
@@ -201,5 +206,15 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
             : SortDirection.Ascending;
 
         await this.fetch();
+    }
+
+    @action
+    async signUp(payload: { contestUuid: string, horseUuids: string[] }): Promise<void> {
+        await this.controller.signUp(payload.contestUuid, payload);
+    }
+
+    @mutation
+    selectContest(contestId: string | null): void {
+        this._selectedContest = contestId;
     }
 }

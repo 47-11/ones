@@ -101,6 +101,7 @@
         "minHorseAge": "min. Age Horse",
         "minRiderAge": "min. Age Participant",
         "maximumParticipants": "(max.) Participants",
+        "participants": "Participants",
         "elevationInfo": "Change in Elevation = Sum of elevation gain and loss",
         "signUpFeeInfo": "For teams and hand-horse rides, sign up fee per horse, start fee per team. Entry and start fee max 1,00 € per km; VDD non-members pay in addition to the entry fee: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, youth up to 21 years: 6 €",
         "maximumTimeInfo": "Maximum time in min/km = slowest allowed time to stay in the ranking (recommendation according to VDD rules: T8 - T9)",
@@ -115,7 +116,25 @@
         "details": "Details",
         "pagination": "Shows {from} to {to} of {of} events."
     },
+    "signUp": {
+        "title": "Sign up",
+        "requirements": {
+            "title": "Requirements",
+            "minimumHorseAge": "Horse min. {age} years old",
+            "minimumParticipantAge": "Participant min. {age} years old"
+        },
+        "selectHorse": {
+            "title": "Select horse",
+            "subtitle": "Please select the horse you want to participate with.",
+            "lifeNumber": "Life number"
+        },
+        "minHorses": "Please select at least one horse.",
+        "submit": "Sign up"
+    },
     "password": {
         "password": "Password"
+    },
+    "shared": {
+        "error": "An error occurred"
     }
 }
