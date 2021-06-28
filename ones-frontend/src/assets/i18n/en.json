@@ -47,6 +47,20 @@
         "notIdentical": "Password repeat is not identical to Password.",
         "acceptanceRequired": "Privacy Policy must be accepted."
     },
+    "setPersonalData": {
+        "salutation": "Salutation",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthday": "Birthday",
+        "phoneNumber": "Phone number",
+        "phoneNumberMobile": "Cellphone number",
+        "street": "Street",
+        "houseNumber": "House Number",
+        "zipCode": "Zip Code",
+        "city": "City",
+        "country": "Country",
+        "lengthNull": " is nicht gesetzt."
+    },
     "resetPassword": {
         "success": "Password changed.",
         "toLogin": "Go to Login",

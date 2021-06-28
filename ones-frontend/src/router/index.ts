@@ -8,6 +8,7 @@ import Verified from "@/views/auth/Verified.vue";
 import EventsIndex from "@/views/events/Index.vue";
 import EventDetail from "@/views/events/Detail.vue";
 import SignUp from "@/views/contests/SignUp.vue";
+import SetPersonalData from "@/views/auth/SetPersonalData.vue";
 import { vxm } from "@/store";
 
 Vue.use(VueRouter);
@@ -56,6 +57,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/events/:eventId",
         component: EventDetail
+    },
+    {
+        path: "/setPersonalData/",
+        component: SetPersonalData
     }
 ];
 

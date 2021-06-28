@@ -58,6 +58,20 @@
         "tooShort": "Passwort muss aus mindestens 8 Zeichen bestehen.",
         "notIdentical": "Password Wiederholung nicht identisch mit Passwort."
     },
+    "setPersonalData": {
+        "salutation": "Anrede",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "birthday": "Geburtstag",
+        "phoneNumber": "Telefonnummer",
+        "phoneNumberMobile": "Handynummer",
+        "street": "Straße",
+        "houseNumber": "Hausnummer",
+        "zipCode": "Postleitzahl",
+        "city": "Stadt",
+        "country": "Land",
+        "lengthNull": " ist leer."
+    },
     "verified": {
         "wait": "Bitte warten...",
         "authenticationRunning": "Authentifizierung läuft...",

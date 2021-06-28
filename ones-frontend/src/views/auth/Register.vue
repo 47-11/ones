@@ -100,7 +100,7 @@ export default class Register extends Vue {
     score = 0;
     vddNumber: string | undefined;
 
-    data(): Record<string, any> {
+    data(): Record<string, undefined> {
         return {
             vddNumber: undefined
         };
