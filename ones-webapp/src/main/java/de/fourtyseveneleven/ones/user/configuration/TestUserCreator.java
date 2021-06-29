@@ -12,13 +12,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Profile({"development", "staging"})
 public class TestUserCreator
         implements ApplicationListener<ApplicationReadyEvent> {
 
-    private static final String TEST_USER_EMAIL_ADDRESS = "ones@example.com";
+    private static final String TEST_USER_ONE_EMAIL_ADDRESS = "ones@example.com";
+    private static final String TEST_USER_TWO_EMAIL_ADDRESS = "twos@example.com";
     private static final String TEST_USER_PASSWORD = "ones";
 
     private static final Logger LOG =
@@ -36,36 +38,59 @@ public class TestUserCreator
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent e) {
 
-        createTestUserIfNecessary();
+        createTestUsersIfNecessary();
     }
 
-    private void createTestUserIfNecessary() {
+    private void createTestUsersIfNecessary() {
 
-        if (shouldCreateTestUser()) {
-            createTestUser();
+        if (shouldCreateTestUsers()) {
+            createTestUsers();
         }
     }
 
-    private boolean shouldCreateTestUser() {
+    private boolean shouldCreateTestUsers() {
 
-        final Optional<User> testUser = userRepository.findOneByEmailAddress(TEST_USER_EMAIL_ADDRESS);
-        return testUser.isEmpty();
+        return userRepository.findAll().isEmpty();
     }
 
-    private void createTestUser() {
+    private void createTestUsers() {
 
-        LOG.info("Creating test user...");
-        final User testUser = buildTestUser();
-        userRepository.save(testUser);
-        LOG.info("Successfully created test user.");
+        LOG.info("Creating test users...");
+        createTestUserOne();
+        createTestUserTwo();
+        LOG.info("Successfully created test users.");
     }
 
-    private User buildTestUser() {
+    private void createTestUserOne() {
+
+        final User testUserOne = buildTestUserOne();
+        userRepository.save(testUserOne);
+    }
+
+    private User buildTestUserOne() {
 
         final var testUser = new User();
-        testUser.setEmailAddress(TEST_USER_EMAIL_ADDRESS);
+        testUser.setEmailAddress(TEST_USER_ONE_EMAIL_ADDRESS);
         testUser.setPassword(passwordEncoder.encode(TEST_USER_PASSWORD));
         testUser.setRegistrationConfirmed(true);
+        testUser.setUuid(null);
+
+        return testUser;
+    }
+
+    private void createTestUserTwo() {
+
+        final User testUserTwo = buildTestUserTwo();
+        userRepository.save(testUserTwo);
+    }
+
+    private User buildTestUserTwo() {
+
+        final var testUser = new User();
+        testUser.setEmailAddress(TEST_USER_TWO_EMAIL_ADDRESS);
+        testUser.setPassword(passwordEncoder.encode(TEST_USER_PASSWORD));
+        testUser.setRegistrationConfirmed(true);
+        testUser.setUuid(UUID.randomUUID());
 
         return testUser;
     }
