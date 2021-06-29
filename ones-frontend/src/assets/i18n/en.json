@@ -59,7 +59,9 @@
         "zipCode": "Zip Code",
         "city": "City",
         "country": "Country",
-        "lengthNull": " is nicht gesetzt."
+        "lengthNull": " is nicht gesetzt.",
+        "submit": "Save",
+        "logout": "Logout"
     },
     "resetPassword": {
         "success": "Password changed.",

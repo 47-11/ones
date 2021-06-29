@@ -70,7 +70,9 @@
         "zipCode": "Postleitzahl",
         "city": "Stadt",
         "country": "Land",
-        "lengthNull": " ist leer."
+        "lengthNull": " ist leer.",
+        "submit": "Speichern",
+        "logout": "Ausloggen"
     },
     "verified": {
         "wait": "Bitte warten...",

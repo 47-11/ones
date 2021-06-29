@@ -1,4 +1,5 @@
 import { ForgotPasswordControllerApi, LoginControllerApi, PersonalDataDto as PersonalData, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
+import router from "@/router";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -47,6 +48,9 @@ export class UserStore extends VuexModule {
     }
 
     get current(): User | null {
+        if (this.authenticated) {
+            this.fetchCurrent();
+        }
         return this._current;
     }
 
@@ -65,6 +69,8 @@ export class UserStore extends VuexModule {
             localStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
             sessionStorage.setItem(UserStore.TOKEN_STORAGE_NAME, jwsToken);
         }
+
+        await this.fetchCurrent();
     }
 
     @action
@@ -105,7 +111,16 @@ export class UserStore extends VuexModule {
 
     @action
     async fetchCurrent(): Promise<void> {
-        this._current = (await new UserControllerApi().getCurrentUser()).data;
+        const response = await new UserControllerApi({
+            accessToken: this.token || "",
+            isJsonMime: () => true
+        }).getCurrentUser();
+
+        this._current = response.data;
+
+        if (this.current && !this.current.isPersonalDataKnown && router.currentRoute.path !== "/setPersonalData") {
+            router.push("setPersonalData");
+        }
     }
 
     @action

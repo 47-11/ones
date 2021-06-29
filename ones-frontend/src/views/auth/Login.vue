@@ -100,7 +100,7 @@ export default class Login extends Vue {
                 staySignedIn: this.remember
             });
 
-            router.push("/");
+            router.go(0);
         } catch (error) {
             this.error = error;
         } finally {

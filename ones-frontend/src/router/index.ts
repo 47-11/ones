@@ -73,14 +73,26 @@ const router = new VueRouter({
 router.beforeEach((to, f, next) => {
     if (needsAuth(to) && !vxm.user.authenticated) {
         next("/login");
+        return;
     } else if (!needsAuth(to) && vxm.user.authenticated) {
         next("/");
+        return;
     }
 
     if (to.path === "/logout") {
         vxm.user.logout();
         router.go(0);
         next("/login");
+        return;
+    }
+
+    const currentUser = vxm.user.current;
+    if (currentUser && !currentUser.isPersonalDataKnown && to.path !== "/setPersonalData") {
+        next("/setPersonalData");
+        return;
+    } else if (currentUser && currentUser.isPersonalDataKnown && to.path === "/setPersonalData") {
+        next("/");
+        return;
     }
 
     next();

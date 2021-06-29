@@ -12,9 +12,9 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-link to="login">{{$t("register.login")}}</v-link>
+                    <v-link to="logout">{{$t("setPersonalData.logout")}}</v-link>
                     <div class="flex-grow"></div>
-                    <v-button role="submit" :disabled="inputsDisabled">{{$t("register.submit")}}</v-button>
+                    <v-button role="submit" :disabled="inputsDisabled">{{$t("setPersonalData.submit")}}</v-button>
                 </div>
             </form>
         </auth-card>
@@ -99,7 +99,19 @@ export default class SetPersonalData extends Vue {
         try {
             this.assertValid();
 
-            await vxm.user.setPersonalData(this);
+            await vxm.user.setPersonalData({
+                salutation: this.salutation,
+                firstName: this.firstName,
+                lastName: this.lastName,
+                birthday: this.birthday,
+                phoneNumber: this.phoneNumber,
+                phoneNumberMobile: this.phoneNumberMobile,
+                street: this.street,
+                houseNumber: this.houseNumber,
+                zipCode: this.zipCode,
+                city: this.city,
+                country: this.country
+            });
         } catch (error) {
             this.error = error;
         } finally {
