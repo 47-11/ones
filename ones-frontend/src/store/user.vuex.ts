@@ -47,7 +47,8 @@ export class UserStore extends VuexModule {
     }
 
     get current(): User | null {
-        if (this.authenticated) {
+        // this will not have the current user data immediately
+        if (this.authenticated && this._current === null) {
             this.fetchCurrent();
         }
         return this._current;
