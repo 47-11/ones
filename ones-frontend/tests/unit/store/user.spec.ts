@@ -66,4 +66,17 @@ describe("UserStore", () => {
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(JSON.parse(requestOptions.data)).toEqual(personalData);
     });
+
+    it("updates user data when personal data was set", async () => {
+        axiosMock.request.mockResolvedValue({});
+        const personalData = {
+            firstName: "Lucky",
+            lastName: "Luke"
+        };
+
+        await userStore.setPersonalData(personalData);
+
+        const requestOptions = axiosMock.request.mock.calls[0][0];
+        expect(requestOptions.url).toContain("/user/me");
+    });
 });

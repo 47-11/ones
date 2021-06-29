@@ -37,7 +37,7 @@ export function clearProxyCache<T extends typeof VuexModule>(cls: T): void {
 }
 
 export function createTestStore(): Store<unknown> {
-    return new Vuex.Store({
+    const store = new Vuex.Store({
         modules: {
             ...extractVuexModule(AppStore),
             ...extractVuexModule(EventsStore),
@@ -46,4 +46,7 @@ export function createTestStore(): Store<unknown> {
             ...extractVuexModule(ResultsStore)
         }
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).store = store;
+    return store;
 }

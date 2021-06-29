@@ -1,5 +1,4 @@
 import { ForgotPasswordControllerApi, LoginControllerApi, PersonalDataDto as PersonalData, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
-import router from "@/router";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -117,14 +116,11 @@ export class UserStore extends VuexModule {
         }).getCurrentUser();
 
         this._current = response.data;
-
-        if (this.current && !this.current.isPersonalDataKnown && router.currentRoute.path !== "/setPersonalData") {
-            router.push("setPersonalData");
-        }
     }
 
     @action
     async setPersonalData(payload: PersonalData): Promise<void> {
         await new UserControllerApi().setPersonalData(payload);
+        await this.fetchCurrent();
     }
 }
