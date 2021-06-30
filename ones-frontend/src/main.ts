@@ -82,8 +82,8 @@ axios.interceptors.response.use(res => {
 });
 
 vxm.user.$watch("current", (current: UserDto | null) => {
-    if (current && !current.isPersonalDataKnown && router.currentRoute.path !== "/setPersonalData") {
-        router.push("setPersonalData");
+    if (current && !current.isPersonalDataKnown && router.currentRoute.path !== "/set-personal-data") {
+        router.push("/set-personal-data");
     }
 });
 
