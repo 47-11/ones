@@ -59,7 +59,7 @@
         "zipCode": "Zip Code",
         "city": "City",
         "country": "Country",
-        "lengthNull": " is nicht gesetzt.",
+        "lengthNull": " is not set.",
         "submit": "Save",
         "logout": "Logout"
     },
