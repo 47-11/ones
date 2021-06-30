@@ -87,10 +87,11 @@ router.beforeEach((to, f, next) => {
     }
 
     const currentUser = vxm.user.current;
-    if (currentUser && !currentUser.isPersonalDataKnown && to.path !== "/set-personal-data") {
+
+    if (currentUser && needsToSetPersonalData() && to.path !== "/set-personal-data") {
         next("/set-personal-data");
         return;
-    } else if (currentUser && currentUser.isPersonalDataKnown && to.path === "/set-personal-data") {
+    } else if (currentUser && isPersonalDataKnown() && to.path === "/set-personal-data") {
         next("/");
         return;
     }
@@ -101,6 +102,14 @@ router.beforeEach((to, f, next) => {
 function needsAuth(to: Route) {
     const needsNoAuth = ["/login", "/register", "/forgot-password", "/reset-password", "/verified"].includes(to.path);
     return !needsNoAuth;
+}
+
+function needsToSetPersonalData(): boolean {
+    return vxm.user.current?.isPersonalDataKnown === false;
+}
+
+function isPersonalDataKnown(): boolean {
+    return !needsToSetPersonalData();
 }
 
 export default router;
