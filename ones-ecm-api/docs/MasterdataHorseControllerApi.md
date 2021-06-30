@@ -6,8 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getHorseByUuid**](MasterdataHorseControllerApi.md#getHorseByUuid) | **GET** /rest/masterdata/horse/{uuid} | 
 [**getHorseByUuidWithHttpInfo**](MasterdataHorseControllerApi.md#getHorseByUuidWithHttpInfo) | **GET** /rest/masterdata/horse/{uuid} | 
-[**getHorsesByContactUuid**](MasterdataHorseControllerApi.md#getHorsesByContactUuid) | **GET** /rest/masterdata/horse/contact/{uuid} | 
-[**getHorsesByContactUuidWithHttpInfo**](MasterdataHorseControllerApi.md#getHorsesByContactUuidWithHttpInfo) | **GET** /rest/masterdata/horse/contact/{uuid} | 
+[**getHorsesByContactUuid**](MasterdataHorseControllerApi.md#getHorsesByContactUuid) | **GET** /rest/masterdata/horse/account/{uuid} | 
+[**getHorsesByContactUuidWithHttpInfo**](MasterdataHorseControllerApi.md#getHorsesByContactUuidWithHttpInfo) | **GET** /rest/masterdata/horse/account/{uuid} | 
 [**postRegisterHorse**](MasterdataHorseControllerApi.md#postRegisterHorse) | **POST** /rest/masterdata/register/horse | 
 [**postRegisterHorseWithHttpInfo**](MasterdataHorseControllerApi.md#postRegisterHorseWithHttpInfo) | **POST** /rest/masterdata/register/horse | 
 

@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataContact;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
@@ -30,24 +29,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * MasterdataHorseOwner
+ * EventContestRolePlain
  */
 @JsonPropertyOrder({
-  MasterdataHorseOwner.JSON_PROPERTY_UUID,
-  MasterdataHorseOwner.JSON_PROPERTY_CREATION_TIMESTAMP,
-  MasterdataHorseOwner.JSON_PROPERTY_CREATION_USER_UUID,
-  MasterdataHorseOwner.JSON_PROPERTY_CHANGE_TIMESTAMP,
-  MasterdataHorseOwner.JSON_PROPERTY_CHANGE_USER_UUID,
-  MasterdataHorseOwner.JSON_PROPERTY_CHANGE_COUNTER,
-  MasterdataHorseOwner.JSON_PROPERTY_DISPLAY,
-  MasterdataHorseOwner.JSON_PROPERTY_OWNERSHIP_FROM,
-  MasterdataHorseOwner.JSON_PROPERTY_OWNERSHIP_UNTIL,
-  MasterdataHorseOwner.JSON_PROPERTY_REMARK,
-  MasterdataHorseOwner.JSON_PROPERTY_CONTACT,
-  MasterdataHorseOwner.JSON_PROPERTY_MASTERDATA_HORSE_UUID
+  EventContestRolePlain.JSON_PROPERTY_UUID,
+  EventContestRolePlain.JSON_PROPERTY_CREATION_TIMESTAMP,
+  EventContestRolePlain.JSON_PROPERTY_CREATION_USER_UUID,
+  EventContestRolePlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
+  EventContestRolePlain.JSON_PROPERTY_CHANGE_USER_UUID,
+  EventContestRolePlain.JSON_PROPERTY_CHANGE_COUNTER,
+  EventContestRolePlain.JSON_PROPERTY_CURRENT_STATE,
+  EventContestRolePlain.JSON_PROPERTY_ROLE,
+  EventContestRolePlain.JSON_PROPERTY_MASTERDATA_CONTACT_UUID,
+  EventContestRolePlain.JSON_PROPERTY_DISPLAY
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
-public class MasterdataHorseOwner {
+public class EventContestRolePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
 
@@ -66,26 +63,20 @@ public class MasterdataHorseOwner {
   public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
   private Integer changeCounter;
 
+  public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
+  private Integer currentState;
+
+  public static final String JSON_PROPERTY_ROLE = "role";
+  private String role;
+
+  public static final String JSON_PROPERTY_MASTERDATA_CONTACT_UUID = "masterdataContactUuid";
+  private String masterdataContactUuid;
+
   public static final String JSON_PROPERTY_DISPLAY = "display";
   private String display;
 
-  public static final String JSON_PROPERTY_OWNERSHIP_FROM = "ownershipFrom";
-  private OffsetDateTime ownershipFrom;
 
-  public static final String JSON_PROPERTY_OWNERSHIP_UNTIL = "ownershipUntil";
-  private OffsetDateTime ownershipUntil;
-
-  public static final String JSON_PROPERTY_REMARK = "remark";
-  private String remark;
-
-  public static final String JSON_PROPERTY_CONTACT = "contact";
-  private MasterdataContact contact;
-
-  public static final String JSON_PROPERTY_MASTERDATA_HORSE_UUID = "masterdataHorseUuid";
-  private String masterdataHorseUuid;
-
-
-  public MasterdataHorseOwner uuid(String uuid) {
+  public EventContestRolePlain uuid(String uuid) {
     this.uuid = uuid;
     return this;
   }
@@ -110,7 +101,7 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner creationTimestamp(OffsetDateTime creationTimestamp) {
+  public EventContestRolePlain creationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
     return this;
   }
@@ -135,7 +126,7 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner creationUserUuid(String creationUserUuid) {
+  public EventContestRolePlain creationUserUuid(String creationUserUuid) {
     this.creationUserUuid = creationUserUuid;
     return this;
   }
@@ -161,7 +152,7 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner changeTimestamp(OffsetDateTime changeTimestamp) {
+  public EventContestRolePlain changeTimestamp(OffsetDateTime changeTimestamp) {
     this.changeTimestamp = changeTimestamp;
     return this;
   }
@@ -187,7 +178,7 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner changeUserUuid(String changeUserUuid) {
+  public EventContestRolePlain changeUserUuid(String changeUserUuid) {
     this.changeUserUuid = changeUserUuid;
     return this;
   }
@@ -213,7 +204,7 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner changeCounter(Integer changeCounter) {
+  public EventContestRolePlain changeCounter(Integer changeCounter) {
     this.changeCounter = changeCounter;
     return this;
   }
@@ -239,7 +230,85 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner display(String display) {
+  public EventContestRolePlain currentState(Integer currentState) {
+    this.currentState = currentState;
+    return this;
+  }
+
+   /**
+   * Get currentState
+   * @return currentState
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getCurrentState() {
+    return currentState;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCurrentState(Integer currentState) {
+    this.currentState = currentState;
+  }
+
+
+  public EventContestRolePlain role(String role) {
+    this.role = role;
+    return this;
+  }
+
+   /**
+   * Get role
+   * @return role
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRole() {
+    return role;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+
+  public EventContestRolePlain masterdataContactUuid(String masterdataContactUuid) {
+    this.masterdataContactUuid = masterdataContactUuid;
+    return this;
+  }
+
+   /**
+   * Get masterdataContactUuid
+   * @return masterdataContactUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MASTERDATA_CONTACT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getMasterdataContactUuid() {
+    return masterdataContactUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_MASTERDATA_CONTACT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMasterdataContactUuid(String masterdataContactUuid) {
+    this.masterdataContactUuid = masterdataContactUuid;
+  }
+
+
+  public EventContestRolePlain display(String display) {
     this.display = display;
     return this;
   }
@@ -265,138 +334,8 @@ public class MasterdataHorseOwner {
   }
 
 
-  public MasterdataHorseOwner ownershipFrom(OffsetDateTime ownershipFrom) {
-    this.ownershipFrom = ownershipFrom;
-    return this;
-  }
-
-   /**
-   * Get ownershipFrom
-   * @return ownershipFrom
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OWNERSHIP_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getOwnershipFrom() {
-    return ownershipFrom;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OWNERSHIP_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOwnershipFrom(OffsetDateTime ownershipFrom) {
-    this.ownershipFrom = ownershipFrom;
-  }
-
-
-  public MasterdataHorseOwner ownershipUntil(OffsetDateTime ownershipUntil) {
-    this.ownershipUntil = ownershipUntil;
-    return this;
-  }
-
-   /**
-   * Get ownershipUntil
-   * @return ownershipUntil
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_OWNERSHIP_UNTIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getOwnershipUntil() {
-    return ownershipUntil;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OWNERSHIP_UNTIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOwnershipUntil(OffsetDateTime ownershipUntil) {
-    this.ownershipUntil = ownershipUntil;
-  }
-
-
-  public MasterdataHorseOwner remark(String remark) {
-    this.remark = remark;
-    return this;
-  }
-
-   /**
-   * Get remark
-   * @return remark
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REMARK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRemark() {
-    return remark;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMARK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemark(String remark) {
-    this.remark = remark;
-  }
-
-
-  public MasterdataHorseOwner contact(MasterdataContact contact) {
-    this.contact = contact;
-    return this;
-  }
-
-   /**
-   * Get contact
-   * @return contact
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public MasterdataContact getContact() {
-    return contact;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContact(MasterdataContact contact) {
-    this.contact = contact;
-  }
-
-
-  public MasterdataHorseOwner masterdataHorseUuid(String masterdataHorseUuid) {
-    this.masterdataHorseUuid = masterdataHorseUuid;
-    return this;
-  }
-
-   /**
-   * Get masterdataHorseUuid
-   * @return masterdataHorseUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MASTERDATA_HORSE_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getMasterdataHorseUuid() {
-    return masterdataHorseUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MASTERDATA_HORSE_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMasterdataHorseUuid(String masterdataHorseUuid) {
-    this.masterdataHorseUuid = masterdataHorseUuid;
-  }
-
-
   /**
-   * Return true if this MasterdataHorseOwner object is equal to o.
+   * Return true if this EventContestRole_Plain object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -406,42 +345,38 @@ public class MasterdataHorseOwner {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MasterdataHorseOwner masterdataHorseOwner = (MasterdataHorseOwner) o;
-    return Objects.equals(this.uuid, masterdataHorseOwner.uuid) &&
-        Objects.equals(this.creationTimestamp, masterdataHorseOwner.creationTimestamp) &&
-        Objects.equals(this.creationUserUuid, masterdataHorseOwner.creationUserUuid) &&
-        Objects.equals(this.changeTimestamp, masterdataHorseOwner.changeTimestamp) &&
-        Objects.equals(this.changeUserUuid, masterdataHorseOwner.changeUserUuid) &&
-        Objects.equals(this.changeCounter, masterdataHorseOwner.changeCounter) &&
-        Objects.equals(this.display, masterdataHorseOwner.display) &&
-        Objects.equals(this.ownershipFrom, masterdataHorseOwner.ownershipFrom) &&
-        Objects.equals(this.ownershipUntil, masterdataHorseOwner.ownershipUntil) &&
-        Objects.equals(this.remark, masterdataHorseOwner.remark) &&
-        Objects.equals(this.contact, masterdataHorseOwner.contact) &&
-        Objects.equals(this.masterdataHorseUuid, masterdataHorseOwner.masterdataHorseUuid);
+    EventContestRolePlain eventContestRolePlain = (EventContestRolePlain) o;
+    return Objects.equals(this.uuid, eventContestRolePlain.uuid) &&
+        Objects.equals(this.creationTimestamp, eventContestRolePlain.creationTimestamp) &&
+        Objects.equals(this.creationUserUuid, eventContestRolePlain.creationUserUuid) &&
+        Objects.equals(this.changeTimestamp, eventContestRolePlain.changeTimestamp) &&
+        Objects.equals(this.changeUserUuid, eventContestRolePlain.changeUserUuid) &&
+        Objects.equals(this.changeCounter, eventContestRolePlain.changeCounter) &&
+        Objects.equals(this.currentState, eventContestRolePlain.currentState) &&
+        Objects.equals(this.role, eventContestRolePlain.role) &&
+        Objects.equals(this.masterdataContactUuid, eventContestRolePlain.masterdataContactUuid) &&
+        Objects.equals(this.display, eventContestRolePlain.display);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, display, ownershipFrom, ownershipUntil, remark, contact, masterdataHorseUuid);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, role, masterdataContactUuid, display);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MasterdataHorseOwner {\n");
+    sb.append("class EventContestRolePlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
     sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
     sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
     sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
     sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
+    sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    masterdataContactUuid: ").append(toIndentedString(masterdataContactUuid)).append("\n");
     sb.append("    display: ").append(toIndentedString(display)).append("\n");
-    sb.append("    ownershipFrom: ").append(toIndentedString(ownershipFrom)).append("\n");
-    sb.append("    ownershipUntil: ").append(toIndentedString(ownershipUntil)).append("\n");
-    sb.append("    remark: ").append(toIndentedString(remark)).append("\n");
-    sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
-    sb.append("    masterdataHorseUuid: ").append(toIndentedString(masterdataHorseUuid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

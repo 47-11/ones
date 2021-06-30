@@ -47,10 +47,10 @@ public class EventContestControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getContactContestCompetitionsResultsTest() throws ApiException {
+    public void getAccountContestCompetitionsResultsTest() throws ApiException {
         String uuid = null;
         List<EventContestCompetitionResult> response = 
-        api.getContactContestCompetitionsResults(uuid);
+        api.getAccountContestCompetitionsResults(uuid);
         
         // TODO: test validations
     }

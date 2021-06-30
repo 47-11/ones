@@ -335,7 +335,7 @@
         ]
       }
     },
-    "/rest/masterdata/horse/contact/{uuid}": {
+    "/rest/masterdata/horse/account/{uuid}": {
       "get": {
         "tags": [
           "masterdata-horse-controller"
@@ -617,12 +617,12 @@
         ]
       }
     },
-    "/rest/event/contest/result/contact/{uuid}": {
+    "/rest/event/contest/result/account/{uuid}": {
       "get": {
         "tags": [
           "event-contest-controller"
         ],
-        "operationId": "getContactContestCompetitionsResults",
+        "operationId": "getAccountContestCompetitionsResults",
         "parameters": [
           {
             "name": "uuid",
@@ -1559,6 +1559,61 @@
           }
         }
       },
+      "EventContestRole_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "role": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "masterdataContactUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
       "EventContest_Plain": {
         "type": "object",
         "properties": {
@@ -1708,11 +1763,22 @@
           "surchargeNonMembers": {
             "type": "number"
           },
+          "registrationClosing": {
+            "type": "string",
+            "format": "date-time"
+          },
           "_competitions": {
             "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EventContestCompetition_Plain"
+            }
+          },
+          "_roles": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestRole_Plain"
             }
           }
         }
@@ -1885,11 +1951,22 @@
           "surchargeNonMembers": {
             "type": "number"
           },
+          "registrationClosing": {
+            "type": "string",
+            "format": "date-time"
+          },
           "_competitions": {
             "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EventContestCompetition"
+            }
+          },
+          "_roles": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestRole"
             }
           }
         }
@@ -2092,6 +2169,61 @@
           }
         }
       },
+      "EventContestRole": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "role": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "masterdataContactUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
       "EventContestCompetitionResult": {
         "required": [
           "creationTimestamp",
@@ -2169,6 +2301,63 @@
             "type": "string"
           },
           "displayHorse": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "_horses": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestCompetitionResultHorse"
+            }
+          }
+        }
+      },
+      "EventContestCompetitionResultHorse": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "masterdataHorseUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "description": {
             "maxLength": 50,
             "minLength": 0,
             "type": "string"

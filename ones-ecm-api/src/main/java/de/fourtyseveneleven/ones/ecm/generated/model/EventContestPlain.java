@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRolePlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -83,9 +84,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_LATE_REGISTRATION_FEE,
   EventContestPlain.JSON_PROPERTY_CHANGE_REGISTRATION_FEE,
   EventContestPlain.JSON_PROPERTY_SURCHARGE_NON_MEMBERS,
-  EventContestPlain.JSON_PROPERTY_COMPETITIONS
+  EventContestPlain.JSON_PROPERTY_REGISTRATION_CLOSING,
+  EventContestPlain.JSON_PROPERTY_COMPETITIONS,
+  EventContestPlain.JSON_PROPERTY_ROLES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-17T11:45:53.590955+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
 public class EventContestPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -225,8 +228,14 @@ public class EventContestPlain {
   public static final String JSON_PROPERTY_SURCHARGE_NON_MEMBERS = "surchargeNonMembers";
   private BigDecimal surchargeNonMembers;
 
+  public static final String JSON_PROPERTY_REGISTRATION_CLOSING = "registrationClosing";
+  private OffsetDateTime registrationClosing;
+
   public static final String JSON_PROPERTY_COMPETITIONS = "_competitions";
   private Set<EventContestCompetitionPlain> competitions = null;
+
+  public static final String JSON_PROPERTY_ROLES = "_roles";
+  private Set<EventContestRolePlain> roles = null;
 
 
   public EventContestPlain uuid(String uuid) {
@@ -1425,6 +1434,32 @@ public class EventContestPlain {
   }
 
 
+  public EventContestPlain registrationClosing(OffsetDateTime registrationClosing) {
+    this.registrationClosing = registrationClosing;
+    return this;
+  }
+
+   /**
+   * Get registrationClosing
+   * @return registrationClosing
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_CLOSING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getRegistrationClosing() {
+    return registrationClosing;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_CLOSING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationClosing(OffsetDateTime registrationClosing) {
+    this.registrationClosing = registrationClosing;
+  }
+
+
   public EventContestPlain competitions(Set<EventContestCompetitionPlain> competitions) {
     this.competitions = competitions;
     return this;
@@ -1456,6 +1491,40 @@ public class EventContestPlain {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompetitions(Set<EventContestCompetitionPlain> competitions) {
     this.competitions = competitions;
+  }
+
+
+  public EventContestPlain roles(Set<EventContestRolePlain> roles) {
+    this.roles = roles;
+    return this;
+  }
+
+  public EventContestPlain addRolesItem(EventContestRolePlain rolesItem) {
+    if (this.roles == null) {
+      this.roles = new LinkedHashSet<>();
+    }
+    this.roles.add(rolesItem);
+    return this;
+  }
+
+   /**
+   * Get roles
+   * @return roles
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestRolePlain> getRoles() {
+    return roles;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoles(Set<EventContestRolePlain> roles) {
+    this.roles = roles;
   }
 
 
@@ -1517,12 +1586,14 @@ public class EventContestPlain {
         Objects.equals(this.lateRegistrationFee, eventContestPlain.lateRegistrationFee) &&
         Objects.equals(this.changeRegistrationFee, eventContestPlain.changeRegistrationFee) &&
         Objects.equals(this.surchargeNonMembers, eventContestPlain.surchargeNonMembers) &&
-        Objects.equals(this.competitions, eventContestPlain.competitions);
+        Objects.equals(this.registrationClosing, eventContestPlain.registrationClosing) &&
+        Objects.equals(this.competitions, eventContestPlain.competitions) &&
+        Objects.equals(this.roles, eventContestPlain.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, beginning, ending, country, countryRegion, locationDesciption, isCountryChampionship, isCei, isCard, infoHelmetObligation, infoVaccinationObligation, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, promoterContactUuid, promoterContactDescription, organizerContactUuid, organizerContactDescription, registrationDescription, remarks, initialEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, feeCurrency, registrationFee, startingFee, startingFeeUnit, lateRegistrationFee, changeRegistrationFee, surchargeNonMembers, competitions);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, beginning, ending, country, countryRegion, locationDesciption, isCountryChampionship, isCei, isCard, infoHelmetObligation, infoVaccinationObligation, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, promoterContactUuid, promoterContactDescription, organizerContactUuid, organizerContactDescription, registrationDescription, remarks, initialEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, feeCurrency, registrationFee, startingFee, startingFeeUnit, lateRegistrationFee, changeRegistrationFee, surchargeNonMembers, registrationClosing, competitions, roles);
   }
 
   @Override
@@ -1575,7 +1646,9 @@ public class EventContestPlain {
     sb.append("    lateRegistrationFee: ").append(toIndentedString(lateRegistrationFee)).append("\n");
     sb.append("    changeRegistrationFee: ").append(toIndentedString(changeRegistrationFee)).append("\n");
     sb.append("    surchargeNonMembers: ").append(toIndentedString(surchargeNonMembers)).append("\n");
+    sb.append("    registrationClosing: ").append(toIndentedString(registrationClosing)).append("\n");
     sb.append("    competitions: ").append(toIndentedString(competitions)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("}");
     return sb.toString();
   }

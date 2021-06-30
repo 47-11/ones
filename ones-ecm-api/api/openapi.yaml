@@ -214,7 +214,7 @@ paths:
       tags:
       - masterdata-horse-controller
       x-accepts: '*/*'
-  /rest/masterdata/horse/contact/{uuid}:
+  /rest/masterdata/horse/account/{uuid}:
     get:
       operationId: getHorsesByContactUuid
       parameters:
@@ -416,9 +416,9 @@ paths:
       tags:
       - event-contest-controller
       x-accepts: '*/*'
-  /rest/event/contest/result/contact/{uuid}:
+  /rest/event/contest/result/account/{uuid}:
     get:
-      operationId: getContactContestCompetitionsResults
+      operationId: getAccountContestCompetitionsResults
       parameters:
       - explode: false
         in: path
@@ -1937,9 +1937,101 @@ components:
           type: array
           uniqueItems: true
       type: object
+    EventContestRole_Plain:
+      example:
+        changeCounter: 3
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        role: role
+        masterdataContactUuid: masterdataContactUuid
+        display: display
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        currentState: 7
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        role:
+          maxLength: 50
+          minLength: 0
+          type: string
+        masterdataContactUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        display:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
     EventContest_Plain:
       example:
         country: country
+        feeCurrency: feeCurrency
+        uuid: uuid
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 1
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        initialEvent: initialEvent
+        regionCommissionerDescription: regionCommissionerDescription
+        surchargeNonMembers: 3.616076749251911
+        promoterContactDescription: promoterContactDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        locationDesciption: locationDesciption
+        _roles:
+        - changeCounter: 3
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 7
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 3
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 7
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        lateRegistrationFee: 7.061401241503109
+        ending: 2000-01-23T04:56:07.000+00:00
+        organizerContactDescription: organizerContactDescription
+        infoHelmetObligation: infoHelmetObligation
+        changeRegistrationFee: 9.301444243932576
         isCei: true
         approvalDate: 2000-01-23T04:56:07.000+00:00
         beginning: 2000-01-23T04:56:07.000+00:00
@@ -1947,35 +2039,22 @@ components:
         approvalInfo: approvalInfo
         promoterEventTitle: promoterEventTitle
         infoVaccinationObligation: infoVaccinationObligation
-        feeCurrency: feeCurrency
         title: title
-        uuid: uuid
-        vddPortalTitle: vddPortalTitle
-        promoterTenderingUrl: promoterTenderingUrl
-        changeCounter: 1
         stateCommissionerDescription: stateCommissionerDescription
         organizerContactUuid: organizerContactUuid
         startingFee: 2.3021358869347655
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
         requestDate: 2000-01-23T04:56:07.000+00:00
         requestInfo: requestInfo
-        initialEvent: initialEvent
         startingFeeUnit: startingFeeUnit
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         vddPortalUrl: vddPortalUrl
-        regionCommissionerDescription: regionCommissionerDescription
-        surchargeNonMembers: 3.616076749251911
+        registrationClosing: 2000-01-23T04:56:07.000+00:00
         promoterContactUuid: promoterContactUuid
         isCountryChampionship: true
         registrationFee: 5.637376656633329
-        promoterContactDescription: promoterContactDescription
-        stateCommissionerUuid: stateCommissionerUuid
-        countryRegion: countryRegion
-        locationDesciption: locationDesciption
         regionCommissionerUuid: regionCommissionerUuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        lateRegistrationFee: 7.061401241503109
         _competitions:
         - beginning: 2000-01-23T04:56:07.000+00:00
           breaksTotalNumbers: 4
@@ -2123,12 +2202,8 @@ components:
           penaltyPointsTimeout: 1
           breaksTotalMinutes: 5
           currentState: 4
-        ending: 2000-01-23T04:56:07.000+00:00
-        organizerContactDescription: organizerContactDescription
-        infoHelmetObligation: infoHelmetObligation
         promoterTenderingTitle: promoterTenderingTitle
         registrationDescription: registrationDescription
-        changeRegistrationFee: 9.301444243932576
         isCard: true
         currentState: 5
         remarks: remarks
@@ -2233,9 +2308,17 @@ components:
           type: number
         surchargeNonMembers:
           type: number
+        registrationClosing:
+          format: date-time
+          type: string
         _competitions:
           items:
             $ref: '#/components/schemas/EventContestCompetition_Plain'
+          type: array
+          uniqueItems: true
+        _roles:
+          items:
+            $ref: '#/components/schemas/EventContestRole_Plain'
           type: array
           uniqueItems: true
       type: object
@@ -2244,6 +2327,45 @@ components:
         lastPage: 0
         data:
         - country: country
+          feeCurrency: feeCurrency
+          uuid: uuid
+          vddPortalTitle: vddPortalTitle
+          promoterTenderingUrl: promoterTenderingUrl
+          changeCounter: 1
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          initialEvent: initialEvent
+          regionCommissionerDescription: regionCommissionerDescription
+          surchargeNonMembers: 3.616076749251911
+          promoterContactDescription: promoterContactDescription
+          stateCommissionerUuid: stateCommissionerUuid
+          countryRegion: countryRegion
+          locationDesciption: locationDesciption
+          _roles:
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          lateRegistrationFee: 7.061401241503109
+          ending: 2000-01-23T04:56:07.000+00:00
+          organizerContactDescription: organizerContactDescription
+          infoHelmetObligation: infoHelmetObligation
+          changeRegistrationFee: 9.301444243932576
           isCei: true
           approvalDate: 2000-01-23T04:56:07.000+00:00
           beginning: 2000-01-23T04:56:07.000+00:00
@@ -2251,35 +2373,22 @@ components:
           approvalInfo: approvalInfo
           promoterEventTitle: promoterEventTitle
           infoVaccinationObligation: infoVaccinationObligation
-          feeCurrency: feeCurrency
           title: title
-          uuid: uuid
-          vddPortalTitle: vddPortalTitle
-          promoterTenderingUrl: promoterTenderingUrl
-          changeCounter: 1
           stateCommissionerDescription: stateCommissionerDescription
           organizerContactUuid: organizerContactUuid
           startingFee: 2.3021358869347655
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
           requestDate: 2000-01-23T04:56:07.000+00:00
           requestInfo: requestInfo
-          initialEvent: initialEvent
           startingFeeUnit: startingFeeUnit
           changeTimestamp: 2000-01-23T04:56:07.000+00:00
           vddPortalUrl: vddPortalUrl
-          regionCommissionerDescription: regionCommissionerDescription
-          surchargeNonMembers: 3.616076749251911
+          registrationClosing: 2000-01-23T04:56:07.000+00:00
           promoterContactUuid: promoterContactUuid
           isCountryChampionship: true
           registrationFee: 5.637376656633329
-          promoterContactDescription: promoterContactDescription
-          stateCommissionerUuid: stateCommissionerUuid
-          countryRegion: countryRegion
-          locationDesciption: locationDesciption
           regionCommissionerUuid: regionCommissionerUuid
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
-          lateRegistrationFee: 7.061401241503109
           _competitions:
           - beginning: 2000-01-23T04:56:07.000+00:00
             breaksTotalNumbers: 4
@@ -2427,16 +2536,51 @@ components:
             penaltyPointsTimeout: 1
             breaksTotalMinutes: 5
             currentState: 4
-          ending: 2000-01-23T04:56:07.000+00:00
-          organizerContactDescription: organizerContactDescription
-          infoHelmetObligation: infoHelmetObligation
           promoterTenderingTitle: promoterTenderingTitle
           registrationDescription: registrationDescription
-          changeRegistrationFee: 9.301444243932576
           isCard: true
           currentState: 5
           remarks: remarks
         - country: country
+          feeCurrency: feeCurrency
+          uuid: uuid
+          vddPortalTitle: vddPortalTitle
+          promoterTenderingUrl: promoterTenderingUrl
+          changeCounter: 1
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          initialEvent: initialEvent
+          regionCommissionerDescription: regionCommissionerDescription
+          surchargeNonMembers: 3.616076749251911
+          promoterContactDescription: promoterContactDescription
+          stateCommissionerUuid: stateCommissionerUuid
+          countryRegion: countryRegion
+          locationDesciption: locationDesciption
+          _roles:
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          lateRegistrationFee: 7.061401241503109
+          ending: 2000-01-23T04:56:07.000+00:00
+          organizerContactDescription: organizerContactDescription
+          infoHelmetObligation: infoHelmetObligation
+          changeRegistrationFee: 9.301444243932576
           isCei: true
           approvalDate: 2000-01-23T04:56:07.000+00:00
           beginning: 2000-01-23T04:56:07.000+00:00
@@ -2444,35 +2588,22 @@ components:
           approvalInfo: approvalInfo
           promoterEventTitle: promoterEventTitle
           infoVaccinationObligation: infoVaccinationObligation
-          feeCurrency: feeCurrency
           title: title
-          uuid: uuid
-          vddPortalTitle: vddPortalTitle
-          promoterTenderingUrl: promoterTenderingUrl
-          changeCounter: 1
           stateCommissionerDescription: stateCommissionerDescription
           organizerContactUuid: organizerContactUuid
           startingFee: 2.3021358869347655
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
           requestDate: 2000-01-23T04:56:07.000+00:00
           requestInfo: requestInfo
-          initialEvent: initialEvent
           startingFeeUnit: startingFeeUnit
           changeTimestamp: 2000-01-23T04:56:07.000+00:00
           vddPortalUrl: vddPortalUrl
-          regionCommissionerDescription: regionCommissionerDescription
-          surchargeNonMembers: 3.616076749251911
+          registrationClosing: 2000-01-23T04:56:07.000+00:00
           promoterContactUuid: promoterContactUuid
           isCountryChampionship: true
           registrationFee: 5.637376656633329
-          promoterContactDescription: promoterContactDescription
-          stateCommissionerUuid: stateCommissionerUuid
-          countryRegion: countryRegion
-          locationDesciption: locationDesciption
           regionCommissionerUuid: regionCommissionerUuid
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
-          lateRegistrationFee: 7.061401241503109
           _competitions:
           - beginning: 2000-01-23T04:56:07.000+00:00
             breaksTotalNumbers: 4
@@ -2620,12 +2751,8 @@ components:
             penaltyPointsTimeout: 1
             breaksTotalMinutes: 5
             currentState: 4
-          ending: 2000-01-23T04:56:07.000+00:00
-          organizerContactDescription: organizerContactDescription
-          infoHelmetObligation: infoHelmetObligation
           promoterTenderingTitle: promoterTenderingTitle
           registrationDescription: registrationDescription
-          changeRegistrationFee: 9.301444243932576
           isCard: true
           currentState: 5
           remarks: remarks
@@ -2645,6 +2772,45 @@ components:
     EventContest:
       example:
         country: country
+        feeCurrency: feeCurrency
+        uuid: uuid
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 0
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        initialEvent: initialEvent
+        regionCommissionerDescription: regionCommissionerDescription
+        surchargeNonMembers: 7.061401241503109
+        promoterContactDescription: promoterContactDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        locationDesciption: locationDesciption
+        _roles:
+        - changeCounter: 6
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 3
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 6
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 3
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        lateRegistrationFee: 5.637376656633329
+        ending: 2000-01-23T04:56:07.000+00:00
+        organizerContactDescription: organizerContactDescription
+        infoHelmetObligation: infoHelmetObligation
+        changeRegistrationFee: 2.3021358869347655
         isCei: true
         approvalDate: 2000-01-23T04:56:07.000+00:00
         beginning: 2000-01-23T04:56:07.000+00:00
@@ -2652,35 +2818,22 @@ components:
         approvalInfo: approvalInfo
         promoterEventTitle: promoterEventTitle
         infoVaccinationObligation: infoVaccinationObligation
-        feeCurrency: feeCurrency
         title: title
-        uuid: uuid
-        vddPortalTitle: vddPortalTitle
-        promoterTenderingUrl: promoterTenderingUrl
-        changeCounter: 0
         stateCommissionerDescription: stateCommissionerDescription
         organizerContactUuid: organizerContactUuid
         startingFee: 5.962133916683182
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
         requestDate: 2000-01-23T04:56:07.000+00:00
         requestInfo: requestInfo
-        initialEvent: initialEvent
         startingFeeUnit: startingFeeUnit
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         vddPortalUrl: vddPortalUrl
-        regionCommissionerDescription: regionCommissionerDescription
-        surchargeNonMembers: 7.061401241503109
+        registrationClosing: 2000-01-23T04:56:07.000+00:00
         promoterContactUuid: promoterContactUuid
         isCountryChampionship: true
         registrationFee: 1.4658129805029452
-        promoterContactDescription: promoterContactDescription
-        stateCommissionerUuid: stateCommissionerUuid
-        countryRegion: countryRegion
-        locationDesciption: locationDesciption
         regionCommissionerUuid: regionCommissionerUuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        lateRegistrationFee: 5.637376656633329
         _competitions:
         - beginning: 2000-01-23T04:56:07.000+00:00
           breaksTotalNumbers: 7
@@ -2828,12 +2981,8 @@ components:
           penaltyPointsTimeout: 1
           breaksTotalMinutes: 1
           currentState: 3
-        ending: 2000-01-23T04:56:07.000+00:00
-        organizerContactDescription: organizerContactDescription
-        infoHelmetObligation: infoHelmetObligation
         promoterTenderingTitle: promoterTenderingTitle
         registrationDescription: registrationDescription
-        changeRegistrationFee: 2.3021358869347655
         isCard: true
         currentState: 6
         remarks: remarks
@@ -2938,9 +3087,17 @@ components:
           type: number
         surchargeNonMembers:
           type: number
+        registrationClosing:
+          format: date-time
+          type: string
         _competitions:
           items:
             $ref: '#/components/schemas/EventContestCompetition'
+          type: array
+          uniqueItems: true
+        _roles:
+          items:
+            $ref: '#/components/schemas/EventContestRole'
           type: array
           uniqueItems: true
       type: object
@@ -3185,6 +3342,59 @@ components:
           format: int32
           type: integer
       type: object
+    EventContestRole:
+      example:
+        changeCounter: 6
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        role: role
+        masterdataContactUuid: masterdataContactUuid
+        display: display
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        currentState: 3
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        role:
+          maxLength: 50
+          minLength: 0
+          type: string
+        masterdataContactUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        display:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
     EventContestCompetitionResult:
       example:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
@@ -3192,6 +3402,25 @@ components:
         competitionDate: 2000-01-23T04:56:07.000+00:00
         displayContestant: displayContestant
         masterdataContestantUuid: masterdataContestantUuid
+        _horses:
+        - changeCounter: 5
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 2
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 5
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 2
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
@@ -3261,9 +3490,62 @@ components:
           maxLength: 50
           minLength: 0
           type: string
+        _horses:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionResultHorse'
+          type: array
+          uniqueItems: true
       required:
       - creationTimestamp
       - masterdataContestantUuid
+      - uuid
+      type: object
+    EventContestCompetitionResultHorse:
+      example:
+        changeCounter: 5
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        masterdataHorseUuid: masterdataHorseUuid
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        description: description
+        currentState: 2
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        masterdataHorseUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
       - uuid
       type: object
   securitySchemes:

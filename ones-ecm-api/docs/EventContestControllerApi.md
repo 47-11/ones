@@ -4,8 +4,8 @@ All URIs are relative to *https://vdd4ones.de:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getContactContestCompetitionsResults**](EventContestControllerApi.md#getContactContestCompetitionsResults) | **GET** /rest/event/contest/result/contact/{uuid} | 
-[**getContactContestCompetitionsResultsWithHttpInfo**](EventContestControllerApi.md#getContactContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/contact/{uuid} | 
+[**getAccountContestCompetitionsResults**](EventContestControllerApi.md#getAccountContestCompetitionsResults) | **GET** /rest/event/contest/result/account/{uuid} | 
+[**getAccountContestCompetitionsResultsWithHttpInfo**](EventContestControllerApi.md#getAccountContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/account/{uuid} | 
 [**getContestByUuid**](EventContestControllerApi.md#getContestByUuid) | **GET** /rest/event/contest | 
 [**getContestByUuidWithHttpInfo**](EventContestControllerApi.md#getContestByUuidWithHttpInfo) | **GET** /rest/event/contest | 
 [**getContestByYear**](EventContestControllerApi.md#getContestByYear) | **GET** /rest/event/contests | 
@@ -17,9 +17,9 @@ Method | HTTP request | Description
 
 
 
-## getContactContestCompetitionsResults
+## getAccountContestCompetitionsResults
 
-> List<EventContestCompetitionResult> getContactContestCompetitionsResults(uuid)
+> List<EventContestCompetitionResult> getAccountContestCompetitionsResults(uuid)
 
 
 
@@ -47,10 +47,10 @@ public class Example {
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
         String uuid = "uuid_example"; // String | 
         try {
-            List<EventContestCompetitionResult> result = apiInstance.getContactContestCompetitionsResults(uuid);
+            List<EventContestCompetitionResult> result = apiInstance.getAccountContestCompetitionsResults(uuid);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling EventContestControllerApi#getContactContestCompetitionsResults");
+            System.err.println("Exception when calling EventContestControllerApi#getAccountContestCompetitionsResults");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -86,9 +86,9 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
-## getContactContestCompetitionsResultsWithHttpInfo
+## getAccountContestCompetitionsResultsWithHttpInfo
 
-> ApiResponse<List<EventContestCompetitionResult>> getContactContestCompetitionsResults getContactContestCompetitionsResultsWithHttpInfo(uuid)
+> ApiResponse<List<EventContestCompetitionResult>> getAccountContestCompetitionsResults getAccountContestCompetitionsResultsWithHttpInfo(uuid)
 
 
 
@@ -117,12 +117,12 @@ public class Example {
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
         String uuid = "uuid_example"; // String | 
         try {
-            ApiResponse<List<EventContestCompetitionResult>> response = apiInstance.getContactContestCompetitionsResultsWithHttpInfo(uuid);
+            ApiResponse<List<EventContestCompetitionResult>> response = apiInstance.getAccountContestCompetitionsResultsWithHttpInfo(uuid);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling EventContestControllerApi#getContactContestCompetitionsResults");
+            System.err.println("Exception when calling EventContestControllerApi#getAccountContestCompetitionsResults");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());

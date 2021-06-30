@@ -41,7 +41,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-17T11:45:53.590955+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
 public class EventContestControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -78,8 +78,8 @@ public class EventContestControllerApi {
    * @return List&lt;EventContestCompetitionResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<EventContestCompetitionResult> getContactContestCompetitionsResults(String uuid) throws ApiException {
-    ApiResponse<List<EventContestCompetitionResult>> localVarResponse = getContactContestCompetitionsResultsWithHttpInfo(uuid);
+  public List<EventContestCompetitionResult> getAccountContestCompetitionsResults(String uuid) throws ApiException {
+    ApiResponse<List<EventContestCompetitionResult>> localVarResponse = getAccountContestCompetitionsResultsWithHttpInfo(uuid);
     return localVarResponse.getData();
   }
 
@@ -90,8 +90,8 @@ public class EventContestControllerApi {
    * @return ApiResponse&lt;List&lt;EventContestCompetitionResult&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<List<EventContestCompetitionResult>> getContactContestCompetitionsResultsWithHttpInfo(String uuid) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getContactContestCompetitionsResultsRequestBuilder(uuid);
+  public ApiResponse<List<EventContestCompetitionResult>> getAccountContestCompetitionsResultsWithHttpInfo(String uuid) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAccountContestCompetitionsResultsRequestBuilder(uuid);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -100,7 +100,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "getContactContestCompetitionsResults call received non-success response");
+        throw createApiException(localVarResponse, "getAccountContestCompetitionsResults call received non-success response");
       }
       return new ApiResponse<List<EventContestCompetitionResult>>(
           localVarResponse.statusCode(),
@@ -116,15 +116,15 @@ public class EventContestControllerApi {
     }
   }
 
-  private HttpRequest.Builder getContactContestCompetitionsResultsRequestBuilder(String uuid) throws ApiException {
+  private HttpRequest.Builder getAccountContestCompetitionsResultsRequestBuilder(String uuid) throws ApiException {
     // verify the required parameter 'uuid' is set
     if (uuid == null) {
-      throw new ApiException(400, "Missing the required parameter 'uuid' when calling getContactContestCompetitionsResults");
+      throw new ApiException(400, "Missing the required parameter 'uuid' when calling getAccountContestCompetitionsResults");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/rest/event/contest/result/contact/{uuid}"
+    String localVarPath = "/rest/event/contest/result/account/{uuid}"
         .replace("{uuid}", ApiClient.urlEncode(uuid.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));

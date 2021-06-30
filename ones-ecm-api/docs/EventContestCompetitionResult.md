@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **remarks** | **String** |  |  [optional]
 **displayContestant** | **String** |  |  [optional]
 **displayHorse** | **String** |  |  [optional]
+**horses** | [**Set&lt;EventContestCompetitionResultHorse&gt;**](EventContestCompetitionResultHorse.md) |  |  [optional]
 
 
 

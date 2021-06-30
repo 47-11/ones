@@ -53,7 +53,9 @@ Name | Type | Description | Notes
 **lateRegistrationFee** | **BigDecimal** |  |  [optional]
 **changeRegistrationFee** | **BigDecimal** |  |  [optional]
 **surchargeNonMembers** | **BigDecimal** |  |  [optional]
+**registrationClosing** | **OffsetDateTime** |  |  [optional]
 **competitions** | [**Set&lt;EventContestCompetitionPlain&gt;**](EventContestCompetitionPlain.md) |  |  [optional]
+**roles** | [**Set&lt;EventContestRolePlain&gt;**](EventContestRolePlain.md) |  |  [optional]
 
 
 

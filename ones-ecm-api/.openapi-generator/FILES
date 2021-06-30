@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -9,10 +10,13 @@ docs/EventContest.md
 docs/EventContestCompetition.md
 docs/EventContestCompetitionPlain.md
 docs/EventContestCompetitionResult.md
+docs/EventContestCompetitionResultHorse.md
 docs/EventContestCompetitionStage.md
 docs/EventContestCompetitionStagePlain.md
 docs/EventContestControllerApi.md
 docs/EventContestPlain.md
+docs/EventContestRole.md
+docs/EventContestRolePlain.md
 docs/MasterdataContact.md
 docs/MasterdataContactAddress.md
 docs/MasterdataContactControllerApi.md
@@ -56,9 +60,12 @@ src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContest.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetition.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionPlain.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionResult.java
+src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionResultHorse.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionStage.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionStagePlain.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestPlain.java
+src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestRole.java
+src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestRolePlain.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/MasterdataContact.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/MasterdataContactAddress.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/MasterdataContactRole.java
@@ -78,11 +85,14 @@ src/test/java/de/fourtyseveneleven/ones/ecm/generated/api/EventContestController
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/api/MasterdataContactControllerApiTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/api/MasterdataHorseControllerApiTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionPlainTest.java
+src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionResultHorseTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionResultTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionStagePlainTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionStageTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestCompetitionTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestPlainTest.java
+src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestRolePlainTest.java
+src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestRoleTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/EventContestTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/MasterdataContactAddressTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/MasterdataContactRoleTest.java

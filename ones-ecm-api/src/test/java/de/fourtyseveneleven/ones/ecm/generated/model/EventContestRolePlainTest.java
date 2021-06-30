@@ -18,30 +18,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionResultHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for EventContestCompetitionResult
+ * Model tests for EventContestRolePlain
  */
-public class EventContestCompetitionResultTest {
-    private final EventContestCompetitionResult model = new EventContestCompetitionResult();
+public class EventContestRolePlainTest {
+    private final EventContestRolePlain model = new EventContestRolePlain();
 
     /**
-     * Model tests for EventContestCompetitionResult
+     * Model tests for EventContestRolePlain
      */
     @Test
-    public void testEventContestCompetitionResult() {
-        // TODO: test EventContestCompetitionResult
+    public void testEventContestRolePlain() {
+        // TODO: test EventContestRolePlain
     }
 
     /**
@@ -101,83 +97,27 @@ public class EventContestCompetitionResultTest {
     }
 
     /**
-     * Test the property 'competitionDate'
+     * Test the property 'role'
      */
     @Test
-    public void competitionDateTest() {
-        // TODO: test competitionDate
+    public void roleTest() {
+        // TODO: test role
     }
 
     /**
-     * Test the property 'masterdataContestantUuid'
+     * Test the property 'masterdataContactUuid'
      */
     @Test
-    public void masterdataContestantUuidTest() {
-        // TODO: test masterdataContestantUuid
+    public void masterdataContactUuidTest() {
+        // TODO: test masterdataContactUuid
     }
 
     /**
-     * Test the property 'competitionKindRemark'
+     * Test the property 'display'
      */
     @Test
-    public void competitionKindRemarkTest() {
-        // TODO: test competitionKindRemark
-    }
-
-    /**
-     * Test the property 'failureReasonRemark'
-     */
-    @Test
-    public void failureReasonRemarkTest() {
-        // TODO: test failureReasonRemark
-    }
-
-    /**
-     * Test the property 'rankingRaiseLength'
-     */
-    @Test
-    public void rankingRaiseLengthTest() {
-        // TODO: test rankingRaiseLength
-    }
-
-    /**
-     * Test the property 'placement'
-     */
-    @Test
-    public void placementTest() {
-        // TODO: test placement
-    }
-
-    /**
-     * Test the property 'remarks'
-     */
-    @Test
-    public void remarksTest() {
-        // TODO: test remarks
-    }
-
-    /**
-     * Test the property 'displayContestant'
-     */
-    @Test
-    public void displayContestantTest() {
-        // TODO: test displayContestant
-    }
-
-    /**
-     * Test the property 'displayHorse'
-     */
-    @Test
-    public void displayHorseTest() {
-        // TODO: test displayHorse
-    }
-
-    /**
-     * Test the property 'horses'
-     */
-    @Test
-    public void horsesTest() {
-        // TODO: test horses
+    public void displayTest() {
+        // TODO: test display
     }
 
 }

@@ -22,9 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionResultHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -47,9 +51,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionResult.JSON_PROPERTY_PLACEMENT,
   EventContestCompetitionResult.JSON_PROPERTY_REMARKS,
   EventContestCompetitionResult.JSON_PROPERTY_DISPLAY_CONTESTANT,
-  EventContestCompetitionResult.JSON_PROPERTY_DISPLAY_HORSE
+  EventContestCompetitionResult.JSON_PROPERTY_DISPLAY_HORSE,
+  EventContestCompetitionResult.JSON_PROPERTY_HORSES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-17T11:45:53.590955+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
 public class EventContestCompetitionResult {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -98,6 +103,9 @@ public class EventContestCompetitionResult {
 
   public static final String JSON_PROPERTY_DISPLAY_HORSE = "displayHorse";
   private String displayHorse;
+
+  public static final String JSON_PROPERTY_HORSES = "_horses";
+  private Set<EventContestCompetitionResultHorse> horses = null;
 
 
   public EventContestCompetitionResult uuid(String uuid) {
@@ -513,6 +521,40 @@ public class EventContestCompetitionResult {
   }
 
 
+  public EventContestCompetitionResult horses(Set<EventContestCompetitionResultHorse> horses) {
+    this.horses = horses;
+    return this;
+  }
+
+  public EventContestCompetitionResult addHorsesItem(EventContestCompetitionResultHorse horsesItem) {
+    if (this.horses == null) {
+      this.horses = new LinkedHashSet<>();
+    }
+    this.horses.add(horsesItem);
+    return this;
+  }
+
+   /**
+   * Get horses
+   * @return horses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_HORSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestCompetitionResultHorse> getHorses() {
+    return horses;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HORSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHorses(Set<EventContestCompetitionResultHorse> horses) {
+    this.horses = horses;
+  }
+
+
   /**
    * Return true if this EventContestCompetitionResult object is equal to o.
    */
@@ -540,12 +582,13 @@ public class EventContestCompetitionResult {
         Objects.equals(this.placement, eventContestCompetitionResult.placement) &&
         Objects.equals(this.remarks, eventContestCompetitionResult.remarks) &&
         Objects.equals(this.displayContestant, eventContestCompetitionResult.displayContestant) &&
-        Objects.equals(this.displayHorse, eventContestCompetitionResult.displayHorse);
+        Objects.equals(this.displayHorse, eventContestCompetitionResult.displayHorse) &&
+        Objects.equals(this.horses, eventContestCompetitionResult.horses);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, competitionDate, masterdataContestantUuid, competitionKindRemark, failureReasonRemark, rankingRaiseLength, placement, remarks, displayContestant, displayHorse);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, competitionDate, masterdataContestantUuid, competitionKindRemark, failureReasonRemark, rankingRaiseLength, placement, remarks, displayContestant, displayHorse, horses);
   }
 
   @Override
@@ -568,6 +611,7 @@ public class EventContestCompetitionResult {
     sb.append("    remarks: ").append(toIndentedString(remarks)).append("\n");
     sb.append("    displayContestant: ").append(toIndentedString(displayContestant)).append("\n");
     sb.append("    displayHorse: ").append(toIndentedString(displayHorse)).append("\n");
+    sb.append("    horses: ").append(toIndentedString(horses)).append("\n");
     sb.append("}");
     return sb.toString();
   }
