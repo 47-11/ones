@@ -31,8 +31,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "promoterContactUuid", target = "eventHost", qualifiedByName = "contactUuidToPersonDto")
     @Mapping(source = "organizerContactUuid", target = "eventOrganizer", qualifiedByName = "contactUuidToPersonDto")
     @Mapping(source = "organizerContactUuid", target = "contactPerson", qualifiedByName = "contactUuidToPersonDto")
-    // TODO: Replace with correct source field
-    @Mapping(source = "beginning", target = "signupDeadline")
+    @Mapping(source = "registrationClosing", target = "signupDeadline")
     @Mapping(source = "lateRegistrationFee", target = "signupDeadlineMissedFee", qualifiedByName = "defaultZero")
     @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
     @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
