@@ -121,7 +121,10 @@ export class UserStore extends VuexModule {
 
     @action
     async setPersonalData(payload: PersonalData): Promise<void> {
-        await new UserControllerApi().setPersonalData(payload);
+        await new UserControllerApi({
+            accessToken: this.token || "",
+            isJsonMime: () => true
+        }).setPersonalData(payload);
         await this.fetchCurrent();
     }
 }
