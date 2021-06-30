@@ -17,7 +17,7 @@
                 <div class="px-6 py-5">
                     <error-message :error="error"/>
 
-                    <div>
+                    <div class="mb-5">
                         <v-label>{{ $t("register.email") }}</v-label>
                         <v-input type="text" class="w-full" v-model="email" :disabled="inputsDisabled"></v-input>
                         <v-hint>
