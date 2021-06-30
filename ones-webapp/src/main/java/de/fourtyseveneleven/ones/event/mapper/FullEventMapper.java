@@ -9,6 +9,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Mapper(
@@ -35,13 +41,23 @@ public abstract class FullEventMapper {
     @Mapping(source = "lateRegistrationFee", target = "signupDeadlineMissedFee", qualifiedByName = "defaultZero")
     @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
     @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
-    @Mapping(source = "remarks", target = "additionalComments")
+    @Mapping(source = "remarks", target = "additionalComments", qualifiedByName = "remarksToAdditionalComments")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     @Named(value = "obligationInfoToBoolean")
-    public boolean obligationInfoToBoolean(String obligationInfo) {
+    protected boolean obligationInfoToBoolean(String obligationInfo) {
 
         return isNotBlank(obligationInfo);
+    }
+
+    @Named("remarksToAdditionalComments")
+    protected List<String> remarksToAdditionalComments(String remarks) {
+
+        if (isBlank(remarks)) {
+            return emptyList();
+        } else {
+            return Arrays.asList(remarks.split("[\\r\\n]+"));
+        }
     }
 }
 
