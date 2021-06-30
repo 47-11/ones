@@ -59,7 +59,7 @@ const routes: Array<RouteConfig> = [
         component: EventDetail
     },
     {
-        path: "/setPersonalData/",
+        path: "/set-personal-data/",
         component: SetPersonalData
     }
 ];
@@ -87,10 +87,10 @@ router.beforeEach((to, f, next) => {
     }
 
     const currentUser = vxm.user.current;
-    if (currentUser && !currentUser.isPersonalDataKnown && to.path !== "/setPersonalData") {
-        next("/setPersonalData");
+    if (currentUser && !currentUser.isPersonalDataKnown && to.path !== "/set-personal-data") {
+        next("/set-personal-data");
         return;
-    } else if (currentUser && currentUser.isPersonalDataKnown && to.path === "/setPersonalData") {
+    } else if (currentUser && currentUser.isPersonalDataKnown && to.path === "/set-personal-data") {
         next("/");
         return;
     }
