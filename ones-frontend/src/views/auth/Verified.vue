@@ -1,13 +1,13 @@
 <template>
     <guest-layout>
         <auth-card>
-            <div class="px-6 py-5" v-if="error.length === 0 && !verified">
+            <div class="px-6 py-5" v-if="!error && !verified">
                 <feedback color="danger" class="mb-5">
                     <h2 class="text-lg">{{$t('verified.wait')}}</h2>
                     {{$t('verified.authenticationRunning')}}
                 </feedback>
             </div>
-            <div class="px-6 py-5" v-if="error.length > 0">
+            <div class="px-6 py-5" v-if="error">
                 <feedback color="danger" class="mb-5" >
                     <h2 class="text-lg">{{$t('verified.error')}}</h2>
                     {{ error }}
