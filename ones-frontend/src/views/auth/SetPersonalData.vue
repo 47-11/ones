@@ -1,23 +1,94 @@
 <template>
     <guest-layout>
-        <auth-card>
-            <form @submit.prevent="setPersonalData">
-                <div class="px-6 py-5">
-                    <error-message :error="error"/>
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+            <img src="@/assets/logo.png" class="h-16">
 
-                    <div v-for="property in propertyNames" :key="property">
+            <div class="w-full sm:max-w-2xl">
+                <div class="w-full my-12">
+                    <h1 class="text-3xl font-bold">Daten aktualisieren</h1>
+                    <p>Um fortzufahren, vervollständigen Sie bitte Ihre Daten.</p>
+                </div>
 
-                        <v-label>{{ $t("setPersonalData." + property) }}</v-label>
-                        <v-input type="text" class="w-full" @input="update(property, $event)" :disabled="inputsDisabled"></v-input>
-                    </div>
+                <div class="mt-6 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                    <form @submit.prevent="setPersonalData">
+                        <div class="px-6 py-5">
+                            <error-message :error="error"/>
+
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-2">
+                                    <v-label>{{ $t("setPersonalData.salutation") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('salutation', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-5">
+                                    <v-label>{{ $t("setPersonalData.firstName") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('firstName', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-5">
+                                    <v-label>{{ $t("setPersonalData.lastName") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('lastName', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-9">
+                                    <v-label>{{ $t("setPersonalData.street") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('street', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-3">
+                                    <v-label>{{ $t("setPersonalData.houseNumber") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('houseNumber', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-3">
+                                    <v-label>{{ $t("setPersonalData.zipCode") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('zipCode', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-5">
+                                    <v-label>{{ $t("setPersonalData.city") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('city', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-4">
+                                    <v-label>{{ $t("setPersonalData.country") }}</v-label>
+                                    <v-select @input="update('country', $event)" :disabled="inputsDisabled" class="w-full">
+                                        <option value="DE">Deutschland</option>
+                                        <option value="NL">Niederlande</option>
+                                        <option value="AT">Österreich</option>
+                                        <option value="CH">Schweiz</option>
+                                    </v-select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-6">
+                                    <v-label>{{ $t("setPersonalData.phoneNumber") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('phoneNumber', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-6">
+                                    <v-label>{{ $t("setPersonalData.phoneNumberMobile") }}</v-label>
+                                    <v-input type="text" class="w-full" @input="update('phoneNumberMobile', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                            </div>
+
+                            <v-label>{{ $t("setPersonalData.birthday") }}</v-label>
+                            <v-input type="date" class="w-full" @input="update('birthday', $event)" :disabled="inputsDisabled"/>
+                        </div>
+                        <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <v-link to="logout">{{$t("setPersonalData.logout")}}</v-link>
+                            <div class="flex-grow"></div>
+                            <v-button role="submit" :disabled="inputsDisabled">{{$t("setPersonalData.submit")}}</v-button>
+                        </div>
+                    </form>
                 </div>
-                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-link to="logout">{{$t("setPersonalData.logout")}}</v-link>
-                    <div class="flex-grow"></div>
-                    <v-button role="submit" :disabled="inputsDisabled">{{$t("setPersonalData.submit")}}</v-button>
-                </div>
-            </form>
-        </auth-card>
+            </div>
+        </div>
     </guest-layout>
 </template>
 
@@ -34,6 +105,7 @@ import GuestLayout from "@/layouts/GuestLayout.vue";
 import AuthCard from "@/components/AuthCard.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import VInput from "@/components/forms/VInput.vue";
+import VSelect from "@/components/forms/VSelect.vue";
 import VPassword from "@/components/forms/VPassword.vue";
 import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
@@ -52,6 +124,7 @@ import VLink from "@/components/VLink.vue";
         AuthCard,
         GuestLayout,
         Feedback,
+        VSelect,
         VPassword
     }
 })
