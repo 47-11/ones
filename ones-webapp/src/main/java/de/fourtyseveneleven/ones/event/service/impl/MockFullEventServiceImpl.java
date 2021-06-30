@@ -8,6 +8,7 @@ import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Qualifier("mockFullEventServiceImpl")
 public class MockFullEventServiceImpl implements FullEventService {
 
     private final SimpleEventService simpleEventService;

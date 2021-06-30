@@ -60,6 +60,23 @@ public class MasterdataHorseControllerApiTest {
      *          if the Api call fails
      */
     @Test
+    public void getHorsesByContactUuidTest() throws ApiException {
+        String uuid = null;
+        List<MasterdataHorse> response = 
+        api.getHorsesByContactUuid(uuid);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
     public void postRegisterHorseTest() throws ApiException {
         RegisterHorse registerHorse = null;
         Object response = 

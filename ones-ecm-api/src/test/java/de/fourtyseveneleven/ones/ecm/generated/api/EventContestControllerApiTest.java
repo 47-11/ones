@@ -15,7 +15,11 @@ package de.fourtyseveneleven.ones.ecm.generated.api;
 
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionResult;
+import java.time.OffsetDateTime;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNomination;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -33,6 +37,23 @@ public class EventContestControllerApiTest {
 
     private final EventContestControllerApi api = new EventContestControllerApi();
 
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getAccountContestCompetitionsResultsTest() throws ApiException {
+        String uuid = null;
+        List<EventContestCompetitionResult> response = 
+        api.getAccountContestCompetitionsResults(uuid);
+        
+        // TODO: test validations
+    }
     
     /**
      * 
@@ -62,11 +83,50 @@ public class EventContestControllerApiTest {
     @Test
     public void getContestByYearTest() throws ApiException {
         Integer year = null;
+        OffsetDateTime fromDate = null;
+        OffsetDateTime untilDate = null;
+        List<String> countryRegions = null;
+        Integer isCountryChampionship = null;
+        Integer isCEI = null;
+        Integer isCard = null;
         Integer pageNo = null;
         Integer pageSize = null;
         String sortBy = null;
-        List<EventContestPlain> response = 
-        api.getContestByYear(year, pageNo, pageSize, sortBy);
+        ResponcePageContestsPlain response = 
+        api.getContestByYear(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getCurrentContestCompetitionsResultsTest() throws ApiException {
+        List<EventContestCompetitionResult> response = 
+        api.getCurrentContestCompetitionsResults();
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void postRegisterNominationTest() throws ApiException {
+        RegisterNomination registerNomination = null;
+        RegisterResponce response = 
+        api.postRegisterNomination(registerNomination);
         
         // TODO: test validations
     }

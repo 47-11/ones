@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRolePlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -53,6 +54,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_IS_COUNTRY_CHAMPIONSHIP,
   EventContestPlain.JSON_PROPERTY_IS_CEI,
   EventContestPlain.JSON_PROPERTY_IS_CARD,
+  EventContestPlain.JSON_PROPERTY_INFO_HELMET_OBLIGATION,
+  EventContestPlain.JSON_PROPERTY_INFO_VACCINATION_OBLIGATION,
   EventContestPlain.JSON_PROPERTY_VDD_PORTAL_URL,
   EventContestPlain.JSON_PROPERTY_VDD_PORTAL_TITLE,
   EventContestPlain.JSON_PROPERTY_PROMOTER_TENDERING_URL,
@@ -81,9 +84,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_LATE_REGISTRATION_FEE,
   EventContestPlain.JSON_PROPERTY_CHANGE_REGISTRATION_FEE,
   EventContestPlain.JSON_PROPERTY_SURCHARGE_NON_MEMBERS,
-  EventContestPlain.JSON_PROPERTY_COMPETITIONS
+  EventContestPlain.JSON_PROPERTY_REGISTRATION_CLOSING,
+  EventContestPlain.JSON_PROPERTY_COMPETITIONS,
+  EventContestPlain.JSON_PROPERTY_ROLES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
 public class EventContestPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -132,6 +137,12 @@ public class EventContestPlain {
 
   public static final String JSON_PROPERTY_IS_CARD = "isCard";
   private Boolean isCard;
+
+  public static final String JSON_PROPERTY_INFO_HELMET_OBLIGATION = "infoHelmetObligation";
+  private String infoHelmetObligation;
+
+  public static final String JSON_PROPERTY_INFO_VACCINATION_OBLIGATION = "infoVaccinationObligation";
+  private String infoVaccinationObligation;
 
   public static final String JSON_PROPERTY_VDD_PORTAL_URL = "vddPortalUrl";
   private String vddPortalUrl;
@@ -217,8 +228,14 @@ public class EventContestPlain {
   public static final String JSON_PROPERTY_SURCHARGE_NON_MEMBERS = "surchargeNonMembers";
   private BigDecimal surchargeNonMembers;
 
+  public static final String JSON_PROPERTY_REGISTRATION_CLOSING = "registrationClosing";
+  private OffsetDateTime registrationClosing;
+
   public static final String JSON_PROPERTY_COMPETITIONS = "_competitions";
   private Set<EventContestCompetitionPlain> competitions = null;
+
+  public static final String JSON_PROPERTY_ROLES = "_roles";
+  private Set<EventContestRolePlain> roles = null;
 
 
   public EventContestPlain uuid(String uuid) {
@@ -634,6 +651,58 @@ public class EventContestPlain {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsCard(Boolean isCard) {
     this.isCard = isCard;
+  }
+
+
+  public EventContestPlain infoHelmetObligation(String infoHelmetObligation) {
+    this.infoHelmetObligation = infoHelmetObligation;
+    return this;
+  }
+
+   /**
+   * Get infoHelmetObligation
+   * @return infoHelmetObligation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_HELMET_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoHelmetObligation() {
+    return infoHelmetObligation;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_HELMET_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoHelmetObligation(String infoHelmetObligation) {
+    this.infoHelmetObligation = infoHelmetObligation;
+  }
+
+
+  public EventContestPlain infoVaccinationObligation(String infoVaccinationObligation) {
+    this.infoVaccinationObligation = infoVaccinationObligation;
+    return this;
+  }
+
+   /**
+   * Get infoVaccinationObligation
+   * @return infoVaccinationObligation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_VACCINATION_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoVaccinationObligation() {
+    return infoVaccinationObligation;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_VACCINATION_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoVaccinationObligation(String infoVaccinationObligation) {
+    this.infoVaccinationObligation = infoVaccinationObligation;
   }
 
 
@@ -1365,6 +1434,32 @@ public class EventContestPlain {
   }
 
 
+  public EventContestPlain registrationClosing(OffsetDateTime registrationClosing) {
+    this.registrationClosing = registrationClosing;
+    return this;
+  }
+
+   /**
+   * Get registrationClosing
+   * @return registrationClosing
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_CLOSING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getRegistrationClosing() {
+    return registrationClosing;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_CLOSING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationClosing(OffsetDateTime registrationClosing) {
+    this.registrationClosing = registrationClosing;
+  }
+
+
   public EventContestPlain competitions(Set<EventContestCompetitionPlain> competitions) {
     this.competitions = competitions;
     return this;
@@ -1399,6 +1494,40 @@ public class EventContestPlain {
   }
 
 
+  public EventContestPlain roles(Set<EventContestRolePlain> roles) {
+    this.roles = roles;
+    return this;
+  }
+
+  public EventContestPlain addRolesItem(EventContestRolePlain rolesItem) {
+    if (this.roles == null) {
+      this.roles = new LinkedHashSet<>();
+    }
+    this.roles.add(rolesItem);
+    return this;
+  }
+
+   /**
+   * Get roles
+   * @return roles
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestRolePlain> getRoles() {
+    return roles;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ROLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoles(Set<EventContestRolePlain> roles) {
+    this.roles = roles;
+  }
+
+
   /**
    * Return true if this EventContest_Plain object is equal to o.
    */
@@ -1427,6 +1556,8 @@ public class EventContestPlain {
         Objects.equals(this.isCountryChampionship, eventContestPlain.isCountryChampionship) &&
         Objects.equals(this.isCei, eventContestPlain.isCei) &&
         Objects.equals(this.isCard, eventContestPlain.isCard) &&
+        Objects.equals(this.infoHelmetObligation, eventContestPlain.infoHelmetObligation) &&
+        Objects.equals(this.infoVaccinationObligation, eventContestPlain.infoVaccinationObligation) &&
         Objects.equals(this.vddPortalUrl, eventContestPlain.vddPortalUrl) &&
         Objects.equals(this.vddPortalTitle, eventContestPlain.vddPortalTitle) &&
         Objects.equals(this.promoterTenderingUrl, eventContestPlain.promoterTenderingUrl) &&
@@ -1455,12 +1586,14 @@ public class EventContestPlain {
         Objects.equals(this.lateRegistrationFee, eventContestPlain.lateRegistrationFee) &&
         Objects.equals(this.changeRegistrationFee, eventContestPlain.changeRegistrationFee) &&
         Objects.equals(this.surchargeNonMembers, eventContestPlain.surchargeNonMembers) &&
-        Objects.equals(this.competitions, eventContestPlain.competitions);
+        Objects.equals(this.registrationClosing, eventContestPlain.registrationClosing) &&
+        Objects.equals(this.competitions, eventContestPlain.competitions) &&
+        Objects.equals(this.roles, eventContestPlain.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, beginning, ending, country, countryRegion, locationDesciption, isCountryChampionship, isCei, isCard, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, promoterContactUuid, promoterContactDescription, organizerContactUuid, organizerContactDescription, registrationDescription, remarks, initialEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, feeCurrency, registrationFee, startingFee, startingFeeUnit, lateRegistrationFee, changeRegistrationFee, surchargeNonMembers, competitions);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, beginning, ending, country, countryRegion, locationDesciption, isCountryChampionship, isCei, isCard, infoHelmetObligation, infoVaccinationObligation, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, promoterContactUuid, promoterContactDescription, organizerContactUuid, organizerContactDescription, registrationDescription, remarks, initialEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, feeCurrency, registrationFee, startingFee, startingFeeUnit, lateRegistrationFee, changeRegistrationFee, surchargeNonMembers, registrationClosing, competitions, roles);
   }
 
   @Override
@@ -1483,6 +1616,8 @@ public class EventContestPlain {
     sb.append("    isCountryChampionship: ").append(toIndentedString(isCountryChampionship)).append("\n");
     sb.append("    isCei: ").append(toIndentedString(isCei)).append("\n");
     sb.append("    isCard: ").append(toIndentedString(isCard)).append("\n");
+    sb.append("    infoHelmetObligation: ").append(toIndentedString(infoHelmetObligation)).append("\n");
+    sb.append("    infoVaccinationObligation: ").append(toIndentedString(infoVaccinationObligation)).append("\n");
     sb.append("    vddPortalUrl: ").append(toIndentedString(vddPortalUrl)).append("\n");
     sb.append("    vddPortalTitle: ").append(toIndentedString(vddPortalTitle)).append("\n");
     sb.append("    promoterTenderingUrl: ").append(toIndentedString(promoterTenderingUrl)).append("\n");
@@ -1511,7 +1646,9 @@ public class EventContestPlain {
     sb.append("    lateRegistrationFee: ").append(toIndentedString(lateRegistrationFee)).append("\n");
     sb.append("    changeRegistrationFee: ").append(toIndentedString(changeRegistrationFee)).append("\n");
     sb.append("    surchargeNonMembers: ").append(toIndentedString(surchargeNonMembers)).append("\n");
+    sb.append("    registrationClosing: ").append(toIndentedString(registrationClosing)).append("\n");
     sb.append("    competitions: ").append(toIndentedString(competitions)).append("\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("}");
     return sb.toString();
   }

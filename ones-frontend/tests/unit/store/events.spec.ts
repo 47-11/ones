@@ -52,16 +52,17 @@ describe("Events-Store", () => {
     it("fetches events when setting filter", async () => {
         axiosMock.request.mockResolvedValue({ data: [] as Event[] });
         const filter = {
-            titleContains: "Olympic games",
-            organizerId: 42
+            from: "2021-11-15",
+            regions: ["Nowhere", "Buxtehude"]
         };
 
         await eventsStore.addFilter(filter);
 
         const requestOptions = axiosMock.request.mock.calls[0][0];
         expect(requestOptions.url).toContain("event");
-        expect(requestOptions.url).toContain(`titleContains=${escaped(filter.titleContains)}`);
-        expect(requestOptions.url).toContain(`organizerId=${filter.organizerId}`);
+        expect(requestOptions.url).toContain(`from=${escaped(filter.from)}`);
+        expect(requestOptions.url).toContain(`regions=${filter.regions[0]}`);
+        expect(requestOptions.url).toContain(`regions=${filter.regions[1]}`);
     });
 
     it("lists fetched events", async () => {

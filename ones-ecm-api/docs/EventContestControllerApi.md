@@ -4,11 +4,159 @@ All URIs are relative to *https://vdd4ones.de:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**getAccountContestCompetitionsResults**](EventContestControllerApi.md#getAccountContestCompetitionsResults) | **GET** /rest/event/contest/result/account/{uuid} | 
+[**getAccountContestCompetitionsResultsWithHttpInfo**](EventContestControllerApi.md#getAccountContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/account/{uuid} | 
 [**getContestByUuid**](EventContestControllerApi.md#getContestByUuid) | **GET** /rest/event/contest | 
 [**getContestByUuidWithHttpInfo**](EventContestControllerApi.md#getContestByUuidWithHttpInfo) | **GET** /rest/event/contest | 
 [**getContestByYear**](EventContestControllerApi.md#getContestByYear) | **GET** /rest/event/contests | 
 [**getContestByYearWithHttpInfo**](EventContestControllerApi.md#getContestByYearWithHttpInfo) | **GET** /rest/event/contests | 
+[**getCurrentContestCompetitionsResults**](EventContestControllerApi.md#getCurrentContestCompetitionsResults) | **GET** /rest/event/contest/result/current | 
+[**getCurrentContestCompetitionsResultsWithHttpInfo**](EventContestControllerApi.md#getCurrentContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/current | 
+[**postRegisterNomination**](EventContestControllerApi.md#postRegisterNomination) | **POST** /rest/event/register/nomination | 
+[**postRegisterNominationWithHttpInfo**](EventContestControllerApi.md#postRegisterNominationWithHttpInfo) | **POST** /rest/event/register/nomination | 
 
+
+
+## getAccountContestCompetitionsResults
+
+> List<EventContestCompetitionResult> getAccountContestCompetitionsResults(uuid)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        String uuid = "uuid_example"; // String | 
+        try {
+            List<EventContestCompetitionResult> result = apiInstance.getAccountContestCompetitionsResults(uuid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EventContestControllerApi#getAccountContestCompetitionsResults");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **String**|  |
+
+### Return type
+
+[**List&lt;EventContestCompetitionResult&gt;**](EventContestCompetitionResult.md)
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+## getAccountContestCompetitionsResultsWithHttpInfo
+
+> ApiResponse<List<EventContestCompetitionResult>> getAccountContestCompetitionsResults getAccountContestCompetitionsResultsWithHttpInfo(uuid)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        String uuid = "uuid_example"; // String | 
+        try {
+            ApiResponse<List<EventContestCompetitionResult>> response = apiInstance.getAccountContestCompetitionsResultsWithHttpInfo(uuid);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EventContestControllerApi#getAccountContestCompetitionsResults");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **String**|  |
+
+### Return type
+
+ApiResponse<[**List&lt;EventContestCompetitionResult&gt;**](EventContestCompetitionResult.md)>
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 
 ## getContestByUuid
@@ -24,6 +172,7 @@ Method | HTTP request | Description
 import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
 import de.fourtyseveneleven.ones.ecm.generated.models.*;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 
@@ -31,6 +180,11 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
         String uuid = "uuid_example"; // String | 
@@ -62,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -88,6 +242,7 @@ import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
 import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
 import de.fourtyseveneleven.ones.ecm.generated.models.*;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 
@@ -95,6 +250,11 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
         String uuid = "uuid_example"; // String | 
@@ -128,7 +288,7 @@ ApiResponse<[**EventContest**](EventContest.md)>
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -143,7 +303,7 @@ No authorization required
 
 ## getContestByYear
 
-> List<EventContestPlain> getContestByYear(year, pageNo, pageSize, sortBy)
+> ResponcePageContestsPlain getContestByYear(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy)
 
 
 
@@ -154,6 +314,7 @@ No authorization required
 import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
 import de.fourtyseveneleven.ones.ecm.generated.models.*;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 
@@ -161,14 +322,25 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
         Integer year = 56; // Integer | 
+        OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | 
+        OffsetDateTime untilDate = OffsetDateTime.now(); // OffsetDateTime | 
+        List<String> countryRegions = Arrays.asList(); // List<String> | 
+        Integer isCountryChampionship = 56; // Integer | 
+        Integer isCEI = 56; // Integer | 
+        Integer isCard = 56; // Integer | 
         Integer pageNo = 0; // Integer | 
         Integer pageSize = 10; // Integer | 
         String sortBy = "beginning"; // String | 
         try {
-            List<EventContestPlain> result = apiInstance.getContestByYear(year, pageNo, pageSize, sortBy);
+            ResponcePageContestsPlain result = apiInstance.getContestByYear(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EventContestControllerApi#getContestByYear");
@@ -187,18 +359,24 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **year** | **Integer**|  |
+ **fromDate** | **OffsetDateTime**|  | [optional]
+ **untilDate** | **OffsetDateTime**|  | [optional]
+ **countryRegions** | [**List&lt;String&gt;**](String.md)|  | [optional]
+ **isCountryChampionship** | **Integer**|  | [optional]
+ **isCEI** | **Integer**|  | [optional]
+ **isCard** | **Integer**|  | [optional]
  **pageNo** | **Integer**|  | [optional] [default to 0]
  **pageSize** | **Integer**|  | [optional] [default to 10]
  **sortBy** | **String**|  | [optional] [default to beginning]
 
 ### Return type
 
-[**List&lt;EventContestPlain&gt;**](EventContestPlain.md)
+[**ResponcePageContestsPlain**](ResponcePageContestsPlain.md)
 
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
@@ -212,7 +390,7 @@ No authorization required
 
 ## getContestByYearWithHttpInfo
 
-> ApiResponse<List<EventContestPlain>> getContestByYear getContestByYearWithHttpInfo(year, pageNo, pageSize, sortBy)
+> ApiResponse<ResponcePageContestsPlain> getContestByYear getContestByYearWithHttpInfo(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy)
 
 
 
@@ -224,6 +402,7 @@ import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
 import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
 import de.fourtyseveneleven.ones.ecm.generated.models.*;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 
@@ -231,14 +410,25 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
         Integer year = 56; // Integer | 
+        OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | 
+        OffsetDateTime untilDate = OffsetDateTime.now(); // OffsetDateTime | 
+        List<String> countryRegions = Arrays.asList(); // List<String> | 
+        Integer isCountryChampionship = 56; // Integer | 
+        Integer isCEI = 56; // Integer | 
+        Integer isCard = 56; // Integer | 
         Integer pageNo = 0; // Integer | 
         Integer pageSize = 10; // Integer | 
         String sortBy = "beginning"; // String | 
         try {
-            ApiResponse<List<EventContestPlain>> response = apiInstance.getContestByYearWithHttpInfo(year, pageNo, pageSize, sortBy);
+            ApiResponse<ResponcePageContestsPlain> response = apiInstance.getContestByYearWithHttpInfo(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -259,23 +449,305 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **year** | **Integer**|  |
+ **fromDate** | **OffsetDateTime**|  | [optional]
+ **untilDate** | **OffsetDateTime**|  | [optional]
+ **countryRegions** | [**List&lt;String&gt;**](String.md)|  | [optional]
+ **isCountryChampionship** | **Integer**|  | [optional]
+ **isCEI** | **Integer**|  | [optional]
+ **isCard** | **Integer**|  | [optional]
  **pageNo** | **Integer**|  | [optional] [default to 0]
  **pageSize** | **Integer**|  | [optional] [default to 10]
  **sortBy** | **String**|  | [optional] [default to beginning]
 
 ### Return type
 
-ApiResponse<[**List&lt;EventContestPlain&gt;**](EventContestPlain.md)>
+ApiResponse<[**ResponcePageContestsPlain**](ResponcePageContestsPlain.md)>
 
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
 - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+
+## getCurrentContestCompetitionsResults
+
+> List<EventContestCompetitionResult> getCurrentContestCompetitionsResults()
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        try {
+            List<EventContestCompetitionResult> result = apiInstance.getCurrentContestCompetitionsResults();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EventContestControllerApi#getCurrentContestCompetitionsResults");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;EventContestCompetitionResult&gt;**](EventContestCompetitionResult.md)
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+## getCurrentContestCompetitionsResultsWithHttpInfo
+
+> ApiResponse<List<EventContestCompetitionResult>> getCurrentContestCompetitionsResults getCurrentContestCompetitionsResultsWithHttpInfo()
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        try {
+            ApiResponse<List<EventContestCompetitionResult>> response = apiInstance.getCurrentContestCompetitionsResultsWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EventContestControllerApi#getCurrentContestCompetitionsResults");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**List&lt;EventContestCompetitionResult&gt;**](EventContestCompetitionResult.md)>
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+
+## postRegisterNomination
+
+> RegisterResponce postRegisterNomination(registerNomination)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        RegisterNomination registerNomination = new RegisterNomination(); // RegisterNomination | 
+        try {
+            RegisterResponce result = apiInstance.postRegisterNomination(registerNomination);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EventContestControllerApi#postRegisterNomination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerNomination** | [**RegisterNomination**](RegisterNomination.md)|  |
+
+### Return type
+
+[**RegisterResponce**](RegisterResponce.md)
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+## postRegisterNominationWithHttpInfo
+
+> ApiResponse<RegisterResponce> postRegisterNomination postRegisterNominationWithHttpInfo(registerNomination)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        RegisterNomination registerNomination = new RegisterNomination(); // RegisterNomination | 
+        try {
+            ApiResponse<RegisterResponce> response = apiInstance.postRegisterNominationWithHttpInfo(registerNomination);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EventContestControllerApi#postRegisterNomination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerNomination** | [**RegisterNomination**](RegisterNomination.md)|  |
+
+### Return type
+
+ApiResponse<[**RegisterResponce**](RegisterResponce.md)>
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

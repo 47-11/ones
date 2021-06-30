@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **isCountryChampionship** | **Boolean** |  |  [optional]
 **isCei** | **Boolean** |  |  [optional]
 **isCard** | **Boolean** |  |  [optional]
+**infoHelmetObligation** | **String** |  |  [optional]
+**infoVaccinationObligation** | **String** |  |  [optional]
 **vddPortalUrl** | **String** |  |  [optional]
 **vddPortalTitle** | **String** |  |  [optional]
 **promoterTenderingUrl** | **String** |  |  [optional]
@@ -51,7 +53,9 @@ Name | Type | Description | Notes
 **lateRegistrationFee** | **BigDecimal** |  |  [optional]
 **changeRegistrationFee** | **BigDecimal** |  |  [optional]
 **surchargeNonMembers** | **BigDecimal** |  |  [optional]
+**registrationClosing** | **OffsetDateTime** |  |  [optional]
 **competitions** | [**Set&lt;EventContestCompetition&gt;**](EventContestCompetition.md) |  |  [optional]
+**roles** | [**Set&lt;EventContestRole&gt;**](EventContestRole.md) |  |  [optional]
 
 
 

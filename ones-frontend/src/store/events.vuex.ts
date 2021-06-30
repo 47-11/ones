@@ -4,14 +4,13 @@ import { UserStore } from "./userStore.vuex";
 import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
 
-interface FilterType {
-    titleContains?: string;
-    descriptionContains?: string;
-    startsBefore?: string;
-    startsAfter?: string;
-    endsBefore?: string;
-    endsAfter?: string;
-    organizerId?: number;
+interface FilterType extends Record<string, string | boolean | string[] | undefined> {
+    from?: string;
+    until?: string;
+    isCountryChampionship?: boolean;
+    isInternational?: boolean;
+    isCard?: boolean;
+    regions: string[];
 }
 
 export enum SortDirection {
@@ -110,13 +109,12 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {
         return [
-            this.filter.titleContains,
-            this.filter.descriptionContains,
-            this.filter.startsBefore,
-            this.filter.startsAfter,
-            this.filter.endsBefore,
-            this.filter.endsAfter,
-            this.filter.organizerId,
+            this.filter.from,
+            this.filter.until,
+            this.filter.isCountryChampionship,
+            this.filter.isInternational,
+            this.filter.isCard,
+            this.filter.regions,
             this.selectedPage,
             this.selectedPageSize,
             this.selectedSortCriterion,

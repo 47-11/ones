@@ -18,6 +18,7 @@ import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
 import de.fourtyseveneleven.ones.ecm.generated.Pair;
 
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount4Member;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -37,7 +38,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
 public class ApplicationAccountControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -129,6 +130,80 @@ public class ApplicationAccountControllerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(registerAccount);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+  /**
+   * 
+   * 
+   * @param registerAccount4Member  (required)
+   * @return RegisterResponce
+   * @throws ApiException if fails to make API call
+   */
+  public RegisterResponce postRegisterAccount4Member(RegisterAccount4Member registerAccount4Member) throws ApiException {
+    ApiResponse<RegisterResponce> localVarResponse = postRegisterAccount4MemberWithHttpInfo(registerAccount4Member);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param registerAccount4Member  (required)
+   * @return ApiResponse&lt;RegisterResponce&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisterResponce> postRegisterAccount4MemberWithHttpInfo(RegisterAccount4Member registerAccount4Member) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = postRegisterAccount4MemberRequestBuilder(registerAccount4Member);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw createApiException(localVarResponse, "postRegisterAccount4Member call received non-success response");
+      }
+      return new ApiResponse<RegisterResponce>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder postRegisterAccount4MemberRequestBuilder(RegisterAccount4Member registerAccount4Member) throws ApiException {
+    // verify the required parameter 'registerAccount4Member' is set
+    if (registerAccount4Member == null) {
+      throw new ApiException(400, "Missing the required parameter 'registerAccount4Member' when calling postRegisterAccount4Member");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/application/register/account4Member";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(registerAccount4Member);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

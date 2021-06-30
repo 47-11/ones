@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterHorse.JSON_PROPERTY_OWNER,
   RegisterHorse.JSON_PROPERTY_STABLE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-16T11:44:09.276003800+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
 public class RegisterHorse {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

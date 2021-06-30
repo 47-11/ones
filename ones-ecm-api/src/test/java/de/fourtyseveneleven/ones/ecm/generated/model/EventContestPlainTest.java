@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRolePlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -171,6 +172,22 @@ public class EventContestPlainTest {
     @Test
     public void isCardTest() {
         // TODO: test isCard
+    }
+
+    /**
+     * Test the property 'infoHelmetObligation'
+     */
+    @Test
+    public void infoHelmetObligationTest() {
+        // TODO: test infoHelmetObligation
+    }
+
+    /**
+     * Test the property 'infoVaccinationObligation'
+     */
+    @Test
+    public void infoVaccinationObligationTest() {
+        // TODO: test infoVaccinationObligation
     }
 
     /**
@@ -398,11 +415,27 @@ public class EventContestPlainTest {
     }
 
     /**
+     * Test the property 'registrationClosing'
+     */
+    @Test
+    public void registrationClosingTest() {
+        // TODO: test registrationClosing
+    }
+
+    /**
      * Test the property 'competitions'
      */
     @Test
     public void competitionsTest() {
         // TODO: test competitions
+    }
+
+    /**
+     * Test the property 'roles'
+     */
+    @Test
+    public void rolesTest() {
+        // TODO: test roles
     }
 
 }

@@ -60,6 +60,22 @@ public class MasterdataContactControllerApiTest {
      *          if the Api call fails
      */
     @Test
+    public void getCurrentContactTest() throws ApiException {
+        MasterdataContact response = 
+        api.getCurrentContact();
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
     public void postRegisterContactContestantTest() throws ApiException {
         RegisterContact registerContact = null;
         Object response = 

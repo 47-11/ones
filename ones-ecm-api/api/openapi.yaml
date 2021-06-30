@@ -32,6 +32,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/registerResponce'
           description: OK
+      security:
+      - basicAuth: []
       tags:
       - application-account-controller
       x-accepts: application/json
@@ -51,6 +53,8 @@ paths:
               schema:
                 type: object
           description: OK
+      security:
+      - basicAuth: []
       tags:
       - masterdata-horse-controller
       x-contentType: application/json
@@ -71,6 +75,8 @@ paths:
               schema:
                 type: object
           description: OK
+      security:
+      - basicAuth: []
       tags:
       - masterdata-contact-controller
       x-contentType: application/json
@@ -91,6 +97,8 @@ paths:
               schema:
                 type: object
           description: OK
+      security:
+      - basicAuth: []
       tags:
       - masterdata-contact-controller
       x-contentType: application/json
@@ -111,8 +119,32 @@ paths:
               schema:
                 type: object
           description: OK
+      security:
+      - basicAuth: []
       tags:
       - masterdata-contact-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/event/register/nomination:
+    post:
+      operationId: postRegisterNomination
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerNomination'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerResponce'
+          description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - event-contest-controller
       x-contentType: application/json
       x-accepts: application/json
   /rest/application/register/account:
@@ -131,6 +163,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/registerResponce'
           description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - application-account-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/application/register/account4Member:
+    post:
+      operationId: postRegisterAccount4Member
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerAccount4Member'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerResponce'
+          description: OK
+      security:
+      - basicAuth: []
       tags:
       - application-account-controller
       x-contentType: application/json
@@ -153,6 +209,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/MasterdataHorse'
           description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - masterdata-horse-controller
+      x-accepts: '*/*'
+  /rest/masterdata/horse/account/{uuid}:
+    get:
+      operationId: getHorsesByContactUuid
+      parameters:
+      - explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/MasterdataHorse'
+                type: array
+          description: OK
+      security:
+      - basicAuth: []
       tags:
       - masterdata-horse-controller
       x-accepts: '*/*'
@@ -174,6 +257,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/MasterdataContact'
           description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - masterdata-contact-controller
+      x-accepts: '*/*'
+  /rest/masterdata/contact/current:
+    get:
+      operationId: getCurrentContact
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MasterdataContact'
+          description: OK
+      security:
+      - basicAuth: []
       tags:
       - masterdata-contact-controller
       x-accepts: '*/*'
@@ -185,6 +285,55 @@ paths:
         in: query
         name: year
         required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: untilDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: countryRegions
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: isCountryChampionship
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: isCEI
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: isCard
+        required: false
         schema:
           format: int32
           type: integer
@@ -220,10 +369,10 @@ paths:
           content:
             '*/*':
               schema:
-                items:
-                  $ref: '#/components/schemas/EventContest_Plain'
-                type: array
+                $ref: '#/components/schemas/ResponcePageContests_Plain'
           description: OK
+      security:
+      - basicAuth: []
       tags:
       - event-contest-controller
       x-accepts: '*/*'
@@ -245,6 +394,50 @@ paths:
               schema:
                 $ref: '#/components/schemas/EventContest'
           description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - event-contest-controller
+      x-accepts: '*/*'
+  /rest/event/contest/result/current:
+    get:
+      operationId: getCurrentContestCompetitionsResults
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/EventContestCompetitionResult'
+                type: array
+          description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - event-contest-controller
+      x-accepts: '*/*'
+  /rest/event/contest/result/account/{uuid}:
+    get:
+      operationId: getAccountContestCompetitionsResults
+      parameters:
+      - explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/EventContestCompetitionResult'
+                type: array
+          description: OK
+      security:
+      - basicAuth: []
       tags:
       - event-contest-controller
       x-accepts: '*/*'
@@ -374,6 +567,24 @@ components:
       - name
       - passportId
       type: object
+    registerNomination:
+      properties:
+        competitionUuid:
+          maxLength: 255
+          minLength: 1
+          type: string
+        contactUuid:
+          maxLength: 255
+          minLength: 1
+          type: string
+        horsesUuids:
+          items:
+            type: string
+          type: array
+      required:
+      - competitionUuid
+      - contactUuid
+      type: object
     registerAccount:
       properties:
         uuid:
@@ -397,6 +608,32 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/registerContact'
+      required:
+      - loginIdentification
+      - loginKeyword
+      type: object
+    registerAccount4Member:
+      properties:
+        uuid:
+          readOnly: true
+          type: string
+        vddMemberNumber:
+          format: int32
+          maximum: 10
+          minimum: 0
+          type: integer
+        loginIdentification:
+          maxLength: 255
+          minLength: 1
+          type: string
+        loginKeyword:
+          maxLength: 255
+          minLength: 1
+          type: string
+        email:
+          maxLength: 255
+          minLength: 6
+          type: string
       required:
       - loginIdentification
       - loginKeyword
@@ -1463,27 +1700,27 @@ components:
       example:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         beginning: 2000-01-23T04:56:07.000+00:00
-        breaksTotalNumbers: 2
-        contestantLimitiationMax: 5
+        breaksTotalNumbers: 6
+        contestantLimitiationMax: 3
         kind: kind
-        minutesMaximum: 8
-        penaltyPointsTimeUnderrun: 3
-        penaltyPointsAtPulseRateOf: 6
-        penaltyPointsPulseRateExceeded: 1
+        minutesMaximum: 6
+        penaltyPointsTimeUnderrun: 1
+        penaltyPointsAtPulseRateOf: 2
+        penaltyPointsPulseRateExceeded: 6
         contestantLimitiationMin: 6
         title: title
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        changeCounter: 9
+        changeCounter: 6
         ending: 2000-01-23T04:56:07.000+00:00
-        minutesAllowed: 9
+        minutesAllowed: 3
         responsibleVeterinarianUuid: responsibleVeterinarianUuid
         penaltyPointsTimeout: 6
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        breaksTotalMinutes: 6
-        currentState: 9
-        raiseLength: 6
+        breaksTotalMinutes: 5
+        currentState: 8
+        raiseLength: 9
       properties:
         uuid:
           type: string
@@ -1552,78 +1789,78 @@ components:
     EventContestCompetition_Plain:
       example:
         beginning: 2000-01-23T04:56:07.000+00:00
-        breaksTotalNumbers: 7
-        minutesMaximum: 4
-        penaltyPointsTimeUnderrun: 1
+        breaksTotalNumbers: 4
+        minutesMaximum: 1
+        penaltyPointsTimeUnderrun: 6
         eventContestUuid: eventContestUuid
-        penaltyPointsPulseRateExceeded: 6
-        contestantLimitiationMin: 4
+        penaltyPointsPulseRateExceeded: 1
+        contestantLimitiationMin: 9
         title: title
         uuid: uuid
-        changeCounter: 9
-        minutesAllowed: 7
+        changeCounter: 2
+        minutesAllowed: 1
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        raiseLength: 2
+        raiseLength: 7
         competitionUuidToReduce: competitionUuidToReduce
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        contestantLimitiationMax: 5
+        contestantLimitiationMax: 9
         kind: kind
         competitionUuidToExtend: competitionUuidToExtend
         _stages:
         - changeTimestamp: 2000-01-23T04:56:07.000+00:00
           beginning: 2000-01-23T04:56:07.000+00:00
-          breaksTotalNumbers: 2
-          contestantLimitiationMax: 5
+          breaksTotalNumbers: 6
+          contestantLimitiationMax: 3
           kind: kind
-          minutesMaximum: 8
-          penaltyPointsTimeUnderrun: 3
-          penaltyPointsAtPulseRateOf: 6
-          penaltyPointsPulseRateExceeded: 1
+          minutesMaximum: 6
+          penaltyPointsTimeUnderrun: 1
+          penaltyPointsAtPulseRateOf: 2
+          penaltyPointsPulseRateExceeded: 6
           contestantLimitiationMin: 6
           title: title
           uuid: uuid
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
-          changeCounter: 9
+          changeCounter: 6
           ending: 2000-01-23T04:56:07.000+00:00
-          minutesAllowed: 9
+          minutesAllowed: 3
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
           penaltyPointsTimeout: 6
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          breaksTotalMinutes: 6
-          currentState: 9
-          raiseLength: 6
+          breaksTotalMinutes: 5
+          currentState: 8
+          raiseLength: 9
         - changeTimestamp: 2000-01-23T04:56:07.000+00:00
           beginning: 2000-01-23T04:56:07.000+00:00
-          breaksTotalNumbers: 2
-          contestantLimitiationMax: 5
+          breaksTotalNumbers: 6
+          contestantLimitiationMax: 3
           kind: kind
-          minutesMaximum: 8
-          penaltyPointsTimeUnderrun: 3
-          penaltyPointsAtPulseRateOf: 6
-          penaltyPointsPulseRateExceeded: 1
+          minutesMaximum: 6
+          penaltyPointsTimeUnderrun: 1
+          penaltyPointsAtPulseRateOf: 2
+          penaltyPointsPulseRateExceeded: 6
           contestantLimitiationMin: 6
           title: title
           uuid: uuid
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
-          changeCounter: 9
+          changeCounter: 6
           ending: 2000-01-23T04:56:07.000+00:00
-          minutesAllowed: 9
+          minutesAllowed: 3
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
           penaltyPointsTimeout: 6
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          breaksTotalMinutes: 6
-          currentState: 9
-          raiseLength: 6
-        penaltyPointsAtPulseRateOf: 1
+          breaksTotalMinutes: 5
+          currentState: 8
+          raiseLength: 9
+        penaltyPointsAtPulseRateOf: 7
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
         ending: 2000-01-23T04:56:07.000+00:00
         responsibleVeterinarianUuid: responsibleVeterinarianUuid
         penaltyPointsTimeout: 1
-        breaksTotalMinutes: 1
-        currentState: 3
+        breaksTotalMinutes: 5
+        currentState: 4
       properties:
         uuid:
           type: string
@@ -1700,198 +1937,275 @@ components:
           type: array
           uniqueItems: true
       type: object
+    EventContestRole_Plain:
+      example:
+        changeCounter: 3
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        role: role
+        masterdataContactUuid: masterdataContactUuid
+        display: display
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        currentState: 7
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        role:
+          maxLength: 50
+          minLength: 0
+          type: string
+        masterdataContactUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        display:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
     EventContest_Plain:
       example:
         country: country
+        feeCurrency: feeCurrency
+        uuid: uuid
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 1
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        initialEvent: initialEvent
+        regionCommissionerDescription: regionCommissionerDescription
+        surchargeNonMembers: 3.616076749251911
+        promoterContactDescription: promoterContactDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        locationDesciption: locationDesciption
+        _roles:
+        - changeCounter: 3
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 7
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 3
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 7
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        lateRegistrationFee: 7.061401241503109
+        ending: 2000-01-23T04:56:07.000+00:00
+        organizerContactDescription: organizerContactDescription
+        infoHelmetObligation: infoHelmetObligation
+        changeRegistrationFee: 9.301444243932576
         isCei: true
         approvalDate: 2000-01-23T04:56:07.000+00:00
         beginning: 2000-01-23T04:56:07.000+00:00
         promoterEventUrl: promoterEventUrl
         approvalInfo: approvalInfo
         promoterEventTitle: promoterEventTitle
-        feeCurrency: feeCurrency
+        infoVaccinationObligation: infoVaccinationObligation
         title: title
-        uuid: uuid
-        vddPortalTitle: vddPortalTitle
-        promoterTenderingUrl: promoterTenderingUrl
-        changeCounter: 0
         stateCommissionerDescription: stateCommissionerDescription
         organizerContactUuid: organizerContactUuid
-        startingFee: 5.962133916683182
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        startingFee: 2.3021358869347655
         requestDate: 2000-01-23T04:56:07.000+00:00
         requestInfo: requestInfo
-        initialEvent: initialEvent
         startingFeeUnit: startingFeeUnit
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         vddPortalUrl: vddPortalUrl
-        regionCommissionerDescription: regionCommissionerDescription
-        surchargeNonMembers: 7.061401241503109
+        registrationClosing: 2000-01-23T04:56:07.000+00:00
         promoterContactUuid: promoterContactUuid
         isCountryChampionship: true
-        registrationFee: 1.4658129805029452
-        promoterContactDescription: promoterContactDescription
-        stateCommissionerUuid: stateCommissionerUuid
-        countryRegion: countryRegion
-        locationDesciption: locationDesciption
+        registrationFee: 5.637376656633329
         regionCommissionerUuid: regionCommissionerUuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        lateRegistrationFee: 5.637376656633329
         _competitions:
         - beginning: 2000-01-23T04:56:07.000+00:00
-          breaksTotalNumbers: 7
-          minutesMaximum: 4
-          penaltyPointsTimeUnderrun: 1
+          breaksTotalNumbers: 4
+          minutesMaximum: 1
+          penaltyPointsTimeUnderrun: 6
           eventContestUuid: eventContestUuid
-          penaltyPointsPulseRateExceeded: 6
-          contestantLimitiationMin: 4
+          penaltyPointsPulseRateExceeded: 1
+          contestantLimitiationMin: 9
           title: title
           uuid: uuid
-          changeCounter: 9
-          minutesAllowed: 7
+          changeCounter: 2
+          minutesAllowed: 1
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          raiseLength: 2
+          raiseLength: 7
           competitionUuidToReduce: competitionUuidToReduce
           changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          contestantLimitiationMax: 5
+          contestantLimitiationMax: 9
           kind: kind
           competitionUuidToExtend: competitionUuidToExtend
           _stages:
           - changeTimestamp: 2000-01-23T04:56:07.000+00:00
             beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 2
-            contestantLimitiationMax: 5
+            breaksTotalNumbers: 6
+            contestantLimitiationMax: 3
             kind: kind
-            minutesMaximum: 8
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 6
-            penaltyPointsPulseRateExceeded: 1
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 1
+            penaltyPointsAtPulseRateOf: 2
+            penaltyPointsPulseRateExceeded: 6
             contestantLimitiationMin: 6
             title: title
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 9
+            changeCounter: 6
             ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 9
+            minutesAllowed: 3
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
             penaltyPointsTimeout: 6
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 6
-            currentState: 9
-            raiseLength: 6
+            breaksTotalMinutes: 5
+            currentState: 8
+            raiseLength: 9
           - changeTimestamp: 2000-01-23T04:56:07.000+00:00
             beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 2
-            contestantLimitiationMax: 5
+            breaksTotalNumbers: 6
+            contestantLimitiationMax: 3
             kind: kind
-            minutesMaximum: 8
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 6
-            penaltyPointsPulseRateExceeded: 1
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 1
+            penaltyPointsAtPulseRateOf: 2
+            penaltyPointsPulseRateExceeded: 6
             contestantLimitiationMin: 6
             title: title
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 9
+            changeCounter: 6
             ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 9
+            minutesAllowed: 3
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
             penaltyPointsTimeout: 6
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 6
-            currentState: 9
-            raiseLength: 6
-          penaltyPointsAtPulseRateOf: 1
+            breaksTotalMinutes: 5
+            currentState: 8
+            raiseLength: 9
+          penaltyPointsAtPulseRateOf: 7
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
           ending: 2000-01-23T04:56:07.000+00:00
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
           penaltyPointsTimeout: 1
-          breaksTotalMinutes: 1
-          currentState: 3
+          breaksTotalMinutes: 5
+          currentState: 4
         - beginning: 2000-01-23T04:56:07.000+00:00
-          breaksTotalNumbers: 7
-          minutesMaximum: 4
-          penaltyPointsTimeUnderrun: 1
+          breaksTotalNumbers: 4
+          minutesMaximum: 1
+          penaltyPointsTimeUnderrun: 6
           eventContestUuid: eventContestUuid
-          penaltyPointsPulseRateExceeded: 6
-          contestantLimitiationMin: 4
+          penaltyPointsPulseRateExceeded: 1
+          contestantLimitiationMin: 9
           title: title
           uuid: uuid
-          changeCounter: 9
-          minutesAllowed: 7
+          changeCounter: 2
+          minutesAllowed: 1
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          raiseLength: 2
+          raiseLength: 7
           competitionUuidToReduce: competitionUuidToReduce
           changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          contestantLimitiationMax: 5
+          contestantLimitiationMax: 9
           kind: kind
           competitionUuidToExtend: competitionUuidToExtend
           _stages:
           - changeTimestamp: 2000-01-23T04:56:07.000+00:00
             beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 2
-            contestantLimitiationMax: 5
+            breaksTotalNumbers: 6
+            contestantLimitiationMax: 3
             kind: kind
-            minutesMaximum: 8
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 6
-            penaltyPointsPulseRateExceeded: 1
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 1
+            penaltyPointsAtPulseRateOf: 2
+            penaltyPointsPulseRateExceeded: 6
             contestantLimitiationMin: 6
             title: title
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 9
+            changeCounter: 6
             ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 9
+            minutesAllowed: 3
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
             penaltyPointsTimeout: 6
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 6
-            currentState: 9
-            raiseLength: 6
+            breaksTotalMinutes: 5
+            currentState: 8
+            raiseLength: 9
           - changeTimestamp: 2000-01-23T04:56:07.000+00:00
             beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 2
-            contestantLimitiationMax: 5
+            breaksTotalNumbers: 6
+            contestantLimitiationMax: 3
             kind: kind
-            minutesMaximum: 8
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 6
-            penaltyPointsPulseRateExceeded: 1
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 1
+            penaltyPointsAtPulseRateOf: 2
+            penaltyPointsPulseRateExceeded: 6
             contestantLimitiationMin: 6
             title: title
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 9
+            changeCounter: 6
             ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 9
+            minutesAllowed: 3
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
             penaltyPointsTimeout: 6
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 6
-            currentState: 9
-            raiseLength: 6
-          penaltyPointsAtPulseRateOf: 1
+            breaksTotalMinutes: 5
+            currentState: 8
+            raiseLength: 9
+          penaltyPointsAtPulseRateOf: 7
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
           ending: 2000-01-23T04:56:07.000+00:00
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
           penaltyPointsTimeout: 1
-          breaksTotalMinutes: 1
-          currentState: 3
-        ending: 2000-01-23T04:56:07.000+00:00
-        organizerContactDescription: organizerContactDescription
+          breaksTotalMinutes: 5
+          currentState: 4
         promoterTenderingTitle: promoterTenderingTitle
         registrationDescription: registrationDescription
-        changeRegistrationFee: 2.3021358869347655
         isCard: true
-        currentState: 6
+        currentState: 5
         remarks: remarks
       properties:
         uuid:
@@ -1932,6 +2246,10 @@ components:
           type: boolean
         isCard:
           type: boolean
+        infoHelmetObligation:
+          type: string
+        infoVaccinationObligation:
+          type: string
         vddPortalUrl:
           type: string
         vddPortalTitle:
@@ -1990,50 +2308,532 @@ components:
           type: number
         surchargeNonMembers:
           type: number
+        registrationClosing:
+          format: date-time
+          type: string
         _competitions:
           items:
             $ref: '#/components/schemas/EventContestCompetition_Plain'
           type: array
           uniqueItems: true
+        _roles:
+          items:
+            $ref: '#/components/schemas/EventContestRole_Plain'
+          type: array
+          uniqueItems: true
+      type: object
+    ResponcePageContests_Plain:
+      example:
+        lastPage: 0
+        data:
+        - country: country
+          feeCurrency: feeCurrency
+          uuid: uuid
+          vddPortalTitle: vddPortalTitle
+          promoterTenderingUrl: promoterTenderingUrl
+          changeCounter: 1
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          initialEvent: initialEvent
+          regionCommissionerDescription: regionCommissionerDescription
+          surchargeNonMembers: 3.616076749251911
+          promoterContactDescription: promoterContactDescription
+          stateCommissionerUuid: stateCommissionerUuid
+          countryRegion: countryRegion
+          locationDesciption: locationDesciption
+          _roles:
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          lateRegistrationFee: 7.061401241503109
+          ending: 2000-01-23T04:56:07.000+00:00
+          organizerContactDescription: organizerContactDescription
+          infoHelmetObligation: infoHelmetObligation
+          changeRegistrationFee: 9.301444243932576
+          isCei: true
+          approvalDate: 2000-01-23T04:56:07.000+00:00
+          beginning: 2000-01-23T04:56:07.000+00:00
+          promoterEventUrl: promoterEventUrl
+          approvalInfo: approvalInfo
+          promoterEventTitle: promoterEventTitle
+          infoVaccinationObligation: infoVaccinationObligation
+          title: title
+          stateCommissionerDescription: stateCommissionerDescription
+          organizerContactUuid: organizerContactUuid
+          startingFee: 2.3021358869347655
+          requestDate: 2000-01-23T04:56:07.000+00:00
+          requestInfo: requestInfo
+          startingFeeUnit: startingFeeUnit
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          vddPortalUrl: vddPortalUrl
+          registrationClosing: 2000-01-23T04:56:07.000+00:00
+          promoterContactUuid: promoterContactUuid
+          isCountryChampionship: true
+          registrationFee: 5.637376656633329
+          regionCommissionerUuid: regionCommissionerUuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          _competitions:
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 4
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 6
+            eventContestUuid: eventContestUuid
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 9
+            title: title
+            uuid: uuid
+            changeCounter: 2
+            minutesAllowed: 1
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            raiseLength: 7
+            competitionUuidToReduce: competitionUuidToReduce
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            contestantLimitiationMax: 9
+            kind: kind
+            competitionUuidToExtend: competitionUuidToExtend
+            _stages:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            penaltyPointsAtPulseRateOf: 7
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 1
+            breaksTotalMinutes: 5
+            currentState: 4
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 4
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 6
+            eventContestUuid: eventContestUuid
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 9
+            title: title
+            uuid: uuid
+            changeCounter: 2
+            minutesAllowed: 1
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            raiseLength: 7
+            competitionUuidToReduce: competitionUuidToReduce
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            contestantLimitiationMax: 9
+            kind: kind
+            competitionUuidToExtend: competitionUuidToExtend
+            _stages:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            penaltyPointsAtPulseRateOf: 7
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 1
+            breaksTotalMinutes: 5
+            currentState: 4
+          promoterTenderingTitle: promoterTenderingTitle
+          registrationDescription: registrationDescription
+          isCard: true
+          currentState: 5
+          remarks: remarks
+        - country: country
+          feeCurrency: feeCurrency
+          uuid: uuid
+          vddPortalTitle: vddPortalTitle
+          promoterTenderingUrl: promoterTenderingUrl
+          changeCounter: 1
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          initialEvent: initialEvent
+          regionCommissionerDescription: regionCommissionerDescription
+          surchargeNonMembers: 3.616076749251911
+          promoterContactDescription: promoterContactDescription
+          stateCommissionerUuid: stateCommissionerUuid
+          countryRegion: countryRegion
+          locationDesciption: locationDesciption
+          _roles:
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            role: role
+            masterdataContactUuid: masterdataContactUuid
+            display: display
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            currentState: 7
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          lateRegistrationFee: 7.061401241503109
+          ending: 2000-01-23T04:56:07.000+00:00
+          organizerContactDescription: organizerContactDescription
+          infoHelmetObligation: infoHelmetObligation
+          changeRegistrationFee: 9.301444243932576
+          isCei: true
+          approvalDate: 2000-01-23T04:56:07.000+00:00
+          beginning: 2000-01-23T04:56:07.000+00:00
+          promoterEventUrl: promoterEventUrl
+          approvalInfo: approvalInfo
+          promoterEventTitle: promoterEventTitle
+          infoVaccinationObligation: infoVaccinationObligation
+          title: title
+          stateCommissionerDescription: stateCommissionerDescription
+          organizerContactUuid: organizerContactUuid
+          startingFee: 2.3021358869347655
+          requestDate: 2000-01-23T04:56:07.000+00:00
+          requestInfo: requestInfo
+          startingFeeUnit: startingFeeUnit
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          vddPortalUrl: vddPortalUrl
+          registrationClosing: 2000-01-23T04:56:07.000+00:00
+          promoterContactUuid: promoterContactUuid
+          isCountryChampionship: true
+          registrationFee: 5.637376656633329
+          regionCommissionerUuid: regionCommissionerUuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          _competitions:
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 4
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 6
+            eventContestUuid: eventContestUuid
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 9
+            title: title
+            uuid: uuid
+            changeCounter: 2
+            minutesAllowed: 1
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            raiseLength: 7
+            competitionUuidToReduce: competitionUuidToReduce
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            contestantLimitiationMax: 9
+            kind: kind
+            competitionUuidToExtend: competitionUuidToExtend
+            _stages:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            penaltyPointsAtPulseRateOf: 7
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 1
+            breaksTotalMinutes: 5
+            currentState: 4
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 4
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 6
+            eventContestUuid: eventContestUuid
+            penaltyPointsPulseRateExceeded: 1
+            contestantLimitiationMin: 9
+            title: title
+            uuid: uuid
+            changeCounter: 2
+            minutesAllowed: 1
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            raiseLength: 7
+            competitionUuidToReduce: competitionUuidToReduce
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            contestantLimitiationMax: 9
+            kind: kind
+            competitionUuidToExtend: competitionUuidToExtend
+            _stages:
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              beginning: 2000-01-23T04:56:07.000+00:00
+              breaksTotalNumbers: 6
+              contestantLimitiationMax: 3
+              kind: kind
+              minutesMaximum: 6
+              penaltyPointsTimeUnderrun: 1
+              penaltyPointsAtPulseRateOf: 2
+              penaltyPointsPulseRateExceeded: 6
+              contestantLimitiationMin: 6
+              title: title
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 6
+              ending: 2000-01-23T04:56:07.000+00:00
+              minutesAllowed: 3
+              responsibleVeterinarianUuid: responsibleVeterinarianUuid
+              penaltyPointsTimeout: 6
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              breaksTotalMinutes: 5
+              currentState: 8
+              raiseLength: 9
+            penaltyPointsAtPulseRateOf: 7
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 1
+            breaksTotalMinutes: 5
+            currentState: 4
+          promoterTenderingTitle: promoterTenderingTitle
+          registrationDescription: registrationDescription
+          isCard: true
+          currentState: 5
+          remarks: remarks
+        totalElements: 6
+      properties:
+        lastPage:
+          format: int32
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/EventContest_Plain'
+          type: array
       type: object
     EventContest:
       example:
         country: country
+        feeCurrency: feeCurrency
+        uuid: uuid
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 0
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        initialEvent: initialEvent
+        regionCommissionerDescription: regionCommissionerDescription
+        surchargeNonMembers: 7.061401241503109
+        promoterContactDescription: promoterContactDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        locationDesciption: locationDesciption
+        _roles:
+        - changeCounter: 6
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 3
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 6
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          role: role
+          masterdataContactUuid: masterdataContactUuid
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          currentState: 3
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        lateRegistrationFee: 5.637376656633329
+        ending: 2000-01-23T04:56:07.000+00:00
+        organizerContactDescription: organizerContactDescription
+        infoHelmetObligation: infoHelmetObligation
+        changeRegistrationFee: 2.3021358869347655
         isCei: true
         approvalDate: 2000-01-23T04:56:07.000+00:00
         beginning: 2000-01-23T04:56:07.000+00:00
         promoterEventUrl: promoterEventUrl
         approvalInfo: approvalInfo
         promoterEventTitle: promoterEventTitle
-        feeCurrency: feeCurrency
+        infoVaccinationObligation: infoVaccinationObligation
         title: title
-        uuid: uuid
-        vddPortalTitle: vddPortalTitle
-        promoterTenderingUrl: promoterTenderingUrl
-        changeCounter: 0
         stateCommissionerDescription: stateCommissionerDescription
         organizerContactUuid: organizerContactUuid
         startingFee: 5.962133916683182
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
         requestDate: 2000-01-23T04:56:07.000+00:00
         requestInfo: requestInfo
-        initialEvent: initialEvent
         startingFeeUnit: startingFeeUnit
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         vddPortalUrl: vddPortalUrl
-        regionCommissionerDescription: regionCommissionerDescription
-        surchargeNonMembers: 7.061401241503109
+        registrationClosing: 2000-01-23T04:56:07.000+00:00
         promoterContactUuid: promoterContactUuid
         isCountryChampionship: true
         registrationFee: 1.4658129805029452
-        promoterContactDescription: promoterContactDescription
-        stateCommissionerUuid: stateCommissionerUuid
-        countryRegion: countryRegion
-        locationDesciption: locationDesciption
         regionCommissionerUuid: regionCommissionerUuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        lateRegistrationFee: 5.637376656633329
         _competitions:
         - beginning: 2000-01-23T04:56:07.000+00:00
           breaksTotalNumbers: 7
@@ -2181,11 +2981,8 @@ components:
           penaltyPointsTimeout: 1
           breaksTotalMinutes: 1
           currentState: 3
-        ending: 2000-01-23T04:56:07.000+00:00
-        organizerContactDescription: organizerContactDescription
         promoterTenderingTitle: promoterTenderingTitle
         registrationDescription: registrationDescription
-        changeRegistrationFee: 2.3021358869347655
         isCard: true
         currentState: 6
         remarks: remarks
@@ -2228,6 +3025,10 @@ components:
           type: boolean
         isCard:
           type: boolean
+        infoHelmetObligation:
+          type: string
+        infoVaccinationObligation:
+          type: string
         vddPortalUrl:
           type: string
         vddPortalTitle:
@@ -2286,9 +3087,17 @@ components:
           type: number
         surchargeNonMembers:
           type: number
+        registrationClosing:
+          format: date-time
+          type: string
         _competitions:
           items:
             $ref: '#/components/schemas/EventContestCompetition'
+          type: array
+          uniqueItems: true
+        _roles:
+          items:
+            $ref: '#/components/schemas/EventContestRole'
           type: array
           uniqueItems: true
       type: object
@@ -2533,4 +3342,214 @@ components:
           format: int32
           type: integer
       type: object
+    EventContestRole:
+      example:
+        changeCounter: 6
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        role: role
+        masterdataContactUuid: masterdataContactUuid
+        display: display
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        currentState: 3
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        role:
+          maxLength: 50
+          minLength: 0
+          type: string
+        masterdataContactUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        display:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    EventContestCompetitionResult:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        failureReasonRemark: failureReasonRemark
+        competitionDate: 2000-01-23T04:56:07.000+00:00
+        displayContestant: displayContestant
+        masterdataContestantUuid: masterdataContestantUuid
+        _horses:
+        - changeCounter: 5
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 2
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 5
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 2
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 0
+        rankingRaiseLength: 1
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        competitionKindRemark: competitionKindRemark
+        placement: 5
+        displayHorse: displayHorse
+        currentState: 6
+        remarks: remarks
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        competitionDate:
+          format: date-time
+          type: string
+        masterdataContestantUuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        competitionKindRemark:
+          maxLength: 255
+          minLength: 0
+          type: string
+        failureReasonRemark:
+          maxLength: 255
+          minLength: 0
+          type: string
+        rankingRaiseLength:
+          format: int32
+          type: integer
+        placement:
+          format: int32
+          type: integer
+        remarks:
+          maxLength: 255
+          minLength: 0
+          type: string
+        displayContestant:
+          maxLength: 50
+          minLength: 0
+          type: string
+        displayHorse:
+          maxLength: 50
+          minLength: 0
+          type: string
+        _horses:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionResultHorse'
+          type: array
+          uniqueItems: true
+      required:
+      - creationTimestamp
+      - masterdataContestantUuid
+      - uuid
+      type: object
+    EventContestCompetitionResultHorse:
+      example:
+        changeCounter: 5
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        masterdataHorseUuid: masterdataHorseUuid
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        description: description
+        currentState: 2
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        masterdataHorseUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
 

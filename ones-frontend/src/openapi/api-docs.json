@@ -28,8 +28,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -38,8 +38,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -91,8 +91,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -101,8 +101,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -154,8 +154,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -164,8 +164,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -224,8 +224,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -234,8 +234,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -287,8 +287,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -297,8 +297,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -360,8 +360,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -370,8 +370,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -428,8 +428,8 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -438,8 +438,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -486,8 +486,8 @@
         ],
         "operationId": "getMyResults",
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -496,8 +496,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -551,8 +551,8 @@
         ],
         "operationId": "getMyHorses",
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -561,8 +561,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -620,64 +620,56 @@
         "operationId": "findAll",
         "parameters": [
           {
-            "name": "titleContains",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "descriptionContains",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "startsBefore",
+            "name": "from",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "format": "date-time"
+              "format": "date"
             }
           },
           {
-            "name": "startsAfter",
+            "name": "until",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
-              "format": "date-time"
+              "format": "date"
             }
           },
           {
-            "name": "endsBefore",
+            "name": "isCountryChampionship",
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "boolean"
             }
           },
           {
-            "name": "endsAfter",
+            "name": "isInternational",
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "boolean"
             }
           },
           {
-            "name": "organizerId",
+            "name": "isCard",
             "in": "query",
             "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "regions",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
@@ -724,8 +716,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -734,8 +726,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -799,8 +791,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -809,8 +801,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -874,8 +866,8 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -884,8 +876,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "400": {
+            "description": "Bad Request",
             "content": {
               "*/*": {
                 "schema": {
@@ -1059,10 +1051,10 @@
               "$ref": "#/components/schemas/ResultDto"
             }
           },
-          "averageSpeed": {
+          "totalDistance": {
             "type": "number"
           },
-          "totalDistance": {
+          "averageSpeed": {
             "type": "number"
           }
         }
