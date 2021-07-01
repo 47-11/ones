@@ -36,6 +36,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
     public UUID registerExistingMember(User user, int vddMemberNumber) {
 
         final RegisterAccount4Member registerAccount4MemberRequest = new RegisterAccount4Member();
+        registerAccount4MemberRequest.setLoginIdentification(user.getEmailAddress());
         registerAccount4MemberRequest.setEmail(user.getEmailAddress());
         registerAccount4MemberRequest.setVddMemberNumber(vddMemberNumber);
 
@@ -72,6 +73,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
 
         final RegisterAccount registerAccountRequest = new RegisterAccount();
         registerAccountRequest.setUser(registerContact);
+        registerAccountRequest.setLoginIdentification(user.getEmailAddress());
         return registerAccountRequest;
     }
 
