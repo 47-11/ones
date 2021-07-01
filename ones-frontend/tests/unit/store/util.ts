@@ -5,6 +5,7 @@ import { EventsStore } from "@/store/events.vuex";
 import { UserStore } from "@/store/userStore.vuex";
 import { HorseStore } from "@/store/horse.vuex";
 import { ResultsStore } from "@/store/results.vuex";
+import { AppStore } from "@/store/app.vuex";
 
 export const escaped = (text: string): string => {
     return text.replace(" ", "+");
@@ -38,6 +39,7 @@ export function clearProxyCache<T extends typeof VuexModule>(cls: T): void {
 export function createTestStore(): Store<unknown> {
     return new Vuex.Store({
         modules: {
+            ...extractVuexModule(AppStore),
             ...extractVuexModule(EventsStore),
             ...extractVuexModule(UserStore),
             ...extractVuexModule(HorseStore),

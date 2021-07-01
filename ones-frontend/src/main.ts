@@ -57,6 +57,9 @@ const i18n = new VueI18n({
     }
 });
 
+window.addEventListener("online", () => vxm.app.checkOnlineState());
+window.addEventListener("offline", () => vxm.app.checkOnlineState());
+
 axios.interceptors.response.use(res => {
     vxm.app.isOffline = false;
     return res;
