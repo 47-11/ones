@@ -11,11 +11,15 @@ module.exports = {
         workboxOptions: {
             skipWaiting: true
         },
-        exclude: [
-            "/api/**"
-        ],
-        include: [
-            "/img/**"
-        ]
+        themeColor: "#6366f1",
+        msTileColor: "#ffffff00",
+        appleMobileWebAppCapable: true,
+        iconPaths: {
+            favicon32: "img/icons/favicon-32x32.png",
+            favicon16: "img/icons/favicon-16x16.png",
+            appleTouchIcon: "img/icons/apple-touch-icon-152x152.png",
+            maskIcon: "img/icons/safari-pinned-tab.svg",
+            msTileImage: "img/icons/icon-150x150.png"
+        }
     }
 };
