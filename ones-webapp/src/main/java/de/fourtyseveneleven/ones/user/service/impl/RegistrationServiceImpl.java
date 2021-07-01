@@ -40,6 +40,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
+    @Transactional
     public void createRegistration(RegistrationDto registrationDto) {
 
         final User user = createNewUser(registrationDto);
