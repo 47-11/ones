@@ -48,6 +48,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/v1/login",
                         "/api/v1/forgot-password",
                         "/api/v1/forgot-password/change-password",
+                        "/api/v1/connection-test",
                         "/api/docs/**")
                 .permitAll()
                 // All other API endpoints need authentication

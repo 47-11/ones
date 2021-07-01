@@ -3,9 +3,9 @@ import { ResultsStore } from "@/store/results.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
 import Vuex, { Store } from "vuex";
-import { clearProxyCache, createProxy } from "vuex-class-component";
+import { createProxy } from "vuex-class-component";
 import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
-import { createTestStore } from "./util";
+import { createTestStore, clearProxyCache } from "./util";
 
 jest.mock("axios");
 
