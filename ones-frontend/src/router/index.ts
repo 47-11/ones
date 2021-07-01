@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter, { Route, RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
 import Register from "../views/auth/Register.vue";
 import Login from "../views/auth/Login.vue";
 import ForgotPassword from "@/views/auth/ForgotPassword.vue";
@@ -16,7 +15,7 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
     {
         path: "/",
-        component: Home
+        redirect: "/events"
     },
     {
         path: "/about",
