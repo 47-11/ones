@@ -102,11 +102,7 @@ export default class Login extends Vue {
 
             router.push("/");
         } catch (error) {
-            if (error.response?.data?.userMessage) {
-                this.error = error.response?.data?.userMessage;
-            } else {
-                this.error = error.message;
-            }
+            this.error = error;
         } finally {
             loader.hide();
         }
