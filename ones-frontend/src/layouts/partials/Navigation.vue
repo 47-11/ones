@@ -5,7 +5,7 @@
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
                         <router-link to="/">
-                            Logo
+                            <img src="@/assets/logo.png" class="h-9">
                         </router-link>
                     </div>
 
