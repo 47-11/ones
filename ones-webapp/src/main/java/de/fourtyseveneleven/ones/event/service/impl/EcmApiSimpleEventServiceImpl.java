@@ -76,26 +76,20 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
+        // TODO:
+        //  - Filter by categories as soon as the ECM api allows it
+        //  - Remove year filter as soon as it is not required by the ECM anymore
         return eventContestControllerApi
-                .getContestByYear(getYearFromFilter(filter),
-                        atStartOfDay(filter.getFrom()),
-                        atEndOfDay(filter.getUntil()),
-                        filter.getRegions(),
-                        booleanToInteger(filter.getIsCountryChampionship()),
-                        booleanToInteger(filter.getIsInternational()),
-                        booleanToInteger(filter.getIsCard()),
+                .getContestByYear(filter.from().getYear(),
+                        atStartOfDay(filter.from()),
+                        atEndOfDay(filter.until()),
+                        filter.regions(),
+                        booleanToInteger(filter.isCountryChampionship()),
+                        booleanToInteger(filter.isInternational()),
+                        booleanToInteger(filter.isMap()),
                         pageRequest.getPageNumber(),
                         pageRequest.getPageSize(),
                         getSortByValue(sortRequest));
-    }
-
-    private int getYearFromFilter(EventFilterDto filter) {
-
-        if (isNull(filter.getFrom())) {
-            return LocalDate.now().getYear();
-        } else {
-            return filter.getFrom().getYear();
-        }
     }
 
     private OffsetDateTime atStartOfDay(LocalDate localDate) {

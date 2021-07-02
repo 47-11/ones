@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -38,7 +39,9 @@ public class MockResultService implements ResultService {
 
     private List<ResultDto> buildMockResults() {
 
-        return simpleEventService.findAll(new EventFilterDto(), new PageRequest(0, 10), new SortRequest("start", SortDirection.ASCENDING))
+        return simpleEventService.findAll(new EventFilterDto(LocalDate.now(), null, null, null, null, null, null),
+                new PageRequest(0, 10),
+                new SortRequest("start", SortDirection.ASCENDING))
                 .getElements()
                 .stream()
                 .map(SimpleEventDto::getContests)

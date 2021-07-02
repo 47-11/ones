@@ -46,18 +46,19 @@ public class EventController {
     }
 
     @GetMapping("")
-    public PageDto<SimpleEventDto> findAll(@RequestParam(required = false) LocalDate from,
+    public PageDto<SimpleEventDto> findAll(@RequestParam LocalDate from,
                                            @RequestParam(required = false) LocalDate until,
+                                           @RequestParam(required = false) List<String> regions,
+                                           @RequestParam(required = false) List<String> categories,
+                                           @RequestParam(required = false) Boolean isMap,
                                            @RequestParam(required = false) Boolean isCountryChampionship,
                                            @RequestParam(required = false) Boolean isInternational,
-                                           @RequestParam(required = false) Boolean isCard,
-                                           @RequestParam(required = false) List<String> regions,
                                            @RequestParam(required = false, defaultValue = "0") int page,
                                            @RequestParam(required = false, defaultValue = "10") int pageSize,
                                            @RequestParam(required = false, defaultValue = "start") String sortBy,
                                            @RequestParam(required = false, defaultValue = "ASCENDING") SortDirection sortDirection) {
 
-        final var filter = new EventFilterDto(from, until, isCountryChampionship, isInternational, isCard, regions);
+        final var filter = new EventFilterDto(from, until, regions, categories, isMap, isCountryChampionship, isInternational);
         final var pageRequest = new PageRequest(page, pageSize);
         final var sortRequest = new SortRequest(sortBy, sortDirection);
         return simpleEventService.findAll(filter, pageRequest, sortRequest);
