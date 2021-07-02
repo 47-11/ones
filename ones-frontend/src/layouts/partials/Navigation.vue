@@ -10,10 +10,6 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/">{{$t("navigation.dashboard")}}</nav-link>
-                    </div>
-
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <nav-link to="/events">{{$t("navigation.events")}}</nav-link>
                     </div>
                 </div>
@@ -60,7 +56,6 @@
         <!-- Responsive Navigation Menu -->
         <div v-show="showMenu" class="sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
-                <responsive-nav-link to="/">{{$t("navigation.dashboard")}}</responsive-nav-link>
                 <responsive-nav-link to="/events">{{$t("navigation.events")}}</responsive-nav-link>
             </div>
 
