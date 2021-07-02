@@ -24,6 +24,8 @@ import "vue-loading-overlay/dist/vue-loading.css";
 import axios from "axios";
 import { UserDto } from "./openapi/generated";
 
+import VCalendar from "v-calendar";
+
 Vue.config.productionTip = false;
 
 library.add(
@@ -48,6 +50,8 @@ Vue.use(VueLoading, {
     loader: "dots",
     backgroundColor: "#ffffff"
 });
+
+Vue.use(VCalendar);
 
 const i18n = new VueI18n({
     locale: navigator.language,

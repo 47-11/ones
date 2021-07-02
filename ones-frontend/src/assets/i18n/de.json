@@ -138,13 +138,29 @@
         "inCommunicationWithHost": "nach Absprache mit dem Veranstalter"
     },
     "events": {
+        "title": "Veranstaltungen",
         "start": "Start",
         "end": "Ende",
         "ride": "Ritt",
         "documents": "Dokumente",
         "callForTenders": "Ausschreibung",
         "details": "Details",
-        "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen."
+        "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen.",
+        "filter": {
+            "open": "Filter öffnen",
+            "close": "Filter schließen",
+            "title": "Veranstaltungen filtern",
+            "reset": "Zurücksetzen",
+            "period": "Zeitraum",
+            "region": "Region",
+            "categories": "Kategorien",
+            "cardRide": "Kartenritt",
+            "nationalChampionchip": "Landesmeisterschaft",
+            "internationalChampionchip": "Internationaler Ritt",
+            "all": "alle",
+            "yes": "Ja",
+            "no": "Nein"
+        }
     },
     "signUp": {
         "title": "Anmeldung zum Wettbewerb",
