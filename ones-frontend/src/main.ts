@@ -8,7 +8,13 @@ import {
     faTrailer,
     faHorseHead,
     faExclamationTriangle,
-    faChevronRight, faChevronDown, faChevronUp, faMap, faGlobe, faFlag
+    faChevronRight,
+    faChevronDown,
+    faChevronUp,
+    faExternalLinkAlt,
+    faMap,
+    faGlobe,
+    faFlag
 } from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import ErrorMessage from "@/components/ErrorMessage.vue";
@@ -40,6 +46,7 @@ library.add(
     faTrailer,
     faHorseHead,
     faExclamationTriangle,
+    faExternalLinkAlt,
     faMap,
     faGlobe,
     faFlag

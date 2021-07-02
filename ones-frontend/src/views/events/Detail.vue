@@ -8,29 +8,37 @@
                             <font-awesome-icon :icon="'chevron-left'" class="text-2xl"/>
                         </router-link>
                     </div>
-                    <div class="flex items-center" v-if="details">
-                        <div>
-                            <div class="text-sm text-gray-700">
-                                <date-range :start="details.start" :end="details.end"/>
+                    <div class="flex items-center flex-grow" v-if="details">
+                        <div class="flex flex-auto items-center">
+                            <div>
+                                <div class="text-sm text-gray-700">
+                                    <date-range :start="details.start" :end="details.end"/>
+                                </div>
+                                <h1 class="text-xl">
+                                    {{ details.title }}
+                                </h1>
                             </div>
-                            <h1 class="text-xl">
-                                {{ details.address.locationName }}
-                            </h1>
-                        </div>
-                        <badge v-if="details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
-                            {{$t('details.nationalChampionship')}}
-                        </badge>
+                            <badge v-if="details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                                {{$t('details.nationalChampionship')}}
+                            </badge>
 
-                        <badge v-if="details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
-                            {{$t('details.internationalChampionship')}}
-                        </badge>
+                            <badge v-if="details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                                {{$t('details.internationalChampionship')}}
+                            </badge>
+                        </div>
+                        <div class="flex-grow"></div>
+                        <div class="text-center">
+                            <div class="text-2xl w-full">5/20</div>
+                            <div class="text-base font-bold w-full">{{$t("details.participants")}}</div>
+                            <div class="text-xs w-full italic">Min. 6</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10" v-if="details">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.placeAndTime')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
@@ -55,26 +63,30 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.city')}}</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.startingPlace')}}</th>
                                 <td class="text-left px-5 py-1">
-                                    {{ details.address.locationName }} <br>
-                                    {{ details.address.street }} <br>
-                                    {{ details.address.zipCode }} {{ details.address.city }}
+                                    <address>
+                                        {{ details.address.locationName }} <br/>
+                                        {{ details.address.street }}<br/>
+                                        {{ details.address.zipCode }} {{ details.address.city }}<br/>
+                                        {{ details.address.country }}
+                                    </address>
+                                </td>
+                            </tr>
+                            <tr v-if="details.address.latitude != undefined && details.address.longitude != undefined">
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
+                                <td class="text-left px-5 py-1">
+                                    <a :href="'https://maps.google.com/maps?q=' + details.address.latitude + ',' + details.address.longitude" target="_blank">
+                                        {{ details.address.latitude }}, {{ details.address.longitude }}
+                                        <font-awesome-icon :icon="'external-link-alt'"></font-awesome-icon>
+                                    </a>
                                 </td>
                             </tr>
                         </table>
-
-                        <div class="bg-indigo-50 px-5 py-3 mt-4 text-gray-600 text-sm">
-                            <i18n path="details.vddQualificationInfo">
-                                <template v-slot:qualification>
-                                    <a href="#" class="text-indigo-500">{{$t('details.vddQualification')}}</a>
-                                </template>
-                            </i18n>
-                        </div>
                     </card>
                 </div>
 
-                <div>
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.details')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
@@ -85,23 +97,102 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.signUpAfterDeadlinePossible')}}</th>
+                                <td class="text-left px-5 py-1">
+                                    {{ details.signUpAfterDeadlinePossible ? $t("shared.yes") : $t("shared.no") }}
+                                </td>
+                            </tr>
+                            <tr v-if="details.signUpAfterDeadlinePossible">
                                 <th class="text-left px-5 py-1 align-top leading-5">
-                                    {{$t('details.signUpFee')}} <br>
-                                    <span class="text-xs text-gray-400 font-normal">
-                                        {{$t('details.caseSignUpDeadlineMissed')}}
-                                    </span>
+                                    {{$t('details.signUpFeeAfterDeadlineMissed')}}
                                 </th>
                                 <td class="text-left px-5 py-1">
-                                    {{ details.signUpDeadlineMissedFee }} EUR
+                                    {{ details.signUpDeadlineMissedFee || 0 }} EUR
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top leading-5">
+                                    {{$t('details.signUpChangeFee')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ details.signUpChangeFee || 0 }} EUR
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top leading-5">
+                                    {{$t('details.vaccinationRequirements')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ details.isVaccinationRequired || $t("shared.unknown") }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top leading-5">
+                                    {{$t('details.helmetRequirements')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ details.isHelmetMandatory || $t("shared.unknown") }}
                                 </td>
                             </tr>
                         </table>
 
-                        <div class="px-5 text-sm text-gray-400">
-                            {{$t('details.accomodation')}}
+                        <div class="text-left px-5 py-1 align-top leading-5 flex justify-between flex-wrap">
+                            <a target="_blank" :href="'https://lmddgtfy.net/?q=' + details.title" v-if="details">
+                                {{$t("details.hostWebsite")}}
+                            </a>
+                            <a target="_blank" :href="'https://lmddgtfy.net/?q=' + details.title" v-if="details">
+                                {{$t("details.paperForm")}}
+                            </a>
                         </div>
+                    </card>
+                </div>
 
-                        <table class="mb-4">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.paymentInfo')}}</h2>
+                    <card class="mt-3">
+                        <table class="my-3">
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top">
+                                    {{$t('details.iban')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ "DE12 3456 7890 1234 00" }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top">
+                                    {{$t('details.bic')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ "GENOBLA" }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top">
+                                    {{$t('details.purpose')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ "Sign Up Fee" }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top">
+                                    {{$t('details.payPal')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ "Sign Up Fee" }}
+                                </td>
+                            </tr>
+                        </table>
+                    </card>
+                </div>
+
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-3">
+                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">
+                        {{$t('details.accomodation')}}
+                    </h2>
+                    <card class="mt-3">
+                        <table class="mb-4" v-if="details.availableAccommodations.length > 0">
                             <tr v-for="(accommodation, index) in details.availableAccommodations" :key="index">
                                 <th class="text-left px-5 py-1 align-top">{{ accommodation.type }}</th>
                                 <td class="text-left px-5 py-1">
@@ -112,28 +203,11 @@
                                 </td>
                             </tr>
                         </table>
-
-                        <div class="px-5 pb-5">
-                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isVaccinationMandatory">
-                                {{$t('details.vaccinationMandatory')}}
-                            </badge>
-
-                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isVaccinationMandatory">
-                                {{$t('details.vaccinationNotMandatory')}}
-                            </badge>
-
-                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isHelmetMandatory">
-                                {{$t('details.helmetMandatory')}}
-                            </badge>
-
-                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isHelmetMandatory">
-                                {{$t('details.helmetNotMandatory')}}
-                            </badge>
-                        </div>
+                        <div v-else class="px-5 py-2">{{$t("shared.unknown")}}</div>
                     </card>
                 </div>
 
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-1">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-3">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.notes')}}</h2>
                     <card class="mt-3">
                         <div class="px-5 py-2 border-b" v-for="(comment, index) in details.additionalComments" :key="index">
@@ -271,7 +345,16 @@ export default class Detail extends Vue {
     eventId = this.$route.params.eventId;
 
     get details(): FullEventDto | null {
-        return vxm.events.eventDetails;
+        const d = vxm.events.eventDetails;
+
+        if (d) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (d as any).address.longitude = "2.2913515";
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (d as any).address.latitude = "48.8539241";
+        }
+
+        return d;
     }
 
     get contests(): FullContestDto[] {

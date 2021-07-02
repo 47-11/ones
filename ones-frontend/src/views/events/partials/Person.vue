@@ -1,5 +1,5 @@
 <template>
-    <div class="leading-5 mt-1">
+    <div class="leading-5 mt-1" v-if="person">
         {{ person.name }} <br>
         <span class="text-xs text-gray-400">
             {{ person.address.street }} -
