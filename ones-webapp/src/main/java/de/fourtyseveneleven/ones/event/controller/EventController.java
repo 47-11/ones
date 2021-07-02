@@ -4,16 +4,8 @@ import de.fourtyseveneleven.ones.common.model.SortDirection;
 import de.fourtyseveneleven.ones.common.model.dto.PageDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
-import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
-import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
-import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
-import de.fourtyseveneleven.ones.event.model.dto.SignupDto;
-import de.fourtyseveneleven.ones.event.model.dto.SignupRequestDto;
-import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
-import de.fourtyseveneleven.ones.event.service.FullContestService;
-import de.fourtyseveneleven.ones.event.service.FullEventService;
-import de.fourtyseveneleven.ones.event.service.SignupService;
-import de.fourtyseveneleven.ones.event.service.SimpleEventService;
+import de.fourtyseveneleven.ones.event.model.dto.*;
+import de.fourtyseveneleven.ones.event.service.*;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,14 +27,16 @@ public class EventController {
     private final FullEventService fullEventService;
     private final FullContestService fullContestService;
     private final SignupService signupService;
+    private final EventMetadataService eventMetadataService;
 
     public EventController(SimpleEventService simpleEventService, FullEventService fullEventService,
-                           FullContestService fullContestService, SignupService signupService) {
+                           FullContestService fullContestService, SignupService signupService, EventMetadataService eventMetadataService) {
 
         this.simpleEventService = simpleEventService;
         this.fullEventService = fullEventService;
         this.fullContestService = fullContestService;
         this.signupService = signupService;
+        this.eventMetadataService = eventMetadataService;
     }
 
     @GetMapping("")
@@ -62,6 +56,12 @@ public class EventController {
         final var pageRequest = new PageRequest(page, pageSize);
         final var sortRequest = new SortRequest(sortBy, sortDirection);
         return simpleEventService.findAll(filter, pageRequest, sortRequest);
+    }
+
+    @GetMapping("/categories")
+    public List<ContestCategory> getAllCategories() {
+
+        return eventMetadataService.getAllCategories();
     }
 
     @GetMapping("/{uuid}")
