@@ -48,6 +48,8 @@
         "acceptanceRequired": "Privacy Policy must be accepted."
     },
     "setPersonalData": {
+        "title": "Personal data",
+        "description": "Please complete your personal data to continue.",
         "salutation": "Salutation",
         "firstName": "First Name",
         "lastName": "Last Name",
@@ -61,7 +63,18 @@
         "country": "Country",
         "lengthNull": " is not set.",
         "submit": "Save",
-        "logout": "Logout"
+        "logout": "Logout",
+        "steps": {
+            "title": "Registration steps",
+            "first": {
+                "title": "Create an account",
+                "description": "The very first step is to register with your e-mail address. If you are already known to the VDD, use the e-mail address known to the VDD."
+            },
+            "second": {
+                "title": "Set personal data",
+                "description": "If your e-mail address is known to the VDD, your data will be loaded automatically. Otherwise you have to enter your personal data in the second step."
+            }
+        }
     },
     "resetPassword": {
         "success": "Password changed.",

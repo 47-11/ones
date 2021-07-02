@@ -1,16 +1,13 @@
 <template>
     <guest-layout>
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <img src="@/assets/logo.png" class="h-16">
 
-            <div class="w-full sm:max-w-2xl">
-                <div class="w-full my-12">
-                    <h1 class="text-3xl font-bold">Daten aktualisieren</h1>
-                    <p>Um fortzufahren, vervollständigen Sie bitte Ihre Daten.</p>
-                </div>
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 md:pt-0 bg-gray-100">
+            <div class="max-w-4xl">
+                <page-header>{{ $t("setPersonalData.title") }}</page-header>
 
-                <div class="mt-6 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                    <form @submit.prevent="setPersonalData">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-2/3 order-2 md:order-1 md:mt-6 md:mr-12 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                        <form @submit.prevent="setPersonalData">
                         <div class="px-6 py-5">
                             <error-message :error="error"/>
 
@@ -86,6 +83,25 @@
                             <v-button role="submit" :disabled="inputsDisabled">{{$t("setPersonalData.submit")}}</v-button>
                         </div>
                     </form>
+                    </div>
+
+                    <div class="mb-8 md:mt-8 order-1 md:order-2 px-6 md:px-0 md:w-64 flex-grow-0">
+                        <h2 class="text-xl font-bold">{{ $t("register.steps.title") }}</h2>
+
+                        <div class="mt-8 flex items-center">
+                            <badge-circle class="mr-5 bg-indigo-500 text-white">1.</badge-circle>
+                            <h3 class="text-lg font-bold">{{ $t("register.steps.first.title") }}</h3>
+                        </div>
+
+                        <p class="text-gray-500 text-sm mt-4">{{ $t("register.steps.first.description") }}</p>
+
+                        <div class="mt-8 flex items-center">
+                            <badge-circle class="mr-5 bg-gray-700 text-white">2.</badge-circle>
+                            <h3 class="text-lg font-bold">{{ $t("register.steps.second.title") }}</h3>
+                        </div>
+
+                        <p class="text-gray-500 text-sm mt-4">{{ $t("register.steps.second.description") }} </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,6 +128,8 @@ import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import { vxm } from "@/store";
 import VLink from "@/components/VLink.vue";
+import PageHeader from "@/components/PageHeader.vue";
+import BadgeCircle from "@/components/BadgeCircle.vue";
 
 @Component({
     components: {
@@ -125,7 +143,9 @@ import VLink from "@/components/VLink.vue";
         GuestLayout,
         Feedback,
         VSelect,
-        VPassword
+        VPassword,
+        PageHeader,
+        BadgeCircle
     }
 })
 export default class SetPersonalData extends Vue {

@@ -44,7 +44,18 @@
         "mailRequired": "E-Mail ist erforderlich.",
         "tooWeak": "Passwort ist nicht stark genug.",
         "notIdentical": "Passwort Wiederholung nicht identisch mit Passwort.",
-        "acceptanceRequired": "Datenschutzbedingungen müssen akzeptiert werden."
+        "acceptanceRequired": "Datenschutzbedingungen müssen akzeptiert werden.",
+        "steps": {
+            "title": "Schritte zur Registrierung",
+            "first": {
+                "title": "Account erstellen",
+                "description": "Im ersten Schritt ist die Registrierung mit ihrer E-Mail Adresse notwendig. Wenn Sie bereits dem VDD bekannt sind, nutzen Sie die dem VDD bekannte E-Mail Adresse."
+            },
+            "second": {
+                "title": "Daten erfassen",
+                "description": "Ist Ihre E-Mail Adresse dem VDD bekannt, werden Ihre Daten automatisch übernommen. Andernfalls müssen Sie im zweiten Schritt Ihre persönlichen Daten erfassen."
+            }
+        }
     },
     "resetPassword": {
         "success": "Passwort geändert.",
@@ -59,6 +70,8 @@
         "notIdentical": "Password Wiederholung nicht identisch mit Passwort."
     },
     "setPersonalData": {
+        "title": "Daten aktualisieren",
+        "description": "Um fortzufahren, vervollständigen Sie bitte Ihre Daten.",
         "salutation": "Anrede",
         "firstName": "Vorname",
         "lastName": "Nachname",
