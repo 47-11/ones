@@ -64,6 +64,12 @@ public class EventController {
         return eventMetadataService.getAllCategories();
     }
 
+    @GetMapping("/regions")
+    public List<String> getAllRegions() {
+
+        return eventMetadataService.getAllRegions();
+    }
+
     @GetMapping("/{uuid}")
     public FullEventDto getFullEvent(@PathVariable String uuid) {
 

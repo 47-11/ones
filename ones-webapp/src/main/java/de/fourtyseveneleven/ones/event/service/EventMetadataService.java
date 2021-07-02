@@ -7,4 +7,6 @@ import java.util.List;
 public interface EventMetadataService {
 
     List<ContestCategory> getAllCategories();
+
+    List<String> getAllRegions();
 }
