@@ -4,10 +4,13 @@ import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ResultDto {
+public record ResultDto(SimpleContestDto contest, String eventUuid, String eventTitle,
+                        List<HorseDto> horses, Integer placement, Integer duration,
+                        BigDecimal averageSpeed, BigDecimal pace, String failureReason) {
 
     private SimpleContestDto contest;
     private List<FullHorseDto> horses = new LinkedList<>();

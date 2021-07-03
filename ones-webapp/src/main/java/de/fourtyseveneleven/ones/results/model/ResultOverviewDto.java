@@ -3,49 +3,41 @@ package de.fourtyseveneleven.ones.results.model;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
-public class ResultOverviewDto {
-
-    private List<ResultDto> results = new LinkedList<>();
-
-    public ResultOverviewDto() {
-    }
+public record ResultOverviewDto(List<ResultDto> results, BigDecimal totalDistance, int totalDuration, BigDecimal averageSpeed) {
 
     public ResultOverviewDto(List<ResultDto> results) {
-
-        this.results = results;
+        this(results, calculateTotalDistance(results), calculateTotalDuration(results), calculateAverageSpeed(results));
     }
 
-    public List<ResultDto> getResults() {
-        return results;
-    }
-
-    public void setResults(List<ResultDto> results) {
-        this.results = results;
-    }
-
-    /**
-     * In km/h
-     */
-    public BigDecimal getTotalDistance() {
+    private static BigDecimal calculateTotalDistance(List<ResultDto> results) {
 
         return results.stream()
-                .map(ResultDto::getContest)
+                .map(ResultDto::contest)
                 .map(SimpleContestDto::getDistance)
+                .filter(Objects::nonNull)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    /**
-     * In km/h
-     */
-    public BigDecimal getAverageSpeed() {
+    private static int calculateTotalDuration(List<ResultDto> results) {
+
+        return results.stream()
+                .map(ResultDto::duration)
+                .filter(Objects::nonNull)
+                .reduce(0, Integer::sum);
+    }
+
+    private static BigDecimal calculateAverageSpeed(List<ResultDto> results) {
 
         final var numberOfResults = BigDecimal.valueOf(results.size());
         return results.stream()
-                .map(ResultDto::getAverageSpeed)
+                .map(ResultDto::averageSpeed)
+                .filter(Objects::nonNull)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .divide(numberOfResults, 2, RoundingMode.HALF_UP);
     }
