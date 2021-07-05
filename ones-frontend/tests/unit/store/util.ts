@@ -50,3 +50,7 @@ export function createTestStore(): Store<unknown> {
     (window as any).store = store;
     return store;
 }
+
+export function lastOf<C>(items: Array<C>): C {
+    return items[items.length - 1];
+}

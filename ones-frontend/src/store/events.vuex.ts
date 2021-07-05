@@ -40,6 +40,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private _selectedContest: string | null = null;
     private _categories: ContestCategory[] = [];
     private _regions: string[] = [];
+    private dynamicOptionsFetched = false;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -114,9 +115,17 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async fetch(): Promise<void> {
+        await this.assureDynamicOptionsFetched();
         const fetchResponse = await this.controller.findAll(...await this.optionsAsArray);
         this.events = fetchResponse.data.elements || [];
         this._totalCount = fetchResponse.data.totalElements || 0;
+    }
+
+    @action
+    private async assureDynamicOptionsFetched(): Promise<void> {
+        if (!this.dynamicOptionsFetched) {
+            await this.fetchDynamicOptions();
+        }
     }
 
     private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {
@@ -232,11 +241,12 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     }
 
     @action
-    public async fetchDynamicOptions(): Promise<void> {
+    private async fetchDynamicOptions(): Promise<void> {
         await Promise.all([
             this.fetchCategories(),
             this.fetchRegions()
         ]);
+        this.dynamicOptionsFetched = true;
     }
 
     @action
