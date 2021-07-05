@@ -39,6 +39,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private selectedSortDirection: SortDirection = SortDirection.Ascending;
     private _selectedContest: string | null = null;
     private _categories: ContestCategory[] = [];
+    private _regions: string[] = [];
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -98,6 +99,10 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     get categories(): ContestCategory[] {
         return this._categories;
+    }
+
+    get regions(): string[] {
+        return this._regions;
     }
 
     private get controller(): EventControllerApi {
@@ -230,5 +235,11 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     public async fetchCategories(): Promise<void> {
         const response = await this.controller.getAllCategories();
         this._categories = response.data;
+    }
+
+    @action
+    public async fetchRegions(): Promise<void> {
+        const response = await this.controller.getAllRegions();
+        this._regions = response.data;
     }
 }

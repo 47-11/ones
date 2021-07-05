@@ -9,7 +9,8 @@ import { clearProxyCache, createTestStore, escaped, Resolved } from "./util";
 
 jest.mock("axios");
 
-type FindAllResponse = Partial<Resolved<ReturnType<EventControllerApi["findAll"]>>>;
+type ResponseTo<T extends keyof EventControllerApi> = Partial<Resolved<ReturnType<EventControllerApi[T]>>>;
+type FindAllResponse = ResponseTo<"findAll">;
 
 const EmptyFindAllResponse: FindAllResponse = {
     data: { elements: [] }
@@ -255,9 +256,7 @@ describe("Events-Store", () => {
             code: "MDR",
             description: "Medium Distance Ride"
         }];
-        const response: Partial<Resolved<ReturnType<EventControllerApi["getAllCategories"]>>> = {
-            data: categories
-        };
+        const response: ResponseTo<"getAllCategories"> = { data: categories };
         axiosMock.request.mockResolvedValue(response);
 
         await eventsStore.fetchCategories();
@@ -266,5 +265,18 @@ describe("Events-Store", () => {
             url: "/api/v1/event/categories"
         }));
         expect(eventsStore.categories).toEqual(categories);
+    });
+
+    it("fetches the regions", async () => {
+        const regions: string[] = ["Um die Ecke"];
+        const response: ResponseTo<"getAllRegions"> = { data: regions };
+        axiosMock.request.mockResolvedValue(response);
+
+        await eventsStore.fetchRegions();
+
+        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
+            url: "/api/v1/event/regions"
+        }));
+        expect(eventsStore.regions).toEqual(regions);
     });
 });
