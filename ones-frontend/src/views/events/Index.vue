@@ -40,7 +40,7 @@
                         <v-label class="mt-5 mb-1">{{ $t("events.filter.region") }}</v-label>
 
                         <v-select class="w-full">
-                            <option>Westfalen</option>
+                            <option v-for="region in events.regions" :key="region">{{region}}</option>
                         </v-select>
                     </div>
                     <div class="mt-6 lg:mt-0 lg:ml-12">
@@ -52,54 +52,9 @@
                         </v-label>
 
                         <div class="grid grid-cols-3 md:grid-cols-4 lg:gird-cols-3 gap-x-10">
-                            <div class="flex items-center mt-1">
+                            <div class="flex items-center mt-1" v-for="category in events.categories" :key="category.code">
                                 <v-checkbox/>
-                                <div class="ml-2">FDR</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDR</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">FDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
-                            </div>
-
-                            <div class="flex items-center mt-1">
-                                <v-checkbox/>
-                                <div class="ml-2">LDF</div>
+                                <div class="ml-2">{{category.description}}</div>
                             </div>
                         </div>
                     </div>
@@ -241,6 +196,12 @@ export default class Home extends Vue {
     events = vxm.events;
     locale = window.navigator.language;
 
+    public data(): {range: undefined} {
+        return {
+            range: undefined
+        };
+    }
+
     showFilter = false;
 
     mounted(): void {
@@ -249,6 +210,10 @@ export default class Home extends Vue {
 
     resetFilter(): void {
         // Do something ...
+    }
+
+    log(text: string): void {
+        console.dir(text);
     }
 }
 </script>
