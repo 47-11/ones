@@ -1,4 +1,4 @@
-import { EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
+import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
 import { UserStore } from "./user.vuex";
 import { Paginateable } from "@/components/pagination/paginateable";
@@ -38,6 +38,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private selectedSortCriterion: keyof SimpleEvent = "start";
     private selectedSortDirection: SortDirection = SortDirection.Ascending;
     private _selectedContest: string | null = null;
+    private _categories: ContestCategory[] = [];
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -93,6 +94,10 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     get selectedContest(): FullContest | null {
         return this.contests.find(contest => contest.uuid === this._selectedContest) || null;
+    }
+
+    get categories(): ContestCategory[] {
+        return this._categories;
     }
 
     private get controller(): EventControllerApi {
@@ -219,5 +224,11 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     @mutation
     selectContest(contestId: string | null): void {
         this._selectedContest = contestId;
+    }
+
+    @action
+    public async fetchCategories(): Promise<void> {
+        const response = await this.controller.getAllCategories();
+        this._categories = response.data;
     }
 }

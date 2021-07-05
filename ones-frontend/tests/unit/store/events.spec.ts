@@ -1,4 +1,4 @@
-import { EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
+import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
 import { EventsStore, FirstPage, SortDirection } from "@/store/events.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios from "axios";
@@ -248,5 +248,23 @@ describe("Events-Store", () => {
             url: `/api/v1/event/contest/${contestToSignUpTo}/signup`,
             data: expect.stringContaining(`"horseUuids":["${horseIdToSignUp}"]`)
         }));
+    });
+
+    it("fetches the categories", async () => {
+        const categories: ContestCategory[] = [{
+            code: "MDR",
+            description: "Medium Distance Ride"
+        }];
+        const response: Partial<Resolved<ReturnType<EventControllerApi["getAllCategories"]>>> = {
+            data: categories
+        };
+        axiosMock.request.mockResolvedValue(response);
+
+        await eventsStore.fetchCategories();
+
+        expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
+            url: "/api/v1/event/categories"
+        }));
+        expect(eventsStore.categories).toEqual(categories);
     });
 });
