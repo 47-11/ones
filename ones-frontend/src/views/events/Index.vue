@@ -53,7 +53,8 @@
 
                         <div class="grid grid-cols-3 md:grid-cols-4 lg:gird-cols-3 gap-x-10">
                             <div class="flex items-center mt-1" v-for="category in events.categories" :key="category.code">
-                                <v-checkbox/>
+                                <v-checkbox :checked="events.filter.categories.includes(category.code)"
+                                    @change.native="toggleCategory(category.code)"/>
                                 <div class="ml-2">{{category.description}}</div>
                             </div>
                         </div>
@@ -214,6 +215,17 @@ export default class Home extends Vue {
 
     log(text: string): void {
         console.dir(text);
+    }
+
+    toggleCategory(category: string): void {
+        const categories = this.events.filter.categories;
+        const position = categories.indexOf(category);
+        if (position > -1) {
+            categories.splice(position, 1);
+        } else {
+            categories.push(category);
+        }
+        this.events.addFilter({ categories });
     }
 }
 </script>

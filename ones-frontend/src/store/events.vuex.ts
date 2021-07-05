@@ -29,7 +29,7 @@ const VuexModule = createModule({
 
 export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
-    private filter: FilterType = { from: moment().format("YYYY.MM.DD"), categories: [], regions: [] };
+    private _filter: FilterType = { from: moment().format("YYYY.MM.DD"), categories: [], regions: [] };
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private _totalCount = 0;
@@ -106,6 +106,10 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
         return this._regions;
     }
 
+    get filter(): FilterType {
+        return this._filter;
+    }
+
     private get controller(): EventControllerApi {
         return new EventControllerApi({
             accessToken: createProxy(this.$store, UserStore).token || "",
@@ -135,13 +139,13 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {
         return [
-            this.filter.from,
-            this.filter.until,
-            this.filter.regions,
-            this.filter.categories,
-            this.filter.isCard,
-            this.filter.isCountryChampionship,
-            this.filter.isInternational,
+            this._filter.from,
+            this._filter.until,
+            this._filter.regions,
+            this._filter.categories,
+            this._filter.isCard,
+            this._filter.isCountryChampionship,
+            this._filter.isInternational,
             this.selectedPage,
             this.selectedPageSize,
             this.selectedSortCriterion,
@@ -151,19 +155,19 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async addFilter(modification: Partial<FilterType>): Promise<void> {
-        const newFilter = Object.assign({}, this.filter);
+        const newFilter = Object.assign({}, this._filter);
         for (const [key, value] of Object.entries(modification)) {
             newFilter[key as keyof FilterType] = value;
         }
-        this.filter = newFilter;
+        this._filter = newFilter;
         await this.fetch();
     }
 
     @mutation
     removeFilter(...filterPropsToClear: Array<keyof FilterType>): void {
-        if (this.filter) {
+        if (this._filter) {
             for (const filterProp of filterPropsToClear) {
-                this.filter[filterProp] = undefined;
+                this._filter[filterProp] = undefined;
             }
         }
     }
