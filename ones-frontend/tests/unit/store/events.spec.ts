@@ -53,6 +53,7 @@ describe("Events-Store", () => {
         axiosMock.request.mockResolvedValue({ data: [] as Event[] });
         const filter = {
             from: "2021-11-15",
+            categories: ["MDR"],
             regions: ["Nowhere", "Buxtehude"]
         };
 

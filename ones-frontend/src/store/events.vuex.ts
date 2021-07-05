@@ -3,6 +3,7 @@ import { action, createModule, createProxy, mutation } from "vuex-class-componen
 import { UserStore } from "./user.vuex";
 import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
+import moment from "moment";
 
 interface FilterType extends Record<string, string | boolean | string[] | undefined> {
     from: string;
@@ -28,7 +29,7 @@ const VuexModule = createModule({
 
 export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
-    private filter = {} as FilterType;
+    private filter: FilterType = { from: moment().localeData().longDateFormat("L"), categories: [], regions: [] };
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private _totalCount = 0;
@@ -103,7 +104,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async fetch(): Promise<void> {
-        const fetchResponse = await this.controller.findAll(...this.optionsAsArray);
+        const fetchResponse = await this.controller.findAll(...await this.optionsAsArray);
         this.events = fetchResponse.data.elements || [];
         this._totalCount = fetchResponse.data.totalElements || 0;
     }
@@ -136,8 +137,10 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @mutation
     removeFilter(...filterPropsToClear: Array<keyof FilterType>): void {
-        for (const filterProp of filterPropsToClear) {
-            this.filter[filterProp] = undefined;
+        if (this.filter) {
+            for (const filterProp of filterPropsToClear) {
+                this.filter[filterProp] = undefined;
+            }
         }
     }
 
