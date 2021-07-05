@@ -1,7 +1,8 @@
 import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
 import { EventsStore, FirstPage, SortDirection } from "@/store/events.vuex";
 import { createLocalVue } from "@vue/test-utils";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import moment from "moment";
 import Vuex, { Store } from "vuex";
 import { createProxy } from "vuex-class-component";
 import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
@@ -10,28 +11,56 @@ import { clearProxyCache, createTestStore, escaped, lastOf, Resolved } from "./u
 jest.mock("axios");
 
 type ResponseTo<T extends keyof EventControllerApi> = Partial<Resolved<ReturnType<EventControllerApi[T]>>>;
-type FindAllResponse = ResponseTo<"findAll">;
 
-const EmptyFindAllResponse: FindAllResponse = {
-    data: { elements: [] }
-};
+interface ReturnConfiguration {
+    match: RegExp;
+    returnValue: any;
+}
 
 function sampleCategories(): ContestCategory[] {
     return [{
         code: "MDR",
         description: "Medium Distance Ride"
+    }, {
+        code: "KDR",
+        description: "Short Distance Ride"
     }];
 }
 
 function sampleRegions(): string[] {
-    return ["Um die Ecke"];
+    return ["Um die Ecke", "Da drüben"];
 }
+
+const EventRegEx = /\/api\/v1\/event\?/;
+const CategoriesRegEx = /\/api\/v1\/event\/categories/;
+const RegionsRegEx = /\/api\/v1\/event\/regions/;
 
 describe("Events-Store", () => {
     let store: Store<unknown>;
     let eventsStore: EventsStore & ProxyWatchers;
     let axiosMock: jest.Mocked<typeof axios>;
     let localVue;
+
+    let returnConfigurations: Array<ReturnConfiguration> = [];
+
+    function requestMock(config: AxiosRequestConfig): Promise<any> {
+        for (const configuration of returnConfigurations) {
+            const matcher = configuration.match;
+            if (matcher.test(config.url || "")) {
+                return Promise.resolve({ data: configuration.returnValue });
+            }
+        }
+        throw new Error("No response available for " + config.url);
+    }
+
+    function respondTo(route: RegExp) {
+        return {
+            with: (value: any) => returnConfigurations.splice(0, 0, {
+                match: route,
+                returnValue: value
+            })
+        };
+    }
 
     beforeEach(() => {
         localVue = createLocalVue();
@@ -42,6 +71,13 @@ describe("Events-Store", () => {
         axiosMock = axios as jest.Mocked<typeof axios>;
 
         axiosMock.request.mockReset();
+        axiosMock.request.mockImplementation(requestMock);
+        returnConfigurations = [];
+        respondTo(EventRegEx).with({} as ResponseTo<"findAll">["data"]);
+        respondTo(/event\/\d+/).with(undefined);
+        respondTo(/event\/\d\/contests/).with(undefined);
+        respondTo(CategoriesRegEx).with([] as ResponseTo<"getAllCategories">["data"]);
+        respondTo(RegionsRegEx).with([] as ResponseTo<"getAllRegions">["data"]);
     });
 
     afterEach(() => {
@@ -49,13 +85,19 @@ describe("Events-Store", () => {
     });
 
     it("fetches events with default values", async () => {
-        axiosMock.request.mockResolvedValue({ data: [] as Event[] });
+        const allCategories = sampleCategories();
+        const allRegions = sampleRegions();
+        respondTo(CategoriesRegEx).with(allCategories as ResponseTo<"getAllCategories">["data"]);
+        respondTo(RegionsRegEx).with(allRegions as ResponseTo<"getAllRegions">["data"]);
 
         await eventsStore.fetch();
 
         const lastCall = lastOf(axiosMock.request.mock.calls);
         const requestOptions = lastCall[0];
         expect(requestOptions.url).toContain("event");
+        expect(requestOptions.url).toContain(`from=${moment().format("YYYY.MM.DD")}`);
+        expect(requestOptions.url).toContain(`regions=${allRegions.map(escaped).join("&regions=")}`);
+        expect(requestOptions.url).toContain(`categories=${allCategories.map(category => category.code).join("&categories=")}`);
         expect(requestOptions.url).toContain(`page=${FirstPage}`);
         expect(requestOptions.url).toContain(`pageSize=${10}`);
         expect(requestOptions.url).toContain("sortBy=start");
@@ -63,7 +105,10 @@ describe("Events-Store", () => {
     });
 
     it("fetches events when setting filter", async () => {
-        axiosMock.request.mockResolvedValue({ data: [] as Event[] });
+        // perform fetch to load dynamic options
+        await eventsStore.fetch();
+        axiosMock.request.mockClear();
+
         const filter = {
             from: "2021-11-15",
             categories: ["MDR"],
@@ -85,11 +130,7 @@ describe("Events-Store", () => {
             { uuid: "42", title: "Olympic games" },
             { uuid: "43", title: "Paralympics" }
         ] as SimpleEvent[];
-        axiosMock.request.mockResolvedValue({
-            data: {
-                elements: events
-            }
-        });
+        respondTo(EventRegEx).with({ elements: events });
 
         await eventsStore.fetch();
 
@@ -101,9 +142,7 @@ describe("Events-Store", () => {
             { contestType: FullContestDtoContestTypeEnum.MultipleDayRide },
             { contestType: FullContestDtoContestTypeEnum.IntroductionDrive }
         ] as FullContest[];
-        axiosMock.request.mockResolvedValue({
-            data: contests
-        });
+        respondTo(/contests/).with(contests);
         const eventId = "5";
 
         await eventsStore.fetchEvent(eventId);
@@ -118,9 +157,7 @@ describe("Events-Store", () => {
         const details = {
             organizerName: "Olympic committee"
         } as FullEvent;
-        axiosMock.request.mockResolvedValue({
-            data: details
-        });
+        respondTo(/event\/\d+/).with(details);
         const eventId = "5";
 
         await eventsStore.fetchEvent(eventId);
@@ -132,7 +169,6 @@ describe("Events-Store", () => {
     });
 
     it("fetches the selected page", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const pageToSelect = 5;
 
         await eventsStore.selectPage(pageToSelect);
@@ -143,7 +179,6 @@ describe("Events-Store", () => {
     });
 
     it("fetches the next page", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const currentPage = FirstPage;
 
         await eventsStore.nextPage();
@@ -154,7 +189,6 @@ describe("Events-Store", () => {
     });
 
     it("fetches the previous page", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const currentPage = 5;
         await eventsStore.selectPage(currentPage);
         axiosMock.request.mockClear();
@@ -167,7 +201,6 @@ describe("Events-Store", () => {
     });
 
     it("fetches with the selected page size", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const selectedPageSize = 20;
 
         await eventsStore.selectPageSize(selectedPageSize);
@@ -178,7 +211,6 @@ describe("Events-Store", () => {
     });
 
     it("fetches with the selected sort criterion", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const criterion = "title";
 
         await eventsStore.sortBy(criterion);
@@ -189,7 +221,6 @@ describe("Events-Store", () => {
     });
 
     it("resets the page to 0 when the sort criterion is changed", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         await eventsStore.selectPage(5);
         axiosMock.request.mockClear();
         const criterion = "title";
@@ -202,7 +233,6 @@ describe("Events-Store", () => {
     });
 
     it("fetches with the selected sort criterion", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         const direction = SortDirection.Descending;
 
         await eventsStore.sortInDirection(direction);
@@ -213,7 +243,6 @@ describe("Events-Store", () => {
     });
 
     it("resets the page to 0 when the sort direction is changed", async () => {
-        axiosMock.request.mockResolvedValue(EmptyFindAllResponse);
         await eventsStore.selectPage(5);
         axiosMock.request.mockClear();
         const direction = SortDirection.Descending;
@@ -226,28 +255,27 @@ describe("Events-Store", () => {
     });
 
     it("fetches the total amount of elements", async () => {
-        axiosMock.request.mockResolvedValue({
-            data: {
-                elements: [
-                    { uuid: "3" }
-                ] as SimpleEventDto[],
-                totalElements: 3
-            }
-        } as FindAllResponse);
+        const resolvedValue = {
+            elements: [
+                { uuid: "3" }
+            ] as SimpleEventDto[],
+            totalElements: 3
+        };
+        respondTo(EventRegEx).with(resolvedValue);
+
         await eventsStore.selectPage(FirstPage + 1);
 
         expect(eventsStore.totalElementCount).toBe(3);
     });
 
     it("calculates fitting page boundaries for not full last page", async () => {
-        axiosMock.request.mockResolvedValue({
-            data: {
-                elements: [
-                    { uuid: "3" }
-                ] as SimpleEventDto[],
-                totalElements: 3
-            }
-        } as FindAllResponse);
+        const resolvedValue = {
+            elements: [
+                { uuid: "3" }
+            ] as SimpleEventDto[],
+            totalElements: 3
+        };
+        respondTo(EventRegEx).with(resolvedValue);
         await eventsStore.selectPageSize(2);
         await eventsStore.selectPage(FirstPage + 1);
 
@@ -261,7 +289,7 @@ describe("Events-Store", () => {
     it("signs up for a contest", async () => {
         const contestToSignUpTo = "3";
         const horseIdToSignUp = "5";
-        axiosMock.request.mockResolvedValue(undefined);
+        respondTo(/signup/).with(undefined);
 
         await eventsStore.signUp({
             contestUuid: contestToSignUpTo,
@@ -275,11 +303,8 @@ describe("Events-Store", () => {
     });
 
     it("waits for dynamic options before executing fetch", async () => {
-        const categoryResponse: ResponseTo<"getAllCategories"> = { data: sampleCategories() };
-        const regionsResponse: ResponseTo<"getAllRegions"> = { data: sampleRegions() };
-        axiosMock.request.mockResolvedValueOnce(categoryResponse);
-        axiosMock.request.mockResolvedValueOnce(regionsResponse);
-        axiosMock.request.mockResolvedValueOnce(EmptyFindAllResponse);
+        respondTo(CategoriesRegEx).with(sampleCategories());
+        respondTo(RegionsRegEx).with(sampleRegions());
 
         await eventsStore.fetch();
 
@@ -292,8 +317,7 @@ describe("Events-Store", () => {
     });
 
     it("fetches the categories", async () => {
-        const response: ResponseTo<"getAllCategories"> = { data: sampleCategories() };
-        axiosMock.request.mockResolvedValue(response);
+        respondTo(CategoriesRegEx).with(sampleCategories());
 
         await eventsStore.fetch();
 
@@ -301,8 +325,7 @@ describe("Events-Store", () => {
     });
 
     it("fetches the regions", async () => {
-        const response: ResponseTo<"getAllRegions"> = { data: sampleRegions() };
-        axiosMock.request.mockResolvedValue(response);
+        respondTo(RegionsRegEx).with(sampleRegions());
 
         await eventsStore.fetch();
 

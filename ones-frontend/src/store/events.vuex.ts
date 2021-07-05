@@ -29,7 +29,7 @@ const VuexModule = createModule({
 
 export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
-    private filter: FilterType = { from: moment().localeData().longDateFormat("L"), categories: [], regions: [] };
+    private filter: FilterType = { from: moment().format("YYYY.MM.DD"), categories: [], regions: [] };
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private _totalCount = 0;
@@ -125,6 +125,11 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private async assureDynamicOptionsFetched(): Promise<void> {
         if (!this.dynamicOptionsFetched) {
             await this.fetchDynamicOptions();
+            this.addFilter({
+                regions: this.regions,
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                categories: this.categories.map(category => category.code!)
+            });
         }
     }
 
@@ -145,7 +150,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     }
 
     @action
-    async addFilter(modification: FilterType): Promise<void> {
+    async addFilter(modification: Partial<FilterType>): Promise<void> {
         const newFilter = Object.assign({}, this.filter);
         for (const [key, value] of Object.entries(modification)) {
             newFilter[key as keyof FilterType] = value;
@@ -252,12 +257,12 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     @action
     private async fetchCategories(): Promise<void> {
         const response = await this.controller.getAllCategories();
-        this._categories = response.data;
+        this._categories = response.data || [];
     }
 
     @action
     private async fetchRegions(): Promise<void> {
         const response = await this.controller.getAllRegions();
-        this._regions = response.data;
+        this._regions = response.data || [];
     }
 }

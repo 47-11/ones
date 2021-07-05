@@ -8,7 +8,14 @@ import { ResultsStore } from "@/store/results.vuex";
 import { AppStore } from "@/store/app.vuex";
 
 export const escaped = (text: string): string => {
-    return text.replace(" ", "+");
+    let current = text;
+    let replacement: string | undefined;
+    while (current !== replacement) {
+        replacement = current;
+        current = current.replace(" ", "+")
+            .replace("ü", "%C3%BC");
+    }
+    return current;
 };
 
 export type Resolved<T> = T extends Promise<infer C> ? C : never;
