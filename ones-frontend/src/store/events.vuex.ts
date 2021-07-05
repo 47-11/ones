@@ -232,13 +232,21 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     }
 
     @action
-    public async fetchCategories(): Promise<void> {
+    public async fetchDynamicOptions(): Promise<void> {
+        await Promise.all([
+            this.fetchCategories(),
+            this.fetchRegions()
+        ]);
+    }
+
+    @action
+    private async fetchCategories(): Promise<void> {
         const response = await this.controller.getAllCategories();
         this._categories = response.data;
     }
 
     @action
-    public async fetchRegions(): Promise<void> {
+    private async fetchRegions(): Promise<void> {
         const response = await this.controller.getAllRegions();
         this._regions = response.data;
     }

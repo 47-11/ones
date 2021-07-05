@@ -259,7 +259,7 @@ describe("Events-Store", () => {
         const response: ResponseTo<"getAllCategories"> = { data: categories };
         axiosMock.request.mockResolvedValue(response);
 
-        await eventsStore.fetchCategories();
+        await eventsStore.fetchDynamicOptions();
 
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
             url: "/api/v1/event/categories"
@@ -272,7 +272,7 @@ describe("Events-Store", () => {
         const response: ResponseTo<"getAllRegions"> = { data: regions };
         axiosMock.request.mockResolvedValue(response);
 
-        await eventsStore.fetchRegions();
+        await eventsStore.fetchDynamicOptions();
 
         expect(axiosMock.request).toHaveBeenCalledWith(expect.objectContaining({
             url: "/api/v1/event/regions"
