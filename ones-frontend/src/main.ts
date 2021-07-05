@@ -59,7 +59,8 @@ const i18n = new VueI18n({
     messages: {
         en: require("@/assets/i18n/en"),
         de: require("@/assets/i18n/de")
-    }
+    },
+    silentFallbackWarn: true
 });
 
 window.addEventListener("online", () => vxm.app.checkOnlineState());
