@@ -5,12 +5,13 @@ import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
 
 interface FilterType extends Record<string, string | boolean | string[] | undefined> {
-    from?: string;
+    from: string;
     until?: string;
     isCountryChampionship?: boolean;
     isInternational?: boolean;
     isCard?: boolean;
     regions: string[];
+    categories: string[]
 }
 
 export enum SortDirection {
@@ -111,10 +112,11 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
         return [
             this.filter.from,
             this.filter.until,
+            this.filter.regions,
+            this.filter.categories,
+            this.filter.isCard,
             this.filter.isCountryChampionship,
             this.filter.isInternational,
-            this.filter.isCard,
-            this.filter.regions,
             this.selectedPage,
             this.selectedPageSize,
             this.selectedSortCriterion,
