@@ -14,11 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -83,7 +79,7 @@ public class MockSimpleEventServiceImpl implements SimpleEventService {
         result.setTitle("Veranstaltung " + i);
         result.setStart(LocalDateTime.now().plusDays(i));
         result.setEnd(LocalDateTime.now().plusDays(i).plusDays(2));
-        result.setAddress(buildMockAddress());
+        result.setAddresses(Collections.singletonList(buildMockAddress()));
         result.setContests(buildMockContests());
 
         return result;

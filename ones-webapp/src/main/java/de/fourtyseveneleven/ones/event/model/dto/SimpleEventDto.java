@@ -15,7 +15,7 @@ public class SimpleEventDto {
     private LocalDateTime start;
     private LocalDateTime end;
 
-    private AddressDto address;
+    private List<AddressDto> addresses;
 
     private boolean isNationalChampionship;
     private boolean isInternational;
@@ -54,12 +54,12 @@ public class SimpleEventDto {
         this.end = end;
     }
 
-    public AddressDto getAddress() {
-        return address;
+    public List<AddressDto> getAddresses() {
+        return addresses;
     }
 
-    public void setAddress(AddressDto address) {
-        this.address = address;
+    public void setAddresses(List<AddressDto> addresses) {
+        this.addresses = addresses;
     }
 
     public boolean getIsNationalChampionship() {
