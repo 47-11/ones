@@ -303,7 +303,7 @@ ApiResponse<[**EventContest**](EventContest.md)>
 
 ## getContestByYear
 
-> ResponcePageContestsPlain getContestByYear(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy)
+> ResponcePageContestsPlain getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy)
 
 
 
@@ -329,18 +329,19 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
-        Integer year = 56; // Integer | 
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime untilDate = OffsetDateTime.now(); // OffsetDateTime | 
         List<String> countryRegions = Arrays.asList(); // List<String> | 
+        List<String> contestKinds = Arrays.asList(); // List<String> | 
         Integer isCountryChampionship = 56; // Integer | 
         Integer isCEI = 56; // Integer | 
         Integer isCard = 56; // Integer | 
+        String accountUuid = "accountUuid_example"; // String | 
         Integer pageNo = 0; // Integer | 
         Integer pageSize = 10; // Integer | 
         String sortBy = "beginning"; // String | 
         try {
-            ResponcePageContestsPlain result = apiInstance.getContestByYear(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
+            ResponcePageContestsPlain result = apiInstance.getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EventContestControllerApi#getContestByYear");
@@ -358,13 +359,14 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **year** | **Integer**|  |
  **fromDate** | **OffsetDateTime**|  | [optional]
  **untilDate** | **OffsetDateTime**|  | [optional]
  **countryRegions** | [**List&lt;String&gt;**](String.md)|  | [optional]
+ **contestKinds** | [**List&lt;String&gt;**](String.md)|  | [optional]
  **isCountryChampionship** | **Integer**|  | [optional]
  **isCEI** | **Integer**|  | [optional]
  **isCard** | **Integer**|  | [optional]
+ **accountUuid** | **String**|  | [optional]
  **pageNo** | **Integer**|  | [optional] [default to 0]
  **pageSize** | **Integer**|  | [optional] [default to 10]
  **sortBy** | **String**|  | [optional] [default to beginning]
@@ -390,7 +392,7 @@ Name | Type | Description  | Notes
 
 ## getContestByYearWithHttpInfo
 
-> ApiResponse<ResponcePageContestsPlain> getContestByYear getContestByYearWithHttpInfo(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy)
+> ApiResponse<ResponcePageContestsPlain> getContestByYear getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy)
 
 
 
@@ -417,18 +419,19 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
-        Integer year = 56; // Integer | 
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime untilDate = OffsetDateTime.now(); // OffsetDateTime | 
         List<String> countryRegions = Arrays.asList(); // List<String> | 
+        List<String> contestKinds = Arrays.asList(); // List<String> | 
         Integer isCountryChampionship = 56; // Integer | 
         Integer isCEI = 56; // Integer | 
         Integer isCard = 56; // Integer | 
+        String accountUuid = "accountUuid_example"; // String | 
         Integer pageNo = 0; // Integer | 
         Integer pageSize = 10; // Integer | 
         String sortBy = "beginning"; // String | 
         try {
-            ApiResponse<ResponcePageContestsPlain> response = apiInstance.getContestByYearWithHttpInfo(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
+            ApiResponse<ResponcePageContestsPlain> response = apiInstance.getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -448,13 +451,14 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **year** | **Integer**|  |
  **fromDate** | **OffsetDateTime**|  | [optional]
  **untilDate** | **OffsetDateTime**|  | [optional]
  **countryRegions** | [**List&lt;String&gt;**](String.md)|  | [optional]
+ **contestKinds** | [**List&lt;String&gt;**](String.md)|  | [optional]
  **isCountryChampionship** | **Integer**|  | [optional]
  **isCEI** | **Integer**|  | [optional]
  **isCard** | **Integer**|  | [optional]
+ **accountUuid** | **String**|  | [optional]
  **pageNo** | **Integer**|  | [optional] [default to 0]
  **pageSize** | **Integer**|  | [optional] [default to 10]
  **sortBy** | **String**|  | [optional] [default to beginning]

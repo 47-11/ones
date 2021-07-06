@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **changeTimestamp** | **OffsetDateTime** |  |  [optional]
 **changeUserUuid** | **String** |  |  [optional]
 **changeCounter** | **Integer** |  |  [optional]
-**role** | **String** |  |  [optional]
+**kind** | **String** |  |  [optional]
 
 
 

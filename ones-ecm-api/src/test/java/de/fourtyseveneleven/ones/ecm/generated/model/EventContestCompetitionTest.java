@@ -53,14 +53,6 @@ public class EventContestCompetitionTest {
     }
 
     /**
-     * Test the property 'eventContestUuid'
-     */
-    @Test
-    public void eventContestUuidTest() {
-        // TODO: test eventContestUuid
-    }
-
-    /**
      * Test the property 'creationTimestamp'
      */
     @Test
@@ -106,6 +98,14 @@ public class EventContestCompetitionTest {
     @Test
     public void currentStateTest() {
         // TODO: test currentState
+    }
+
+    /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
     }
 
     /**
@@ -250,6 +250,270 @@ public class EventContestCompetitionTest {
     @Test
     public void contestantLimitiationMaxTest() {
         // TODO: test contestantLimitiationMax
+    }
+
+    /**
+     * Test the property 'datePreliminaryExamination'
+     */
+    @Test
+    public void datePreliminaryExaminationTest() {
+        // TODO: test datePreliminaryExamination
+    }
+
+    /**
+     * Test the property 'infoPreliminaryExamination'
+     */
+    @Test
+    public void infoPreliminaryExaminationTest() {
+        // TODO: test infoPreliminaryExamination
+    }
+
+    /**
+     * Test the property 'datePreliminaryDiscussion'
+     */
+    @Test
+    public void datePreliminaryDiscussionTest() {
+        // TODO: test datePreliminaryDiscussion
+    }
+
+    /**
+     * Test the property 'infoPreliminaryDiscussion'
+     */
+    @Test
+    public void infoPreliminaryDiscussionTest() {
+        // TODO: test infoPreliminaryDiscussion
+    }
+
+    /**
+     * Test the property 'dateFollowUpExamination'
+     */
+    @Test
+    public void dateFollowUpExaminationTest() {
+        // TODO: test dateFollowUpExamination
+    }
+
+    /**
+     * Test the property 'infoFollowUpExamination'
+     */
+    @Test
+    public void infoFollowUpExaminationTest() {
+        // TODO: test infoFollowUpExamination
+    }
+
+    /**
+     * Test the property 'dateTransferRelease'
+     */
+    @Test
+    public void dateTransferReleaseTest() {
+        // TODO: test dateTransferRelease
+    }
+
+    /**
+     * Test the property 'infoTransferRelease'
+     */
+    @Test
+    public void infoTransferReleaseTest() {
+        // TODO: test infoTransferRelease
+    }
+
+    /**
+     * Test the property 'dateAwardCeremony'
+     */
+    @Test
+    public void dateAwardCeremonyTest() {
+        // TODO: test dateAwardCeremony
+    }
+
+    /**
+     * Test the property 'infoAwardCeremony'
+     */
+    @Test
+    public void infoAwardCeremonyTest() {
+        // TODO: test infoAwardCeremony
+    }
+
+    /**
+     * Test the property 'vddQualificationLevel'
+     */
+    @Test
+    public void vddQualificationLevelTest() {
+        // TODO: test vddQualificationLevel
+    }
+
+    /**
+     * Test the property 'altitudeMeters'
+     */
+    @Test
+    public void altitudeMetersTest() {
+        // TODO: test altitudeMeters
+    }
+
+    /**
+     * Test the property 'feeCurrency'
+     */
+    @Test
+    public void feeCurrencyTest() {
+        // TODO: test feeCurrency
+    }
+
+    /**
+     * Test the property 'registrationFee'
+     */
+    @Test
+    public void registrationFeeTest() {
+        // TODO: test registrationFee
+    }
+
+    /**
+     * Test the property 'registrationFeeUnit'
+     */
+    @Test
+    public void registrationFeeUnitTest() {
+        // TODO: test registrationFeeUnit
+    }
+
+    /**
+     * Test the property 'startingFee'
+     */
+    @Test
+    public void startingFeeTest() {
+        // TODO: test startingFee
+    }
+
+    /**
+     * Test the property 'startingFeeUnit'
+     */
+    @Test
+    public void startingFeeUnitTest() {
+        // TODO: test startingFeeUnit
+    }
+
+    /**
+     * Test the property 'scoringMinimumTime'
+     */
+    @Test
+    public void scoringMinimumTimeTest() {
+        // TODO: test scoringMinimumTime
+    }
+
+    /**
+     * Test the property 'scoringPeakTime'
+     */
+    @Test
+    public void scoringPeakTimeTest() {
+        // TODO: test scoringPeakTime
+    }
+
+    /**
+     * Test the property 'horseAgeMin'
+     */
+    @Test
+    public void horseAgeMinTest() {
+        // TODO: test horseAgeMin
+    }
+
+    /**
+     * Test the property 'horseAgeMax'
+     */
+    @Test
+    public void horseAgeMaxTest() {
+        // TODO: test horseAgeMax
+    }
+
+    /**
+     * Test the property 'contestantAgeMin'
+     */
+    @Test
+    public void contestantAgeMinTest() {
+        // TODO: test contestantAgeMin
+    }
+
+    /**
+     * Test the property 'contestantAgeMax'
+     */
+    @Test
+    public void contestantAgeMaxTest() {
+        // TODO: test contestantAgeMax
+    }
+
+    /**
+     * Test the property 'contestantQuantityMin'
+     */
+    @Test
+    public void contestantQuantityMinTest() {
+        // TODO: test contestantQuantityMin
+    }
+
+    /**
+     * Test the property 'contestantQuantityMax'
+     */
+    @Test
+    public void contestantQuantityMaxTest() {
+        // TODO: test contestantQuantityMax
+    }
+
+    /**
+     * Test the property 'hoofProtection'
+     */
+    @Test
+    public void hoofProtectionTest() {
+        // TODO: test hoofProtection
+    }
+
+    /**
+     * Test the property 'descriptionRoute'
+     */
+    @Test
+    public void descriptionRouteTest() {
+        // TODO: test descriptionRoute
+    }
+
+    /**
+     * Test the property 'typeOfRouting'
+     */
+    @Test
+    public void typeOfRoutingTest() {
+        // TODO: test typeOfRouting
+    }
+
+    /**
+     * Test the property 'descriptionStart'
+     */
+    @Test
+    public void descriptionStartTest() {
+        // TODO: test descriptionStart
+    }
+
+    /**
+     * Test the property 'descriptionTerrain'
+     */
+    @Test
+    public void descriptionTerrainTest() {
+        // TODO: test descriptionTerrain
+    }
+
+    /**
+     * Test the property 'descriptionControlchecks'
+     */
+    @Test
+    public void descriptionControlchecksTest() {
+        // TODO: test descriptionControlchecks
+    }
+
+    /**
+     * Test the property 'ratingType'
+     */
+    @Test
+    public void ratingTypeTest() {
+        // TODO: test ratingType
+    }
+
+    /**
+     * Test the property 'descriptionRatingType'
+     */
+    @Test
+    public void descriptionRatingTypeTest() {
+        // TODO: test descriptionRatingType
     }
 
     /**

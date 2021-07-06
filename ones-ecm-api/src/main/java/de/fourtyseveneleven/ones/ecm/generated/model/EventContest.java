@@ -23,10 +23,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetition;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFee;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestLocation;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemark;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRole;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -45,30 +47,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContest.JSON_PROPERTY_CHANGE_USER_UUID,
   EventContest.JSON_PROPERTY_CHANGE_COUNTER,
   EventContest.JSON_PROPERTY_CURRENT_STATE,
+  EventContest.JSON_PROPERTY_EVENT_NAMING,
   EventContest.JSON_PROPERTY_TITLE,
+  EventContest.JSON_PROPERTY_STATE,
   EventContest.JSON_PROPERTY_BEGINNING,
   EventContest.JSON_PROPERTY_ENDING,
   EventContest.JSON_PROPERTY_COUNTRY,
   EventContest.JSON_PROPERTY_COUNTRY_REGION,
-  EventContest.JSON_PROPERTY_LOCATION_DESCIPTION,
   EventContest.JSON_PROPERTY_IS_COUNTRY_CHAMPIONSHIP,
   EventContest.JSON_PROPERTY_IS_CEI,
   EventContest.JSON_PROPERTY_IS_CARD,
-  EventContest.JSON_PROPERTY_INFO_HELMET_OBLIGATION,
-  EventContest.JSON_PROPERTY_INFO_VACCINATION_OBLIGATION,
   EventContest.JSON_PROPERTY_VDD_PORTAL_URL,
   EventContest.JSON_PROPERTY_VDD_PORTAL_TITLE,
   EventContest.JSON_PROPERTY_PROMOTER_TENDERING_URL,
   EventContest.JSON_PROPERTY_PROMOTER_TENDERING_TITLE,
   EventContest.JSON_PROPERTY_PROMOTER_EVENT_URL,
   EventContest.JSON_PROPERTY_PROMOTER_EVENT_TITLE,
-  EventContest.JSON_PROPERTY_PROMOTER_CONTACT_UUID,
-  EventContest.JSON_PROPERTY_PROMOTER_CONTACT_DESCRIPTION,
-  EventContest.JSON_PROPERTY_ORGANIZER_CONTACT_UUID,
-  EventContest.JSON_PROPERTY_ORGANIZER_CONTACT_DESCRIPTION,
-  EventContest.JSON_PROPERTY_REGISTRATION_DESCRIPTION,
-  EventContest.JSON_PROPERTY_REMARKS,
   EventContest.JSON_PROPERTY_INITIAL_EVENT,
+  EventContest.JSON_PROPERTY_CURRENT_EVENT,
   EventContest.JSON_PROPERTY_REQUEST_DATE,
   EventContest.JSON_PROPERTY_REQUEST_INFO,
   EventContest.JSON_PROPERTY_APPROVAL_DATE,
@@ -77,18 +73,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContest.JSON_PROPERTY_STATE_COMMISSIONER_DESCRIPTION,
   EventContest.JSON_PROPERTY_REGION_COMMISSIONER_UUID,
   EventContest.JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION,
-  EventContest.JSON_PROPERTY_FEE_CURRENCY,
-  EventContest.JSON_PROPERTY_REGISTRATION_FEE,
-  EventContest.JSON_PROPERTY_STARTING_FEE,
-  EventContest.JSON_PROPERTY_STARTING_FEE_UNIT,
-  EventContest.JSON_PROPERTY_LATE_REGISTRATION_FEE,
-  EventContest.JSON_PROPERTY_CHANGE_REGISTRATION_FEE,
-  EventContest.JSON_PROPERTY_SURCHARGE_NON_MEMBERS,
+  EventContest.JSON_PROPERTY_PAYMENT_ACCOUNT_HOLDER,
+  EventContest.JSON_PROPERTY_PAYMENT_IBAN,
+  EventContest.JSON_PROPERTY_PAYMENT_BIC,
+  EventContest.JSON_PROPERTY_PAYMENT_PAYPAL,
+  EventContest.JSON_PROPERTY_PAYMENT_REASON,
+  EventContest.JSON_PROPERTY_CONTESTANT_QUANTITY_MIN,
+  EventContest.JSON_PROPERTY_CONTESTANT_QUANTITY_MAX,
   EventContest.JSON_PROPERTY_REGISTRATION_CLOSING,
+  EventContest.JSON_PROPERTY_IS_LATE_REGISTRATION,
+  EventContest.JSON_PROPERTY_INFO_VACCINATION_OBLIGATION,
+  EventContest.JSON_PROPERTY_INFO_HELMET_OBLIGATION,
   EventContest.JSON_PROPERTY_COMPETITIONS,
-  EventContest.JSON_PROPERTY_ROLES
+  EventContest.JSON_PROPERTY_ROLES,
+  EventContest.JSON_PROPERTY_FEES,
+  EventContest.JSON_PROPERTY_LOCATIONS,
+  EventContest.JSON_PROPERTY_REMARKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
 public class EventContest {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -111,8 +113,14 @@ public class EventContest {
   public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
   private Integer currentState;
 
+  public static final String JSON_PROPERTY_EVENT_NAMING = "eventNaming";
+  private String eventNaming;
+
   public static final String JSON_PROPERTY_TITLE = "title";
   private String title;
+
+  public static final String JSON_PROPERTY_STATE = "state";
+  private String state;
 
   public static final String JSON_PROPERTY_BEGINNING = "beginning";
   private OffsetDateTime beginning;
@@ -126,9 +134,6 @@ public class EventContest {
   public static final String JSON_PROPERTY_COUNTRY_REGION = "countryRegion";
   private String countryRegion;
 
-  public static final String JSON_PROPERTY_LOCATION_DESCIPTION = "locationDesciption";
-  private String locationDesciption;
-
   public static final String JSON_PROPERTY_IS_COUNTRY_CHAMPIONSHIP = "isCountryChampionship";
   private Boolean isCountryChampionship;
 
@@ -137,12 +142,6 @@ public class EventContest {
 
   public static final String JSON_PROPERTY_IS_CARD = "isCard";
   private Boolean isCard;
-
-  public static final String JSON_PROPERTY_INFO_HELMET_OBLIGATION = "infoHelmetObligation";
-  private String infoHelmetObligation;
-
-  public static final String JSON_PROPERTY_INFO_VACCINATION_OBLIGATION = "infoVaccinationObligation";
-  private String infoVaccinationObligation;
 
   public static final String JSON_PROPERTY_VDD_PORTAL_URL = "vddPortalUrl";
   private String vddPortalUrl;
@@ -162,26 +161,11 @@ public class EventContest {
   public static final String JSON_PROPERTY_PROMOTER_EVENT_TITLE = "promoterEventTitle";
   private String promoterEventTitle;
 
-  public static final String JSON_PROPERTY_PROMOTER_CONTACT_UUID = "promoterContactUuid";
-  private String promoterContactUuid;
-
-  public static final String JSON_PROPERTY_PROMOTER_CONTACT_DESCRIPTION = "promoterContactDescription";
-  private String promoterContactDescription;
-
-  public static final String JSON_PROPERTY_ORGANIZER_CONTACT_UUID = "organizerContactUuid";
-  private String organizerContactUuid;
-
-  public static final String JSON_PROPERTY_ORGANIZER_CONTACT_DESCRIPTION = "organizerContactDescription";
-  private String organizerContactDescription;
-
-  public static final String JSON_PROPERTY_REGISTRATION_DESCRIPTION = "registrationDescription";
-  private String registrationDescription;
-
-  public static final String JSON_PROPERTY_REMARKS = "remarks";
-  private String remarks;
-
   public static final String JSON_PROPERTY_INITIAL_EVENT = "initialEvent";
   private String initialEvent;
+
+  public static final String JSON_PROPERTY_CURRENT_EVENT = "currentEvent";
+  private Integer currentEvent;
 
   public static final String JSON_PROPERTY_REQUEST_DATE = "requestDate";
   private OffsetDateTime requestDate;
@@ -207,35 +191,53 @@ public class EventContest {
   public static final String JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION = "regionCommissionerDescription";
   private String regionCommissionerDescription;
 
-  public static final String JSON_PROPERTY_FEE_CURRENCY = "feeCurrency";
-  private String feeCurrency;
+  public static final String JSON_PROPERTY_PAYMENT_ACCOUNT_HOLDER = "paymentAccountHolder";
+  private String paymentAccountHolder;
 
-  public static final String JSON_PROPERTY_REGISTRATION_FEE = "registrationFee";
-  private BigDecimal registrationFee;
+  public static final String JSON_PROPERTY_PAYMENT_IBAN = "paymentIban";
+  private String paymentIban;
 
-  public static final String JSON_PROPERTY_STARTING_FEE = "startingFee";
-  private BigDecimal startingFee;
+  public static final String JSON_PROPERTY_PAYMENT_BIC = "paymentBic";
+  private String paymentBic;
 
-  public static final String JSON_PROPERTY_STARTING_FEE_UNIT = "startingFeeUnit";
-  private String startingFeeUnit;
+  public static final String JSON_PROPERTY_PAYMENT_PAYPAL = "paymentPaypal";
+  private String paymentPaypal;
 
-  public static final String JSON_PROPERTY_LATE_REGISTRATION_FEE = "lateRegistrationFee";
-  private BigDecimal lateRegistrationFee;
+  public static final String JSON_PROPERTY_PAYMENT_REASON = "paymentReason";
+  private String paymentReason;
 
-  public static final String JSON_PROPERTY_CHANGE_REGISTRATION_FEE = "changeRegistrationFee";
-  private BigDecimal changeRegistrationFee;
+  public static final String JSON_PROPERTY_CONTESTANT_QUANTITY_MIN = "contestantQuantityMin";
+  private Integer contestantQuantityMin;
 
-  public static final String JSON_PROPERTY_SURCHARGE_NON_MEMBERS = "surchargeNonMembers";
-  private BigDecimal surchargeNonMembers;
+  public static final String JSON_PROPERTY_CONTESTANT_QUANTITY_MAX = "contestantQuantityMax";
+  private Integer contestantQuantityMax;
 
   public static final String JSON_PROPERTY_REGISTRATION_CLOSING = "registrationClosing";
   private OffsetDateTime registrationClosing;
+
+  public static final String JSON_PROPERTY_IS_LATE_REGISTRATION = "isLateRegistration";
+  private Boolean isLateRegistration;
+
+  public static final String JSON_PROPERTY_INFO_VACCINATION_OBLIGATION = "infoVaccinationObligation";
+  private String infoVaccinationObligation;
+
+  public static final String JSON_PROPERTY_INFO_HELMET_OBLIGATION = "infoHelmetObligation";
+  private String infoHelmetObligation;
 
   public static final String JSON_PROPERTY_COMPETITIONS = "_competitions";
   private Set<EventContestCompetition> competitions = null;
 
   public static final String JSON_PROPERTY_ROLES = "_roles";
   private Set<EventContestRole> roles = null;
+
+  public static final String JSON_PROPERTY_FEES = "_fees";
+  private Set<EventContestFee> fees = null;
+
+  public static final String JSON_PROPERTY_LOCATIONS = "_locations";
+  private Set<EventContestLocation> locations = null;
+
+  public static final String JSON_PROPERTY_REMARKS = "_remarks";
+  private Set<EventContestRemark> remarks = null;
 
 
   public EventContest uuid(String uuid) {
@@ -247,10 +249,9 @@ public class EventContest {
    * Get uuid
    * @return uuid
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getUuid() {
     return uuid;
@@ -258,7 +259,7 @@ public class EventContest {
 
 
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -273,10 +274,9 @@ public class EventContest {
    * Get creationTimestamp
    * @return creationTimestamp
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public OffsetDateTime getCreationTimestamp() {
     return creationTimestamp;
@@ -284,7 +284,7 @@ public class EventContest {
 
 
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -420,6 +420,32 @@ public class EventContest {
   }
 
 
+  public EventContest eventNaming(String eventNaming) {
+    this.eventNaming = eventNaming;
+    return this;
+  }
+
+   /**
+   * Get eventNaming
+   * @return eventNaming
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_EVENT_NAMING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getEventNaming() {
+    return eventNaming;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EVENT_NAMING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEventNaming(String eventNaming) {
+    this.eventNaming = eventNaming;
+  }
+
+
   public EventContest title(String title) {
     this.title = title;
     return this;
@@ -443,6 +469,32 @@ public class EventContest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTitle(String title) {
     this.title = title;
+  }
+
+
+  public EventContest state(String state) {
+    this.state = state;
+    return this;
+  }
+
+   /**
+   * Get state
+   * @return state
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getState() {
+    return state;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setState(String state) {
+    this.state = state;
   }
 
 
@@ -550,32 +602,6 @@ public class EventContest {
   }
 
 
-  public EventContest locationDesciption(String locationDesciption) {
-    this.locationDesciption = locationDesciption;
-    return this;
-  }
-
-   /**
-   * Get locationDesciption
-   * @return locationDesciption
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_LOCATION_DESCIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getLocationDesciption() {
-    return locationDesciption;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOCATION_DESCIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocationDesciption(String locationDesciption) {
-    this.locationDesciption = locationDesciption;
-  }
-
-
   public EventContest isCountryChampionship(Boolean isCountryChampionship) {
     this.isCountryChampionship = isCountryChampionship;
     return this;
@@ -651,58 +677,6 @@ public class EventContest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsCard(Boolean isCard) {
     this.isCard = isCard;
-  }
-
-
-  public EventContest infoHelmetObligation(String infoHelmetObligation) {
-    this.infoHelmetObligation = infoHelmetObligation;
-    return this;
-  }
-
-   /**
-   * Get infoHelmetObligation
-   * @return infoHelmetObligation
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_INFO_HELMET_OBLIGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getInfoHelmetObligation() {
-    return infoHelmetObligation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INFO_HELMET_OBLIGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInfoHelmetObligation(String infoHelmetObligation) {
-    this.infoHelmetObligation = infoHelmetObligation;
-  }
-
-
-  public EventContest infoVaccinationObligation(String infoVaccinationObligation) {
-    this.infoVaccinationObligation = infoVaccinationObligation;
-    return this;
-  }
-
-   /**
-   * Get infoVaccinationObligation
-   * @return infoVaccinationObligation
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_INFO_VACCINATION_OBLIGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getInfoVaccinationObligation() {
-    return infoVaccinationObligation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INFO_VACCINATION_OBLIGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInfoVaccinationObligation(String infoVaccinationObligation) {
-    this.infoVaccinationObligation = infoVaccinationObligation;
   }
 
 
@@ -862,162 +836,6 @@ public class EventContest {
   }
 
 
-  public EventContest promoterContactUuid(String promoterContactUuid) {
-    this.promoterContactUuid = promoterContactUuid;
-    return this;
-  }
-
-   /**
-   * Get promoterContactUuid
-   * @return promoterContactUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PROMOTER_CONTACT_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPromoterContactUuid() {
-    return promoterContactUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROMOTER_CONTACT_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromoterContactUuid(String promoterContactUuid) {
-    this.promoterContactUuid = promoterContactUuid;
-  }
-
-
-  public EventContest promoterContactDescription(String promoterContactDescription) {
-    this.promoterContactDescription = promoterContactDescription;
-    return this;
-  }
-
-   /**
-   * Get promoterContactDescription
-   * @return promoterContactDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PROMOTER_CONTACT_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPromoterContactDescription() {
-    return promoterContactDescription;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROMOTER_CONTACT_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromoterContactDescription(String promoterContactDescription) {
-    this.promoterContactDescription = promoterContactDescription;
-  }
-
-
-  public EventContest organizerContactUuid(String organizerContactUuid) {
-    this.organizerContactUuid = organizerContactUuid;
-    return this;
-  }
-
-   /**
-   * Get organizerContactUuid
-   * @return organizerContactUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ORGANIZER_CONTACT_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getOrganizerContactUuid() {
-    return organizerContactUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ORGANIZER_CONTACT_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrganizerContactUuid(String organizerContactUuid) {
-    this.organizerContactUuid = organizerContactUuid;
-  }
-
-
-  public EventContest organizerContactDescription(String organizerContactDescription) {
-    this.organizerContactDescription = organizerContactDescription;
-    return this;
-  }
-
-   /**
-   * Get organizerContactDescription
-   * @return organizerContactDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ORGANIZER_CONTACT_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getOrganizerContactDescription() {
-    return organizerContactDescription;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ORGANIZER_CONTACT_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrganizerContactDescription(String organizerContactDescription) {
-    this.organizerContactDescription = organizerContactDescription;
-  }
-
-
-  public EventContest registrationDescription(String registrationDescription) {
-    this.registrationDescription = registrationDescription;
-    return this;
-  }
-
-   /**
-   * Get registrationDescription
-   * @return registrationDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRegistrationDescription() {
-    return registrationDescription;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegistrationDescription(String registrationDescription) {
-    this.registrationDescription = registrationDescription;
-  }
-
-
-  public EventContest remarks(String remarks) {
-    this.remarks = remarks;
-    return this;
-  }
-
-   /**
-   * Get remarks
-   * @return remarks
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REMARKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRemarks() {
-    return remarks;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMARKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemarks(String remarks) {
-    this.remarks = remarks;
-  }
-
-
   public EventContest initialEvent(String initialEvent) {
     this.initialEvent = initialEvent;
     return this;
@@ -1041,6 +859,32 @@ public class EventContest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInitialEvent(String initialEvent) {
     this.initialEvent = initialEvent;
+  }
+
+
+  public EventContest currentEvent(Integer currentEvent) {
+    this.currentEvent = currentEvent;
+    return this;
+  }
+
+   /**
+   * Get currentEvent
+   * @return currentEvent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CURRENT_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getCurrentEvent() {
+    return currentEvent;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CURRENT_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCurrentEvent(Integer currentEvent) {
+    this.currentEvent = currentEvent;
   }
 
 
@@ -1252,185 +1096,185 @@ public class EventContest {
   }
 
 
-  public EventContest feeCurrency(String feeCurrency) {
-    this.feeCurrency = feeCurrency;
+  public EventContest paymentAccountHolder(String paymentAccountHolder) {
+    this.paymentAccountHolder = paymentAccountHolder;
     return this;
   }
 
    /**
-   * Get feeCurrency
-   * @return feeCurrency
+   * Get paymentAccountHolder
+   * @return paymentAccountHolder
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FEE_CURRENCY)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_ACCOUNT_HOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFeeCurrency() {
-    return feeCurrency;
+  public String getPaymentAccountHolder() {
+    return paymentAccountHolder;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FEE_CURRENCY)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_ACCOUNT_HOLDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFeeCurrency(String feeCurrency) {
-    this.feeCurrency = feeCurrency;
+  public void setPaymentAccountHolder(String paymentAccountHolder) {
+    this.paymentAccountHolder = paymentAccountHolder;
   }
 
 
-  public EventContest registrationFee(BigDecimal registrationFee) {
-    this.registrationFee = registrationFee;
+  public EventContest paymentIban(String paymentIban) {
+    this.paymentIban = paymentIban;
     return this;
   }
 
    /**
-   * Get registrationFee
-   * @return registrationFee
+   * Get paymentIban
+   * @return paymentIban
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_IBAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getRegistrationFee() {
-    return registrationFee;
+  public String getPaymentIban() {
+    return paymentIban;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_IBAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegistrationFee(BigDecimal registrationFee) {
-    this.registrationFee = registrationFee;
+  public void setPaymentIban(String paymentIban) {
+    this.paymentIban = paymentIban;
   }
 
 
-  public EventContest startingFee(BigDecimal startingFee) {
-    this.startingFee = startingFee;
+  public EventContest paymentBic(String paymentBic) {
+    this.paymentBic = paymentBic;
     return this;
   }
 
    /**
-   * Get startingFee
-   * @return startingFee
+   * Get paymentBic
+   * @return paymentBic
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STARTING_FEE)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_BIC)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getStartingFee() {
-    return startingFee;
+  public String getPaymentBic() {
+    return paymentBic;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STARTING_FEE)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_BIC)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartingFee(BigDecimal startingFee) {
-    this.startingFee = startingFee;
+  public void setPaymentBic(String paymentBic) {
+    this.paymentBic = paymentBic;
   }
 
 
-  public EventContest startingFeeUnit(String startingFeeUnit) {
-    this.startingFeeUnit = startingFeeUnit;
+  public EventContest paymentPaypal(String paymentPaypal) {
+    this.paymentPaypal = paymentPaypal;
     return this;
   }
 
    /**
-   * Get startingFeeUnit
-   * @return startingFeeUnit
+   * Get paymentPaypal
+   * @return paymentPaypal
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STARTING_FEE_UNIT)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_PAYPAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStartingFeeUnit() {
-    return startingFeeUnit;
+  public String getPaymentPaypal() {
+    return paymentPaypal;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STARTING_FEE_UNIT)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_PAYPAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartingFeeUnit(String startingFeeUnit) {
-    this.startingFeeUnit = startingFeeUnit;
+  public void setPaymentPaypal(String paymentPaypal) {
+    this.paymentPaypal = paymentPaypal;
   }
 
 
-  public EventContest lateRegistrationFee(BigDecimal lateRegistrationFee) {
-    this.lateRegistrationFee = lateRegistrationFee;
+  public EventContest paymentReason(String paymentReason) {
+    this.paymentReason = paymentReason;
     return this;
   }
 
    /**
-   * Get lateRegistrationFee
-   * @return lateRegistrationFee
+   * Get paymentReason
+   * @return paymentReason
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_LATE_REGISTRATION_FEE)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getLateRegistrationFee() {
-    return lateRegistrationFee;
+  public String getPaymentReason() {
+    return paymentReason;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LATE_REGISTRATION_FEE)
+  @JsonProperty(JSON_PROPERTY_PAYMENT_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLateRegistrationFee(BigDecimal lateRegistrationFee) {
-    this.lateRegistrationFee = lateRegistrationFee;
+  public void setPaymentReason(String paymentReason) {
+    this.paymentReason = paymentReason;
   }
 
 
-  public EventContest changeRegistrationFee(BigDecimal changeRegistrationFee) {
-    this.changeRegistrationFee = changeRegistrationFee;
+  public EventContest contestantQuantityMin(Integer contestantQuantityMin) {
+    this.contestantQuantityMin = contestantQuantityMin;
     return this;
   }
 
    /**
-   * Get changeRegistrationFee
-   * @return changeRegistrationFee
+   * Get contestantQuantityMin
+   * @return contestantQuantityMin
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_REGISTRATION_FEE)
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getChangeRegistrationFee() {
-    return changeRegistrationFee;
+  public Integer getContestantQuantityMin() {
+    return contestantQuantityMin;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CHANGE_REGISTRATION_FEE)
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeRegistrationFee(BigDecimal changeRegistrationFee) {
-    this.changeRegistrationFee = changeRegistrationFee;
+  public void setContestantQuantityMin(Integer contestantQuantityMin) {
+    this.contestantQuantityMin = contestantQuantityMin;
   }
 
 
-  public EventContest surchargeNonMembers(BigDecimal surchargeNonMembers) {
-    this.surchargeNonMembers = surchargeNonMembers;
+  public EventContest contestantQuantityMax(Integer contestantQuantityMax) {
+    this.contestantQuantityMax = contestantQuantityMax;
     return this;
   }
 
    /**
-   * Get surchargeNonMembers
-   * @return surchargeNonMembers
+   * Get contestantQuantityMax
+   * @return contestantQuantityMax
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SURCHARGE_NON_MEMBERS)
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MAX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getSurchargeNonMembers() {
-    return surchargeNonMembers;
+  public Integer getContestantQuantityMax() {
+    return contestantQuantityMax;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SURCHARGE_NON_MEMBERS)
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MAX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSurchargeNonMembers(BigDecimal surchargeNonMembers) {
-    this.surchargeNonMembers = surchargeNonMembers;
+  public void setContestantQuantityMax(Integer contestantQuantityMax) {
+    this.contestantQuantityMax = contestantQuantityMax;
   }
 
 
@@ -1457,6 +1301,84 @@ public class EventContest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistrationClosing(OffsetDateTime registrationClosing) {
     this.registrationClosing = registrationClosing;
+  }
+
+
+  public EventContest isLateRegistration(Boolean isLateRegistration) {
+    this.isLateRegistration = isLateRegistration;
+    return this;
+  }
+
+   /**
+   * Get isLateRegistration
+   * @return isLateRegistration
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_LATE_REGISTRATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsLateRegistration() {
+    return isLateRegistration;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_LATE_REGISTRATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsLateRegistration(Boolean isLateRegistration) {
+    this.isLateRegistration = isLateRegistration;
+  }
+
+
+  public EventContest infoVaccinationObligation(String infoVaccinationObligation) {
+    this.infoVaccinationObligation = infoVaccinationObligation;
+    return this;
+  }
+
+   /**
+   * Get infoVaccinationObligation
+   * @return infoVaccinationObligation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_VACCINATION_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoVaccinationObligation() {
+    return infoVaccinationObligation;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_VACCINATION_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoVaccinationObligation(String infoVaccinationObligation) {
+    this.infoVaccinationObligation = infoVaccinationObligation;
+  }
+
+
+  public EventContest infoHelmetObligation(String infoHelmetObligation) {
+    this.infoHelmetObligation = infoHelmetObligation;
+    return this;
+  }
+
+   /**
+   * Get infoHelmetObligation
+   * @return infoHelmetObligation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_HELMET_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoHelmetObligation() {
+    return infoHelmetObligation;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_HELMET_OBLIGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoHelmetObligation(String infoHelmetObligation) {
+    this.infoHelmetObligation = infoHelmetObligation;
   }
 
 
@@ -1528,6 +1450,108 @@ public class EventContest {
   }
 
 
+  public EventContest fees(Set<EventContestFee> fees) {
+    this.fees = fees;
+    return this;
+  }
+
+  public EventContest addFeesItem(EventContestFee feesItem) {
+    if (this.fees == null) {
+      this.fees = new LinkedHashSet<>();
+    }
+    this.fees.add(feesItem);
+    return this;
+  }
+
+   /**
+   * Get fees
+   * @return fees
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FEES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestFee> getFees() {
+    return fees;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FEES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFees(Set<EventContestFee> fees) {
+    this.fees = fees;
+  }
+
+
+  public EventContest locations(Set<EventContestLocation> locations) {
+    this.locations = locations;
+    return this;
+  }
+
+  public EventContest addLocationsItem(EventContestLocation locationsItem) {
+    if (this.locations == null) {
+      this.locations = new LinkedHashSet<>();
+    }
+    this.locations.add(locationsItem);
+    return this;
+  }
+
+   /**
+   * Get locations
+   * @return locations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestLocation> getLocations() {
+    return locations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocations(Set<EventContestLocation> locations) {
+    this.locations = locations;
+  }
+
+
+  public EventContest remarks(Set<EventContestRemark> remarks) {
+    this.remarks = remarks;
+    return this;
+  }
+
+  public EventContest addRemarksItem(EventContestRemark remarksItem) {
+    if (this.remarks == null) {
+      this.remarks = new LinkedHashSet<>();
+    }
+    this.remarks.add(remarksItem);
+    return this;
+  }
+
+   /**
+   * Get remarks
+   * @return remarks
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REMARKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestRemark> getRemarks() {
+    return remarks;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REMARKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRemarks(Set<EventContestRemark> remarks) {
+    this.remarks = remarks;
+  }
+
+
   /**
    * Return true if this EventContest object is equal to o.
    */
@@ -1547,30 +1571,24 @@ public class EventContest {
         Objects.equals(this.changeUserUuid, eventContest.changeUserUuid) &&
         Objects.equals(this.changeCounter, eventContest.changeCounter) &&
         Objects.equals(this.currentState, eventContest.currentState) &&
+        Objects.equals(this.eventNaming, eventContest.eventNaming) &&
         Objects.equals(this.title, eventContest.title) &&
+        Objects.equals(this.state, eventContest.state) &&
         Objects.equals(this.beginning, eventContest.beginning) &&
         Objects.equals(this.ending, eventContest.ending) &&
         Objects.equals(this.country, eventContest.country) &&
         Objects.equals(this.countryRegion, eventContest.countryRegion) &&
-        Objects.equals(this.locationDesciption, eventContest.locationDesciption) &&
         Objects.equals(this.isCountryChampionship, eventContest.isCountryChampionship) &&
         Objects.equals(this.isCei, eventContest.isCei) &&
         Objects.equals(this.isCard, eventContest.isCard) &&
-        Objects.equals(this.infoHelmetObligation, eventContest.infoHelmetObligation) &&
-        Objects.equals(this.infoVaccinationObligation, eventContest.infoVaccinationObligation) &&
         Objects.equals(this.vddPortalUrl, eventContest.vddPortalUrl) &&
         Objects.equals(this.vddPortalTitle, eventContest.vddPortalTitle) &&
         Objects.equals(this.promoterTenderingUrl, eventContest.promoterTenderingUrl) &&
         Objects.equals(this.promoterTenderingTitle, eventContest.promoterTenderingTitle) &&
         Objects.equals(this.promoterEventUrl, eventContest.promoterEventUrl) &&
         Objects.equals(this.promoterEventTitle, eventContest.promoterEventTitle) &&
-        Objects.equals(this.promoterContactUuid, eventContest.promoterContactUuid) &&
-        Objects.equals(this.promoterContactDescription, eventContest.promoterContactDescription) &&
-        Objects.equals(this.organizerContactUuid, eventContest.organizerContactUuid) &&
-        Objects.equals(this.organizerContactDescription, eventContest.organizerContactDescription) &&
-        Objects.equals(this.registrationDescription, eventContest.registrationDescription) &&
-        Objects.equals(this.remarks, eventContest.remarks) &&
         Objects.equals(this.initialEvent, eventContest.initialEvent) &&
+        Objects.equals(this.currentEvent, eventContest.currentEvent) &&
         Objects.equals(this.requestDate, eventContest.requestDate) &&
         Objects.equals(this.requestInfo, eventContest.requestInfo) &&
         Objects.equals(this.approvalDate, eventContest.approvalDate) &&
@@ -1579,21 +1597,27 @@ public class EventContest {
         Objects.equals(this.stateCommissionerDescription, eventContest.stateCommissionerDescription) &&
         Objects.equals(this.regionCommissionerUuid, eventContest.regionCommissionerUuid) &&
         Objects.equals(this.regionCommissionerDescription, eventContest.regionCommissionerDescription) &&
-        Objects.equals(this.feeCurrency, eventContest.feeCurrency) &&
-        Objects.equals(this.registrationFee, eventContest.registrationFee) &&
-        Objects.equals(this.startingFee, eventContest.startingFee) &&
-        Objects.equals(this.startingFeeUnit, eventContest.startingFeeUnit) &&
-        Objects.equals(this.lateRegistrationFee, eventContest.lateRegistrationFee) &&
-        Objects.equals(this.changeRegistrationFee, eventContest.changeRegistrationFee) &&
-        Objects.equals(this.surchargeNonMembers, eventContest.surchargeNonMembers) &&
+        Objects.equals(this.paymentAccountHolder, eventContest.paymentAccountHolder) &&
+        Objects.equals(this.paymentIban, eventContest.paymentIban) &&
+        Objects.equals(this.paymentBic, eventContest.paymentBic) &&
+        Objects.equals(this.paymentPaypal, eventContest.paymentPaypal) &&
+        Objects.equals(this.paymentReason, eventContest.paymentReason) &&
+        Objects.equals(this.contestantQuantityMin, eventContest.contestantQuantityMin) &&
+        Objects.equals(this.contestantQuantityMax, eventContest.contestantQuantityMax) &&
         Objects.equals(this.registrationClosing, eventContest.registrationClosing) &&
+        Objects.equals(this.isLateRegistration, eventContest.isLateRegistration) &&
+        Objects.equals(this.infoVaccinationObligation, eventContest.infoVaccinationObligation) &&
+        Objects.equals(this.infoHelmetObligation, eventContest.infoHelmetObligation) &&
         Objects.equals(this.competitions, eventContest.competitions) &&
-        Objects.equals(this.roles, eventContest.roles);
+        Objects.equals(this.roles, eventContest.roles) &&
+        Objects.equals(this.fees, eventContest.fees) &&
+        Objects.equals(this.locations, eventContest.locations) &&
+        Objects.equals(this.remarks, eventContest.remarks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, beginning, ending, country, countryRegion, locationDesciption, isCountryChampionship, isCei, isCard, infoHelmetObligation, infoVaccinationObligation, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, promoterContactUuid, promoterContactDescription, organizerContactUuid, organizerContactDescription, registrationDescription, remarks, initialEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, feeCurrency, registrationFee, startingFee, startingFeeUnit, lateRegistrationFee, changeRegistrationFee, surchargeNonMembers, registrationClosing, competitions, roles);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, eventNaming, title, state, beginning, ending, country, countryRegion, isCountryChampionship, isCei, isCard, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, initialEvent, currentEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, paymentAccountHolder, paymentIban, paymentBic, paymentPaypal, paymentReason, contestantQuantityMin, contestantQuantityMax, registrationClosing, isLateRegistration, infoVaccinationObligation, infoHelmetObligation, competitions, roles, fees, locations, remarks);
   }
 
   @Override
@@ -1607,30 +1631,24 @@ public class EventContest {
     sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
     sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
     sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
+    sb.append("    eventNaming: ").append(toIndentedString(eventNaming)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    beginning: ").append(toIndentedString(beginning)).append("\n");
     sb.append("    ending: ").append(toIndentedString(ending)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    countryRegion: ").append(toIndentedString(countryRegion)).append("\n");
-    sb.append("    locationDesciption: ").append(toIndentedString(locationDesciption)).append("\n");
     sb.append("    isCountryChampionship: ").append(toIndentedString(isCountryChampionship)).append("\n");
     sb.append("    isCei: ").append(toIndentedString(isCei)).append("\n");
     sb.append("    isCard: ").append(toIndentedString(isCard)).append("\n");
-    sb.append("    infoHelmetObligation: ").append(toIndentedString(infoHelmetObligation)).append("\n");
-    sb.append("    infoVaccinationObligation: ").append(toIndentedString(infoVaccinationObligation)).append("\n");
     sb.append("    vddPortalUrl: ").append(toIndentedString(vddPortalUrl)).append("\n");
     sb.append("    vddPortalTitle: ").append(toIndentedString(vddPortalTitle)).append("\n");
     sb.append("    promoterTenderingUrl: ").append(toIndentedString(promoterTenderingUrl)).append("\n");
     sb.append("    promoterTenderingTitle: ").append(toIndentedString(promoterTenderingTitle)).append("\n");
     sb.append("    promoterEventUrl: ").append(toIndentedString(promoterEventUrl)).append("\n");
     sb.append("    promoterEventTitle: ").append(toIndentedString(promoterEventTitle)).append("\n");
-    sb.append("    promoterContactUuid: ").append(toIndentedString(promoterContactUuid)).append("\n");
-    sb.append("    promoterContactDescription: ").append(toIndentedString(promoterContactDescription)).append("\n");
-    sb.append("    organizerContactUuid: ").append(toIndentedString(organizerContactUuid)).append("\n");
-    sb.append("    organizerContactDescription: ").append(toIndentedString(organizerContactDescription)).append("\n");
-    sb.append("    registrationDescription: ").append(toIndentedString(registrationDescription)).append("\n");
-    sb.append("    remarks: ").append(toIndentedString(remarks)).append("\n");
     sb.append("    initialEvent: ").append(toIndentedString(initialEvent)).append("\n");
+    sb.append("    currentEvent: ").append(toIndentedString(currentEvent)).append("\n");
     sb.append("    requestDate: ").append(toIndentedString(requestDate)).append("\n");
     sb.append("    requestInfo: ").append(toIndentedString(requestInfo)).append("\n");
     sb.append("    approvalDate: ").append(toIndentedString(approvalDate)).append("\n");
@@ -1639,16 +1657,22 @@ public class EventContest {
     sb.append("    stateCommissionerDescription: ").append(toIndentedString(stateCommissionerDescription)).append("\n");
     sb.append("    regionCommissionerUuid: ").append(toIndentedString(regionCommissionerUuid)).append("\n");
     sb.append("    regionCommissionerDescription: ").append(toIndentedString(regionCommissionerDescription)).append("\n");
-    sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
-    sb.append("    registrationFee: ").append(toIndentedString(registrationFee)).append("\n");
-    sb.append("    startingFee: ").append(toIndentedString(startingFee)).append("\n");
-    sb.append("    startingFeeUnit: ").append(toIndentedString(startingFeeUnit)).append("\n");
-    sb.append("    lateRegistrationFee: ").append(toIndentedString(lateRegistrationFee)).append("\n");
-    sb.append("    changeRegistrationFee: ").append(toIndentedString(changeRegistrationFee)).append("\n");
-    sb.append("    surchargeNonMembers: ").append(toIndentedString(surchargeNonMembers)).append("\n");
+    sb.append("    paymentAccountHolder: ").append(toIndentedString(paymentAccountHolder)).append("\n");
+    sb.append("    paymentIban: ").append(toIndentedString(paymentIban)).append("\n");
+    sb.append("    paymentBic: ").append(toIndentedString(paymentBic)).append("\n");
+    sb.append("    paymentPaypal: ").append(toIndentedString(paymentPaypal)).append("\n");
+    sb.append("    paymentReason: ").append(toIndentedString(paymentReason)).append("\n");
+    sb.append("    contestantQuantityMin: ").append(toIndentedString(contestantQuantityMin)).append("\n");
+    sb.append("    contestantQuantityMax: ").append(toIndentedString(contestantQuantityMax)).append("\n");
     sb.append("    registrationClosing: ").append(toIndentedString(registrationClosing)).append("\n");
+    sb.append("    isLateRegistration: ").append(toIndentedString(isLateRegistration)).append("\n");
+    sb.append("    infoVaccinationObligation: ").append(toIndentedString(infoVaccinationObligation)).append("\n");
+    sb.append("    infoHelmetObligation: ").append(toIndentedString(infoHelmetObligation)).append("\n");
     sb.append("    competitions: ").append(toIndentedString(competitions)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+    sb.append("    fees: ").append(toIndentedString(fees)).append("\n");
+    sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    remarks: ").append(toIndentedString(remarks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

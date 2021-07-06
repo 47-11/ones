@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]
+- Build date: 2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -139,6 +139,8 @@ Class | Method | HTTP request | Description
 *MasterdataHorseControllerApi* | [**getHorsesByContactUuidWithHttpInfo**](docs/MasterdataHorseControllerApi.md#getHorsesByContactUuidWithHttpInfo) | **GET** /rest/masterdata/horse/account/{uuid} | 
 *MasterdataHorseControllerApi* | [**postRegisterHorse**](docs/MasterdataHorseControllerApi.md#postRegisterHorse) | **POST** /rest/masterdata/register/horse | 
 *MasterdataHorseControllerApi* | [**postRegisterHorseWithHttpInfo**](docs/MasterdataHorseControllerApi.md#postRegisterHorseWithHttpInfo) | **POST** /rest/masterdata/register/horse | 
+*MasterdataPropertyControllerApi* | [**getPropertyItems**](docs/MasterdataPropertyControllerApi.md#getPropertyItems) | **GET** /rest/masterdata/property/items/{proptery} | 
+*MasterdataPropertyControllerApi* | [**getPropertyItemsWithHttpInfo**](docs/MasterdataPropertyControllerApi.md#getPropertyItemsWithHttpInfo) | **GET** /rest/masterdata/property/items/{proptery} | 
 
 
 ## Documentation for Models
@@ -150,7 +152,13 @@ Class | Method | HTTP request | Description
  - [EventContestCompetitionResultHorse](docs/EventContestCompetitionResultHorse.md)
  - [EventContestCompetitionStage](docs/EventContestCompetitionStage.md)
  - [EventContestCompetitionStagePlain](docs/EventContestCompetitionStagePlain.md)
+ - [EventContestFee](docs/EventContestFee.md)
+ - [EventContestFeePlain](docs/EventContestFeePlain.md)
+ - [EventContestLocation](docs/EventContestLocation.md)
+ - [EventContestLocationPlain](docs/EventContestLocationPlain.md)
  - [EventContestPlain](docs/EventContestPlain.md)
+ - [EventContestRemark](docs/EventContestRemark.md)
+ - [EventContestRemarkPlain](docs/EventContestRemarkPlain.md)
  - [EventContestRole](docs/EventContestRole.md)
  - [EventContestRolePlain](docs/EventContestRolePlain.md)
  - [MasterdataContact](docs/MasterdataContact.md)
@@ -159,6 +167,8 @@ Class | Method | HTTP request | Description
  - [MasterdataHorse](docs/MasterdataHorse.md)
  - [MasterdataHorseOwner](docs/MasterdataHorseOwner.md)
  - [MasterdataHorseStable](docs/MasterdataHorseStable.md)
+ - [MasterdataProperty](docs/MasterdataProperty.md)
+ - [MasterdataPropertyCharacteristic](docs/MasterdataPropertyCharacteristic.md)
  - [RegisterAccount](docs/RegisterAccount.md)
  - [RegisterAccount4Member](docs/RegisterAccount4Member.md)
  - [RegisterAddress](docs/RegisterAddress.md)

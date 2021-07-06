@@ -300,6 +300,44 @@
         ]
       }
     },
+    "/rest/masterdata/property/items/{proptery}": {
+      "get": {
+        "tags": [
+          "masterdata-property-controller"
+        ],
+        "operationId": "getPropertyItems",
+        "parameters": [
+          {
+            "name": "proptery",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MasterdataProperty"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
     "/rest/masterdata/horse/{uuid}": {
       "get": {
         "tags": [
@@ -441,15 +479,6 @@
         "operationId": "getContestByYear",
         "parameters": [
           {
-            "name": "year",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
             "name": "fromDate",
             "in": "query",
             "required": false,
@@ -469,6 +498,17 @@
           },
           {
             "name": "countryRegions",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "contestKinds",
             "in": "query",
             "required": false,
             "schema": {
@@ -503,6 +543,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "accountUuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -909,6 +957,115 @@
           }
         }
       },
+      "MasterdataProperty": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "acronym": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "_items": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
+            }
+          }
+        }
+      },
+      "MasterdataPropertyCharacteristic": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "acronym": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
       "MasterdataContact": {
         "type": "object",
         "properties": {
@@ -1164,7 +1321,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "role": {
+          "kind": {
             "maxLength": 50,
             "minLength": 0,
             "type": "string"
@@ -1362,9 +1519,15 @@
         }
       },
       "EventContestCompetitionStage_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
         "type": "object",
         "properties": {
           "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
           "creationTimestamp": {
@@ -1372,6 +1535,8 @@
             "format": "date-time"
           },
           "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeTimestamp": {
@@ -1379,6 +1544,8 @@
             "format": "date-time"
           },
           "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeCounter": {
@@ -1390,9 +1557,13 @@
             "format": "int32"
           },
           "title": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "kind": {
+            "maxLength": 25,
+            "minLength": 0,
             "type": "string"
           },
           "beginning": {
@@ -1440,25 +1611,22 @@
             "format": "int32"
           },
           "responsibleVeterinarianUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
-          },
-          "contestantLimitiationMin": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "contestantLimitiationMax": {
-            "type": "integer",
-            "format": "int32"
           }
         }
       },
       "EventContestCompetition_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
         "type": "object",
         "properties": {
           "uuid": {
-            "type": "string"
-          },
-          "eventContestUuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
           "creationTimestamp": {
@@ -1466,6 +1634,8 @@
             "format": "date-time"
           },
           "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeTimestamp": {
@@ -1473,6 +1643,8 @@
             "format": "date-time"
           },
           "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeCounter": {
@@ -1483,10 +1655,19 @@
             "type": "integer",
             "format": "int32"
           },
+          "state": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
           "title": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "kind": {
+            "maxLength": 25,
+            "minLength": 0,
             "type": "string"
           },
           "beginning": {
@@ -1534,12 +1715,18 @@
             "format": "int32"
           },
           "responsibleVeterinarianUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "competitionUuidToExtend": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "competitionUuidToReduce": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "contestantLimitiationMin": {
@@ -1549,6 +1736,146 @@
           "contestantLimitiationMax": {
             "type": "integer",
             "format": "int32"
+          },
+          "datePreliminaryExamination": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoPreliminaryExamination": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "datePreliminaryDiscussion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoPreliminaryDiscussion": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dateFollowUpExamination": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoFollowUpExamination": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dateTransferRelease": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoTransferRelease": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dateAwardCeremony": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoAwardCeremony": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddQualificationLevel": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "altitudeMeters": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "feeCurrency": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "registrationFee": {
+            "type": "number",
+            "format": "double"
+          },
+          "registrationFeeUnit": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "startingFee": {
+            "type": "number",
+            "format": "double"
+          },
+          "startingFeeUnit": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "scoringMinimumTime": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "scoringPeakTime": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "horseAgeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "horseAgeMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantAgeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantAgeMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantQuantityMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantQuantityMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hoofProtection": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descriptionRoute": {
+            "type": "string"
+          },
+          "typeOfRouting": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descriptionStart": {
+            "type": "string"
+          },
+          "descriptionTerrain": {
+            "type": "string"
+          },
+          "descriptionControlchecks": {
+            "type": "string"
+          },
+          "ratingType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descriptionRatingType": {
+            "type": "string"
           },
           "_stages": {
             "uniqueItems": true,
@@ -1556,6 +1883,253 @@
             "items": {
               "$ref": "#/components/schemas/EventContestCompetitionStage_Plain"
             }
+          }
+        }
+      },
+      "EventContestFee_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "key": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "currency": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "unit": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number",
+            "format": "double"
+          },
+          "remark": {
+            "type": "string"
+          }
+        }
+      },
+      "EventContestLocation_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "salutation": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name1": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name2": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name3": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "zipcode": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fax": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "cellPhone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "gpsCoordinate": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "info": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "EventContestRemark_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "sortid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
           }
         }
       },
@@ -1597,8 +2171,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "role": {
-            "maxLength": 50,
+          "kind": {
+            "maxLength": 25,
             "minLength": 0,
             "type": "string"
           },
@@ -1608,16 +2182,87 @@
             "type": "string"
           },
           "display": {
-            "maxLength": 50,
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name1": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name2": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name3": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "titleAcademic": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "zipcode": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fax": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "cellPhone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 255,
             "minLength": 0,
             "type": "string"
           }
         }
       },
       "EventContest_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
         "type": "object",
         "properties": {
           "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
           "creationTimestamp": {
@@ -1625,6 +2270,8 @@
             "format": "date-time"
           },
           "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeTimestamp": {
@@ -1632,6 +2279,8 @@
             "format": "date-time"
           },
           "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeCounter": {
@@ -1642,7 +2291,19 @@
             "type": "integer",
             "format": "int32"
           },
+          "eventNaming": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
           "title": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "state": {
+            "maxLength": 25,
+            "minLength": 0,
             "type": "string"
           },
           "beginning": {
@@ -1654,12 +2315,13 @@
             "format": "date-time"
           },
           "country": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
           "countryRegion": {
-            "type": "string"
-          },
-          "locationDesciption": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
           "isCountryChampionship": {
@@ -1671,56 +2333,52 @@
           "isCard": {
             "type": "boolean"
           },
-          "infoHelmetObligation": {
-            "type": "string"
-          },
-          "infoVaccinationObligation": {
-            "type": "string"
-          },
           "vddPortalUrl": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "vddPortalTitle": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterTenderingUrl": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterTenderingTitle": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterEventUrl": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterEventTitle": {
-            "type": "string"
-          },
-          "promoterContactUuid": {
-            "type": "string"
-          },
-          "promoterContactDescription": {
-            "type": "string"
-          },
-          "organizerContactUuid": {
-            "type": "string"
-          },
-          "organizerContactDescription": {
-            "type": "string"
-          },
-          "registrationDescription": {
-            "type": "string"
-          },
-          "remarks": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "initialEvent": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
+          },
+          "currentEvent": {
+            "type": "integer",
+            "format": "int32"
           },
           "requestDate": {
             "type": "string",
             "format": "date-time"
           },
           "requestInfo": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "approvalDate": {
@@ -1728,44 +2386,79 @@
             "format": "date-time"
           },
           "approvalInfo": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "stateCommissionerUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "stateCommissionerDescription": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "regionCommissionerUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "regionCommissionerDescription": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
-          "feeCurrency": {
+          "paymentAccountHolder": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string"
           },
-          "registrationFee": {
-            "type": "number"
-          },
-          "startingFee": {
-            "type": "number"
-          },
-          "startingFeeUnit": {
+          "paymentIban": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
-          "lateRegistrationFee": {
-            "type": "number"
+          "paymentBic": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
-          "changeRegistrationFee": {
-            "type": "number"
+          "paymentPaypal": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
           },
-          "surchargeNonMembers": {
-            "type": "number"
+          "paymentReason": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contestantQuantityMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantQuantityMax": {
+            "type": "integer",
+            "format": "int32"
           },
           "registrationClosing": {
             "type": "string",
             "format": "date-time"
+          },
+          "isLateRegistration": {
+            "type": "boolean"
+          },
+          "infoVaccinationObligation": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "infoHelmetObligation": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
           },
           "_competitions": {
             "uniqueItems": true,
@@ -1779,6 +2472,27 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EventContestRole_Plain"
+            }
+          },
+          "_fees": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestFee_Plain"
+            }
+          },
+          "_locations": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestLocation_Plain"
+            }
+          },
+          "_remarks": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestRemark_Plain"
             }
           }
         }
@@ -1803,9 +2517,15 @@
         }
       },
       "EventContest": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
         "type": "object",
         "properties": {
           "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
           "creationTimestamp": {
@@ -1813,6 +2533,8 @@
             "format": "date-time"
           },
           "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeTimestamp": {
@@ -1820,6 +2542,8 @@
             "format": "date-time"
           },
           "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeCounter": {
@@ -1830,7 +2554,19 @@
             "type": "integer",
             "format": "int32"
           },
+          "eventNaming": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
           "title": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "state": {
+            "maxLength": 25,
+            "minLength": 0,
             "type": "string"
           },
           "beginning": {
@@ -1842,12 +2578,13 @@
             "format": "date-time"
           },
           "country": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
           "countryRegion": {
-            "type": "string"
-          },
-          "locationDesciption": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
           "isCountryChampionship": {
@@ -1859,56 +2596,52 @@
           "isCard": {
             "type": "boolean"
           },
-          "infoHelmetObligation": {
-            "type": "string"
-          },
-          "infoVaccinationObligation": {
-            "type": "string"
-          },
           "vddPortalUrl": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "vddPortalTitle": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterTenderingUrl": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterTenderingTitle": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterEventUrl": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "promoterEventTitle": {
-            "type": "string"
-          },
-          "promoterContactUuid": {
-            "type": "string"
-          },
-          "promoterContactDescription": {
-            "type": "string"
-          },
-          "organizerContactUuid": {
-            "type": "string"
-          },
-          "organizerContactDescription": {
-            "type": "string"
-          },
-          "registrationDescription": {
-            "type": "string"
-          },
-          "remarks": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "initialEvent": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
+          },
+          "currentEvent": {
+            "type": "integer",
+            "format": "int32"
           },
           "requestDate": {
             "type": "string",
             "format": "date-time"
           },
           "requestInfo": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "approvalDate": {
@@ -1916,44 +2649,79 @@
             "format": "date-time"
           },
           "approvalInfo": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "stateCommissionerUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "stateCommissionerDescription": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "regionCommissionerUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "regionCommissionerDescription": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
-          "feeCurrency": {
+          "paymentAccountHolder": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string"
           },
-          "registrationFee": {
-            "type": "number"
-          },
-          "startingFee": {
-            "type": "number"
-          },
-          "startingFeeUnit": {
+          "paymentIban": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
-          "lateRegistrationFee": {
-            "type": "number"
+          "paymentBic": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           },
-          "changeRegistrationFee": {
-            "type": "number"
+          "paymentPaypal": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
           },
-          "surchargeNonMembers": {
-            "type": "number"
+          "paymentReason": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contestantQuantityMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantQuantityMax": {
+            "type": "integer",
+            "format": "int32"
           },
           "registrationClosing": {
             "type": "string",
             "format": "date-time"
+          },
+          "isLateRegistration": {
+            "type": "boolean"
+          },
+          "infoVaccinationObligation": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "infoHelmetObligation": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
           },
           "_competitions": {
             "uniqueItems": true,
@@ -1968,16 +2736,40 @@
             "items": {
               "$ref": "#/components/schemas/EventContestRole"
             }
+          },
+          "_fees": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestFee"
+            }
+          },
+          "_locations": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestLocation"
+            }
+          },
+          "_remarks": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventContestRemark"
+            }
           }
         }
       },
       "EventContestCompetition": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
         "type": "object",
         "properties": {
           "uuid": {
-            "type": "string"
-          },
-          "eventContestUuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
           "creationTimestamp": {
@@ -1985,6 +2777,8 @@
             "format": "date-time"
           },
           "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeTimestamp": {
@@ -1992,6 +2786,8 @@
             "format": "date-time"
           },
           "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeCounter": {
@@ -2002,10 +2798,19 @@
             "type": "integer",
             "format": "int32"
           },
+          "state": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
           "title": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "kind": {
+            "maxLength": 25,
+            "minLength": 0,
             "type": "string"
           },
           "beginning": {
@@ -2053,12 +2858,18 @@
             "format": "int32"
           },
           "responsibleVeterinarianUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "competitionUuidToExtend": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "competitionUuidToReduce": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "contestantLimitiationMin": {
@@ -2068,6 +2879,146 @@
           "contestantLimitiationMax": {
             "type": "integer",
             "format": "int32"
+          },
+          "datePreliminaryExamination": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoPreliminaryExamination": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "datePreliminaryDiscussion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoPreliminaryDiscussion": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dateFollowUpExamination": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoFollowUpExamination": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dateTransferRelease": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoTransferRelease": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dateAwardCeremony": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "infoAwardCeremony": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddQualificationLevel": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "altitudeMeters": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "feeCurrency": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "registrationFee": {
+            "type": "number",
+            "format": "double"
+          },
+          "registrationFeeUnit": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "startingFee": {
+            "type": "number",
+            "format": "double"
+          },
+          "startingFeeUnit": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "scoringMinimumTime": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "scoringPeakTime": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "horseAgeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "horseAgeMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantAgeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantAgeMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantQuantityMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestantQuantityMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hoofProtection": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descriptionRoute": {
+            "type": "string"
+          },
+          "typeOfRouting": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "descriptionStart": {
+            "type": "string"
+          },
+          "descriptionTerrain": {
+            "type": "string"
+          },
+          "descriptionControlchecks": {
+            "type": "string"
+          },
+          "ratingType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descriptionRatingType": {
+            "type": "string"
           },
           "_stages": {
             "uniqueItems": true,
@@ -2079,9 +3030,15 @@
         }
       },
       "EventContestCompetitionStage": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
         "type": "object",
         "properties": {
           "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
           "creationTimestamp": {
@@ -2089,6 +3046,8 @@
             "format": "date-time"
           },
           "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeTimestamp": {
@@ -2096,6 +3055,8 @@
             "format": "date-time"
           },
           "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
             "type": "string"
           },
           "changeCounter": {
@@ -2107,9 +3068,13 @@
             "format": "int32"
           },
           "title": {
+            "maxLength": 255,
+            "minLength": 0,
             "type": "string"
           },
           "kind": {
+            "maxLength": 25,
+            "minLength": 0,
             "type": "string"
           },
           "beginning": {
@@ -2157,15 +3122,256 @@
             "format": "int32"
           },
           "responsibleVeterinarianUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "EventContestFee": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string"
           },
-          "contestantLimitiationMin": {
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
             "type": "integer",
             "format": "int32"
           },
-          "contestantLimitiationMax": {
+          "currentState": {
             "type": "integer",
             "format": "int32"
+          },
+          "kind": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "key": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "currency": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "unit": {
+            "maxLength": 25,
+            "minLength": 0,
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number",
+            "format": "double"
+          },
+          "remark": {
+            "type": "string"
+          }
+        }
+      },
+      "EventContestLocation": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "salutation": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name1": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name2": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name3": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "zipcode": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fax": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "cellPhone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "gpsCoordinate": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "info": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "EventContestRemark": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "sortid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
           }
         }
       },
@@ -2207,8 +3413,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "role": {
-            "maxLength": 50,
+          "kind": {
+            "maxLength": 25,
             "minLength": 0,
             "type": "string"
           },
@@ -2218,7 +3424,72 @@
             "type": "string"
           },
           "display": {
-            "maxLength": 50,
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name1": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name2": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name3": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "titleAcademic": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "zipcode": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fax": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "cellPhone": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 255,
             "minLength": 0,
             "type": "string"
           }

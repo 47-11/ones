@@ -97,11 +97,11 @@ public class MasterdataContactRoleTest {
     }
 
     /**
-     * Test the property 'role'
+     * Test the property 'kind'
      */
     @Test
-    public void roleTest() {
-        // TODO: test role
+    public void kindTest() {
+        // TODO: test kind
     }
 
 }

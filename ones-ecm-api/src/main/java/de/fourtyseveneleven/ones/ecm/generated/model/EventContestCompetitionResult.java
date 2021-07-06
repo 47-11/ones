@@ -54,7 +54,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionResult.JSON_PROPERTY_DISPLAY_HORSE,
   EventContestCompetitionResult.JSON_PROPERTY_HORSES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
 public class EventContestCompetitionResult {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;

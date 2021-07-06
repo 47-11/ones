@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterContact.JSON_PROPERTY_PHONE_NUMBER_MOBILE,
   RegisterContact.JSON_PROPERTY_POSTAL_ADDRESS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
 public class RegisterContact {
   public static final String JSON_PROPERTY_SURNAME = "surname";
   private String surname;

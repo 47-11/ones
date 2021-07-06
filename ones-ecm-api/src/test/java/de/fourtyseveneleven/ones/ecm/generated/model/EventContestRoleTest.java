@@ -97,11 +97,11 @@ public class EventContestRoleTest {
     }
 
     /**
-     * Test the property 'role'
+     * Test the property 'kind'
      */
     @Test
-    public void roleTest() {
-        // TODO: test role
+    public void kindTest() {
+        // TODO: test kind
     }
 
     /**
@@ -118,6 +118,110 @@ public class EventContestRoleTest {
     @Test
     public void displayTest() {
         // TODO: test display
+    }
+
+    /**
+     * Test the property 'name1'
+     */
+    @Test
+    public void name1Test() {
+        // TODO: test name1
+    }
+
+    /**
+     * Test the property 'name2'
+     */
+    @Test
+    public void name2Test() {
+        // TODO: test name2
+    }
+
+    /**
+     * Test the property 'name3'
+     */
+    @Test
+    public void name3Test() {
+        // TODO: test name3
+    }
+
+    /**
+     * Test the property 'titleAcademic'
+     */
+    @Test
+    public void titleAcademicTest() {
+        // TODO: test titleAcademic
+    }
+
+    /**
+     * Test the property 'street'
+     */
+    @Test
+    public void streetTest() {
+        // TODO: test street
+    }
+
+    /**
+     * Test the property 'houseNumber'
+     */
+    @Test
+    public void houseNumberTest() {
+        // TODO: test houseNumber
+    }
+
+    /**
+     * Test the property 'zipcode'
+     */
+    @Test
+    public void zipcodeTest() {
+        // TODO: test zipcode
+    }
+
+    /**
+     * Test the property 'city'
+     */
+    @Test
+    public void cityTest() {
+        // TODO: test city
+    }
+
+    /**
+     * Test the property 'country'
+     */
+    @Test
+    public void countryTest() {
+        // TODO: test country
+    }
+
+    /**
+     * Test the property 'phone'
+     */
+    @Test
+    public void phoneTest() {
+        // TODO: test phone
+    }
+
+    /**
+     * Test the property 'fax'
+     */
+    @Test
+    public void faxTest() {
+        // TODO: test fax
+    }
+
+    /**
+     * Test the property 'cellPhone'
+     */
+    @Test
+    public void cellPhoneTest() {
+        // TODO: test cellPhone
+    }
+
+    /**
+     * Test the property 'email'
+     */
+    @Test
+    public void emailTest() {
+        // TODO: test email
     }
 
 }
