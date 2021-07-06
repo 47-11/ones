@@ -76,17 +76,15 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
-        // TODO:
-        //  - Filter by categories as soon as the ECM api allows it
-        //  - Remove year filter as soon as it is not required by the ECM anymore
         return eventContestControllerApi
-                .getContestByYear(filter.from().getYear(),
-                        atStartOfDay(filter.from()),
+                .getContestByYear(atStartOfDay(filter.from()),
                         atEndOfDay(filter.until()),
                         filter.regions(),
+                        filter.categories(),
                         booleanToInteger(filter.isCountryChampionship()),
                         booleanToInteger(filter.isInternational()),
                         booleanToInteger(filter.isMap()),
+                        null,
                         pageRequest.getPageNumber(),
                         pageRequest.getPageSize(),
                         getSortByValue(sortRequest));
