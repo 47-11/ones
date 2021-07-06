@@ -98,7 +98,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
     private boolean isRegistrationSuccessful(RegisterResponce registerResponce) {
 
         final Integer reasonCode = registerResponce.getReasonCode();
-        final boolean successfulReasonCode = isNull(reasonCode) || reasonCode == 0;
+        final boolean successfulReasonCode = isNull(reasonCode) || reasonCode == 1;
         final boolean successfulState = "CREATED".equalsIgnoreCase(registerResponce.getState());
         return successfulReasonCode && successfulState;
     }
