@@ -22,7 +22,7 @@ public class TestUserCreator
             LoggerFactory.getLogger(TestUserCreator.class);
 
     private static final String TEST_USER_EMAIL_ADDRESS = "ones@example.com";
-    private static final String TEST_USER_UUID = "cd099acd-c1c7-468b-96e2-c4728854a8f0";
+    private static final String TEST_USER_UUID = "4bfb14cd-cb0a-4c74-b9a3-dd136bae60cf";
     private static final String TEST_USER_PASSWORD = "ones";
 
     private final PasswordEncoder passwordEncoder;
