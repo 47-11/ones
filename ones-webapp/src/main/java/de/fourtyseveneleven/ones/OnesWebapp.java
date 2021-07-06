@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "de.fourtyseveneleven.ones")
+@EnableJpaRepositories(basePackageClasses = {OnesWebapp.class})
 @EnableConfigurationProperties({OnesSettings.class})
 public class OnesWebapp extends SpringBootServletInitializer {
 
