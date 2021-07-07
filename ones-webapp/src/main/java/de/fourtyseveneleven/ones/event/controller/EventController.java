@@ -4,9 +4,20 @@ import de.fourtyseveneleven.ones.common.model.SortDirection;
 import de.fourtyseveneleven.ones.common.model.dto.PageDto;
 import de.fourtyseveneleven.ones.common.model.dto.PageRequest;
 import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
-import de.fourtyseveneleven.ones.event.model.dto.*;
-import de.fourtyseveneleven.ones.event.service.*;
+import de.fourtyseveneleven.ones.event.model.dto.ContestCategory;
+import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
+import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
+import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
+import de.fourtyseveneleven.ones.event.model.dto.SignupDto;
+import de.fourtyseveneleven.ones.event.model.dto.SignupRequestDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
+import de.fourtyseveneleven.ones.event.service.EventMetadataService;
+import de.fourtyseveneleven.ones.event.service.FullContestService;
+import de.fourtyseveneleven.ones.event.service.FullEventService;
+import de.fourtyseveneleven.ones.event.service.SignupService;
+import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,8 +51,8 @@ public class EventController {
     }
 
     @GetMapping("")
-    public PageDto<SimpleEventDto> findAll(@RequestParam LocalDate from,
-                                           @RequestParam(required = false) LocalDate until,
+    public PageDto<SimpleEventDto> findAll(@RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+                                           @RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate until,
                                            @RequestParam(required = false) List<String> regions,
                                            @RequestParam(required = false) List<String> categories,
                                            @RequestParam(required = false) Boolean isMap,
