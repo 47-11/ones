@@ -19,8 +19,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
@@ -95,7 +97,8 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         if (isNull(localDate)) {
             return null;
         } else {
-            return OffsetDateTime.from(localDate.atStartOfDay());
+            final ZonedDateTime atStartOfDay = localDate.atStartOfDay(ZoneOffset.systemDefault());
+            return OffsetDateTime.from(atStartOfDay);
         }
     }
 
@@ -104,7 +107,8 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         if (isNull(localDate)) {
             return null;
         } else {
-            return OffsetDateTime.from(localDate.atTime(23, 59, 59));
+            final ZonedDateTime atEndOfDay = localDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault());
+            return OffsetDateTime.from(atEndOfDay);
         }
     }
 
