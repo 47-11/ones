@@ -168,6 +168,23 @@ describe("Events-Store", () => {
         expect(requestOptions.url).toMatch(EventRegEx);
     });
 
+    it("resets the categories", async () => {
+        respondTo(CategoriesRegEx).with(sampleCategories());
+        await eventsStore.fetch();
+        await eventsStore.addFilter({
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            categories: [sampleCategories()[0].code!]
+        });
+        axiosMock.request.mockClear();
+
+        await eventsStore.resetCategories();
+
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        expect(eventsStore.filter.categories).toEqual(sampleCategories().map(c => c.code!));
+        const requestOptions = lastOf(axiosMock.request.mock.calls)[0];
+        expect(requestOptions.url).toContain(`&categories=${sampleCategories().map(category => category.code).join("&categories=")}`);
+    });
+
     it("lists fetched events", async () => {
         const events = [
             { uuid: "42", title: "Olympic games" },

@@ -129,7 +129,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private async assureDynamicOptionsFetched(): Promise<void> {
         if (!this.dynamicOptionsFetched) {
             await this.fetchDynamicOptions();
-            this.addFilter({
+            this.modifyFilter({
                 regions: this.regions,
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 categories: this.categories.map(category => category.code!)
@@ -155,12 +155,17 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async addFilter(modification: Partial<FilterType>): Promise<void> {
+        this.modifyFilter(modification);
+        await this.fetch();
+    }
+
+    @mutation
+    private modifyFilter(modification: Partial<FilterType>): void {
         const newFilter = Object.assign({}, this._filter);
         for (const [key, value] of Object.entries(modification)) {
             newFilter[key as keyof FilterType] = value;
         }
         this._filter = newFilter;
-        await this.fetch();
     }
 
     @action
@@ -182,6 +187,12 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
             }
         }
         await this.fetch();
+    }
+
+    @action
+    public async resetCategories(): Promise<void> {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        await this.addFilter({ categories: this.categories.map(c => c.code!) });
     }
 
     @action

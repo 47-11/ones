@@ -47,7 +47,9 @@
                         <v-label class="mb-3 flex items-center">
                             {{ $t("events.filter.categories") }}
                             <div class="ml-auto">
-                                <span class="text-indigo-500">{{ $t("events.filter.all") }}</span>
+                                <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer" @click="resetCategories()">
+                                    {{ $t("events.filter.all") }}
+                                </span>
                             </div>
                         </v-label>
 
@@ -203,6 +205,10 @@ export default class Home extends Vue {
 
     async resetFilter(): Promise<void> {
         await this.events.resetFilter();
+    }
+
+    async resetCategories(): Promise<void> {
+        await this.events.resetCategories();
     }
 
     get selectedCategories(): string[] {
