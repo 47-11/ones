@@ -5,7 +5,7 @@ import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
 import moment from "moment";
 
-interface FilterType extends Record<string, string | boolean | string[] | undefined> {
+export interface FilterType extends Record<string, string | boolean | string[] | undefined> {
     from: string;
     until?: string;
     isCountryChampionship?: boolean;
@@ -163,13 +163,14 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
         await this.fetch();
     }
 
-    @mutation
-    removeFilter(...filterPropsToClear: Array<keyof FilterType>): void {
+    @action
+    async removeFilter(...filterPropsToClear: Array<keyof FilterType>): Promise<void> {
         if (this._filter) {
             for (const filterProp of filterPropsToClear) {
                 this._filter[filterProp] = undefined;
             }
         }
+        await this.fetch();
     }
 
     @action

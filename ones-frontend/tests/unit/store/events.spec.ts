@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullContestDtoContestTypeEnum, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent, SimpleEventDto } from "@/openapi/generated";
-import { EventsStore, FirstPage, SortDirection } from "@/store/events.vuex";
+import { EventsStore, FilterType, FirstPage, SortDirection } from "@/store/events.vuex";
 import { createLocalVue } from "@vue/test-utils";
 import axios, { AxiosRequestConfig } from "axios";
 import moment from "moment";
@@ -124,6 +124,27 @@ describe("Events-Store", () => {
         expect(requestOptions.url).toContain(`from=${escaped(filter.from)}`);
         expect(requestOptions.url).toContain(`regions=${filter.regions[0]}`);
         expect(requestOptions.url).toContain(`regions=${filter.regions[1]}`);
+    });
+
+    it("fetches events when filter is removed", async () => {
+        // perform fetch to load dynamic options
+        await eventsStore.fetch();
+        axiosMock.request.mockClear();
+        const filter: Partial<FilterType> = {
+            from: "2021-11-15",
+            categories: ["MDR"],
+            regions: ["Nowhere", "Buxtehude"],
+            isInternational: true
+        };
+        await eventsStore.addFilter(filter);
+        axiosMock.request.mockClear();
+
+        await eventsStore.removeFilter("isInternational");
+
+        const lastCall = lastOf(axiosMock.request.mock.calls);
+        const requestOptions = lastCall[0];
+        expect(requestOptions.url).toContain("event");
+        expect(requestOptions.url).not.toContain("isInternational");
     });
 
     it("lists fetched events", async () => {
