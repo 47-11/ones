@@ -233,7 +233,7 @@ export default class Home extends Vue {
     }
 
     get cardRide(): "true" | "false" | "undefined" {
-        return `${this.events.filter.isCard}`;
+        return `${this.events.filter.isCard}` as "true" | "false" | "undefined";
     }
 
     set cardRide(value: "true" | "false" | "undefined") {
@@ -245,7 +245,7 @@ export default class Home extends Vue {
     }
 
     get internationalChampionchip(): "true" | "false" | "undefined" {
-        return `${this.events.filter.isInternational}`;
+        return `${this.events.filter.isInternational}` as "true" | "false" | "undefined";
     }
 
     set internationalChampionchip(value: "true" | "false" | "undefined") {
