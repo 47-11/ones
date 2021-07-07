@@ -53,7 +53,9 @@
 
                         <div class="grid grid-cols-3 md:grid-cols-4 lg:gird-cols-3 gap-x-10">
                             <div class="flex items-center mt-1" v-for="category in events.categories" :key="category.code">
-                                <v-checkbox :checked="events.filter.categories.includes(category.code)"
+                                <input type="checkbox" v-model="selectedCategories" :value="category.code"
+                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    v-bind:class="{ 'opacity-50 cursor-not-allowed': disabled }"
                                     @change.native="toggleCategory(category.code)"/>
                                 <div class="ml-2">{{category.description}}</div>
                             </div>
@@ -199,12 +201,18 @@ export default class Home extends Vue {
         vxm.events.fetch();
     }
 
-    resetFilter(): void {
-        this.events.resetFilter();
+    async resetFilter(): Promise<void> {
+        await this.events.resetFilter();
     }
 
-    log(text: string): void {
-        console.dir(text);
+    get selectedCategories(): string[] {
+        return this.events.filter.categories;
+    }
+
+    set selectedCategories(value: string[]) {
+        this.events.addFilter({
+            categories: value
+        });
     }
 
     toggleCategory(category: string): void {
