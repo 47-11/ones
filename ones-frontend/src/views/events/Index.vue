@@ -49,9 +49,10 @@
 
                         <v-label class="mt-5 mb-1">{{ $t("events.filter.region") }}</v-label>
 
-                        <v-select class="w-full">
-                            <option v-for="region in events.regions" :key="region">{{region}}</option>
-                        </v-select>
+                        <multiselect class="w-full absolute" :multiple="true" :value="selectedRegions" :options="events.regions" :close-on-select="false"
+                            @input="updateRegions" :allow-empty="false" style="width: 100%!important">
+                        <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ $t("events.selectedRegions", { count: values.length}) }}</span></template>
+                        </multiselect>
                     </div>
                     <div class="mt-6 lg:mt-0 lg:ml-12">
                         <v-label class="mb-3 flex items-center">
@@ -179,6 +180,7 @@ import VRadio from "@/components/forms/VRadio.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import moment from "moment";
+import Multiselect from "vue-multiselect/src/Multiselect.vue";
 
 @Component({
     components: {
@@ -194,7 +196,8 @@ import moment from "moment";
         VLabel,
         VCheckbox,
         VRadio,
-        PageHeader
+        PageHeader,
+        Multiselect
     }
 })
 export default class Home extends Vue {
@@ -289,6 +292,16 @@ export default class Home extends Vue {
         } else {
             this.events.removeFilter("until");
         }
+    }
+
+    get selectedRegions(): string[] {
+        return this.events.filter.regions;
+    }
+
+    updateRegions(values: string[]): void {
+        this.events.addFilter({
+            regions: values
+        });
     }
 }
 </script>

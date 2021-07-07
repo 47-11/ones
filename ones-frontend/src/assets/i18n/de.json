@@ -1,194 +1,195 @@
 {
-    "navigation": {
-        "dashboard": "Dashboard",
-        "events": "Events",
-        "logout": "Ausloggen",
-        "user": "Benutzer",
-        "mail": "E-Mail"
-    },
-    "pagination": {
-        "back": "Zurück"
-    },
-    "forgotPassword": {
-        "success": "Eine E-Mail ist auf dem Weg...",
-        "toLogin": "Zum Login",
-        "title": "Passwort vergessen?",
-        "message": "Kein Problem. Nenn uns deine E-Mail Adresse und wir schicken dir einen Link zum Zurücksetzen des Passworts.",
-        "error": "Oops! Etwas ist schief gelaufen.",
-        "email": "E-Mail",
-        "submit": "Passwort zurücksetzen"
-    },
-    "login": {
-        "error": "Oops! Etwas ist schief gelaufen.",
-        "email": "E-Mail",
-        "password": "Passwort",
-        "forgotPassword": "Passwort vergessen?",
-        "rememberSession": "Sitzung merken und eingeloggt bleiben.",
-        "register": "Registrieren",
-        "submit": "Einloggen"
-    },
-    "register": {
-        "success": "Registrierungs-Mail wurde an {email} versendet. Bitte folge den Anweisungen um die Registierung abzuschließen.",
-        "nextRegistration": "Nächste Registrierung",
-        "error": "Oops! Etwas ist schief gelaufen.",
-        "email": "E-Mail",
-        "sameMail": "Bereits an Veranstaltungen teilgenommen? Nutzen Sie die gleiche E-Mail Adresse und geben Sie Ihre VDD Nummer ein, sodass Daten übernommen werden.",
-        "vddNumber": "VDD Nummer",
-        "optional": "optional",
-        "password": "Passwort",
-        "passwordRepeat": "Passwort wiederholen",
-        "agreeToPolicy": "Ich stimme den {policy} zu.",
-        "privacyPolicy": "Datenschutzbestimmungen",
-        "login": "Zurück zum Login",
-        "submit": "Registrieren",
-        "mailRequired": "E-Mail ist erforderlich.",
-        "tooWeak": "Passwort ist nicht stark genug.",
-        "notIdentical": "Passwort Wiederholung nicht identisch mit Passwort.",
-        "acceptanceRequired": "Datenschutzbedingungen müssen akzeptiert werden.",
-        "steps": {
-            "title": "Schritte zur Registrierung",
-            "first": {
-                "title": "Account erstellen",
-                "description": "Im ersten Schritt ist die Registrierung mit ihrer E-Mail Adresse notwendig. Wenn Sie bereits dem VDD bekannt sind, nutzen Sie die dem VDD bekannte E-Mail Adresse."
-            },
-            "second": {
-                "title": "Daten erfassen",
-                "description": "Ist Ihre E-Mail Adresse dem VDD bekannt, werden Ihre Daten automatisch übernommen. Andernfalls müssen Sie im zweiten Schritt Ihre persönlichen Daten erfassen."
-            }
+  "navigation": {
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "logout": "Ausloggen",
+    "user": "Benutzer",
+    "mail": "E-Mail"
+  },
+  "pagination": {
+    "back": "Zurück"
+  },
+  "forgotPassword": {
+    "success": "Eine E-Mail ist auf dem Weg...",
+    "toLogin": "Zum Login",
+    "title": "Passwort vergessen?",
+    "message": "Kein Problem. Nenn uns deine E-Mail Adresse und wir schicken dir einen Link zum Zurücksetzen des Passworts.",
+    "error": "Oops! Etwas ist schief gelaufen.",
+    "email": "E-Mail",
+    "submit": "Passwort zurücksetzen"
+  },
+  "login": {
+    "error": "Oops! Etwas ist schief gelaufen.",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "rememberSession": "Sitzung merken und eingeloggt bleiben.",
+    "register": "Registrieren",
+    "submit": "Einloggen"
+  },
+  "register": {
+    "success": "Registrierungs-Mail wurde an {email} versendet. Bitte folge den Anweisungen um die Registierung abzuschließen.",
+    "nextRegistration": "Nächste Registrierung",
+    "error": "Oops! Etwas ist schief gelaufen.",
+    "email": "E-Mail",
+    "sameMail": "Bereits an Veranstaltungen teilgenommen? Nutzen Sie die gleiche E-Mail Adresse und geben Sie Ihre VDD Nummer ein, sodass Daten übernommen werden.",
+    "vddNumber": "VDD Nummer",
+    "optional": "optional",
+    "password": "Passwort",
+    "passwordRepeat": "Passwort wiederholen",
+    "agreeToPolicy": "Ich stimme den {policy} zu.",
+    "privacyPolicy": "Datenschutzbestimmungen",
+    "login": "Zurück zum Login",
+    "submit": "Registrieren",
+    "mailRequired": "E-Mail ist erforderlich.",
+    "tooWeak": "Passwort ist nicht stark genug.",
+    "notIdentical": "Passwort Wiederholung nicht identisch mit Passwort.",
+    "acceptanceRequired": "Datenschutzbedingungen müssen akzeptiert werden.",
+    "steps": {
+        "title": "Schritte zur Registrierung",
+        "first": {
+            "title": "Account erstellen",
+            "description": "Im ersten Schritt ist die Registrierung mit ihrer E-Mail Adresse notwendig. Wenn Sie bereits dem VDD bekannt sind, nutzen Sie die dem VDD bekannte E-Mail Adresse."
+        },
+        "second": {
+            "title": "Daten erfassen",
+            "description": "Ist Ihre E-Mail Adresse dem VDD bekannt, werden Ihre Daten automatisch übernommen. Andernfalls müssen Sie im zweiten Schritt Ihre persönlichen Daten erfassen."
         }
-    },
-    "resetPassword": {
-        "success": "Passwort geändert.",
-        "toLogin": "zum Login",
-        "error": "Oops! Etwas ist schief gelaufen.",
-        "resetPassword": "Passwort zurücksetzen",
-        "chooseStrongPassword": "Wähle ein starkes und sicheres Passwort aus.",
-        "newPassword": "Neues Passwort",
-        "passwordRepeat": "Passwort wiederholen",
-        "savePassword": "Passwort speichern",
-        "tooShort": "Passwort muss aus mindestens 8 Zeichen bestehen.",
-        "notIdentical": "Password Wiederholung nicht identisch mit Passwort."
-    },
-    "setPersonalData": {
-        "title": "Daten aktualisieren",
-        "description": "Um fortzufahren, vervollständigen Sie bitte Ihre Daten.",
-        "salutation": "Anrede",
-        "firstName": "Vorname",
-        "lastName": "Nachname",
-        "birthday": "Geburtstag",
-        "phoneNumber": "Telefon-Nr.",
-        "phoneNumberMobile": "Handy-Nr.",
-        "street": "Straße",
-        "houseNumber": "Haus-Nr.",
-        "zipCode": "Postleitzahl",
-        "city": "Stadt",
-        "country": "Land",
-        "lengthNull": " ist leer.",
-        "submit": "Speichern",
-        "logout": "Ausloggen"
-    },
-    "verified": {
-        "wait": "Bitte warten...",
-        "authenticationRunning": "Authentifizierung läuft...",
-        "error": "Oops! Etwas ist schief gelaufen.",
-        "emailConfirmed": "E-Mail erfolgreich bestätigt.",
-        "nextRegistration": "Nächste Registrierung",
-        "toLogin": "Zum Login"
-    },
-    "details": {
-        "nationalChampionship": "Landesmeisterschaft",
-        "internationalChampionship": "Weltmeisterschaft",
-        "placeAndTime": "Ort und Zeit",
-        "timeRange": "Zeitraum",
-        "region": "Region",
-        "country": "Land",
-        "city": "Ort",
-        "vddQualificationInfo": "Ab dem 01. Januar 2018 gilt der {qualification}.",
-        "vddQualification": "VDD-Qualifikationsweg",
-        "details": "Details",
-        "signUpDeadline": "Nennschluss",
-        "signUpFee": "Nenngeld",
-        "caseSignUpDeadlineMissed": "falls Nennschluss verpasst",
-        "accomodation": "Unterbringungen",
-        "deposit": "Pfand",
-        "vaccinationMandatory": "Impfpflicht",
-        "vaccinationNotMandatory": "keine Impfpflicht",
-        "helmetMandatory": "Helmpflicht",
-        "helmetNotMandatory": "keine Helmpflicht",
-        "notes": "Notizen",
-        "contacts": "Kontaktdaten",
-        "host": "Veranstalter",
-        "organizer": "Organisator",
-        "infoAndSignUp": "Infos und Nennungen",
-        "contests": "Wettbewerbe",
-        "contestShort": "WB",
-        "distance": "Distanz",
-        "date": "Datum",
-        "qualification": "Quali-Stufe",
-        "elevation": "Höhenmeter",
-        "startFee": "Startgeld",
-        "maximumTime": "Höchstzeit",
-        "minHorseAge": "min. Alter Pferd",
-        "minRiderAge": "min. Alter TN",
-        "maximumParticipants": "TN/max TN",
-        "participants": "Teilnehmer",
-        "elevationInfo": "Höhenmeterangabe = Summe aus Aufstieg und Abstieg",
-        "signUpFeeInfo": "Bei Gespannen und Handpferderitten wird Nenngeld pro Pferd erhoben, Startgeld pro Gespann. Nenn- und Startgeld max 1,00 € pro km; VDD Nichtmitglieder zahlen zusätzlich zum Startgeld: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, Jugend bis 21 Jahre: 6 €",
-        "maximumTimeInfo": "Höchstzeit in min/km = langsamste erlaubte Zeit um in der Wertung zu bleiben (Empfehlung lt. VDD-Regelment: T8 - T9)",
-        "inCommunicationWithHost": "nach Absprache mit dem Veranstalter"
-    },
-    "events": {
-        "title": "Veranstaltungen",
-        "start": "Start",
-        "end": "Ende",
-        "ride": "Ritt",
-        "documents": "Dokumente",
-        "callForTenders": "Ausschreibung",
-        "details": "Details",
-        "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen.",
-        "filter": {
-            "open": "Filter öffnen",
-            "close": "Filter schließen",
-            "title": "Veranstaltungen filtern",
-            "reset": "Zurücksetzen",
-            "period": "Zeitraum",
-            "region": "Region",
-            "categories": "Kategorien",
-            "cardRide": "Kartenritt",
-            "nationalChampionchip": "Landesmeisterschaft",
-            "internationalChampionchip": "Internationaler Ritt",
-            "all": "alle",
-            "yes": "Ja",
-            "no": "Nein"
-        }
+    }
+  },
+  "resetPassword": {
+    "success": "Passwort geändert.",
+    "toLogin": "zum Login",
+    "error": "Oops! Etwas ist schief gelaufen.",
+    "resetPassword": "Passwort zurücksetzen",
+    "chooseStrongPassword": "Wähle ein starkes und sicheres Passwort aus.",
+    "newPassword": "Neues Passwort",
+    "passwordRepeat": "Passwort wiederholen",
+    "savePassword": "Passwort speichern",
+    "tooShort": "Passwort muss aus mindestens 8 Zeichen bestehen.",
+    "notIdentical": "Password Wiederholung nicht identisch mit Passwort."
+  },
+  "setPersonalData": {
+      "title": "Daten aktualisieren",
+      "description": "Um fortzufahren, vervollständigen Sie bitte Ihre Daten.",
+      "salutation": "Anrede",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "birthday": "Geburtstag",
+      "phoneNumber": "Telefon-Nr.",
+      "phoneNumberMobile": "Handy-Nr.",
+      "street": "Straße",
+      "houseNumber": "Haus-Nr.",
+      "zipCode": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land",
+      "lengthNull": " ist leer.",
+      "submit": "Speichern",
+      "logout": "Ausloggen"
+  },
+  "verified": {
+    "wait": "Bitte warten...",
+    "authenticationRunning": "Authentifizierung läuft...",
+    "error": "Oops! Etwas ist schief gelaufen.",
+    "emailConfirmed": "E-Mail erfolgreich bestätigt.",
+    "nextRegistration": "Nächste Registrierung",
+    "toLogin": "Zum Login"
+  },
+  "details": {
+    "nationalChampionship": "Landesmeisterschaft",
+    "internationalChampionship": "Weltmeisterschaft",
+    "placeAndTime": "Ort und Zeit",
+    "timeRange": "Zeitraum",
+    "region": "Region",
+    "country": "Land",
+    "city": "Ort",
+    "vddQualificationInfo": "Ab dem 01. Januar 2018 gilt der {qualification}.",
+    "vddQualification": "VDD-Qualifikationsweg",
+    "details": "Details",
+    "signUpDeadline": "Nennschluss",
+    "signUpFee": "Nenngeld",
+    "caseSignUpDeadlineMissed": "falls Nennschluss verpasst",
+    "accomodation": "Unterbringungen",
+    "deposit": "Pfand",
+    "vaccinationMandatory": "Impfpflicht",
+    "vaccinationNotMandatory": "keine Impfpflicht",
+    "helmetMandatory": "Helmpflicht",
+    "helmetNotMandatory": "keine Helmpflicht",
+    "notes": "Notizen",
+    "contacts": "Kontaktdaten",
+    "host": "Veranstalter",
+    "organizer": "Organisator",
+    "infoAndSignUp": "Infos und Nennungen",
+    "contests": "Wettbewerbe",
+    "contestShort": "WB",
+    "distance": "Distanz",
+    "date": "Datum",
+    "qualification": "Quali-Stufe",
+    "elevation": "Höhenmeter",
+    "startFee": "Startgeld",
+    "maximumTime": "Höchstzeit",
+    "minHorseAge": "min. Alter Pferd",
+    "minRiderAge": "min. Alter TN",
+    "maximumParticipants": "TN/max TN",
+    "participants": "Teilnehmer",
+    "elevationInfo": "Höhenmeterangabe = Summe aus Aufstieg und Abstieg",
+    "signUpFeeInfo": "Bei Gespannen und Handpferderitten wird Nenngeld pro Pferd erhoben, Startgeld pro Gespann. Nenn- und Startgeld max 1,00 € pro km; VDD Nichtmitglieder zahlen zusätzlich zum Startgeld: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, Jugend bis 21 Jahre: 6 €",
+    "maximumTimeInfo": "Höchstzeit in min/km = langsamste erlaubte Zeit um in der Wertung zu bleiben (Empfehlung lt. VDD-Regelment: T8 - T9)",
+    "inCommunicationWithHost": "nach Absprache mit dem Veranstalter"
+  },
+  "events": {
+    "title": "Veranstaltungen",
+    "start": "Start",
+    "end": "Ende",
+    "ride": "Ritt",
+    "documents": "Dokumente",
+    "callForTenders": "Ausschreibung",
+    "details": "Details",
+    "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen.",
+    "filter": {
+      "open": "Filter öffnen",
+      "close": "Filter schließen",
+      "title": "Veranstaltungen filtern",
+      "reset": "Zurücksetzen",
+      "period": "Zeitraum",
+      "region": "Region",
+      "categories": "Kategorien",
+      "cardRide": "Kartenritt",
+      "nationalChampionchip": "Landesmeisterschaft",
+      "internationalChampionchip": "Internationaler Ritt",
+      "all": "alle",
+      "yes": "Ja",
+      "no": "Nein"
     },
     "shared": {
       "no": "Nein",
       "yes": "Ja"
     },
-    "signUp": {
-        "title": "Anmeldung zum Wettbewerb",
-        "requirements": {
-            "title": "Voraussetzungen",
-            "minimumHorseAge": "Pferd min. {age} Jahre",
-            "minimumParticipantAge": "Teilnehmer min. {age} Jahre"
-        },
-        "selectHorse": {
-            "title": "Pferd auswählen",
-            "subtitle": "Bitte wählen Sie das Pferd aus, mit welchem Sie teilnehmen wollen.",
-            "lifeNumber": "Lebens-Nr."
-        },
-        "minHorses": "Sie müssen mindestens ein Pferd auswählen.",
-        "submit": "Jetzt anmelden"
+    "selectedRegions": "{count} Regionen ausgewählt."
+  },
+  "signUp": {
+    "title": "Anmeldung zum Wettbewerb",
+    "requirements": {
+      "title": "Voraussetzungen",
+      "minimumHorseAge": "Pferd min. {age} Jahre",
+      "minimumParticipantAge": "Teilnehmer min. {age} Jahre"
     },
-    "password": {
-        "pasword": "Passwort"
+    "selectHorse": {
+      "title": "Pferd auswählen",
+      "subtitle": "Bitte wählen Sie das Pferd aus, mit welchem Sie teilnehmen wollen.",
+      "lifeNumber": "Lebens-Nr."
     },
-    "shared": {
-        "error": "Es ist ein Fehler aufgetreten"
-    },
-    "offlineWarning": {
-        "noConnection": "Keine Verbindung.",
-        "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
-    }
+    "minHorses": "Sie müssen mindestens ein Pferd auswählen.",
+    "submit": "Jetzt anmelden"
+  },
+  "password": {
+    "pasword": "Passwort"
+  },
+  "shared": {
+    "error": "Es ist ein Fehler aufgetreten"
+  },
+  "offlineWarning": {
+    "noConnection": "Keine Verbindung.",
+    "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
+  }
 }
