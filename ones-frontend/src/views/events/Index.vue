@@ -63,10 +63,10 @@
                         <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-12">
                             <v-label class="mb-3">{{ $t("events.filter.cardRide") }}</v-label>
 
-                            <v-select class="w-full lg:w-36">
-                                <option>---</option>
-                                <option>{{ $t("events.filter.yes") }}</option>
-                                <option>{{ $t("events.filter.no") }}</option>
+                            <v-select class="w-full lg:w-36" v-model="cardRide">
+                                <option value="undefined">---</option>
+                                <option value="true">{{ $t("events.filter.yes") }}</option>
+                                <option value="false">{{ $t("events.filter.no") }}</option>
                             </v-select>
                         </div>
 
@@ -226,6 +226,18 @@ export default class Home extends Vue {
             categories.push(category);
         }
         this.events.addFilter({ categories });
+    }
+
+    get cardRide(): "true" | "false" | "undefined" {
+        return `${this.events.filter.isCard}`;
+    }
+
+    set cardRide(value: "true" | "false" | "undefined") {
+        if (value === "undefined") {
+            this.events.removeFilter("isCard");
+        } else {
+            this.events.addFilter({ isCard: value === "true" });
+        }
     }
 }
 </script>
