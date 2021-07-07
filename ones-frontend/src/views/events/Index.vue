@@ -63,21 +63,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-start md:flex-row md:w-full lg:w-auto">
-                        <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-12">
+                    <div class="flex flex-col items-start md:w-full lg:w-auto lg:ml-12">
+                        <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-6">
                             <v-label class="mb-3">{{ $t("events.filter.cardRide") }}</v-label>
 
-                            <v-select class="w-full lg:w-36" v-model="cardRide">
+                            <v-select class="w-full lg:w-44" v-model="cardRide">
                                 <option value="undefined">---</option>
                                 <option value="true">{{ $t("events.shared.yes") }}</option>
                                 <option value="false">{{ $t("events.shared.no") }}</option>
                             </v-select>
                         </div>
 
-                        <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-6">
+                        <div class="mt-5 w-full lg:w-auto lg:ml-6">
                             <v-label class="mb-3">{{ $t("events.filter.internationalChampionchip") }}</v-label>
 
-                            <v-select class="w-full lg:w-36" v-model="internationalChampionchip">
+                            <v-select class="w-full lg:w-44" v-model="internationalChampionchip">
                                 <option value="undefined">---</option>
                                 <option value="true">{{ $t("events.shared.yes") }}</option>
                                 <option value="false">{{ $t("events.shared.no") }}</option>
