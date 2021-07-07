@@ -70,16 +70,6 @@
                             </v-select>
                         </div>
 
-                        <div class="mt-5 w-full md:mx-6 lg:mx-0 lg:w-auto lg:mt-0 lg:ml-6">
-                            <v-label class="mb-3">{{ $t("events.filter.nationalChampionchip") }}</v-label>
-
-                            <v-select class="w-full lg:w-36">
-                                <option>---</option>
-                                <option>{{ $t("events.filter.yes") }}</option>
-                                <option>{{ $t("events.filter.no") }}</option>
-                            </v-select>
-                        </div>
-
                         <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-6">
                             <v-label class="mb-3">{{ $t("events.filter.internationalChampionchip") }}</v-label>
 
