@@ -95,10 +95,10 @@
             <v-table>
                 <thead class="bg-gray-50">
                 <tr>
-                    <v-th :sortable="events" sortKey="start">
+                    <v-th :sortable="events" sortKey="from">
                         {{ $t('events.start') }}
                     </v-th>
-                    <v-th :sortable="events" sortKey="end">
+                    <v-th :sortable="events" sortKey="until">
                         {{ $t('events.end') }}
                     </v-th>
                     <v-th :sortable="events" sortKey="title">
