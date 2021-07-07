@@ -164,6 +164,17 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     }
 
     @action
+    async resetFilter(): Promise<void> {
+        this._filter = {
+            from: moment().format("YYYY.MM.DD"),
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            categories: this.categories.map(c => c.code!),
+            regions: this.regions
+        };
+        await this.fetch();
+    }
+
+    @action
     async removeFilter(...filterPropsToClear: Array<keyof FilterType>): Promise<void> {
         if (this._filter) {
             for (const filterProp of filterPropsToClear) {

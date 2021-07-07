@@ -147,6 +147,27 @@ describe("Events-Store", () => {
         expect(requestOptions.url).not.toContain("isInternational");
     });
 
+    it("resets the filter", async () => {
+        const filter: Partial<FilterType> = {
+            from: "2021-11-15",
+            categories: ["MDR"],
+            regions: ["Nowhere", "Buxtehude"],
+            isInternational: true
+        };
+        await eventsStore.addFilter(filter);
+        axiosMock.request.mockClear();
+
+        await eventsStore.resetFilter();
+
+        expect(eventsStore.filter).toEqual({
+            from: moment().format("YYYY.MM.DD"),
+            categories: eventsStore.categories,
+            regions: eventsStore.regions
+        });
+        const requestOptions = lastOf(axiosMock.request.mock.calls)[0];
+        expect(requestOptions.url).toMatch(EventRegEx);
+    });
+
     it("lists fetched events", async () => {
         const events = [
             { uuid: "42", title: "Olympic games" },

@@ -200,7 +200,7 @@ export default class Home extends Vue {
     }
 
     resetFilter(): void {
-        // Do something ...
+        this.events.resetFilter();
     }
 
     log(text: string): void {
