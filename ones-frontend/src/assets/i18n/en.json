@@ -145,7 +145,24 @@
         "documents": "Documents",
         "callForTenders": "Call for Tenders",
         "details": "Details",
-        "pagination": "Shows {from} to {to} of {of} events."
+    "pagination": "Shows {from} to {to} of {of} events.",
+    "filter": {
+      "categories": "Categories",
+      "all": "All",
+      "cardRide": "Card Ride",
+      "internationalChampionchip": "International Championship",
+      "open": "Open Filter",
+      "close": "Close Filter",
+      "title": "Filter Events",
+      "reset": "Reset",
+      "period": "Period",
+      "region": "Region"
+    },
+    "shared": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "title": "Events"
     },
     "signUp": {
         "title": "Sign up",

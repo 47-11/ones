@@ -162,6 +162,10 @@
             "no": "Nein"
         }
     },
+    "shared": {
+      "no": "Nein",
+      "yes": "Ja"
+    },
     "signUp": {
         "title": "Anmeldung zum Wettbewerb",
         "requirements": {

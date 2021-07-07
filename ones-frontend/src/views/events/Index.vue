@@ -65,8 +65,8 @@
 
                             <v-select class="w-full lg:w-36" v-model="cardRide">
                                 <option value="undefined">---</option>
-                                <option value="true">{{ $t("events.filter.yes") }}</option>
-                                <option value="false">{{ $t("events.filter.no") }}</option>
+                                <option value="true">{{ $t("events.shared.yes") }}</option>
+                                <option value="false">{{ $t("events.shared.no") }}</option>
                             </v-select>
                         </div>
 
@@ -75,8 +75,8 @@
 
                             <v-select class="w-full lg:w-36" v-model="internationalChampionchip">
                                 <option value="undefined">---</option>
-                                <option value="true">{{ $t("events.filter.yes") }}</option>
-                                <option value="false">{{ $t("events.filter.no") }}</option>
+                                <option value="true">{{ $t("events.shared.yes") }}</option>
+                                <option value="false">{{ $t("events.shared.no") }}</option>
                             </v-select>
                         </div>
                     </div>
