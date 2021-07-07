@@ -19,8 +19,8 @@
                     </span>
                 </div>
 
-                <div class="flex flex-col lg:flex-row mt-6">
-                    <div>
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12 lg:col-span-3">
                         <v-label class="mb-1">{{ $t("events.filter.period") }}</v-label>
 
                         <div class="flex justify-center items-center">
@@ -28,7 +28,7 @@
                                 <template v-slot="{ inputValue, inputEvents }">
                                     <div class="flex justify-center items-center">
                                         <input type="text" :value="inputValue" v-on="inputEvents"
-                                        class="w-full lg:w-36 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                        class="w-full lg:w-32 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                                     </div>
                                 </template>
                             </v-date-picker>
@@ -41,7 +41,7 @@
                                 <template v-slot="{ inputValue, inputEvents }">
                                     <div class="flex justify-center items-center">
                                         <input type="text" :value="inputValue" v-on="inputEvents"
-                                        class="w-full lg:w-36 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                        class="w-full lg:w-32 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                                     </div>
                                 </template>
                             </v-date-picker>
@@ -51,10 +51,10 @@
 
                         <multiselect class="w-full absolute" :multiple="true" :value="selectedRegions" :options="events.regions" :close-on-select="false"
                             @input="updateRegions" :allow-empty="false" style="width: 100%!important">
-                        <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ $t("events.selectedRegions", { count: values.length}) }}</span></template>
+                            <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ $t("events.selectedRegions", { count: values.length}) }}</span></template>
                         </multiselect>
                     </div>
-                    <div class="mt-6 lg:mt-0 lg:ml-12">
+                    <div class="col-span-12 lg:col-span-6 mt-6 lg:mt-0 lg:ml-12">
                         <v-label class="mb-3 flex items-center">
                             {{ $t("events.filter.categories") }}
                             <div class="ml-auto">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-start md:w-full lg:w-auto lg:ml-12">
+                    <div class="col-span-12 lg:col-span-3 flex flex-col items-start md:w-full lg:w-auto lg:ml-12">
                         <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-6">
                             <v-label class="mb-3">{{ $t("events.filter.cardRide") }}</v-label>
 
