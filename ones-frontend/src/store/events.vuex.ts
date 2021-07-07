@@ -29,7 +29,7 @@ const VuexModule = createModule({
 
 export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
-    private _filter: FilterType = { from: moment().format("YYYY.MM.DD"), categories: [], regions: [] };
+    private _filter: FilterType = { from: moment().toISOString(), categories: [], regions: [] };
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private _totalCount = 0;
@@ -171,7 +171,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     @action
     async resetFilter(): Promise<void> {
         this._filter = {
-            from: moment().format("YYYY.MM.DD"),
+            from: moment().toISOString(),
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             categories: this.categories.map(c => c.code!),
             regions: this.regions

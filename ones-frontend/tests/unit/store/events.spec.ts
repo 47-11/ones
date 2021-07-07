@@ -96,7 +96,7 @@ describe("Events-Store", () => {
         const lastCall = lastOf(axiosMock.request.mock.calls);
         const requestOptions = lastCall[0];
         expect(requestOptions.url).toContain("event");
-        expect(requestOptions.url).toContain(`from=${moment().format("YYYY.MM.DD")}`);
+        expect(requestOptions.url).toContain(`from=${moment().toISOString().substring(0, 10)}`);
         expect(requestOptions.url).toContain(`regions=${allRegions.map(escaped).join("&regions=")}`);
         expect(requestOptions.url).toContain(`categories=${allCategories.map(category => category.code).join("&categories=")}`);
         expect(requestOptions.url).toContain(`page=${FirstPage}`);
@@ -159,11 +159,11 @@ describe("Events-Store", () => {
 
         await eventsStore.resetFilter();
 
-        expect(eventsStore.filter).toEqual({
-            from: moment().format("YYYY.MM.DD"),
-            categories: eventsStore.categories,
-            regions: eventsStore.regions
-        });
+        const actualFilter = eventsStore.filter;
+        expect(actualFilter.from.substring(0, 10)).toBe(moment().toISOString().substring(0, 10));
+        expect(actualFilter.categories).toEqual(eventsStore.categories);
+        expect(actualFilter.regions).toEqual(eventsStore.regions);
+        expect(Object.keys(actualFilter).length).toBe(3);
         const requestOptions = lastOf(axiosMock.request.mock.calls)[0];
         expect(requestOptions.url).toMatch(EventRegEx);
     });

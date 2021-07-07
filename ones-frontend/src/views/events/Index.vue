@@ -4,7 +4,7 @@
             <div class="flex items-start">
                 <page-header>{{ $t("events.title") }}</page-header>
 
-                <v-button type="button" class="ml-auto mr-6 lg:mr-0" v-on:click.native="showFilter = !showFilter">
+                <v-button type="button" class="ml-auto mr-6 lg:mr-0" @click.native="showFilter = !showFilter">
                     <span v-if="!showFilter">{{ $t("events.filter.open") }}</span>
                     <span v-else>{{ $t("events.filter.close") }}</span>
                 </v-button>
@@ -23,19 +23,29 @@
                     <div>
                         <v-label class="mb-1">{{ $t("events.filter.period") }}</v-label>
 
-                        <v-date-picker v-model="range" is-range :columns="$screens({ default: 1, lg: 4 })">
-                            <template v-slot="{ inputValue, inputEvents }">
-                                <div class="flex justify-center items-center">
-                                    <input type="text" :value="inputValue.start" v-on="inputEvents.start"
-                                    class="w-full lg:w-36 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
-                                    <svg class="w-4 h-4 flex-shrink-0 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                    </svg>
-                                    <input type="text" :value="inputValue.end" v-on="inputEvents.end"
-                                    class="w-full lg:w-36 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
-                                </div>
-                            </template>
-                        </v-date-picker>
+                        <div class="flex justify-center items-center">
+                            <v-date-picker :columns="$screens({ default: 1, lg: 4 })" v-model="from" is-required>
+                                <template v-slot="{ inputValue, inputEvents }">
+                                    <div class="flex justify-center items-center">
+                                        <input type="text" :value="inputValue" v-on="inputEvents"
+                                        class="w-full lg:w-36 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                    </div>
+                                </template>
+                            </v-date-picker>
+
+                            <svg class="w-4 h-4 flex-shrink-0 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+
+                            <v-date-picker :columns="$screens({ default: 1, lg: 4 })" v-model="until">
+                                <template v-slot="{ inputValue, inputEvents }">
+                                    <div class="flex justify-center items-center">
+                                        <input type="text" :value="inputValue" v-on="inputEvents"
+                                        class="w-full lg:w-36 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                    </div>
+                                </template>
+                            </v-date-picker>
+                        </div>
 
                         <v-label class="mt-5 mb-1">{{ $t("events.filter.region") }}</v-label>
 
@@ -57,8 +67,7 @@
                             <div class="flex items-center mt-1" v-for="category in events.categories" :key="category.code">
                                 <input type="checkbox" v-model="selectedCategories" :value="category.code"
                                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    v-bind:class="{ 'opacity-50 cursor-not-allowed': disabled }"
-                                    @change.native="toggleCategory(category.code)"/>
+                                    @change="toggleCategory(category.code)"/>
                                 <div class="ml-2">{{category.description}}</div>
                             </div>
                         </div>
@@ -169,6 +178,7 @@ import VCheckbox from "@/components/forms/VCheckbox.vue";
 import VRadio from "@/components/forms/VRadio.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import PageHeader from "@/components/PageHeader.vue";
+import moment from "moment";
 
 @Component({
     components: {
@@ -253,6 +263,31 @@ export default class Home extends Vue {
             this.events.removeFilter("isInternational");
         } else {
             this.events.addFilter({ isInternational: value === "true" });
+        }
+    }
+
+    get from(): Date {
+        return moment(this.events.filter.from).toDate();
+    }
+
+    set from(value: Date) {
+        this.events.addFilter({ from: value.toISOString() });
+    }
+
+    get until(): Date | undefined {
+        const until = this.events.filter.until;
+        if (until) {
+            moment(until).toDate();
+        } else {
+            return undefined;
+        }
+    }
+
+    set until(value: Date | undefined) {
+        if (value) {
+            this.events.addFilter({ until: value.toISOString() });
+        } else {
+            this.events.removeFilter("until");
         }
     }
 }
