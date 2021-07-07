@@ -73,10 +73,10 @@
                         <div class="mt-5 w-full lg:w-auto lg:mt-0 lg:ml-6">
                             <v-label class="mb-3">{{ $t("events.filter.internationalChampionchip") }}</v-label>
 
-                            <v-select class="w-full lg:w-36">
-                                <option>---</option>
-                                <option>{{ $t("events.filter.yes") }}</option>
-                                <option>{{ $t("events.filter.no") }}</option>
+                            <v-select class="w-full lg:w-36" v-model="internationalChampionchip">
+                                <option value="undefined">---</option>
+                                <option value="true">{{ $t("events.filter.yes") }}</option>
+                                <option value="false">{{ $t("events.filter.no") }}</option>
                             </v-select>
                         </div>
                     </div>
@@ -227,6 +227,18 @@ export default class Home extends Vue {
             this.events.removeFilter("isCard");
         } else {
             this.events.addFilter({ isCard: value === "true" });
+        }
+    }
+
+    get internationalChampionchip(): "true" | "false" | "undefined" {
+        return `${this.events.filter.isInternational}`;
+    }
+
+    set internationalChampionchip(value: "true" | "false" | "undefined") {
+        if (value === "undefined") {
+            this.events.removeFilter("isInternational");
+        } else {
+            this.events.addFilter({ isInternational: value === "true" });
         }
     }
 }
