@@ -139,8 +139,8 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {
         return [
-            this._filter.from,
-            this._filter.until,
+            this._filter.from.substring(0, 10),
+            this._filter.until?.substring(0, 10),
             this._filter.regions,
             this._filter.categories,
             this._filter.isCard,
