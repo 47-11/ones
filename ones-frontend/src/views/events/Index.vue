@@ -24,7 +24,7 @@
                         <v-label class="mb-1">{{ $t("events.filter.period") }}</v-label>
 
                         <div class="flex justify-center items-center">
-                            <v-date-picker :columns="$screens({ default: 1, lg: 4 })" v-model="from" is-required>
+                            <v-date-picker :columns="$screens({ default: 1, lg: 2 })" v-model="from" is-required>
                                 <template v-slot="{ inputValue, inputEvents }">
                                     <div class="flex justify-center items-center">
                                         <input type="text" :value="inputValue" v-on="inputEvents"
@@ -37,7 +37,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
 
-                            <v-date-picker :columns="$screens({ default: 1, lg: 4 })" v-model="until">
+                            <v-date-picker :columns="$screens({ default: 1, lg: 2 })" v-model="until">
                                 <template v-slot="{ inputValue, inputEvents }">
                                     <div class="flex justify-center items-center">
                                         <input type="text" :value="inputValue" v-on="inputEvents"
