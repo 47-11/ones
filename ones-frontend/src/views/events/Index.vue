@@ -53,7 +53,7 @@
                             </div>
                         </v-label>
 
-                        <div class="grid grid-cols-3 md:grid-cols-4 lg:gird-cols-3 gap-x-10">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-x-10">
                             <div class="flex items-center mt-1" v-for="category in events.categories" :key="category.code">
                                 <input type="checkbox" v-model="selectedCategories" :value="category.code"
                                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
