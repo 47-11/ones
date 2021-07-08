@@ -140,8 +140,7 @@
     },
     "events": {
         "state": "State",
-        "start": "Start",
-        "end": "End",
+        "date": "Date",
         "ride": "Ride",
         "region": "Region",
         "rideType": "Ride Type",

@@ -103,6 +103,7 @@
                         {{ $t("events.state") }}
                     </v-th>
                     <v-th :sortable="events" sortKey="start">
+                        {{ $t('events.date') }}
                         {{ $t('events.start') }}
                     </v-th>
                     <v-th :sortable="events" sortKey="until">
@@ -115,52 +116,47 @@
                         {{ $t('events.region') }}
                     </v-th>
                     <v-th>
-                        {{ $t('events.rideType') }}
-                    </v-th>
-                    <v-th>
                         {{ $t('events.categories') }}
-                    </v-th>
-                    <v-th>
-                        {{ $t('events.mapRide') }}
-                    </v-th>
-                    <v-th>
-                        {{ $t('events.internationalRide') }}
                     </v-th>
                     <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="event in events.list" :key="event.uuid">
+                <tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
                     <v-td>
                         {{$t("events.states." + event.state)}}
                     </v-td>
-                    <v-td>{{
-                            new Date(event.start).toLocaleDateString(locale)
-                        }}
-                    </v-td>
-                    <v-td>{{ new Date(event.end).toLocaleDateString(locale) }}</v-td>
-                    <v-td>{{ event.title }}</v-td>
-                    <v-td>{{ event.region || "Buxtehude" }}</v-td>
                     <v-td>
-                        <badge v-for="rideType in rideTypes(event)" :key="rideType" class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" >
-                            {{rideType}}
-                        </badge>
-                    </v-td>
-                    <v-td>
-                        <badge v-for="category in categories(event)" :key="category" class="bg-red-700 text-white text-xs font-medium mr-2 mb-2" >
-                            {{category}}
-                        </badge>
-                    </v-td>
-                    <v-td>
-                        {{ $t(event.mapRide ? "events.yes" : "events.no")}}
-                    </v-td>
-                    <v-td>
-                        {{ $t(event.internationalRide ? "events.yes" : "events.no")}}
+                        <date-range :start="event.start" :end="event.end"/>
                     </v-td>
                     <v-td>
                         <router-link :to="'/events/' + event.uuid">
-                            <v-button>{{ $t('events.details') }}</v-button>
+                            <div class="whitespace-normal" style="max-width: 8rem">
+                                {{ event.title }}
+                            </div>
                         </router-link>
+                    </v-td>
+                    <v-td>{{ event.region || "Buxtehude" }}</v-td>
+                    <v-td>
+                        <div class="whitespace-normal" style="max-width: 10rem;">
+                            <template v-for="(category, index) in categories(event)">
+                                {{category}}<template v-if="index < categories(event).length - 1">,</template>
+                            </template>
+                        </div>
+                    </v-td>
+                    <v-td>
+                        <font-awesome-icon :icon="'map'" class="mx-2"
+                            v-bind:class="{
+                                'text-gray-300': !event.contests.find(contest => contest.cardRide)
+                            }"></font-awesome-icon>
+                        <font-awesome-icon :icon="'flag'" class="mx-2"
+                            v-bind:class="{
+                                'text-gray-300': !event.isNationalChampionship
+                            }"></font-awesome-icon>
+                        <font-awesome-icon :icon="'globe'" class="mx-2"
+                            v-bind:class="{
+                                'text-gray-300': !event.isInternational
+                            }"></font-awesome-icon>
                     </v-td>
                 </tr>
                 </tbody>
@@ -218,6 +214,7 @@ import VLabel from "@/components/forms/VLabel.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import moment from "moment";
 import Multiselect from "vue-multiselect/src/Multiselect.vue";
+import DateRange from "@/components/DateRange.vue";
 
 @Component({
     components: {
@@ -230,6 +227,8 @@ import Multiselect from "vue-multiselect/src/Multiselect.vue";
         Card,
         VButton,
         Badge,
+        VCheckbox,
+        DateRange
         VCheckbox
         Badge
         VButton,
@@ -269,8 +268,13 @@ export default class Home extends Vue {
     public categories(event: SimpleEventDto): string[] {
         return [
             "EFR",
-            "MTR"
+            "MTR",
+            "EFR"
         ];
+    }
+
+    public details(event: SimpleEventDto): void {
+        this.$router.push("/events/" + event.uuid);
     }
 
     async resetFilter(): Promise<void> {

@@ -140,8 +140,7 @@
     "events": {
         "title": "Veranstaltungen",
         "state": "Status",
-        "start": "Start",
-        "end": "Ende",
+        "date": "Datum",
         "ride": "Ritt",
         "region": "Region",
         "rideType": "Rittart",
