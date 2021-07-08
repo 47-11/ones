@@ -11,11 +11,6 @@ import static java.util.Objects.isNull;
 @Mapper(componentModel = "spring")
 public interface CommonMapper {
 
-    default <T> List<T> setToList(Set<T> set) {
-
-        return new ArrayList<>(set);
-    }
-
     default <T> List<T> singletonListMapper(T singleElement) {
 
         if (isNull(singleElement)) {
