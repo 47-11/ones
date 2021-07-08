@@ -50,38 +50,40 @@
                                     </span>
                                 </td>
                             </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.region')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.address.region }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.address.country }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.startingPlace')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <address>
-                                        {{ details.address.locationName }} <br/>
-                                        {{ details.address.street }}<br/>
-                                        {{ details.address.zipCode }} {{ details.address.city }}<br/>
-                                        {{ details.address.country }}
-                                    </address>
-                                </td>
-                            </tr>
-                            <tr v-if="details.address.latitude != undefined && details.address.longitude != undefined">
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <a :href="'https://maps.google.com/maps?q=' + details.address.latitude + ',' + details.address.longitude" target="_blank">
-                                        {{ details.address.latitude }}, {{ details.address.longitude }}
-                                        <font-awesome-icon :icon="'external-link-alt'"></font-awesome-icon>
-                                    </a>
-                                </td>
-                            </tr>
+                            <template v-for="address of details.addresses">
+                                <tr :key="address">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.region')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        {{ address.region }}
+                                    </td>
+                                </tr>
+                                <tr :key="address">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        {{ address.country }}
+                                    </td>
+                                </tr>
+                                <tr :key="address">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.startingPlace')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        <address>
+                                            {{ address.locationName }} <br/>
+                                            {{ address.street }}<br/>
+                                            {{ address.zipCode }} {{ address.city }}<br/>
+                                            {{ address.country }}
+                                        </address>
+                                    </td>
+                                </tr>
+                                <tr v-if="address.gpsCoordinates != undefined" :key="address">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        <a :href="'https://maps.google.com/maps?q=' + gpsCoordinates" target="_blank">
+                                            {{ address.gpsCoordinates }}
+                                            <font-awesome-icon :icon="'external-link-alt'"></font-awesome-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
                         </table>
                     </card>
                 </div>
@@ -345,16 +347,7 @@ export default class Detail extends Vue {
     eventId = this.$route.params.eventId;
 
     get details(): FullEventDto | null {
-        const d = vxm.events.eventDetails;
-
-        if (d) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d as any).address.longitude = "2.2913515";
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (d as any).address.latitude = "48.8539241";
-        }
-
-        return d;
+        return vxm.events.eventDetails;
     }
 
     get contests(): FullContestDto[] {
