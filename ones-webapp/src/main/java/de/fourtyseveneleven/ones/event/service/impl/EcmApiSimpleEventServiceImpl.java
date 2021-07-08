@@ -87,6 +87,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
                         booleanToInteger(filter.isCountryChampionship()),
                         booleanToInteger(filter.isInternational()),
                         booleanToInteger(filter.isMap()),
+                        false,
                         null,
                         pageRequest.getPageNumber(),
                         pageRequest.getPageSize(),
