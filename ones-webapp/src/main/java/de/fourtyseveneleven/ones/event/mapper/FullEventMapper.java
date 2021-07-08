@@ -52,6 +52,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "promoterEventUrl", target = "organizerWebsiteUrl")
     @Mapping(source = "promoterTenderingUrl", target = "signupDocumentUrl")
     @Mapping(source = "fees", target = "lateSignupFee", qualifiedByName = "lateSignupFee")
+    @Mapping(source = "fees", target = "signupChangeFee", qualifiedByName = "signupChangeFee")
     @Mapping(source = "fees", target = "availableAccommodations")
     @Mapping(source = "contestantQuantityMin", target = "minimumParticipants")
     @Mapping(source = "contestantQuantityMax", target = "maximumParticipants")
@@ -123,6 +124,17 @@ public abstract class FullEventMapper {
         return fees.stream()
                 .filter(f -> "ADMINISTRATION".equalsIgnoreCase(f.getKind()))
                 .filter(f -> "REGISTRATION_LATE".equalsIgnoreCase(f.getKey()))
+                .map(this::feeDtoFromEventContestFee)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Named("signupChangeFee")
+    protected FeeDto signupChangeFee(Set<EventContestFee> fees) {
+
+        return fees.stream()
+                .filter(f -> "ADMINISTRATION".equalsIgnoreCase(f.getKind()))
+                .filter(f -> "REGISTRATION_CHANGE".equalsIgnoreCase(f.getKey()))
                 .map(this::feeDtoFromEventContestFee)
                 .findFirst()
                 .orElse(null);
