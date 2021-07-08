@@ -33,20 +33,14 @@ public abstract class FullEventMapper {
     @Mapping(source = "isCountryChampionship", target = "isNationalChampionship")
     @Mapping(source = "isCei", target = "isInternational")
     @Mapping(source = "registrationClosing", target = "signupDeadline")
-    @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
-    @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
+    @Mapping(source = "infoVaccinationObligation", target = "vaccinationInformation")
+    @Mapping(source = "infoHelmetObligation", target = "helmetInformation")
     @Mapping(source = "remarks", target = "additionalComments")
     @Mapping(source = "countryRegion", target = "region")
     @Mapping(source = "roles", target = "eventHost", qualifiedByName = "eventHostFromRoles")
     @Mapping(source = "roles", target = "eventOrganizer", qualifiedByName = "eventOrganizerFromRoles")
     @Mapping(source = "roles", target = "contactPerson", qualifiedByName = "contactPersonFromRoles")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
-
-    @Named(value = "obligationInfoToBoolean")
-    protected boolean obligationInfoToBoolean(String obligationInfo) {
-
-        return isNotBlank(obligationInfo);
-    }
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {
 

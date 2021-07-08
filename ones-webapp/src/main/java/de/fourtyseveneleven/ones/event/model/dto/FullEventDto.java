@@ -16,8 +16,8 @@ public class FullEventDto extends SimpleEventDto {
     private LocalDateTime signupDeadline;
     private BigDecimal signupDeadlineMissedFee;
 
-    private boolean isVaccinationMandatory;
-    private boolean isHelmetMandatory;
+    private String vaccinationInformation;
+    private String helmetInformation;
 
     private List<AccommodationDto> availableAccommodations = new LinkedList<>();
 
@@ -63,20 +63,20 @@ public class FullEventDto extends SimpleEventDto {
         this.signupDeadlineMissedFee = signupDeadlineMissedFee;
     }
 
-    public boolean getIsVaccinationMandatory() {
-        return isVaccinationMandatory;
+    public String getVaccinationInformation() {
+        return vaccinationInformation;
     }
 
-    public void setIsVaccinationMandatory(boolean isVaccinationMandatory) {
-        this.isVaccinationMandatory = isVaccinationMandatory;
+    public void setVaccinationInformation(String vaccinationInformation) {
+        this.vaccinationInformation = vaccinationInformation;
     }
 
-    public boolean getIsHelmetMandatory() {
-        return isHelmetMandatory;
+    public String getHelmetInformation() {
+        return helmetInformation;
     }
 
-    public void setIsHelmetMandatory(boolean isHelmetMandatory) {
-        this.isHelmetMandatory = isHelmetMandatory;
+    public void setHelmetInformation(String helmetInformation) {
+        this.helmetInformation = helmetInformation;
     }
 
     public List<AccommodationDto> getAvailableAccommodations() {
