@@ -70,7 +70,12 @@ export class UserStore extends VuexModule {
             sessionStorage.setItem(UserStore.TOKEN_STORAGE_NAME, jwsToken);
         }
 
-        await this.fetchCurrent();
+        try {
+            await this.fetchCurrent();
+        } catch (error) {
+            this.logout();
+            throw error;
+        }
     }
 
     @action
