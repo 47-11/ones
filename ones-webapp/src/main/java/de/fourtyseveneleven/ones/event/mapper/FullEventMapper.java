@@ -40,6 +40,8 @@ public abstract class FullEventMapper {
     @Mapping(source = "roles", target = "eventHost", qualifiedByName = "eventHostFromRoles")
     @Mapping(source = "roles", target = "eventOrganizer", qualifiedByName = "eventOrganizerFromRoles")
     @Mapping(source = "roles", target = "contactPerson", qualifiedByName = "contactPersonFromRoles")
+    @Mapping(source = "promoterEventUrl", target = "organizerWebsiteUrl")
+    @Mapping(source = "promoterTenderingUrl", target = "signupDocumentUrl")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {

@@ -23,6 +23,9 @@ public class FullEventDto extends SimpleEventDto {
 
     private List<String> additionalComments;
 
+    private String organizerWebsiteUrl;
+    private String signupDocumentUrl;
+
     public PersonDto getEventHost() {
         return eventHost;
     }
@@ -93,5 +96,21 @@ public class FullEventDto extends SimpleEventDto {
 
     public void setAdditionalComments(List<String> additionalComments) {
         this.additionalComments = additionalComments;
+    }
+
+    public String getOrganizerWebsiteUrl() {
+        return organizerWebsiteUrl;
+    }
+
+    public void setOrganizerWebsiteUrl(String organizerWebsiteUrl) {
+        this.organizerWebsiteUrl = organizerWebsiteUrl;
+    }
+
+    public String getSignupDocumentUrl() {
+        return signupDocumentUrl;
+    }
+
+    public void setSignupDocumentUrl(String signupDocumentUrl) {
+        this.signupDocumentUrl = signupDocumentUrl;
     }
 }
