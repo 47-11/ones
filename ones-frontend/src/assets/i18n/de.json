@@ -123,6 +123,8 @@
         "title": "Veranstaltungen",
         "state": "Status",
         "date": "Datum",
+        "start": "Start",
+        "end": "Ende",
         "ride": "Ritt",
         "region": "Region",
         "rideType": "Rittart",
@@ -136,8 +138,21 @@
         "nationalChampionship": "Landesmeisterschaft",
         "noNationalChampionship": "Keine Landesmeisterschaft",
         "details": "Details",
-        "yes": "Ja",
-        "no": "Nein",
+        "filter": {
+            "open": "Filter öffnen",
+            "close": "Filter schließen",
+            "title": "Veranstaltungen filtern",
+            "reset": "Zurücksetzen",
+            "period": "Zeitraum",
+            "region": "Region",
+            "categories": "Kategorien",
+            "cardRide": "Kartenritt",
+            "nationalChampionchip": "Landesmeisterschaft",
+            "internationalChampionchip": "Internationaler Ritt",
+            "all": "alle",
+            "yes": "Ja",
+            "no": "Nein"
+          },      
         "states": {
             "undefined": "Unbekannt"
         },

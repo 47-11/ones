@@ -12,7 +12,7 @@
 
             <div class="border-t border-b mb-12 px-6 lg:px-0 pt-6 pb-8" v-if="showFilter">
                 <div class="flex items-center">
-                    <h2 class="text-xl">{{ $t("events.filter.title") }}</h2>
+                    <h2 class="text-xl mb-4">{{ $t("events.filter.title") }}</h2>
 
                     <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer" @click="resetFilter()">
                         {{ $t("events.filter.reset") }}
@@ -118,7 +118,6 @@
                     <v-th>
                         {{ $t('events.categories') }}
                     </v-th>
-                    <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -204,7 +203,6 @@ import VTable from "@/components/table/VTable.vue";
 import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
 import Badge from "@/components/Badge.vue";
-import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
 import VLink from "@/components/VLink.vue";
@@ -231,13 +229,9 @@ import DateRange from "@/components/DateRange.vue";
         VButton,
         Badge,
         VCheckbox,
-        DateRange
-        VCheckbox
-        Badge
-        VButton,
+        DateRange,
         VSelect,
         VLabel,
-        VCheckbox,
         VRadio,
         PageHeader,
         Multiselect

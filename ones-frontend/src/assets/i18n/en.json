@@ -139,6 +139,8 @@
         "inCommunicationWithHost": "in agreement with host"
     },
     "events": {
+        "start": "Start",
+        "end": "End",
         "state": "State",
         "date": "Date",
         "ride": "Ride",
@@ -160,6 +162,18 @@
         "states": {
             "undefined": "Unknown"
         },
+        "filter": {
+            "categories": "Categories",
+            "all": "All",
+            "cardRide": "Card Ride",
+            "internationalChampionchip": "International Championship",
+            "open": "Open Filter",
+            "close": "Close Filter",
+            "title": "Filter Events",
+            "reset": "Reset",
+            "period": "Period",
+            "region": "Region"
+        },   
         "shared": {
             "yes": "Yes",
             "no": "No"
