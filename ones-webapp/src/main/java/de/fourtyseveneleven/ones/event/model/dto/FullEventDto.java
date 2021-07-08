@@ -29,6 +29,7 @@ public class FullEventDto extends SimpleEventDto {
 
     private int minimumParticipants;
     private int maximumParticipants;
+    private int currentParticipants;
 
     public PersonDto getEventHost() {
         return eventHost;
@@ -148,5 +149,13 @@ public class FullEventDto extends SimpleEventDto {
 
     public void setMaximumParticipants(int maximumParticipants) {
         this.maximumParticipants = maximumParticipants;
+    }
+
+    public int getCurrentParticipants() {
+        return currentParticipants;
+    }
+
+    public void setCurrentParticipants(int currentParticipants) {
+        this.currentParticipants = currentParticipants;
     }
 }
