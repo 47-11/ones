@@ -14,6 +14,7 @@ import de.fourtyseveneleven.ones.event.mapper.SimpleEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
+import de.fourtyseveneleven.ones.security.util.UserUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -55,7 +56,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private Optional<SimpleEventDto> tryFindOneByUuid(String eventUuid) throws ApiException {
 
-        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid);
+        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
         return Optional.ofNullable(eventContest)
                 .map(simpleEventMapper::eventContestToSimpleEventDto);
     }
