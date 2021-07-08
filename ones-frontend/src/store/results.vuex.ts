@@ -1,6 +1,6 @@
 import { action, createModule, createProxy } from "vuex-class-component";
 import { ResultControllerApi, ResultDto as Result } from "@/openapi/generated/api";
-import { UserStore } from "./userStore.vuex";
+import { UserStore } from "./user.vuex";
 
 const VuexModule = createModule({
     namespaced: "results",

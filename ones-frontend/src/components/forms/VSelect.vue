@@ -1,0 +1,21 @@
+<template>
+    <select class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-bind:value="value" @input="handleInput" :disabled="disabled"
+           v-bind:class="{ 'bg-gray-100': disabled }">
+           <slot></slot>
+    </select>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { InputEvent } from "@/customTypes/inputEvent";
+
+@Component
+export default class VSelect extends Vue {
+    @Prop() public disabled!: boolean;
+    @Prop() public value!: string;
+
+    handleInput(e: InputEvent): void {
+        this.$emit("input", e.target.value);
+    }
+}
+</script>

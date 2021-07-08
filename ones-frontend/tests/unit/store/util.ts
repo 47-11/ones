@@ -2,7 +2,7 @@ import { VuexModule, VuexModuleConstructor } from "vuex-class-component/dist/int
 import Vuex, { Store } from "vuex";
 import { extractVuexModule } from "vuex-class-component";
 import { EventsStore } from "@/store/events.vuex";
-import { UserStore } from "@/store/userStore.vuex";
+import { UserStore } from "@/store/user.vuex";
 import { HorseStore } from "@/store/horse.vuex";
 import { ResultsStore } from "@/store/results.vuex";
 import { AppStore } from "@/store/app.vuex";
@@ -37,7 +37,7 @@ export function clearProxyCache<T extends typeof VuexModule>(cls: T): void {
 }
 
 export function createTestStore(): Store<unknown> {
-    return new Vuex.Store({
+    const store = new Vuex.Store({
         modules: {
             ...extractVuexModule(AppStore),
             ...extractVuexModule(EventsStore),
@@ -46,4 +46,7 @@ export function createTestStore(): Store<unknown> {
             ...extractVuexModule(ResultsStore)
         }
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).store = store;
+    return store;
 }

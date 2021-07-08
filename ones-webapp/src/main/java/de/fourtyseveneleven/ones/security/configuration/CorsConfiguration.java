@@ -12,8 +12,10 @@ public class CorsConfiguration  implements WebMvcConfigurer {
 
         // Safe to allow for api endpoints, since we use JWT tokens.
         registry.addMapping("/api/**")
+                .allowedMethods("*")
                 .allowedOrigins("*");
         registry.addMapping("/error")
+                .allowedMethods("*")
                 .allowedOrigins("*");
     }
 }

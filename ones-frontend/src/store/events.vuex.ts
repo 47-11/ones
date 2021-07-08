@@ -1,6 +1,6 @@
 import { EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
-import { UserStore } from "./userStore.vuex";
+import { UserStore } from "./user.vuex";
 import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
 

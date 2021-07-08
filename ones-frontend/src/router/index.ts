@@ -8,6 +8,7 @@ import Verified from "@/views/auth/Verified.vue";
 import EventsIndex from "@/views/events/Index.vue";
 import EventDetail from "@/views/events/Detail.vue";
 import SignUp from "@/views/contests/SignUp.vue";
+import SetPersonalData from "@/views/auth/SetPersonalData.vue";
 import { vxm } from "@/store";
 
 Vue.use(VueRouter);
@@ -56,6 +57,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/events/:eventId",
         component: EventDetail
+    },
+    {
+        path: "/set-personal-data/",
+        component: SetPersonalData
     }
 ];
 
@@ -68,14 +73,27 @@ const router = new VueRouter({
 router.beforeEach((to, f, next) => {
     if (needsAuth(to) && !vxm.user.authenticated) {
         next("/login");
+        return;
     } else if (!needsAuth(to) && vxm.user.authenticated) {
         next("/");
+        return;
     }
 
     if (to.path === "/logout") {
         vxm.user.logout();
         router.go(0);
         next("/login");
+        return;
+    }
+
+    const currentUser = vxm.user.current;
+
+    if (currentUser && needsToSetPersonalData() && to.path !== "/set-personal-data") {
+        next("/set-personal-data");
+        return;
+    } else if (currentUser && isPersonalDataKnown() && to.path === "/set-personal-data") {
+        next("/");
+        return;
     }
 
     next();
@@ -84,6 +102,14 @@ router.beforeEach((to, f, next) => {
 function needsAuth(to: Route) {
     const needsNoAuth = ["/login", "/register", "/forgot-password", "/reset-password", "/verified"].includes(to.path);
     return !needsNoAuth;
+}
+
+function needsToSetPersonalData(): boolean {
+    return vxm.user.current?.isPersonalDataKnown === false;
+}
+
+function isPersonalDataKnown(): boolean {
+    return !needsToSetPersonalData();
 }
 
 export default router;

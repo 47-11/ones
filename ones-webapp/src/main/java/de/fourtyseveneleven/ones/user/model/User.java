@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serial;
+import java.util.UUID;
 
 @Entity
 public class User extends AbstractBaseEntity {
@@ -23,6 +24,7 @@ public class User extends AbstractBaseEntity {
     private String password;
     private boolean registrationConfirmed;
     private String registrationConfirmationCode;
+    private UUID uuid;
 
     @NotBlank(message = "{user.email-address.not-blank}")
     @Email(message = "{user.email-address.email}")
@@ -60,6 +62,14 @@ public class User extends AbstractBaseEntity {
 
     public void setRegistrationConfirmationCode(String registrationConfirmationCode) {
         this.registrationConfirmationCode = registrationConfirmationCode;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     @Override

@@ -1,4 +1,4 @@
-import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi } from "@/openapi/generated";
+import { ForgotPasswordControllerApi, LoginControllerApi, PersonalDataDto as PersonalData, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -15,6 +15,7 @@ export interface LoginPayload {
 export interface RegistrationPayload {
     email: string;
     password: string;
+    vddNumber?: number;
 }
 
 export interface VerificationPayload {
@@ -33,6 +34,7 @@ export interface NewPassByCodePayload {
 export class UserStore extends VuexModule {
     private static readonly TOKEN_STORAGE_NAME = "jwtToken";
     public token?: string = this.getLastToken();
+    private _current: UserDto | null = null;
 
     private getLastToken(): string | undefined {
         return sessionStorage.getItem(UserStore.TOKEN_STORAGE_NAME) ||
@@ -42,6 +44,14 @@ export class UserStore extends VuexModule {
 
     get authenticated(): boolean {
         return this.token !== undefined;
+    }
+
+    get current(): User | null {
+        // this will not have the current user data immediately
+        if (this.authenticated && this._current === null) {
+            this.fetchCurrent();
+        }
+        return this._current;
     }
 
     @action
@@ -59,13 +69,16 @@ export class UserStore extends VuexModule {
             localStorage.removeItem(UserStore.TOKEN_STORAGE_NAME);
             sessionStorage.setItem(UserStore.TOKEN_STORAGE_NAME, jwsToken);
         }
+
+        await this.fetchCurrent();
     }
 
     @action
     async register(payload: RegistrationPayload): Promise<void> {
         await new RegistrationControllerApi().createRegistration({
             emailAddress: payload.email,
-            password: payload.password
+            password: payload.password,
+            vddMemberNumber: payload.vddNumber
         });
     }
 
@@ -94,5 +107,24 @@ export class UserStore extends VuexModule {
             code: payload.code,
             newPassword: payload.password
         });
+    }
+
+    @action
+    async fetchCurrent(): Promise<void> {
+        const response = await new UserControllerApi({
+            accessToken: this.token || "",
+            isJsonMime: () => true
+        }).getCurrentUser();
+
+        this._current = response.data;
+    }
+
+    @action
+    async setPersonalData(payload: PersonalData): Promise<void> {
+        await new UserControllerApi({
+            accessToken: this.token || "",
+            isJsonMime: () => true
+        }).setPersonalData(payload);
+        await this.fetchCurrent();
     }
 }

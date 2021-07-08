@@ -11,18 +11,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @Profile({"development", "staging"})
 public class TestUserCreator
         implements ApplicationListener<ApplicationReadyEvent> {
 
-    private static final String TEST_USER_EMAIL_ADDRESS = "ones@example.com";
-    private static final String TEST_USER_PASSWORD = "ones";
-
     private static final Logger LOG =
             LoggerFactory.getLogger(TestUserCreator.class);
+
+    private static final String TEST_USER_EMAIL_ADDRESS = "ones@example.com";
+    private static final String TEST_USER_UUID = "4bfb14cd-cb0a-4c74-b9a3-dd136bae60cf";
+    private static final String TEST_USER_PASSWORD = "ones";
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
@@ -48,8 +49,7 @@ public class TestUserCreator
 
     private boolean shouldCreateTestUser() {
 
-        final Optional<User> testUser = userRepository.findOneByEmailAddress(TEST_USER_EMAIL_ADDRESS);
-        return testUser.isEmpty();
+        return userRepository.findAll().isEmpty();
     }
 
     private void createTestUser() {
@@ -64,6 +64,7 @@ public class TestUserCreator
 
         final var testUser = new User();
         testUser.setEmailAddress(TEST_USER_EMAIL_ADDRESS);
+        testUser.setUuid(UUID.fromString(TEST_USER_UUID));
         testUser.setPassword(passwordEncoder.encode(TEST_USER_PASSWORD));
         testUser.setRegistrationConfirmed(true);
 

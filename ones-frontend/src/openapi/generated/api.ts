@@ -527,6 +527,79 @@ export interface PersonDto {
 /**
  * 
  * @export
+ * @interface PersonalDataDto
+ */
+export interface PersonalDataDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    salutation?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    firstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    lastName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    birthday?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    phoneNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    phoneNumberMobile?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    street?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    houseNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    zipCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    country?: string;
+}
+/**
+ * 
+ * @export
  * @interface RegistrationDto
  */
 export interface RegistrationDto {
@@ -542,6 +615,12 @@ export interface RegistrationDto {
      * @memberof RegistrationDto
      */
     password?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RegistrationDto
+     */
+    vddMemberNumber?: number;
 }
 /**
  * 
@@ -715,6 +794,43 @@ export interface SimpleEventDto {
      * @memberof SimpleEventDto
      */
     contests?: Array<SimpleContestDto>;
+}
+/**
+ * 
+ * @export
+ * @interface UserDto
+ */
+export interface UserDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {AddressDto}
+     * @memberof UserDto
+     */
+    address?: AddressDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    phoneNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    emailAddress?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserDto
+     */
+    isPersonalDataKnown?: boolean;
 }
 
 /**
@@ -1942,6 +2058,173 @@ export class ResultControllerApi extends BaseAPI {
      */
     public getMyResults(options?: any) {
         return ResultControllerApiFp(this.configuration).getMyResults(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * UserControllerApi - axios parameter creator
+ * @export
+ */
+export const UserControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCurrentUser: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/user/me`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PersonalDataDto} personalDataDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        setPersonalData: async (personalDataDto: PersonalDataDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'personalDataDto' is not null or undefined
+            assertParamExists('setPersonalData', 'personalDataDto', personalDataDto)
+            const localVarPath = `/api/v1/user/me`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(personalDataDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserControllerApi - functional programming interface
+ * @export
+ */
+export const UserControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UserControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCurrentUser(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentUser(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {PersonalDataDto} personalDataDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async setPersonalData(personalDataDto: PersonalDataDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.setPersonalData(personalDataDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * UserControllerApi - factory interface
+ * @export
+ */
+export const UserControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UserControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCurrentUser(options?: any): AxiosPromise<UserDto> {
+            return localVarFp.getCurrentUser(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PersonalDataDto} personalDataDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        setPersonalData(personalDataDto: PersonalDataDto, options?: any): AxiosPromise<void> {
+            return localVarFp.setPersonalData(personalDataDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UserControllerApi - object-oriented interface
+ * @export
+ * @class UserControllerApi
+ * @extends {BaseAPI}
+ */
+export class UserControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserControllerApi
+     */
+    public getCurrentUser(options?: any) {
+        return UserControllerApiFp(this.configuration).getCurrentUser(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PersonalDataDto} personalDataDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserControllerApi
+     */
+    public setPersonalData(personalDataDto: PersonalDataDto, options?: any) {
+        return UserControllerApiFp(this.configuration).setPersonalData(personalDataDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

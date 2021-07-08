@@ -12,46 +12,78 @@
                 </div>
             </div>
         </auth-card>
-        <auth-card v-else>
-            <form @submit.prevent="register">
-                <div class="px-6 py-5">
-                    <error-message :error="error"/>
 
-                    <div>
-                        <v-label>{{ $t("register.email") }}</v-label>
-                        <v-input type="text" class="w-full" v-model="email" :disabled="inputsDisabled"></v-input>
-                        <v-hint>
-                            {{ $t("register.sameMail") }}
-                        </v-hint>
+        <div v-else class="min-h-screen flex flex-col sm:justify-center items-center pt-6 md:pt-0 bg-gray-100">
+            <div class="max-w-3xl">
+                <page-header>Registierung</page-header>
+
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-2/3 order-2 md:order-1 md:mt-6 md:mr-12 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                        <form @submit.prevent="register">
+                            <div class="px-6 py-5">
+                                <error-message :error="error"/>
+
+                                <div class="mb-5">
+                                    <v-label>{{ $t("register.email") }}</v-label>
+                                    <v-input type="text" class="w-full" v-model="email" :disabled="inputsDisabled"></v-input>
+                                    <v-hint>
+                                        {{ $t("register.sameMail") }}
+                                    </v-hint>
+                                </div>
+
+                                <div>
+                                    <v-label>{{ $t("register.vddNumber") }} ({{ $t("register.optional")}})</v-label>
+                                    <v-input type="number" class="w-full" v-model="vddNumber" :disabled="inputsDisabled"></v-input>
+                                </div>
+
+                                <v-password v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
+
+                                <div class="mt-5">
+                                    <v-label>{{$t("register.passwordRepeat")}}</v-label>
+                                    <v-input type="password" class="w-full" v-model="passwordRepeat" :disabled="inputsDisabled"></v-input>
+                                </div>
+
+                                <div class="block mt-4">
+                                    <label for="accept_policy_conditions" class="inline-flex items-center">
+                                        <v-checkbox id="accept_policy_conditions" name="remember" v-model="dataProtectionAccepted" :disabled="inputsDisabled"/>
+                                        <span class="ml-2 text-sm text-gray-600">
+                                            <i18n path="register.agreeToPolicy">
+                                                <template v-slot:policy>
+                                                    <v-link to="/">{{$t("register.privacyPolicy")}}</v-link>
+                                                </template>
+                                            </i18n>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                <v-link to="login">{{$t("register.login")}}</v-link>
+                                <div class="flex-grow"></div>
+                                <v-button role="submit" :disabled="inputsDisabled">{{$t("register.submit")}}</v-button>
+                            </div>
+                        </form>
                     </div>
 
-                    <v-password v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
+                    <div class="mb-8 md:mt-8 order-1 md:order-2 px-6 md:px-0 md:w-64 flex-grow-0">
+                        <h2 class="text-xl font-bold">{{ $t("register.steps.title") }}</h2>
 
-                    <div class="mt-5">
-                        <v-label>{{$t("register.passwordRepeat")}}</v-label>
-                        <v-input type="password" class="w-full" v-model="passwordRepeat" :disabled="inputsDisabled"></v-input>
-                    </div>
+                        <div class="mt-8 flex items-center">
+                            <badge-circle class="mr-5 bg-indigo-500 text-white">1.</badge-circle>
+                            <h3 class="text-lg font-bold">{{ $t("register.steps.first.title") }}</h3>
+                        </div>
 
-                    <div class="block mt-4">
-                        <label for="accept_policy_conditions" class="inline-flex items-center">
-                            <v-checkbox id="accept_policy_conditions" name="remember" v-model="dataProtectionAccepted" :disabled="inputsDisabled"/>
-                            <span class="ml-2 text-sm text-gray-600">
-                                <i18n path="register.agreeToPolicy">
-                                    <template v-slot:policy>
-                                        <v-link to="/">{{$t("register.privacyPolicy")}}</v-link>
-                                    </template>
-                                </i18n>
-                            </span>
-                        </label>
+                        <p class="text-gray-500 text-sm mt-4">{{ $t("register.steps.first.description") }}</p>
+
+                        <div class="mt-8 flex items-center">
+                            <badge-circle class="mr-5 bg-gray-700 text-white">2.</badge-circle>
+                            <h3 class="text-lg font-bold">{{ $t("register.steps.second.title") }}</h3>
+                        </div>
+
+                        <p class="text-gray-500 text-sm mt-4">{{ $t("register.steps.second.description") }} </p>
                     </div>
                 </div>
-                <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <v-link to="login">{{$t("register.login")}}</v-link>
-                    <div class="flex-grow"></div>
-                    <v-button role="submit" :disabled="inputsDisabled">{{$t("register.submit")}}</v-button>
-                </div>
-            </form>
-        </auth-card>
+            </div>
+        </div>
     </guest-layout>
 </template>
 
@@ -72,8 +104,10 @@ import VPassword from "@/components/forms/VPassword.vue";
 import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
+import PageHeader from "@/components/PageHeader.vue";
 import { vxm } from "@/store";
 import VLink from "@/components/VLink.vue";
+import BadgeCircle from "@/components/BadgeCircle.vue";
 
 @Component({
     components: {
@@ -86,13 +120,22 @@ import VLink from "@/components/VLink.vue";
         AuthCard,
         GuestLayout,
         Feedback,
-        VPassword
+        PageHeader,
+        VPassword,
+        BadgeCircle
     }
 })
 export default class Register extends Vue {
     email = "";
     password = "";
     score = 0;
+    vddNumber: string | undefined;
+
+    data(): Record<string, undefined> {
+        return {
+            vddNumber: undefined
+        };
+    }
 
     passwordRepeat = "";
     dataProtectionAccepted = true;
@@ -113,9 +156,12 @@ export default class Register extends Vue {
         this.error = null;
         try {
             this.assertValid();
+
+            const vddNumber = this.vddNumber ? parseInt(this.vddNumber) : undefined;
             await vxm.user.register({
                 email: this.email,
-                password: this.password
+                password: this.password,
+                vddNumber
             });
             this.registrationDone = true;
         } catch (error) {

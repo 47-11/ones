@@ -22,6 +22,7 @@ import store, { vxm } from "./store";
 import VueLoading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import axios from "axios";
+import { UserDto } from "./openapi/generated";
 
 Vue.config.productionTip = false;
 
@@ -78,6 +79,12 @@ axios.interceptors.response.use(res => {
         }
     }
     throw res;
+});
+
+vxm.user.$watch("current", (current: UserDto | null) => {
+    if (current && !current.isPersonalDataKnown && router.currentRoute.path !== "/set-personal-data") {
+        router.push("/set-personal-data");
+    }
 });
 
 new Vue({
