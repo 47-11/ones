@@ -26,6 +26,9 @@ public class FullEventDto extends SimpleEventDto {
     private String organizerWebsiteUrl;
     private String signupDocumentUrl;
 
+    private int minimumParticipants;
+    private int maximumParticipants;
+
     public PersonDto getEventHost() {
         return eventHost;
     }
@@ -120,5 +123,21 @@ public class FullEventDto extends SimpleEventDto {
 
     public void setSignupDocumentUrl(String signupDocumentUrl) {
         this.signupDocumentUrl = signupDocumentUrl;
+    }
+
+    public int getMinimumParticipants() {
+        return minimumParticipants;
+    }
+
+    public void setMinimumParticipants(int minimumParticipants) {
+        this.minimumParticipants = minimumParticipants;
+    }
+
+    public int getMaximumParticipants() {
+        return maximumParticipants;
+    }
+
+    public void setMaximumParticipants(int maximumParticipants) {
+        this.maximumParticipants = maximumParticipants;
     }
 }

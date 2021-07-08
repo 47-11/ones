@@ -53,6 +53,8 @@ public abstract class FullEventMapper {
     @Mapping(source = "promoterTenderingUrl", target = "signupDocumentUrl")
     @Mapping(source = "fees", target = "lateSignupFee", qualifiedByName = "lateSignupFee")
     @Mapping(source = "fees", target = "availableAccommodations")
+    @Mapping(source = "contestantQuantityMin", target = "minimumParticipants")
+    @Mapping(source = "contestantQuantityMax", target = "maximumParticipants")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {
