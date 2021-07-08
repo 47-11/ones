@@ -100,7 +100,7 @@ export default class Login extends Vue {
                 staySignedIn: this.remember
             });
 
-            router.push("/");
+            router.push("/").catch(() => { /* has been redirected to track personal data */ });
         } catch (error) {
             this.error = error;
         } finally {

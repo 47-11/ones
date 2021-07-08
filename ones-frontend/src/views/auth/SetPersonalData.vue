@@ -212,6 +212,8 @@ export default class SetPersonalData extends Vue {
         }
 
         this.inputsDisabled = false;
+
+        this.$router.push("/");
     }
 
     private assertValid(): void {
