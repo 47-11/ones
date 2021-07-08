@@ -16,6 +16,7 @@ public class SimpleEventDto {
     private LocalDateTime start;
     private LocalDateTime end;
 
+    private String region;
     private List<EventAddressDto> addresses;
 
     private boolean isNationalChampionship;
@@ -65,6 +66,14 @@ public class SimpleEventDto {
 
     public List<EventAddressDto> getAddresses() {
         return addresses;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public void setAddresses(List<EventAddressDto> addresses) {

@@ -23,6 +23,7 @@ public interface SimpleEventMapper {
     @Mapping(source = "locations", target = "addresses")
     @Mapping(source = "isCountryChampionship", target = "isNationalChampionship")
     @Mapping(source = "isCei", target = "isInternational")
+    @Mapping(source = "countryRegion", target = "region")
     SimpleEventDto eventContestPlainToSimpleEventDto(EventContestPlain eventContestPlain);
 
     @Mapping(source = "beginning", target = "start")
@@ -30,5 +31,6 @@ public interface SimpleEventMapper {
     @Mapping(source = "locations", target = "addresses")
     @Mapping(source = "isCountryChampionship", target = "isNationalChampionship")
     @Mapping(source = "isCei", target = "isInternational")
+    @Mapping(source = "countryRegion", target = "region")
     SimpleEventDto eventContestToSimpleEventDto(EventContest eventContest);
 }

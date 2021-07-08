@@ -33,6 +33,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "infoVaccinationObligation", target = "isVaccinationMandatory", qualifiedByName = "obligationInfoToBoolean")
     @Mapping(source = "infoHelmetObligation", target = "isHelmetMandatory", qualifiedByName = "obligationInfoToBoolean")
     @Mapping(source = "remarks", target = "additionalComments")
+    @Mapping(source = "countryRegion", target = "region")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     @Named(value = "obligationInfoToBoolean")
