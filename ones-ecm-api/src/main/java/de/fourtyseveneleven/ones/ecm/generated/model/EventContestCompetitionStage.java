@@ -52,11 +52,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionStage.JSON_PROPERTY_PENALTY_POINTS_PULSE_RATE_EXCEEDED,
   EventContestCompetitionStage.JSON_PROPERTY_BREAKS_TOTAL_NUMBERS,
   EventContestCompetitionStage.JSON_PROPERTY_BREAKS_TOTAL_MINUTES,
-  EventContestCompetitionStage.JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID,
-  EventContestCompetitionStage.JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN,
-  EventContestCompetitionStage.JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX
+  EventContestCompetitionStage.JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class EventContestCompetitionStage {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -121,12 +119,6 @@ public class EventContestCompetitionStage {
   public static final String JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID = "responsibleVeterinarianUuid";
   private String responsibleVeterinarianUuid;
 
-  public static final String JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN = "contestantLimitiationMin";
-  private Integer contestantLimitiationMin;
-
-  public static final String JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX = "contestantLimitiationMax";
-  private Integer contestantLimitiationMax;
-
 
   public EventContestCompetitionStage uuid(String uuid) {
     this.uuid = uuid;
@@ -137,10 +129,9 @@ public class EventContestCompetitionStage {
    * Get uuid
    * @return uuid
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getUuid() {
     return uuid;
@@ -148,7 +139,7 @@ public class EventContestCompetitionStage {
 
 
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
@@ -163,10 +154,9 @@ public class EventContestCompetitionStage {
    * Get creationTimestamp
    * @return creationTimestamp
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public OffsetDateTime getCreationTimestamp() {
     return creationTimestamp;
@@ -174,7 +164,7 @@ public class EventContestCompetitionStage {
 
 
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -674,58 +664,6 @@ public class EventContestCompetitionStage {
   }
 
 
-  public EventContestCompetitionStage contestantLimitiationMin(Integer contestantLimitiationMin) {
-    this.contestantLimitiationMin = contestantLimitiationMin;
-    return this;
-  }
-
-   /**
-   * Get contestantLimitiationMin
-   * @return contestantLimitiationMin
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getContestantLimitiationMin() {
-    return contestantLimitiationMin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContestantLimitiationMin(Integer contestantLimitiationMin) {
-    this.contestantLimitiationMin = contestantLimitiationMin;
-  }
-
-
-  public EventContestCompetitionStage contestantLimitiationMax(Integer contestantLimitiationMax) {
-    this.contestantLimitiationMax = contestantLimitiationMax;
-    return this;
-  }
-
-   /**
-   * Get contestantLimitiationMax
-   * @return contestantLimitiationMax
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getContestantLimitiationMax() {
-    return contestantLimitiationMax;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContestantLimitiationMax(Integer contestantLimitiationMax) {
-    this.contestantLimitiationMax = contestantLimitiationMax;
-  }
-
-
   /**
    * Return true if this EventContestCompetitionStage object is equal to o.
    */
@@ -758,14 +696,12 @@ public class EventContestCompetitionStage {
         Objects.equals(this.penaltyPointsPulseRateExceeded, eventContestCompetitionStage.penaltyPointsPulseRateExceeded) &&
         Objects.equals(this.breaksTotalNumbers, eventContestCompetitionStage.breaksTotalNumbers) &&
         Objects.equals(this.breaksTotalMinutes, eventContestCompetitionStage.breaksTotalMinutes) &&
-        Objects.equals(this.responsibleVeterinarianUuid, eventContestCompetitionStage.responsibleVeterinarianUuid) &&
-        Objects.equals(this.contestantLimitiationMin, eventContestCompetitionStage.contestantLimitiationMin) &&
-        Objects.equals(this.contestantLimitiationMax, eventContestCompetitionStage.contestantLimitiationMax);
+        Objects.equals(this.responsibleVeterinarianUuid, eventContestCompetitionStage.responsibleVeterinarianUuid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, contestantLimitiationMin, contestantLimitiationMax);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid);
   }
 
   @Override
@@ -793,8 +729,6 @@ public class EventContestCompetitionStage {
     sb.append("    breaksTotalNumbers: ").append(toIndentedString(breaksTotalNumbers)).append("\n");
     sb.append("    breaksTotalMinutes: ").append(toIndentedString(breaksTotalMinutes)).append("\n");
     sb.append("    responsibleVeterinarianUuid: ").append(toIndentedString(responsibleVeterinarianUuid)).append("\n");
-    sb.append("    contestantLimitiationMin: ").append(toIndentedString(contestantLimitiationMin)).append("\n");
-    sb.append("    contestantLimitiationMax: ").append(toIndentedString(contestantLimitiationMax)).append("\n");
     sb.append("}");
     return sb.toString();
   }

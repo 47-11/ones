@@ -1,16 +1,18 @@
-import { EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
+import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
 import { action, createModule, createProxy, mutation } from "vuex-class-component";
 import { UserStore } from "./user.vuex";
 import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
+import moment from "moment";
 
-interface FilterType extends Record<string, string | boolean | string[] | undefined> {
-    from?: string;
+export interface FilterType extends Record<string, string | boolean | string[] | undefined> {
+    from: string;
     until?: string;
     isCountryChampionship?: boolean;
     isInternational?: boolean;
     isCard?: boolean;
     regions: string[];
+    categories: string[]
 }
 
 export enum SortDirection {
@@ -27,7 +29,7 @@ const VuexModule = createModule({
 
 export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private events: SimpleEvent[] = [];
-    private filter = {} as FilterType;
+    private _filter: FilterType = { from: moment().toISOString(), categories: [], regions: [] };
     private contests: FullContest[] = [];
     private details: FullEvent | null = null;
     private _totalCount = 0;
@@ -36,6 +38,9 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private selectedSortCriterion: keyof SimpleEvent = "start";
     private selectedSortDirection: SortDirection = SortDirection.Ascending;
     private _selectedContest: string | null = null;
+    private _categories: ContestCategory[] = [];
+    private _regions: string[] = [];
+    private dynamicOptionsFetched = false;
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -93,6 +98,18 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
         return this.contests.find(contest => contest.uuid === this._selectedContest) || null;
     }
 
+    get categories(): ContestCategory[] {
+        return this._categories;
+    }
+
+    get regions(): string[] {
+        return this._regions;
+    }
+
+    get filter(): FilterType {
+        return this._filter;
+    }
+
     private get controller(): EventControllerApi {
         return new EventControllerApi({
             accessToken: createProxy(this.$store, UserStore).token || "",
@@ -102,19 +119,33 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async fetch(): Promise<void> {
-        const fetchResponse = await this.controller.findAll(...this.optionsAsArray);
+        await this.assureDynamicOptionsFetched();
+        const fetchResponse = await this.controller.findAll(...await this.optionsAsArray);
         this.events = fetchResponse.data.elements || [];
         this._totalCount = fetchResponse.data.totalElements || 0;
     }
 
+    @action
+    private async assureDynamicOptionsFetched(): Promise<void> {
+        if (!this.dynamicOptionsFetched) {
+            await this.fetchDynamicOptions();
+            this.modifyFilter({
+                regions: this.regions,
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                categories: this.categories.map(category => category.code!)
+            });
+        }
+    }
+
     private get optionsAsArray(): Parameters<EventControllerApi["findAll"]> {
         return [
-            this.filter.from,
-            this.filter.until,
-            this.filter.isCountryChampionship,
-            this.filter.isInternational,
-            this.filter.isCard,
-            this.filter.regions,
+            this._filter.from.substring(0, 10),
+            this._filter.until?.substring(0, 10),
+            this._filter.regions,
+            this._filter.categories,
+            this._filter.isCard,
+            this._filter.isCountryChampionship,
+            this._filter.isInternational,
             this.selectedPage,
             this.selectedPageSize,
             this.selectedSortCriterion,
@@ -123,20 +154,45 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     }
 
     @action
-    async addFilter(modification: FilterType): Promise<void> {
-        const newFilter = Object.assign({}, this.filter);
-        for (const [key, value] of Object.entries(modification)) {
-            newFilter[key as keyof FilterType] = value;
-        }
-        this.filter = newFilter;
+    async addFilter(modification: Partial<FilterType>): Promise<void> {
+        this.modifyFilter(modification);
         await this.fetch();
     }
 
     @mutation
-    removeFilter(...filterPropsToClear: Array<keyof FilterType>): void {
-        for (const filterProp of filterPropsToClear) {
-            this.filter[filterProp] = undefined;
+    private modifyFilter(modification: Partial<FilterType>): void {
+        const newFilter = Object.assign({}, this._filter);
+        for (const [key, value] of Object.entries(modification)) {
+            newFilter[key as keyof FilterType] = value;
         }
+        this._filter = newFilter;
+    }
+
+    @action
+    async resetFilter(): Promise<void> {
+        this._filter = {
+            from: moment().toISOString(),
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            categories: this.categories.map(c => c.code!),
+            regions: this.regions
+        };
+        await this.fetch();
+    }
+
+    @action
+    async removeFilter(...filterPropsToClear: Array<keyof FilterType>): Promise<void> {
+        if (this._filter) {
+            for (const filterProp of filterPropsToClear) {
+                this._filter[filterProp] = undefined;
+            }
+        }
+        await this.fetch();
+    }
+
+    @action
+    public async resetCategories(): Promise<void> {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        await this.addFilter({ categories: this.categories.map(c => c.code!) });
     }
 
     @action
@@ -214,5 +270,26 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     @mutation
     selectContest(contestId: string | null): void {
         this._selectedContest = contestId;
+    }
+
+    @action
+    private async fetchDynamicOptions(): Promise<void> {
+        await Promise.all([
+            this.fetchCategories(),
+            this.fetchRegions()
+        ]);
+        this.dynamicOptionsFetched = true;
+    }
+
+    @action
+    private async fetchCategories(): Promise<void> {
+        const response = await this.controller.getAllCategories();
+        this._categories = response.data || [];
+    }
+
+    @action
+    private async fetchRegions(): Promise<void> {
+        const response = await this.controller.getAllRegions();
+        this._regions = response.data || [];
     }
 }

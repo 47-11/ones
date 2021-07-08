@@ -41,7 +41,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class EventContestControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -143,24 +143,26 @@ public class EventContestControllerApi {
   /**
    * 
    * 
-   * @param uuid  (required)
+   * @param contestUuid  (required)
+   * @param accountUuid  (required)
    * @return EventContest
    * @throws ApiException if fails to make API call
    */
-  public EventContest getContestByUuid(String uuid) throws ApiException {
-    ApiResponse<EventContest> localVarResponse = getContestByUuidWithHttpInfo(uuid);
+  public EventContest getContestByUuid(String contestUuid, String accountUuid) throws ApiException {
+    ApiResponse<EventContest> localVarResponse = getContestByUuidWithHttpInfo(contestUuid, accountUuid);
     return localVarResponse.getData();
   }
 
   /**
    * 
    * 
-   * @param uuid  (required)
+   * @param contestUuid  (required)
+   * @param accountUuid  (required)
    * @return ApiResponse&lt;EventContest&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<EventContest> getContestByUuidWithHttpInfo(String uuid) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getContestByUuidRequestBuilder(uuid);
+  public ApiResponse<EventContest> getContestByUuidWithHttpInfo(String contestUuid, String accountUuid) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getContestByUuidRequestBuilder(contestUuid, accountUuid);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -185,10 +187,14 @@ public class EventContestControllerApi {
     }
   }
 
-  private HttpRequest.Builder getContestByUuidRequestBuilder(String uuid) throws ApiException {
-    // verify the required parameter 'uuid' is set
-    if (uuid == null) {
-      throw new ApiException(400, "Missing the required parameter 'uuid' when calling getContestByUuid");
+  private HttpRequest.Builder getContestByUuidRequestBuilder(String contestUuid, String accountUuid) throws ApiException {
+    // verify the required parameter 'contestUuid' is set
+    if (contestUuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'contestUuid' when calling getContestByUuid");
+    }
+    // verify the required parameter 'accountUuid' is set
+    if (accountUuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountUuid' when calling getContestByUuid");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -196,7 +202,8 @@ public class EventContestControllerApi {
     String localVarPath = "/rest/event/contest";
 
     List<Pair> localVarQueryParams = new ArrayList<>();
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("uuid", uuid));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("contestUuid", contestUuid));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountUuid", accountUuid));
 
     if (!localVarQueryParams.isEmpty()) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -220,42 +227,46 @@ public class EventContestControllerApi {
   /**
    * 
    * 
-   * @param year  (required)
    * @param fromDate  (optional)
    * @param untilDate  (optional)
    * @param countryRegions  (optional
+   * @param contestKinds  (optional
    * @param isCountryChampionship  (optional)
    * @param isCEI  (optional)
    * @param isCard  (optional)
+   * @param onlyRegistered  (optional)
+   * @param accountUuid  (optional)
    * @param pageNo  (optional, default to 0)
    * @param pageSize  (optional, default to 10)
    * @param sortBy  (optional, default to beginning)
    * @return ResponcePageContestsPlain
    * @throws ApiException if fails to make API call
    */
-  public ResponcePageContestsPlain getContestByYear(Integer year, OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, Integer isCountryChampionship, Integer isCEI, Integer isCard, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
-    ApiResponse<ResponcePageContestsPlain> localVarResponse = getContestByYearWithHttpInfo(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
+  public ResponcePageContestsPlain getContestByYear(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+    ApiResponse<ResponcePageContestsPlain> localVarResponse = getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
     return localVarResponse.getData();
   }
 
   /**
    * 
    * 
-   * @param year  (required)
    * @param fromDate  (optional)
    * @param untilDate  (optional)
    * @param countryRegions  (optional
+   * @param contestKinds  (optional
    * @param isCountryChampionship  (optional)
    * @param isCEI  (optional)
    * @param isCard  (optional)
+   * @param onlyRegistered  (optional)
+   * @param accountUuid  (optional)
    * @param pageNo  (optional, default to 0)
    * @param pageSize  (optional, default to 10)
    * @param sortBy  (optional, default to beginning)
    * @return ApiResponse&lt;ResponcePageContestsPlain&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ResponcePageContestsPlain> getContestByYearWithHttpInfo(Integer year, OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, Integer isCountryChampionship, Integer isCEI, Integer isCard, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getContestByYearRequestBuilder(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
+  public ApiResponse<ResponcePageContestsPlain> getContestByYearWithHttpInfo(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getContestByYearRequestBuilder(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -280,24 +291,22 @@ public class EventContestControllerApi {
     }
   }
 
-  private HttpRequest.Builder getContestByYearRequestBuilder(Integer year, OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, Integer isCountryChampionship, Integer isCEI, Integer isCard, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
-    // verify the required parameter 'year' is set
-    if (year == null) {
-      throw new ApiException(400, "Missing the required parameter 'year' when calling getContestByYear");
-    }
+  private HttpRequest.Builder getContestByYearRequestBuilder(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/rest/event/contests";
 
     List<Pair> localVarQueryParams = new ArrayList<>();
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("year", year));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("untilDate", untilDate));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("multi", "countryRegions", countryRegions));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("multi", "contestKinds", contestKinds));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("isCountryChampionship", isCountryChampionship));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("isCEI", isCEI));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("isCard", isCard));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("onlyRegistered", onlyRegistered));
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountUuid", accountUuid));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageNo", pageNo));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
     localVarQueryParams.addAll(ApiClient.parameterToPairs("sortBy", sortBy));

@@ -24,6 +24,8 @@ import "vue-loading-overlay/dist/vue-loading.css";
 import axios from "axios";
 import { UserDto } from "./openapi/generated";
 
+import VCalendar from "v-calendar";
+
 Vue.config.productionTip = false;
 
 library.add(
@@ -49,13 +51,16 @@ Vue.use(VueLoading, {
     backgroundColor: "#ffffff"
 });
 
+Vue.use(VCalendar);
+
 const i18n = new VueI18n({
     locale: navigator.language,
     fallbackLocale: "en",
     messages: {
         en: require("@/assets/i18n/en"),
         de: require("@/assets/i18n/de")
-    }
+    },
+    silentFallbackWarn: true
 });
 
 window.addEventListener("online", () => vxm.app.checkOnlineState());

@@ -140,6 +140,25 @@ export interface ConnectionTestResult {
 /**
  * 
  * @export
+ * @interface ContestCategory
+ */
+export interface ContestCategory {
+    /**
+     * 
+     * @type {string}
+     * @memberof ContestCategory
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContestCategory
+     */
+    description?: string;
+}
+/**
+ * 
+ * @export
  * @interface ErrorDto
  */
 export interface ErrorDto {
@@ -1042,12 +1061,13 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
     return {
         /**
          * 
-         * @param {string} [from] 
+         * @param {string} from 
          * @param {string} [until] 
+         * @param {Array<string>} [regions] 
+         * @param {Array<string>} [categories] 
+         * @param {boolean} [isMap] 
          * @param {boolean} [isCountryChampionship] 
          * @param {boolean} [isInternational] 
-         * @param {boolean} [isCard] 
-         * @param {Array<string>} [regions] 
          * @param {number} [page] 
          * @param {number} [pageSize] 
          * @param {string} [sortBy] 
@@ -1055,7 +1075,9 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll: async (from?: string, until?: string, isCountryChampionship?: boolean, isInternational?: boolean, isCard?: boolean, regions?: Array<string>, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options: any = {}): Promise<RequestArgs> => {
+        findAll: async (from: string, until?: string, regions?: Array<string>, categories?: Array<string>, isMap?: boolean, isCountryChampionship?: boolean, isInternational?: boolean, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'from' is not null or undefined
+            assertParamExists('findAll', 'from', from)
             const localVarPath = `/api/v1/event`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1084,20 +1106,24 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
                     until;
             }
 
+            if (regions) {
+                localVarQueryParameter['regions'] = regions;
+            }
+
+            if (categories) {
+                localVarQueryParameter['categories'] = categories;
+            }
+
+            if (isMap !== undefined) {
+                localVarQueryParameter['isMap'] = isMap;
+            }
+
             if (isCountryChampionship !== undefined) {
                 localVarQueryParameter['isCountryChampionship'] = isCountryChampionship;
             }
 
             if (isInternational !== undefined) {
                 localVarQueryParameter['isInternational'] = isInternational;
-            }
-
-            if (isCard !== undefined) {
-                localVarQueryParameter['isCard'] = isCard;
-            }
-
-            if (regions) {
-                localVarQueryParameter['regions'] = regions;
             }
 
             if (page !== undefined) {
@@ -1115,6 +1141,72 @@ export const EventControllerApiAxiosParamCreator = function (configuration?: Con
             if (sortDirection !== undefined) {
                 localVarQueryParameter['sortDirection'] = sortDirection;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllCategories: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/event/categories`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllRegions: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/event/regions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -1256,12 +1348,13 @@ export const EventControllerApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} [from] 
+         * @param {string} from 
          * @param {string} [until] 
+         * @param {Array<string>} [regions] 
+         * @param {Array<string>} [categories] 
+         * @param {boolean} [isMap] 
          * @param {boolean} [isCountryChampionship] 
          * @param {boolean} [isInternational] 
-         * @param {boolean} [isCard] 
-         * @param {Array<string>} [regions] 
          * @param {number} [page] 
          * @param {number} [pageSize] 
          * @param {string} [sortBy] 
@@ -1269,8 +1362,26 @@ export const EventControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findAll(from?: string, until?: string, isCountryChampionship?: boolean, isInternational?: boolean, isCard?: boolean, regions?: Array<string>, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageDtoSimpleEventDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(from, until, isCountryChampionship, isInternational, isCard, regions, page, pageSize, sortBy, sortDirection, options);
+        async findAll(from: string, until?: string, regions?: Array<string>, categories?: Array<string>, isMap?: boolean, isCountryChampionship?: boolean, isInternational?: boolean, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageDtoSimpleEventDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findAll(from, until, regions, categories, isMap, isCountryChampionship, isInternational, page, pageSize, sortBy, sortDirection, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAllCategories(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContestCategory>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllCategories(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAllRegions(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<string>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllRegions(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1316,12 +1427,13 @@ export const EventControllerApiFactory = function (configuration?: Configuration
     return {
         /**
          * 
-         * @param {string} [from] 
+         * @param {string} from 
          * @param {string} [until] 
+         * @param {Array<string>} [regions] 
+         * @param {Array<string>} [categories] 
+         * @param {boolean} [isMap] 
          * @param {boolean} [isCountryChampionship] 
          * @param {boolean} [isInternational] 
-         * @param {boolean} [isCard] 
-         * @param {Array<string>} [regions] 
          * @param {number} [page] 
          * @param {number} [pageSize] 
          * @param {string} [sortBy] 
@@ -1329,8 +1441,24 @@ export const EventControllerApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAll(from?: string, until?: string, isCountryChampionship?: boolean, isInternational?: boolean, isCard?: boolean, regions?: Array<string>, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any): AxiosPromise<PageDtoSimpleEventDto> {
-            return localVarFp.findAll(from, until, isCountryChampionship, isInternational, isCard, regions, page, pageSize, sortBy, sortDirection, options).then((request) => request(axios, basePath));
+        findAll(from: string, until?: string, regions?: Array<string>, categories?: Array<string>, isMap?: boolean, isCountryChampionship?: boolean, isInternational?: boolean, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any): AxiosPromise<PageDtoSimpleEventDto> {
+            return localVarFp.findAll(from, until, regions, categories, isMap, isCountryChampionship, isInternational, page, pageSize, sortBy, sortDirection, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllCategories(options?: any): AxiosPromise<Array<ContestCategory>> {
+            return localVarFp.getAllCategories(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllRegions(options?: any): AxiosPromise<Array<string>> {
+            return localVarFp.getAllRegions(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1372,12 +1500,13 @@ export const EventControllerApiFactory = function (configuration?: Configuration
 export class EventControllerApi extends BaseAPI {
     /**
      * 
-     * @param {string} [from] 
+     * @param {string} from 
      * @param {string} [until] 
+     * @param {Array<string>} [regions] 
+     * @param {Array<string>} [categories] 
+     * @param {boolean} [isMap] 
      * @param {boolean} [isCountryChampionship] 
      * @param {boolean} [isInternational] 
-     * @param {boolean} [isCard] 
-     * @param {Array<string>} [regions] 
      * @param {number} [page] 
      * @param {number} [pageSize] 
      * @param {string} [sortBy] 
@@ -1386,8 +1515,28 @@ export class EventControllerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventControllerApi
      */
-    public findAll(from?: string, until?: string, isCountryChampionship?: boolean, isInternational?: boolean, isCard?: boolean, regions?: Array<string>, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any) {
-        return EventControllerApiFp(this.configuration).findAll(from, until, isCountryChampionship, isInternational, isCard, regions, page, pageSize, sortBy, sortDirection, options).then((request) => request(this.axios, this.basePath));
+    public findAll(from: string, until?: string, regions?: Array<string>, categories?: Array<string>, isMap?: boolean, isCountryChampionship?: boolean, isInternational?: boolean, page?: number, pageSize?: number, sortBy?: string, sortDirection?: 'ASCENDING' | 'DESCENDING', options?: any) {
+        return EventControllerApiFp(this.configuration).findAll(from, until, regions, categories, isMap, isCountryChampionship, isInternational, page, pageSize, sortBy, sortDirection, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventControllerApi
+     */
+    public getAllCategories(options?: any) {
+        return EventControllerApiFp(this.configuration).getAllCategories(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventControllerApi
+     */
+    public getAllRegions(options?: any) {
+        return EventControllerApiFp(this.configuration).getAllRegions(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

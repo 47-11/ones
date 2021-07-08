@@ -65,4 +65,12 @@ public class RegisterNominationTest {
         // TODO: test horsesUuids
     }
 
+    /**
+     * Test the property 'bookingFeeUuids'
+     */
+    @Test
+    public void bookingFeeUuidsTest() {
+        // TODO: test bookingFeeUuids
+    }
+
 }

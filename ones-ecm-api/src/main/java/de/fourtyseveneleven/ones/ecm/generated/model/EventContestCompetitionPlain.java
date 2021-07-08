@@ -37,13 +37,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestCompetitionPlain.JSON_PROPERTY_UUID,
-  EventContestCompetitionPlain.JSON_PROPERTY_EVENT_CONTEST_UUID,
   EventContestCompetitionPlain.JSON_PROPERTY_CREATION_TIMESTAMP,
   EventContestCompetitionPlain.JSON_PROPERTY_CREATION_USER_UUID,
   EventContestCompetitionPlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
   EventContestCompetitionPlain.JSON_PROPERTY_CHANGE_USER_UUID,
   EventContestCompetitionPlain.JSON_PROPERTY_CHANGE_COUNTER,
   EventContestCompetitionPlain.JSON_PROPERTY_CURRENT_STATE,
+  EventContestCompetitionPlain.JSON_PROPERTY_STATE,
   EventContestCompetitionPlain.JSON_PROPERTY_TITLE,
   EventContestCompetitionPlain.JSON_PROPERTY_KIND,
   EventContestCompetitionPlain.JSON_PROPERTY_BEGINNING,
@@ -62,15 +62,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionPlain.JSON_PROPERTY_COMPETITION_UUID_TO_REDUCE,
   EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN,
   EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX,
+  EventContestCompetitionPlain.JSON_PROPERTY_DATE_PRELIMINARY_EXAMINATION,
+  EventContestCompetitionPlain.JSON_PROPERTY_INFO_PRELIMINARY_EXAMINATION,
+  EventContestCompetitionPlain.JSON_PROPERTY_DATE_PRELIMINARY_DISCUSSION,
+  EventContestCompetitionPlain.JSON_PROPERTY_INFO_PRELIMINARY_DISCUSSION,
+  EventContestCompetitionPlain.JSON_PROPERTY_DATE_FOLLOW_UP_EXAMINATION,
+  EventContestCompetitionPlain.JSON_PROPERTY_INFO_FOLLOW_UP_EXAMINATION,
+  EventContestCompetitionPlain.JSON_PROPERTY_DATE_TRANSFER_RELEASE,
+  EventContestCompetitionPlain.JSON_PROPERTY_INFO_TRANSFER_RELEASE,
+  EventContestCompetitionPlain.JSON_PROPERTY_DATE_AWARD_CEREMONY,
+  EventContestCompetitionPlain.JSON_PROPERTY_INFO_AWARD_CEREMONY,
+  EventContestCompetitionPlain.JSON_PROPERTY_VDD_QUALIFICATION_LEVEL,
+  EventContestCompetitionPlain.JSON_PROPERTY_ALTITUDE_METERS,
+  EventContestCompetitionPlain.JSON_PROPERTY_FEE_CURRENCY,
+  EventContestCompetitionPlain.JSON_PROPERTY_REGISTRATION_FEE,
+  EventContestCompetitionPlain.JSON_PROPERTY_REGISTRATION_FEE_UNIT,
+  EventContestCompetitionPlain.JSON_PROPERTY_STARTING_FEE,
+  EventContestCompetitionPlain.JSON_PROPERTY_STARTING_FEE_UNIT,
+  EventContestCompetitionPlain.JSON_PROPERTY_SCORING_MINIMUM_TIME,
+  EventContestCompetitionPlain.JSON_PROPERTY_SCORING_PEAK_TIME,
+  EventContestCompetitionPlain.JSON_PROPERTY_HORSE_AGE_MIN,
+  EventContestCompetitionPlain.JSON_PROPERTY_HORSE_AGE_MAX,
+  EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_AGE_MIN,
+  EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_AGE_MAX,
+  EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_QUANTITY_MIN,
+  EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_QUANTITY_MAX,
+  EventContestCompetitionPlain.JSON_PROPERTY_HOOF_PROTECTION,
+  EventContestCompetitionPlain.JSON_PROPERTY_IS_C_A_R_D,
+  EventContestCompetitionPlain.JSON_PROPERTY_IS_M_A_R_K_E_D,
+  EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_ROUTE,
+  EventContestCompetitionPlain.JSON_PROPERTY_TYPE_OF_ROUTING,
+  EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_START,
+  EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_TERRAIN,
+  EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS,
+  EventContestCompetitionPlain.JSON_PROPERTY_RATING_TYPE,
+  EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_RATING_TYPE,
+  EventContestCompetitionPlain.JSON_PROPERTY_DISPLAY_REGISTERT_HORSES,
   EventContestCompetitionPlain.JSON_PROPERTY_STAGES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
-
-  public static final String JSON_PROPERTY_EVENT_CONTEST_UUID = "eventContestUuid";
-  private String eventContestUuid;
 
   public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
   private OffsetDateTime creationTimestamp;
@@ -89,6 +122,9 @@ public class EventContestCompetitionPlain {
 
   public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
   private Integer currentState;
+
+  public static final String JSON_PROPERTY_STATE = "state";
+  private String state;
 
   public static final String JSON_PROPERTY_TITLE = "title";
   private String title;
@@ -144,6 +180,114 @@ public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX = "contestantLimitiationMax";
   private Integer contestantLimitiationMax;
 
+  public static final String JSON_PROPERTY_DATE_PRELIMINARY_EXAMINATION = "datePreliminaryExamination";
+  private OffsetDateTime datePreliminaryExamination;
+
+  public static final String JSON_PROPERTY_INFO_PRELIMINARY_EXAMINATION = "infoPreliminaryExamination";
+  private String infoPreliminaryExamination;
+
+  public static final String JSON_PROPERTY_DATE_PRELIMINARY_DISCUSSION = "datePreliminaryDiscussion";
+  private OffsetDateTime datePreliminaryDiscussion;
+
+  public static final String JSON_PROPERTY_INFO_PRELIMINARY_DISCUSSION = "infoPreliminaryDiscussion";
+  private String infoPreliminaryDiscussion;
+
+  public static final String JSON_PROPERTY_DATE_FOLLOW_UP_EXAMINATION = "dateFollowUpExamination";
+  private OffsetDateTime dateFollowUpExamination;
+
+  public static final String JSON_PROPERTY_INFO_FOLLOW_UP_EXAMINATION = "infoFollowUpExamination";
+  private String infoFollowUpExamination;
+
+  public static final String JSON_PROPERTY_DATE_TRANSFER_RELEASE = "dateTransferRelease";
+  private OffsetDateTime dateTransferRelease;
+
+  public static final String JSON_PROPERTY_INFO_TRANSFER_RELEASE = "infoTransferRelease";
+  private String infoTransferRelease;
+
+  public static final String JSON_PROPERTY_DATE_AWARD_CEREMONY = "dateAwardCeremony";
+  private OffsetDateTime dateAwardCeremony;
+
+  public static final String JSON_PROPERTY_INFO_AWARD_CEREMONY = "infoAwardCeremony";
+  private String infoAwardCeremony;
+
+  public static final String JSON_PROPERTY_VDD_QUALIFICATION_LEVEL = "vddQualificationLevel";
+  private String vddQualificationLevel;
+
+  public static final String JSON_PROPERTY_ALTITUDE_METERS = "altitudeMeters";
+  private Integer altitudeMeters;
+
+  public static final String JSON_PROPERTY_FEE_CURRENCY = "feeCurrency";
+  private String feeCurrency;
+
+  public static final String JSON_PROPERTY_REGISTRATION_FEE = "registrationFee";
+  private Double registrationFee;
+
+  public static final String JSON_PROPERTY_REGISTRATION_FEE_UNIT = "registrationFeeUnit";
+  private String registrationFeeUnit;
+
+  public static final String JSON_PROPERTY_STARTING_FEE = "startingFee";
+  private Double startingFee;
+
+  public static final String JSON_PROPERTY_STARTING_FEE_UNIT = "startingFeeUnit";
+  private String startingFeeUnit;
+
+  public static final String JSON_PROPERTY_SCORING_MINIMUM_TIME = "scoringMinimumTime";
+  private String scoringMinimumTime;
+
+  public static final String JSON_PROPERTY_SCORING_PEAK_TIME = "scoringPeakTime";
+  private String scoringPeakTime;
+
+  public static final String JSON_PROPERTY_HORSE_AGE_MIN = "horseAgeMin";
+  private Integer horseAgeMin;
+
+  public static final String JSON_PROPERTY_HORSE_AGE_MAX = "horseAgeMax";
+  private Integer horseAgeMax;
+
+  public static final String JSON_PROPERTY_CONTESTANT_AGE_MIN = "contestantAgeMin";
+  private Integer contestantAgeMin;
+
+  public static final String JSON_PROPERTY_CONTESTANT_AGE_MAX = "contestantAgeMax";
+  private Integer contestantAgeMax;
+
+  public static final String JSON_PROPERTY_CONTESTANT_QUANTITY_MIN = "contestantQuantityMin";
+  private Integer contestantQuantityMin;
+
+  public static final String JSON_PROPERTY_CONTESTANT_QUANTITY_MAX = "contestantQuantityMax";
+  private Integer contestantQuantityMax;
+
+  public static final String JSON_PROPERTY_HOOF_PROTECTION = "hoofProtection";
+  private String hoofProtection;
+
+  public static final String JSON_PROPERTY_IS_C_A_R_D = "isCARD";
+  private Boolean isCARD;
+
+  public static final String JSON_PROPERTY_IS_M_A_R_K_E_D = "isMARKED";
+  private Boolean isMARKED;
+
+  public static final String JSON_PROPERTY_DESCRIPTION_ROUTE = "descriptionRoute";
+  private String descriptionRoute;
+
+  public static final String JSON_PROPERTY_TYPE_OF_ROUTING = "typeOfRouting";
+  private String typeOfRouting;
+
+  public static final String JSON_PROPERTY_DESCRIPTION_START = "descriptionStart";
+  private String descriptionStart;
+
+  public static final String JSON_PROPERTY_DESCRIPTION_TERRAIN = "descriptionTerrain";
+  private String descriptionTerrain;
+
+  public static final String JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS = "descriptionControlchecks";
+  private String descriptionControlchecks;
+
+  public static final String JSON_PROPERTY_RATING_TYPE = "ratingType";
+  private Integer ratingType;
+
+  public static final String JSON_PROPERTY_DESCRIPTION_RATING_TYPE = "descriptionRatingType";
+  private String descriptionRatingType;
+
+  public static final String JSON_PROPERTY_DISPLAY_REGISTERT_HORSES = "displayRegistertHorses";
+  private String displayRegistertHorses;
+
   public static final String JSON_PROPERTY_STAGES = "_stages";
   private Set<EventContestCompetitionStagePlain> stages = null;
 
@@ -157,10 +301,9 @@ public class EventContestCompetitionPlain {
    * Get uuid
    * @return uuid
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getUuid() {
     return uuid;
@@ -168,35 +311,9 @@ public class EventContestCompetitionPlain {
 
 
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
-  }
-
-
-  public EventContestCompetitionPlain eventContestUuid(String eventContestUuid) {
-    this.eventContestUuid = eventContestUuid;
-    return this;
-  }
-
-   /**
-   * Get eventContestUuid
-   * @return eventContestUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getEventContestUuid() {
-    return eventContestUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEventContestUuid(String eventContestUuid) {
-    this.eventContestUuid = eventContestUuid;
   }
 
 
@@ -209,10 +326,9 @@ public class EventContestCompetitionPlain {
    * Get creationTimestamp
    * @return creationTimestamp
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public OffsetDateTime getCreationTimestamp() {
     return creationTimestamp;
@@ -220,7 +336,7 @@ public class EventContestCompetitionPlain {
 
 
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
     this.creationTimestamp = creationTimestamp;
   }
@@ -353,6 +469,32 @@ public class EventContestCompetitionPlain {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrentState(Integer currentState) {
     this.currentState = currentState;
+  }
+
+
+  public EventContestCompetitionPlain state(String state) {
+    this.state = state;
+    return this;
+  }
+
+   /**
+   * Get state
+   * @return state
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getState() {
+    return state;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setState(String state) {
+    this.state = state;
   }
 
 
@@ -824,6 +966,942 @@ public class EventContestCompetitionPlain {
   }
 
 
+  public EventContestCompetitionPlain datePreliminaryExamination(OffsetDateTime datePreliminaryExamination) {
+    this.datePreliminaryExamination = datePreliminaryExamination;
+    return this;
+  }
+
+   /**
+   * Get datePreliminaryExamination
+   * @return datePreliminaryExamination
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_PRELIMINARY_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDatePreliminaryExamination() {
+    return datePreliminaryExamination;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_PRELIMINARY_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDatePreliminaryExamination(OffsetDateTime datePreliminaryExamination) {
+    this.datePreliminaryExamination = datePreliminaryExamination;
+  }
+
+
+  public EventContestCompetitionPlain infoPreliminaryExamination(String infoPreliminaryExamination) {
+    this.infoPreliminaryExamination = infoPreliminaryExamination;
+    return this;
+  }
+
+   /**
+   * Get infoPreliminaryExamination
+   * @return infoPreliminaryExamination
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_PRELIMINARY_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoPreliminaryExamination() {
+    return infoPreliminaryExamination;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_PRELIMINARY_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoPreliminaryExamination(String infoPreliminaryExamination) {
+    this.infoPreliminaryExamination = infoPreliminaryExamination;
+  }
+
+
+  public EventContestCompetitionPlain datePreliminaryDiscussion(OffsetDateTime datePreliminaryDiscussion) {
+    this.datePreliminaryDiscussion = datePreliminaryDiscussion;
+    return this;
+  }
+
+   /**
+   * Get datePreliminaryDiscussion
+   * @return datePreliminaryDiscussion
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_PRELIMINARY_DISCUSSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDatePreliminaryDiscussion() {
+    return datePreliminaryDiscussion;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_PRELIMINARY_DISCUSSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDatePreliminaryDiscussion(OffsetDateTime datePreliminaryDiscussion) {
+    this.datePreliminaryDiscussion = datePreliminaryDiscussion;
+  }
+
+
+  public EventContestCompetitionPlain infoPreliminaryDiscussion(String infoPreliminaryDiscussion) {
+    this.infoPreliminaryDiscussion = infoPreliminaryDiscussion;
+    return this;
+  }
+
+   /**
+   * Get infoPreliminaryDiscussion
+   * @return infoPreliminaryDiscussion
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_PRELIMINARY_DISCUSSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoPreliminaryDiscussion() {
+    return infoPreliminaryDiscussion;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_PRELIMINARY_DISCUSSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoPreliminaryDiscussion(String infoPreliminaryDiscussion) {
+    this.infoPreliminaryDiscussion = infoPreliminaryDiscussion;
+  }
+
+
+  public EventContestCompetitionPlain dateFollowUpExamination(OffsetDateTime dateFollowUpExamination) {
+    this.dateFollowUpExamination = dateFollowUpExamination;
+    return this;
+  }
+
+   /**
+   * Get dateFollowUpExamination
+   * @return dateFollowUpExamination
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_FOLLOW_UP_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDateFollowUpExamination() {
+    return dateFollowUpExamination;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_FOLLOW_UP_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDateFollowUpExamination(OffsetDateTime dateFollowUpExamination) {
+    this.dateFollowUpExamination = dateFollowUpExamination;
+  }
+
+
+  public EventContestCompetitionPlain infoFollowUpExamination(String infoFollowUpExamination) {
+    this.infoFollowUpExamination = infoFollowUpExamination;
+    return this;
+  }
+
+   /**
+   * Get infoFollowUpExamination
+   * @return infoFollowUpExamination
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_FOLLOW_UP_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoFollowUpExamination() {
+    return infoFollowUpExamination;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_FOLLOW_UP_EXAMINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoFollowUpExamination(String infoFollowUpExamination) {
+    this.infoFollowUpExamination = infoFollowUpExamination;
+  }
+
+
+  public EventContestCompetitionPlain dateTransferRelease(OffsetDateTime dateTransferRelease) {
+    this.dateTransferRelease = dateTransferRelease;
+    return this;
+  }
+
+   /**
+   * Get dateTransferRelease
+   * @return dateTransferRelease
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_TRANSFER_RELEASE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDateTransferRelease() {
+    return dateTransferRelease;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_TRANSFER_RELEASE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDateTransferRelease(OffsetDateTime dateTransferRelease) {
+    this.dateTransferRelease = dateTransferRelease;
+  }
+
+
+  public EventContestCompetitionPlain infoTransferRelease(String infoTransferRelease) {
+    this.infoTransferRelease = infoTransferRelease;
+    return this;
+  }
+
+   /**
+   * Get infoTransferRelease
+   * @return infoTransferRelease
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_TRANSFER_RELEASE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoTransferRelease() {
+    return infoTransferRelease;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_TRANSFER_RELEASE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoTransferRelease(String infoTransferRelease) {
+    this.infoTransferRelease = infoTransferRelease;
+  }
+
+
+  public EventContestCompetitionPlain dateAwardCeremony(OffsetDateTime dateAwardCeremony) {
+    this.dateAwardCeremony = dateAwardCeremony;
+    return this;
+  }
+
+   /**
+   * Get dateAwardCeremony
+   * @return dateAwardCeremony
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DATE_AWARD_CEREMONY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDateAwardCeremony() {
+    return dateAwardCeremony;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DATE_AWARD_CEREMONY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDateAwardCeremony(OffsetDateTime dateAwardCeremony) {
+    this.dateAwardCeremony = dateAwardCeremony;
+  }
+
+
+  public EventContestCompetitionPlain infoAwardCeremony(String infoAwardCeremony) {
+    this.infoAwardCeremony = infoAwardCeremony;
+    return this;
+  }
+
+   /**
+   * Get infoAwardCeremony
+   * @return infoAwardCeremony
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INFO_AWARD_CEREMONY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoAwardCeremony() {
+    return infoAwardCeremony;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INFO_AWARD_CEREMONY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoAwardCeremony(String infoAwardCeremony) {
+    this.infoAwardCeremony = infoAwardCeremony;
+  }
+
+
+  public EventContestCompetitionPlain vddQualificationLevel(String vddQualificationLevel) {
+    this.vddQualificationLevel = vddQualificationLevel;
+    return this;
+  }
+
+   /**
+   * Get vddQualificationLevel
+   * @return vddQualificationLevel
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_VDD_QUALIFICATION_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getVddQualificationLevel() {
+    return vddQualificationLevel;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_VDD_QUALIFICATION_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVddQualificationLevel(String vddQualificationLevel) {
+    this.vddQualificationLevel = vddQualificationLevel;
+  }
+
+
+  public EventContestCompetitionPlain altitudeMeters(Integer altitudeMeters) {
+    this.altitudeMeters = altitudeMeters;
+    return this;
+  }
+
+   /**
+   * Get altitudeMeters
+   * @return altitudeMeters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ALTITUDE_METERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getAltitudeMeters() {
+    return altitudeMeters;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ALTITUDE_METERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAltitudeMeters(Integer altitudeMeters) {
+    this.altitudeMeters = altitudeMeters;
+  }
+
+
+  public EventContestCompetitionPlain feeCurrency(String feeCurrency) {
+    this.feeCurrency = feeCurrency;
+    return this;
+  }
+
+   /**
+   * Get feeCurrency
+   * @return feeCurrency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FEE_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFeeCurrency() {
+    return feeCurrency;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FEE_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFeeCurrency(String feeCurrency) {
+    this.feeCurrency = feeCurrency;
+  }
+
+
+  public EventContestCompetitionPlain registrationFee(Double registrationFee) {
+    this.registrationFee = registrationFee;
+    return this;
+  }
+
+   /**
+   * Get registrationFee
+   * @return registrationFee
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Double getRegistrationFee() {
+    return registrationFee;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationFee(Double registrationFee) {
+    this.registrationFee = registrationFee;
+  }
+
+
+  public EventContestCompetitionPlain registrationFeeUnit(String registrationFeeUnit) {
+    this.registrationFeeUnit = registrationFeeUnit;
+    return this;
+  }
+
+   /**
+   * Get registrationFeeUnit
+   * @return registrationFeeUnit
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRegistrationFeeUnit() {
+    return registrationFeeUnit;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_FEE_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationFeeUnit(String registrationFeeUnit) {
+    this.registrationFeeUnit = registrationFeeUnit;
+  }
+
+
+  public EventContestCompetitionPlain startingFee(Double startingFee) {
+    this.startingFee = startingFee;
+    return this;
+  }
+
+   /**
+   * Get startingFee
+   * @return startingFee
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STARTING_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Double getStartingFee() {
+    return startingFee;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STARTING_FEE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStartingFee(Double startingFee) {
+    this.startingFee = startingFee;
+  }
+
+
+  public EventContestCompetitionPlain startingFeeUnit(String startingFeeUnit) {
+    this.startingFeeUnit = startingFeeUnit;
+    return this;
+  }
+
+   /**
+   * Get startingFeeUnit
+   * @return startingFeeUnit
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STARTING_FEE_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStartingFeeUnit() {
+    return startingFeeUnit;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STARTING_FEE_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStartingFeeUnit(String startingFeeUnit) {
+    this.startingFeeUnit = startingFeeUnit;
+  }
+
+
+  public EventContestCompetitionPlain scoringMinimumTime(String scoringMinimumTime) {
+    this.scoringMinimumTime = scoringMinimumTime;
+    return this;
+  }
+
+   /**
+   * Get scoringMinimumTime
+   * @return scoringMinimumTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SCORING_MINIMUM_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getScoringMinimumTime() {
+    return scoringMinimumTime;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SCORING_MINIMUM_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setScoringMinimumTime(String scoringMinimumTime) {
+    this.scoringMinimumTime = scoringMinimumTime;
+  }
+
+
+  public EventContestCompetitionPlain scoringPeakTime(String scoringPeakTime) {
+    this.scoringPeakTime = scoringPeakTime;
+    return this;
+  }
+
+   /**
+   * Get scoringPeakTime
+   * @return scoringPeakTime
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SCORING_PEAK_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getScoringPeakTime() {
+    return scoringPeakTime;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SCORING_PEAK_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setScoringPeakTime(String scoringPeakTime) {
+    this.scoringPeakTime = scoringPeakTime;
+  }
+
+
+  public EventContestCompetitionPlain horseAgeMin(Integer horseAgeMin) {
+    this.horseAgeMin = horseAgeMin;
+    return this;
+  }
+
+   /**
+   * Get horseAgeMin
+   * @return horseAgeMin
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_HORSE_AGE_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getHorseAgeMin() {
+    return horseAgeMin;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HORSE_AGE_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHorseAgeMin(Integer horseAgeMin) {
+    this.horseAgeMin = horseAgeMin;
+  }
+
+
+  public EventContestCompetitionPlain horseAgeMax(Integer horseAgeMax) {
+    this.horseAgeMax = horseAgeMax;
+    return this;
+  }
+
+   /**
+   * Get horseAgeMax
+   * @return horseAgeMax
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_HORSE_AGE_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getHorseAgeMax() {
+    return horseAgeMax;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HORSE_AGE_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHorseAgeMax(Integer horseAgeMax) {
+    this.horseAgeMax = horseAgeMax;
+  }
+
+
+  public EventContestCompetitionPlain contestantAgeMin(Integer contestantAgeMin) {
+    this.contestantAgeMin = contestantAgeMin;
+    return this;
+  }
+
+   /**
+   * Get contestantAgeMin
+   * @return contestantAgeMin
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_AGE_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getContestantAgeMin() {
+    return contestantAgeMin;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_AGE_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContestantAgeMin(Integer contestantAgeMin) {
+    this.contestantAgeMin = contestantAgeMin;
+  }
+
+
+  public EventContestCompetitionPlain contestantAgeMax(Integer contestantAgeMax) {
+    this.contestantAgeMax = contestantAgeMax;
+    return this;
+  }
+
+   /**
+   * Get contestantAgeMax
+   * @return contestantAgeMax
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_AGE_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getContestantAgeMax() {
+    return contestantAgeMax;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_AGE_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContestantAgeMax(Integer contestantAgeMax) {
+    this.contestantAgeMax = contestantAgeMax;
+  }
+
+
+  public EventContestCompetitionPlain contestantQuantityMin(Integer contestantQuantityMin) {
+    this.contestantQuantityMin = contestantQuantityMin;
+    return this;
+  }
+
+   /**
+   * Get contestantQuantityMin
+   * @return contestantQuantityMin
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getContestantQuantityMin() {
+    return contestantQuantityMin;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContestantQuantityMin(Integer contestantQuantityMin) {
+    this.contestantQuantityMin = contestantQuantityMin;
+  }
+
+
+  public EventContestCompetitionPlain contestantQuantityMax(Integer contestantQuantityMax) {
+    this.contestantQuantityMax = contestantQuantityMax;
+    return this;
+  }
+
+   /**
+   * Get contestantQuantityMax
+   * @return contestantQuantityMax
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getContestantQuantityMax() {
+    return contestantQuantityMax;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CONTESTANT_QUANTITY_MAX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContestantQuantityMax(Integer contestantQuantityMax) {
+    this.contestantQuantityMax = contestantQuantityMax;
+  }
+
+
+  public EventContestCompetitionPlain hoofProtection(String hoofProtection) {
+    this.hoofProtection = hoofProtection;
+    return this;
+  }
+
+   /**
+   * Get hoofProtection
+   * @return hoofProtection
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_HOOF_PROTECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getHoofProtection() {
+    return hoofProtection;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HOOF_PROTECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHoofProtection(String hoofProtection) {
+    this.hoofProtection = hoofProtection;
+  }
+
+
+  public EventContestCompetitionPlain isCARD(Boolean isCARD) {
+    this.isCARD = isCARD;
+    return this;
+  }
+
+   /**
+   * Get isCARD
+   * @return isCARD
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_C_A_R_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsCARD() {
+    return isCARD;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_C_A_R_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsCARD(Boolean isCARD) {
+    this.isCARD = isCARD;
+  }
+
+
+  public EventContestCompetitionPlain isMARKED(Boolean isMARKED) {
+    this.isMARKED = isMARKED;
+    return this;
+  }
+
+   /**
+   * Get isMARKED
+   * @return isMARKED
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_M_A_R_K_E_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsMARKED() {
+    return isMARKED;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_M_A_R_K_E_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsMARKED(Boolean isMARKED) {
+    this.isMARKED = isMARKED;
+  }
+
+
+  public EventContestCompetitionPlain descriptionRoute(String descriptionRoute) {
+    this.descriptionRoute = descriptionRoute;
+    return this;
+  }
+
+   /**
+   * Get descriptionRoute
+   * @return descriptionRoute
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_ROUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescriptionRoute() {
+    return descriptionRoute;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_ROUTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptionRoute(String descriptionRoute) {
+    this.descriptionRoute = descriptionRoute;
+  }
+
+
+  public EventContestCompetitionPlain typeOfRouting(String typeOfRouting) {
+    this.typeOfRouting = typeOfRouting;
+    return this;
+  }
+
+   /**
+   * Get typeOfRouting
+   * @return typeOfRouting
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TYPE_OF_ROUTING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTypeOfRouting() {
+    return typeOfRouting;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE_OF_ROUTING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTypeOfRouting(String typeOfRouting) {
+    this.typeOfRouting = typeOfRouting;
+  }
+
+
+  public EventContestCompetitionPlain descriptionStart(String descriptionStart) {
+    this.descriptionStart = descriptionStart;
+    return this;
+  }
+
+   /**
+   * Get descriptionStart
+   * @return descriptionStart
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_START)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescriptionStart() {
+    return descriptionStart;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_START)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptionStart(String descriptionStart) {
+    this.descriptionStart = descriptionStart;
+  }
+
+
+  public EventContestCompetitionPlain descriptionTerrain(String descriptionTerrain) {
+    this.descriptionTerrain = descriptionTerrain;
+    return this;
+  }
+
+   /**
+   * Get descriptionTerrain
+   * @return descriptionTerrain
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_TERRAIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescriptionTerrain() {
+    return descriptionTerrain;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_TERRAIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptionTerrain(String descriptionTerrain) {
+    this.descriptionTerrain = descriptionTerrain;
+  }
+
+
+  public EventContestCompetitionPlain descriptionControlchecks(String descriptionControlchecks) {
+    this.descriptionControlchecks = descriptionControlchecks;
+    return this;
+  }
+
+   /**
+   * Get descriptionControlchecks
+   * @return descriptionControlchecks
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescriptionControlchecks() {
+    return descriptionControlchecks;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptionControlchecks(String descriptionControlchecks) {
+    this.descriptionControlchecks = descriptionControlchecks;
+  }
+
+
+  public EventContestCompetitionPlain ratingType(Integer ratingType) {
+    this.ratingType = ratingType;
+    return this;
+  }
+
+   /**
+   * Get ratingType
+   * @return ratingType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_RATING_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getRatingType() {
+    return ratingType;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_RATING_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRatingType(Integer ratingType) {
+    this.ratingType = ratingType;
+  }
+
+
+  public EventContestCompetitionPlain descriptionRatingType(String descriptionRatingType) {
+    this.descriptionRatingType = descriptionRatingType;
+    return this;
+  }
+
+   /**
+   * Get descriptionRatingType
+   * @return descriptionRatingType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_RATING_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescriptionRatingType() {
+    return descriptionRatingType;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION_RATING_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptionRatingType(String descriptionRatingType) {
+    this.descriptionRatingType = descriptionRatingType;
+  }
+
+
+  public EventContestCompetitionPlain displayRegistertHorses(String displayRegistertHorses) {
+    this.displayRegistertHorses = displayRegistertHorses;
+    return this;
+  }
+
+   /**
+   * Get displayRegistertHorses
+   * @return displayRegistertHorses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDisplayRegistertHorses() {
+    return displayRegistertHorses;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisplayRegistertHorses(String displayRegistertHorses) {
+    this.displayRegistertHorses = displayRegistertHorses;
+  }
+
+
   public EventContestCompetitionPlain stages(Set<EventContestCompetitionStagePlain> stages) {
     this.stages = stages;
     return this;
@@ -871,13 +1949,13 @@ public class EventContestCompetitionPlain {
     }
     EventContestCompetitionPlain eventContestCompetitionPlain = (EventContestCompetitionPlain) o;
     return Objects.equals(this.uuid, eventContestCompetitionPlain.uuid) &&
-        Objects.equals(this.eventContestUuid, eventContestCompetitionPlain.eventContestUuid) &&
         Objects.equals(this.creationTimestamp, eventContestCompetitionPlain.creationTimestamp) &&
         Objects.equals(this.creationUserUuid, eventContestCompetitionPlain.creationUserUuid) &&
         Objects.equals(this.changeTimestamp, eventContestCompetitionPlain.changeTimestamp) &&
         Objects.equals(this.changeUserUuid, eventContestCompetitionPlain.changeUserUuid) &&
         Objects.equals(this.changeCounter, eventContestCompetitionPlain.changeCounter) &&
         Objects.equals(this.currentState, eventContestCompetitionPlain.currentState) &&
+        Objects.equals(this.state, eventContestCompetitionPlain.state) &&
         Objects.equals(this.title, eventContestCompetitionPlain.title) &&
         Objects.equals(this.kind, eventContestCompetitionPlain.kind) &&
         Objects.equals(this.beginning, eventContestCompetitionPlain.beginning) &&
@@ -896,12 +1974,48 @@ public class EventContestCompetitionPlain {
         Objects.equals(this.competitionUuidToReduce, eventContestCompetitionPlain.competitionUuidToReduce) &&
         Objects.equals(this.contestantLimitiationMin, eventContestCompetitionPlain.contestantLimitiationMin) &&
         Objects.equals(this.contestantLimitiationMax, eventContestCompetitionPlain.contestantLimitiationMax) &&
+        Objects.equals(this.datePreliminaryExamination, eventContestCompetitionPlain.datePreliminaryExamination) &&
+        Objects.equals(this.infoPreliminaryExamination, eventContestCompetitionPlain.infoPreliminaryExamination) &&
+        Objects.equals(this.datePreliminaryDiscussion, eventContestCompetitionPlain.datePreliminaryDiscussion) &&
+        Objects.equals(this.infoPreliminaryDiscussion, eventContestCompetitionPlain.infoPreliminaryDiscussion) &&
+        Objects.equals(this.dateFollowUpExamination, eventContestCompetitionPlain.dateFollowUpExamination) &&
+        Objects.equals(this.infoFollowUpExamination, eventContestCompetitionPlain.infoFollowUpExamination) &&
+        Objects.equals(this.dateTransferRelease, eventContestCompetitionPlain.dateTransferRelease) &&
+        Objects.equals(this.infoTransferRelease, eventContestCompetitionPlain.infoTransferRelease) &&
+        Objects.equals(this.dateAwardCeremony, eventContestCompetitionPlain.dateAwardCeremony) &&
+        Objects.equals(this.infoAwardCeremony, eventContestCompetitionPlain.infoAwardCeremony) &&
+        Objects.equals(this.vddQualificationLevel, eventContestCompetitionPlain.vddQualificationLevel) &&
+        Objects.equals(this.altitudeMeters, eventContestCompetitionPlain.altitudeMeters) &&
+        Objects.equals(this.feeCurrency, eventContestCompetitionPlain.feeCurrency) &&
+        Objects.equals(this.registrationFee, eventContestCompetitionPlain.registrationFee) &&
+        Objects.equals(this.registrationFeeUnit, eventContestCompetitionPlain.registrationFeeUnit) &&
+        Objects.equals(this.startingFee, eventContestCompetitionPlain.startingFee) &&
+        Objects.equals(this.startingFeeUnit, eventContestCompetitionPlain.startingFeeUnit) &&
+        Objects.equals(this.scoringMinimumTime, eventContestCompetitionPlain.scoringMinimumTime) &&
+        Objects.equals(this.scoringPeakTime, eventContestCompetitionPlain.scoringPeakTime) &&
+        Objects.equals(this.horseAgeMin, eventContestCompetitionPlain.horseAgeMin) &&
+        Objects.equals(this.horseAgeMax, eventContestCompetitionPlain.horseAgeMax) &&
+        Objects.equals(this.contestantAgeMin, eventContestCompetitionPlain.contestantAgeMin) &&
+        Objects.equals(this.contestantAgeMax, eventContestCompetitionPlain.contestantAgeMax) &&
+        Objects.equals(this.contestantQuantityMin, eventContestCompetitionPlain.contestantQuantityMin) &&
+        Objects.equals(this.contestantQuantityMax, eventContestCompetitionPlain.contestantQuantityMax) &&
+        Objects.equals(this.hoofProtection, eventContestCompetitionPlain.hoofProtection) &&
+        Objects.equals(this.isCARD, eventContestCompetitionPlain.isCARD) &&
+        Objects.equals(this.isMARKED, eventContestCompetitionPlain.isMARKED) &&
+        Objects.equals(this.descriptionRoute, eventContestCompetitionPlain.descriptionRoute) &&
+        Objects.equals(this.typeOfRouting, eventContestCompetitionPlain.typeOfRouting) &&
+        Objects.equals(this.descriptionStart, eventContestCompetitionPlain.descriptionStart) &&
+        Objects.equals(this.descriptionTerrain, eventContestCompetitionPlain.descriptionTerrain) &&
+        Objects.equals(this.descriptionControlchecks, eventContestCompetitionPlain.descriptionControlchecks) &&
+        Objects.equals(this.ratingType, eventContestCompetitionPlain.ratingType) &&
+        Objects.equals(this.descriptionRatingType, eventContestCompetitionPlain.descriptionRatingType) &&
+        Objects.equals(this.displayRegistertHorses, eventContestCompetitionPlain.displayRegistertHorses) &&
         Objects.equals(this.stages, eventContestCompetitionPlain.stages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, eventContestUuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, stages);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, state, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, isCARD, isMARKED, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, displayRegistertHorses, stages);
   }
 
   @Override
@@ -909,13 +2023,13 @@ public class EventContestCompetitionPlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestCompetitionPlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    eventContestUuid: ").append(toIndentedString(eventContestUuid)).append("\n");
     sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
     sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
     sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
     sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
     sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
     sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    beginning: ").append(toIndentedString(beginning)).append("\n");
@@ -934,6 +2048,42 @@ public class EventContestCompetitionPlain {
     sb.append("    competitionUuidToReduce: ").append(toIndentedString(competitionUuidToReduce)).append("\n");
     sb.append("    contestantLimitiationMin: ").append(toIndentedString(contestantLimitiationMin)).append("\n");
     sb.append("    contestantLimitiationMax: ").append(toIndentedString(contestantLimitiationMax)).append("\n");
+    sb.append("    datePreliminaryExamination: ").append(toIndentedString(datePreliminaryExamination)).append("\n");
+    sb.append("    infoPreliminaryExamination: ").append(toIndentedString(infoPreliminaryExamination)).append("\n");
+    sb.append("    datePreliminaryDiscussion: ").append(toIndentedString(datePreliminaryDiscussion)).append("\n");
+    sb.append("    infoPreliminaryDiscussion: ").append(toIndentedString(infoPreliminaryDiscussion)).append("\n");
+    sb.append("    dateFollowUpExamination: ").append(toIndentedString(dateFollowUpExamination)).append("\n");
+    sb.append("    infoFollowUpExamination: ").append(toIndentedString(infoFollowUpExamination)).append("\n");
+    sb.append("    dateTransferRelease: ").append(toIndentedString(dateTransferRelease)).append("\n");
+    sb.append("    infoTransferRelease: ").append(toIndentedString(infoTransferRelease)).append("\n");
+    sb.append("    dateAwardCeremony: ").append(toIndentedString(dateAwardCeremony)).append("\n");
+    sb.append("    infoAwardCeremony: ").append(toIndentedString(infoAwardCeremony)).append("\n");
+    sb.append("    vddQualificationLevel: ").append(toIndentedString(vddQualificationLevel)).append("\n");
+    sb.append("    altitudeMeters: ").append(toIndentedString(altitudeMeters)).append("\n");
+    sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
+    sb.append("    registrationFee: ").append(toIndentedString(registrationFee)).append("\n");
+    sb.append("    registrationFeeUnit: ").append(toIndentedString(registrationFeeUnit)).append("\n");
+    sb.append("    startingFee: ").append(toIndentedString(startingFee)).append("\n");
+    sb.append("    startingFeeUnit: ").append(toIndentedString(startingFeeUnit)).append("\n");
+    sb.append("    scoringMinimumTime: ").append(toIndentedString(scoringMinimumTime)).append("\n");
+    sb.append("    scoringPeakTime: ").append(toIndentedString(scoringPeakTime)).append("\n");
+    sb.append("    horseAgeMin: ").append(toIndentedString(horseAgeMin)).append("\n");
+    sb.append("    horseAgeMax: ").append(toIndentedString(horseAgeMax)).append("\n");
+    sb.append("    contestantAgeMin: ").append(toIndentedString(contestantAgeMin)).append("\n");
+    sb.append("    contestantAgeMax: ").append(toIndentedString(contestantAgeMax)).append("\n");
+    sb.append("    contestantQuantityMin: ").append(toIndentedString(contestantQuantityMin)).append("\n");
+    sb.append("    contestantQuantityMax: ").append(toIndentedString(contestantQuantityMax)).append("\n");
+    sb.append("    hoofProtection: ").append(toIndentedString(hoofProtection)).append("\n");
+    sb.append("    isCARD: ").append(toIndentedString(isCARD)).append("\n");
+    sb.append("    isMARKED: ").append(toIndentedString(isMARKED)).append("\n");
+    sb.append("    descriptionRoute: ").append(toIndentedString(descriptionRoute)).append("\n");
+    sb.append("    typeOfRouting: ").append(toIndentedString(typeOfRouting)).append("\n");
+    sb.append("    descriptionStart: ").append(toIndentedString(descriptionStart)).append("\n");
+    sb.append("    descriptionTerrain: ").append(toIndentedString(descriptionTerrain)).append("\n");
+    sb.append("    descriptionControlchecks: ").append(toIndentedString(descriptionControlchecks)).append("\n");
+    sb.append("    ratingType: ").append(toIndentedString(ratingType)).append("\n");
+    sb.append("    descriptionRatingType: ").append(toIndentedString(descriptionRatingType)).append("\n");
+    sb.append("    displayRegistertHorses: ").append(toIndentedString(displayRegistertHorses)).append("\n");
     sb.append("    stages: ").append(toIndentedString(stages)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -8,6 +8,7 @@ public class AddressDto {
     private String city;
     private String region;
     private String country;
+    private String gpsCoordinates;
 
     public String getLocationName() {
         return locationName;
@@ -55,5 +56,13 @@ public class AddressDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getGpsCoordinates() {
+        return gpsCoordinates;
+    }
+
+    public void setGpsCoordinates(String gpsCoordinates) {
+        this.gpsCoordinates = gpsCoordinates;
     }
 }

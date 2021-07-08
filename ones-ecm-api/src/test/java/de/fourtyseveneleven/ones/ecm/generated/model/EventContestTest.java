@@ -19,10 +19,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetition;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFee;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestLocation;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemark;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRole;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -103,11 +105,27 @@ public class EventContestTest {
     }
 
     /**
+     * Test the property 'eventNaming'
+     */
+    @Test
+    public void eventNamingTest() {
+        // TODO: test eventNaming
+    }
+
+    /**
      * Test the property 'title'
      */
     @Test
     public void titleTest() {
         // TODO: test title
+    }
+
+    /**
+     * Test the property 'state'
+     */
+    @Test
+    public void stateTest() {
+        // TODO: test state
     }
 
     /**
@@ -143,14 +161,6 @@ public class EventContestTest {
     }
 
     /**
-     * Test the property 'locationDesciption'
-     */
-    @Test
-    public void locationDesciptionTest() {
-        // TODO: test locationDesciption
-    }
-
-    /**
      * Test the property 'isCountryChampionship'
      */
     @Test
@@ -172,22 +182,6 @@ public class EventContestTest {
     @Test
     public void isCardTest() {
         // TODO: test isCard
-    }
-
-    /**
-     * Test the property 'infoHelmetObligation'
-     */
-    @Test
-    public void infoHelmetObligationTest() {
-        // TODO: test infoHelmetObligation
-    }
-
-    /**
-     * Test the property 'infoVaccinationObligation'
-     */
-    @Test
-    public void infoVaccinationObligationTest() {
-        // TODO: test infoVaccinationObligation
     }
 
     /**
@@ -239,59 +233,19 @@ public class EventContestTest {
     }
 
     /**
-     * Test the property 'promoterContactUuid'
-     */
-    @Test
-    public void promoterContactUuidTest() {
-        // TODO: test promoterContactUuid
-    }
-
-    /**
-     * Test the property 'promoterContactDescription'
-     */
-    @Test
-    public void promoterContactDescriptionTest() {
-        // TODO: test promoterContactDescription
-    }
-
-    /**
-     * Test the property 'organizerContactUuid'
-     */
-    @Test
-    public void organizerContactUuidTest() {
-        // TODO: test organizerContactUuid
-    }
-
-    /**
-     * Test the property 'organizerContactDescription'
-     */
-    @Test
-    public void organizerContactDescriptionTest() {
-        // TODO: test organizerContactDescription
-    }
-
-    /**
-     * Test the property 'registrationDescription'
-     */
-    @Test
-    public void registrationDescriptionTest() {
-        // TODO: test registrationDescription
-    }
-
-    /**
-     * Test the property 'remarks'
-     */
-    @Test
-    public void remarksTest() {
-        // TODO: test remarks
-    }
-
-    /**
      * Test the property 'initialEvent'
      */
     @Test
     public void initialEventTest() {
         // TODO: test initialEvent
+    }
+
+    /**
+     * Test the property 'currentEvent'
+     */
+    @Test
+    public void currentEventTest() {
+        // TODO: test currentEvent
     }
 
     /**
@@ -359,59 +313,59 @@ public class EventContestTest {
     }
 
     /**
-     * Test the property 'feeCurrency'
+     * Test the property 'paymentAccountHolder'
      */
     @Test
-    public void feeCurrencyTest() {
-        // TODO: test feeCurrency
+    public void paymentAccountHolderTest() {
+        // TODO: test paymentAccountHolder
     }
 
     /**
-     * Test the property 'registrationFee'
+     * Test the property 'paymentIban'
      */
     @Test
-    public void registrationFeeTest() {
-        // TODO: test registrationFee
+    public void paymentIbanTest() {
+        // TODO: test paymentIban
     }
 
     /**
-     * Test the property 'startingFee'
+     * Test the property 'paymentBic'
      */
     @Test
-    public void startingFeeTest() {
-        // TODO: test startingFee
+    public void paymentBicTest() {
+        // TODO: test paymentBic
     }
 
     /**
-     * Test the property 'startingFeeUnit'
+     * Test the property 'paymentPaypal'
      */
     @Test
-    public void startingFeeUnitTest() {
-        // TODO: test startingFeeUnit
+    public void paymentPaypalTest() {
+        // TODO: test paymentPaypal
     }
 
     /**
-     * Test the property 'lateRegistrationFee'
+     * Test the property 'paymentReason'
      */
     @Test
-    public void lateRegistrationFeeTest() {
-        // TODO: test lateRegistrationFee
+    public void paymentReasonTest() {
+        // TODO: test paymentReason
     }
 
     /**
-     * Test the property 'changeRegistrationFee'
+     * Test the property 'contestantQuantityMin'
      */
     @Test
-    public void changeRegistrationFeeTest() {
-        // TODO: test changeRegistrationFee
+    public void contestantQuantityMinTest() {
+        // TODO: test contestantQuantityMin
     }
 
     /**
-     * Test the property 'surchargeNonMembers'
+     * Test the property 'contestantQuantityMax'
      */
     @Test
-    public void surchargeNonMembersTest() {
-        // TODO: test surchargeNonMembers
+    public void contestantQuantityMaxTest() {
+        // TODO: test contestantQuantityMax
     }
 
     /**
@@ -420,6 +374,30 @@ public class EventContestTest {
     @Test
     public void registrationClosingTest() {
         // TODO: test registrationClosing
+    }
+
+    /**
+     * Test the property 'isLateRegistration'
+     */
+    @Test
+    public void isLateRegistrationTest() {
+        // TODO: test isLateRegistration
+    }
+
+    /**
+     * Test the property 'infoVaccinationObligation'
+     */
+    @Test
+    public void infoVaccinationObligationTest() {
+        // TODO: test infoVaccinationObligation
+    }
+
+    /**
+     * Test the property 'infoHelmetObligation'
+     */
+    @Test
+    public void infoHelmetObligationTest() {
+        // TODO: test infoHelmetObligation
     }
 
     /**
@@ -436,6 +414,30 @@ public class EventContestTest {
     @Test
     public void rolesTest() {
         // TODO: test roles
+    }
+
+    /**
+     * Test the property 'fees'
+     */
+    @Test
+    public void feesTest() {
+        // TODO: test fees
+    }
+
+    /**
+     * Test the property 'locations'
+     */
+    @Test
+    public void locationsTest() {
+        // TODO: test locations
+    }
+
+    /**
+     * Test the property 'remarks'
+     */
+    @Test
+    public void remarksTest() {
+        // TODO: test remarks
     }
 
 }

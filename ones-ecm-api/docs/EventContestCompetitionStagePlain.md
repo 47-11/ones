@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uuid** | **String** |  |  [optional]
-**creationTimestamp** | **OffsetDateTime** |  |  [optional]
+**uuid** | **String** |  | 
+**creationTimestamp** | **OffsetDateTime** |  | 
 **creationUserUuid** | **String** |  |  [optional]
 **changeTimestamp** | **OffsetDateTime** |  |  [optional]
 **changeUserUuid** | **String** |  |  [optional]
@@ -28,8 +28,6 @@ Name | Type | Description | Notes
 **breaksTotalNumbers** | **Integer** |  |  [optional]
 **breaksTotalMinutes** | **Integer** |  |  [optional]
 **responsibleVeterinarianUuid** | **String** |  |  [optional]
-**contestantLimitiationMin** | **Integer** |  |  [optional]
-**contestantLimitiationMax** | **Integer** |  |  [optional]
 
 
 

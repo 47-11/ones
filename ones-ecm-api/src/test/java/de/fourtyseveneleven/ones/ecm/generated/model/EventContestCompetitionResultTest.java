@@ -149,6 +149,46 @@ public class EventContestCompetitionResultTest {
     }
 
     /**
+     * Test the property 'timeTotal'
+     */
+    @Test
+    public void timeTotalTest() {
+        // TODO: test timeTotal
+    }
+
+    /**
+     * Test the property 'timeRace'
+     */
+    @Test
+    public void timeRaceTest() {
+        // TODO: test timeRace
+    }
+
+    /**
+     * Test the property 'tempo'
+     */
+    @Test
+    public void tempoTest() {
+        // TODO: test tempo
+    }
+
+    /**
+     * Test the property 'speed'
+     */
+    @Test
+    public void speedTest() {
+        // TODO: test speed
+    }
+
+    /**
+     * Test the property 'kmH'
+     */
+    @Test
+    public void kmHTest() {
+        // TODO: test kmH
+    }
+
+    /**
      * Test the property 'remarks'
      */
     @Test

@@ -65,9 +65,10 @@ public class EventContestControllerApiTest {
      */
     @Test
     public void getContestByUuidTest() throws ApiException {
-        String uuid = null;
+        String contestUuid = null;
+        String accountUuid = null;
         EventContest response = 
-        api.getContestByUuid(uuid);
+        api.getContestByUuid(contestUuid, accountUuid);
         
         // TODO: test validations
     }
@@ -82,18 +83,20 @@ public class EventContestControllerApiTest {
      */
     @Test
     public void getContestByYearTest() throws ApiException {
-        Integer year = null;
         OffsetDateTime fromDate = null;
         OffsetDateTime untilDate = null;
         List<String> countryRegions = null;
+        List<String> contestKinds = null;
         Integer isCountryChampionship = null;
         Integer isCEI = null;
         Integer isCard = null;
+        Boolean onlyRegistered = null;
+        String accountUuid = null;
         Integer pageNo = null;
         Integer pageSize = null;
         String sortBy = null;
         ResponcePageContestsPlain response = 
-        api.getContestByYear(year, fromDate, untilDate, countryRegions, isCountryChampionship, isCEI, isCard, pageNo, pageSize, sortBy);
+        api.getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
         
         // TODO: test validations
     }

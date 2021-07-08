@@ -208,20 +208,4 @@ public class EventContestCompetitionStagePlainTest {
         // TODO: test responsibleVeterinarianUuid
     }
 
-    /**
-     * Test the property 'contestantLimitiationMin'
-     */
-    @Test
-    public void contestantLimitiationMinTest() {
-        // TODO: test contestantLimitiationMin
-    }
-
-    /**
-     * Test the property 'contestantLimitiationMax'
-     */
-    @Test
-    public void contestantLimitiationMaxTest() {
-        // TODO: test contestantLimitiationMax
-    }
-
 }

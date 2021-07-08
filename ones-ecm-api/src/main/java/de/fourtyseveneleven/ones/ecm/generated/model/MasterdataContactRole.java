@@ -39,9 +39,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataContactRole.JSON_PROPERTY_CHANGE_TIMESTAMP,
   MasterdataContactRole.JSON_PROPERTY_CHANGE_USER_UUID,
   MasterdataContactRole.JSON_PROPERTY_CHANGE_COUNTER,
-  MasterdataContactRole.JSON_PROPERTY_ROLE
+  MasterdataContactRole.JSON_PROPERTY_KIND
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-30T11:09:43.623625400+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class MasterdataContactRole {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -64,8 +64,8 @@ public class MasterdataContactRole {
   public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
   private Integer changeCounter;
 
-  public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  public static final String JSON_PROPERTY_KIND = "kind";
+  private String kind;
 
 
   public MasterdataContactRole uuid(String uuid) {
@@ -248,29 +248,29 @@ public class MasterdataContactRole {
   }
 
 
-  public MasterdataContactRole role(String role) {
-    this.role = role;
+  public MasterdataContactRole kind(String kind) {
+    this.kind = kind;
     return this;
   }
 
    /**
-   * Get role
-   * @return role
+   * Get kind
+   * @return kind
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRole() {
-    return role;
+  public String getKind() {
+    return kind;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRole(String role) {
-    this.role = role;
+  public void setKind(String kind) {
+    this.kind = kind;
   }
 
 
@@ -293,12 +293,12 @@ public class MasterdataContactRole {
         Objects.equals(this.changeTimestamp, masterdataContactRole.changeTimestamp) &&
         Objects.equals(this.changeUserUuid, masterdataContactRole.changeUserUuid) &&
         Objects.equals(this.changeCounter, masterdataContactRole.changeCounter) &&
-        Objects.equals(this.role, masterdataContactRole.role);
+        Objects.equals(this.kind, masterdataContactRole.kind);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, masterdataContactUuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, role);
+    return Objects.hash(uuid, masterdataContactUuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, kind);
   }
 
   @Override
@@ -312,7 +312,7 @@ public class MasterdataContactRole {
     sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
     sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
     sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("}");
     return sb.toString();
   }

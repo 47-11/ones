@@ -14,13 +14,16 @@ import de.fourtyseveneleven.ones.event.mapper.SimpleEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
+import de.fourtyseveneleven.ones.security.util.UserUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
@@ -53,7 +56,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private Optional<SimpleEventDto> tryFindOneByUuid(String eventUuid) throws ApiException {
 
-        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid);
+        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
         return Optional.ofNullable(eventContest)
                 .map(simpleEventMapper::eventContestToSimpleEventDto);
     }
@@ -77,25 +80,18 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
         return eventContestControllerApi
-                .getContestByYear(getYearFromFilter(filter),
-                        atStartOfDay(filter.getFrom()),
-                        atEndOfDay(filter.getUntil()),
-                        filter.getRegions(),
-                        booleanToInteger(filter.getIsCountryChampionship()),
-                        booleanToInteger(filter.getIsInternational()),
-                        booleanToInteger(filter.getIsCard()),
+                .getContestByYear(atStartOfDay(filter.from()),
+                        atEndOfDay(filter.until()),
+                        filter.regions(),
+                        filter.categories(),
+                        booleanToInteger(filter.isCountryChampionship()),
+                        booleanToInteger(filter.isInternational()),
+                        booleanToInteger(filter.isMap()),
+                        false,
+                        null,
                         pageRequest.getPageNumber(),
                         pageRequest.getPageSize(),
                         getSortByValue(sortRequest));
-    }
-
-    private int getYearFromFilter(EventFilterDto filter) {
-
-        if (isNull(filter.getFrom())) {
-            return LocalDate.now().getYear();
-        } else {
-            return filter.getFrom().getYear();
-        }
     }
 
     private OffsetDateTime atStartOfDay(LocalDate localDate) {
@@ -103,7 +99,8 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         if (isNull(localDate)) {
             return null;
         } else {
-            return OffsetDateTime.from(localDate.atStartOfDay());
+            final ZonedDateTime atStartOfDay = localDate.atStartOfDay(ZoneOffset.systemDefault());
+            return OffsetDateTime.from(atStartOfDay);
         }
     }
 
@@ -112,7 +109,8 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         if (isNull(localDate)) {
             return null;
         } else {
-            return OffsetDateTime.from(localDate.atTime(23, 59, 59));
+            final ZonedDateTime atEndOfDay = localDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault());
+            return OffsetDateTime.from(atEndOfDay);
         }
     }
 

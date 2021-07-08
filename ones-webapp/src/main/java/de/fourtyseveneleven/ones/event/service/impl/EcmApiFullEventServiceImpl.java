@@ -7,6 +7,7 @@ import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.event.mapper.FullEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
+import de.fourtyseveneleven.ones.security.util.UserUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class EcmApiFullEventServiceImpl implements FullEventService {
 
     private Optional<FullEventDto> tryFindOneByUuid(String eventUuid) throws ApiException {
 
-        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid);
+        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
         return Optional.ofNullable(eventContest)
                 .map(fullEventMapper::eventContestToFullEventDto);
     }
