@@ -104,6 +104,12 @@ export interface AddressDto {
      * @memberof AddressDto
      */
     country?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    gpsCoordinates?: string;
 }
 /**
  * 
@@ -360,10 +366,10 @@ export interface FullEventDto {
     end?: string;
     /**
      * 
-     * @type {AddressDto}
+     * @type {Array<AddressDto>}
      * @memberof FullEventDto
      */
-    address?: AddressDto;
+    addresses?: Array<AddressDto>;
     /**
      * 
      * @type {boolean}
@@ -791,10 +797,10 @@ export interface SimpleEventDto {
     end?: string;
     /**
      * 
-     * @type {AddressDto}
+     * @type {Array<AddressDto>}
      * @memberof SimpleEventDto
      */
-    address?: AddressDto;
+    addresses?: Array<AddressDto>;
     /**
      * 
      * @type {boolean}
