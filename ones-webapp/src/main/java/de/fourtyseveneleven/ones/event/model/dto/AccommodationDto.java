@@ -1,13 +1,21 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
-import java.math.BigDecimal;
-
 public class AccommodationDto {
 
+    private String uuid;
     private String type;
-    private BigDecimal fee;
-    private AccommodationFeeUnit feeUnit;
-    private BigDecimal pledgeFee;
+    private FeeDto fee;
+    private String feeUnit;
+    private FeeDto pledgeFee;
+    private String additionalInformation;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getType() {
         return type;
@@ -17,27 +25,35 @@ public class AccommodationDto {
         this.type = type;
     }
 
-    public BigDecimal getFee() {
+    public FeeDto getFee() {
         return fee;
     }
 
-    public void setFee(BigDecimal fee) {
+    public void setFee(FeeDto fee) {
         this.fee = fee;
     }
 
-    public AccommodationFeeUnit getFeeUnit() {
+    public String getFeeUnit() {
         return feeUnit;
     }
 
-    public void setFeeUnit(AccommodationFeeUnit feeUnit) {
+    public void setFeeUnit(String feeUnit) {
         this.feeUnit = feeUnit;
     }
 
-    public BigDecimal getPledgeFee() {
+    public FeeDto getPledgeFee() {
         return pledgeFee;
     }
 
-    public void setPledgeFee(BigDecimal pledgeFee) {
+    public void setPledgeFee(FeeDto pledgeFee) {
         this.pledgeFee = pledgeFee;
+    }
+
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 }

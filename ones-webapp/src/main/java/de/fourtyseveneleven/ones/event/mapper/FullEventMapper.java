@@ -8,11 +8,13 @@ import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFee;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemark;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRole;
+import de.fourtyseveneleven.ones.event.model.dto.AccommodationDto;
 import de.fourtyseveneleven.ones.event.model.dto.FeeDto;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -31,6 +33,9 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 )
 public abstract class FullEventMapper {
 
+    @Autowired
+    protected AccommodationDtoMapper accommodationDtoMapper;
+
     @Mapping(source = "beginning", target = "start")
     @Mapping(source = "ending", target = "end")
     @Mapping(source = "locations", target = "addresses")
@@ -47,6 +52,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "promoterEventUrl", target = "organizerWebsiteUrl")
     @Mapping(source = "promoterTenderingUrl", target = "signupDocumentUrl")
     @Mapping(source = "fees", target = "lateSignupFee", qualifiedByName = "lateSignupFee")
+    @Mapping(source = "fees", target = "availableAccommodations")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {
@@ -127,6 +133,14 @@ public abstract class FullEventMapper {
         } else {
             return new FeeDto(BigDecimal.valueOf(eventContestFee.getValue()), eventContestFee.getCurrency());
         }
+    }
+
+    protected List<AccommodationDto> accommodationFees(Set<EventContestFee> eventContestFees) {
+
+        return eventContestFees.stream()
+                .filter(f -> "ACCOMMODATION".equalsIgnoreCase(f.getKind()))
+                .map(accommodationDtoMapper::fromEventContestFee)
+                .toList();
     }
 }
 
