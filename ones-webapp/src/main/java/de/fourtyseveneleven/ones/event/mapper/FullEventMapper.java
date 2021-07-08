@@ -1,7 +1,6 @@
 package de.fourtyseveneleven.ones.event.mapper;
 
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
-import de.fourtyseveneleven.ones.common.mapper.ContactMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemark;
@@ -10,20 +9,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Collections.emptyList;
-import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Mapper(
         componentModel = "spring",
         uses = {
                 DateTimeFormatMapper.class,
-                ContactMapper.class,
                 CommonMapper.class,
                 EventAddressMapper.class
         }
