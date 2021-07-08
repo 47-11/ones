@@ -32,36 +32,38 @@ export interface AccommodationDto {
      * @type {string}
      * @memberof AccommodationDto
      */
-    type?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AccommodationDto
-     */
-    fee?: number;
+    uuid?: string;
     /**
      * 
      * @type {string}
      * @memberof AccommodationDto
      */
-    feeUnit?: AccommodationDtoFeeUnitEnum;
+    type?: string;
     /**
      * 
-     * @type {number}
+     * @type {FeeDto}
      * @memberof AccommodationDto
      */
-    pledgeFee?: number;
+    fee?: FeeDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccommodationDto
+     */
+    feeUnit?: string;
+    /**
+     * 
+     * @type {FeeDto}
+     * @memberof AccommodationDto
+     */
+    pledgeFee?: FeeDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccommodationDto
+     */
+    additionalInformation?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum AccommodationDtoFeeUnitEnum {
-    Night = 'PER_NIGHT',
-    Horse = 'PER_HORSE'
-}
-
 /**
  * 
  * @export
@@ -92,12 +94,6 @@ export interface AddressDto {
      * @memberof AddressDto
      */
     city?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    region?: string;
     /**
      * 
      * @type {string}
@@ -186,6 +182,74 @@ export interface ErrorDto {
      * @memberof ErrorDto
      */
     exceptionType?: string;
+}
+/**
+ * 
+ * @export
+ * @interface EventAddressDto
+ */
+export interface EventAddressDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    locationName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    street?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    zipCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    country?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    gpsCoordinates?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    type?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FeeDto
+ */
+export interface FeeDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof FeeDto
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeeDto
+     */
+    currency?: string;
 }
 /**
  * 
@@ -366,10 +430,16 @@ export interface FullEventDto {
     end?: string;
     /**
      * 
-     * @type {Array<AddressDto>}
+     * @type {string}
      * @memberof FullEventDto
      */
-    addresses?: Array<AddressDto>;
+    region?: string;
+    /**
+     * 
+     * @type {Array<EventAddressDto>}
+     * @memberof FullEventDto
+     */
+    addresses?: Array<EventAddressDto>;
     /**
      * 
      * @type {boolean}
@@ -414,22 +484,34 @@ export interface FullEventDto {
     signupDeadline?: string;
     /**
      * 
-     * @type {number}
-     * @memberof FullEventDto
-     */
-    signupDeadlineMissedFee?: number;
-    /**
-     * 
      * @type {boolean}
      * @memberof FullEventDto
      */
-    isVaccinationMandatory?: boolean;
+    signupAfterDeadlinePossible?: boolean;
     /**
      * 
-     * @type {boolean}
+     * @type {FeeDto}
      * @memberof FullEventDto
      */
-    isHelmetMandatory?: boolean;
+    lateSignupFee?: FeeDto;
+    /**
+     * 
+     * @type {FeeDto}
+     * @memberof FullEventDto
+     */
+    signupChangeFee?: FeeDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    vaccinationInformation?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    helmetInformation?: string;
     /**
      * 
      * @type {Array<AccommodationDto>}
@@ -442,6 +524,36 @@ export interface FullEventDto {
      * @memberof FullEventDto
      */
     additionalComments?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    organizerWebsiteUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    signupDocumentUrl?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullEventDto
+     */
+    minimumParticipants?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullEventDto
+     */
+    maximumParticipants?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullEventDto
+     */
+    currentParticipants?: number;
 }
 /**
  * 
@@ -797,10 +909,16 @@ export interface SimpleEventDto {
     end?: string;
     /**
      * 
-     * @type {Array<AddressDto>}
+     * @type {string}
      * @memberof SimpleEventDto
      */
-    addresses?: Array<AddressDto>;
+    region?: string;
+    /**
+     * 
+     * @type {Array<EventAddressDto>}
+     * @memberof SimpleEventDto
+     */
+    addresses?: Array<EventAddressDto>;
     /**
      * 
      * @type {boolean}
