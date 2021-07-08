@@ -14,6 +14,7 @@ public class FullEventDto extends SimpleEventDto {
     private PersonDto contactPerson;
 
     private LocalDateTime signupDeadline;
+    private boolean signupAfterDeadlinePossible;
     private FeeDto lateSignupFee;
     private String vaccinationInformation;
     private String helmetInformation;
@@ -47,6 +48,14 @@ public class FullEventDto extends SimpleEventDto {
 
     public void setContactPerson(PersonDto contactPerson) {
         this.contactPerson = contactPerson;
+    }
+
+    public boolean isSignupAfterDeadlinePossible() {
+        return signupAfterDeadlinePossible;
+    }
+
+    public void setSignupAfterDeadlinePossible(boolean signupAfterDeadlinePossible) {
+        this.signupAfterDeadlinePossible = signupAfterDeadlinePossible;
     }
 
     public LocalDateTime getSignupDeadline() {
