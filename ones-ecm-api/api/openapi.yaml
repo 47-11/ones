@@ -264,32 +264,17 @@ paths:
       tags:
       - masterdata-horse-controller
       x-accepts: '*/*'
-  /rest/masterdata/contact/{uuid}:
+  /rest/masterdata/contact/{accountUuid}:
     get:
       operationId: getContactByUuid
       parameters:
       - explode: false
         in: path
-        name: uuid
+        name: accountUuid
         required: true
         schema:
           type: string
         style: simple
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/MasterdataContact'
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-contact-controller
-      x-accepts: '*/*'
-  /rest/masterdata/contact/current:
-    get:
-      operationId: getCurrentContact
       responses:
         "200":
           content:
@@ -366,6 +351,13 @@ paths:
         style: form
       - explode: true
         in: query
+        name: onlyRegistered
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
         name: accountUuid
         required: false
         schema:
@@ -415,7 +407,14 @@ paths:
       parameters:
       - explode: true
         in: query
-        name: uuid
+        name: contestUuid
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: accountUuid
         required: true
         schema:
           type: string
@@ -613,6 +612,12 @@ components:
         horsesUuids:
           items:
             type: string
+          type: array
+        bookingFeeUuids:
+          items:
+            type: string
+          maxItems: 40
+          minItems: 1
           type: array
       required:
       - competitionUuid
@@ -1962,7 +1967,9 @@ components:
         minutesAllowed: 7
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+        isCARD: true
         state: state
+        displayRegistertHorses: displayRegistertHorses
         infoAwardCeremony: infoAwardCeremony
         contestantAgeMin: 6
         competitionUuidToReduce: competitionUuidToReduce
@@ -1973,6 +1980,7 @@ components:
         descriptionTerrain: descriptionTerrain
         descriptionControlchecks: descriptionControlchecks
         ending: 2000-01-23T04:56:07.000+00:00
+        isMARKED: true
         infoTransferRelease: infoTransferRelease
         registrationFeeUnit: registrationFeeUnit
         responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -2230,6 +2238,10 @@ components:
           maxLength: 50
           minLength: 0
           type: string
+        isCARD:
+          type: boolean
+        isMARKED:
+          type: boolean
         descriptionRoute:
           type: string
         typeOfRouting:
@@ -2246,6 +2258,8 @@ components:
           format: int32
           type: integer
         descriptionRatingType:
+          type: string
+        displayRegistertHorses:
           type: string
         _stages:
           items:
@@ -2817,7 +2831,9 @@ components:
           minutesAllowed: 7
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
           dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
           state: state
+          displayRegistertHorses: displayRegistertHorses
           infoAwardCeremony: infoAwardCeremony
           contestantAgeMin: 6
           competitionUuidToReduce: competitionUuidToReduce
@@ -2828,6 +2844,7 @@ components:
           descriptionTerrain: descriptionTerrain
           descriptionControlchecks: descriptionControlchecks
           ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
           infoTransferRelease: infoTransferRelease
           registrationFeeUnit: registrationFeeUnit
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -2919,7 +2936,9 @@ components:
           minutesAllowed: 7
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
           dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
           state: state
+          displayRegistertHorses: displayRegistertHorses
           infoAwardCeremony: infoAwardCeremony
           contestantAgeMin: 6
           competitionUuidToReduce: competitionUuidToReduce
@@ -2930,6 +2949,7 @@ components:
           descriptionTerrain: descriptionTerrain
           descriptionControlchecks: descriptionControlchecks
           ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
           infoTransferRelease: infoTransferRelease
           registrationFeeUnit: registrationFeeUnit
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -3402,7 +3422,9 @@ components:
             minutesAllowed: 7
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+            isCARD: true
             state: state
+            displayRegistertHorses: displayRegistertHorses
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -3413,6 +3435,7 @@ components:
             descriptionTerrain: descriptionTerrain
             descriptionControlchecks: descriptionControlchecks
             ending: 2000-01-23T04:56:07.000+00:00
+            isMARKED: true
             infoTransferRelease: infoTransferRelease
             registrationFeeUnit: registrationFeeUnit
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -3504,7 +3527,9 @@ components:
             minutesAllowed: 7
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+            isCARD: true
             state: state
+            displayRegistertHorses: displayRegistertHorses
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -3515,6 +3540,7 @@ components:
             descriptionTerrain: descriptionTerrain
             descriptionControlchecks: descriptionControlchecks
             ending: 2000-01-23T04:56:07.000+00:00
+            isMARKED: true
             infoTransferRelease: infoTransferRelease
             registrationFeeUnit: registrationFeeUnit
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -3797,7 +3823,9 @@ components:
             minutesAllowed: 7
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+            isCARD: true
             state: state
+            displayRegistertHorses: displayRegistertHorses
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -3808,6 +3836,7 @@ components:
             descriptionTerrain: descriptionTerrain
             descriptionControlchecks: descriptionControlchecks
             ending: 2000-01-23T04:56:07.000+00:00
+            isMARKED: true
             infoTransferRelease: infoTransferRelease
             registrationFeeUnit: registrationFeeUnit
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -3899,7 +3928,9 @@ components:
             minutesAllowed: 7
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+            isCARD: true
             state: state
+            displayRegistertHorses: displayRegistertHorses
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -3910,6 +3941,7 @@ components:
             descriptionTerrain: descriptionTerrain
             descriptionControlchecks: descriptionControlchecks
             ending: 2000-01-23T04:56:07.000+00:00
+            isMARKED: true
             infoTransferRelease: infoTransferRelease
             registrationFeeUnit: registrationFeeUnit
             responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -4207,7 +4239,9 @@ components:
           minutesAllowed: 2
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
           dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
           state: state
+          displayRegistertHorses: displayRegistertHorses
           infoAwardCeremony: infoAwardCeremony
           contestantAgeMin: 8
           competitionUuidToReduce: competitionUuidToReduce
@@ -4218,6 +4252,7 @@ components:
           descriptionTerrain: descriptionTerrain
           descriptionControlchecks: descriptionControlchecks
           ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
           infoTransferRelease: infoTransferRelease
           registrationFeeUnit: registrationFeeUnit
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -4309,7 +4344,9 @@ components:
           minutesAllowed: 2
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
           dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
           state: state
+          displayRegistertHorses: displayRegistertHorses
           infoAwardCeremony: infoAwardCeremony
           contestantAgeMin: 8
           competitionUuidToReduce: competitionUuidToReduce
@@ -4320,6 +4357,7 @@ components:
           descriptionTerrain: descriptionTerrain
           descriptionControlchecks: descriptionControlchecks
           ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
           infoTransferRelease: infoTransferRelease
           registrationFeeUnit: registrationFeeUnit
           responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -4602,7 +4640,9 @@ components:
         minutesAllowed: 2
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+        isCARD: true
         state: state
+        displayRegistertHorses: displayRegistertHorses
         infoAwardCeremony: infoAwardCeremony
         contestantAgeMin: 8
         competitionUuidToReduce: competitionUuidToReduce
@@ -4613,6 +4653,7 @@ components:
         descriptionTerrain: descriptionTerrain
         descriptionControlchecks: descriptionControlchecks
         ending: 2000-01-23T04:56:07.000+00:00
+        isMARKED: true
         infoTransferRelease: infoTransferRelease
         registrationFeeUnit: registrationFeeUnit
         responsibleVeterinarianUuid: responsibleVeterinarianUuid
@@ -4870,6 +4911,10 @@ components:
           maxLength: 50
           minLength: 0
           type: string
+        isCARD:
+          type: boolean
+        isMARKED:
+          type: boolean
         descriptionRoute:
           type: string
         typeOfRouting:
@@ -4886,6 +4931,8 @@ components:
           format: int32
           type: integer
         descriptionRatingType:
+          type: string
+        displayRegistertHorses:
           type: string
         _stages:
           items:
@@ -5357,31 +5404,36 @@ components:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         failureReasonRemark: failureReasonRemark
         competitionDate: 2000-01-23T04:56:07.000+00:00
+        timeTotal: 2000-01-23T04:56:07.000+00:00
         displayContestant: displayContestant
+        kmH: 7.061401241503109
         masterdataContestantUuid: masterdataContestantUuid
+        tempo: 5.637376656633329
         _horses:
-        - changeCounter: 5
+        - changeCounter: 9
           changeTimestamp: 2000-01-23T04:56:07.000+00:00
           masterdataHorseUuid: masterdataHorseUuid
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
           description: description
-          currentState: 2
+          currentState: 3
           uuid: uuid
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
-        - changeCounter: 5
+        - changeCounter: 9
           changeTimestamp: 2000-01-23T04:56:07.000+00:00
           masterdataHorseUuid: masterdataHorseUuid
           creationTimestamp: 2000-01-23T04:56:07.000+00:00
           description: description
-          currentState: 2
+          currentState: 3
           uuid: uuid
           creationUserUuid: creationUserUuid
           changeUserUuid: changeUserUuid
         uuid: uuid
         creationUserUuid: creationUserUuid
+        speed: 2.3021358869347655
         changeUserUuid: changeUserUuid
         changeCounter: 0
+        timeRace: 2000-01-23T04:56:07.000+00:00
         rankingRaiseLength: 1
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         competitionKindRemark: competitionKindRemark
@@ -5435,16 +5487,31 @@ components:
         placement:
           format: int32
           type: integer
+        timeTotal:
+          format: date-time
+          type: string
+        timeRace:
+          format: date-time
+          type: string
+        tempo:
+          format: double
+          type: number
+        speed:
+          format: double
+          type: number
+        kmH:
+          format: double
+          type: number
         remarks:
           maxLength: 255
           minLength: 0
           type: string
         displayContestant:
-          maxLength: 50
+          maxLength: 255
           minLength: 0
           type: string
         displayHorse:
-          maxLength: 50
+          maxLength: 255
           minLength: 0
           type: string
         _horses:
@@ -5459,12 +5526,12 @@ components:
       type: object
     EventContestCompetitionResultHorse:
       example:
-        changeCounter: 5
+        changeCounter: 9
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         masterdataHorseUuid: masterdataHorseUuid
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         description: description
-        currentState: 2
+        currentState: 3
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid

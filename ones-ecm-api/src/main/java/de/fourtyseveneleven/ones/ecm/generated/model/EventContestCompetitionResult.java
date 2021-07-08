@@ -49,12 +49,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionResult.JSON_PROPERTY_FAILURE_REASON_REMARK,
   EventContestCompetitionResult.JSON_PROPERTY_RANKING_RAISE_LENGTH,
   EventContestCompetitionResult.JSON_PROPERTY_PLACEMENT,
+  EventContestCompetitionResult.JSON_PROPERTY_TIME_TOTAL,
+  EventContestCompetitionResult.JSON_PROPERTY_TIME_RACE,
+  EventContestCompetitionResult.JSON_PROPERTY_TEMPO,
+  EventContestCompetitionResult.JSON_PROPERTY_SPEED,
+  EventContestCompetitionResult.JSON_PROPERTY_KM_H,
   EventContestCompetitionResult.JSON_PROPERTY_REMARKS,
   EventContestCompetitionResult.JSON_PROPERTY_DISPLAY_CONTESTANT,
   EventContestCompetitionResult.JSON_PROPERTY_DISPLAY_HORSE,
   EventContestCompetitionResult.JSON_PROPERTY_HORSES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class EventContestCompetitionResult {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -94,6 +99,21 @@ public class EventContestCompetitionResult {
 
   public static final String JSON_PROPERTY_PLACEMENT = "placement";
   private Integer placement;
+
+  public static final String JSON_PROPERTY_TIME_TOTAL = "timeTotal";
+  private OffsetDateTime timeTotal;
+
+  public static final String JSON_PROPERTY_TIME_RACE = "timeRace";
+  private OffsetDateTime timeRace;
+
+  public static final String JSON_PROPERTY_TEMPO = "tempo";
+  private Double tempo;
+
+  public static final String JSON_PROPERTY_SPEED = "speed";
+  private Double speed;
+
+  public static final String JSON_PROPERTY_KM_H = "kmH";
+  private Double kmH;
 
   public static final String JSON_PROPERTY_REMARKS = "remarks";
   private String remarks;
@@ -443,6 +463,136 @@ public class EventContestCompetitionResult {
   }
 
 
+  public EventContestCompetitionResult timeTotal(OffsetDateTime timeTotal) {
+    this.timeTotal = timeTotal;
+    return this;
+  }
+
+   /**
+   * Get timeTotal
+   * @return timeTotal
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TIME_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getTimeTotal() {
+    return timeTotal;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TIME_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTimeTotal(OffsetDateTime timeTotal) {
+    this.timeTotal = timeTotal;
+  }
+
+
+  public EventContestCompetitionResult timeRace(OffsetDateTime timeRace) {
+    this.timeRace = timeRace;
+    return this;
+  }
+
+   /**
+   * Get timeRace
+   * @return timeRace
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TIME_RACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getTimeRace() {
+    return timeRace;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TIME_RACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTimeRace(OffsetDateTime timeRace) {
+    this.timeRace = timeRace;
+  }
+
+
+  public EventContestCompetitionResult tempo(Double tempo) {
+    this.tempo = tempo;
+    return this;
+  }
+
+   /**
+   * Get tempo
+   * @return tempo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TEMPO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Double getTempo() {
+    return tempo;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TEMPO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTempo(Double tempo) {
+    this.tempo = tempo;
+  }
+
+
+  public EventContestCompetitionResult speed(Double speed) {
+    this.speed = speed;
+    return this;
+  }
+
+   /**
+   * Get speed
+   * @return speed
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Double getSpeed() {
+    return speed;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpeed(Double speed) {
+    this.speed = speed;
+  }
+
+
+  public EventContestCompetitionResult kmH(Double kmH) {
+    this.kmH = kmH;
+    return this;
+  }
+
+   /**
+   * Get kmH
+   * @return kmH
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_KM_H)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Double getKmH() {
+    return kmH;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_KM_H)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setKmH(Double kmH) {
+    this.kmH = kmH;
+  }
+
+
   public EventContestCompetitionResult remarks(String remarks) {
     this.remarks = remarks;
     return this;
@@ -580,6 +730,11 @@ public class EventContestCompetitionResult {
         Objects.equals(this.failureReasonRemark, eventContestCompetitionResult.failureReasonRemark) &&
         Objects.equals(this.rankingRaiseLength, eventContestCompetitionResult.rankingRaiseLength) &&
         Objects.equals(this.placement, eventContestCompetitionResult.placement) &&
+        Objects.equals(this.timeTotal, eventContestCompetitionResult.timeTotal) &&
+        Objects.equals(this.timeRace, eventContestCompetitionResult.timeRace) &&
+        Objects.equals(this.tempo, eventContestCompetitionResult.tempo) &&
+        Objects.equals(this.speed, eventContestCompetitionResult.speed) &&
+        Objects.equals(this.kmH, eventContestCompetitionResult.kmH) &&
         Objects.equals(this.remarks, eventContestCompetitionResult.remarks) &&
         Objects.equals(this.displayContestant, eventContestCompetitionResult.displayContestant) &&
         Objects.equals(this.displayHorse, eventContestCompetitionResult.displayHorse) &&
@@ -588,7 +743,7 @@ public class EventContestCompetitionResult {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, competitionDate, masterdataContestantUuid, competitionKindRemark, failureReasonRemark, rankingRaiseLength, placement, remarks, displayContestant, displayHorse, horses);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, competitionDate, masterdataContestantUuid, competitionKindRemark, failureReasonRemark, rankingRaiseLength, placement, timeTotal, timeRace, tempo, speed, kmH, remarks, displayContestant, displayHorse, horses);
   }
 
   @Override
@@ -608,6 +763,11 @@ public class EventContestCompetitionResult {
     sb.append("    failureReasonRemark: ").append(toIndentedString(failureReasonRemark)).append("\n");
     sb.append("    rankingRaiseLength: ").append(toIndentedString(rankingRaiseLength)).append("\n");
     sb.append("    placement: ").append(toIndentedString(placement)).append("\n");
+    sb.append("    timeTotal: ").append(toIndentedString(timeTotal)).append("\n");
+    sb.append("    timeRace: ").append(toIndentedString(timeRace)).append("\n");
+    sb.append("    tempo: ").append(toIndentedString(tempo)).append("\n");
+    sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
+    sb.append("    kmH: ").append(toIndentedString(kmH)).append("\n");
     sb.append("    remarks: ").append(toIndentedString(remarks)).append("\n");
     sb.append("    displayContestant: ").append(toIndentedString(displayContestant)).append("\n");
     sb.append("    displayHorse: ").append(toIndentedString(displayHorse)).append("\n");

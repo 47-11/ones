@@ -59,6 +59,8 @@ Name | Type | Description | Notes
 **contestantQuantityMin** | **Integer** |  |  [optional]
 **contestantQuantityMax** | **Integer** |  |  [optional]
 **hoofProtection** | **String** |  |  [optional]
+**isCARD** | **Boolean** |  |  [optional]
+**isMARKED** | **Boolean** |  |  [optional]
 **descriptionRoute** | **String** |  |  [optional]
 **typeOfRouting** | **String** |  |  [optional]
 **descriptionStart** | **String** |  |  [optional]
@@ -66,6 +68,7 @@ Name | Type | Description | Notes
 **descriptionControlchecks** | **String** |  |  [optional]
 **ratingType** | **Integer** |  |  [optional]
 **descriptionRatingType** | **String** |  |  [optional]
+**displayRegistertHorses** | **String** |  |  [optional]
 **stages** | [**Set&lt;EventContestCompetitionStagePlain&gt;**](EventContestCompetitionStagePlain.md) |  |  [optional]
 
 

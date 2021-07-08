@@ -44,25 +44,9 @@ public class MasterdataContactControllerApiTest {
      */
     @Test
     public void getContactByUuidTest() throws ApiException {
-        String uuid = null;
+        String accountUuid = null;
         MasterdataContact response = 
-        api.getContactByUuid(uuid);
-        
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getCurrentContactTest() throws ApiException {
-        MasterdataContact response = 
-        api.getCurrentContact();
+        api.getContactByUuid(accountUuid);
         
         // TODO: test validations
     }

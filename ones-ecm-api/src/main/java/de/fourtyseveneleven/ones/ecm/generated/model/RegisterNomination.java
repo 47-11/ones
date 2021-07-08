@@ -35,9 +35,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   RegisterNomination.JSON_PROPERTY_COMPETITION_UUID,
   RegisterNomination.JSON_PROPERTY_CONTACT_UUID,
-  RegisterNomination.JSON_PROPERTY_HORSES_UUIDS
+  RegisterNomination.JSON_PROPERTY_HORSES_UUIDS,
+  RegisterNomination.JSON_PROPERTY_BOOKING_FEE_UUIDS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class RegisterNomination {
   public static final String JSON_PROPERTY_COMPETITION_UUID = "competitionUuid";
   private String competitionUuid;
@@ -47,6 +48,9 @@ public class RegisterNomination {
 
   public static final String JSON_PROPERTY_HORSES_UUIDS = "horsesUuids";
   private List<String> horsesUuids = null;
+
+  public static final String JSON_PROPERTY_BOOKING_FEE_UUIDS = "bookingFeeUuids";
+  private List<String> bookingFeeUuids = null;
 
 
   public RegisterNomination competitionUuid(String competitionUuid) {
@@ -133,6 +137,40 @@ public class RegisterNomination {
   }
 
 
+  public RegisterNomination bookingFeeUuids(List<String> bookingFeeUuids) {
+    this.bookingFeeUuids = bookingFeeUuids;
+    return this;
+  }
+
+  public RegisterNomination addBookingFeeUuidsItem(String bookingFeeUuidsItem) {
+    if (this.bookingFeeUuids == null) {
+      this.bookingFeeUuids = new ArrayList<>();
+    }
+    this.bookingFeeUuids.add(bookingFeeUuidsItem);
+    return this;
+  }
+
+   /**
+   * Get bookingFeeUuids
+   * @return bookingFeeUuids
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BOOKING_FEE_UUIDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getBookingFeeUuids() {
+    return bookingFeeUuids;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BOOKING_FEE_UUIDS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBookingFeeUuids(List<String> bookingFeeUuids) {
+    this.bookingFeeUuids = bookingFeeUuids;
+  }
+
+
   /**
    * Return true if this registerNomination object is equal to o.
    */
@@ -147,12 +185,13 @@ public class RegisterNomination {
     RegisterNomination registerNomination = (RegisterNomination) o;
     return Objects.equals(this.competitionUuid, registerNomination.competitionUuid) &&
         Objects.equals(this.contactUuid, registerNomination.contactUuid) &&
-        Objects.equals(this.horsesUuids, registerNomination.horsesUuids);
+        Objects.equals(this.horsesUuids, registerNomination.horsesUuids) &&
+        Objects.equals(this.bookingFeeUuids, registerNomination.bookingFeeUuids);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(competitionUuid, contactUuid, horsesUuids);
+    return Objects.hash(competitionUuid, contactUuid, horsesUuids, bookingFeeUuids);
   }
 
   @Override
@@ -162,6 +201,7 @@ public class RegisterNomination {
     sb.append("    competitionUuid: ").append(toIndentedString(competitionUuid)).append("\n");
     sb.append("    contactUuid: ").append(toIndentedString(contactUuid)).append("\n");
     sb.append("    horsesUuids: ").append(toIndentedString(horsesUuids)).append("\n");
+    sb.append("    bookingFeeUuids: ").append(toIndentedString(bookingFeeUuids)).append("\n");
     sb.append("}");
     return sb.toString();
   }

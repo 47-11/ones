@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]
+- Build date: 2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -123,10 +123,8 @@ Class | Method | HTTP request | Description
 *EventContestControllerApi* | [**getCurrentContestCompetitionsResultsWithHttpInfo**](docs/EventContestControllerApi.md#getCurrentContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/current | 
 *EventContestControllerApi* | [**postRegisterNomination**](docs/EventContestControllerApi.md#postRegisterNomination) | **POST** /rest/event/register/nomination | 
 *EventContestControllerApi* | [**postRegisterNominationWithHttpInfo**](docs/EventContestControllerApi.md#postRegisterNominationWithHttpInfo) | **POST** /rest/event/register/nomination | 
-*MasterdataContactControllerApi* | [**getContactByUuid**](docs/MasterdataContactControllerApi.md#getContactByUuid) | **GET** /rest/masterdata/contact/{uuid} | 
-*MasterdataContactControllerApi* | [**getContactByUuidWithHttpInfo**](docs/MasterdataContactControllerApi.md#getContactByUuidWithHttpInfo) | **GET** /rest/masterdata/contact/{uuid} | 
-*MasterdataContactControllerApi* | [**getCurrentContact**](docs/MasterdataContactControllerApi.md#getCurrentContact) | **GET** /rest/masterdata/contact/current | 
-*MasterdataContactControllerApi* | [**getCurrentContactWithHttpInfo**](docs/MasterdataContactControllerApi.md#getCurrentContactWithHttpInfo) | **GET** /rest/masterdata/contact/current | 
+*MasterdataContactControllerApi* | [**getContactByUuid**](docs/MasterdataContactControllerApi.md#getContactByUuid) | **GET** /rest/masterdata/contact/{accountUuid} | 
+*MasterdataContactControllerApi* | [**getContactByUuidWithHttpInfo**](docs/MasterdataContactControllerApi.md#getContactByUuidWithHttpInfo) | **GET** /rest/masterdata/contact/{accountUuid} | 
 *MasterdataContactControllerApi* | [**postRegisterContactContestant**](docs/MasterdataContactControllerApi.md#postRegisterContactContestant) | **POST** /rest/masterdata/register/contact/contestant | 
 *MasterdataContactControllerApi* | [**postRegisterContactContestantWithHttpInfo**](docs/MasterdataContactControllerApi.md#postRegisterContactContestantWithHttpInfo) | **POST** /rest/masterdata/register/contact/contestant | 
 *MasterdataContactControllerApi* | [**postRegisterContactHorseOwner**](docs/MasterdataContactControllerApi.md#postRegisterContactHorseOwner) | **POST** /rest/masterdata/register/contact/horseOwner | 

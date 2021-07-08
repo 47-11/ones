@@ -461,6 +461,22 @@ public class EventContestCompetitionTest {
     }
 
     /**
+     * Test the property 'isCARD'
+     */
+    @Test
+    public void isCARDTest() {
+        // TODO: test isCARD
+    }
+
+    /**
+     * Test the property 'isMARKED'
+     */
+    @Test
+    public void isMARKEDTest() {
+        // TODO: test isMARKED
+    }
+
+    /**
      * Test the property 'descriptionRoute'
      */
     @Test
@@ -514,6 +530,14 @@ public class EventContestCompetitionTest {
     @Test
     public void descriptionRatingTypeTest() {
         // TODO: test descriptionRatingType
+    }
+
+    /**
+     * Test the property 'displayRegistertHorses'
+     */
+    @Test
+    public void displayRegistertHorsesTest() {
+        // TODO: test displayRegistertHorses
     }
 
     /**

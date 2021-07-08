@@ -411,7 +411,7 @@
         ]
       }
     },
-    "/rest/masterdata/contact/{uuid}": {
+    "/rest/masterdata/contact/{accountUuid}": {
       "get": {
         "tags": [
           "masterdata-contact-controller"
@@ -419,7 +419,7 @@
         "operationId": "getContactByUuid",
         "parameters": [
           {
-            "name": "uuid",
+            "name": "accountUuid",
             "in": "path",
             "required": true,
             "schema": {
@@ -427,31 +427,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MasterdataContact"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/contact/current": {
-      "get": {
-        "tags": [
-          "masterdata-contact-controller"
-        ],
-        "operationId": "getCurrentContact",
         "responses": {
           "200": {
             "description": "OK",
@@ -546,6 +521,14 @@
             }
           },
           {
+            "name": "onlyRegistered",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "accountUuid",
             "in": "query",
             "required": false,
@@ -610,7 +593,15 @@
         "operationId": "getContestByUuid",
         "parameters": [
           {
-            "name": "uuid",
+            "name": "contestUuid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accountUuid",
             "in": "query",
             "required": true,
             "schema": {
@@ -880,6 +871,14 @@
             "type": "string"
           },
           "horsesUuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "bookingFeeUuids": {
+            "maxItems": 40,
+            "minItems": 1,
             "type": "array",
             "items": {
               "type": "string"
@@ -1853,6 +1852,12 @@
             "minLength": 0,
             "type": "string"
           },
+          "isCARD": {
+            "type": "boolean"
+          },
+          "isMARKED": {
+            "type": "boolean"
+          },
           "descriptionRoute": {
             "type": "string"
           },
@@ -1875,6 +1880,9 @@
             "format": "int32"
           },
           "descriptionRatingType": {
+            "type": "string"
+          },
+          "displayRegistertHorses": {
             "type": "string"
           },
           "_stages": {
@@ -2996,6 +3004,12 @@
             "minLength": 0,
             "type": "string"
           },
+          "isCARD": {
+            "type": "boolean"
+          },
+          "isMARKED": {
+            "type": "boolean"
+          },
           "descriptionRoute": {
             "type": "string"
           },
@@ -3018,6 +3032,9 @@
             "format": "int32"
           },
           "descriptionRatingType": {
+            "type": "string"
+          },
+          "displayRegistertHorses": {
             "type": "string"
           },
           "_stages": {
@@ -3561,18 +3578,38 @@
             "type": "integer",
             "format": "int32"
           },
+          "timeTotal": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timeRace": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "tempo": {
+            "type": "number",
+            "format": "double"
+          },
+          "speed": {
+            "type": "number",
+            "format": "double"
+          },
+          "kmH": {
+            "type": "number",
+            "format": "double"
+          },
           "remarks": {
             "maxLength": 255,
             "minLength": 0,
             "type": "string"
           },
           "displayContestant": {
-            "maxLength": 50,
+            "maxLength": 255,
             "minLength": 0,
             "type": "string"
           },
           "displayHorse": {
-            "maxLength": 50,
+            "maxLength": 255,
             "minLength": 0,
             "type": "string"
           },

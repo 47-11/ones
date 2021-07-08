@@ -161,7 +161,7 @@ ApiResponse<[**List&lt;EventContestCompetitionResult&gt;**](EventContestCompetit
 
 ## getContestByUuid
 
-> EventContest getContestByUuid(uuid)
+> EventContest getContestByUuid(contestUuid, accountUuid)
 
 
 
@@ -187,9 +187,10 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
-        String uuid = "uuid_example"; // String | 
+        String contestUuid = "contestUuid_example"; // String | 
+        String accountUuid = "accountUuid_example"; // String | 
         try {
-            EventContest result = apiInstance.getContestByUuid(uuid);
+            EventContest result = apiInstance.getContestByUuid(contestUuid, accountUuid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EventContestControllerApi#getContestByUuid");
@@ -207,7 +208,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **String**|  |
+ **contestUuid** | **String**|  |
+ **accountUuid** | **String**|  |
 
 ### Return type
 
@@ -230,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## getContestByUuidWithHttpInfo
 
-> ApiResponse<EventContest> getContestByUuid getContestByUuidWithHttpInfo(uuid)
+> ApiResponse<EventContest> getContestByUuid getContestByUuidWithHttpInfo(contestUuid, accountUuid)
 
 
 
@@ -257,9 +259,10 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
-        String uuid = "uuid_example"; // String | 
+        String contestUuid = "contestUuid_example"; // String | 
+        String accountUuid = "accountUuid_example"; // String | 
         try {
-            ApiResponse<EventContest> response = apiInstance.getContestByUuidWithHttpInfo(uuid);
+            ApiResponse<EventContest> response = apiInstance.getContestByUuidWithHttpInfo(contestUuid, accountUuid);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -279,7 +282,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **String**|  |
+ **contestUuid** | **String**|  |
+ **accountUuid** | **String**|  |
 
 ### Return type
 
@@ -303,7 +307,7 @@ ApiResponse<[**EventContest**](EventContest.md)>
 
 ## getContestByYear
 
-> ResponcePageContestsPlain getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy)
+> ResponcePageContestsPlain getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy)
 
 
 
@@ -336,12 +340,13 @@ public class Example {
         Integer isCountryChampionship = 56; // Integer | 
         Integer isCEI = 56; // Integer | 
         Integer isCard = 56; // Integer | 
+        Boolean onlyRegistered = true; // Boolean | 
         String accountUuid = "accountUuid_example"; // String | 
         Integer pageNo = 0; // Integer | 
         Integer pageSize = 10; // Integer | 
         String sortBy = "beginning"; // String | 
         try {
-            ResponcePageContestsPlain result = apiInstance.getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy);
+            ResponcePageContestsPlain result = apiInstance.getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EventContestControllerApi#getContestByYear");
@@ -366,6 +371,7 @@ Name | Type | Description  | Notes
  **isCountryChampionship** | **Integer**|  | [optional]
  **isCEI** | **Integer**|  | [optional]
  **isCard** | **Integer**|  | [optional]
+ **onlyRegistered** | **Boolean**|  | [optional]
  **accountUuid** | **String**|  | [optional]
  **pageNo** | **Integer**|  | [optional] [default to 0]
  **pageSize** | **Integer**|  | [optional] [default to 10]
@@ -392,7 +398,7 @@ Name | Type | Description  | Notes
 
 ## getContestByYearWithHttpInfo
 
-> ApiResponse<ResponcePageContestsPlain> getContestByYear getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy)
+> ApiResponse<ResponcePageContestsPlain> getContestByYear getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy)
 
 
 
@@ -426,12 +432,13 @@ public class Example {
         Integer isCountryChampionship = 56; // Integer | 
         Integer isCEI = 56; // Integer | 
         Integer isCard = 56; // Integer | 
+        Boolean onlyRegistered = true; // Boolean | 
         String accountUuid = "accountUuid_example"; // String | 
         Integer pageNo = 0; // Integer | 
         Integer pageSize = 10; // Integer | 
         String sortBy = "beginning"; // String | 
         try {
-            ApiResponse<ResponcePageContestsPlain> response = apiInstance.getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, accountUuid, pageNo, pageSize, sortBy);
+            ApiResponse<ResponcePageContestsPlain> response = apiInstance.getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -458,6 +465,7 @@ Name | Type | Description  | Notes
  **isCountryChampionship** | **Integer**|  | [optional]
  **isCEI** | **Integer**|  | [optional]
  **isCard** | **Integer**|  | [optional]
+ **onlyRegistered** | **Boolean**|  | [optional]
  **accountUuid** | **String**|  | [optional]
  **pageNo** | **Integer**|  | [optional] [default to 0]
  **pageSize** | **Integer**|  | [optional] [default to 10]

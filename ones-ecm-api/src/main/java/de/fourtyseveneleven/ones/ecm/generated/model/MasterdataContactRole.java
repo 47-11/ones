@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataContactRole.JSON_PROPERTY_CHANGE_COUNTER,
   MasterdataContactRole.JSON_PROPERTY_KIND
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class MasterdataContactRole {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;

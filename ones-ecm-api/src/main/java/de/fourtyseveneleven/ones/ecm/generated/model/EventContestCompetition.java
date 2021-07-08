@@ -88,6 +88,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetition.JSON_PROPERTY_CONTESTANT_QUANTITY_MIN,
   EventContestCompetition.JSON_PROPERTY_CONTESTANT_QUANTITY_MAX,
   EventContestCompetition.JSON_PROPERTY_HOOF_PROTECTION,
+  EventContestCompetition.JSON_PROPERTY_IS_C_A_R_D,
+  EventContestCompetition.JSON_PROPERTY_IS_M_A_R_K_E_D,
   EventContestCompetition.JSON_PROPERTY_DESCRIPTION_ROUTE,
   EventContestCompetition.JSON_PROPERTY_TYPE_OF_ROUTING,
   EventContestCompetition.JSON_PROPERTY_DESCRIPTION_START,
@@ -95,9 +97,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetition.JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS,
   EventContestCompetition.JSON_PROPERTY_RATING_TYPE,
   EventContestCompetition.JSON_PROPERTY_DESCRIPTION_RATING_TYPE,
+  EventContestCompetition.JSON_PROPERTY_DISPLAY_REGISTERT_HORSES,
   EventContestCompetition.JSON_PROPERTY_STAGES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-06T17:41:54.376651429+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
 public class EventContestCompetition {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -255,6 +258,12 @@ public class EventContestCompetition {
   public static final String JSON_PROPERTY_HOOF_PROTECTION = "hoofProtection";
   private String hoofProtection;
 
+  public static final String JSON_PROPERTY_IS_C_A_R_D = "isCARD";
+  private Boolean isCARD;
+
+  public static final String JSON_PROPERTY_IS_M_A_R_K_E_D = "isMARKED";
+  private Boolean isMARKED;
+
   public static final String JSON_PROPERTY_DESCRIPTION_ROUTE = "descriptionRoute";
   private String descriptionRoute;
 
@@ -275,6 +284,9 @@ public class EventContestCompetition {
 
   public static final String JSON_PROPERTY_DESCRIPTION_RATING_TYPE = "descriptionRatingType";
   private String descriptionRatingType;
+
+  public static final String JSON_PROPERTY_DISPLAY_REGISTERT_HORSES = "displayRegistertHorses";
+  private String displayRegistertHorses;
 
   public static final String JSON_PROPERTY_STAGES = "_stages";
   private Set<EventContestCompetitionStage> stages = null;
@@ -1630,6 +1642,58 @@ public class EventContestCompetition {
   }
 
 
+  public EventContestCompetition isCARD(Boolean isCARD) {
+    this.isCARD = isCARD;
+    return this;
+  }
+
+   /**
+   * Get isCARD
+   * @return isCARD
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_C_A_R_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsCARD() {
+    return isCARD;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_C_A_R_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsCARD(Boolean isCARD) {
+    this.isCARD = isCARD;
+  }
+
+
+  public EventContestCompetition isMARKED(Boolean isMARKED) {
+    this.isMARKED = isMARKED;
+    return this;
+  }
+
+   /**
+   * Get isMARKED
+   * @return isMARKED
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_M_A_R_K_E_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsMARKED() {
+    return isMARKED;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_M_A_R_K_E_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsMARKED(Boolean isMARKED) {
+    this.isMARKED = isMARKED;
+  }
+
+
   public EventContestCompetition descriptionRoute(String descriptionRoute) {
     this.descriptionRoute = descriptionRoute;
     return this;
@@ -1812,6 +1876,32 @@ public class EventContestCompetition {
   }
 
 
+  public EventContestCompetition displayRegistertHorses(String displayRegistertHorses) {
+    this.displayRegistertHorses = displayRegistertHorses;
+    return this;
+  }
+
+   /**
+   * Get displayRegistertHorses
+   * @return displayRegistertHorses
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDisplayRegistertHorses() {
+    return displayRegistertHorses;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisplayRegistertHorses(String displayRegistertHorses) {
+    this.displayRegistertHorses = displayRegistertHorses;
+  }
+
+
   public EventContestCompetition stages(Set<EventContestCompetitionStage> stages) {
     this.stages = stages;
     return this;
@@ -1910,6 +2000,8 @@ public class EventContestCompetition {
         Objects.equals(this.contestantQuantityMin, eventContestCompetition.contestantQuantityMin) &&
         Objects.equals(this.contestantQuantityMax, eventContestCompetition.contestantQuantityMax) &&
         Objects.equals(this.hoofProtection, eventContestCompetition.hoofProtection) &&
+        Objects.equals(this.isCARD, eventContestCompetition.isCARD) &&
+        Objects.equals(this.isMARKED, eventContestCompetition.isMARKED) &&
         Objects.equals(this.descriptionRoute, eventContestCompetition.descriptionRoute) &&
         Objects.equals(this.typeOfRouting, eventContestCompetition.typeOfRouting) &&
         Objects.equals(this.descriptionStart, eventContestCompetition.descriptionStart) &&
@@ -1917,12 +2009,13 @@ public class EventContestCompetition {
         Objects.equals(this.descriptionControlchecks, eventContestCompetition.descriptionControlchecks) &&
         Objects.equals(this.ratingType, eventContestCompetition.ratingType) &&
         Objects.equals(this.descriptionRatingType, eventContestCompetition.descriptionRatingType) &&
+        Objects.equals(this.displayRegistertHorses, eventContestCompetition.displayRegistertHorses) &&
         Objects.equals(this.stages, eventContestCompetition.stages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, state, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, stages);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, state, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, isCARD, isMARKED, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, displayRegistertHorses, stages);
   }
 
   @Override
@@ -1981,6 +2074,8 @@ public class EventContestCompetition {
     sb.append("    contestantQuantityMin: ").append(toIndentedString(contestantQuantityMin)).append("\n");
     sb.append("    contestantQuantityMax: ").append(toIndentedString(contestantQuantityMax)).append("\n");
     sb.append("    hoofProtection: ").append(toIndentedString(hoofProtection)).append("\n");
+    sb.append("    isCARD: ").append(toIndentedString(isCARD)).append("\n");
+    sb.append("    isMARKED: ").append(toIndentedString(isMARKED)).append("\n");
     sb.append("    descriptionRoute: ").append(toIndentedString(descriptionRoute)).append("\n");
     sb.append("    typeOfRouting: ").append(toIndentedString(typeOfRouting)).append("\n");
     sb.append("    descriptionStart: ").append(toIndentedString(descriptionStart)).append("\n");
@@ -1988,6 +2083,7 @@ public class EventContestCompetition {
     sb.append("    descriptionControlchecks: ").append(toIndentedString(descriptionControlchecks)).append("\n");
     sb.append("    ratingType: ").append(toIndentedString(ratingType)).append("\n");
     sb.append("    descriptionRatingType: ").append(toIndentedString(descriptionRatingType)).append("\n");
+    sb.append("    displayRegistertHorses: ").append(toIndentedString(displayRegistertHorses)).append("\n");
     sb.append("    stages: ").append(toIndentedString(stages)).append("\n");
     sb.append("}");
     return sb.toString();
