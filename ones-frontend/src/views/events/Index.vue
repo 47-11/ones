@@ -146,17 +146,17 @@
                     </v-td>
                     <v-td>
                         <font-awesome-icon :icon="'map'" class="mx-2"
-                            v-tooltip="$t('events.mapRide')"
+                            v-tooltip="event.contests.find(contest => contest.cardRide) ? $t('events.mapRide') : $t('events.noMapRide')"
                             v-bind:class="{
                                 'text-gray-300': !event.contests.find(contest => contest.cardRide)
                             }"></font-awesome-icon>
                         <font-awesome-icon :icon="'flag'" class="mx-2"
-                            v-tooltip="$t('events.nationalChampionship')"
+                            v-tooltip="event.isNationalChampionship ? $t('events.nationalChampionship') : $t('events.noNationalChampionship')"
                             v-bind:class="{
                                 'text-gray-300': !event.isNationalChampionship
                             }"></font-awesome-icon>
                         <font-awesome-icon :icon="'globe'" class="mx-2"
-                            v-tooltip="$t('events.internationalRide')"
+                            v-tooltip="event.isInternational ? $t('events.internationalRide') : $t('events.noInternationalRide')"
                             v-bind:class="{
                                 'text-gray-300': !event.isInternational
                             }"></font-awesome-icon>
