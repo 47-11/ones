@@ -49,7 +49,7 @@
 
                         <v-label class="mt-5 mb-1">{{ $t("events.filter.region") }}</v-label>
 
-                        <multiselect class="w-full absolute" :multiple="true" :value="selectedRegions" :options="events.regions" :close-on-select="false"
+                        <multiselect class="w-full" :multiple="true" :value="selectedRegions" :options="events.regions" :close-on-select="false"
                             @input="updateRegions" :allow-empty="false" style="width: 100%!important">
                             <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ $t("events.selectedRegions", { count: values.length}) }}</span></template>
                         </multiselect>
