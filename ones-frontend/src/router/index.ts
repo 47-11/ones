@@ -91,7 +91,7 @@ router.beforeEach((to, f, next) => {
     if (currentUser && needsToSetPersonalData() && to.path !== "/set-personal-data") {
         next("/set-personal-data");
         return;
-    } else if (currentUser && isPersonalDataKnown() && to.path === "/set-personal-data") {
+    } else if ((!currentUser || (currentUser && isPersonalDataKnown())) && to.path === "/set-personal-data") {
         next("/");
         return;
     }

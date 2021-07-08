@@ -89,14 +89,14 @@
                         <h2 class="text-xl font-bold">{{ $t("register.steps.title") }}</h2>
 
                         <div class="mt-8 flex items-center">
-                            <badge-circle class="mr-5 bg-indigo-500 text-white">1.</badge-circle>
+                            <badge-circle class="mr-5 bg-gray-700 text-white">1.</badge-circle>
                             <h3 class="text-lg font-bold">{{ $t("register.steps.first.title") }}</h3>
                         </div>
 
                         <p class="text-gray-500 text-sm mt-4">{{ $t("register.steps.first.description") }}</p>
 
                         <div class="mt-8 flex items-center">
-                            <badge-circle class="mr-5 bg-gray-700 text-white">2.</badge-circle>
+                            <badge-circle class="mr-5  bg-indigo-500 text-white">2.</badge-circle>
                             <h3 class="text-lg font-bold">{{ $t("register.steps.second.title") }}</h3>
                         </div>
 
@@ -212,6 +212,8 @@ export default class SetPersonalData extends Vue {
         }
 
         this.inputsDisabled = false;
+
+        this.$router.push("/");
     }
 
     private assertValid(): void {
