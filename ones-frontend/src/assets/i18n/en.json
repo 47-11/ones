@@ -40,7 +40,7 @@
         "passwordRepeat": "Repeat Password",
         "agreeToPolicy": "I agree to the {policy}.",
         "privacyPolicy": "Privacy Policy",
-        "login": "Login",
+        "login": "Back to login",
         "submit": "Register",
         "mailRequired": "E-Mail Adress is required.",
         "tooWeak": "Password is not strong enough.",

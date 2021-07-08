@@ -39,7 +39,7 @@
         "passwordRepeat": "Passwort wiederholen",
         "agreeToPolicy": "Ich stimme den {policy} zu.",
         "privacyPolicy": "Datenschutzbestimmungen",
-        "login": "Login",
+        "login": "Zurück zum Login",
         "submit": "Registrieren",
         "mailRequired": "E-Mail ist erforderlich.",
         "tooWeak": "Passwort ist nicht stark genug.",
