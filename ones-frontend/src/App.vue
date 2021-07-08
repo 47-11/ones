@@ -40,6 +40,44 @@
     hover:border-gray-200
     font-bold;
 }
+
+.tooltip .tooltip-inner {
+    @apply
+    text-white
+    bg-indigo-500
+    py-1
+    px-2
+    rounded;
+}
+
+.tooltip .tooltip-arrow {
+    @apply
+    w-1
+    h-1
+    border-indigo-500
+    border-solid
+    absolute
+    m-0.5;
+}
+
+.tooltip[x-placement^="top"] {
+    @apply
+    mb-2;
+}
+
+.tooltip .tooltip-arrow {
+    @apply
+    border-4
+    border-b-0
+    mt-0
+    mb-0;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    bottom: -5px;
+    left: calc(50% - 5px);
+}
+
 </style>
 
 <script lang="ts">

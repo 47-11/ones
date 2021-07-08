@@ -12,7 +12,7 @@
 
             <div class="border-t border-b mb-12 px-6 lg:px-0 pt-6 pb-8" v-if="showFilter">
                 <div class="flex items-center">
-                    <h2 class="text-xl">{{ $t("events.filter.title") }}</h2>
+                    <h2 class="text-xl mb-4">{{ $t("events.filter.title") }}</h2>
 
                     <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer" @click="resetFilter()">
                         {{ $t("events.filter.reset") }}
@@ -99,7 +99,11 @@
             <v-table>
                 <thead class="bg-gray-50">
                 <tr>
+                    <v-th>
+                        {{ $t("events.state") }}
+                    </v-th>
                     <v-th :sortable="events" sortKey="start">
+                        {{ $t('events.date') }}
                         {{ $t('events.start') }}
                     </v-th>
                     <v-th :sortable="events" sortKey="until">
@@ -108,25 +112,53 @@
                     <v-th :sortable="events" sortKey="title">
                         {{ $t('events.ride') }}
                     </v-th>
-                    <v-th>{{ $t('events.documents') }}</v-th>
-                    <v-th></v-th>
+                    <v-th :sortable="events" sortKey="region">
+                        {{ $t('events.region') }}
+                    </v-th>
+                    <v-th>
+                        {{ $t('events.categories') }}
+                    </v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="event in events.list" :key="event.uuid">
-                    <v-td>{{
-                            new Date(event.start).toLocaleDateString(locale)
-                        }}
-                    </v-td>
-                    <v-td>{{ new Date(event.end).toLocaleDateString(locale) }}</v-td>
-                    <v-td>{{ event.title }}</v-td>
+                <tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
                     <v-td>
-                        <v-link to="#">{{ $t('events.callForTenders') }}</v-link>
+                        {{$t("events.states." + event.state)}}
+                    </v-td>
+                    <v-td>
+                        <date-range :start="event.start" :end="event.end"/>
                     </v-td>
                     <v-td>
                         <router-link :to="'/events/' + event.uuid">
-                            <v-button>{{ $t('events.details') }}</v-button>
+                            <div class="whitespace-normal" style="max-width: 8rem">
+                                {{ event.title }}
+                            </div>
                         </router-link>
+                    </v-td>
+                    <v-td>{{ event.region || "Buxtehude" }}</v-td>
+                    <v-td>
+                        <div class="whitespace-normal" style="max-width: 10rem;">
+                            <template v-for="(category, index) in categories(event)">
+                                {{category}}<template v-if="index < categories(event).length - 1">,</template>
+                            </template>
+                        </div>
+                    </v-td>
+                    <v-td>
+                        <font-awesome-icon :icon="'map'" class="mx-2 text-gray-200"
+                            v-tooltip="event.contests.find(contest => contest.cardRide) ? $t('events.mapRide') : $t('events.noMapRide')"
+                            v-bind:class="{
+                                'text-gray-600': event.contests.find(contest => contest.cardRide)
+                            }"></font-awesome-icon>
+                        <font-awesome-icon :icon="'flag'" class="mx-2 text-gray-200"
+                            v-tooltip="event.isNationalChampionship ? $t('events.nationalChampionship') : $t('events.noNationalChampionship')"
+                            v-bind:class="{
+                                'text-gray-600': event.isNationalChampionship
+                            }"></font-awesome-icon>
+                        <font-awesome-icon :icon="'globe'" class="mx-2 text-gray-200"
+                            v-tooltip="event.isInternational ? $t('events.internationalRide') : $t('events.noInternationalRide')"
+                            v-bind:class="{
+                                'text-gray-600': event.isInternational
+                            }"></font-awesome-icon>
                     </v-td>
                 </tr>
                 </tbody>
@@ -170,10 +202,12 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import VTable from "@/components/table/VTable.vue";
 import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
+import Badge from "@/components/Badge.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
 import VLink from "@/components/VLink.vue";
 import { vxm } from "@/store";
+import { SimpleEventDto } from "@/openapi/generated";
 import VSelect from "@/components/forms/VSelect.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import VRadio from "@/components/forms/VRadio.vue";
@@ -181,6 +215,7 @@ import VLabel from "@/components/forms/VLabel.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import moment from "moment";
 import Multiselect from "vue-multiselect/src/Multiselect.vue";
+import DateRange from "@/components/DateRange.vue";
 
 @Component({
     components: {
@@ -192,9 +227,11 @@ import Multiselect from "vue-multiselect/src/Multiselect.vue";
         AppLayout,
         Card,
         VButton,
+        Badge,
+        VCheckbox,
+        DateRange,
         VSelect,
         VLabel,
-        VCheckbox,
         VRadio,
         PageHeader,
         Multiselect
@@ -214,6 +251,27 @@ export default class Home extends Vue {
 
     mounted(): void {
         vxm.events.fetch();
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public rideTypes(event: SimpleEventDto): string[] {
+        return [
+            "Fahrt",
+            "Ritt"
+        ];
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public categories(event: SimpleEventDto): string[] {
+        return [
+            "EFR",
+            "MTR",
+            "EFR"
+        ];
+    }
+
+    public details(event: SimpleEventDto): void {
+        this.$router.push("/events/" + event.uuid);
     }
 
     async resetFilter(): Promise<void> {

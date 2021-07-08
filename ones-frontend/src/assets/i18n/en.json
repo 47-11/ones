@@ -1,193 +1,209 @@
 {
-  "navigation": {
-    "dashboard": "Dashboard",
-    "events": "Events",
-    "logout": "Logout",
-    "user": "User",
-    "mail": "E-Mail"
-  },
-  "pagination": {
-    "back": "Back",
-    "forward": "Forward"
-  },
-  "forgotPassword": {
-    "success": "An e-mail is on its way...",
-    "toLogin": "Go to login",
-    "title": "Forgot password?",
-    "message": "No problem. Just type in your e-mail address and we will send you a link to reset your password.",
-    "error": "Oops! Something has gone wrong.",
-    "email": "E-Mail",
-    "submit": "Reset Password"
-  },
-  "login": {
-    "error": "Oops! Something has gone wrong.",
-    "email": "E-Mail",
-    "password": "Password",
-    "forgotPassword": "Forgot password?",
-    "rememberSession": "Remember session and stay logged in.",
-    "register": "Register",
-    "submit": "Login"
-  },
-  "register": {
-    "success": "Registration-Mail has been sent to {email}. Please follow the instructions contained.",
-    "nextRegistration": "Next Registration",
-    "error": "Oops! Something has gone wrong.",
-    "email": "E-Mail",
-    "sameMail": "Already participated in an event? Use the same email address and enter your VDD number to copy existing data.",
-    "vddNumber": "VDD Number",
-    "optional": "optional",
-    "password": "Password",
-    "passwordRepeat": "Repeat Password",
-    "agreeToPolicy": "I agree to the {policy}.",
-    "privacyPolicy": "Privacy Policy",
-    "login": "Back to login",
-    "submit": "Register",
-    "mailRequired": "E-Mail Adress is required.",
-    "tooWeak": "Password is not strong enough.",
-    "notIdentical": "Password repeat is not identical to Password.",
-    "acceptanceRequired": "Privacy Policy must be accepted.",
-    "steps": {
-        "title": "Registration steps",
-        "first": {
-            "title": "Create an account",
-            "description": "The very first step is to register with your e-mail address. If you are already known to the VDD, use the e-mail address known to the VDD."
-        },
-        "second": {
-            "title": "Set personal data",
-            "description": "If your e-mail address is known to the VDD, your data will be loaded automatically. Otherwise you have to enter your personal data in the second step."
+    "navigation": {
+        "dashboard": "Dashboard",
+        "events": "Events",
+        "logout": "Logout",
+        "user": "User",
+        "mail": "E-Mail"
+    },
+    "pagination": {
+        "back": "Back",
+        "forward": "Forward"
+    },
+    "forgotPassword": {
+        "success": "An e-mail is on its way...",
+        "toLogin": "Go to login",
+        "title": "Forgot password?",
+        "message": "No problem. Just type in your e-mail address and we will send you a link to reset your password.",
+        "error": "Oops! Something has gone wrong.",
+        "email": "E-Mail",
+        "submit": "Reset Password"
+    },
+    "login": {
+        "error": "Oops! Something has gone wrong.",
+        "email": "E-Mail",
+        "password": "Password",
+        "forgotPassword": "Forgot password?",
+        "rememberSession": "Remember session and stay logged in.",
+        "register": "Register",
+        "submit": "Login"
+    },
+    "register": {
+        "success": "Registiration-Mail has been sent to {email}. Please follow the instructions contained.",
+        "nextRegistration": "Next Registration",
+        "error": "Oops! Something has gone wrong.",
+        "email": "E-Mail",
+        "sameMail": "Already participated in an event? Use the same email address to copy existing data.",
+        "vddNumber": "VDD Number",
+        "optional": "optional",
+        "password": "Password",
+        "passwordRepeat": "Repeat Password",
+        "agreeToPolicy": "I agree to the {policy}.",
+        "privacyPolicy": "Privacy Policy",
+        "login": "Back to login",
+        "submit": "Register",
+        "mailRequired": "E-Mail Adress is required.",
+        "tooWeak": "Password is not strong enough.",
+        "notIdentical": "Password repeat is not identical to Password.",
+        "acceptanceRequired": "Privacy Policy must be accepted.",
+        "steps": {
+            "title": "Registration steps",
+            "first": {
+                "title": "Create an account",
+                "description": "The very first step is to register with your e-mail address. If you are already known to the VDD, use the e-mail address known to the VDD."
+            },
+            "second": {
+                "title": "Set personal data",
+                "description": "If your e-mail address is known to the VDD, your data will be loaded automatically. Otherwise you have to enter your personal data in the second step."
+            }
         }
     },
     "setPersonalData": {
-      "title": "Personal data",
-      "description": "Please complete your personal data to continue.",
-      "salutation": "Salutation",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "birthday": "Birthday",
-      "phoneNumber": "Phone number",
-      "phoneNumberMobile": "Cellphone number",
-      "street": "Street",
-      "houseNumber": "House Number",
-      "zipCode": "Zip Code",
-      "city": "City",
-      "country": "Country",
-      "lengthNull": " is not set.",
-      "submit": "Save",
-      "logout": "Logout"
-    }
-  },
-  "resetPassword": {
-    "success": "Password changed.",
-    "toLogin": "Go to Login",
-    "error": "Oops! Something has gone wrong.",
-    "resetPassword": "Reset password",
-    "chooseStrongPassword": "Choose a strong and safe password.",
-    "newPassword": "New Password",
-    "passwordRepeat": "Repeat password",
-    "savePassword": "Save password",
-    "tooShort": "Password must consist of at least 8 characters.",
-    "notIdentical": "Password repeat is not identical to Password."
-  },
-  "verified": {
-    "wait": "Please wait a second...",
-    "authenticationRunning": "Authentication running...",
-    "error": "Oops! Something has gone wrong.",
-    "emailConfirmed": "E-Mail successfully confirmed.",
-    "nextRegistration": "Next Registration",
-    "toLogin": "Go to Login"
-  },
-  "details": {
-    "nationalChampionship": "National Championship",
-    "internationalChampionship": "International Championship",
-    "placeAndTime": "Place and Time",
-    "timeRange": "Time Range",
-    "region": "Region",
-    "country": "Country",
-    "city": "City",
-    "vddQualificationInfo": "From 1th Januar 2018 the {qualification} applies.",
-    "vddQualification": "VDD way of qualification",
-    "details": "Details",
-    "signUpDeadline": "Sign up Deadline",
-    "signUpFee": "Sign up Fee",
-    "caseSignUpDeadlineMissed": "in case Sign up Deadline missed",
-    "accomodation": "Accommodation",
-    "deposit": "Deposit",
-    "vaccinationMandatory": "Vaccination Mandatory",
-    "vaccinationNotMandatory": "Vaccination not Mandatory",
-    "helmetMandatory": "Helmet Mandatory",
-    "helmetNotMandatory": "Helmet not Mandatory",
-    "notes": "Notes",
-    "contacts": "Contacts",
-    "host": "Event Host",
-    "organizer": "Organizer",
-    "infoAndSignUp": "Info and Sign Up",
-    "contests": "Contests",
-    "contestShort": "CON",
-    "distance": "Distance",
-    "date": "Date",
-    "qualification": "Qualification-Stage",
-    "elevation": "Change in Elevation",
-    "startFee": "Sign up Fee",
-    "maximumTime": "Max. Time",
-    "minHorseAge": "min. Age Horse",
-    "minRiderAge": "min. Age Participant",
-    "maximumParticipants": "(max.) Participants",
-    "participants": "Participants",
-    "elevationInfo": "Change in Elevation = Sum of elevation gain and loss",
-    "signUpFeeInfo": "For teams and hand-horse rides, sign up fee per horse, start fee per team. Entry and start fee max 1,00 € per km; VDD non-members pay in addition to the entry fee: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, youth up to 21 years: 6 €",
-    "maximumTimeInfo": "Maximum time in min/km = slowest allowed time to stay in the ranking (recommendation according to VDD rules: T8 - T9)",
-    "inCommunicationWithHost": "in agreement with host"
-  },
-  "events": {
-    "start": "Start",
-    "end": "End",
-    "ride": "Ride",
-    "documents": "Documents",
-    "callForTenders": "Call for Tenders",
-    "details": "Details",
-    "pagination": "Shows {from} to {to} of {of} events.",
-    "filter": {
-      "categories": "Categories",
-      "all": "All",
-      "cardRide": "Card Ride",
-      "internationalChampionchip": "International Championship",
-      "open": "Open Filter",
-      "close": "Close Filter",
-      "title": "Filter Events",
-      "reset": "Reset",
-      "period": "Period",
-      "region": "Region"
+        "title": "Personal data",
+        "description": "Please complete your personal data to continue.",
+        "salutation": "Salutation",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthday": "Birthday",
+        "phoneNumber": "Phone number",
+        "phoneNumberMobile": "Cellphone number",
+        "street": "Street",
+        "houseNumber": "House Number",
+        "zipCode": "Zip Code",
+        "city": "City",
+        "country": "Country",
+        "lengthNull": " is not set.",
+        "submit": "Save",
+        "logout": "Logout"
+    },
+    "resetPassword": {
+        "success": "Password changed.",
+        "toLogin": "Go to Login",
+        "error": "Oops! Something has gone wrong.",
+        "resetPassword": "Reset password",
+        "chooseStrongPassword": "Choose a strong and safe password.",
+        "newPassword": "New Password",
+        "passwordRepeat": "Repeat password",
+        "savePassword": "Save password",
+        "tooShort": "Password must consist of at least 8 characters.",
+        "notIdentical": "Password repeat is not identical to Password."
+    },
+    "verified": {
+        "wait": "Please wait a second...",
+        "authenticationRunning": "Authentication running...",
+        "error": "Oops! Something has gone wrong.",
+        "emailConfirmed": "E-Mail successfully confirmed.",
+        "nextRegistration": "Next Registration",
+        "toLogin": "Go to Login"
+    },
+    "details": {
+        "nationalChampionship": "National Championship",
+        "internationalChampionship": "International Championship",
+        "placeAndTime": "Place and Time",
+        "timeRange": "Time Range",
+        "region": "Region",
+        "country": "Country",
+        "city": "City",
+        "vddQualificationInfo": "From 1th Januar 2018 the {qualification} applies.",
+        "vddQualification": "VDD way of qualification",
+        "details": "Details",
+        "signUpDeadline": "Sign up Deadline",
+        "signUpFee": "Sign up Fee",
+        "caseSignUpDeadlineMissed": "in case Sign up Deadline missed",
+        "accomodation": "Accommodation",
+        "deposit": "Deposit",
+        "vaccinationMandatory": "Vaccination Mandatory",
+        "vaccinationNotMandatory": "Vaccination not Mandatory",
+        "helmetMandatory": "Helmet Mandatory",
+        "helmetNotMandatory": "Helmet not Mandatory",
+        "notes": "Notes",
+        "contacts": "Contacts",
+        "host": "Event Host",
+        "organizer": "Organizer",
+        "infoAndSignUp": "Info and Sign Up",
+        "contests": "Contests",
+        "contestShort": "CON",
+        "distance": "Distance",
+        "date": "Date",
+        "qualification": "Qualification-Stage",
+        "elevation": "Change in Elevation",
+        "startFee": "Sign up Fee",
+        "maximumTime": "Max. Time",
+        "minHorseAge": "min. Age Horse",
+        "minRiderAge": "min. Age Participant",
+        "maximumParticipants": "(max.) Participants",
+        "participants": "Participants",
+        "elevationInfo": "Change in Elevation = Sum of elevation gain and loss",
+        "signUpFeeInfo": "For teams and hand-horse rides, sign up fee per horse, start fee per team. Entry and start fee max 1,00 € per km; VDD non-members pay in addition to the entry fee: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, youth up to 21 years: 6 €",
+        "maximumTimeInfo": "Maximum time in min/km = slowest allowed time to stay in the ranking (recommendation according to VDD rules: T8 - T9)",
+        "inCommunicationWithHost": "in agreement with host"
+    },
+    "events": {
+        "start": "Start",
+        "end": "End",
+        "state": "State",
+        "date": "Date",
+        "ride": "Ride",
+        "region": "Region",
+        "rideType": "Ride Type",
+        "categories": "Categories",
+        "mapRide": "Map Ride",
+        "noMapRide": "No Map Ride",
+        "internationalRide": "International Ride",
+        "noInternationalRide": "No International Ride",
+        "documents": "Documents",
+        "callForTenders": "Call for Tenders",
+        "nationalChampionship": "National Championship",
+        "noNationalChampionship": "No National Championship",
+        "details": "Details",
+        "pagination": "Shows {from} to {to} of {of} events.",
+        "yes": "Yes",
+        "no": "No",
+        "states": {
+            "undefined": "Unknown"
+        },
+        "filter": {
+            "categories": "Categories",
+            "all": "All",
+            "cardRide": "Card Ride",
+            "internationalChampionchip": "International Championship",
+            "open": "Open Filter",
+            "close": "Close Filter",
+            "title": "Filter Events",
+            "reset": "Reset",
+            "period": "Period",
+            "region": "Region"
+        },   
+        "shared": {
+            "yes": "Yes",
+            "no": "No"
+        },
+        "title": "Events",
+        "selectedRegions": "{count} regions selected."
+    },
+    "signUp": {
+        "title": "Sign up",
+        "requirements": {
+            "title": "Requirements",
+            "minimumHorseAge": "Horse min. {age} years old",
+            "minimumParticipantAge": "Participant min. {age} years old"
+        },
+        "selectHorse": {
+            "title": "Select horse",
+            "subtitle": "Please select the horse you want to participate with.",
+            "lifeNumber": "Life number"
+        },
+        "minHorses": "Please select at least one horse.",
+        "submit": "Sign up"
+    },
+    "password": {
+        "password": "Password"
     },
     "shared": {
-      "yes": "Yes",
-      "no": "No"
+        "error": "An error occurred"
     },
-    "title": "Events",
-    "selectedRegions": "{count} regions selected."
-  },
-  "signUp": {
-    "title": "Sign up",
-    "requirements": {
-      "title": "Requirements",
-      "minimumHorseAge": "Horse min. {age} years old",
-      "minimumParticipantAge": "Participant min. {age} years old"
-    },
-    "selectHorse": {
-      "title": "Select horse",
-      "subtitle": "Please select the horse you want to participate with.",
-      "lifeNumber": "Life number"
-    },
-    "minHorses": "Please select at least one horse.",
-    "submit": "Sign up"
-  },
-  "password": {
-    "password": "Password"
-  },
-  "shared": {
-    "error": "An error occurred"
-  },
-  "offlineWarning": {
-    "noConnection": "No connection.",
-    "message": "Cannot reach the server. Are you offline?"
-  }
+    "offlineWarning": {
+        "noConnection": "No connection.",
+        "message": "Cannot reach the server. Are you offline?"
+    }
 }

@@ -8,7 +8,7 @@ import {
     faTrailer,
     faHorseHead,
     faExclamationTriangle,
-    faChevronRight, faChevronDown, faChevronUp
+    faChevronRight, faChevronDown, faChevronUp, faMap, faGlobe, faFlag
 } from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import ErrorMessage from "@/components/ErrorMessage.vue";
@@ -22,6 +22,7 @@ import store, { vxm } from "./store";
 import VueLoading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import axios from "axios";
+import vToolTip from "v-tooltip";
 import { UserDto } from "./openapi/generated";
 
 import VCalendar from "v-calendar";
@@ -38,12 +39,16 @@ library.add(
     faFilePdf,
     faTrailer,
     faHorseHead,
-    faExclamationTriangle
+    faExclamationTriangle,
+    faMap,
+    faGlobe,
+    faFlag
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("error-message", ErrorMessage);
 
+Vue.use(vToolTip);
 Vue.use(VueI18n);
 Vue.use(VueLoading, {
     color: "rgb(79, 70, 229)",

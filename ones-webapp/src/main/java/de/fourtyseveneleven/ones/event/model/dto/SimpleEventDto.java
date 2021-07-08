@@ -2,6 +2,7 @@ package de.fourtyseveneleven.ones.event.model.dto;
 
 
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
+import de.fourtyseveneleven.ones.event.model.EventStatus;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ import java.util.List;
 public class SimpleEventDto {
 
     private String uuid;
-
+    private EventStatus status;
     private String title;
     private LocalDateTime start;
     private LocalDateTime end;
@@ -28,6 +29,14 @@ public class SimpleEventDto {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public EventStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EventStatus status) {
+        this.status = status;
     }
 
     public String getTitle() {
