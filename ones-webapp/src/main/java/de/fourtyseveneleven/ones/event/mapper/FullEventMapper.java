@@ -5,16 +5,20 @@ import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFee;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemark;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRole;
+import de.fourtyseveneleven.ones.event.model.dto.FeeDto;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
+import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Mapper(
@@ -42,6 +46,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "roles", target = "contactPerson", qualifiedByName = "contactPersonFromRoles")
     @Mapping(source = "promoterEventUrl", target = "organizerWebsiteUrl")
     @Mapping(source = "promoterTenderingUrl", target = "signupDocumentUrl")
+    @Mapping(source = "fees", target = "lateSignupFee", qualifiedByName = "lateSignupFee")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {
@@ -90,7 +95,7 @@ public abstract class FullEventMapper {
         }
         personDto.setEmailAddress(role.getEmail());
 
-        return  personDto;
+        return personDto;
     }
 
     private AddressDto addressDtoFromRole(EventContestRole role) {
@@ -102,6 +107,26 @@ public abstract class FullEventMapper {
         addressDto.setCountry(role.getCountry());
 
         return addressDto;
+    }
+
+    @Named("lateSignupFee")
+    protected FeeDto lateSignupFee(Set<EventContestFee> fees) {
+
+        return fees.stream()
+                .filter(f -> "ADMINISTRATION".equalsIgnoreCase(f.getKind()))
+                .filter(f -> "REGISTRATION_LATE".equalsIgnoreCase(f.getKey()))
+                .map(this::feeDtoFromEventContestFee)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private FeeDto feeDtoFromEventContestFee(EventContestFee eventContestFee) {
+
+        if (isNull(eventContestFee.getValue())) {
+            return new FeeDto(null, null);
+        } else {
+            return new FeeDto(BigDecimal.valueOf(eventContestFee.getValue()), eventContestFee.getCurrency());
+        }
     }
 }
 

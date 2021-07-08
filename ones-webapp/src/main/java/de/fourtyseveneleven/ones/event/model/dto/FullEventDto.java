@@ -14,8 +14,7 @@ public class FullEventDto extends SimpleEventDto {
     private PersonDto contactPerson;
 
     private LocalDateTime signupDeadline;
-    private BigDecimal signupDeadlineMissedFee;
-
+    private FeeDto lateSignupFee;
     private String vaccinationInformation;
     private String helmetInformation;
 
@@ -58,12 +57,12 @@ public class FullEventDto extends SimpleEventDto {
         this.signupDeadline = signupDeadline;
     }
 
-    public BigDecimal getSignupDeadlineMissedFee() {
-        return signupDeadlineMissedFee;
+    public FeeDto getLateSignupFee() {
+        return lateSignupFee;
     }
 
-    public void setSignupDeadlineMissedFee(BigDecimal signupDeadlineMissedFee) {
-        this.signupDeadlineMissedFee = signupDeadlineMissedFee;
+    public void setLateSignupFee(FeeDto lateSignupFee) {
+        this.lateSignupFee = lateSignupFee;
     }
 
     public String getVaccinationInformation() {
