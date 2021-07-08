@@ -146,14 +146,17 @@
                     </v-td>
                     <v-td>
                         <font-awesome-icon :icon="'map'" class="mx-2"
+                            v-tooltip="$t('events.mapRide')"
                             v-bind:class="{
                                 'text-gray-300': !event.contests.find(contest => contest.cardRide)
                             }"></font-awesome-icon>
                         <font-awesome-icon :icon="'flag'" class="mx-2"
+                            v-tooltip="$t('events.nationalChampionship')"
                             v-bind:class="{
                                 'text-gray-300': !event.isNationalChampionship
                             }"></font-awesome-icon>
                         <font-awesome-icon :icon="'globe'" class="mx-2"
+                            v-tooltip="$t('events.internationalRide')"
                             v-bind:class="{
                                 'text-gray-300': !event.isInternational
                             }"></font-awesome-icon>
