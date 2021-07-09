@@ -150,7 +150,8 @@
     "iban": "IBAN",
     "bic": "BIC",
     "purpose": "Payment Purpose",
-    "payPal": "PayPal"
+    "payPal": "PayPal",
+    "min": "Min. {count}"
   },
   "events": {
     "start": "Start",

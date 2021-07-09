@@ -28,9 +28,9 @@
                         </div>
                         <div class="flex-grow"></div>
                         <div class="text-center">
-                            <div class="text-2xl w-full">5/20</div>
+                            <div class="text-2xl w-full">{{details.currentParticipants}}/{{details.maximumParticipants}}</div>
                             <div class="text-base font-bold w-full">{{$t("details.participants")}}</div>
-                            <div class="text-xs w-full italic">Min. 6</div>
+                            <div class="text-xs w-full italic">{{ $t('details.min', {count: details.minimumParticipants}) }}</div>
                         </div>
                     </div>
                 </div>
@@ -139,10 +139,10 @@
                         </table>
 
                         <div class="text-left px-5 py-1 align-top leading-5 flex justify-between flex-wrap">
-                            <a target="_blank" :href="'https://lmddgtfy.net/?q=' + details.title" v-if="details">
+                            <a target="_blank" :href="details.organizerWebsiteUrl" v-if="details">
                                 {{$t("details.hostWebsite")}}
                             </a>
-                            <a target="_blank" :href="'https://lmddgtfy.net/?q=' + details.title" v-if="details">
+                            <a target="_blank" :href="details.signupDocumentUrl" v-if="details">
                                 {{$t("details.paperForm")}}
                             </a>
                         </div>

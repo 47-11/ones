@@ -145,7 +145,8 @@
     "iban": "IBAN",
     "bic": "BIC",
     "purpose": "Verwendungszweck",
-    "payPal": "PayPal"
+    "payPal": "PayPal",
+    "min": "Min. {count}"
   },
   "events": {
     "title": "Veranstaltungen",
