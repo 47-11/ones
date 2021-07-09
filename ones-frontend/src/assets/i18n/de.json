@@ -135,7 +135,17 @@
     "elevationInfo": "Höhenmeterangabe = Summe aus Aufstieg und Abstieg",
     "signUpFeeInfo": "Bei Gespannen und Handpferderitten wird Nenngeld pro Pferd erhoben, Startgeld pro Gespann. Nenn- und Startgeld max 1,00 € pro km; VDD Nichtmitglieder zahlen zusätzlich zum Startgeld: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, Jugend bis 21 Jahre: 6 €",
     "maximumTimeInfo": "Höchstzeit in min/km = langsamste erlaubte Zeit um in der Wertung zu bleiben (Empfehlung lt. VDD-Regelment: T8 - T9)",
-    "inCommunicationWithHost": "nach Absprache mit dem Veranstalter"
+    "inCommunicationWithHost": "nach Absprache mit dem Veranstalter",
+    "signUpChangeFee": "Umnenngebühr",
+    "vaccinationRequirements": "Impfpflicht",
+    "helmetRequirements": "Helmpflicht",
+    "hostWebsite": "Website des Veranstalters",
+    "paperForm": "Ausschreibung",
+    "paymentInfo": "Zahlungsinformationen",
+    "iban": "IBAN",
+    "bic": "BIC",
+    "purpose": "Verwendungszweck",
+    "payPal": "PayPal"
   },
   "events": {
     "title": "Veranstaltungen",
@@ -173,7 +183,6 @@
     "states": {
       "undefined": "Unbekannt"
     },
-    "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen.",
     "shared": {
       "no": "Nein",
       "yes": "Ja"

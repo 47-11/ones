@@ -47,15 +47,15 @@
     "notIdentical": "Password repeat is not identical to Password.",
     "acceptanceRequired": "Privacy Policy must be accepted.",
     "steps": {
-        "title": "Registration steps",
-        "first": {
-            "title": "Create an account",
-            "description": "The very first step is to register with your e-mail address. If you are already known to the VDD, use the e-mail address known to the VDD."
-        },
-        "second": {
-            "title": "Set personal data",
-            "description": "If your e-mail address is known to the VDD, your data will be loaded automatically. Otherwise you have to enter your personal data in the second step."
-        }
+      "title": "Registration steps",
+      "first": {
+        "title": "Create an account",
+        "description": "The very first step is to register with your e-mail address. If you are already known to the VDD, use the e-mail address known to the VDD."
+      },
+      "second": {
+        "title": "Set personal data",
+        "description": "If your e-mail address is known to the VDD, your data will be loaded automatically. Otherwise you have to enter your personal data in the second step."
+      }
     },
     "setPersonalData": {
       "title": "Personal data",
@@ -106,8 +106,6 @@
     "city": "City",
     "vddQualificationInfo": "From 1th Januar 2018 the {qualification} applies.",
     "vddQualification": "VDD way of qualification",
-    "details": "Details",
-    "signUpDeadline": "Sign up Deadline",
     "signUpFee": "Sign up Fee",
     "caseSignUpDeadlineMissed": "in case Sign up Deadline missed",
     "coordinates": "Coordinates",
@@ -141,7 +139,18 @@
     "elevationInfo": "Change in Elevation = Sum of elevation gain and loss",
     "signUpFeeInfo": "For teams and hand-horse rides, sign up fee per horse, start fee per team. Entry and start fee max 1,00 € per km; VDD non-members pay in addition to the entry fee: EFR/F 7,50 €, KDR/F 15,00 €, MDR/F 21,00 €, LDR/F 30,00 €, youth up to 21 years: 6 €",
     "maximumTimeInfo": "Maximum time in min/km = slowest allowed time to stay in the ranking (recommendation according to VDD rules: T8 - T9)",
-    "inCommunicationWithHost": "in agreement with host"
+    "inCommunicationWithHost": "in agreement with host",
+    "signUpAfterDeadlinePossible": "Sign Up After Deadline Possible",
+    "signUpChangeFee": "Sign Up Change Fee",
+    "vaccinationRequirements": "Vaccination Requirements",
+    "helmetRequirements": "Helmet Requirements",
+    "hostWebsite": "Host Website",
+    "paperForm": "Sig Up On Paper",
+    "paymentInfo": "Payment Info",
+    "iban": "IBAN",
+    "bic": "BIC",
+    "purpose": "Payment Purpose",
+    "payPal": "PayPal"
   },
   "events": {
     "start": "Start",
@@ -165,7 +174,7 @@
     "yes": "Yes",
     "no": "No",
     "states": {
-        "undefined": "Unknown"
+      "undefined": "Unknown"
     },
     "filter": {
       "categories": "Categories",
