@@ -3,13 +3,11 @@ package de.fourtyseveneleven.ones.results.model;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public record ResultOverviewDto(List<ResultDto> results, BigDecimal totalDistance, int totalDuration, BigDecimal averageSpeed) {
+public record ResultOverviewDto(List<ResultDto> results, BigDecimal totalDistance, long totalDuration, BigDecimal averageSpeed) {
 
     public ResultOverviewDto(List<ResultDto> results) {
         this(results, calculateTotalDistance(results), calculateTotalDuration(results), calculateAverageSpeed(results));
@@ -24,12 +22,12 @@ public record ResultOverviewDto(List<ResultDto> results, BigDecimal totalDistanc
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private static int calculateTotalDuration(List<ResultDto> results) {
+    private static long calculateTotalDuration(List<ResultDto> results) {
 
         return results.stream()
                 .map(ResultDto::duration)
                 .filter(Objects::nonNull)
-                .reduce(0, Integer::sum);
+                .reduce(0L, Long::sum);
     }
 
     private static BigDecimal calculateAverageSpeed(List<ResultDto> results) {
