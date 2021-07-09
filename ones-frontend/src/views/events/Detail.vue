@@ -38,7 +38,7 @@
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10" v-if="details">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6">
-                <div class="sm:col-span-1 md:col-span-3 lg:col-span-3">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.placeAndTime')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
@@ -51,30 +51,30 @@
                                 </td>
                             </tr>
                             <template v-for="address of details.addresses">
-                                <tr :key="address">
+                                <tr :key="JSON.stringify(address)">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.region')}}</th>
                                     <td class="text-left px-5 py-1">
                                         {{ address.region }}
                                     </td>
                                 </tr>
-                                <tr :key="address">
+                                <tr :key="JSON.stringify(address)">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
                                     <td class="text-left px-5 py-1">
                                         {{ address.country }}
                                     </td>
                                 </tr>
-                                <tr :key="address">
+                                <tr :key="JSON.stringify(address)">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.startingPlace')}}</th>
                                     <td class="text-left px-5 py-1">
                                         <address>
-                                            {{ address.locationName }} <br/>
-                                            {{ address.street }}<br/>
-                                            {{ address.zipCode }} {{ address.city }}<br/>
+                                            {{ address.locationName }} <br v-if="address.locationName && address.locationName.trim().length > 0"/>
+                                            {{ address.street }}<br v-if="address.street && address.street.trim().length > 0"/>
+                                            {{ address.zipCode }} {{ address.city }}<br v-if="(address.zipCode && address.zipCode.trim().length > 0) || (address.city && address.city.trim().length > 0)" />
                                             {{ address.country }}
                                         </address>
                                     </td>
                                 </tr>
-                                <tr v-if="address.gpsCoordinates != undefined" :key="address">
+                                <tr v-if="address.gpsCoordinates" :key="JSON.stringify(address)">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
                                     <td class="text-left px-5 py-1">
                                         <a :href="'https://maps.google.com/maps?q=' + gpsCoordinates" target="_blank">
@@ -88,7 +88,7 @@
                     </card>
                 </div>
 
-                <div class="sm:col-span-1 md:col-span-3 lg:col-span-3">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.details')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
@@ -138,38 +138,24 @@
                             </tr>
                         </table>
 
-                        <div class="text-left px-5 py-1 align-top leading-5 flex justify-between flex-wrap">
-                            <a target="_blank" :href="details.organizerWebsiteUrl" v-if="details">
+                        <div class="text-left px-5 pb-5 align-top leading-5 flex justify-between flex-wrap">
+                            <a target="_blank" :href="details.organizerWebsiteUrl" v-if="details.organizerWebsiteUrl">
                                 {{$t("details.hostWebsite")}}
                             </a>
-                            <a target="_blank" :href="details.signupDocumentUrl" v-if="details">
+                            <span class="text-gray-500 font-bold" v-if="!details.organizerWebsiteUrl">
+                                {{$t("details.hostWebsite")}}
+                            </span>
+                            <a target="_blank" :href="details.signupDocumentUrl" v-if="details.signupDocumentUrl">
                                 {{$t("details.paperForm")}}
                             </a>
+                            <span class="text-gray-500 font-bold" v-if="!details.signupDocumentUrl">
+                                {{$t("details.paperForm")}}
+                            </span>
                         </div>
                     </card>
                 </div>
 
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-3">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">
-                        {{$t('details.accomodation')}}
-                    </h2>
-                    <card class="mt-3">
-                        <table class="mb-4" v-if="details.availableAccommodations.length > 0">
-                            <tr v-for="(accommodation, index) in details.availableAccommodations" :key="index">
-                                <th class="text-left px-5 py-1 align-top">{{ accommodation.type }}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ accommodation.fee }} {{ accommodation.feeUnit }}
-                                </td>
-                                <td class="text-left px-5 py-1">
-                                    {{ accommodation.pledgeFee }} EUR <span class="text-xs text-gray-500">{{$t('details.deposit')}}</span>
-                                </td>
-                            </tr>
-                        </table>
-                        <div v-else class="px-5 py-2">{{$t("shared.unknown")}}</div>
-                    </card>
-                </div>
-
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-3">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.notes')}}</h2>
                     <card class="mt-3">
                         <div class="px-5 py-2 border-b" v-for="(comment, index) in details.additionalComments" :key="index">
