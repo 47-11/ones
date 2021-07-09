@@ -146,11 +146,6 @@
     "helmetRequirements": "Helmet Requirements",
     "hostWebsite": "Host Website",
     "paperForm": "Sign Up On Paper",
-    "paymentInfo": "Payment Info",
-    "iban": "IBAN",
-    "bic": "BIC",
-    "purpose": "Payment Purpose",
-    "payPal": "PayPal",
     "min": "Min. {count}"
   },
   "events": {

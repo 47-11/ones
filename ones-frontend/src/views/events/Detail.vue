@@ -38,7 +38,7 @@
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10" v-if="details">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6">
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
+                <div class="sm:col-span-1 md:col-span-3 lg:col-span-3">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.placeAndTime')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
@@ -88,7 +88,7 @@
                     </card>
                 </div>
 
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
+                <div class="sm:col-span-1 md:col-span-3 lg:col-span-3">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.details')}}</h2>
                     <card class="mt-3">
                         <table class="my-3">
@@ -146,46 +146,6 @@
                                 {{$t("details.paperForm")}}
                             </a>
                         </div>
-                    </card>
-                </div>
-
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.paymentInfo')}}</h2>
-                    <card class="mt-3">
-                        <table class="my-3">
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">
-                                    {{$t('details.iban')}}
-                                </th>
-                                <td class="text-left px-5 py-1">
-                                    {{ "DE12 3456 7890 1234 00" }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">
-                                    {{$t('details.bic')}}
-                                </th>
-                                <td class="text-left px-5 py-1">
-                                    {{ "GENOBLA" }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">
-                                    {{$t('details.purpose')}}
-                                </th>
-                                <td class="text-left px-5 py-1">
-                                    {{ "Sign Up Fee" }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">
-                                    {{$t('details.payPal')}}
-                                </th>
-                                <td class="text-left px-5 py-1">
-                                    {{ "Sign Up Fee" }}
-                                </td>
-                            </tr>
-                        </table>
                     </card>
                 </div>
 

@@ -141,11 +141,6 @@
     "helmetRequirements": "Helmpflicht",
     "hostWebsite": "Website des Veranstalters",
     "paperForm": "Ausschreibung",
-    "paymentInfo": "Zahlungsinformationen",
-    "iban": "IBAN",
-    "bic": "BIC",
-    "purpose": "Verwendungszweck",
-    "payPal": "PayPal",
     "min": "Min. {count}"
   },
   "events": {
