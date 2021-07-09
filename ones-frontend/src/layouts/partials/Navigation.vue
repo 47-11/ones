@@ -103,7 +103,11 @@ import { vxm } from "@/store";
     }
 })
 export default class Navigation extends Vue {
-    showMenu = false;
+    public data(): {showMenu: boolean} {
+        return {
+            showMenu: false
+        };
+    }
 
     get userName(): string {
         return vxm.user.current?.name || "";

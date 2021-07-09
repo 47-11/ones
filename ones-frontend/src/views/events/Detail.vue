@@ -50,14 +50,14 @@
                                     </span>
                                 </td>
                             </tr>
-                            <template v-for="address of details.addresses">
-                                <tr :key="JSON.stringify(address)">
+                            <template v-for="(address, key, index) of details.addresses">
+                                <tr :key="index + 'country'">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
                                     <td class="text-left px-5 py-1">
                                         {{ address.country }}
                                     </td>
                                 </tr>
-                                <tr :key="JSON.stringify(address)">
+                                <tr :key="index + 'addresses'">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.startingPlace')}}</th>
                                     <td class="text-left px-5 py-1">
                                         <address>
@@ -68,7 +68,7 @@
                                         </address>
                                     </td>
                                 </tr>
-                                <tr v-if="address.gpsCoordinates" :key="JSON.stringify(address)">
+                                <tr v-if="address.gpsCoordinates" :key="index + 'coordinates'">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
                                     <td class="text-left px-5 py-1">
                                         <a :href="'https://maps.google.com/maps?q=' + gpsCoordinates" target="_blank">
