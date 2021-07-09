@@ -40,7 +40,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6">
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.placeAndTime')}}</h2>
-                    <card class="mt-3">
+                    <card class="mt-3 max-h-80 overflow-y-auto overflow-x-hidden">
                         <table class="my-3">
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">{{$t('details.timeRange')}}</th>
@@ -84,7 +84,7 @@
 
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.details')}}</h2>
-                    <card class="mt-3">
+                    <card class="mt-3 max-h-80 overflow-y-auto overflow-x-hidden">
                         <table class="my-3">
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">{{$t('details.signUpDeadline')}}</th>
@@ -135,7 +135,7 @@
 
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.notes')}}</h2>
-                    <card class="mt-3">
+                    <card class="mt-3 max-h-80 overflow-y-auto overflow-x-hidden">
                         <div class="px-5 py-2 border-b" v-for="(comment, index) in details.additionalComments" :key="index">
                             {{ comment }}
                         </div>
