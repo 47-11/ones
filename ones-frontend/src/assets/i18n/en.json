@@ -228,7 +228,10 @@
     "horses": "Horses",
     "distance": "Distance",
     "placement": "Placement",
-    "averageSpeed": "Ø-Speed"
+    "averageSpeed": "Ø-Speed",
+    "pace": "min/km",
+    "duration": "Duration",
+    "failureReason": "Reason"
   },
   "signUp": {
     "title": "Sign up",
