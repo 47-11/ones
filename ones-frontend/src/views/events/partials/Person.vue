@@ -1,5 +1,5 @@
 <template>
-    <div class="leading-5 mt-1">
+    <div class="leading-5 mt-1" v-if="person">
         {{ person.name }} <br>
         <span class="text-xs text-gray-400">
             {{ person.address.street }} -
@@ -10,7 +10,7 @@
         <br>
 
         <table class="mt-3">
-            <tr>
+            <tr v-if="person.phoneNumber">
                 <td>
                     <font-awesome-icon :icon="'phone'" class="text-gray-400"/>
                 </td>
@@ -18,7 +18,7 @@
                     {{ person.phoneNumber }}
                 </td>
             </tr>
-            <tr>
+            <tr v-if="person.emailAddress">
                 <td>
                     <font-awesome-icon :icon="'at'" class="text-gray-400"/>
                 </td>

@@ -14,14 +14,22 @@ public class FullEventDto extends SimpleEventDto {
     private PersonDto contactPerson;
 
     private LocalDateTime signupDeadline;
-    private BigDecimal signupDeadlineMissedFee;
-
-    private boolean isVaccinationMandatory;
-    private boolean isHelmetMandatory;
+    private boolean signupAfterDeadlinePossible;
+    private FeeDto lateSignupFee;
+    private FeeDto signupChangeFee;
+    private String vaccinationInformation;
+    private String helmetInformation;
 
     private List<AccommodationDto> availableAccommodations = new LinkedList<>();
 
     private List<String> additionalComments;
+
+    private String organizerWebsiteUrl;
+    private String signupDocumentUrl;
+
+    private int minimumParticipants;
+    private int maximumParticipants;
+    private int currentParticipants;
 
     public PersonDto getEventHost() {
         return eventHost;
@@ -47,6 +55,14 @@ public class FullEventDto extends SimpleEventDto {
         this.contactPerson = contactPerson;
     }
 
+    public boolean isSignupAfterDeadlinePossible() {
+        return signupAfterDeadlinePossible;
+    }
+
+    public void setSignupAfterDeadlinePossible(boolean signupAfterDeadlinePossible) {
+        this.signupAfterDeadlinePossible = signupAfterDeadlinePossible;
+    }
+
     public LocalDateTime getSignupDeadline() {
         return signupDeadline;
     }
@@ -55,28 +71,36 @@ public class FullEventDto extends SimpleEventDto {
         this.signupDeadline = signupDeadline;
     }
 
-    public BigDecimal getSignupDeadlineMissedFee() {
-        return signupDeadlineMissedFee;
+    public FeeDto getLateSignupFee() {
+        return lateSignupFee;
     }
 
-    public void setSignupDeadlineMissedFee(BigDecimal signupDeadlineMissedFee) {
-        this.signupDeadlineMissedFee = signupDeadlineMissedFee;
+    public void setLateSignupFee(FeeDto lateSignupFee) {
+        this.lateSignupFee = lateSignupFee;
     }
 
-    public boolean getIsVaccinationMandatory() {
-        return isVaccinationMandatory;
+    public FeeDto getSignupChangeFee() {
+        return signupChangeFee;
     }
 
-    public void setIsVaccinationMandatory(boolean isVaccinationMandatory) {
-        this.isVaccinationMandatory = isVaccinationMandatory;
+    public void setSignupChangeFee(FeeDto signupChangeFee) {
+        this.signupChangeFee = signupChangeFee;
     }
 
-    public boolean getIsHelmetMandatory() {
-        return isHelmetMandatory;
+    public String getVaccinationInformation() {
+        return vaccinationInformation;
     }
 
-    public void setIsHelmetMandatory(boolean isHelmetMandatory) {
-        this.isHelmetMandatory = isHelmetMandatory;
+    public void setVaccinationInformation(String vaccinationInformation) {
+        this.vaccinationInformation = vaccinationInformation;
+    }
+
+    public String getHelmetInformation() {
+        return helmetInformation;
+    }
+
+    public void setHelmetInformation(String helmetInformation) {
+        this.helmetInformation = helmetInformation;
     }
 
     public List<AccommodationDto> getAvailableAccommodations() {
@@ -93,5 +117,45 @@ public class FullEventDto extends SimpleEventDto {
 
     public void setAdditionalComments(List<String> additionalComments) {
         this.additionalComments = additionalComments;
+    }
+
+    public String getOrganizerWebsiteUrl() {
+        return organizerWebsiteUrl;
+    }
+
+    public void setOrganizerWebsiteUrl(String organizerWebsiteUrl) {
+        this.organizerWebsiteUrl = organizerWebsiteUrl;
+    }
+
+    public String getSignupDocumentUrl() {
+        return signupDocumentUrl;
+    }
+
+    public void setSignupDocumentUrl(String signupDocumentUrl) {
+        this.signupDocumentUrl = signupDocumentUrl;
+    }
+
+    public int getMinimumParticipants() {
+        return minimumParticipants;
+    }
+
+    public void setMinimumParticipants(int minimumParticipants) {
+        this.minimumParticipants = minimumParticipants;
+    }
+
+    public int getMaximumParticipants() {
+        return maximumParticipants;
+    }
+
+    public void setMaximumParticipants(int maximumParticipants) {
+        this.maximumParticipants = maximumParticipants;
+    }
+
+    public int getCurrentParticipants() {
+        return currentParticipants;
+    }
+
+    public void setCurrentParticipants(int currentParticipants) {
+        this.currentParticipants = currentParticipants;
     }
 }

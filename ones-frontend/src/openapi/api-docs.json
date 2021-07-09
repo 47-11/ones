@@ -411,6 +411,137 @@
         ]
       }
     },
+    "/api/v1/user/me": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "getCurrentUser",
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "setPersonalData",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalDataDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/v1/change-password": {
       "patch": {
         "tags": [
@@ -1159,6 +1290,10 @@
           },
           "password": {
             "type": "string"
+          },
+          "vddMemberNumber": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -1203,6 +1338,45 @@
           }
         }
       },
+      "PersonalDataDto": {
+        "type": "object",
+        "properties": {
+          "salutation": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "phoneNumberMobile": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
       "ChangePasswordDto": {
         "type": "object",
         "properties": {
@@ -1211,6 +1385,49 @@
           },
           "newPassword": {
             "type": "string"
+          }
+        }
+      },
+      "AddressDto": {
+        "type": "object",
+        "properties": {
+          "locationName": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "gpsCoordinates": {
+            "type": "string"
+          }
+        }
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "isPersonalDataKnown": {
+            "type": "boolean"
           }
         }
       },
@@ -1295,7 +1512,7 @@
           }
         }
       },
-      "AddressDto": {
+      "EventAddressDto": {
         "type": "object",
         "properties": {
           "locationName": {
@@ -1310,10 +1527,13 @@
           "city": {
             "type": "string"
           },
-          "region": {
+          "country": {
             "type": "string"
           },
-          "country": {
+          "gpsCoordinates": {
+            "type": "string"
+          },
+          "type": {
             "type": "string"
           }
         }
@@ -1358,8 +1578,14 @@
             "type": "string",
             "format": "date-time"
           },
-          "address": {
-            "$ref": "#/components/schemas/AddressDto"
+          "region": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventAddressDto"
+            }
           },
           "isNationalChampionship": {
             "type": "boolean"
@@ -1378,21 +1604,34 @@
       "AccommodationDto": {
         "type": "object",
         "properties": {
+          "uuid": {
+            "type": "string"
+          },
           "type": {
             "type": "string"
           },
           "fee": {
-            "type": "number"
+            "$ref": "#/components/schemas/FeeDto"
           },
           "feeUnit": {
-            "type": "string",
-            "enum": [
-              "PER_NIGHT",
-              "PER_HORSE"
-            ]
+            "type": "string"
           },
           "pledgeFee": {
+            "$ref": "#/components/schemas/FeeDto"
+          },
+          "additionalInformation": {
+            "type": "string"
+          }
+        }
+      },
+      "FeeDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
             "type": "number"
+          },
+          "currency": {
+            "type": "string"
           }
         }
       },
@@ -1413,8 +1652,14 @@
             "type": "string",
             "format": "date-time"
           },
-          "address": {
-            "$ref": "#/components/schemas/AddressDto"
+          "region": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventAddressDto"
+            }
           },
           "isNationalChampionship": {
             "type": "boolean"
@@ -1441,14 +1686,20 @@
             "type": "string",
             "format": "date-time"
           },
-          "signupDeadlineMissedFee": {
-            "type": "number"
-          },
-          "isVaccinationMandatory": {
+          "signupAfterDeadlinePossible": {
             "type": "boolean"
           },
-          "isHelmetMandatory": {
-            "type": "boolean"
+          "lateSignupFee": {
+            "$ref": "#/components/schemas/FeeDto"
+          },
+          "signupChangeFee": {
+            "$ref": "#/components/schemas/FeeDto"
+          },
+          "vaccinationInformation": {
+            "type": "string"
+          },
+          "helmetInformation": {
+            "type": "string"
           },
           "availableAccommodations": {
             "type": "array",
@@ -1461,6 +1712,24 @@
             "items": {
               "type": "string"
             }
+          },
+          "organizerWebsiteUrl": {
+            "type": "string"
+          },
+          "signupDocumentUrl": {
+            "type": "string"
+          },
+          "minimumParticipants": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumParticipants": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentParticipants": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },

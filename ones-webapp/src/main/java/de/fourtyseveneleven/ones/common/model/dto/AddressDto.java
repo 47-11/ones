@@ -6,7 +6,6 @@ public class AddressDto {
     private String street;
     private String zipCode;
     private String city;
-    private String region;
     private String country;
     private String gpsCoordinates;
 
@@ -40,14 +39,6 @@ public class AddressDto {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
     }
 
     public String getCountry() {

@@ -8,31 +8,39 @@
                             <font-awesome-icon :icon="'chevron-left'" class="text-2xl"/>
                         </router-link>
                     </div>
-                    <div class="flex items-center" v-if="details">
-                        <div>
-                            <div class="text-sm text-gray-700">
-                                <date-range :start="details.start" :end="details.end"/>
+                    <div class="flex items-center flex-grow" v-if="details">
+                        <div class="flex flex-auto items-center">
+                            <div>
+                                <div class="text-sm text-gray-700">
+                                    <date-range :start="details.start" :end="details.end"/>
+                                </div>
+                                <h1 class="text-xl">
+                                    {{ details.title }}
+                                </h1>
                             </div>
-                            <h1 class="text-xl">
-                                {{ details.address.locationName }}
-                            </h1>
-                        </div>
-                        <badge v-if="details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
-                            {{$t('details.nationalChampionship')}}
-                        </badge>
+                            <badge v-if="details.isNationalChampionship" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                                {{$t('details.nationalChampionship')}}
+                            </badge>
 
-                        <badge v-if="details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
-                            {{$t('details.internationalChampionship')}}
-                        </badge>
+                            <badge v-if="details.isInternational" class="bg-indigo-600 text-white text-sm ml-10 font-medium">
+                                {{$t('details.internationalChampionship')}}
+                            </badge>
+                        </div>
+                        <div class="flex-grow"></div>
+                        <div class="text-center">
+                            <div class="text-2xl w-full">{{details.currentParticipants}}/{{details.maximumParticipants}}</div>
+                            <div class="text-base font-bold w-full">{{$t("details.participants")}}</div>
+                            <div class="text-xs w-full italic">{{ $t('details.min', {count: details.minimumParticipants}) }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10" v-if="details">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.placeAndTime')}}</h2>
-                    <card class="mt-3">
+                    <card class="mt-3 max-h-80 overflow-y-auto overflow-x-hidden">
                         <table class="my-3">
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">{{$t('details.timeRange')}}</th>
@@ -42,41 +50,41 @@
                                     </span>
                                 </td>
                             </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.region')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.address.region }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.address.country }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('details.city')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.address.locationName }} <br>
-                                    {{ details.address.street }} <br>
-                                    {{ details.address.zipCode }} {{ details.address.city }}
-                                </td>
-                            </tr>
+                            <template v-for="(address, key, index) of details.addresses">
+                                <tr :key="index + 'country'">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        {{ address.country }}
+                                    </td>
+                                </tr>
+                                <tr :key="index + 'addresses'">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.startingPlace')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        <address>
+                                            {{ address.locationName }} <br v-if="address.locationName && address.locationName.trim().length > 0"/>
+                                            {{ address.street }}<br v-if="address.street && address.street.trim().length > 0"/>
+                                            {{ address.zipCode }} {{ address.city }}<br v-if="(address.zipCode && address.zipCode.trim().length > 0) || (address.city && address.city.trim().length > 0)" />
+                                            {{ address.country }}
+                                        </address>
+                                    </td>
+                                </tr>
+                                <tr v-if="address.gpsCoordinates" :key="index + 'coordinates'">
+                                    <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
+                                    <td class="text-left px-5 py-1">
+                                        <a :href="'https://maps.google.com/maps?q=' + gpsCoordinates" target="_blank">
+                                            {{ address.gpsCoordinates }}
+                                            <font-awesome-icon :icon="'external-link-alt'"></font-awesome-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
                         </table>
-
-                        <div class="bg-indigo-50 px-5 py-3 mt-4 text-gray-600 text-sm">
-                            <i18n path="details.vddQualificationInfo">
-                                <template v-slot:qualification>
-                                    <a href="#" class="text-indigo-500">{{$t('details.vddQualification')}}</a>
-                                </template>
-                            </i18n>
-                        </div>
                     </card>
                 </div>
 
-                <div>
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.details')}}</h2>
-                    <card class="mt-3">
+                    <card class="mt-3 max-h-80 overflow-y-auto overflow-x-hidden">
                         <table class="my-3">
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">{{$t('details.signUpDeadline')}}</th>
@@ -85,57 +93,49 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th class="text-left px-5 py-1 align-top">{{$t('details.signUpAfterDeadlinePossible')}}</th>
+                                <td class="text-left px-5 py-1">
+                                    {{ details.signUpAfterDeadlinePossible ? $t("shared.yes") : $t("shared.no") }}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th class="text-left px-5 py-1 align-top leading-5">
-                                    {{$t('details.signUpFee')}} <br>
-                                    <span class="text-xs text-gray-400 font-normal">
-                                        {{$t('details.caseSignUpDeadlineMissed')}}
-                                    </span>
+                                    {{$t('details.vaccinationRequirements')}}
                                 </th>
                                 <td class="text-left px-5 py-1">
-                                    {{ details.signUpDeadlineMissedFee }} EUR
+                                    {{ details.isVaccinationRequired || $t("shared.unknown") }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top leading-5">
+                                    {{$t('details.helmetRequirements')}}
+                                </th>
+                                <td class="text-left px-5 py-1">
+                                    {{ details.isHelmetMandatory || $t("shared.unknown") }}
                                 </td>
                             </tr>
                         </table>
 
-                        <div class="px-5 text-sm text-gray-400">
-                            {{$t('details.accomodation')}}
-                        </div>
-
-                        <table class="mb-4">
-                            <tr v-for="(accommodation, index) in details.availableAccommodations" :key="index">
-                                <th class="text-left px-5 py-1 align-top">{{ accommodation.type }}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ accommodation.fee }} {{ accommodation.feeUnit }}
-                                </td>
-                                <td class="text-left px-5 py-1">
-                                    {{ accommodation.pledgeFee }} EUR <span class="text-xs text-gray-500">{{$t('details.deposit')}}</span>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <div class="px-5 pb-5">
-                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isVaccinationMandatory">
-                                {{$t('details.vaccinationMandatory')}}
-                            </badge>
-
-                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isVaccinationMandatory">
-                                {{$t('details.vaccinationNotMandatory')}}
-                            </badge>
-
-                            <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2" v-if="details.isHelmetMandatory">
-                                {{$t('details.helmetMandatory')}}
-                            </badge>
-
-                            <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2" v-if="!details.isHelmetMandatory">
-                                {{$t('details.helmetNotMandatory')}}
-                            </badge>
+                        <div class="text-left px-5 pb-5 align-top leading-5 flex justify-between flex-wrap">
+                            <a target="_blank" :href="details.organizerWebsiteUrl" v-if="details.organizerWebsiteUrl">
+                                {{$t("details.hostWebsite")}}
+                            </a>
+                            <span class="text-gray-500 font-bold" v-if="!details.organizerWebsiteUrl">
+                                {{$t("details.hostWebsite")}}
+                            </span>
+                            <a target="_blank" :href="details.signupDocumentUrl" v-if="details.signupDocumentUrl">
+                                {{$t("details.paperForm")}}
+                            </a>
+                            <span class="text-gray-500 font-bold" v-if="!details.signupDocumentUrl">
+                                {{$t("details.paperForm")}}
+                            </span>
                         </div>
                     </card>
                 </div>
 
-                <div class="sm:col-span-1 md:col-span-2 lg:col-span-1">
+                <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('details.notes')}}</h2>
-                    <card class="mt-3">
+                    <card class="mt-3 max-h-80 overflow-y-auto overflow-x-hidden">
                         <div class="px-5 py-2 border-b" v-for="(comment, index) in details.additionalComments" :key="index">
                             {{ comment }}
                         </div>
@@ -146,17 +146,17 @@
             <div class="mt-10">
                 <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-0">{{$t('details.contacts')}}</h2>
                 <card class="mt-3 text-sm flex items-stretch flex-col md:flex-row">
-                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
+                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full" v-if="details.eventHost">
                         <div class="font-bold mb-0.5 text-gray-700">{{$t('details.host')}}</div>
                         <person :person="details.eventHost"/>
                     </div>
 
-                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
+                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full" v-if="details.eventOrganizer">
                         <div class="font-bold mb-0.5 text-gray-700">{{$t('details.organizer')}}</div>
                         <person :person="details.eventOrganizer"/>
                     </div>
 
-                    <div class="px-6 py-4 w-full">
+                    <div class="px-6 py-4 w-full" v-if="details.contactPerson">
                         <div class="font-bold mb-0.5 text-gray-700">{{$t('details.infoAndSignUp')}}</div>
                         <person :person="details.contactPerson"/>
                     </div>

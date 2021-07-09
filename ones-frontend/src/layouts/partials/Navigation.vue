@@ -20,7 +20,7 @@
                         <template v-slot:trigger>
                             <button
                                 class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                <div>Max Mustermann</div>
+                                <div>{{ userName }}</div>
 
                                 <div class="ml-1">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -92,6 +92,8 @@ import ResponsiveNavLink from "@/layouts/partials/ResponsiveNavLink.vue";
 import Dropdown from "@/components/dropdown/Dropdown.vue";
 import DropdownLink from "@/components/dropdown/DropdownLink.vue";
 
+import { vxm } from "@/store";
+
 @Component({
     components: {
         DropdownLink,
@@ -101,6 +103,14 @@ import DropdownLink from "@/components/dropdown/DropdownLink.vue";
     }
 })
 export default class Navigation extends Vue {
-    showMenu = false;
+    public data(): {showMenu: boolean} {
+        return {
+            showMenu: false
+        };
+    }
+
+    get userName(): string {
+        return vxm.user.current?.name || "";
+    }
 }
 </script>
