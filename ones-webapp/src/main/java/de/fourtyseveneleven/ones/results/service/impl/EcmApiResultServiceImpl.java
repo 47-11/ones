@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
+import static de.fourtyseveneleven.ones.security.util.UserUtils.getAuthenticatedUser;
 
 
 @Service
@@ -29,7 +30,7 @@ public class EcmApiResultServiceImpl implements ResultService {
     @Override
     public ResultOverviewDto getMyResults() {
 
-        final String userUuid = "getAuthenticatedUser().getUuid()"; // TODO
+        final String userUuid = getAuthenticatedUser().getUuid().toString();
         final List<ResultDto> results = getResults(userUuid);
         return new ResultOverviewDto(results);
     }
