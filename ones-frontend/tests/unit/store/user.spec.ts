@@ -17,7 +17,6 @@ const sampleUser: UserDto = {
         locationName: "Where he wants",
         street: "Around the corner",
         city: "Hot city",
-        region: "Wild West",
         zipCode: "12345",
         country: "'Murica"
     }
