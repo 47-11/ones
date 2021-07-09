@@ -23,7 +23,7 @@
                     <font-awesome-icon :icon="'at'" class="text-gray-400"/>
                 </td>
                 <td class="pl-3 text-indigo-500">
-                    <a :href="`mailto:${person.address.emailAddress}`">
+                    <a :href="`mailto:${person.emailAddress}`">
                         {{ person.emailAddress }}
                     </a>
                 </td>

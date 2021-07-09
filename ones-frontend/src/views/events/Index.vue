@@ -104,10 +104,6 @@
                     </v-th>
                     <v-th :sortable="events" sortKey="start">
                         {{ $t('events.date') }}
-                        {{ $t('events.start') }}
-                    </v-th>
-                    <v-th :sortable="events" sortKey="until">
-                        {{ $t('events.end') }}
                     </v-th>
                     <v-th :sortable="events" sortKey="title">
                         {{ $t('events.ride') }}

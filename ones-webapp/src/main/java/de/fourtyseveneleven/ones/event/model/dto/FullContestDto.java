@@ -1,30 +1,29 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class FullContestDto extends SimpleContestDto{
 
     private LocalDateTime start;
-    private boolean canStartLater;
 
-    /**
-     * In m
-     */
-    private BigDecimal altitudeDifference;
+    private String qualificationLevel;
 
-    private Integer qualificationLevel;
+    private boolean isMap;
+    private int numberOfStages;
 
-    private BigDecimal signupFee;
-    private BigDecimal startFee;
+    private Integer minimumHorseAge;
+    private Integer maximumHorseAge;
 
-    private String maximumDuration;
+    private Integer minimumParticipantAge;
+    private Integer maximumParticipantAge;
 
-    private int minimumHorseAge;
-    private int minimumParticipantAge;
+    private Integer minimumParticipants;
+    private Integer maximumParticipants;
+    private Integer currentParticipants;
 
-    private int currentParticipants;
-    private int maximumParticipants;
+    private String markings;
+
+    private String signedUpHorses;
 
     public LocalDateTime getStart() {
         return start;
@@ -34,83 +33,99 @@ public class FullContestDto extends SimpleContestDto{
         this.start = start;
     }
 
-    public boolean isCanStartLater() {
-        return canStartLater;
-    }
-
-    public void setCanStartLater(boolean canStartLater) {
-        this.canStartLater = canStartLater;
-    }
-
-    public BigDecimal getAltitudeDifference() {
-        return altitudeDifference;
-    }
-
-    public void setAltitudeDifference(BigDecimal altitudeDifference) {
-        this.altitudeDifference = altitudeDifference;
-    }
-
-    public Integer getQualificationLevel() {
+    public String getQualificationLevel() {
         return qualificationLevel;
     }
 
-    public void setQualificationLevel(Integer qualificationLevel) {
+    public void setQualificationLevel(String qualificationLevel) {
         this.qualificationLevel = qualificationLevel;
     }
 
-    public BigDecimal getSignupFee() {
-        return signupFee;
+    public boolean getIsMap() {
+        return isMap;
     }
 
-    public void setSignupFee(BigDecimal signupFee) {
-        this.signupFee = signupFee;
+    public void setIsMap(boolean isMap) {
+        this.isMap = isMap;
     }
 
-    public BigDecimal getStartFee() {
-        return startFee;
+    public int getNumberOfStages() {
+        return numberOfStages;
     }
 
-    public void setStartFee(BigDecimal startFee) {
-        this.startFee = startFee;
+    public void setNumberOfStages(int numberOfStages) {
+        this.numberOfStages = numberOfStages;
     }
 
-    public String getMaximumDuration() {
-        return maximumDuration;
-    }
-
-    public void setMaximumDuration(String maximumDuration) {
-        this.maximumDuration = maximumDuration;
-    }
-
-    public int getMinimumHorseAge() {
+    public Integer getMinimumHorseAge() {
         return minimumHorseAge;
     }
 
-    public void setMinimumHorseAge(int minimumHorseAge) {
+    public void setMinimumHorseAge(Integer minimumHorseAge) {
         this.minimumHorseAge = minimumHorseAge;
     }
 
-    public int getMinimumParticipantAge() {
+    public Integer getMaximumHorseAge() {
+        return maximumHorseAge;
+    }
+
+    public void setMaximumHorseAge(Integer maximumHorseAge) {
+        this.maximumHorseAge = maximumHorseAge;
+    }
+
+    public Integer getMinimumParticipantAge() {
         return minimumParticipantAge;
     }
 
-    public void setMinimumParticipantAge(int minimumParticipantAge) {
+    public void setMinimumParticipantAge(Integer minimumParticipantAge) {
         this.minimumParticipantAge = minimumParticipantAge;
     }
 
-    public int getCurrentParticipants() {
-        return currentParticipants;
+    public Integer getMaximumParticipantAge() {
+        return maximumParticipantAge;
     }
 
-    public void setCurrentParticipants(int currentParticipants) {
-        this.currentParticipants = currentParticipants;
+    public void setMaximumParticipantAge(Integer maximumParticipantAge) {
+        this.maximumParticipantAge = maximumParticipantAge;
     }
 
-    public int getMaximumParticipants() {
+    public Integer getMinimumParticipants() {
+        return minimumParticipants;
+    }
+
+    public void setMinimumParticipants(Integer minimumParticipants) {
+        this.minimumParticipants = minimumParticipants;
+    }
+
+    public Integer getMaximumParticipants() {
         return maximumParticipants;
     }
 
-    public void setMaximumParticipants(int maximumParticipants) {
+    public void setMaximumParticipants(Integer maximumParticipants) {
         this.maximumParticipants = maximumParticipants;
+    }
+
+    public Integer getCurrentParticipants() {
+        return currentParticipants;
+    }
+
+    public void setCurrentParticipants(Integer currentParticipants) {
+        this.currentParticipants = currentParticipants;
+    }
+
+    public String getMarkings() {
+        return markings;
+    }
+
+    public void setMarkings(String markings) {
+        this.markings = markings;
+    }
+
+    public String getSignedUpHorses() {
+        return signedUpHorses;
+    }
+
+    public void setSignedUpHorses(String signedUpHorses) {
+        this.signedUpHorses = signedUpHorses;
     }
 }

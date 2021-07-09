@@ -71,7 +71,7 @@
                                 <tr v-if="address.gpsCoordinates" :key="index + 'coordinates'">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.coordinates')}}</th>
                                     <td class="text-left px-5 py-1">
-                                        <a :href="'https://maps.google.com/maps?q=' + gpsCoordinates" target="_blank">
+                                        <a :href="'https://maps.google.com/maps?q=' + address.gpsCoordinates.replaceAll(' ', '').replace('/', ',')" target="_blank">
                                             {{ address.gpsCoordinates }}
                                             <font-awesome-icon :icon="'external-link-alt'"></font-awesome-icon>
                                         </a>
@@ -168,73 +168,52 @@
             <v-table class="mt-2">
                 <thead class="bg-gray-50">
                 <tr>
-                    <v-th></v-th>
                     <v-th>{{$t('details.contestShort')}}</v-th>
                     <v-th>{{$t('details.distance')}}</v-th>
                     <v-th>{{$t('details.date')}}</v-th>
                     <v-th>{{$t('details.qualification')}}</v-th>
-                    <v-th>{{$t('details.elevation')}}<sup class="text-gray-400">1</sup></v-th>
-                    <v-th>{{$t('details.startFee')}}<sup class="text-gray-400">3</sup></v-th>
-                    <v-th>{{$t('details.maximumTime')}}<sup class="texts text-gray-400">4</sup></v-th>
-                    <v-th>{{$t('details.minHorseAge')}}</v-th>
-                    <v-th>{{$t('details.minRiderAge')}}</v-th>
+                    <v-th>{{$t('details.horseAge')}}</v-th>
+                    <v-th>{{$t('details.riderAge')}}</v-th>
+                    <v-th>{{$t("details.stages")}}</v-th>
+                    <v-th>{{$t("details.markings")}}</v-th>
                     <v-th>{{$t('details.maximumParticipants')}}</v-th>
                     <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="contest in contests" :key="contest.uuid">
-                    <v-td>
-                        <font-awesome-icon :icon="'trailer'" v-if="!isRide(contest)" class="text-gray-400 text-lg"/>
-                        <font-awesome-icon :icon="'horse-head'" v-if="isRide(contest)" class="text-gray-400 text-lg"/>
-                    </v-td>
                     <v-td class="font-bold">
-                        {{ contest.contestType }}
+                        {{ contest.category }}
                     </v-td>
                     <v-td>{{ contest.distance }} km</v-td>
                     <v-td>{{ toMoment(contest.start).format("DD.MM.") }}</v-td>
                     <v-td>{{ contest.qualificationLevel }}</v-td>
-                    <v-td>{{ contest.altitudeDifference }} m</v-td>
-                    <v-td>{{ contest.startFee }} EUR</v-td>
-                    <v-td>{{ contest.maximumDuration }}</v-td>
-                    <v-td>{{ contest.minimumHorseAge }}</v-td>
-                    <v-td>{{ contest.minimumParticipantAge }}</v-td>
                     <v-td>
-                        {{ contest.currentParticipants }} / {{ contest.maximumParticipants }}
+                        <span v-if="contest.minimumHorseAge && contest.maximumHorseAge">{{ $t("details.ageFromTo", { from: contest.minimumHorseAge, to: contest.maximumHorseAge}) }}</span>
+                        <span v-if="contest.minimumHorseAge && !contest.maximumHorseAge">{{ $t("details.ageFrom", { from: contest.minimumHorseAge }) }}</span>
+                        <span v-if="!contest.minimumHorseAge && contest.maximumHorseAge">{{ $t("details.ageTo", { to: contest.maximumHorseAge}) }}</span>
                     </v-td>
                     <v-td>
-                        <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'">
-                            <v-button>Anmelden</v-button>
+                        <span v-if="contest.minimumParticipantAge && contest.maximumParticipantAge">{{ $t("details.ageFromTo", { from: contest.minimumParticipantAge, to: contest.maximumParticipantAge}) }}</span>
+                        <span v-if="contest.minimumParticipantAge && !contest.maximumParticipantAge">{{ $t("details.ageFrom", { from: contest.minimumParticipantAge }) }}</span>
+                        <span v-if="!contest.minimumParticipantAge && contest.maximumParticipantAge">{{ $t("details.ageTo", { to: contest.maximumParticipantAge}) }}</span>
+                    </v-td>
+                    <v-td>{{contest.numberOfStages}}</v-td>
+                    <v-td>{{contest.markings}}</v-td>
+                    <v-td>
+                        {{ contest.currentParticipants || 0 }}
+                        /
+                        <span v-if="contest.maximumParticipants">{{ contest.maximumParticipants }} </span>
+                        <span class="text-2xl" v-else>&infin;</span>
+                    </v-td>
+                    <v-td>
+                        <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'" v-tooltip="contest.signedUpHorses ? $t('details.alreadySignedUp', {horses: contest.signedUpHorses}) : ''">
+                            <v-button :disabled="contest.signedUpHorses && contest.signedUpHorses.length > 0">{{ $t('details.signUp') }}</v-button>
                         </router-link>
                     </v-td>
                 </tr>
                 </tbody>
             </v-table>
-
-            <div class="mt-4 text-xs text-gray-400 px-4 md:px-0">
-                <table>
-                    <tr>
-                        <td class="pr-3">1)</td>
-                        <td>{{$t('details.elevationInfo')}}</td>
-                    </tr>
-                    <tr>
-                        <td class="pr-3">2)</td>
-                        <td>
-                            {{$t('details.signUpFeeInfo')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="pr-3">3)</td>
-                        <td>
-                            {{$t('details.maximumTimeInfo')}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="pr-3">4)</td>
-                        <td>{{$t('details.inCommunicationWithHost')}}</td>
-                    </tr>
-                </table>
-            </div>
         </div>
     </app-layout>
 </template>
@@ -252,7 +231,7 @@ import DateRange from "@/components/DateRange.vue";
 import Person from "./partials/Person.vue";
 import { vxm } from "@/store";
 import moment from "moment";
-import { FullContestDto, FullEventDto, SimpleContestDto as Contest } from "@/openapi/generated/api";
+import { FullContestDto, FullEventDto } from "@/openapi/generated/api";
 
 @Component({
     components: {
@@ -288,10 +267,6 @@ export default class Detail extends Vue {
 
     toMoment(date: string): moment.Moment {
         return moment(date);
-    }
-
-    isRide(contest: Contest): boolean {
-        return contest.contestType?.endsWith("_RIDE") ?? false;
     }
 }
 </script>

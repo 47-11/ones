@@ -20,6 +20,12 @@ public interface CommonMapper {
         }
     }
 
+    @Named("size")
+    default int collectionSize(Collection<?> collection) {
+
+        return collection.size();
+    }
+
     @Named("defaultZero")
     default BigDecimal defaultZeroBigDecimalMapper(BigDecimal value) {
         if (isNull(value)) {

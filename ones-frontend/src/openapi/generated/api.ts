@@ -300,7 +300,7 @@ export interface FullContestDto {
      * @type {string}
      * @memberof FullContestDto
      */
-    contestType?: FullContestDtoContestTypeEnum;
+    category?: string;
     /**
      * 
      * @type {number}
@@ -315,40 +315,22 @@ export interface FullContestDto {
     start?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof FullContestDto
-     */
-    canStartLater?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof FullContestDto
-     */
-    altitudeDifference?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FullContestDto
-     */
-    qualificationLevel?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FullContestDto
-     */
-    signupFee?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof FullContestDto
-     */
-    startFee?: number;
-    /**
-     * 
      * @type {string}
      * @memberof FullContestDto
      */
-    maximumDuration?: string;
+    qualificationLevel?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FullContestDto
+     */
+    isMap?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    numberOfStages?: number;
     /**
      * 
      * @type {number}
@@ -360,13 +342,25 @@ export interface FullContestDto {
      * @type {number}
      * @memberof FullContestDto
      */
+    maximumHorseAge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
     minimumParticipantAge?: number;
     /**
      * 
      * @type {number}
      * @memberof FullContestDto
      */
-    currentParticipants?: number;
+    maximumParticipantAge?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    minimumParticipants?: number;
     /**
      * 
      * @type {number}
@@ -375,29 +369,23 @@ export interface FullContestDto {
     maximumParticipants?: number;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof FullContestDto
      */
-    cardRide?: boolean;
+    currentParticipants?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullContestDto
+     */
+    markings?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullContestDto
+     */
+    signedUpHorses?: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum FullContestDtoContestTypeEnum {
-    IntroductionRide = 'INTRODUCTION_RIDE',
-    IntroductionDrive = 'INTRODUCTION_DRIVE',
-    ShortDistanceRide = 'SHORT_DISTANCE_RIDE',
-    ShortDistanceDrive = 'SHORT_DISTANCE_DRIVE',
-    MediumDistanceRide = 'MEDIUM_DISTANCE_RIDE',
-    MediumDistanceDrive = 'MEDIUM_DISTANCE_DRIVE',
-    LongDistanceRide = 'LONG_DISTANCE_RIDE',
-    LongDistanceDrive = 'LONG_DISTANCE_DRIVE',
-    MultipleDayRide = 'MULTIPLE_DAY_RIDE',
-    MultipleDayDrive = 'MULTIPLE_DAY_DRIVE'
-}
-
 /**
  * 
  * @export
@@ -410,6 +398,12 @@ export interface FullEventDto {
      * @memberof FullEventDto
      */
     uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FullEventDto
+     */
+    status?: FullEventDtoStatusEnum;
     /**
      * 
      * @type {string}
@@ -555,6 +549,20 @@ export interface FullEventDto {
      */
     currentParticipants?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum FullEventDtoStatusEnum {
+    Cancelled = 'CANCELLED',
+    DatePassed = 'DATE_PASSED',
+    DatePreliminary = 'DATE_PRELIMINARY',
+    DateFix = 'DATE_FIX',
+    Updated = 'UPDATED',
+    Unknown = 'UNKNOWN'
+}
+
 /**
  * 
  * @export
@@ -807,13 +815,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
 }
 /**
  * 
@@ -845,38 +853,14 @@ export interface SimpleContestDto {
      * @type {string}
      * @memberof SimpleContestDto
      */
-    contestType?: SimpleContestDtoContestTypeEnum;
+    category?: string;
     /**
      * 
      * @type {number}
      * @memberof SimpleContestDto
      */
     distance?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SimpleContestDto
-     */
-    cardRide?: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum SimpleContestDtoContestTypeEnum {
-    IntroductionRide = 'INTRODUCTION_RIDE',
-    IntroductionDrive = 'INTRODUCTION_DRIVE',
-    ShortDistanceRide = 'SHORT_DISTANCE_RIDE',
-    ShortDistanceDrive = 'SHORT_DISTANCE_DRIVE',
-    MediumDistanceRide = 'MEDIUM_DISTANCE_RIDE',
-    MediumDistanceDrive = 'MEDIUM_DISTANCE_DRIVE',
-    LongDistanceRide = 'LONG_DISTANCE_RIDE',
-    LongDistanceDrive = 'LONG_DISTANCE_DRIVE',
-    MultipleDayRide = 'MULTIPLE_DAY_RIDE',
-    MultipleDayDrive = 'MULTIPLE_DAY_DRIVE'
-}
-
 /**
  * 
  * @export
@@ -889,6 +873,12 @@ export interface SimpleEventDto {
      * @memberof SimpleEventDto
      */
     uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleEventDto
+     */
+    status?: SimpleEventDtoStatusEnum;
     /**
      * 
      * @type {string}
@@ -938,6 +928,20 @@ export interface SimpleEventDto {
      */
     contests?: Array<SimpleContestDto>;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum SimpleEventDtoStatusEnum {
+    Cancelled = 'CANCELLED',
+    DatePassed = 'DATE_PASSED',
+    DatePreliminary = 'DATE_PRELIMINARY',
+    DateFix = 'DATE_FIX',
+    Updated = 'UPDATED',
+    Unknown = 'UNKNOWN'
+}
+
 /**
  * 
  * @export

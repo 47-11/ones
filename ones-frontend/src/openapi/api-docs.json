@@ -48,8 +48,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -58,8 +58,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -111,8 +111,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -121,8 +121,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -174,8 +174,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -184,8 +184,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -244,8 +244,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -254,8 +254,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -307,8 +307,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -317,8 +317,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -380,8 +380,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -390,8 +390,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -438,8 +438,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -448,8 +448,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -511,8 +511,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -521,8 +521,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -579,8 +579,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -589,8 +589,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -637,8 +637,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -647,8 +647,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -702,8 +702,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -712,8 +712,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -878,8 +878,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -888,8 +888,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -953,8 +953,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -963,8 +963,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1028,8 +1028,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1038,8 +1038,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1096,8 +1096,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1106,8 +1106,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1164,8 +1164,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1174,8 +1174,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1232,8 +1232,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1242,8 +1242,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1475,10 +1475,10 @@
               "$ref": "#/components/schemas/ResultDto"
             }
           },
-          "totalDistance": {
+          "averageSpeed": {
             "type": "number"
           },
-          "averageSpeed": {
+          "totalDistance": {
             "type": "number"
           }
         }
@@ -1489,26 +1489,11 @@
           "uuid": {
             "type": "string"
           },
-          "contestType": {
-            "type": "string",
-            "enum": [
-              "INTRODUCTION_RIDE",
-              "INTRODUCTION_DRIVE",
-              "SHORT_DISTANCE_RIDE",
-              "SHORT_DISTANCE_DRIVE",
-              "MEDIUM_DISTANCE_RIDE",
-              "MEDIUM_DISTANCE_DRIVE",
-              "LONG_DISTANCE_RIDE",
-              "LONG_DISTANCE_DRIVE",
-              "MULTIPLE_DAY_RIDE",
-              "MULTIPLE_DAY_DRIVE"
-            ]
+          "category": {
+            "type": "string"
           },
           "distance": {
             "type": "number"
-          },
-          "cardRide": {
-            "type": "boolean"
           }
         }
       },
@@ -1566,6 +1551,17 @@
         "properties": {
           "uuid": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CANCELLED",
+              "DATE_PASSED",
+              "DATE_PRELIMINARY",
+              "DATE_FIX",
+              "UPDATED",
+              "UNKNOWN"
+            ]
           },
           "title": {
             "type": "string"
@@ -1640,6 +1636,17 @@
         "properties": {
           "uuid": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CANCELLED",
+              "DATE_PASSED",
+              "DATE_PRELIMINARY",
+              "DATE_FIX",
+              "UPDATED",
+              "UNKNOWN"
+            ]
           },
           "title": {
             "type": "string"
@@ -1756,20 +1763,8 @@
           "uuid": {
             "type": "string"
           },
-          "contestType": {
-            "type": "string",
-            "enum": [
-              "INTRODUCTION_RIDE",
-              "INTRODUCTION_DRIVE",
-              "SHORT_DISTANCE_RIDE",
-              "SHORT_DISTANCE_DRIVE",
-              "MEDIUM_DISTANCE_RIDE",
-              "MEDIUM_DISTANCE_DRIVE",
-              "LONG_DISTANCE_RIDE",
-              "LONG_DISTANCE_DRIVE",
-              "MULTIPLE_DAY_RIDE",
-              "MULTIPLE_DAY_DRIVE"
-            ]
+          "category": {
+            "type": "string"
           },
           "distance": {
             "type": "number"
@@ -1778,26 +1773,21 @@
             "type": "string",
             "format": "date-time"
           },
-          "canStartLater": {
+          "qualificationLevel": {
+            "type": "string"
+          },
+          "isMap": {
             "type": "boolean"
           },
-          "altitudeDifference": {
-            "type": "number"
-          },
-          "qualificationLevel": {
+          "numberOfStages": {
             "type": "integer",
             "format": "int32"
           },
-          "signupFee": {
-            "type": "number"
-          },
-          "startFee": {
-            "type": "number"
-          },
-          "maximumDuration": {
-            "type": "string"
-          },
           "minimumHorseAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumHorseAge": {
             "type": "integer",
             "format": "int32"
           },
@@ -1805,7 +1795,11 @@
             "type": "integer",
             "format": "int32"
           },
-          "currentParticipants": {
+          "maximumParticipantAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minimumParticipants": {
             "type": "integer",
             "format": "int32"
           },
@@ -1813,8 +1807,15 @@
             "type": "integer",
             "format": "int32"
           },
-          "cardRide": {
-            "type": "boolean"
+          "currentParticipants": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "markings": {
+            "type": "string"
+          },
+          "signedUpHorses": {
+            "type": "string"
           }
         }
       },
