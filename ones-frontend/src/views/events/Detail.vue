@@ -98,22 +98,6 @@
                                     {{ details.signUpAfterDeadlinePossible ? $t("shared.yes") : $t("shared.no") }}
                                 </td>
                             </tr>
-                            <tr v-if="details.signUpAfterDeadlinePossible">
-                                <th class="text-left px-5 py-1 align-top leading-5">
-                                    {{$t('details.signUpFeeAfterDeadlineMissed')}}
-                                </th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.signUpDeadlineMissedFee || 0 }} EUR
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top leading-5">
-                                    {{$t('details.signUpChangeFee')}}
-                                </th>
-                                <td class="text-left px-5 py-1">
-                                    {{ details.signUpChangeFee || 0 }} EUR
-                                </td>
-                            </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top leading-5">
                                     {{$t('details.vaccinationRequirements')}}
@@ -162,17 +146,17 @@
             <div class="mt-10">
                 <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700 sm:mt-4 md:mt-0 lg:mt-0">{{$t('details.contacts')}}</h2>
                 <card class="mt-3 text-sm flex items-stretch flex-col md:flex-row">
-                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
+                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full" v-if="details.eventHost">
                         <div class="font-bold mb-0.5 text-gray-700">{{$t('details.host')}}</div>
                         <person :person="details.eventHost"/>
                     </div>
 
-                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full">
+                    <div class="px-6 py-4 border-b md:border-b-0 md:border-r w-full" v-if="details.eventOrganizer">
                         <div class="font-bold mb-0.5 text-gray-700">{{$t('details.organizer')}}</div>
                         <person :person="details.eventOrganizer"/>
                     </div>
 
-                    <div class="px-6 py-4 w-full">
+                    <div class="px-6 py-4 w-full" v-if="details.contactPerson">
                         <div class="font-bold mb-0.5 text-gray-700">{{$t('details.infoAndSignUp')}}</div>
                         <person :person="details.contactPerson"/>
                     </div>
