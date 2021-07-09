@@ -132,8 +132,8 @@
     "elevation": "Change in Elevation",
     "startFee": "Sign up Fee",
     "maximumTime": "Max. Time",
-    "minHorseAge": "min. Age Horse",
-    "minRiderAge": "min. Age Participant",
+    "horseAge": "Age Horse",
+    "riderAge": "Age Participant",
     "maximumParticipants": "(max.) Participants",
     "participants": "Participants",
     "elevationInfo": "Change in Elevation = Sum of elevation gain and loss",
@@ -146,7 +146,14 @@
     "helmetRequirements": "Helmet Requirements",
     "hostWebsite": "Host Website",
     "paperForm": "Sign Up On Paper",
-    "min": "Min. {count}"
+    "min": "Min. {count}",
+    "ageFromTo": "From {from} to {to}",
+    "ageFrom": "From {from}",
+    "ageTo": "To {to}",
+    "stages": "Stages",
+    "markings": "Markings",
+    "signUp": "Sign Up",
+    "alreadySignedUp": "Already signed up with {horses}"
   },
   "events": {
     "start": "Start",

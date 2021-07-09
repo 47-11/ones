@@ -128,8 +128,8 @@
     "elevation": "Höhenmeter",
     "startFee": "Startgeld",
     "maximumTime": "Höchstzeit",
-    "minHorseAge": "min. Alter Pferd",
-    "minRiderAge": "min. Alter TN",
+    "minHorseAge": "Alter Pferd",
+    "minRiderAge": "Alter TN",
     "maximumParticipants": "TN/max TN",
     "participants": "Teilnehmer",
     "elevationInfo": "Höhenmeterangabe = Summe aus Aufstieg und Abstieg",
@@ -141,7 +141,14 @@
     "helmetRequirements": "Helmpflicht",
     "hostWebsite": "Website des Veranstalters",
     "paperForm": "Ausschreibung",
-    "min": "Min. {count}"
+    "min": "Min. {count}",
+    "ageFromTo": "Von {from} bis {to}",
+    "ageFrom": "Ab {from}",
+    "ageTo": "Bis {to}",
+    "stages": "Etappen",
+    "markings": "Markierungen",
+    "signUp": "Anmelden",
+    "alreadySignedUp": "Bereits angemeldet mit {horses}"
   },
   "events": {
     "title": "Veranstaltungen",

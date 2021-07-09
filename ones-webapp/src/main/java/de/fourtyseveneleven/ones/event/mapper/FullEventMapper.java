@@ -28,7 +28,8 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
         uses = {
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
-                EventAddressMapper.class
+                EventAddressMapper.class,
+                EventStatusMapper.class
         }
 )
 public abstract class FullEventMapper {
@@ -56,6 +57,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "fees", target = "availableAccommodations")
     @Mapping(source = "contestantQuantityMin", target = "minimumParticipants")
     @Mapping(source = "contestantQuantityMax", target = "maximumParticipants")
+    @Mapping(source = "state", target = "status")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {
