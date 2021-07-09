@@ -52,12 +52,6 @@
                             </tr>
                             <template v-for="address of details.addresses">
                                 <tr :key="JSON.stringify(address)">
-                                    <th class="text-left px-5 py-1 align-top">{{$t('details.region')}}</th>
-                                    <td class="text-left px-5 py-1">
-                                        {{ address.region }}
-                                    </td>
-                                </tr>
-                                <tr :key="JSON.stringify(address)">
                                     <th class="text-left px-5 py-1 align-top">{{$t('details.country')}}</th>
                                     <td class="text-left px-5 py-1">
                                         {{ address.country }}
