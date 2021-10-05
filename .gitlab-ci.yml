@@ -61,4 +61,4 @@ build-docker:
     - echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(echo -n $CI_REGISTRY_USER:$CI_REGISTRY_PASSWORD | base64)\"}}}" > /kaniko/.docker/config.json
     - version=`cat VERSION.txt`
     - echo Publishing version $version
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination docker.io/fourtyseveneleven/ones:$version
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination docker.io/fourtyseveneleven/ones:$version --destination docker.io/fourtyseveneleven/ones:latest
