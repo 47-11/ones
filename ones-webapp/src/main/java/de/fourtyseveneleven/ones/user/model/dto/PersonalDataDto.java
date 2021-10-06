@@ -1,16 +1,14 @@
 package de.fourtyseveneleven.ones.user.model.dto;
 
-import java.time.LocalDate;
-
 public class PersonalDataDto {
 
-    private String salutation;
     private String firstName;
     private String lastName;
-    private LocalDate birthday;
+    private String birthName;
 
     private String phoneNumber;
     private String phoneNumberMobile;
+    private String phoneNumberEmergency;
 
     private String street;
     private String houseNumber;
@@ -18,13 +16,10 @@ public class PersonalDataDto {
     private String city;
     private String country;
 
-    public String getSalutation() {
-        return salutation;
-    }
+    private byte qualificationLevel;
 
-    public void setSalutation(String salutation) {
-        this.salutation = salutation;
-    }
+    private String feiNumber;
+    private String feNumber;
 
     public String getFirstName() {
         return firstName;
@@ -42,12 +37,12 @@ public class PersonalDataDto {
         this.lastName = lastName;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public String getBirthName() {
+        return birthName;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    public void setBirthName(String birthName) {
+        this.birthName = birthName;
     }
 
     public String getPhoneNumber() {
@@ -64,6 +59,14 @@ public class PersonalDataDto {
 
     public void setPhoneNumberMobile(String phoneNumberMobile) {
         this.phoneNumberMobile = phoneNumberMobile;
+    }
+
+    public String getPhoneNumberEmergency() {
+        return phoneNumberEmergency;
+    }
+
+    public void setPhoneNumberEmergency(String phoneNumberEmergency) {
+        this.phoneNumberEmergency = phoneNumberEmergency;
     }
 
     public String getStreet() {
@@ -104,5 +107,29 @@ public class PersonalDataDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public byte getQualificationLevel() {
+        return qualificationLevel;
+    }
+
+    public void setQualificationLevel(byte qualificationLevel) {
+        this.qualificationLevel = qualificationLevel;
+    }
+
+    public String getFeiNumber() {
+        return feiNumber;
+    }
+
+    public void setFeiNumber(String feiNumber) {
+        this.feiNumber = feiNumber;
+    }
+
+    public String getFeNumber() {
+        return feNumber;
+    }
+
+    public void setFeNumber(String feNumber) {
+        this.feNumber = feNumber;
     }
 }
