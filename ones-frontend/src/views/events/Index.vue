@@ -114,6 +114,7 @@
                     <v-th>
                         {{ $t('events.categories') }}
                     </v-th>
+                    <v-th></v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
