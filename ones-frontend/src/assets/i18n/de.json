@@ -214,7 +214,13 @@
     "error": "Es ist ein Fehler aufgetreten",
     "yes": "Ja",
     "no": "Nein",
-    "unknown": "Unbekannt"
+    "unknown": "Unbekannt",
+    "countries": {
+      "germany": "Deutschland",
+      "netherlands": "Niederlande",
+      "austria": "Österreich",
+      "switzerland": "Schweiz"
+    }
   },
   "offlineWarning": {
     "noConnection": "Keine Verbindung.",
