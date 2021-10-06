@@ -88,6 +88,24 @@
     "tooShort": "Password must consist of at least 8 characters.",
     "notIdentical": "Password repeat is not identical to Password."
   },
+  "setPersonalData": {
+    "title": "Set personal data",
+    "description": "To continue, please type in your data.",
+    "salutation": "Salutation",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "birthday": "Birthday",
+    "phoneNumber": "Landline",
+    "phoneNumberMobile": "Cellphone",
+    "street": "Street",
+    "houseNumber": "House Number",
+    "zipCode": "Zip Code",
+    "city": "City",
+    "country": "Country",
+    "lengthNull": " is empty",
+    "submit": "Save",
+    "logout": "Log out"
+  },
   "verified": {
     "wait": "Please wait a second...",
     "authenticationRunning": "Authentication running...",
@@ -220,7 +238,13 @@
     "error": "An error occurred",
     "yes": "Yes",
     "no": "No",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "countries": {
+      "germany": "Germany",
+      "netherlands": "Netherlands",
+      "austria": "Austria",
+      "switzerland": "Switzerland"
+    }
   },
   "offlineWarning": {
     "noConnection": "No connection.",

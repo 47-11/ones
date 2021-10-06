@@ -54,10 +54,10 @@
                                 <div class="col-span-12 sm:col-span-4">
                                     <v-label>{{ $t("setPersonalData.country") }}</v-label>
                                     <v-select @input="update('country', $event)" :disabled="inputsDisabled" class="w-full">
-                                        <option value="DE">Deutschland</option>
-                                        <option value="NL">Niederlande</option>
-                                        <option value="AT">Österreich</option>
-                                        <option value="CH">Schweiz</option>
+                                        <option value="DE">{{ $t("shared.countries.germany") }}</option>
+                                        <option value="NL">{{ $t("shared.countries.netherlands") }}</option>
+                                        <option value="AT">{{ $t("shared.countries.austria") }}</option>
+                                        <option value="CH">{{ $t("shared.countries.switzerland") }}</option>
                                     </v-select>
                                 </div>
                             </div>
