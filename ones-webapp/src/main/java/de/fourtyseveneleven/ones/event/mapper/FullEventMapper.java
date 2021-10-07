@@ -97,7 +97,8 @@ public abstract class FullEventMapper {
     private PersonDto personDtoFromRole(EventContestRole role) {
 
         final PersonDto personDto = new PersonDto();
-        personDto.setName(formatName(role));
+        personDto.setFirstName(role.getName1());
+        personDto.setLastName(role.getName2());
 
         personDto.setAddress(addressDtoFromRole(role));
         if (isNotBlank(role.getPhone())) {
@@ -108,12 +109,6 @@ public abstract class FullEventMapper {
         personDto.setEmailAddress(role.getEmail());
 
         return personDto;
-    }
-
-    private String formatName(EventContestRole role) {
-
-        return String.format("%s %s %s", emptyIfNull(role.getName1()), emptyIfNull(role.getName2()),
-                emptyIfNull(role.getName3())).trim();
     }
 
     private String emptyIfNull(String value) {

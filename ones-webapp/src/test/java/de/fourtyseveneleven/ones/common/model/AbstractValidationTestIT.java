@@ -17,7 +17,9 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static java.text.MessageFormat.format;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.fail;
 import static org.springframework.beans.BeanUtils.copyProperties;
 
 public abstract class AbstractValidationTestIT<T extends BaseEntity> {

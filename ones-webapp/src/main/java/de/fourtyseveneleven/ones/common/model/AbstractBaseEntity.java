@@ -1,6 +1,10 @@
 package de.fourtyseveneleven.ones.common.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.time.LocalDateTime;

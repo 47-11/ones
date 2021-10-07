@@ -19,7 +19,7 @@ import java.util.List;
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {CommonMapper.class})
 public abstract class PersonDtoMapper {
 
     @Autowired
@@ -36,24 +36,15 @@ public abstract class PersonDtoMapper {
     }
 
     @Mapping(source = "addresses", target = "address")
+    @Mapping(source = "forename", target = "firstName")
+    @Mapping(source = "surname", target = "lastName")
     public abstract UserDto masterdataContactToUserDto(MasterdataContact masterdataContact);
 
-    @AfterMapping
-    public void afterMasterdataContactToUserDto(@MappingTarget UserDto userDto, MasterdataContact masterdataContact) {
-
-        userDto.setIsPersonalDataKnown(true);
-        afterMasterdataContactToPersonDto(userDto, masterdataContact);
-    }
-
     @Mapping(source = "addresses", target = "address")
+    @Mapping(source = "forename", target = "firstName")
+    @Mapping(source = "surname", target = "lastName")
     public abstract PersonDto masterdataContactToPersonDto(MasterdataContact masterdataContact);
 
-    @AfterMapping
-    public void afterMasterdataContactToPersonDto(@MappingTarget PersonDto personDto, MasterdataContact masterdataContact) {
-
-        final String name = format("{0} {1}", masterdataContact.getForename(), masterdataContact.getSurname());
-        personDto.setName(name);
-    }
 
     public AddressDto masterdataContactAddressesToAddressDto(List<MasterdataContactAddress> masterdataContactAddresses) {
 

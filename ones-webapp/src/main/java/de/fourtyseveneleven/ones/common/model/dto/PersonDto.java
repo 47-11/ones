@@ -2,17 +2,36 @@ package de.fourtyseveneleven.ones.common.model.dto;
 
 public class PersonDto {
 
-    private String name;
-    private AddressDto address;
-    private String phoneNumber;
-    private String emailAddress;
+    private String firstName;
+    private String lastName;
 
-    public String getName() {
-        return name;
+    private AddressDto address;
+
+    private String emailAddress;
+    private String phoneNumber;
+    private String phoneNumberMobile;
+
+    public PersonDto() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public PersonDto(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public AddressDto getAddress() {
@@ -23,6 +42,14 @@ public class PersonDto {
         this.address = address;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -31,11 +58,11 @@ public class PersonDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public String getPhoneNumberMobile() {
+        return phoneNumberMobile;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setPhoneNumberMobile(String phoneNumberMobile) {
+        this.phoneNumberMobile = phoneNumberMobile;
     }
 }

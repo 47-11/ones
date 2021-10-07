@@ -1,7 +1,6 @@
 package de.fourtyseveneleven.ones.user.controller;
 
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
-import de.fourtyseveneleven.ones.user.model.dto.PersonalDataDto;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,7 @@ public class UserController {
 
     @PatchMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void setPersonalData(@RequestBody PersonalDataDto personalData) {
+    public void setPersonalData(@RequestBody UserDto personalData) {
 
         userService.setPersonalDataForCurrentUser(personalData);
     }
