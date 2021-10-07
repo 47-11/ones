@@ -680,12 +680,6 @@ export interface PersonalDataDto {
      * @type {string}
      * @memberof PersonalDataDto
      */
-    salutation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
     firstName?: string;
     /**
      * 
@@ -698,7 +692,7 @@ export interface PersonalDataDto {
      * @type {string}
      * @memberof PersonalDataDto
      */
-    birthday?: string;
+    birthName?: string;
     /**
      * 
      * @type {string}
@@ -711,6 +705,12 @@ export interface PersonalDataDto {
      * @memberof PersonalDataDto
      */
     phoneNumberMobile?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    phoneNumberEmergency?: string;
     /**
      * 
      * @type {string}
@@ -741,6 +741,24 @@ export interface PersonalDataDto {
      * @memberof PersonalDataDto
      */
     country?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    qualificationLevel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    feiNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    feNumber?: string;
 }
 /**
  * 
@@ -815,13 +833,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
 }
 /**
  * 
