@@ -6,18 +6,8 @@
     <additionalParameters>
       <param>
         <option name="enabled" value="true" />
-        <option name="name" value="ones.message.email.password" />
-        <option name="value" value="smtp password here" />
-      </param>
-      <param>
-        <option name="enabled" value="true" />
-        <option name="name" value="ones.message.email.override-recipient-address" />
-        <option name="value" value="Email address here (or leave empty to send mails to the actual recipient)" />
-      </param>
-      <param>
-        <option name="enabled" value="true" />
         <option name="name" value="ones.ecm.api-user" />
-        <option name="value" value="ECM API user here" />
+        <option name="value" value="admin" />
       </param>
       <param>
         <option name="enabled" value="true" />
@@ -27,6 +17,7 @@
     </additionalParameters>
     <method v="2">
       <option name="Make" enabled="true" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Mailhog" run_configuration_type="docker-deploy" />
     </method>
   </configuration>
 </component>

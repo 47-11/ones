@@ -17,6 +17,7 @@ import java.util.Properties;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.nonNull;
+import static org.apache.logging.log4j.util.Strings.isBlank;
 
 @Configuration
 public class EmailMessageConfiguration extends AbstractMessageConfiguration {
@@ -44,8 +45,6 @@ public class EmailMessageConfiguration extends AbstractMessageConfiguration {
         final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         mailSender.setHost(emailSettings.getHost());
-        mailSender.setUsername(emailSettings.getUsername());
-        mailSender.setPassword(emailSettings.getPassword());
 
         if (nonNull(emailSettings.getPort())) {
             mailSender.setPort(emailSettings.getPort());
@@ -56,8 +55,18 @@ public class EmailMessageConfiguration extends AbstractMessageConfiguration {
 
         final Properties properties = mailSender.getJavaMailProperties();
         properties.put("mail.transport.protocol", "smtp");
-        properties.put("mail.smtp.auth", "true");
+
         properties.put("mail.smtp.starttls.enable", "true");
+
+        final String username = emailSettings.getUsername();
+        final String password = emailSettings.getPassword();
+        if (isBlank(username) && isBlank(password)) {
+            properties.put("mail.smtp.auth", "false");
+        } else {
+            mailSender.setUsername(username);
+            mailSender.setPassword(password);
+            properties.put("mail.smtp.auth", "true");
+        }
 
         return mailSender;
     }
