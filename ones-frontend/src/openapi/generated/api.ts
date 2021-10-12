@@ -692,6 +692,12 @@ export interface PersonalDataDto {
      * @type {string}
      * @memberof PersonalDataDto
      */
+    birthday?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
     birthName?: string;
     /**
      * 
@@ -833,13 +839,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
 }
 /**
  * 

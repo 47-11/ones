@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080",
+      "url": "http://localhost:8410",
       "description": "Generated server url"
     }
   ],
@@ -1347,6 +1347,10 @@
           "lastName": {
             "type": "string"
           },
+          "birthday": {
+            "type": "string",
+            "format": "date"
+          },
           "birthName": {
             "type": "string"
           },
@@ -1484,10 +1488,10 @@
               "$ref": "#/components/schemas/ResultDto"
             }
           },
-          "totalDistance": {
+          "averageSpeed": {
             "type": "number"
           },
-          "averageSpeed": {
+          "totalDistance": {
             "type": "number"
           }
         }
