@@ -110,7 +110,9 @@ export default class Navigation extends Vue {
     }
 
     get userName(): string {
-        return vxm.user.current?.name || "";
+        const firstName = vxm.user.current?.firstName || "";
+        const lastName = vxm.user.current?.lastName || "";
+        return firstName + lastName || "";
     }
 }
 </script>

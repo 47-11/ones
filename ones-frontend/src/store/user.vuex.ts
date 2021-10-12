@@ -1,4 +1,4 @@
-import { ForgotPasswordControllerApi, LoginControllerApi, PersonalDataDto as PersonalData, RegistrationControllerApi, UserControllerApi, UserDto as User, UserDto } from "@/openapi/generated";
+import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi, UserControllerApi, UserDto as PersonalData, UserDto as User, UserDto } from "@/openapi/generated";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({

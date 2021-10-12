@@ -1,15 +1,15 @@
-import Vue from "vue";
-import VueRouter, { Route, RouteConfig } from "vue-router";
-import Register from "../views/auth/Register.vue";
-import Login from "../views/auth/Login.vue";
+import { vxm } from "@/store";
 import ForgotPassword from "@/views/auth/ForgotPassword.vue";
 import ResetPassword from "@/views/auth/ResetPassword.vue";
-import Verified from "@/views/auth/Verified.vue";
-import EventsIndex from "@/views/events/Index.vue";
-import EventDetail from "@/views/events/Detail.vue";
-import SignUp from "@/views/contests/SignUp.vue";
 import SetPersonalData from "@/views/auth/SetPersonalData.vue";
-import { vxm } from "@/store";
+import Verified from "@/views/auth/Verified.vue";
+import SignUp from "@/views/contests/SignUp.vue";
+import EventDetail from "@/views/events/Detail.vue";
+import EventsIndex from "@/views/events/Index.vue";
+import Vue from "vue";
+import VueRouter, { Route, RouteConfig } from "vue-router";
+import Login from "../views/auth/Login.vue";
+import Register from "../views/auth/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -105,7 +105,7 @@ function needsAuth(to: Route) {
 }
 
 function needsToSetPersonalData(): boolean {
-    return vxm.user.current?.isPersonalDataKnown === false;
+    return vxm.user.current?.uuid === null;
 }
 
 function isPersonalDataKnown(): boolean {

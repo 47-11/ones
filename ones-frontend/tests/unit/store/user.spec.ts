@@ -12,7 +12,8 @@ jest.mock("axios");
 type GetCurrentUserResponse = Partial<Resolved<ReturnType<UserControllerApi["getCurrentUser"]>>>;
 
 const sampleUser: UserDto = {
-    name: "Lucky Luke",
+    firstName: "Lucky",
+    lastName: "Luke",
     address: {
         locationName: "Where he wants",
         street: "Around the corner",
