@@ -7,8 +7,6 @@ import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerAp
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataPropertyControllerApi;
 import de.fourtyseveneleven.ones.settings.OnesSettings;
 import de.fourtyseveneleven.ones.settings.ecm.EcmSettings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +16,8 @@ import java.net.PasswordAuthentication;
 import java.net.URI;
 import java.net.http.HttpClient;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
-
 @Configuration
 public class EcmApiConfiguration {
-
-    private static final Logger LOG = LoggerFactory.getLogger(EcmApiConfiguration.class);
 
     @Bean
     public EventContestControllerApi eventContestControllerApi(ApiClient apiClient) {
@@ -55,17 +49,11 @@ public class EcmApiConfiguration {
         final ApiClient apiClient = de.fourtyseveneleven.ones.ecm.generated.Configuration.getDefaultApiClient();
         apiClient.setHttpClientBuilder(httpClientBuilder);
 
-        final String apiBaseUrl = onesSettings.getEcm().getApiBaseUrl();
-        if (isBlank(apiBaseUrl)) {
-            LOG.error("API base URL is blank.");
-        } else {
-            final URI apiBaseUri = URI.create(apiBaseUrl);
-
-            apiClient.setScheme(apiBaseUri.getScheme());
-            apiClient.setHost(apiBaseUri.getHost());
-            apiClient.setPort(apiBaseUri.getPort());
-            apiClient.setBasePath(apiBaseUri.getPath());
-        }
+        final URI apiBaseUri = onesSettings.getEcm().getParsedApiBaseUri().orElseThrow(() -> new IllegalStateException("ECM API base url is not configured. Please set a value for the property ecm.api-base-url"));
+        apiClient.setScheme(apiBaseUri.getScheme());
+        apiClient.setHost(apiBaseUri.getHost());
+        apiClient.setPort(apiBaseUri.getPort());
+        apiClient.setBasePath(apiBaseUri.getPath());
 
         return apiClient;
     }
