@@ -1,9 +1,12 @@
 package de.fourtyseveneleven.ones.user.model.dto;
 
+import java.time.LocalDate;
+
 public class PersonalDataDto {
 
     private String firstName;
     private String lastName;
+    private LocalDate birthday;
     private String birthName;
 
     private String phoneNumber;
@@ -35,6 +38,14 @@ public class PersonalDataDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getBirthName() {
