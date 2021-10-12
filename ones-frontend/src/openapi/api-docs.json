@@ -484,7 +484,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PersonalDataDto"
+                "$ref": "#/components/schemas/UserDto"
               }
             }
           },
@@ -1338,29 +1338,10 @@
           }
         }
       },
-      "PersonalDataDto": {
+      "AddressDto": {
         "type": "object",
         "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "birthday": {
-            "type": "string",
-            "format": "date"
-          },
-          "birthName": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "phoneNumberMobile": {
-            "type": "string"
-          },
-          "phoneNumberEmergency": {
+          "locationName": {
             "type": "string"
           },
           "street": {
@@ -1377,16 +1358,59 @@
           },
           "country": {
             "type": "string"
+          }
+        }
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "phoneNumberMobile": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vddNumber": {
+            "type": "string"
+          },
+          "feiNumber": {
+            "type": "string"
+          },
+          "fnNumber": {
+            "type": "string"
           },
           "qualificationLevel": {
             "type": "string",
             "format": "byte"
           },
-          "feiNumber": {
+          "qualificationLevelApproved": {
+            "type": "boolean"
+          },
+          "phoneNumberEmergency": {
             "type": "string"
           },
-          "feNumber": {
+          "birthName": {
             "type": "string"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -1398,49 +1422,6 @@
           },
           "newPassword": {
             "type": "string"
-          }
-        }
-      },
-      "AddressDto": {
-        "type": "object",
-        "properties": {
-          "locationName": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "zipCode": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "gpsCoordinates": {
-            "type": "string"
-          }
-        }
-      },
-      "UserDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "address": {
-            "$ref": "#/components/schemas/AddressDto"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "emailAddress": {
-            "type": "string"
-          },
-          "isPersonalDataKnown": {
-            "type": "boolean"
           }
         }
       },
@@ -1488,10 +1469,10 @@
               "$ref": "#/components/schemas/ResultDto"
             }
           },
-          "averageSpeed": {
+          "totalDistance": {
             "type": "number"
           },
-          "totalDistance": {
+          "averageSpeed": {
             "type": "number"
           }
         }
@@ -1517,6 +1498,9 @@
             "type": "string"
           },
           "street": {
+            "type": "string"
+          },
+          "houseNumber": {
             "type": "string"
           },
           "zipCode": {
@@ -1756,16 +1740,22 @@
       "PersonDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
             "type": "string"
           },
           "address": {
             "$ref": "#/components/schemas/AddressDto"
           },
+          "emailAddress": {
+            "type": "string"
+          },
           "phoneNumber": {
             "type": "string"
           },
-          "emailAddress": {
+          "phoneNumberMobile": {
             "type": "string"
           }
         }

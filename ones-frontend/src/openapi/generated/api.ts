@@ -87,6 +87,12 @@ export interface AddressDto {
      * @type {string}
      * @memberof AddressDto
      */
+    houseNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
     zipCode?: string;
     /**
      * 
@@ -100,12 +106,6 @@ export interface AddressDto {
      * @memberof AddressDto
      */
     country?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddressDto
-     */
-    gpsCoordinates?: string;
 }
 /**
  * 
@@ -201,6 +201,12 @@ export interface EventAddressDto {
      * @memberof EventAddressDto
      */
     street?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAddressDto
+     */
+    houseNumber?: string;
     /**
      * 
      * @type {string}
@@ -649,7 +655,13 @@ export interface PersonDto {
      * @type {string}
      * @memberof PersonDto
      */
-    name?: string;
+    firstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonDto
+     */
+    lastName?: string;
     /**
      * 
      * @type {AddressDto}
@@ -661,110 +673,19 @@ export interface PersonDto {
      * @type {string}
      * @memberof PersonDto
      */
+    emailAddress?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonDto
+     */
     phoneNumber?: string;
     /**
      * 
      * @type {string}
      * @memberof PersonDto
      */
-    emailAddress?: string;
-}
-/**
- * 
- * @export
- * @interface PersonalDataDto
- */
-export interface PersonalDataDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    firstName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    lastName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    birthday?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    birthName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    phoneNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
     phoneNumberMobile?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    phoneNumberEmergency?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    street?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    houseNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    zipCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    city?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    country?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    qualificationLevel?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    feiNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
-    feNumber?: string;
 }
 /**
  * 
@@ -839,13 +760,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
 }
 /**
  * 
@@ -977,7 +898,13 @@ export interface UserDto {
      * @type {string}
      * @memberof UserDto
      */
-    name?: string;
+    firstName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    lastName?: string;
     /**
      * 
      * @type {AddressDto}
@@ -989,19 +916,73 @@ export interface UserDto {
      * @type {string}
      * @memberof UserDto
      */
+    emailAddress?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
     phoneNumber?: string;
     /**
      * 
      * @type {string}
      * @memberof UserDto
      */
-    emailAddress?: string;
+    phoneNumberMobile?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    vddNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    feiNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    fnNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    qualificationLevel?: string;
     /**
      * 
      * @type {boolean}
      * @memberof UserDto
      */
-    isPersonalDataKnown?: boolean;
+    qualificationLevelApproved?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    phoneNumberEmergency?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    birthName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserDto
+     */
+    birthday?: string;
 }
 
 /**
@@ -2404,13 +2385,13 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * 
-         * @param {PersonalDataDto} personalDataDto 
+         * @param {UserDto} userDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setPersonalData: async (personalDataDto: PersonalDataDto, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'personalDataDto' is not null or undefined
-            assertParamExists('setPersonalData', 'personalDataDto', personalDataDto)
+        setPersonalData: async (userDto: UserDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userDto' is not null or undefined
+            assertParamExists('setPersonalData', 'userDto', userDto)
             const localVarPath = `/api/v1/user/me`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2434,7 +2415,7 @@ export const UserControllerApiAxiosParamCreator = function (configuration?: Conf
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(personalDataDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(userDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2462,12 +2443,12 @@ export const UserControllerApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {PersonalDataDto} personalDataDto 
+         * @param {UserDto} userDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setPersonalData(personalDataDto: PersonalDataDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.setPersonalData(personalDataDto, options);
+        async setPersonalData(userDto: UserDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.setPersonalData(userDto, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -2490,12 +2471,12 @@ export const UserControllerApiFactory = function (configuration?: Configuration,
         },
         /**
          * 
-         * @param {PersonalDataDto} personalDataDto 
+         * @param {UserDto} userDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setPersonalData(personalDataDto: PersonalDataDto, options?: any): AxiosPromise<void> {
-            return localVarFp.setPersonalData(personalDataDto, options).then((request) => request(axios, basePath));
+        setPersonalData(userDto: UserDto, options?: any): AxiosPromise<void> {
+            return localVarFp.setPersonalData(userDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2519,13 +2500,13 @@ export class UserControllerApi extends BaseAPI {
 
     /**
      * 
-     * @param {PersonalDataDto} personalDataDto 
+     * @param {UserDto} userDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserControllerApi
      */
-    public setPersonalData(personalDataDto: PersonalDataDto, options?: any) {
-        return UserControllerApiFp(this.configuration).setPersonalData(personalDataDto, options).then((request) => request(this.axios, this.basePath));
+    public setPersonalData(userDto: UserDto, options?: any) {
+        return UserControllerApiFp(this.configuration).setPersonalData(userDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
