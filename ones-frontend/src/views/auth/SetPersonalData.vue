@@ -12,22 +12,27 @@
                             <error-message :error="error"/>
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
-                                <div class="col-span-12 sm:col-span-4">
+                                <div class="col-span-12 sm:col-span-6">
                                     <v-label>{{ $t("setPersonalData.firstName") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('firstName', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
-                                <div class="col-span-12 sm:col-span-4">
+                                <div class="col-span-12 sm:col-span-6">
                                     <v-label>{{ $t("setPersonalData.lastName") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('lastName', $event)" :disabled="inputsDisabled"/>
                                 </div>
-
-                                <div class="col-span-12 sm:col-span-4">
+                            </div>
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-6">
                                     <v-label>
                                         {{ $t("setPersonalData.birthName") }}
                                         <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
                                     </v-label>
                                     <v-input type="text" class="w-full" @input="update('birthName', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                                <div class="col-span-12 sm:col-span-6">
+                                    <v-label>{{ $t("setPersonalData.birthday") }}</v-label>
+                                    <v-input type="date" class="w-full" @input="update('birthday', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
 
@@ -188,6 +193,7 @@ export default class SetPersonalData extends Vue {
     firstName = "";
     lastName = "";
     birthName = "";
+    birthday = "";
     phoneNumber = "";
     phoneNumberMobile = "";
     phoneNumberEmergency = "";
@@ -211,6 +217,7 @@ export default class SetPersonalData extends Vue {
         return [
             "firstName",
             "lastName",
+            "birthday",
             "street",
             "houseNumber",
             "phoneNumber",
@@ -235,6 +242,7 @@ export default class SetPersonalData extends Vue {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 birthName: this.birthName,
+                birthday: this.birthday,
                 phoneNumber: this.phoneNumber,
                 phoneNumberMobile: this.phoneNumberMobile,
                 phoneNumberEmergency: this.phoneNumberEmergency,
