@@ -16,6 +16,8 @@ import java.net.PasswordAuthentication;
 import java.net.URI;
 import java.net.http.HttpClient;
 
+import static org.springframework.util.StringUtils.trimTrailingCharacter;
+
 @Configuration
 public class EcmApiConfiguration {
 
@@ -53,7 +55,10 @@ public class EcmApiConfiguration {
         apiClient.setScheme(apiBaseUri.getScheme());
         apiClient.setHost(apiBaseUri.getHost());
         apiClient.setPort(apiBaseUri.getPort());
-        apiClient.setBasePath(apiBaseUri.getPath());
+
+        final String basePath = apiBaseUri.getPath();
+        final String trimmedBasePath = trimTrailingCharacter(basePath, '/');
+        apiClient.setBasePath(trimmedBasePath);
 
         return apiClient;
     }
