@@ -193,10 +193,8 @@ export default class SetPersonalData extends Vue {
             this.assertValid();
 
             await vxm.user.setPersonalData({
-                salutation: this.salutation,
                 firstName: this.firstName,
                 lastName: this.lastName,
-                birthday: this.birthday,
                 phoneNumber: this.phoneNumber,
                 phoneNumberMobile: this.phoneNumberMobile,
                 street: this.street,
