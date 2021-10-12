@@ -104,7 +104,13 @@
     "country": "Country",
     "lengthNull": " is empty",
     "submit": "Save",
-    "logout": "Log out"
+    "logout": "Log out",
+    "birthName": "Birth Name",
+    "phoneNumberEmergency": "Emergency Phone Number",
+    "qualificationStage": "Qualification Stage",
+    "feiNo": "FEI Number",
+    "fnNo": "FN Number",
+    "optional": "optional"
   },
   "verified": {
     "wait": "Please wait a second...",

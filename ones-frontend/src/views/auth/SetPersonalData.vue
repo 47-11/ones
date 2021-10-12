@@ -12,19 +12,27 @@
                             <error-message :error="error"/>
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
-                                <div class="col-span-12 sm:col-span-2">
-                                    <v-label>{{ $t("setPersonalData.salutation") }}</v-label>
-                                    <v-input type="text" class="w-full" @input="update('salutation', $event)" :disabled="inputsDisabled"/>
-                                </div>
-
-                                <div class="col-span-12 sm:col-span-5">
+                                <div class="col-span-12 sm:col-span-6">
                                     <v-label>{{ $t("setPersonalData.firstName") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('firstName', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
-                                <div class="col-span-12 sm:col-span-5">
+                                <div class="col-span-12 sm:col-span-6">
                                     <v-label>{{ $t("setPersonalData.lastName") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('lastName', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-6">
+                                    <v-label>
+                                        {{ $t("setPersonalData.birthName") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                    </v-label>
+                                    <v-input type="text" class="w-full" @input="update('birthName', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                                <div class="col-span-12 sm:col-span-6">
+                                    <v-label>{{ $t("setPersonalData.birthday") }}</v-label>
+                                    <v-input type="date" class="w-full" @input="update('birthday', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
 
@@ -69,13 +77,46 @@
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-6">
-                                    <v-label>{{ $t("setPersonalData.phoneNumberMobile") }}</v-label>
+                                    <v-label>
+                                        {{ $t("setPersonalData.phoneNumberMobile") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                    </v-label>
                                     <v-input type="text" class="w-full" @input="update('phoneNumberMobile', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
 
-                            <v-label>{{ $t("setPersonalData.birthday") }}</v-label>
-                            <v-input type="date" class="w-full" @input="update('birthday', $event)" :disabled="inputsDisabled"/>
+                            <div class="col-span-12 gap-4 mb-5">
+                                <v-label>{{ $t("setPersonalData.phoneNumberEmergency") }}</v-label>
+                                <v-input type="text" class="w-full" @input="update('phoneNumberEmergency', $event)" :disabled="inputsDisabled"/>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-4 mb-5">
+                                <div class="col-span-12 sm:col-span-4">
+                                    <v-label>{{ $t("setPersonalData.qualificationStage") }}</v-label>
+                                    <v-select @input="update('qualificationStage', $event)" :disabled="inputsDisabled" class="w-full">
+                                        <option value="0">{{ 0 }}</option>
+                                        <option value="1">{{ 1 }}</option>
+                                        <option value="2">{{ 2 }}</option>
+                                        <option value="3">{{ 3 }}</option>
+                                    </v-select>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-4">
+                                    <v-label>
+                                        {{ $t("setPersonalData.feiNo") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                    </v-label>
+                                    <v-input type="text" class="w-full" @input="update('feiNo', $event)" :disabled="inputsDisabled"/>
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-4">
+                                    <v-label>
+                                        {{ $t("setPersonalData.fnNo") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                    </v-label>
+                                    <v-input type="text" class="w-full" @input="update('fnNo', $event)" :disabled="inputsDisabled"/>
+                                </div>
+                            </div>
                         </div>
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <v-link to="logout">{{$t("setPersonalData.logout")}}</v-link>
@@ -149,17 +190,21 @@ import BadgeCircle from "@/components/BadgeCircle.vue";
     }
 })
 export default class SetPersonalData extends Vue {
-    salutation = "";
     firstName = "";
     lastName = "";
+    birthName = "";
     birthday = "";
     phoneNumber = "";
     phoneNumberMobile = "";
+    phoneNumberEmergency = "";
     street = "";
     houseNumber = "";
     zipCode = "";
     city = "";
     country = "";
+    qualificationStage = "";
+    feiNo = "";
+    fnNo = "";
 
     error = null;
     inputsDisabled = true;
@@ -168,19 +213,20 @@ export default class SetPersonalData extends Vue {
         this.inputsDisabled = false;
     }
 
-    get propertyNames(): string[] {
+    get requiredProperties(): string[] {
         return [
-            "salutation",
             "firstName",
             "lastName",
             "birthday",
-            "phoneNumber",
-            "phoneNumberMobile",
             "street",
             "houseNumber",
+            "phoneNumber",
+            "phoneNumberMobile",
+            "phoneNumberEmergency",
             "zipCode",
             "city",
-            "country"
+            "country",
+            "qualificationStage"
         ];
     }
 
@@ -193,17 +239,21 @@ export default class SetPersonalData extends Vue {
             this.assertValid();
 
             await vxm.user.setPersonalData({
-                salutation: this.salutation,
                 firstName: this.firstName,
                 lastName: this.lastName,
+                birthName: this.birthName,
                 birthday: this.birthday,
                 phoneNumber: this.phoneNumber,
                 phoneNumberMobile: this.phoneNumberMobile,
+                phoneNumberEmergency: this.phoneNumberEmergency,
                 street: this.street,
                 houseNumber: this.houseNumber,
                 zipCode: this.zipCode,
                 city: this.city,
-                country: this.country
+                country: this.country,
+                qualificationLevel: this.qualificationStage,
+                feiNumber: this.feiNo,
+                feNumber: this.fnNo
             });
         } catch (error) {
             this.error = error;
@@ -217,7 +267,7 @@ export default class SetPersonalData extends Vue {
     }
 
     private assertValid(): void {
-        for (const property of this.propertyNames) {
+        for (const property of this.requiredProperties) {
             if ((this[property as keyof this] as unknown as string).length === 0) {
                 throw new Error(this.$i18n.t("setPersonalData." + property).toString() + this.$i18n.t("setPersonalData.lengthNull").toString());
             }

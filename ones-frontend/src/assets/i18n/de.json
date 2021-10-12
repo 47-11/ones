@@ -85,7 +85,13 @@
     "country": "Land",
     "lengthNull": " ist leer.",
     "submit": "Speichern",
-    "logout": "Ausloggen"
+    "logout": "Ausloggen",
+    "birthName": "Geburtsname",
+    "phoneNumberEmergency": "Notfallnummer",
+    "qualificationStage": "Qualifikationsstufe",
+    "feiNo": "FEI Nummer",
+    "fnNo": "FN Nummer",
+    "optional": "optional"
   },
   "verified": {
     "wait": "Bitte warten...",

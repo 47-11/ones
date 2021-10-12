@@ -680,12 +680,6 @@ export interface PersonalDataDto {
      * @type {string}
      * @memberof PersonalDataDto
      */
-    salutation?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PersonalDataDto
-     */
     firstName?: string;
     /**
      * 
@@ -704,6 +698,12 @@ export interface PersonalDataDto {
      * @type {string}
      * @memberof PersonalDataDto
      */
+    birthName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
     phoneNumber?: string;
     /**
      * 
@@ -711,6 +711,12 @@ export interface PersonalDataDto {
      * @memberof PersonalDataDto
      */
     phoneNumberMobile?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    phoneNumberEmergency?: string;
     /**
      * 
      * @type {string}
@@ -741,6 +747,24 @@ export interface PersonalDataDto {
      * @memberof PersonalDataDto
      */
     country?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    qualificationLevel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    feiNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PersonalDataDto
+     */
+    feNumber?: string;
 }
 /**
  * 
