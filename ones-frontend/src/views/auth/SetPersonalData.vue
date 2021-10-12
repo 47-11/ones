@@ -23,7 +23,10 @@
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-4">
-                                    <v-label>{{ $t("setPersonalData.birthName") }}</v-label>
+                                    <v-label>
+                                        {{ $t("setPersonalData.birthName") }}
+                                        <label class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</label>
+                                    </v-label>
                                     <v-input type="text" class="w-full" @input="update('birthName', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
@@ -69,7 +72,10 @@
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-6">
-                                    <v-label>{{ $t("setPersonalData.phoneNumberMobile") }}</v-label>
+                                    <v-label>
+                                        {{ $t("setPersonalData.phoneNumberMobile") }}
+                                        <label class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</label>
+                                    </v-label>
                                     <v-input type="text" class="w-full" @input="update('phoneNumberMobile', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
@@ -91,12 +97,18 @@
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-4">
-                                    <v-label>{{ $t("setPersonalData.feiNo") }}</v-label>
+                                    <v-label>
+                                        {{ $t("setPersonalData.feiNo") }}
+                                        <label class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</label>
+                                    </v-label>
                                     <v-input type="text" class="w-full" @input="update('feiNo', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-4">
-                                    <v-label>{{ $t("setPersonalData.fnNo") }}</v-label>
+                                    <v-label>
+                                        {{ $t("setPersonalData.fnNo") }}
+                                        <label class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</label>
+                                    </v-label>
                                     <v-input type="text" class="w-full" @input="update('fnNo', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>

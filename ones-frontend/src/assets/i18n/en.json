@@ -109,7 +109,8 @@
     "phoneNumberEmergency": "Emergency Phone Number",
     "qualificationStage": "Qualification Stage",
     "feiNo": "FEI Number",
-    "fnNo": "FN Number"
+    "fnNo": "FN Number",
+    "optional": "optional"
   },
   "verified": {
     "wait": "Please wait a second...",

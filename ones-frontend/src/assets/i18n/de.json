@@ -90,7 +90,8 @@
     "phoneNumberEmergency": "Notfallnummer",
     "qualificationStage": "Qualifikationsstufe",
     "feiNo": "FEI Nummer",
-    "fnNo": "FN Nummer"
+    "fnNo": "FN Nummer",
+    "optional": "optional"
   },
   "verified": {
     "wait": "Bitte warten...",
