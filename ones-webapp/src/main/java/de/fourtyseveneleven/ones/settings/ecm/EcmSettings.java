@@ -2,8 +2,17 @@ package de.fourtyseveneleven.ones.settings.ecm;
 
 public class EcmSettings {
 
+    private String apiBaseUrl;
     private String apiUser;
     private String apiPassword;
+
+    public String getApiBaseUrl() {
+        return apiBaseUrl;
+    }
+
+    public void setApiBaseUrl(String apiBaseUrl) {
+        this.apiBaseUrl = apiBaseUrl;
+    }
 
     public String getApiUser() {
         return apiUser;
