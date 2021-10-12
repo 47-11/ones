@@ -8,6 +8,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import javax.mail.internet.MimeMessage;
+
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Service
@@ -15,14 +17,12 @@ public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
     private final String senderMailAddress;
-    private final String overrideRecipientMailAddress;
 
     public EmailServiceImpl(JavaMailSender javaMailSender, OnesSettings onesSettings) {
         this.javaMailSender = javaMailSender;
 
         final EmailSettings emailSettings = onesSettings.getMessage().getEmail();
         this.senderMailAddress = emailSettings.getSenderAddress();
-        this.overrideRecipientMailAddress = emailSettings.getOverrideRecipientAddress();
     }
 
     @Override
@@ -39,18 +39,9 @@ public class EmailServiceImpl implements EmailService {
                     new MimeMessageHelper(mimeMessage, true);
 
             mimeMessageHelper.setFrom(senderMailAddress);
-            mimeMessageHelper.setTo(getRecipient(recipient));
+            mimeMessageHelper.setTo(recipient);
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(plainTextMessage, htmlMessage);
         };
-    }
-
-    private String getRecipient(String recipient) {
-
-        if (isBlank(overrideRecipientMailAddress)) {
-            return recipient;
-        } else {
-            return overrideRecipientMailAddress;
-        }
     }
 }

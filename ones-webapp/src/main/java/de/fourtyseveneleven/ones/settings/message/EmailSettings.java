@@ -8,7 +8,6 @@ public class EmailSettings {
     private String password;
 
     private String senderAddress;
-    private String overrideRecipientAddress;
 
     public String getHost() {
         return host;
@@ -48,13 +47,5 @@ public class EmailSettings {
 
     public void setSenderAddress(String senderAddress) {
         this.senderAddress = senderAddress;
-    }
-
-    public String getOverrideRecipientAddress() {
-        return overrideRecipientAddress;
-    }
-
-    public void setOverrideRecipientAddress(String overrideRecipientAddress) {
-        this.overrideRecipientAddress = overrideRecipientAddress;
     }
 }
