@@ -5,7 +5,8 @@
     "logout": "Logout",
     "user": "User",
     "mail": "E-Mail",
-    "profile": "Profile"
+    "profile": "My Data",
+    "horses": "My Horses"
   },
   "pagination": {
     "back": "Back",
@@ -231,11 +232,11 @@
     "message": "Cannot reach the server. Are you offline?"
   },
   "profile": {
-    "title": "Profile",
+    "title": "My Data",
     "edit": "Edit"
   },
   "data": {
-    "user":{
+    "user": {
       "firstName": "First Name",
       "lastName": "Last Name",
       "birthday": "Birthday",
@@ -253,6 +254,17 @@
       "fnNo": "FN Number",
       "unset": "unset",
       "optional": "optional"
+    },
+    "horse": {
+      "name": "Name",
+      "gender": "Gender",
+      "breed": "Breed",
+      "color": "Color",
+      "yearOfBirth": "Year Of Birth",
+      "stockMeasure": "Stock measure"
     }
+  },
+  "horses": {
+    "title": "My Horses"
   }
 }

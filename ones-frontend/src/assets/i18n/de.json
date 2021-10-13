@@ -5,7 +5,8 @@
     "logout": "Ausloggen",
     "user": "Benutzer",
     "mail": "E-Mail",
-    "profile": "Profil"
+    "profile": "Meine Daten",
+    "horses": "Meine Pferde"
   },
   "pagination": {
     "back": "Zurück"
@@ -217,7 +218,7 @@
     "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
   },
   "profile": {
-    "title": "Profil",
+    "title": "Meine Daten",
     "edit": "Bearbeiten"
   },
   "data": {
@@ -239,6 +240,17 @@
       "fnNo": "FN Nummer",
       "unset": "nicht gesetzt",
       "optional": "optional"
+    },
+    "horse": {
+      "name": "Name",
+      "gender": "Geschlecht",
+      "breed": "Rasse",
+      "color": "Farbe",
+      "yearOfBirth": "Jahrgang",
+      "stockMeasure": "Stockmaß"
     }
+  },
+  "horses": {
+    "title": "Meine Pferde"
   }
 }

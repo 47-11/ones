@@ -2,8 +2,9 @@ import "@/assets/css/tailwind.css";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-    faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faPhone,
-    faTrailer
+    faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faMars, faPhone,
+    faTrailer,
+    faVenus
 } from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import axios from "axios";
@@ -35,7 +36,9 @@ library.add(
     faExternalLinkAlt,
     faMap,
     faGlobe,
-    faFlag
+    faFlag,
+    faMars,
+    faVenus
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
