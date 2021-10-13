@@ -622,6 +622,12 @@ export interface HorseDto {
      * @type {number}
      * @memberof HorseDto
      */
+    size?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof HorseDto
+     */
     yearOfBirth?: number;
     /**
      * 

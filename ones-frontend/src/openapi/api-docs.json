@@ -28,16 +28,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -48,8 +38,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -60,6 +50,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -91,16 +91,6 @@
           }
         ],
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -111,8 +101,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -123,6 +113,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -154,16 +154,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -174,8 +164,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -186,6 +176,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -224,16 +224,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -244,8 +234,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -256,6 +246,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -287,16 +287,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -307,8 +297,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -319,6 +309,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -360,16 +360,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -380,8 +370,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -392,6 +382,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -418,16 +418,6 @@
         ],
         "operationId": "getCurrentUser",
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -438,8 +428,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -450,6 +440,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -491,16 +491,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -511,8 +501,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -523,6 +513,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -559,16 +559,6 @@
           "required": true
         },
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -579,8 +569,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -591,6 +581,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -617,16 +617,6 @@
         ],
         "operationId": "getMyResults",
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -637,8 +627,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -649,6 +639,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -682,16 +682,6 @@
         ],
         "operationId": "getMyHorses",
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -702,8 +692,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -714,6 +704,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -858,16 +858,6 @@
           }
         ],
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -878,8 +868,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -890,6 +880,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -933,16 +933,6 @@
           }
         ],
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -953,8 +943,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -965,6 +955,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1008,16 +1008,6 @@
           }
         ],
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1028,8 +1018,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -1040,6 +1030,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1076,16 +1076,6 @@
         ],
         "operationId": "getAllRegions",
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1096,8 +1086,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -1108,6 +1098,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1144,16 +1144,6 @@
         ],
         "operationId": "getAllCategories",
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1164,8 +1154,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -1176,6 +1166,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1212,16 +1212,6 @@
         ],
         "operationId": "testConnection",
         "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorDto"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1232,8 +1222,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "*/*": {
                 "schema": {
@@ -1244,6 +1234,16 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1453,6 +1453,10 @@
           },
           "color": {
             "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
           },
           "yearOfBirth": {
             "type": "integer",
