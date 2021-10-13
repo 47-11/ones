@@ -16,6 +16,8 @@ public class HorseDto {
     private Gender gender;
     private String breed;
     private String color;
+    // In centimeters (cm)
+    private short size;
     private short yearOfBirth;
 
     private AddressDto stableAddress;
@@ -24,7 +26,7 @@ public class HorseDto {
     public HorseDto() {
     }
 
-    public HorseDto(UUID uuid, String passportNumber, String chipNumber, String name, Gender gender, String breed, String color, short yearOfBirth, AddressDto stableAddress, PersonDto owner) {
+    public HorseDto(UUID uuid, String passportNumber, String chipNumber, String name, Gender gender, String breed, String color, short size, short yearOfBirth, AddressDto stableAddress, PersonDto owner) {
         this.uuid = uuid;
         this.passportNumber = passportNumber;
         this.chipNumber = chipNumber;
@@ -32,6 +34,7 @@ public class HorseDto {
         this.gender = gender;
         this.breed = breed;
         this.color = color;
+        this.size = size;
         this.yearOfBirth = yearOfBirth;
         this.stableAddress = stableAddress;
         this.owner = owner;
@@ -91,6 +94,14 @@ public class HorseDto {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public short getSize() {
+        return size;
+    }
+
+    public void setSize(short size) {
+        this.size = size;
     }
 
     public short getYearOfBirth() {
