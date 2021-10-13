@@ -4,10 +4,10 @@ public class AddressDto {
 
     private String locationName;
     private String street;
+    private String houseNumber;
     private String zipCode;
     private String city;
     private String country;
-    private String gpsCoordinates;
 
     public String getLocationName() {
         return locationName;
@@ -23,6 +23,14 @@ public class AddressDto {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
     public String getZipCode() {
@@ -47,13 +55,5 @@ public class AddressDto {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getGpsCoordinates() {
-        return gpsCoordinates;
-    }
-
-    public void setGpsCoordinates(String gpsCoordinates) {
-        this.gpsCoordinates = gpsCoordinates;
     }
 }

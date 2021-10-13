@@ -3,7 +3,6 @@ package de.fourtyseveneleven.ones.user.service.impl;
 import de.fourtyseveneleven.ones.common.exception.ElementAlreadyPresentException;
 import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
 import de.fourtyseveneleven.ones.common.mapper.PersonDtoMapper;
-import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
@@ -11,7 +10,6 @@ import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerAp
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataContact;
 import de.fourtyseveneleven.ones.user.exception.RegistrationException;
 import de.fourtyseveneleven.ones.user.model.User;
-import de.fourtyseveneleven.ones.user.model.dto.PersonalDataDto;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.repository.UserRepository;
 import de.fourtyseveneleven.ones.user.service.EcmRegistrationService;
@@ -107,7 +105,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void setPersonalDataForCurrentUser(PersonalDataDto personalData) {
+    public void setPersonalDataForCurrentUser(UserDto personalData) {
 
         final User currentUser = getAuthenticatedUser();
         if (isNull(currentUser.getUuid())) {
@@ -117,7 +115,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private void setPersonalData(User user, PersonalDataDto personalData) {
+    private void setPersonalData(User user, UserDto personalData) {
 
         final UUID uuid = ecmRegistrationService.registerNewMember(user, personalData);
         user.setUuid(uuid);

@@ -8,9 +8,9 @@ import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount4Member;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContact;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
 import de.fourtyseveneleven.ones.user.exception.RegistrationException;
-import de.fourtyseveneleven.ones.user.mapper.PersonalDataDtoMapper;
+import de.fourtyseveneleven.ones.user.mapper.UserDtoMapper;
 import de.fourtyseveneleven.ones.user.model.User;
-import de.fourtyseveneleven.ones.user.model.dto.PersonalDataDto;
+import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.service.EcmRegistrationService;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +25,11 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 public class EcmRegistrationServiceImpl implements EcmRegistrationService {
 
     private final ApplicationAccountControllerApi applicationAccountControllerApi;
-    private final PersonalDataDtoMapper personalDataDtoMapper;
+    private final UserDtoMapper userDtoMapper;
 
-    public EcmRegistrationServiceImpl(ApplicationAccountControllerApi applicationAccountControllerApi, PersonalDataDtoMapper personalDataDtoMapper) {
+    public EcmRegistrationServiceImpl(ApplicationAccountControllerApi applicationAccountControllerApi, UserDtoMapper userDtoMapper) {
         this.applicationAccountControllerApi = applicationAccountControllerApi;
-        this.personalDataDtoMapper = personalDataDtoMapper;
+        this.userDtoMapper = userDtoMapper;
     }
 
     @Override
@@ -59,16 +59,16 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
     }
 
     @Override
-    public UUID registerNewMember(User user, PersonalDataDto personalData) {
+    public UUID registerNewMember(User user, UserDto personalData) {
 
         final RegisterAccount registerAccountRequest = buildRegisterAccountRequest(user, personalData);
         final RegisterResponce registerResponce = tryPostRegisterAccount(registerAccountRequest);
         return handleResponse(registerResponce, user);
     }
 
-    private RegisterAccount buildRegisterAccountRequest(User user, PersonalDataDto personalDataDto) {
+    private RegisterAccount buildRegisterAccountRequest(User user, UserDto personalData) {
 
-        final RegisterContact registerContact = personalDataDtoMapper.personalDataDtoToRegisterContact(personalDataDto);
+        final RegisterContact registerContact = userDtoMapper.userDtoToRegisterContact(personalData);
         registerContact.setEmail(user.getEmailAddress());
 
         final RegisterAccount registerAccountRequest = new RegisterAccount();

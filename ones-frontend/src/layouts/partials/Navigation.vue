@@ -11,6 +11,7 @@
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <nav-link to="/events">{{$t("navigation.events")}}</nav-link>
+                        <nav-link to="/profile">{{$t("navigation.profile")}}</nav-link>
                     </div>
                 </div>
 
@@ -57,6 +58,7 @@
         <div v-show="showMenu" class="sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
                 <responsive-nav-link to="/events">{{$t("navigation.events")}}</responsive-nav-link>
+                <responsive-nav-link to="/profile">{{$t("navigation.profile")}}</responsive-nav-link>
             </div>
 
             <!-- Responsive Settings Options -->
@@ -110,7 +112,9 @@ export default class Navigation extends Vue {
     }
 
     get userName(): string {
-        return vxm.user.current?.name || "";
+        const firstName = vxm.user.current?.firstName || "";
+        const lastName = vxm.user.current?.lastName || "";
+        return `${firstName} ${lastName}`.trim();
     }
 }
 </script>

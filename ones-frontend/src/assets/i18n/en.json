@@ -4,7 +4,8 @@
     "events": "Events",
     "logout": "Logout",
     "user": "User",
-    "mail": "E-Mail"
+    "mail": "E-Mail",
+    "profile": "Profile"
   },
   "pagination": {
     "back": "Back",
@@ -60,17 +61,6 @@
     "setPersonalData": {
       "title": "Personal data",
       "description": "Please complete your personal data to continue.",
-      "salutation": "Salutation",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "birthday": "Birthday",
-      "phoneNumber": "Phone number",
-      "phoneNumberMobile": "Cellphone number",
-      "street": "Street",
-      "houseNumber": "House Number",
-      "zipCode": "Zip Code",
-      "city": "City",
-      "country": "Country",
       "lengthNull": " is not set.",
       "submit": "Save",
       "logout": "Logout"
@@ -92,25 +82,9 @@
     "title": "Set personal data",
     "description": "To continue, please type in your data.",
     "salutation": "Salutation",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "birthday": "Birthday",
-    "phoneNumber": "Landline",
-    "phoneNumberMobile": "Cellphone",
-    "street": "Street",
-    "houseNumber": "House Number",
-    "zipCode": "Zip Code",
-    "city": "City",
-    "country": "Country",
     "lengthNull": " is empty",
     "submit": "Save",
-    "logout": "Log out",
-    "birthName": "Birth Name",
-    "phoneNumberEmergency": "Emergency Phone Number",
-    "qualificationStage": "Qualification Stage",
-    "feiNo": "FEI Number",
-    "fnNo": "FN Number",
-    "optional": "optional"
+    "logout": "Log out"
   },
   "verified": {
     "wait": "Please wait a second...",
@@ -255,5 +229,30 @@
   "offlineWarning": {
     "noConnection": "No connection.",
     "message": "Cannot reach the server. Are you offline?"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit"
+  },
+  "data": {
+    "user":{
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "birthday": "Birthday",
+      "phoneNumber": "Phone number",
+      "phoneNumberMobile": "Cellphone number",
+      "street": "Street",
+      "houseNumber": "House Number",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "country": "Country",
+      "birthName": "Birth Name",
+      "phoneNumberEmergency": "Emergency Phone Number",
+      "qualificationStage": "Qualification Stage",
+      "feiNo": "FEI Number",
+      "fnNo": "FN Number",
+      "unset": "unset",
+      "optional": "optional"
+    }
   }
 }

@@ -1,37 +1,23 @@
 import "@/assets/css/tailwind.css";
+import ErrorMessage from "@/components/ErrorMessage.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-    faAt,
-    faChevronLeft,
-    faFilePdf,
-    faPhone,
-    faTrailer,
-    faHorseHead,
-    faExclamationTriangle,
-    faChevronRight,
-    faChevronDown,
-    faChevronUp,
-    faExternalLinkAlt,
-    faMap,
-    faGlobe,
-    faFlag
+    faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faPhone,
+    faTrailer
 } from "@fortawesome/free-solid-svg-icons/";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import ErrorMessage from "@/components/ErrorMessage.vue";
+import axios from "axios";
+import VCalendar from "v-calendar";
+import vToolTip from "v-tooltip";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
+import VueLoading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 import App from "./App.vue";
-
+import { UserDto } from "./openapi/generated";
 import "./registerServiceWorker";
 import router from "./router";
 import store, { vxm } from "./store";
-import VueLoading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
-import axios from "axios";
-import vToolTip from "v-tooltip";
-import { UserDto } from "./openapi/generated";
-
-import VCalendar from "v-calendar";
 
 Vue.config.productionTip = false;
 
@@ -75,6 +61,7 @@ const i18n = new VueI18n({
     silentFallbackWarn: true
 });
 
+vxm.app.checkOnlineState();
 window.addEventListener("online", () => vxm.app.checkOnlineState());
 window.addEventListener("offline", () => vxm.app.checkOnlineState());
 
@@ -99,7 +86,7 @@ axios.interceptors.response.use(res => {
 });
 
 vxm.user.$watch("current", (current: UserDto | null) => {
-    if (current && !current.isPersonalDataKnown && router.currentRoute.path !== "/set-personal-data") {
+    if (current && current.uuid === null && router.currentRoute.path !== "/set-personal-data") {
         router.push("/set-personal-data");
     }
 });

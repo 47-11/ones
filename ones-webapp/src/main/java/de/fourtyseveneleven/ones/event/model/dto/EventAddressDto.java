@@ -1,8 +1,8 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
-import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
+import de.fourtyseveneleven.ones.common.model.dto.GpsAddressDto;
 
-public class EventAddressDto extends AddressDto {
+public class EventAddressDto extends GpsAddressDto {
 
     private String type;
 

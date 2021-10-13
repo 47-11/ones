@@ -13,54 +13,54 @@
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-6">
-                                    <v-label>{{ $t("setPersonalData.firstName") }}</v-label>
+                                    <v-label>{{ $t("data.user.firstName") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('firstName', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-6">
-                                    <v-label>{{ $t("setPersonalData.lastName") }}</v-label>
+                                    <v-label>{{ $t("data.user.lastName") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('lastName', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-6">
                                     <v-label>
-                                        {{ $t("setPersonalData.birthName") }}
-                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                        {{ $t("data.user.birthName") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('data.user.optional') }}</span>
                                     </v-label>
                                     <v-input type="text" class="w-full" @input="update('birthName', $event)" :disabled="inputsDisabled"/>
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
-                                    <v-label>{{ $t("setPersonalData.birthday") }}</v-label>
+                                    <v-label>{{ $t("data.user.birthday") }}</v-label>
                                     <v-input type="date" class="w-full" @input="update('birthday', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-9">
-                                    <v-label>{{ $t("setPersonalData.street") }}</v-label>
+                                    <v-label>{{ $t("data.user.street") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('street', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-3">
-                                    <v-label>{{ $t("setPersonalData.houseNumber") }}</v-label>
+                                    <v-label>{{ $t("data.user.houseNumber") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('houseNumber', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-3">
-                                    <v-label>{{ $t("setPersonalData.zipCode") }}</v-label>
+                                    <v-label>{{ $t("data.user.zipCode") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('zipCode', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-5">
-                                    <v-label>{{ $t("setPersonalData.city") }}</v-label>
+                                    <v-label>{{ $t("data.user.city") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('city', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-4">
-                                    <v-label>{{ $t("setPersonalData.country") }}</v-label>
+                                    <v-label>{{ $t("data.user.country") }}</v-label>
                                     <v-select @input="update('country', $event)" :disabled="inputsDisabled" class="w-full">
                                         <option value="DE">{{ $t("shared.countries.germany") }}</option>
                                         <option value="NL">{{ $t("shared.countries.netherlands") }}</option>
@@ -72,27 +72,27 @@
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-6">
-                                    <v-label>{{ $t("setPersonalData.phoneNumber") }}</v-label>
+                                    <v-label>{{ $t("data.user.phoneNumber") }}</v-label>
                                     <v-input type="text" class="w-full" @input="update('phoneNumber', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-6">
                                     <v-label>
-                                        {{ $t("setPersonalData.phoneNumberMobile") }}
-                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                        {{ $t("data.user.phoneNumberMobile") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('data.user.optional') }}</span>
                                     </v-label>
                                     <v-input type="text" class="w-full" @input="update('phoneNumberMobile', $event)" :disabled="inputsDisabled"/>
                                 </div>
                             </div>
 
                             <div class="col-span-12 gap-4 mb-5">
-                                <v-label>{{ $t("setPersonalData.phoneNumberEmergency") }}</v-label>
+                                <v-label>{{ $t("data.user.phoneNumberEmergency") }}</v-label>
                                 <v-input type="text" class="w-full" @input="update('phoneNumberEmergency', $event)" :disabled="inputsDisabled"/>
                             </div>
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-4">
-                                    <v-label>{{ $t("setPersonalData.qualificationStage") }}</v-label>
+                                    <v-label>{{ $t("data.user.qualificationStage") }}</v-label>
                                     <v-select @input="update('qualificationStage', $event)" :disabled="inputsDisabled" class="w-full">
                                         <option value="0">{{ 0 }}</option>
                                         <option value="1">{{ 1 }}</option>
@@ -103,16 +103,16 @@
 
                                 <div class="col-span-12 sm:col-span-4">
                                     <v-label>
-                                        {{ $t("setPersonalData.feiNo") }}
-                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                        {{ $t("data.user.feiNo") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('data.user.optional') }}</span>
                                     </v-label>
                                     <v-input type="text" class="w-full" @input="update('feiNo', $event)" :disabled="inputsDisabled"/>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-4">
                                     <v-label>
-                                        {{ $t("setPersonalData.fnNo") }}
-                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('setPersonalData.optional') }}</span>
+                                        {{ $t("data.user.fnNo") }}
+                                        <span class="text-xs font-thin text-gray-400 float-right">{{ $t('data.user.optional') }}</span>
                                     </v-label>
                                     <v-input type="text" class="w-full" @input="update('fnNo', $event)" :disabled="inputsDisabled"/>
                                 </div>
@@ -246,14 +246,16 @@ export default class SetPersonalData extends Vue {
                 phoneNumber: this.phoneNumber,
                 phoneNumberMobile: this.phoneNumberMobile,
                 phoneNumberEmergency: this.phoneNumberEmergency,
-                street: this.street,
-                houseNumber: this.houseNumber,
-                zipCode: this.zipCode,
-                city: this.city,
-                country: this.country,
+                address: {
+                    street: this.street,
+                    houseNumber: this.houseNumber,
+                    zipCode: this.zipCode,
+                    city: this.city,
+                    country: this.country
+                },
                 qualificationLevel: this.qualificationStage,
                 feiNumber: this.feiNo,
-                feNumber: this.fnNo
+                fnNumber: this.fnNo
             });
         } catch (error) {
             this.error = error;
@@ -269,7 +271,7 @@ export default class SetPersonalData extends Vue {
     private assertValid(): void {
         for (const property of this.requiredProperties) {
             if ((this[property as keyof this] as unknown as string).length === 0) {
-                throw new Error(this.$i18n.t("setPersonalData." + property).toString() + this.$i18n.t("setPersonalData.lengthNull").toString());
+                throw new Error(this.$i18n.t("data.user." + property).toString() + this.$i18n.t("setPersonalData.lengthNull").toString());
             }
         }
     }
