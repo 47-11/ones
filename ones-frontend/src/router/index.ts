@@ -6,6 +6,7 @@ import Verified from "@/views/auth/Verified.vue";
 import SignUp from "@/views/contests/SignUp.vue";
 import EventDetail from "@/views/events/Detail.vue";
 import EventsIndex from "@/views/events/Index.vue";
+import ProfileIndex from "@/views/profile/Index.vue";
 import Vue from "vue";
 import VueRouter, { Route, RouteConfig } from "vue-router";
 import Login from "../views/auth/Login.vue";
@@ -61,6 +62,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/set-personal-data/",
         component: SetPersonalData
+    },
+    {
+        path: "/profile",
+        component: ProfileIndex
     }
 ];
 

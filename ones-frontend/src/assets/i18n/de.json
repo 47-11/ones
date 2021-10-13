@@ -4,7 +4,8 @@
     "events": "Events",
     "logout": "Ausloggen",
     "user": "Benutzer",
-    "mail": "E-Mail"
+    "mail": "E-Mail",
+    "profile": "Profil"
   },
   "pagination": {
     "back": "Zurück"
@@ -72,26 +73,9 @@
   "setPersonalData": {
     "title": "Daten aktualisieren",
     "description": "Um fortzufahren, vervollständigen Sie bitte Ihre Daten.",
-    "salutation": "Anrede",
-    "firstName": "Vorname",
-    "lastName": "Nachname",
-    "birthday": "Geburtstag",
-    "phoneNumber": "Telefon-Nr.",
-    "phoneNumberMobile": "Handy-Nr.",
-    "street": "Straße",
-    "houseNumber": "Haus-Nr.",
-    "zipCode": "Postleitzahl",
-    "city": "Stadt",
-    "country": "Land",
     "lengthNull": " ist leer.",
     "submit": "Speichern",
-    "logout": "Ausloggen",
-    "birthName": "Geburtsname",
-    "phoneNumberEmergency": "Notfallnummer",
-    "qualificationStage": "Qualifikationsstufe",
-    "feiNo": "FEI Nummer",
-    "fnNo": "FN Nummer",
-    "optional": "optional"
+    "logout": "Ausloggen"
   },
   "verified": {
     "wait": "Bitte warten...",
@@ -231,5 +215,30 @@
   "offlineWarning": {
     "noConnection": "Keine Verbindung.",
     "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
+  },
+  "profile": {
+    "title": "Profil",
+    "edit": "Bearbeiten"
+  },
+  "data": {
+    "user": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "birthday": "Geburtstag",
+      "phoneNumber": "Telefon-Nr.",
+      "phoneNumberMobile": "Handy-Nr.",
+      "street": "Straße",
+      "houseNumber": "Haus-Nr.",
+      "zipCode": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land",
+      "birthName": "Geburtsname",
+      "phoneNumberEmergency": "Notfallnummer",
+      "qualificationStage": "Qualifikationsstufe",
+      "feiNo": "FEI Nummer",
+      "fnNo": "FN Nummer",
+      "unset": "nicht gesetzt",
+      "optional": "optional"
+    }
   }
 }
