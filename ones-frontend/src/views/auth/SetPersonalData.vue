@@ -251,11 +251,11 @@ export default class SetPersonalData extends Vue {
                     houseNumber: this.houseNumber,
                     zipCode: this.zipCode,
                     city: this.city,
-                  country: this.country
+                    country: this.country
                 },
                 qualificationLevel: this.qualificationStage,
                 feiNumber: this.feiNo,
-                feNumber: this.fnNo
+                fnNumber: this.fnNo
             });
         } catch (error) {
             this.error = error;
