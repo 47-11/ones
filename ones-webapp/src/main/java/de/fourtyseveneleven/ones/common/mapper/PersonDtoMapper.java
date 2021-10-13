@@ -14,10 +14,6 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {CommonMapper.class})
 public abstract class PersonDtoMapper {
 
-    @Autowired
-    protected MasterdataContactControllerApi masterdataContactControllerApi;
-
-
     @Mapping(source = "addresses", target = "address")
     @Mapping(source = "forename", target = "firstName")
     @Mapping(source = "surname", target = "lastName")
