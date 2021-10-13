@@ -21,6 +21,9 @@ public class UserDto extends PersonDto {
     private String birthName;
     private LocalDate birthday;
 
+    public UserDto() {
+    }
+
     public UserDto(String emailAddress) {
         super(emailAddress);
     }
