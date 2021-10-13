@@ -586,14 +586,66 @@ export interface HorseDto {
      * @type {string}
      * @memberof HorseDto
      */
+    passportNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
+    chipNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
     name?: string;
     /**
      * 
      * @type {string}
      * @memberof HorseDto
      */
-    lifeNumber?: string;
+    gender?: HorseDtoGenderEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
+    breed?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
+    color?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof HorseDto
+     */
+    yearOfBirth?: number;
+    /**
+     * 
+     * @type {AddressDto}
+     * @memberof HorseDto
+     */
+    stableAddress?: AddressDto;
+    /**
+     * 
+     * @type {PersonDto}
+     * @memberof HorseDto
+     */
+    owner?: PersonDto;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum HorseDtoGenderEnum {
+    Female = 'FEMALE',
+    Male = 'MALE'
+}
+
 /**
  * 
  * @export
@@ -760,13 +812,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
 }
 /**
  * 
