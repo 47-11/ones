@@ -261,7 +261,8 @@
       "breed": "Breed",
       "color": "Color",
       "yearOfBirth": "Year Of Birth",
-      "stockMeasure": "Stock measure"
+      "stockMeasure": "Stock measure",
+      "sizeUnit": "cm"
     }
   },
   "horses": {

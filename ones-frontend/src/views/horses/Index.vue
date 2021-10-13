@@ -26,7 +26,7 @@
                         <v-td>{{horse.breed}}</v-td>
                         <v-td>{{horse.color}}</v-td>
                         <v-td>{{horse.yearOfBirth}}</v-td>
-                        <v-td>{{horse.size}}</v-td>
+                        <v-td>{{horse.size}} {{ $t("data.horse.sizeUnit") }}</v-td>
                     </tr>
                 </tbody>
             </v-table>
@@ -35,8 +35,6 @@
 </template>
 
 <script lang="ts">
-import { HorseDtoGenderEnum } from "@/openapi/generated";
-
 import { Component, Vue } from "vue-property-decorator";
 import PageHeader from "@/components/PageHeader.vue";
 import Card from "@/components/Card.vue";
