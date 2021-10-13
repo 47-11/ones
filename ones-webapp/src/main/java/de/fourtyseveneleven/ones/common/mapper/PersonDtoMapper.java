@@ -29,6 +29,5 @@ public abstract class PersonDtoMapper {
     }
 
     @Mapping(source = "zipcodeCode", target = "zipCode")
-    @Mapping(source = "countryCode", target = "country")
     public abstract AddressDto masterdataContactAddressToAddressDto(MasterdataContactAddress masterdataContactAddress);
 }
