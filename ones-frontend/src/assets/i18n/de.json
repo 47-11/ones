@@ -247,11 +247,18 @@
       "breed": "Rasse",
       "color": "Farbe",
       "yearOfBirth": "Jahrgang",
-      "stockMeasure": "Stockmaß",
-      "sizeUnit": "cm"
+      "size": "Stockmaß",
+      "sizeUnit": "cm",
+      "passportNumber": "Equidenpass Nr.",
+      "chipNumber": "Chip Nr.",
+      "stableAddress": "Stall Adresse",
+      "owner": "Besitzer"
     }
   },
   "horses": {
-    "title": "Meine Pferde"
+    "title": "Meine Pferde",
+    "modal": {
+      "close": "Schließen"
+    }
   }
 }

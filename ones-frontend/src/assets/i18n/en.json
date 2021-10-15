@@ -261,11 +261,18 @@
       "breed": "Breed",
       "color": "Color",
       "yearOfBirth": "Year Of Birth",
-      "stockMeasure": "Stock measure",
-      "sizeUnit": "cm"
+      "size": "Stock measure",
+      "sizeUnit": "cm",
+      "passportNumber": "Equine Passport No",
+      "chipNumber": "Chip No",
+      "stableAddress": "Stable address",
+      "owner": "Owner"
     }
   },
   "horses": {
-    "title": "My Horses"
+    "title": "My Horses",
+    "modal": {
+      "close": "Close"
+    }
   }
 }

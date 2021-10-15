@@ -13,7 +13,7 @@
                     <v-th>{{ $t('data.horse.breed') }}</v-th>
                     <v-th>{{ $t('data.horse.color') }}</v-th>
                     <v-th>{{ $t('data.horse.yearOfBirth') }}</v-th>
-                    <v-th>{{ $t('data.horse.stockMeasure') }}</v-th>
+                    <v-th>{{ $t('data.horse.size') }}</v-th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -31,6 +31,22 @@
                 </tbody>
             </v-table>
         </div>
+        <modal v-model="showModal" @cancel="cancel" :closeText="$i18n.t('horses.modal.close')" v-if="selectedHorse">
+            <template v-slot:title>{{ selectedHorse.name }}</template>
+            <div>
+                <div v-for="prop in horseProperties" :key="prop" class="flex">
+                    <span>{{$t('data.horse.' + prop)}}: </span>
+
+                    <span class="flex-grow text-right ml-8">
+                        <span v-if="prop === 'gender'">
+                            <font-awesome-icon :icon="'mars'" v-if="selectedHorse.gender === 'MALE'"></font-awesome-icon>
+                            <font-awesome-icon :icon="'venus'" v-if="selectedHorse.gender === 'FEMALE'"></font-awesome-icon>
+                        </span>
+                        <span v-else>{{ selectedHorse[prop] }}</span>
+                    </span>
+                </div>
+            </div>
+        </modal>
     </app-layout>
 </template>
 
@@ -49,7 +65,8 @@ import VTh from "@/components/table/VTh.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
 import { vxm } from "@/store";
-import { HorseDto } from "@/openapi/generated/api";
+import Modal from "@/layouts/Modal.vue";
+import { HorseDto } from "@/openapi/generated";
 
 @Component({
     components: {
@@ -64,18 +81,41 @@ import { HorseDto } from "@/openapi/generated/api";
         VSelect,
         VTable,
         VTd,
-        VTh
+        VTh,
+        Modal
     }
 })
 export default class Profile extends Vue {
     horses = vxm.horses;
+    showModal = false;
+    selectedHorse: HorseDto | null = null;
 
     mounted(): void {
         vxm.horses.fetch();
     }
 
+    get horseProperties(): Array<keyof HorseDto> {
+        return [
+            "name",
+            "passportNumber",
+            "chipNumber",
+            "gender",
+            "breed",
+            "color",
+            "yearOfBirth",
+            "size",
+            "stableAddress",
+            "owner"
+        ];
+    }
+
     public details(horse: HorseDto): void {
-        alert(`${horse.name} clicked`);
+        this.selectedHorse = horse;
+        this.showModal = true;
+    }
+
+    public cancel(close: () => void): void {
+        close();
     }
 }
 </script>

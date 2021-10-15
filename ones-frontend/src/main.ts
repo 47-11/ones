@@ -3,6 +3,7 @@ import ErrorMessage from "@/components/ErrorMessage.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
     faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faMars, faPhone,
+    faTimes,
     faTrailer,
     faVenus
 } from "@fortawesome/free-solid-svg-icons/";
@@ -11,6 +12,7 @@ import axios from "axios";
 import VCalendar from "v-calendar";
 import vToolTip from "v-tooltip";
 import Vue from "vue";
+import vfmPlugin from "vue-final-modal";
 import VueI18n from "vue-i18n";
 import VueLoading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
@@ -38,7 +40,8 @@ library.add(
     faGlobe,
     faFlag,
     faMars,
-    faVenus
+    faVenus,
+    faTimes
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
@@ -53,6 +56,7 @@ Vue.use(VueLoading, {
 });
 
 Vue.use(VCalendar);
+Vue.use(vfmPlugin());
 
 const i18n = new VueI18n({
     locale: navigator.language,
