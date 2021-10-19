@@ -235,24 +235,27 @@
     "message": "Cannot reach the server. Are you offline?"
   },
   "profile": {
+    "title": "Profile",
+    "edit": "Edit",
+    "personalData": "Personal Data",
+    "contactInfo": "Contact Info",
+    "otherData": "Other Data",
     "title": "My Data",
     "edit": "Edit"
   },
   "data": {
+    "user":{
+      "vddNumber": "VDD No.",
     "user": {
       "firstName": "First Name",
       "lastName": "Last Name",
       "birthday": "Birthday",
       "phoneNumber": "Phone number",
       "phoneNumberMobile": "Cellphone number",
-      "street": "Street",
-      "houseNumber": "House Number",
-      "zipCode": "Zip Code",
-      "city": "City",
-      "country": "Country",
+      "address": "Address",
       "birthName": "Birth Name",
       "phoneNumberEmergency": "Emergency Phone Number",
-      "qualificationStage": "Qualification Stage",
+      "qualificationLevel": "Qualification Level",
       "feiNo": "FEI Number",
       "fnNo": "FN Number",
       "unset": "unset",

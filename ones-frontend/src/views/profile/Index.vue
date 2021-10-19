@@ -1,16 +1,23 @@
 <template>
     <app-layout>
         <div class="max-w-6xl m-auto py-12">
-            <div class="flex items-start">
+            <div class="flex items-start mx-4 lg:mx-0">
                 <page-header>{{ $t("profile.title") }}</page-header>
                 <v-button class="ml-auto" v-if="user">{{$t('profile.edit')}}</v-button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6 mx-4" v-if="user">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6 mx-4 lg:mx-0" v-if="user">
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl font-bold text-gray-700">{{$t('profile.personalData')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
                         <table class="my-3">
+                            <tr>
+                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.vddNumber')}}</th>
+                                <td class="text-left px-5 py-1">
+                                    <span v-if="user.vddNumber">{{user.vddNumber}}</span>
+                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                                </td>
+                            </tr>
                             <tr>
                                 <th class="text-left px-5 py-1 align-top">{{$t('data.user.firstName')}}</th>
                                 <td class="text-left px-5 py-1">
@@ -82,9 +89,9 @@
                     <card class="mt-3 overflow-x-hidden">
                         <table class="my-3">
                             <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.qualificationStage')}}</th>
+                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.qualificationLevel')}}</th>
                                 <td class="text-left px-5 py-1">
-                                    <span v-if="user.qualificationStage">{{user.qualificationStage}}</span>
+                                    <span v-if="user.qualificationLevel || user.qualificationLevel == 0">{{user.qualificationLevel}}</span>
                                     <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
                                 </td>
                             </tr>

@@ -231,6 +231,7 @@
   },
   "data": {
     "user": {
+      "vddNumber": "VDD Nummer",
       "firstName": "Vorname",
       "lastName": "Nachname",
       "birthday": "Geburtstag",
@@ -239,7 +240,7 @@
       "address": "Adresse",
       "birthName": "Geburtsname",
       "phoneNumberEmergency": "Notfallnummer",
-      "qualificationStage": "Qualifikationsstufe",
+      "qualificationLevel": "Qualifikationsstufe",
       "feiNo": "FEI Nummer",
       "fnNo": "FN Nummer",
       "unset": "nicht gesetzt",
