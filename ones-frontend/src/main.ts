@@ -20,6 +20,7 @@ import App from "./App.vue";
 import { UserDto } from "./openapi/generated";
 import "./registerServiceWorker";
 import router from "./router";
+import ShowHorse from "@/views/horses/modals/ShowHorse.vue";
 import store, { vxm } from "./store";
 
 Vue.config.productionTip = false;
@@ -46,6 +47,8 @@ library.add(
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("error-message", ErrorMessage);
+
+Vue.component("ShowHorse", ShowHorse);
 
 Vue.use(vToolTip);
 Vue.use(VueI18n);

@@ -256,9 +256,10 @@
     }
   },
   "horses": {
-    "title": "Meine Pferde",
-    "modal": {
-      "close": "Schließen"
-    }
+    "title": "Meine Pferde"
+  },
+  "modal": {
+    "close": "Schließen",
+    "edit": "Bearbeiten"
   }
 }

@@ -17,36 +17,20 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr v-for="horse in horses.list" :key="horse.uuid" v-on:click="details(horse)" class="cursor-pointer">
-                        <v-td>{{horse.name}}</v-td>
-                        <v-td>
-                            <font-awesome-icon :icon="'mars'" v-if="horse.gender === 'MALE'"></font-awesome-icon>
-                            <font-awesome-icon :icon="'venus'" v-if="horse.gender === 'FEMALE'"></font-awesome-icon>
-                        </v-td>
-                        <v-td>{{horse.breed}}</v-td>
-                        <v-td>{{horse.color}}</v-td>
-                        <v-td>{{horse.yearOfBirth}}</v-td>
-                        <v-td>{{horse.size}} {{ $t("data.horse.sizeUnit") }}</v-td>
-                    </tr>
+                <tr v-for="horse in horses.list" :key="horse.uuid" v-on:click="details(horse)" class="cursor-pointer">
+                    <v-td>{{ horse.name }}</v-td>
+                    <v-td>
+                        <font-awesome-icon :icon="'mars'" v-if="horse.gender === 'MALE'"></font-awesome-icon>
+                        <font-awesome-icon :icon="'venus'" v-if="horse.gender === 'FEMALE'"></font-awesome-icon>
+                    </v-td>
+                    <v-td>{{ horse.breed }}</v-td>
+                    <v-td>{{ horse.color }}</v-td>
+                    <v-td>{{ horse.yearOfBirth }}</v-td>
+                    <v-td>{{ horse.size }} {{ $t("data.horse.sizeUnit") }}</v-td>
+                </tr>
                 </tbody>
             </v-table>
         </div>
-        <modal v-model="showModal" @cancel="cancel" :closeText="$i18n.t('horses.modal.close')" v-if="selectedHorse">
-            <template v-slot:title>{{ selectedHorse.name }}</template>
-            <div>
-                <div v-for="prop in horseProperties" :key="prop" class="flex">
-                    <span>{{$t('data.horse.' + prop)}}: </span>
-
-                    <span class="flex-grow text-right ml-8">
-                        <span v-if="prop === 'gender'">
-                            <font-awesome-icon :icon="'mars'" v-if="selectedHorse.gender === 'MALE'"></font-awesome-icon>
-                            <font-awesome-icon :icon="'venus'" v-if="selectedHorse.gender === 'FEMALE'"></font-awesome-icon>
-                        </span>
-                        <span v-else>{{ selectedHorse[prop] }}</span>
-                    </span>
-                </div>
-            </div>
-        </modal>
     </app-layout>
 </template>
 
@@ -87,35 +71,20 @@ import { HorseDto } from "@/openapi/generated";
 })
 export default class Profile extends Vue {
     horses = vxm.horses;
-    showModal = false;
-    selectedHorse: HorseDto | null = null;
 
     mounted(): void {
         vxm.horses.fetch();
     }
 
-    get horseProperties(): Array<keyof HorseDto> {
-        return [
-            "name",
-            "passportNumber",
-            "chipNumber",
-            "gender",
-            "breed",
-            "color",
-            "yearOfBirth",
-            "size",
-            "stableAddress",
-            "owner"
-        ];
-    }
-
     public details(horse: HorseDto): void {
-        this.selectedHorse = horse;
-        this.showModal = true;
+        this.$vfm.show({
+            component: "ShowHorse",
+            bind: { horse: horse }
+        });
     }
 
-    public cancel(close: () => void): void {
-        close();
+    public cancel(): void {
+        this.$vfm.hide("show-selected-horse");
     }
 }
 </script>

@@ -1,84 +1,36 @@
 <template>
     <vue-final-modal
-            v-slot="{ params, close }"
-            v-bind="$attrs"
-            classes="modal-container"
-            content-class="modal-content"
-            v-on="$listeners"
+        v-slot="{ params }"
+        v-bind="$attrs"
+        classes="modal-container"
+        content-class="modal-content"
+        v-on="$listeners"
     >
-    <span class="modal__title">
-      <slot name="title"></slot>
-    </span>
-        <div class="modal__content">
-            <slot v-bind:params="params"></slot>
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-10 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-all transform">
+                <div class="absolute inset-0 bg-gray-500 dark:bg-black opacity-75"></div>
+            </div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="max-w-3xl inline-block w-full align-bottom bg-white dark:bg-gray-800 rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full">
+                <slot v-bind:params="params"></slot>
+            </div>
         </div>
-        <div class="modal__action">
-            <v-button @click.native="$emit('cancel', close)">{{ closeText }}</v-button>
-        </div>
-        <button class="modal__close" @click="close">
-            <font-awesome-icon :icon="'times'"></font-awesome-icon>
-        </button>
     </vue-final-modal>
 </template>
 
-<style scoped>
-::v-deep .modal-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-::v-deep .modal-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    max-height: 90%;
-    margin: 0 1rem;
-    padding: 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.25rem;
-    background: #fff;
-    min-width: 30%
-}
-.modal__title {
-    margin: 0 2rem 0 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-.modal__content {
-    flex-grow: 1;
-    overflow-y: auto;
-}
-.modal__action {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    padding: 1rem 0 0;
-}
-.modal__close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-}
-</style>
-
-<style scoped>
-  .dark-mode div::v-deep .modal-content {
-      border-color: #2d3748;
-      background-color: #1a202c;
-  }
-</style>
-
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import VButton from "@/components/VButton.vue";
+import Card from "@/components/Card.vue";
 
 @Component({
     components: {
+        Card,
         VButton
     }
 })
 export default class Modal extends Vue {
-    @Prop() private closeText!: string;
 }
 </script>

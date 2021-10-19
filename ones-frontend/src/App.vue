@@ -10,6 +10,7 @@
             </div>
         </div>
         <router-view/>
+        <modals-container/>
     </div>
 </template>
 

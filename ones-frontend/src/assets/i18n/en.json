@@ -270,9 +270,10 @@
     }
   },
   "horses": {
-    "title": "My Horses",
-    "modal": {
-      "close": "Close"
-    }
+    "title": "My Horses"
+  },
+  "modal": {
+    "close": "Close",
+    "edit": "Edit"
   }
 }
