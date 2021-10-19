@@ -4,6 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -47,5 +49,10 @@ public interface CommonMapper {
         } else {
             return UUID.fromString(asText);
         }
+    }
+
+    default LocalDate map(OffsetDateTime offsetDateTime) {
+
+        return LocalDate.from(offsetDateTime);
     }
 }
