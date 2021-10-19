@@ -2,13 +2,13 @@ package de.fourtyseveneleven.ones.user.service.impl;
 
 import de.fourtyseveneleven.ones.common.exception.ElementAlreadyPresentException;
 import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
-import de.fourtyseveneleven.ones.common.mapper.PersonDtoMapper;
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataContact;
 import de.fourtyseveneleven.ones.user.exception.RegistrationException;
+import de.fourtyseveneleven.ones.user.mapper.UserDtoMapper;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.repository.UserRepository;
@@ -30,13 +30,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final MasterdataContactControllerApi masterdataContactControllerApi;
-    private final PersonDtoMapper personDtoMapper;
+    private final UserDtoMapper userDtoMapper;
     private final EcmRegistrationService ecmRegistrationService;
 
-    public UserServiceImpl(UserRepository userRepository, MasterdataContactControllerApi masterdataContactControllerApi, ApplicationAccountControllerApi applicationAccountControllerApi, PersonDtoMapper personDtoMapper, EcmRegistrationService ecmRegistrationService) {
+    public UserServiceImpl(UserRepository userRepository, MasterdataContactControllerApi masterdataContactControllerApi, ApplicationAccountControllerApi applicationAccountControllerApi, UserDtoMapper userDtoMapper, EcmRegistrationService ecmRegistrationService) {
         this.userRepository = userRepository;
         this.masterdataContactControllerApi = masterdataContactControllerApi;
-        this.personDtoMapper = personDtoMapper;
+        this.userDtoMapper = userDtoMapper;
         this.ecmRegistrationService = ecmRegistrationService;
     }
 
@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
     private UserDto tryGetUserFromEcm(UUID userUuid) throws ApiException {
 
         final MasterdataContact masterdataContact = masterdataContactControllerApi.getContactByUuid(userUuid.toString());
-        return personDtoMapper.masterdataContactToUserDto(masterdataContact);
+        return userDtoMapper.masterdataContactToUserDto(masterdataContact);
     }
 
     @Override
