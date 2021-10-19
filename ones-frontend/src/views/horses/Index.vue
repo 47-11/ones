@@ -51,6 +51,9 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import { vxm } from "@/store";
 import Modal from "@/layouts/Modal.vue";
 import { HorseDto } from "@/openapi/generated";
+import VHorseHeader from "@/views/horses/modals/VHorseHeader.vue";
+import VHorseContent from "@/views/horses/modals/VHorseContent.vue";
+import VHorseFooter from "@/views/horses/modals/VHorseFooter.vue";
 
 @Component({
     components: {
@@ -78,8 +81,29 @@ export default class Profile extends Vue {
 
     public details(horse: HorseDto): void {
         this.$vfm.show({
-            component: "ShowHorse",
-            bind: { horse: horse }
+            component: "Modal",
+            slots: {
+                header: {
+                    component: VHorseHeader,
+                    bind: {
+                        text: horse.name
+                    }
+                },
+                footer: {
+                    component: VHorseFooter
+                },
+                default: {
+                    component: VHorseContent,
+                    bind: {
+                        horse
+                    }
+                }
+            },
+            on: {
+                cancel(close: () => void) {
+                    close();
+                }
+            }
         });
     }
 

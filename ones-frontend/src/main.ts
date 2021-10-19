@@ -1,8 +1,9 @@
 import "@/assets/css/tailwind.css";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import Modal from "@/layouts/Modal.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-    faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faMars, faPhone,
+    faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faMars, faPencilAlt, faPhone,
     faTimes,
     faTrailer,
     faVenus
@@ -20,7 +21,6 @@ import App from "./App.vue";
 import { UserDto } from "./openapi/generated";
 import "./registerServiceWorker";
 import router from "./router";
-import ShowHorse from "@/views/horses/modals/ShowHorse.vue";
 import store, { vxm } from "./store";
 
 Vue.config.productionTip = false;
@@ -42,13 +42,14 @@ library.add(
     faFlag,
     faMars,
     faVenus,
-    faTimes
+    faTimes,
+    faPencilAlt
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("error-message", ErrorMessage);
 
-Vue.component("ShowHorse", ShowHorse);
+Vue.component("Modal", Modal);
 
 Vue.use(vToolTip);
 Vue.use(VueI18n);

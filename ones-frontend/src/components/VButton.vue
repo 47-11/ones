@@ -6,8 +6,8 @@
 </template>
 
 <style>
-.primary { @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 text-white }
-.secondary { @apply bg-gray-200 hover:bg-gray-300 focus:ring-gray-400 text-gray-700 }
+.primary { @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 text-white; }
+.secondary { @apply bg-gray-200 hover:bg-gray-300 focus:ring-gray-400 text-gray-700; }
 </style>
 
 <script lang="ts">
@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class VButton extends Vue {
-    @Prop() private disabled!: boolean;
-    @Prop() private color!: string;
+    @Prop() private disabled?: boolean;
+    @Prop() private color?: string;
 }
 </script>
