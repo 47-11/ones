@@ -10,6 +10,11 @@ public interface UserDtoMapper {
 
     @Mapping(source = "firstName", target = "forename")
     @Mapping(source = "lastName", target = "surname")
+    @Mapping(source = "birthName", target = "birthname")
+    @Mapping(source = "phoneNumberEmergency", target = "emergencyPhoneNumber")
+    @Mapping(source = "feiNumber", target = "feiMemberId")
+    @Mapping(source = "fnNumber", target = "fnMemberId")
+    @Mapping(source = "qualificationLevel", target = "vddQualificationLevel")
     @Mapping(source = "address.street", target = "postalAddress.street")
     @Mapping(source = "address.houseNumber", target = "postalAddress.houseNumber")
     @Mapping(source = "address.zipCode", target = "postalAddress.zipCode")
