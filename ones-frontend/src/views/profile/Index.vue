@@ -6,9 +6,9 @@
                 <v-button class="ml-auto" v-if="user">{{$t('profile.edit')}}</v-button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6" v-if="user">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6 mx-4" v-if="user">
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('profile.personalData')}}</h2>
+                    <h2 class="text-xl font-bold text-gray-700">{{$t('profile.personalData')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
                         <table class="my-3">
                             <tr>
@@ -43,7 +43,7 @@
                     </card>
                 </div>
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('profile.contactInfo')}}</h2>
+                    <h2 class="text-xl font-bold text-gray-700">{{$t('profile.contactInfo')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
                         <table class="my-3">
                             <tr>
@@ -78,7 +78,7 @@
                     </card>
                 </div>
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
-                    <h2 class="text-xl px-4 md:px-0 font-bold text-gray-700">{{$t('profile.otherData')}}</h2>
+                    <h2 class="text-xl font-bold text-gray-700">{{$t('profile.otherData')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
                         <table class="my-3">
                             <tr>
