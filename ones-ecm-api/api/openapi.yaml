@@ -5,7 +5,7 @@ info:
   version: 1.0a
 servers:
 - description: Generated server url
-  url: https://vdd4ones.de:8080
+  url: https://vdd4ones.de:9080
 paths:
   /rest/application/register/account/unlock:
     put:
@@ -535,6 +535,10 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        birthname:
+          maxLength: 255
+          minLength: 0
+          type: string
         forename:
           maxLength: 255
           minLength: 0
@@ -551,11 +555,27 @@ components:
           minLength: 6
           type: string
         phoneNumber:
-          maxLength: 255
+          maxLength: 50
           minLength: 0
           type: string
         phoneNumberMobile:
-          maxLength: 255
+          maxLength: 50
+          minLength: 0
+          type: string
+        emergencyPhoneNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+        feiMemberId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        fnMemberId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        vddQualificationLevel:
+          maxLength: 5
           minLength: 0
           type: string
         postalAddress:
@@ -1105,7 +1125,16 @@ components:
       example:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         gender: gender
-        color: color
+        color:
+          changeCounter: 6
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          acronym: acronym
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
         display: display
         _ownersx:
         - changeCounter: 1
@@ -1509,12 +1538,23 @@ components:
           remarks: remarks
         uuid: uuid
         creationUserUuid: creationUserUuid
-        breed: breed
+        colorUuid: colorUuid
+        breed:
+          changeCounter: 6
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          acronym: acronym
+          display: display
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
         changeUserUuid: changeUserUuid
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         name: name
         passportId: passportId
         stickSize: 6
+        breedUuid: breedUuid
         yearOfBirth: 0
       properties:
         uuid:
@@ -1537,6 +1577,8 @@ components:
         passportId:
           type: string
         breed:
+          $ref: '#/components/schemas/MasterdataPropertyCharacteristic'
+        breedUuid:
           type: string
         gender:
           type: string
@@ -1547,15 +1589,19 @@ components:
           format: int32
           type: integer
         color:
+          $ref: '#/components/schemas/MasterdataPropertyCharacteristic'
+        colorUuid:
           type: string
         _ownersx:
           items:
             $ref: '#/components/schemas/MasterdataHorseOwner'
           type: array
+          uniqueItems: true
         _stables:
           items:
             $ref: '#/components/schemas/MasterdataHorseStable'
           type: array
+          uniqueItems: true
       type: object
     MasterdataHorseOwner:
       example:

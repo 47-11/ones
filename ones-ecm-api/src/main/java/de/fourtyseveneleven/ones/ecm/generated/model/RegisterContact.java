@@ -34,18 +34,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   RegisterContact.JSON_PROPERTY_SURNAME,
+  RegisterContact.JSON_PROPERTY_BIRTHNAME,
   RegisterContact.JSON_PROPERTY_FORENAME,
   RegisterContact.JSON_PROPERTY_SALUTATION,
   RegisterContact.JSON_PROPERTY_BIRTHDAY,
   RegisterContact.JSON_PROPERTY_EMAIL,
   RegisterContact.JSON_PROPERTY_PHONE_NUMBER,
   RegisterContact.JSON_PROPERTY_PHONE_NUMBER_MOBILE,
+  RegisterContact.JSON_PROPERTY_EMERGENCY_PHONE_NUMBER,
+  RegisterContact.JSON_PROPERTY_FEI_MEMBER_ID,
+  RegisterContact.JSON_PROPERTY_FN_MEMBER_ID,
+  RegisterContact.JSON_PROPERTY_VDD_QUALIFICATION_LEVEL,
   RegisterContact.JSON_PROPERTY_POSTAL_ADDRESS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
 public class RegisterContact {
   public static final String JSON_PROPERTY_SURNAME = "surname";
   private String surname;
+
+  public static final String JSON_PROPERTY_BIRTHNAME = "birthname";
+  private String birthname;
 
   public static final String JSON_PROPERTY_FORENAME = "forename";
   private String forename;
@@ -64,6 +72,18 @@ public class RegisterContact {
 
   public static final String JSON_PROPERTY_PHONE_NUMBER_MOBILE = "phoneNumberMobile";
   private String phoneNumberMobile;
+
+  public static final String JSON_PROPERTY_EMERGENCY_PHONE_NUMBER = "emergencyPhoneNumber";
+  private String emergencyPhoneNumber;
+
+  public static final String JSON_PROPERTY_FEI_MEMBER_ID = "feiMemberId";
+  private String feiMemberId;
+
+  public static final String JSON_PROPERTY_FN_MEMBER_ID = "fnMemberId";
+  private String fnMemberId;
+
+  public static final String JSON_PROPERTY_VDD_QUALIFICATION_LEVEL = "vddQualificationLevel";
+  private String vddQualificationLevel;
 
   public static final String JSON_PROPERTY_POSTAL_ADDRESS = "postalAddress";
   private RegisterAddress postalAddress;
@@ -91,6 +111,32 @@ public class RegisterContact {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSurname(String surname) {
     this.surname = surname;
+  }
+
+
+  public RegisterContact birthname(String birthname) {
+    this.birthname = birthname;
+    return this;
+  }
+
+   /**
+   * Get birthname
+   * @return birthname
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BIRTHNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBirthname() {
+    return birthname;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BIRTHNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBirthname(String birthname) {
+    this.birthname = birthname;
   }
 
 
@@ -250,6 +296,110 @@ public class RegisterContact {
   }
 
 
+  public RegisterContact emergencyPhoneNumber(String emergencyPhoneNumber) {
+    this.emergencyPhoneNumber = emergencyPhoneNumber;
+    return this;
+  }
+
+   /**
+   * Get emergencyPhoneNumber
+   * @return emergencyPhoneNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_EMERGENCY_PHONE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getEmergencyPhoneNumber() {
+    return emergencyPhoneNumber;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EMERGENCY_PHONE_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEmergencyPhoneNumber(String emergencyPhoneNumber) {
+    this.emergencyPhoneNumber = emergencyPhoneNumber;
+  }
+
+
+  public RegisterContact feiMemberId(String feiMemberId) {
+    this.feiMemberId = feiMemberId;
+    return this;
+  }
+
+   /**
+   * Get feiMemberId
+   * @return feiMemberId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FEI_MEMBER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFeiMemberId() {
+    return feiMemberId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FEI_MEMBER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFeiMemberId(String feiMemberId) {
+    this.feiMemberId = feiMemberId;
+  }
+
+
+  public RegisterContact fnMemberId(String fnMemberId) {
+    this.fnMemberId = fnMemberId;
+    return this;
+  }
+
+   /**
+   * Get fnMemberId
+   * @return fnMemberId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FN_MEMBER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFnMemberId() {
+    return fnMemberId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FN_MEMBER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFnMemberId(String fnMemberId) {
+    this.fnMemberId = fnMemberId;
+  }
+
+
+  public RegisterContact vddQualificationLevel(String vddQualificationLevel) {
+    this.vddQualificationLevel = vddQualificationLevel;
+    return this;
+  }
+
+   /**
+   * Get vddQualificationLevel
+   * @return vddQualificationLevel
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_VDD_QUALIFICATION_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getVddQualificationLevel() {
+    return vddQualificationLevel;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_VDD_QUALIFICATION_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVddQualificationLevel(String vddQualificationLevel) {
+    this.vddQualificationLevel = vddQualificationLevel;
+  }
+
+
   public RegisterContact postalAddress(RegisterAddress postalAddress) {
     this.postalAddress = postalAddress;
     return this;
@@ -289,18 +439,23 @@ public class RegisterContact {
     }
     RegisterContact registerContact = (RegisterContact) o;
     return Objects.equals(this.surname, registerContact.surname) &&
+        Objects.equals(this.birthname, registerContact.birthname) &&
         Objects.equals(this.forename, registerContact.forename) &&
         Objects.equals(this.salutation, registerContact.salutation) &&
         Objects.equals(this.birthday, registerContact.birthday) &&
         Objects.equals(this.email, registerContact.email) &&
         Objects.equals(this.phoneNumber, registerContact.phoneNumber) &&
         Objects.equals(this.phoneNumberMobile, registerContact.phoneNumberMobile) &&
+        Objects.equals(this.emergencyPhoneNumber, registerContact.emergencyPhoneNumber) &&
+        Objects.equals(this.feiMemberId, registerContact.feiMemberId) &&
+        Objects.equals(this.fnMemberId, registerContact.fnMemberId) &&
+        Objects.equals(this.vddQualificationLevel, registerContact.vddQualificationLevel) &&
         Objects.equals(this.postalAddress, registerContact.postalAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(surname, forename, salutation, birthday, email, phoneNumber, phoneNumberMobile, postalAddress);
+    return Objects.hash(surname, birthname, forename, salutation, birthday, email, phoneNumber, phoneNumberMobile, emergencyPhoneNumber, feiMemberId, fnMemberId, vddQualificationLevel, postalAddress);
   }
 
   @Override
@@ -308,12 +463,17 @@ public class RegisterContact {
     StringBuilder sb = new StringBuilder();
     sb.append("class RegisterContact {\n");
     sb.append("    surname: ").append(toIndentedString(surname)).append("\n");
+    sb.append("    birthname: ").append(toIndentedString(birthname)).append("\n");
     sb.append("    forename: ").append(toIndentedString(forename)).append("\n");
     sb.append("    salutation: ").append(toIndentedString(salutation)).append("\n");
     sb.append("    birthday: ").append(toIndentedString(birthday)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    phoneNumberMobile: ").append(toIndentedString(phoneNumberMobile)).append("\n");
+    sb.append("    emergencyPhoneNumber: ").append(toIndentedString(emergencyPhoneNumber)).append("\n");
+    sb.append("    feiMemberId: ").append(toIndentedString(feiMemberId)).append("\n");
+    sb.append("    fnMemberId: ").append(toIndentedString(fnMemberId)).append("\n");
+    sb.append("    vddQualificationLevel: ").append(toIndentedString(vddQualificationLevel)).append("\n");
     sb.append("    postalAddress: ").append(toIndentedString(postalAddress)).append("\n");
     sb.append("}");
     return sb.toString();

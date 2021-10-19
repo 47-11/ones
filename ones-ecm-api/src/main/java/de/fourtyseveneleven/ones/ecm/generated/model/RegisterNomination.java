@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterNomination.JSON_PROPERTY_HORSES_UUIDS,
   RegisterNomination.JSON_PROPERTY_BOOKING_FEE_UUIDS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
 public class RegisterNomination {
   public static final String JSON_PROPERTY_COMPETITION_UUID = "competitionUuid";
   private String competitionUuid;

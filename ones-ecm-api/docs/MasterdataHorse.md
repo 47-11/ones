@@ -15,13 +15,15 @@ Name | Type | Description | Notes
 **display** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 **passportId** | **String** |  |  [optional]
-**breed** | **String** |  |  [optional]
+**breed** | [**MasterdataPropertyCharacteristic**](MasterdataPropertyCharacteristic.md) |  |  [optional]
+**breedUuid** | **String** |  |  [optional]
 **gender** | **String** |  |  [optional]
 **yearOfBirth** | **Integer** |  |  [optional]
 **stickSize** | **Integer** |  |  [optional]
-**color** | **String** |  |  [optional]
-**ownersx** | [**List&lt;MasterdataHorseOwner&gt;**](MasterdataHorseOwner.md) |  |  [optional]
-**stables** | [**List&lt;MasterdataHorseStable&gt;**](MasterdataHorseStable.md) |  |  [optional]
+**color** | [**MasterdataPropertyCharacteristic**](MasterdataPropertyCharacteristic.md) |  |  [optional]
+**colorUuid** | **String** |  |  [optional]
+**ownersx** | [**Set&lt;MasterdataHorseOwner&gt;**](MasterdataHorseOwner.md) |  |  [optional]
+**stables** | [**Set&lt;MasterdataHorseStable&gt;**](MasterdataHorseStable.md) |  |  [optional]
 
 
 

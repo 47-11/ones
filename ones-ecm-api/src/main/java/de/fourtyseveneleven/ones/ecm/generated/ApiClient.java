@@ -50,7 +50,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p>The setter methods of this class return the current object to facilitate
  * a fluent style of configuration.</p>
  */
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
 public class ApiClient {
 
   private HttpClient.Builder builder;
@@ -196,7 +196,7 @@ public class ApiClient {
   }
 
   protected String getDefaultBaseUri() {
-    return "https://vdd4ones.de:8080";
+    return "https://vdd4ones.de:9080";
   }
 
   protected HttpClient.Builder createDefaultHttpClientBuilder() {

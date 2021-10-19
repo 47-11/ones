@@ -50,6 +50,14 @@ public class RegisterContactTest {
     }
 
     /**
+     * Test the property 'birthname'
+     */
+    @Test
+    public void birthnameTest() {
+        // TODO: test birthname
+    }
+
+    /**
      * Test the property 'forename'
      */
     @Test
@@ -95,6 +103,38 @@ public class RegisterContactTest {
     @Test
     public void phoneNumberMobileTest() {
         // TODO: test phoneNumberMobile
+    }
+
+    /**
+     * Test the property 'emergencyPhoneNumber'
+     */
+    @Test
+    public void emergencyPhoneNumberTest() {
+        // TODO: test emergencyPhoneNumber
+    }
+
+    /**
+     * Test the property 'feiMemberId'
+     */
+    @Test
+    public void feiMemberIdTest() {
+        // TODO: test feiMemberId
+    }
+
+    /**
+     * Test the property 'fnMemberId'
+     */
+    @Test
+    public void fnMemberIdTest() {
+        // TODO: test fnMemberId
+    }
+
+    /**
+     * Test the property 'vddQualificationLevel'
+     */
+    @Test
+    public void vddQualificationLevelTest() {
+        // TODO: test vddQualificationLevel
     }
 
     /**
