@@ -221,6 +221,11 @@
     "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
   },
   "profile": {
+    "title": "Profil",
+    "edit": "Bearbeiten",
+    "personalData": "Persönliche Daten",
+    "contactInfo": "Kontaktinformationen",
+    "otherData": "Weitere Daten",
     "title": "Meine Daten",
     "edit": "Bearbeiten"
   },
@@ -231,11 +236,7 @@
       "birthday": "Geburtstag",
       "phoneNumber": "Telefon-Nr.",
       "phoneNumberMobile": "Handy-Nr.",
-      "street": "Straße",
-      "houseNumber": "Haus-Nr.",
-      "zipCode": "Postleitzahl",
-      "city": "Stadt",
-      "country": "Land",
+      "address": "Adresse",
       "birthName": "Geburtsname",
       "phoneNumberEmergency": "Notfallnummer",
       "qualificationStage": "Qualifikationsstufe",
