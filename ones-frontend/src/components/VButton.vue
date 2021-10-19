@@ -15,7 +15,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class VButton extends Vue {
-    @Prop() private disabled?: boolean;
+    @Prop({
+        required: false
+    }) private disabled?: boolean;
+
     @Prop() private color?: string;
 }
 </script>
