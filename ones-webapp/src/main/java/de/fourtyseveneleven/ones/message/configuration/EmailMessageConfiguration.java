@@ -56,7 +56,7 @@ public class EmailMessageConfiguration extends AbstractMessageConfiguration {
         final Properties properties = mailSender.getJavaMailProperties();
         properties.put("mail.transport.protocol", "smtp");
 
-        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.starttls.enable", emailSettings.isEnableTls());
 
         final String username = emailSettings.getUsername();
         final String password = emailSettings.getPassword();

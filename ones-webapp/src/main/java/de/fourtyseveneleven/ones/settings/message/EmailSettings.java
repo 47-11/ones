@@ -4,6 +4,8 @@ public class EmailSettings {
 
     private String host;
     private Integer port;
+    private boolean enableTls = true;
+
     private String username;
     private String password;
 
@@ -23,6 +25,14 @@ public class EmailSettings {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public boolean isEnableTls() {
+        return enableTls;
+    }
+
+    public void setEnableTls(boolean enableTls) {
+        this.enableTls = enableTls;
     }
 
     public String getUsername() {
