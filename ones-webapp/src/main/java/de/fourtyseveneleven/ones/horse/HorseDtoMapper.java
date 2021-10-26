@@ -2,12 +2,15 @@ package de.fourtyseveneleven.ones.horse;
 
 import de.fourtyseveneleven.ones.common.mapper.AddressDtoMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
-import de.fourtyseveneleven.ones.common.mapper.PersonDtoMapper;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
-import de.fourtyseveneleven.ones.ecm.generated.model.*;
-import de.fourtyseveneleven.ones.horse.model.Gender;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataContact;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataContactAddress;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorse;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorseOwner;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorseStable;
 import de.fourtyseveneleven.ones.horse.model.HorseDto;
+import de.fourtyseveneleven.ones.user.mapper.UserDtoMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,7 @@ import static java.util.Objects.isNull;
 public abstract class HorseDtoMapper {
 
     @Autowired
-    private PersonDtoMapper personDtoMapper;
+    private UserDtoMapper userDtoMapper;
     @Autowired
     private AddressDtoMapper addressDtoMapper;
 
@@ -57,6 +60,6 @@ public abstract class HorseDtoMapper {
         }
 
         final MasterdataContact masterdataContact = masterdataHorseOwners.get(0).getContact();
-        return personDtoMapper.masterdataContactToUserDto(masterdataContact);
+        return userDtoMapper.masterdataContactToUserDto(masterdataContact);
     }
 }
