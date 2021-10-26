@@ -10,106 +10,83 @@
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl font-bold text-gray-700">{{$t('profile.personalData')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
-                        <table class="my-3">
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.vddNumber')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.vddNumber">{{user.vddNumber}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.firstName')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.firstName">{{user.firstName}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.lastName')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.lastName">{{user.lastName}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.birthName')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.birthName">{{user.birthName}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.birthday')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.birthday">{{user.birthday}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="px-5 py-3">
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.vddNumber')}}</span> <br>
+                                <span v-if="user.vddNumber">{{user.vddNumber}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.fullName')}}</span> <br>
+                                <span v-if="user.firstName">{{user.firstName}} {{user.fullName}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.birthName')}}</span> <br>
+                                <span v-if="user.birthName">{{user.birthName}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+
+                            <div>
+                                <span class="text-xs text-gray-400">{{$t('data.user.birthday')}}</span> <br>
+                                <span v-if="user.birthday">{{user.birthday}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+                        </div>
                     </card>
                 </div>
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl font-bold text-gray-700">{{$t('profile.contactInfo')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
-                        <table class="my-3">
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.address')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <v-address v-if="user.address" :address="user.address"></v-address>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.phoneNumber')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.phoneNumber">{{user.phoneNumber}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.phoneNumberMobile')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.phoneNumberMobile">{{user.phoneNumberMobile}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.phoneNumberEmergency')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.phoneNumberEmergency">{{user.phoneNumberEmergency}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                        </table>
+
+                        <div class="px-5 py-3">
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.address')}}</span> <br>
+                                <v-address v-if="user.address" :address="user.address"></v-address>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.phoneNumber')}}</span> <br>
+                                <span v-if="user.phoneNumber">{{user.phoneNumber}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.phoneNumberMobile')}}</span> <br>
+                                <span v-if="user.phoneNumberMobile">{{user.phoneNumberMobile}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400">{{$t('data.user.phoneNumberEmergency')}}</span> <br>
+                                <span v-if="user.phoneNumberEmergency">{{user.phoneNumberEmergency}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+                        </div>
                     </card>
                 </div>
                 <div class="sm:col-span-1 md:col-span-2 lg:col-span-2">
                     <h2 class="text-xl font-bold text-gray-700">{{$t('profile.otherData')}}</h2>
                     <card class="mt-3 overflow-x-hidden">
-                        <table class="my-3">
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.qualificationLevel')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.qualificationLevel || user.qualificationLevel == 0">{{user.qualificationLevel}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.feiNo')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.feiNo">{{user.feiNo}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="text-left px-5 py-1 align-top">{{$t('data.user.fnNo')}}</th>
-                                <td class="text-left px-5 py-1">
-                                    <span v-if="user.fnNo">{{user.fnNo}}</span>
-                                    <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="px-5 py-3">
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.qualificationLevel')}}</span> <br>
+                                <span v-if="user.qualificationLevel || user.qualificationLevel == 0">{{user.qualificationLevel}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.feiNo')}}</span> <br>
+                                <span v-if="user.feiNo">{{user.feiNo}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.fnNo')}}</span> <br>
+                                <span v-if="user.fnNo">{{user.fnNo}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+                        </div>
                     </card>
                 </div>
             </div>

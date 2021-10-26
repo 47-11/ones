@@ -244,9 +244,9 @@
     "edit": "Edit"
   },
   "data": {
-    "user":{
-      "vddNumber": "VDD No.",
     "user": {
+      "vddNumber": "VDD No.",
+      "fullName": "Fullname",
       "firstName": "First Name",
       "lastName": "Last Name",
       "birthday": "Birthday",
