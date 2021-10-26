@@ -45,7 +45,7 @@ public class EcmApiFullContestServiceImpl implements FullContestService {
         try {
             return eventContestControllerApi.getContestByUuid(uuid, getAuthenticatedUser().getUuid().toString());
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 }

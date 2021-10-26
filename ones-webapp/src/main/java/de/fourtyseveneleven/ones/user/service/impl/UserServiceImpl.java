@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
         try {
             return tryGetUserFromEcm(userUuid);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 

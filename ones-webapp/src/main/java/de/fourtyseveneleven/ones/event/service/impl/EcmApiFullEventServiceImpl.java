@@ -35,7 +35,7 @@ public class EcmApiFullEventServiceImpl implements FullEventService {
         try {
             return tryFindOneByUuid(eventUuid);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 
