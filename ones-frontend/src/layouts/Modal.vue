@@ -13,7 +13,7 @@
 
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div
-                class="max-w-3xl inline-block w-full align-bottom bg-white dark:bg-gray-800 rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full">
+                class="max-w-3xl inline-block w-full align-bottom bg-white dark:bg-gray-800 rounded-lg overflow-hidden text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full">
 
                 <card>
                     <template v-slot:header>

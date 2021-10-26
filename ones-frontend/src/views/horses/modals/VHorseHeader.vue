@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full justify-center">
+    <div class="flex w-full items-center">
         <h1 class="text-xl">
             {{ text }}
         </h1>

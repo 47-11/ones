@@ -2,7 +2,7 @@
     <div class="w-full">
         <dl v-for="prop in horseProperties" :key="prop" class="w-full flex">
             <div
-                class="w-full bg-white dark:bg-gray-700 border-b dark:border-gray-800 px-2 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                class="w-full bg-white dark:bg-gray-700 border-b dark:border-gray-800 py-3 sm:grid sm:grid-cols-3 sm:gap-4 px-6">
                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                     {{ $t(`data.horse.${prop}`) }}
                 </dt>
