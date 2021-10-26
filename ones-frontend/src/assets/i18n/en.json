@@ -152,7 +152,10 @@
     "stages": "Stages",
     "markings": "Markings",
     "signUp": "Sign Up",
-    "alreadySignedUp": "Already signed up with {horses}"
+    "alreadySignedUp": "Already signed up with {horses}",
+    "fee": "Fee",
+    "contestDetails": "Details & Sign up",
+    "noData": "N/A"
   },
   "events": {
     "start": "Start",

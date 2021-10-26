@@ -139,7 +139,10 @@
     "stages": "Etappen",
     "markings": "Markierungen",
     "signUp": "Anmelden",
-    "alreadySignedUp": "Bereits angemeldet mit {horses}"
+    "alreadySignedUp": "Bereits angemeldet mit {horses}",
+    "fee": "Gebühr",
+    "contestDetails": "Details & Anmeldung",
+    "noData": "k. A."
   },
   "events": {
     "title": "Veranstaltungen",
