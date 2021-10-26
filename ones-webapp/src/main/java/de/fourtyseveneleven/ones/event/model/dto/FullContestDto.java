@@ -1,5 +1,6 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class FullContestDto extends SimpleContestDto{
@@ -20,6 +21,9 @@ public class FullContestDto extends SimpleContestDto{
     private Integer minimumParticipants;
     private Integer maximumParticipants;
     private Integer currentParticipants;
+
+    private BigDecimal signupFee;
+    private BigDecimal startFee;
 
     private String markings;
 
@@ -111,6 +115,22 @@ public class FullContestDto extends SimpleContestDto{
 
     public void setCurrentParticipants(Integer currentParticipants) {
         this.currentParticipants = currentParticipants;
+    }
+
+    public BigDecimal getSignupFee() {
+        return signupFee;
+    }
+
+    public void setSignupFee(BigDecimal signupFee) {
+        this.signupFee = signupFee;
+    }
+
+    public BigDecimal getStartFee() {
+        return startFee;
+    }
+
+    public void setStartFee(BigDecimal startFee) {
+        this.startFee = startFee;
     }
 
     public String getMarkings() {

@@ -28,5 +28,7 @@ public interface FullContestMapper {
     @Mapping(source = "contestantQuantityMax", target = "maximumParticipants")
     @Mapping(source = "isMARKED", target = "markings")
     @Mapping(source = "displayRegistertHorses", target = "signedUpHorses")
+    @Mapping(source = "registrationFee", target = "signupFee")
+    @Mapping(source = "startingFee", target = "startFee")
     FullContestDto fromEcmDto(EventContestCompetition eventContestCompetition);
 }
