@@ -46,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataHorseOwner.JSON_PROPERTY_CONTACT,
   MasterdataHorseOwner.JSON_PROPERTY_MASTERDATA_HORSE_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
 public class MasterdataHorseOwner {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;

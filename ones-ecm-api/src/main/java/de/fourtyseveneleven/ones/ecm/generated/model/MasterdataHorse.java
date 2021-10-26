@@ -24,11 +24,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorseOwner;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorseStable;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataPropertyCharacteristic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,14 +47,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataHorse.JSON_PROPERTY_NAME,
   MasterdataHorse.JSON_PROPERTY_PASSPORT_ID,
   MasterdataHorse.JSON_PROPERTY_BREED,
+  MasterdataHorse.JSON_PROPERTY_BREED_UUID,
   MasterdataHorse.JSON_PROPERTY_GENDER,
   MasterdataHorse.JSON_PROPERTY_YEAR_OF_BIRTH,
   MasterdataHorse.JSON_PROPERTY_STICK_SIZE,
   MasterdataHorse.JSON_PROPERTY_COLOR,
+  MasterdataHorse.JSON_PROPERTY_COLOR_UUID,
   MasterdataHorse.JSON_PROPERTY_OWNERSX,
   MasterdataHorse.JSON_PROPERTY_STABLES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-07-08T11:21:49.234752331+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
 public class MasterdataHorse {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -79,7 +83,10 @@ public class MasterdataHorse {
   private String passportId;
 
   public static final String JSON_PROPERTY_BREED = "breed";
-  private String breed;
+  private MasterdataPropertyCharacteristic breed;
+
+  public static final String JSON_PROPERTY_BREED_UUID = "breedUuid";
+  private String breedUuid;
 
   public static final String JSON_PROPERTY_GENDER = "gender";
   private String gender;
@@ -91,13 +98,16 @@ public class MasterdataHorse {
   private Integer stickSize;
 
   public static final String JSON_PROPERTY_COLOR = "color";
-  private String color;
+  private MasterdataPropertyCharacteristic color;
+
+  public static final String JSON_PROPERTY_COLOR_UUID = "colorUuid";
+  private String colorUuid;
 
   public static final String JSON_PROPERTY_OWNERSX = "_ownersx";
-  private List<MasterdataHorseOwner> ownersx = null;
+  private Set<MasterdataHorseOwner> ownersx = null;
 
   public static final String JSON_PROPERTY_STABLES = "_stables";
-  private List<MasterdataHorseStable> stables = null;
+  private Set<MasterdataHorseStable> stables = null;
 
 
   public MasterdataHorse uuid(String uuid) {
@@ -298,7 +308,7 @@ public class MasterdataHorse {
   }
 
 
-  public MasterdataHorse breed(String breed) {
+  public MasterdataHorse breed(MasterdataPropertyCharacteristic breed) {
     this.breed = breed;
     return this;
   }
@@ -312,15 +322,41 @@ public class MasterdataHorse {
   @JsonProperty(JSON_PROPERTY_BREED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getBreed() {
+  public MasterdataPropertyCharacteristic getBreed() {
     return breed;
   }
 
 
   @JsonProperty(JSON_PROPERTY_BREED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBreed(String breed) {
+  public void setBreed(MasterdataPropertyCharacteristic breed) {
     this.breed = breed;
+  }
+
+
+  public MasterdataHorse breedUuid(String breedUuid) {
+    this.breedUuid = breedUuid;
+    return this;
+  }
+
+   /**
+   * Get breedUuid
+   * @return breedUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BREED_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBreedUuid() {
+    return breedUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BREED_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBreedUuid(String breedUuid) {
+    this.breedUuid = breedUuid;
   }
 
 
@@ -402,7 +438,7 @@ public class MasterdataHorse {
   }
 
 
-  public MasterdataHorse color(String color) {
+  public MasterdataHorse color(MasterdataPropertyCharacteristic color) {
     this.color = color;
     return this;
   }
@@ -416,26 +452,52 @@ public class MasterdataHorse {
   @JsonProperty(JSON_PROPERTY_COLOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getColor() {
+  public MasterdataPropertyCharacteristic getColor() {
     return color;
   }
 
 
   @JsonProperty(JSON_PROPERTY_COLOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setColor(String color) {
+  public void setColor(MasterdataPropertyCharacteristic color) {
     this.color = color;
   }
 
 
-  public MasterdataHorse ownersx(List<MasterdataHorseOwner> ownersx) {
+  public MasterdataHorse colorUuid(String colorUuid) {
+    this.colorUuid = colorUuid;
+    return this;
+  }
+
+   /**
+   * Get colorUuid
+   * @return colorUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_COLOR_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getColorUuid() {
+    return colorUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_COLOR_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setColorUuid(String colorUuid) {
+    this.colorUuid = colorUuid;
+  }
+
+
+  public MasterdataHorse ownersx(Set<MasterdataHorseOwner> ownersx) {
     this.ownersx = ownersx;
     return this;
   }
 
   public MasterdataHorse addOwnersxItem(MasterdataHorseOwner ownersxItem) {
     if (this.ownersx == null) {
-      this.ownersx = new ArrayList<>();
+      this.ownersx = new LinkedHashSet<>();
     }
     this.ownersx.add(ownersxItem);
     return this;
@@ -450,26 +512,26 @@ public class MasterdataHorse {
   @JsonProperty(JSON_PROPERTY_OWNERSX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<MasterdataHorseOwner> getOwnersx() {
+  public Set<MasterdataHorseOwner> getOwnersx() {
     return ownersx;
   }
 
 
   @JsonProperty(JSON_PROPERTY_OWNERSX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOwnersx(List<MasterdataHorseOwner> ownersx) {
+  public void setOwnersx(Set<MasterdataHorseOwner> ownersx) {
     this.ownersx = ownersx;
   }
 
 
-  public MasterdataHorse stables(List<MasterdataHorseStable> stables) {
+  public MasterdataHorse stables(Set<MasterdataHorseStable> stables) {
     this.stables = stables;
     return this;
   }
 
   public MasterdataHorse addStablesItem(MasterdataHorseStable stablesItem) {
     if (this.stables == null) {
-      this.stables = new ArrayList<>();
+      this.stables = new LinkedHashSet<>();
     }
     this.stables.add(stablesItem);
     return this;
@@ -484,14 +546,14 @@ public class MasterdataHorse {
   @JsonProperty(JSON_PROPERTY_STABLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<MasterdataHorseStable> getStables() {
+  public Set<MasterdataHorseStable> getStables() {
     return stables;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STABLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStables(List<MasterdataHorseStable> stables) {
+  public void setStables(Set<MasterdataHorseStable> stables) {
     this.stables = stables;
   }
 
@@ -517,17 +579,19 @@ public class MasterdataHorse {
         Objects.equals(this.name, masterdataHorse.name) &&
         Objects.equals(this.passportId, masterdataHorse.passportId) &&
         Objects.equals(this.breed, masterdataHorse.breed) &&
+        Objects.equals(this.breedUuid, masterdataHorse.breedUuid) &&
         Objects.equals(this.gender, masterdataHorse.gender) &&
         Objects.equals(this.yearOfBirth, masterdataHorse.yearOfBirth) &&
         Objects.equals(this.stickSize, masterdataHorse.stickSize) &&
         Objects.equals(this.color, masterdataHorse.color) &&
+        Objects.equals(this.colorUuid, masterdataHorse.colorUuid) &&
         Objects.equals(this.ownersx, masterdataHorse.ownersx) &&
         Objects.equals(this.stables, masterdataHorse.stables);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, display, name, passportId, breed, gender, yearOfBirth, stickSize, color, ownersx, stables);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, display, name, passportId, breed, breedUuid, gender, yearOfBirth, stickSize, color, colorUuid, ownersx, stables);
   }
 
   @Override
@@ -543,10 +607,12 @@ public class MasterdataHorse {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    passportId: ").append(toIndentedString(passportId)).append("\n");
     sb.append("    breed: ").append(toIndentedString(breed)).append("\n");
+    sb.append("    breedUuid: ").append(toIndentedString(breedUuid)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
     sb.append("    yearOfBirth: ").append(toIndentedString(yearOfBirth)).append("\n");
     sb.append("    stickSize: ").append(toIndentedString(stickSize)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    colorUuid: ").append(toIndentedString(colorUuid)).append("\n");
     sb.append("    ownersx: ").append(toIndentedString(ownersx)).append("\n");
     sb.append("    stables: ").append(toIndentedString(stables)).append("\n");
     sb.append("}");

@@ -92,7 +92,7 @@
 
                             <div class="grid grid-cols-12 gap-4 mb-5">
                                 <div class="col-span-12 sm:col-span-4">
-                                    <v-label>{{ $t("data.user.qualificationStage") }}</v-label>
+                                    <v-label>{{ $t("data.user.qualificationLevel") }}</v-label>
                                     <v-select @input="update('qualificationStage', $event)" :disabled="inputsDisabled" class="w-full">
                                         <option value="0">{{ 0 }}</option>
                                         <option value="1">{{ 1 }}</option>

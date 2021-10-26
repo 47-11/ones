@@ -20,11 +20,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorseOwner;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorseStable;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataPropertyCharacteristic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -117,6 +119,14 @@ public class MasterdataHorseTest {
     }
 
     /**
+     * Test the property 'breedUuid'
+     */
+    @Test
+    public void breedUuidTest() {
+        // TODO: test breedUuid
+    }
+
+    /**
      * Test the property 'gender'
      */
     @Test
@@ -146,6 +156,14 @@ public class MasterdataHorseTest {
     @Test
     public void colorTest() {
         // TODO: test color
+    }
+
+    /**
+     * Test the property 'colorUuid'
+     */
+    @Test
+    public void colorUuidTest() {
+        // TODO: test colorUuid
     }
 
     /**

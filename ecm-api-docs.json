@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://vdd4ones.de:8080",
+      "url": "https://vdd4ones.de:9080",
       "description": "Generated server url"
     }
   ],
@@ -771,6 +771,11 @@
             "minLength": 1,
             "type": "string"
           },
+          "birthname": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
           "forename": {
             "maxLength": 255,
             "minLength": 0,
@@ -791,12 +796,32 @@
             "type": "string"
           },
           "phoneNumber": {
-            "maxLength": 255,
+            "maxLength": 50,
             "minLength": 0,
             "type": "string"
           },
           "phoneNumberMobile": {
-            "maxLength": 255,
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "emergencyPhoneNumber": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "feiMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fnMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddQualificationLevel": {
+            "maxLength": 5,
             "minLength": 0,
             "type": "string"
           },
@@ -1358,6 +1383,9 @@
             "type": "string"
           },
           "breed": {
+            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
+          },
+          "breedUuid": {
             "type": "string"
           },
           "gender": {
@@ -1372,15 +1400,20 @@
             "format": "int32"
           },
           "color": {
+            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
+          },
+          "colorUuid": {
             "type": "string"
           },
           "_ownersx": {
+            "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MasterdataHorseOwner"
             }
           },
           "_stables": {
+            "uniqueItems": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MasterdataHorseStable"
