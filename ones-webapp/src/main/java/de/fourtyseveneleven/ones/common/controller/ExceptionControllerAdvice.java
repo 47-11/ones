@@ -1,8 +1,14 @@
 package de.fourtyseveneleven.ones.common.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
 import de.fourtyseveneleven.ones.common.model.dto.ErrorDto;
 import de.fourtyseveneleven.ones.common.exception.OnesException;
+import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.model.EcmErrorResponse;
+import de.fourtyseveneleven.ones.message.MessageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -24,6 +30,12 @@ import static java.util.stream.Collectors.joining;
 public class ExceptionControllerAdvice {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExceptionControllerAdvice.class);
+
+    private final ObjectMapper objectMapper;
+
+    public ExceptionControllerAdvice(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -97,5 +109,29 @@ public class ExceptionControllerAdvice {
                 .collect(joining("\n"));
 
         return new ErrorDto(userMessage, e.getMessage(), e.getClass().getSimpleName());
+    }
+
+    @ExceptionHandler(EcmApiException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorDto handleEcmApiException(EcmApiException e) {
+
+        return new ErrorDto(getEcmErrorMessage(e), e.getMessage(), EcmApiException.class.getSimpleName());
+    }
+
+    private String getEcmErrorMessage(EcmApiException e) {
+
+        try {
+            final EcmErrorResponse ecmErrorResponse = getEcmErrorResponse(e);
+            return ecmErrorResponse.getJustification();
+        } catch (JsonProcessingException ex) {
+            return getExceptionMessage("ecm.api-exception");
+        }
+    }
+
+    private EcmErrorResponse getEcmErrorResponse(EcmApiException e) throws JsonProcessingException {
+
+        final ApiException apiException = e.getCause();
+        final String responseBody = apiException.getResponseBody();
+        return objectMapper.readValue(responseBody, EcmErrorResponse.class);
     }
 }

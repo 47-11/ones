@@ -54,7 +54,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
         try {
             return applicationAccountControllerApi.postRegisterAccount4Member(registerAccount4Member);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 
@@ -82,7 +82,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
         try {
             return applicationAccountControllerApi.postRegisterAccount(registerAccountRequest);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 

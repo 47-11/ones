@@ -46,7 +46,7 @@ public class HorseServiceImpl implements HorseService {
         try {
             return tryGetHorsesFromEcm(user);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 

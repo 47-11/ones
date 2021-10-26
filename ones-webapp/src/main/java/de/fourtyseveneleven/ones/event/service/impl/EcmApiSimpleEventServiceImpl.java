@@ -50,7 +50,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         try {
             return tryFindOneByUuid(eventUuid);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 
@@ -73,7 +73,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         try {
             return tryFindPageInEcm(filter, pageRequest, sortRequest);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 

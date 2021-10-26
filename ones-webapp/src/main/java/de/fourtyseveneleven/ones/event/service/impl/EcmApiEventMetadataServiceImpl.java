@@ -54,7 +54,7 @@ public class EcmApiEventMetadataServiceImpl implements EventMetadataService {
         try {
             return masterdataPropertyControllerApi.getPropertyItems(propertyName);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 }
