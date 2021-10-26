@@ -25,6 +25,12 @@ public abstract class HorseDtoMapper {
     @Autowired
     private AddressDtoMapper addressDtoMapper;
 
+    // TODO: Map owner
+    @Mapping(source = "passportNumber", target = "passportId")
+    @Mapping(source = "size", target = "stickSize")
+    @Mapping(source = "stableAddress", target = "stable.postalAddress")
+    public abstract RegisterHorse horseDtoToRegisterHorse(HorseDto horseDto);
+
     // TODO: Map gender
     @Mapping(source = "passportId", target = "passportNumber")
     @Mapping(source = "stickSize", target = "size")
