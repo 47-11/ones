@@ -1,9 +1,9 @@
-import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
-import { action, createModule, createProxy, mutation } from "vuex-class-component";
-import { UserStore } from "./user.vuex";
 import { Paginateable } from "@/components/pagination/paginateable";
 import { Sortable } from "@/components/table/sortable";
+import { ContestCategory, EventControllerApi, FullContestDto as FullContest, FullEventDto as FullEvent, SimpleEventDto as SimpleEvent } from "@/openapi/generated/api";
+import { getApi } from "@/store/api";
 import moment from "moment";
+import { action, createModule, mutation } from "vuex-class-component";
 
 export interface FilterType extends Record<string, string | boolean | string[] | undefined> {
     from: string;
@@ -110,17 +110,10 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
         return this._filter;
     }
 
-    private get controller(): EventControllerApi {
-        return new EventControllerApi({
-            accessToken: createProxy(this.$store, UserStore).token || "",
-            isJsonMime: () => true
-        });
-    }
-
     @action
     async fetch(): Promise<void> {
         await this.assureDynamicOptionsFetched();
-        const fetchResponse = await this.controller.findAll(...await this.optionsAsArray);
+        const fetchResponse = await getApi().events.findAll(...await this.optionsAsArray);
         this.events = fetchResponse.data.elements || [];
         this._totalCount = fetchResponse.data.totalElements || 0;
     }
@@ -197,13 +190,13 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     private async fetchContestsOf(eventId: string): Promise<void> {
-        const response = await this.controller.getFullContests(eventId);
+        const response = await getApi().events.getFullContests(eventId);
         this.contests = response.data;
     }
 
     @action
     private async fetchDetailsOf(eventId: string): Promise<void> {
-        const response = await this.controller.getFullEvent(eventId);
+        const response = await getApi().events.getFullEvent(eventId);
         this.details = response.data;
     }
 
@@ -264,7 +257,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async signUp(payload: { contestUuid: string, horseUuids: string[] }): Promise<void> {
-        await this.controller.signUp(payload.contestUuid, payload);
+        await getApi().events.signUp(payload.contestUuid, payload);
     }
 
     @mutation
@@ -283,13 +276,13 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     private async fetchCategories(): Promise<void> {
-        const response = await this.controller.getAllCategories();
+        const response = await getApi().events.getAllCategories();
         this._categories = response.data || [];
     }
 
     @action
     private async fetchRegions(): Promise<void> {
-        const response = await this.controller.getAllRegions();
+        const response = await getApi().events.getAllRegions();
         this._regions = response.data || [];
     }
 }

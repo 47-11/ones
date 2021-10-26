@@ -1,5 +1,5 @@
-import { ConnectionTestControllerApi } from "@/openapi/generated";
-import { createModule, action } from "vuex-class-component";
+import { getApi } from "@/store/api";
+import { action, createModule } from "vuex-class-component";
 
 const VuexModule = createModule({
     namespaced: "app",
@@ -12,7 +12,7 @@ export class AppStore extends VuexModule {
     @action
     public async checkOnlineState(): Promise<void> {
         try {
-            await new ConnectionTestControllerApi().testConnection();
+            await getApi().connection.testConnection();
             this.isOffline = false;
         } catch (error) {
             this.isOffline = true;

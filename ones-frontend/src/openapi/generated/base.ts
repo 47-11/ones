@@ -13,12 +13,12 @@
  */
 
 
-import { Configuration } from "./configuration";
 // Some imports not used depending on template conditions
 // @ts-ignore
-import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
+import globalAxios, { AxiosInstance } from 'axios';
+import { Configuration } from "./configuration";
 
-export const BASE_PATH = (process.env.VUE_APP_API_BASE_URL as string).replace(/\/+$/, "");
+export const BASE_PATH = "http://localhost:8080".replace(/\/+$/, "");
 
 /**
  *

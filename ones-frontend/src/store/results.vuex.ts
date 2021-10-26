@@ -1,6 +1,6 @@
-import { action, createModule, createProxy } from "vuex-class-component";
-import { ResultControllerApi, ResultDto as Result } from "@/openapi/generated/api";
-import { UserStore } from "./user.vuex";
+import { ResultDto as Result } from "@/openapi/generated/api";
+import { getApi } from "@/store/api";
+import { action, createModule } from "vuex-class-component";
 
 const VuexModule = createModule({
     namespaced: "results",
@@ -24,16 +24,9 @@ export class ResultsStore extends VuexModule {
         return this._totalDistance;
     }
 
-    private get controller(): ResultControllerApi {
-        return new ResultControllerApi({
-            accessToken: createProxy(this.$store, UserStore).token || "",
-            isJsonMime: () => true
-        });
-    }
-
     @action
     async fetchOwn(): Promise<void> {
-        const fetchResponse = await this.controller.getMyResults();
+        const fetchResponse = await getApi().results.getMyResults();
         this.ownResults = fetchResponse.data.results || [];
         this._averageSpeed = fetchResponse.data.averageSpeed;
         this._totalDistance = fetchResponse.data.totalDistance;
