@@ -1,6 +1,6 @@
 <template>
     <vue-final-modal
-        v-slot="{ params, close }"
+        v-slot="{ params }"
         v-bind="$attrs"
         classes="modal-container"
         content-class="modal-content"
@@ -25,7 +25,7 @@
                     </div>
 
                     <template v-slot:footer>
-                        <slot @close.native="close" name="footer"></slot>
+                        <slot name="footer"></slot>
                     </template>
                 </card>
             </div>
@@ -44,9 +44,5 @@ import Card from "@/components/Card.vue";
         VButton
     }
 })
-export default class Modal extends Vue {
-    close(): void {
-        this.$emit("close", false);
-    }
-}
+export default class Modal extends Vue {}
 </script>

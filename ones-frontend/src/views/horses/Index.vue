@@ -81,6 +81,9 @@ export default class Profile extends Vue {
 
     public details(horse: HorseDto): void {
         this.$vfm.show({
+            bind: {
+                name: "horse"
+            },
             component: "Modal",
             slots: {
                 header: {
