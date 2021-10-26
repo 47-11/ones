@@ -1,7 +1,6 @@
-import { HorseControllerApi, HorseDto as Horse } from "@/openapi/generated";
+import { HorseDto as Horse } from "@/openapi/generated";
 import { getApi } from "@/store/api";
-import { action, createModule, createProxy } from "vuex-class-component";
-import { UserStore } from "./user.vuex";
+import { action, createModule } from "vuex-class-component";
 
 const VuexModule = createModule({
     namespaced: "horses",
