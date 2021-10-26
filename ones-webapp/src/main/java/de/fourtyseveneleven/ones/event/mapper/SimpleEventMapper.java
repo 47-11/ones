@@ -1,5 +1,6 @@
 package de.fourtyseveneleven.ones.event.mapper;
 
+import de.fourtyseveneleven.ones.common.mapper.AddressDtoMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
@@ -16,7 +17,7 @@ import org.slf4j.LoggerFactory;
         uses = {
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
-                EventAddressMapper.class,
+                AddressDtoMapper.class,
                 EventStatusMapper.class
         }
 )

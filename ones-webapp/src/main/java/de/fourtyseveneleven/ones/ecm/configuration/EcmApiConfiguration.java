@@ -1,10 +1,7 @@
 package de.fourtyseveneleven.ones.ecm.configuration;
 
 import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
-import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
-import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
-import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataContactControllerApi;
-import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataPropertyControllerApi;
+import de.fourtyseveneleven.ones.ecm.generated.api.*;
 import de.fourtyseveneleven.ones.settings.OnesSettings;
 import de.fourtyseveneleven.ones.settings.ecm.EcmSettings;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +28,12 @@ public class EcmApiConfiguration {
     public MasterdataContactControllerApi masterdataContactControllerApi(ApiClient apiClient) {
 
         return new MasterdataContactControllerApi(apiClient);
+    }
+
+    @Bean
+    public MasterdataHorseControllerApi masterdataHorseControllerApi(ApiClient apiClient) {
+
+        return new MasterdataHorseControllerApi(apiClient);
     }
 
     @Bean
