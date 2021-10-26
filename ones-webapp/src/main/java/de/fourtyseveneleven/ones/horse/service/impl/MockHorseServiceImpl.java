@@ -29,4 +29,9 @@ public class MockHorseServiceImpl implements HorseService {
                 new HorseDto(UUID.randomUUID(), "248163264128", "361854162", "Jolly Jumper", FEMALE, "Pferd", "Braun", (short) 125, (short) 2013, null, null)
         );
     }
+
+    @Override
+    public void createHorseForCurrentUser(HorseDto horseDto) {
+        // No-Op
+    }
 }

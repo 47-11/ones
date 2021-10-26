@@ -4,18 +4,18 @@ import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataHorseControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorse;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterHorse;
 import de.fourtyseveneleven.ones.horse.HorseDtoMapper;
 import de.fourtyseveneleven.ones.horse.model.HorseDto;
 import de.fourtyseveneleven.ones.horse.service.HorseService;
 import de.fourtyseveneleven.ones.security.util.UserUtils;
 import de.fourtyseveneleven.ones.user.model.User;
+import de.fourtyseveneleven.ones.user.service.UserService;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -24,11 +24,12 @@ public class HorseServiceImpl implements HorseService {
 
     private final MasterdataHorseControllerApi masterdataHorseControllerApi;
     private final HorseDtoMapper horseDtoMapper;
+    private final UserService userService;
 
-
-    public HorseServiceImpl(MasterdataHorseControllerApi masterdataHorseControllerApi, HorseDtoMapper horseDtoMapper) {
+    public HorseServiceImpl(MasterdataHorseControllerApi masterdataHorseControllerApi, HorseDtoMapper horseDtoMapper, UserService userService) {
         this.masterdataHorseControllerApi = masterdataHorseControllerApi;
         this.horseDtoMapper = horseDtoMapper;
+        this.userService = userService;
     }
 
     @Override
@@ -56,4 +57,26 @@ public class HorseServiceImpl implements HorseService {
         return masterdataHorseControllerApi.getHorsesByContactUuid(userUuid);
     }
 
+    @Override
+    public void createHorseForCurrentUser(HorseDto horse) {
+
+        horse.setOwner(userService.getCurrentUser());
+        doAddHorse(horse);
+    }
+
+    private void doAddHorse(HorseDto horse) {
+
+        try {
+            tryAddHorse(horse);
+        } catch (ApiException e) {
+            throw new EcmApiException(e);
+        }
+    }
+
+    private void tryAddHorse(HorseDto horse) throws ApiException {
+
+        final RegisterHorse registerHorseRequest = horseDtoMapper
+                .horseDtoToRegisterHorse(horse);
+        masterdataHorseControllerApi.postRegisterHorse(registerHorseRequest);
+    }
 }
