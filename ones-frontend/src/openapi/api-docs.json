@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8410",
+      "url": "http://localhost:8080",
       "description": "Generated server url"
     }
   ],
@@ -48,8 +48,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -58,8 +58,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -111,8 +111,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -121,8 +121,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -174,8 +174,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -184,8 +184,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -244,8 +244,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -254,8 +254,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -307,8 +307,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -317,8 +317,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -380,8 +380,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -390,8 +390,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -438,8 +438,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -448,8 +448,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -511,8 +511,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -521,8 +521,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -579,8 +579,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -589,8 +589,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -637,8 +637,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -647,8 +647,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -702,8 +702,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -712,8 +712,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -878,8 +878,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -888,8 +888,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -953,8 +953,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -963,8 +963,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1028,8 +1028,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1038,8 +1038,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1096,8 +1096,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1106,8 +1106,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1164,8 +1164,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1174,8 +1174,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1232,8 +1232,8 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "403": {
+            "description": "Forbidden",
             "content": {
               "*/*": {
                 "schema": {
@@ -1242,8 +1242,8 @@
               }
             }
           },
-          "403": {
-            "description": "Forbidden",
+          "404": {
+            "description": "Not Found",
             "content": {
               "*/*": {
                 "schema": {
@@ -1429,12 +1429,66 @@
         "type": "object",
         "properties": {
           "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "passportNumber": {
+            "type": "string"
+          },
+          "chipNumber": {
             "type": "string"
           },
           "name": {
             "type": "string"
           },
-          "lifeNumber": {
+          "gender": {
+            "type": "string",
+            "enum": [
+              "FEMALE",
+              "MALE"
+            ]
+          },
+          "breed": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearOfBirth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stableAddress": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/PersonDto"
+          }
+        }
+      },
+      "PersonDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "phoneNumberMobile": {
             "type": "string"
           }
         }
@@ -1469,10 +1523,10 @@
               "$ref": "#/components/schemas/ResultDto"
             }
           },
-          "totalDistance": {
+          "averageSpeed": {
             "type": "number"
           },
-          "averageSpeed": {
+          "totalDistance": {
             "type": "number"
           }
         }
@@ -1734,29 +1788,6 @@
           "currentParticipants": {
             "type": "integer",
             "format": "int32"
-          }
-        }
-      },
-      "PersonDto": {
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "address": {
-            "$ref": "#/components/schemas/AddressDto"
-          },
-          "emailAddress": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "phoneNumberMobile": {
-            "type": "string"
           }
         }
       },

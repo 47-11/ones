@@ -174,8 +174,7 @@
                     <v-th>{{$t('details.qualification')}}</v-th>
                     <v-th>{{$t('details.horseAge')}}</v-th>
                     <v-th>{{$t('details.riderAge')}}</v-th>
-                    <v-th>{{$t("details.stages")}}</v-th>
-                    <v-th>{{$t("details.markings")}}</v-th>
+                    <v-th>{{$t("details.fee")}}</v-th>
                     <v-th>{{$t('details.maximumParticipants')}}</v-th>
                     <v-th></v-th>
                 </tr>
@@ -192,14 +191,15 @@
                         <span v-if="contest.minimumHorseAge && contest.maximumHorseAge">{{ $t("details.ageFromTo", { from: contest.minimumHorseAge, to: contest.maximumHorseAge}) }}</span>
                         <span v-if="contest.minimumHorseAge && !contest.maximumHorseAge">{{ $t("details.ageFrom", { from: contest.minimumHorseAge }) }}</span>
                         <span v-if="!contest.minimumHorseAge && contest.maximumHorseAge">{{ $t("details.ageTo", { to: contest.maximumHorseAge}) }}</span>
+                        <span v-if="!contest.minimumHorseAge && !contest.maximumHorseAge">{{ $t("details.noData") }}</span>
                     </v-td>
                     <v-td>
                         <span v-if="contest.minimumParticipantAge && contest.maximumParticipantAge">{{ $t("details.ageFromTo", { from: contest.minimumParticipantAge, to: contest.maximumParticipantAge}) }}</span>
                         <span v-if="contest.minimumParticipantAge && !contest.maximumParticipantAge">{{ $t("details.ageFrom", { from: contest.minimumParticipantAge }) }}</span>
                         <span v-if="!contest.minimumParticipantAge && contest.maximumParticipantAge">{{ $t("details.ageTo", { to: contest.maximumParticipantAge}) }}</span>
+                        <span v-if="!contest.minimumParticipantAge && !contest.maximumParticipantAge">{{ $t("details.noData") }}</span>
                     </v-td>
-                    <v-td>{{contest.numberOfStages}}</v-td>
-                    <v-td>{{contest.markings}}</v-td>
+                    <v-td>TODO</v-td>
                     <v-td>
                         {{ contest.currentParticipants || 0 }}
                         /
@@ -208,7 +208,7 @@
                     </v-td>
                     <v-td>
                         <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'" v-tooltip="contest.signedUpHorses ? $t('details.alreadySignedUp', {horses: contest.signedUpHorses}) : ''">
-                            <v-button :disabled="contest.signedUpHorses && contest.signedUpHorses.length > 0">{{ $t('details.signUp') }}</v-button>
+                            <v-button :disabled="contest.signedUpHorses && contest.signedUpHorses.length > 0">{{ $t('details.contestDetails') }}</v-button>
                         </router-link>
                     </v-td>
                 </tr>

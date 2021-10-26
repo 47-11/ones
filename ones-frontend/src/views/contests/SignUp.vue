@@ -11,7 +11,7 @@
                     <div class="flex items-center">
                         <div>
                             <div class="text-sm text-gray-700">
-                                {{ details.address.locationName }} - {{ start.format("DD.MM.YYYY") }}
+                                {{ details.title }} - {{ contest.category }} - {{ start.format("DD.MM.YYYY") }}
                             </div>
                             <h1 class="text-xl">
                                 {{$t('signUp.title')}}

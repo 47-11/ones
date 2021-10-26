@@ -5,7 +5,8 @@
     "logout": "Ausloggen",
     "user": "Benutzer",
     "mail": "E-Mail",
-    "profile": "Profil"
+    "profile": "Meine Daten",
+    "horses": "Meine Pferde"
   },
   "pagination": {
     "back": "Zurück"
@@ -138,7 +139,10 @@
     "stages": "Etappen",
     "markings": "Markierungen",
     "signUp": "Anmelden",
-    "alreadySignedUp": "Bereits angemeldet mit {horses}"
+    "alreadySignedUp": "Bereits angemeldet mit {horses}",
+    "fee": "Gebühr",
+    "contestDetails": "Details & Anmeldung",
+    "noData": "k. A."
   },
   "events": {
     "title": "Veranstaltungen",
@@ -217,7 +221,7 @@
     "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
   },
   "profile": {
-    "title": "Profil",
+    "title": "Meine Daten",
     "edit": "Bearbeiten"
   },
   "data": {
@@ -239,6 +243,26 @@
       "fnNo": "FN Nummer",
       "unset": "nicht gesetzt",
       "optional": "optional"
+    },
+    "horse": {
+      "name": "Name",
+      "gender": "Geschlecht",
+      "breed": "Rasse",
+      "color": "Farbe",
+      "yearOfBirth": "Jahrgang",
+      "size": "Stockmaß",
+      "sizeUnit": "cm",
+      "passportNumber": "Equidenpass Nr.",
+      "chipNumber": "Chip Nr.",
+      "stableAddress": "Stall Adresse",
+      "owner": "Besitzer"
     }
+  },
+  "horses": {
+    "title": "Meine Pferde"
+  },
+  "modal": {
+    "close": "Schließen",
+    "edit": "Bearbeiten"
   }
 }

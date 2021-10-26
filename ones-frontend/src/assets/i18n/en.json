@@ -5,7 +5,8 @@
     "logout": "Logout",
     "user": "User",
     "mail": "E-Mail",
-    "profile": "Profile"
+    "profile": "My Data",
+    "horses": "My Horses"
   },
   "pagination": {
     "back": "Back",
@@ -151,7 +152,10 @@
     "stages": "Stages",
     "markings": "Markings",
     "signUp": "Sign Up",
-    "alreadySignedUp": "Already signed up with {horses}"
+    "alreadySignedUp": "Already signed up with {horses}",
+    "fee": "Fee",
+    "contestDetails": "Details & Sign up",
+    "noData": "N/A"
   },
   "events": {
     "start": "Start",
@@ -231,11 +235,11 @@
     "message": "Cannot reach the server. Are you offline?"
   },
   "profile": {
-    "title": "Profile",
+    "title": "My Data",
     "edit": "Edit"
   },
   "data": {
-    "user":{
+    "user": {
       "firstName": "First Name",
       "lastName": "Last Name",
       "birthday": "Birthday",
@@ -253,6 +257,26 @@
       "fnNo": "FN Number",
       "unset": "unset",
       "optional": "optional"
+    },
+    "horse": {
+      "name": "Name",
+      "gender": "Gender",
+      "breed": "Breed",
+      "color": "Color",
+      "yearOfBirth": "Year Of Birth",
+      "size": "Stock measure",
+      "sizeUnit": "cm",
+      "passportNumber": "Equine Passport No",
+      "chipNumber": "Chip No",
+      "stableAddress": "Stable address",
+      "owner": "Owner"
     }
+  },
+  "horses": {
+    "title": "My Horses"
+  },
+  "modal": {
+    "close": "Close",
+    "edit": "Edit"
   }
 }

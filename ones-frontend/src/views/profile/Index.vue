@@ -138,9 +138,5 @@ export default class Profile extends Vue {
     get user(): UserDto | null {
         return vxm.user.current;
     }
-
-    mounted(): void {
-        vxm.user.fetchCurrent();
-    }
 }
 </script>
