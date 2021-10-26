@@ -118,12 +118,13 @@ public class ExceptionControllerAdvice {
         return new ErrorDto(getEcmErrorMessage(e), e.getMessage(), EcmApiException.class.getSimpleName());
     }
 
-    private String getEcmErrorMessage(EcmApiException e) {
+    private String getEcmErrorMessage(EcmApiException ecmApiException) {
 
         try {
-            final EcmErrorResponse ecmErrorResponse = getEcmErrorResponse(e);
+            final EcmErrorResponse ecmErrorResponse = getEcmErrorResponse(ecmApiException);
             return ecmErrorResponse.getJustification();
-        } catch (JsonProcessingException ex) {
+        } catch (JsonProcessingException jsonProcessingException) {
+            LOG.warn("Invalid error response received from ECM", jsonProcessingException);
             return getExceptionMessage("ecm.api-exception");
         }
     }
