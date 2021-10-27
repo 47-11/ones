@@ -223,6 +223,9 @@
   "profile": {
     "title": "Profil",
     "edit": "Bearbeiten",
+    "delete": "Account löschen",
+    "confirmDelete": "Dies wird diesen Account unwiederbringlich löschen. Sind Sie sicher dass dies wirklich vorgenommen werden soll? Ergebnisdaten im ECM sind von der Löschung ausgenommen.",
+    "edit": "Bearbeiten",
     "personalData": "Persönliche Daten",
     "contactInfo": "Kontaktinformationen",
     "otherData": "Weitere Daten",
@@ -242,7 +245,7 @@
       "street": "Straße",
       "houseNumber": "Hausnummer",
       "zipCode": "Postleitzahl",
-      "city": "Bocholt",
+      "city": "Stadt",
       "country": "Land",
       "birthName": "Geburtsname",
       "phoneNumberEmergency": "Notfallnummer",

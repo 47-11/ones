@@ -3,7 +3,8 @@
         <div class="max-w-6xl m-auto py-12">
             <div class="flex items-start mx-4 lg:mx-0">
                 <page-header>{{ $t("profile.title") }}</page-header>
-                <v-button class="ml-auto" v-if="user">{{$t('profile.edit')}}</v-button>
+                <v-button color="danger" class="ml-auto" v-if="user" @click.native="deleteAccount">{{$t('profile.delete')}}</v-button>
+                <v-button class="ml-4" v-if="user">{{$t('profile.edit')}}</v-button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6 mx-4 lg:mx-0" v-if="user">
@@ -126,6 +127,18 @@ import { UserDto } from "@/openapi/generated";
 export default class Profile extends Vue {
     get user(): UserDto | null {
         return vxm.user.current;
+    }
+
+    mounted(): void {
+        vxm.user.fetchCurrent();
+    }
+
+    async deleteAccount(): Promise<void> {
+        const deleteAccount = confirm(this.$i18n.t("profile.confirmDelete").toString());
+        if (deleteAccount) {
+            await vxm.user.deleteAccount();
+            this.$router.push("/logout");
+        }
     }
 }
 </script>
