@@ -18,4 +18,6 @@ public interface UserService {
     UserDto getCurrentUser();
 
     void setPersonalDataForCurrentUser(UserDto personalData);
+
+    void deleteSelf();
 }
