@@ -138,11 +138,10 @@
     "ageTo": "Bis {to}",
     "stages": "Etappen",
     "markings": "Markierungen",
-    "signUp": "Anmelden",
+    "signUp": "Details & Anmeldung",
     "alreadySignedUp": "Bereits angemeldet mit {horses}",
     "fee": "Gebühr",
-    "contestDetails": "Details & Anmeldung",
-    "noData": "k. A."
+    "notAvailable": "k. A."
   },
   "events": {
     "title": "Veranstaltungen",

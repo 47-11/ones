@@ -191,15 +191,15 @@
                         <span v-if="contest.minimumHorseAge && contest.maximumHorseAge">{{ $t("details.ageFromTo", { from: contest.minimumHorseAge, to: contest.maximumHorseAge}) }}</span>
                         <span v-if="contest.minimumHorseAge && !contest.maximumHorseAge">{{ $t("details.ageFrom", { from: contest.minimumHorseAge }) }}</span>
                         <span v-if="!contest.minimumHorseAge && contest.maximumHorseAge">{{ $t("details.ageTo", { to: contest.maximumHorseAge}) }}</span>
-                        <span v-if="!contest.minimumHorseAge && !contest.maximumHorseAge">{{ $t("details.noData") }}</span>
+                        <span v-if="!contest.minimumHorseAge && !contest.maximumHorseAge">{{ $t("details.notAvailable") }}</span>
                     </v-td>
                     <v-td>
                         <span v-if="contest.minimumParticipantAge && contest.maximumParticipantAge">{{ $t("details.ageFromTo", { from: contest.minimumParticipantAge, to: contest.maximumParticipantAge}) }}</span>
                         <span v-if="contest.minimumParticipantAge && !contest.maximumParticipantAge">{{ $t("details.ageFrom", { from: contest.minimumParticipantAge }) }}</span>
                         <span v-if="!contest.minimumParticipantAge && contest.maximumParticipantAge">{{ $t("details.ageTo", { to: contest.maximumParticipantAge}) }}</span>
-                        <span v-if="!contest.minimumParticipantAge && !contest.maximumParticipantAge">{{ $t("details.noData") }}</span>
+                        <span v-if="!contest.minimumParticipantAge && !contest.maximumParticipantAge">{{ $t("details.notAvailable") }}</span>
                     </v-td>
-                    <v-td>TODO</v-td>
+                    <v-td>{{ contest.signupFee + contest.startFee }}€</v-td>
                     <v-td>
                         {{ contest.currentParticipants || 0 }}
                         /
