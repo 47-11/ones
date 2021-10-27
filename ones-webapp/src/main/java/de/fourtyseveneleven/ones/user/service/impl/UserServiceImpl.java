@@ -24,6 +24,7 @@ import java.util.UUID;
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 import static de.fourtyseveneleven.ones.security.util.UserUtils.getAuthenticatedUser;
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -120,5 +121,13 @@ public class UserServiceImpl implements UserService {
         final UUID uuid = ecmRegistrationService.registerNewMember(user, personalData);
         user.setUuid(uuid);
         updateUser(user);
+    }
+
+    @Override
+    @Transactional
+    public void deleteSelf() {
+
+        final User toDelete = getAuthenticatedUser();
+        userRepository.delete(toDelete);
     }
 }

@@ -237,6 +237,9 @@
   "profile": {
     "title": "Profile",
     "edit": "Edit",
+    "delete": "Delete Account",
+    "confirmDelete": "This will permanently and irreversibly delete your account. Are you sure you really want to do that? Notice that this will not affect data within the contest results.",
+    "edit": "Edit",
     "personalData": "Personal Data",
     "contactInfo": "Contact Info",
     "otherData": "Other Data",

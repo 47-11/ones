@@ -4,6 +4,7 @@ import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,5 +32,11 @@ public class UserController {
     public void setPersonalData(@RequestBody UserDto personalData) {
 
         userService.setPersonalDataForCurrentUser(personalData);
+    }
+
+    @DeleteMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSelf() {
+        userService.deleteSelf();
     }
 }
