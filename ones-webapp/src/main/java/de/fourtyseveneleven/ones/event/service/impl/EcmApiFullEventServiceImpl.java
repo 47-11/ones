@@ -9,6 +9,7 @@ import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
 import de.fourtyseveneleven.ones.security.util.UserUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class EcmApiFullEventServiceImpl implements FullEventService {
     }
 
     @Override
+    @Cacheable(cacheNames = "events", cacheManager = "eventCacheManager")
     public Optional<FullEventDto> findOneByUuid(String eventUuid) {
 
         try {
