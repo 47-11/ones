@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
         if (isNull(currentUser.getUuid())) {
             setPersonalData(currentUser, personalData);
         } else {
-            throw new RegistrationException(getExceptionMessage("registration.ecm-registration-failed"));
+            updatePersonalData(currentUser, personalData);
         }
     }
 
@@ -121,6 +121,11 @@ public class UserServiceImpl implements UserService {
         final UUID uuid = ecmRegistrationService.registerNewMember(user, personalData);
         user.setUuid(uuid);
         updateUser(user);
+    }
+
+    private void updatePersonalData(User user, UserDto personalData) {
+
+        // TODO: Update personal data in ECM
     }
 
     @Override
