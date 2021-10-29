@@ -381,6 +381,18 @@ export interface FullContestDto {
     currentParticipants?: number;
     /**
      * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    signupFee?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof FullContestDto
+     */
+    startFee?: number;
+    /**
+     * 
      * @type {string}
      * @memberof FullContestDto
      */

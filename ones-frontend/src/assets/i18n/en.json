@@ -151,11 +151,10 @@
     "ageTo": "To {to}",
     "stages": "Stages",
     "markings": "Markings",
-    "signUp": "Sign Up",
+    "signUp": "Details & Sign Up",
     "alreadySignedUp": "Already signed up with {horses}",
     "fee": "Fee",
-    "contestDetails": "Details & Sign up",
-    "noData": "N/A"
+    "notAvailable": "N/A"
   },
   "events": {
     "start": "Start",
