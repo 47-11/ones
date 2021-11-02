@@ -1,5 +1,7 @@
 package de.fourtyseveneleven.ones.common.model.dto;
 
+import java.util.Objects;
+
 public class PageRequest {
 
     private int pageNumber;
@@ -24,5 +26,22 @@ public class PageRequest {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PageRequest that = (PageRequest) o;
+        return pageNumber == that.pageNumber && pageSize == that.pageSize;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pageNumber, pageSize);
     }
 }

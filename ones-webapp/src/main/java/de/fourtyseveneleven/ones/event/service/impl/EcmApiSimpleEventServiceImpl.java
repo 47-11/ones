@@ -16,6 +16,7 @@ import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.security.util.UserUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
+    @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
     public Optional<SimpleEventDto> findOneByUuid(String eventUuid) {
 
         try {
@@ -62,6 +64,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
+    @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
     public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
         final ResponcePageContestsPlain ecmPage = findPageInEcm(filter, pageRequest, sortRequest);
