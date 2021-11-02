@@ -8,6 +8,7 @@ import EventDetail from "@/views/events/Detail.vue";
 import EventsIndex from "@/views/events/Index.vue";
 import HorsesIndex from "@/views/horses/Index.vue";
 import ProfileIndex from "@/views/profile/Index.vue";
+import ProfileEdit from "@/views/profile/Edit.vue";
 import Vue from "vue";
 import VueRouter, { Route, RouteConfig } from "vue-router";
 import Login from "../views/auth/Login.vue";
@@ -67,6 +68,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/profile",
         component: ProfileIndex
+    },
+    {
+        path: "/profile/edit",
+        component: ProfileEdit
     },
     {
         path: "/horses",

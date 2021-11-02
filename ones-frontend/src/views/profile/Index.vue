@@ -4,7 +4,9 @@
             <div class="flex items-start mx-4 lg:mx-0">
                 <page-header>{{ $t("profile.title") }}</page-header>
                 <v-button color="danger" class="ml-auto" v-if="user" @click.native="deleteAccount">{{$t('profile.delete')}}</v-button>
-                <v-button class="ml-4" v-if="user">{{$t('profile.edit')}}</v-button>
+                <router-link to="/profile/edit">
+                  <v-button class="ml-4" v-if="user">{{$t('profile.edit')}}</v-button>
+                </router-link>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6 mx-4 lg:mx-0" v-if="user">
