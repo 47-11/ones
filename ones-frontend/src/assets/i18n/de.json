@@ -93,10 +93,13 @@
     "timeRange": "Zeitraum",
     "region": "Region",
     "country": "Land",
-    "city": "Ort",
+    "city": "Ort","paymentInformation": {
+      "title": "Payment Information"
+    },
     "vddQualificationInfo": "Ab dem 01. Januar 2018 gilt der {qualification}.",
     "vddQualification": "VDD-Qualifikationsweg",
     "details": "Details",
+    "signupChangeFee": "Umnennungsgebühr",
     "signUpDeadline": "Nennschluss",
     "signUpFee": "Nenngeld",
     "caseSignUpDeadlineMissed": "falls Nennschluss verpasst",
@@ -187,6 +190,10 @@
   },
   "signUp": {
     "title": "Anmeldung zum Wettbewerb",
+    "paymentInformation": {
+      "title": "Zahlungsinformationen",
+      "remarks": "Verwendungszweck"
+    },
     "requirements": {
       "title": "Voraussetzungen",
       "minimumHorseAge": "Pferd min. {age} Jahre",
