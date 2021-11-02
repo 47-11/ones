@@ -46,7 +46,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    @Cacheable(cacheNames = "events", cacheManager = "eventCacheManager")
+    @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
     public Optional<SimpleEventDto> findOneByUuid(String eventUuid) {
 
         try {
@@ -64,7 +64,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    @Cacheable(cacheNames = "events", cacheManager = "eventCacheManager")
+    @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
     public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
         final ResponcePageContestsPlain ecmPage = findPageInEcm(filter, pageRequest, sortRequest);

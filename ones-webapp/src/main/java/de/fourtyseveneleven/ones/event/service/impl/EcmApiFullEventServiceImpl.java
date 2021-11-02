@@ -31,7 +31,7 @@ public class EcmApiFullEventServiceImpl implements FullEventService {
     }
 
     @Override
-    @Cacheable(cacheNames = "events", cacheManager = "eventCacheManager")
+    @Cacheable(cacheNames = "fullEvents", cacheManager = "eventCacheManager")
     public Optional<FullEventDto> findOneByUuid(String eventUuid) {
 
         try {
