@@ -265,7 +265,11 @@
       "passportNumber": "Equidenpass Nr.",
       "chipNumber": "Chip Nr.",
       "stableAddress": "Stall Adresse",
-      "owner": "Besitzer"
+      "owner": "Besitzer",
+      "genderOptions": {
+        "FEMALE": "Stute",
+        "MALE": "Hengst"
+      }
     }
   },
   "horses": {
@@ -275,12 +279,14 @@
       "add": {
         "title": "Pferd hinzufügen",
         "masterData": "Stammdaten",
-        "owner": "Besitzer"
+        "owner": "Besitzer",
+        "confirm": "Pferd hinzufügen"
       }
     }
   },
   "modal": {
     "close": "Schließen",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "abort": "Abbrechen"
   }
 }

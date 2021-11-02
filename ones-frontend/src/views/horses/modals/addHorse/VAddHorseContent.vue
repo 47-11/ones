@@ -23,7 +23,11 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.gender") }}</v-label>
-                <v-input type="text" class="w-full" @input="update('gender', $event)" :disabled="inputsDisabled"/>
+                <v-select :value="gender" type="text" class="w-full" @input="update('gender', $event)" :disabled="inputsDisabled">
+                    <option v-for="(gender, index) in genders" :key="index" :value="gender">
+                        {{ $t("data.horse.genderOptions." + gender) }}
+                    </option>
+                </v-select>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
@@ -38,12 +42,12 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.yearOfBirth") }}</v-label>
-                <v-input type="text" class="w-full" @input="update('yearOfBirth', $event)" :disabled="inputsDisabled"/>
+                <v-input :value="yearOfBirth" type="number" class="w-full" @input="update('yearOfBirth', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.size") }}</v-label>
-                <v-input type="number" class="w-full" @input="update('size', $event)" :disabled="inputsDisabled"/>
+                <v-input :value="size" type="number" class="w-full" @input="update('size', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 mt-8">
@@ -61,7 +65,7 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.address.zipCode") }}</v-label>
-                <v-input type="text" class="w-full" @input="update('stableZipCode', $event)" :disabled="inputsDisabled"/>
+                <v-input type="number" class="w-full" @input="update('stableZipCode', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
@@ -89,12 +93,12 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.user.phoneNumber") }}</v-label>
-                <v-input type="text" class="w-full" @input="update('ownerPhoneNumber', $event)" :disabled="inputsDisabled"/>
+                <v-input type="tel" class="w-full" @input="update('ownerPhoneNumber', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.user.phoneNumberMobile") }}</v-label>
-                <v-input type="text" class="w-full" @input="update('ownerMobileNumber', $event)" :disabled="inputsDisabled"/>
+                <v-input type="tel" class="w-full" @input="update('ownerMobileNumber', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
@@ -126,25 +130,38 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import VInput from "@/components/forms/VInput.vue";
+import VSelect from "@/components/forms/VSelect.vue";
+import VLabel from "@/components/forms/VLabel.vue";
+import { vxm } from "@/store";
+import { HorseDtoGenderEnum } from "@/openapi/generated";
 
 @Component({
     components: {
-        VInput
+        VInput,
+        VSelect,
+        VLabel
     }
 })
 export default class VAddHorseContent extends Vue {
+    @Prop()
+    addConfirmListener!: (l: () => void) => void;
+
+    mounted(): void {
+        this.addConfirmListener(this.setData.bind(this));
+    }
+
     inputsDisabled = false;
 
     name = "";
     equinePassportNo = "";
     chipNo = "";
-    gender = "";
+    gender: HorseDtoGenderEnum = HorseDtoGenderEnum.Female;
     breed = "";
     color = "";
-    yearOfBirth = "";
-    size = 0;
+    yearOfBirth: number | null = null;
+    size: number | null = null;
 
     stableStreet = "";
     stableHouseNumber = "";
@@ -162,9 +179,86 @@ export default class VAddHorseContent extends Vue {
     ownerCity = "";
     ownerCountry = "";
 
+    genders = HorseDtoGenderEnum;
+
     public update(property: keyof this, value: string): void {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this[property] = value as any;
+    }
+
+    private async setData(): Promise<void> {
+        try {
+            this.assertRequiredFilled();
+            await vxm.horses.add({
+                passportNumber: this.equinePassportNo,
+                chipNumber: this.chipNo,
+                name: this.name,
+                gender: this.gender,
+                breed: this.breed,
+                color: this.color,
+                size: this.size || 0,
+                yearOfBirth: this.yearOfBirth || 0,
+                stableAddress: {
+                    street: this.stableStreet,
+                    houseNumber: this.stableHouseNumber,
+                    zipCode: this.stableZipCode,
+                    city: this.stableCity,
+                    country: this.stableCountry
+                },
+                owner: {
+                    firstName: this.ownerFirstName,
+                    lastName: this.ownerLastName,
+                    phoneNumber: this.ownerPhoneNumber,
+                    phoneNumberMobile: this.ownerMobileNumber,
+                    address: {
+                        street: this.ownerStreet,
+                        houseNumber: this.ownerHouseNumber,
+                        zipCode: this.ownerZipCode,
+                        city: this.ownerCity,
+                        country: this.ownerCountry
+                    }
+                }
+            });
+            this.$vfm.hide("add-horse");
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    assertRequiredFilled(): void {
+        for (const prop of this.requiredProps) {
+            const value = this[prop];
+            if (!value || (typeof value === "string" && value.length === 0)) {
+                throw new Error(prop + " not filled.");
+            }
+        }
+    }
+
+    get requiredProps(): Array<keyof this> {
+        return [
+            "name",
+            "equinePassportNo",
+            "chipNo",
+            "gender",
+            "breed",
+            "color",
+            "yearOfBirth",
+            "size",
+            "stableStreet",
+            "stableHouseNumber",
+            "stableZipCode",
+            "stableCity",
+            "stableCountry",
+            "ownerFirstName",
+            "ownerLastName",
+            "ownerPhoneNumber",
+            "ownerMobileNumber",
+            "ownerStreet",
+            "ownerHouseNumber",
+            "ownerZipCode",
+            "ownerCity",
+            "ownerCountry"
+        ];
     }
 }
 </script>

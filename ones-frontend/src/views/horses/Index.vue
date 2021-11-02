@@ -118,6 +118,8 @@ export default class Profile extends Vue {
     }
 
     public addHorse(): void {
+        let listener: null | (() => void) = null;
+        const onConfirm = () => listener && listener();
         this.$vfm.show({
             bind: {
                 name: "add-horse"
@@ -128,10 +130,18 @@ export default class Profile extends Vue {
                     component: VAddHorseHeader
                 },
                 footer: {
-                    component: VAddHorseFooter
+                    component: VAddHorseFooter,
+                    bind: {
+                        confirm: onConfirm
+                    }
                 },
                 default: {
-                    component: VAddHorseContent
+                    component: VAddHorseContent,
+                    bind: {
+                        addConfirmListener: (l: () => void) => {
+                            listener = l;
+                        }
+                    }
                 }
             },
             on: {

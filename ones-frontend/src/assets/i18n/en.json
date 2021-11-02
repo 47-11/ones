@@ -279,7 +279,11 @@
       "passportNumber": "Equine Passport No",
       "chipNumber": "Chip No",
       "stableAddress": "Stable address",
-      "owner": "Owner"
+      "owner": "Owner",
+      "genderOptions": {
+        "FEMALE": "Mare",
+        "MALE": "Stallion"
+      }
     },
     "address": {
       "street": "Street",
@@ -297,12 +301,14 @@
         "title": "Add horse",
         "stable": "Stable",
         "masterData": "Master Data",
-        "owner": "Owner"
+        "owner": "Owner",
+        "confirm": "Add horse"
       }
     }
   },
   "modal": {
     "close": "Close",
-    "edit": "Edit"
+    "edit": "Edit",
+    "abort": "Abort"
   }
 }
