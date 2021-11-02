@@ -130,9 +130,6 @@ export class UserStore extends VuexModule {
 
     @action
     async deleteAccount(): Promise<void> {
-        await new UserControllerApi({
-            accessToken: this.token || "",
-            isJsonMime: () => true
-        }).deleteSelf();
+        await getApi().user.deleteSelf();
     }
 }
