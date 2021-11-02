@@ -47,25 +47,25 @@
           <h2 class="text-xl font-bold text-gray-700">{{ $t('profile.contactInfo') }}</h2>
           <card class="mt-3 overflow-x-hidden">
 
-            <div class="px-5 py-3 grid grid-cols-1 md:grid-cols-12 gap-3">
-              <div class="col-span-8">
+            <div class="px-5 py-3 grid grid-cols-1 sm:grid-cols-12 gap-3">
+              <div class="col-span-1 sm:col-span-8">
                 <v-label class="mb-1">{{ $t('data.user.street') }}</v-label>
                 <v-input class="w-full" type="text" v-model="user.address.street"
                          autocomplete="street-address"></v-input>
               </div>
-              <div class="col-span-4">
+              <div class="col-span-1 sm:col-span-4">
                 <v-label class="mb-1">{{ $t('data.user.houseNumber') }}</v-label>
                 <v-input class="w-full" type="text" v-model="user.address.houseNumber"></v-input>
               </div>
-              <div class="col-span-4">
+              <div class="col-span-1 sm:col-span-4">
                 <v-label class="mb-1">{{ $t('data.user.zipCode') }}</v-label>
                 <v-input class="w-full" type="text" v-model="user.address.zipCode" autocomplete="postal-code"></v-input>
               </div>
-              <div class="col-span-8">
+              <div class="col-span-1 sm:col-span-8">
                 <v-label class="mb-1">{{ $t('data.user.city') }}</v-label>
                 <v-input class="w-full" type="text" v-model="user.address.city"></v-input>
               </div>
-              <div class="col-span-12">
+              <div class="col-span-1 sm:col-span-12">
                 <v-label class="mb-1">{{ $t('data.user.country') }}</v-label>
                 <v-select v-model="user.address.country" class="w-full">
                   <option value="DE">{{ $t("shared.countries.germany") }}</option>
@@ -74,15 +74,15 @@
                   <option value="CH">{{ $t("shared.countries.switzerland") }}</option>
                 </v-select>
               </div>
-              <div class="col-span-12">
+              <div class="col-span-1 sm:col-span-12">
                 <v-label class="mb-1">{{ $t('data.user.phoneNumber') }}</v-label>
                 <v-input class="w-full" type="tel" v-model="user.phoneNumber"></v-input>
               </div>
-              <div class="col-span-12">
+              <div class="col-span-1 sm:col-span-12">
                 <v-label class="mb-1">{{ $t('data.user.phoneNumberMobile') }}</v-label>
                 <v-input class="w-full" type="tel" v-model="user.phoneNumberMobile"></v-input>
               </div>
-              <div class="col-span-12 mb-3">
+              <div class="col-span-1 sm:col-span-12 mb-3">
                 <v-label class="mb-1">{{ $t('data.user.phoneNumberEmergency') }}</v-label>
                 <v-input class="w-full" type="tel" v-model="user.phoneNumberEmergency"></v-input>
               </div>
@@ -110,6 +110,11 @@
             </div>
           </card>
         </div>
+      </div>
+      <div class="flex items-start flex-wrap-reverse mx-4 lg:mx-0 mt-6 gap-4">
+        <v-button class="w-full sm:w-auto" color="secondary" @click.native="goBack">{{ $t('shared.back') }}</v-button>
+        <v-button class="w-full sm:w-auto sm:ml-auto" color="danger" v-if="user" @click.native="deleteAccount">{{ $t('profile.delete') }}</v-button>
+        <v-button class="w-full sm:w-auto" v-if="user" @click.native="saveAccount">{{ $t('profile.save') }}</v-button>
       </div>
     </div>
   </app-layout>
@@ -169,6 +174,10 @@ export default class ProfileEdit extends Vue {
 
     mounted(): void {
         vxm.user.fetchCurrent();
+    }
+
+    goBack(): void {
+        this.$router.push("/profile");
     }
 
     async saveAccount(): Promise<void> {
