@@ -830,13 +830,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
 }
 /**
  * 

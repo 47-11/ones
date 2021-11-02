@@ -55,16 +55,6 @@
                                     <arguments>run lint -- --no-fix</arguments>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>npm run tests</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>test</phase>
-                                <configuration>
-                                    <arguments>run test:unit -- --ci --reporters=default --reporters=jest-junit</arguments>
-                                </configuration>
-                            </execution>
                         </executions>
                     </plugin>
                 </plugins>

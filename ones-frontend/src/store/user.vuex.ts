@@ -1,4 +1,5 @@
-import { ForgotPasswordControllerApi, LoginControllerApi, RegistrationControllerApi, UserControllerApi, UserDto as PersonalData, UserDto as User, UserDto } from "@/openapi/generated";
+import { UserDto as PersonalData, UserDto as User, UserDto } from "@/openapi/generated";
+import { getApi } from "@/store/api";
 import { action, createModule, mutation } from "vuex-class-component";
 
 const VuexModule = createModule({
@@ -56,7 +57,7 @@ export class UserStore extends VuexModule {
 
     @action
     async login(payload: LoginPayload): Promise<void> {
-        const loginResult = await new LoginControllerApi().login({
+        const loginResult = await getApi().login.login({
             emailAddress: payload.email,
             password: payload.password
         });
@@ -80,7 +81,7 @@ export class UserStore extends VuexModule {
 
     @action
     async register(payload: RegistrationPayload): Promise<void> {
-        await new RegistrationControllerApi().createRegistration({
+        await getApi().registration.createRegistration({
             emailAddress: payload.email,
             password: payload.password,
             vddMemberNumber: payload.vddNumber
@@ -89,7 +90,7 @@ export class UserStore extends VuexModule {
 
     @action
     async verify(payload: VerificationPayload): Promise<void> {
-        await new RegistrationControllerApi().confirmRegistration(payload.code);
+        await getApi().registration.confirmRegistration(payload.code);
     }
 
     @mutation
@@ -101,14 +102,14 @@ export class UserStore extends VuexModule {
 
     @action
     async forgotPassword(payload: ForgotPassPayload): Promise<void> {
-        await new ForgotPasswordControllerApi().forgotPassword({
+        await getApi().forgotPassword.forgotPassword({
             emailAddress: payload.email
         });
     }
 
     @action
     async setNewPasswordByCode(payload: NewPassByCodePayload): Promise<void> {
-        await new ForgotPasswordControllerApi().forgotPasswordSetNewPassword({
+        await getApi().forgotPassword.forgotPasswordSetNewPassword({
             code: payload.code,
             newPassword: payload.password
         });
@@ -116,28 +117,19 @@ export class UserStore extends VuexModule {
 
     @action
     async fetchCurrent(): Promise<void> {
-        const response = await new UserControllerApi({
-            accessToken: this.token || "",
-            isJsonMime: () => true
-        }).getCurrentUser();
+        const response = await getApi().user.getCurrentUser();
 
         this._current = response.data;
     }
 
     @action
     async setPersonalData(payload: PersonalData): Promise<void> {
-        await new UserControllerApi({
-            accessToken: this.token || "",
-            isJsonMime: () => true
-        }).setPersonalData(payload);
+        await getApi().user.setPersonalData(payload);
         await this.fetchCurrent();
     }
 
     @action
     async deleteAccount(): Promise<void> {
-        await new UserControllerApi({
-            accessToken: this.token || "",
-            isJsonMime: () => true
-        }).deleteSelf();
+        await getApi().user.deleteSelf();
     }
 }

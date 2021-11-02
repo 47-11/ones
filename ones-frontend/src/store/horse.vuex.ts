@@ -1,6 +1,6 @@
-import { HorseControllerApi, HorseDto as Horse } from "@/openapi/generated";
-import { action, createModule, createProxy } from "vuex-class-component";
-import { UserStore } from "./user.vuex";
+import { HorseDto as Horse } from "@/openapi/generated";
+import { getApi } from "@/store/api";
+import { action, createModule } from "vuex-class-component";
 
 const VuexModule = createModule({
     namespaced: "horses",
@@ -14,16 +14,9 @@ export class HorseStore extends VuexModule {
         return this._horses;
     }
 
-    private get controller() {
-        return new HorseControllerApi({
-            accessToken: createProxy(this.$store, UserStore).token || "",
-            isJsonMime: () => true
-        });
-    }
-
     @action
     async fetch(): Promise<void> {
-        const response = await this.controller.getMyHorses();
+        const response = await getApi().horses.getMyHorses();
         this._horses = response.data;
     }
 }
