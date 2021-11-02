@@ -830,13 +830,13 @@ export interface ResultOverviewDto {
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    averageSpeed?: number;
+    totalDistance?: number;
     /**
      * 
      * @type {number}
      * @memberof ResultOverviewDto
      */
-    totalDistance?: number;
+    averageSpeed?: number;
 }
 /**
  * 
@@ -1954,6 +1954,45 @@ export const HorseControllerApiAxiosParamCreator = function (configuration?: Con
     return {
         /**
          * 
+         * @param {HorseDto} horseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createHorse: async (horseDto: HorseDto, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'horseDto' is not null or undefined
+            assertParamExists('createHorse', 'horseDto', horseDto)
+            const localVarPath = `/api/v1/horse/my`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(horseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1997,6 +2036,16 @@ export const HorseControllerApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {HorseDto} horseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createHorse(horseDto: HorseDto, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createHorse(horseDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2016,6 +2065,15 @@ export const HorseControllerApiFactory = function (configuration?: Configuration
     return {
         /**
          * 
+         * @param {HorseDto} horseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createHorse(horseDto: HorseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.createHorse(horseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2032,6 +2090,17 @@ export const HorseControllerApiFactory = function (configuration?: Configuration
  * @extends {BaseAPI}
  */
 export class HorseControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {HorseDto} horseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HorseControllerApi
+     */
+    public createHorse(horseDto: HorseDto, options?: any) {
+        return HorseControllerApiFp(this.configuration).createHorse(horseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {*} [options] Override http request option.

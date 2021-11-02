@@ -207,6 +207,140 @@
                 }
             }
         },
+        "/api/v1/horse/my": {
+            "get": {
+                "tags": [
+                    "horse-controller"
+                ],
+                "operationId": "getMyHorses",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HorseDto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "horse-controller"
+                ],
+                "operationId": "createHorse",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HorseDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/forgot-password": {
             "post": {
                 "tags": [
@@ -679,74 +813,6 @@
                             "*/*": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ResultOverviewDto"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorDto"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorDto"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorDto"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorDto"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/horse/my": {
-            "get": {
-                "tags": [
-                    "horse-controller"
-                ],
-                "operationId": "getMyHorses",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/HorseDto"
-                                    }
                                 }
                             }
                         }
@@ -1364,36 +1430,6 @@
                     }
                 }
             },
-            "ForgotPasswordDto": {
-                "type": "object",
-                "properties": {
-                    "emailAddress": {
-                        "type": "string"
-                    }
-                }
-            },
-            "ForgotPasswordSetNewPasswordDto": {
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    },
-                    "newPassword": {
-                        "type": "string"
-                    }
-                }
-            },
-            "SignupRequestDto": {
-                "type": "object",
-                "properties": {
-                    "horseUuids": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
             "AddressDto": {
                 "type": "object",
                 "properties": {
@@ -1413,70 +1449,6 @@
                         "type": "string"
                     },
                     "country": {
-                        "type": "string"
-                    }
-                }
-            },
-            "UserDto": {
-                "type": "object",
-                "properties": {
-                    "firstName": {
-                        "type": "string"
-                    },
-                    "lastName": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "$ref": "#/components/schemas/AddressDto"
-                    },
-                    "emailAddress": {
-                        "type": "string"
-                    },
-                    "phoneNumber": {
-                        "type": "string"
-                    },
-                    "phoneNumberMobile": {
-                        "type": "string"
-                    },
-                    "uuid": {
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "vddNumber": {
-                        "type": "string"
-                    },
-                    "feiNumber": {
-                        "type": "string"
-                    },
-                    "fnNumber": {
-                        "type": "string"
-                    },
-                    "qualificationLevel": {
-                        "type": "string",
-                        "format": "byte"
-                    },
-                    "qualificationLevelApproved": {
-                        "type": "boolean"
-                    },
-                    "phoneNumberEmergency": {
-                        "type": "string"
-                    },
-                    "birthName": {
-                        "type": "string"
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "format": "date"
-                    }
-                }
-            },
-            "ChangePasswordDto": {
-                "type": "object",
-                "properties": {
-                    "oldPassword": {
-                        "type": "string"
-                    },
-                    "newPassword": {
                         "type": "string"
                     }
                 }
@@ -1549,6 +1521,100 @@
                     }
                 }
             },
+            "ForgotPasswordDto": {
+                "type": "object",
+                "properties": {
+                    "emailAddress": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ForgotPasswordSetNewPasswordDto": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "newPassword": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SignupRequestDto": {
+                "type": "object",
+                "properties": {
+                    "horseUuids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "UserDto": {
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressDto"
+                    },
+                    "emailAddress": {
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "type": "string"
+                    },
+                    "phoneNumberMobile": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "vddNumber": {
+                        "type": "string"
+                    },
+                    "feiNumber": {
+                        "type": "string"
+                    },
+                    "fnNumber": {
+                        "type": "string"
+                    },
+                    "qualificationLevel": {
+                        "type": "string",
+                        "format": "byte"
+                    },
+                    "qualificationLevelApproved": {
+                        "type": "boolean"
+                    },
+                    "phoneNumberEmergency": {
+                        "type": "string"
+                    },
+                    "birthName": {
+                        "type": "string"
+                    },
+                    "birthday": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "ChangePasswordDto": {
+                "type": "object",
+                "properties": {
+                    "oldPassword": {
+                        "type": "string"
+                    },
+                    "newPassword": {
+                        "type": "string"
+                    }
+                }
+            },
             "ResultDto": {
                 "type": "object",
                 "properties": {
@@ -1579,10 +1645,10 @@
                             "$ref": "#/components/schemas/ResultDto"
                         }
                     },
-                    "averageSpeed": {
+                    "totalDistance": {
                         "type": "number"
                     },
-                    "totalDistance": {
+                    "averageSpeed": {
                         "type": "number"
                     }
                 }
