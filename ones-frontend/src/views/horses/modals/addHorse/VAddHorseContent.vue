@@ -43,17 +43,17 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.yearOfBirth") }}</v-label>
-                <v-input type="number" class="w-full" @input="updateHorse('yearOfBirth', $event)" :disabled="inputsDisabled"/>
+                <v-input type="number" class="w-full" @input="updateHorse('yearOfBirth', $event)" :disabled="inputsDisabled" :placeholder="$t('horses.modals.add.yearPlaceholder')"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.size") }}</v-label>
-                <v-input type="number" class="w-full" @input="updateHorse('size', $event)" :disabled="inputsDisabled"/>
+                <v-input type="number" class="w-full" @input="updateHorse('size', $event)" :disabled="inputsDisabled" :placeholder="$t('horses.modals.add.sizePlaceholder')"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.feiNo") }}</v-label>
-                <v-input type="number" class="w-full" @input="updateHorse('feiNumber', $event)" :disabled="inputsDisabled"/>
+                <v-input type="text" class="w-full" @input="updateHorse('feiNumber', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 mt-8">

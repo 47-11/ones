@@ -286,7 +286,8 @@
           "notFilled": " nicht gefüllt.",
           "sizeOutOfRange": "Stockmaß muss zwischen 40 und 250 cm sein.",
           "yearInvalid": "Geburtsjahr muss innerhalb der letzten 60 Jahre liegen."
-        }
+        },
+        "yearPlaceholder": "4 Ziffern"
       }
     }
   },

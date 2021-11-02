@@ -308,7 +308,9 @@
           "notFilled": " not filled.",
           "sizeOutOfRange": "Size must be greater than 40cms and smaller than 250cms.",
           "yearInvalid": "Year of birth must be within the last 60 years"
-        }
+        },
+        "sizePlaceholder": "40 - 250cm",
+        "yearPlaceholder": "4 Digits"
       }
     }
   },
