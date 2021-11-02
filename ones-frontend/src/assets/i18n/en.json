@@ -280,10 +280,26 @@
       "chipNumber": "Chip No",
       "stableAddress": "Stable address",
       "owner": "Owner"
+    },
+    "address": {
+      "street": "Street",
+      "houseNumber": "House number",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "country": "Country"
     }
   },
   "horses": {
-    "title": "My Horses"
+    "title": "My Horses",
+    "add": "Add horse",
+    "modals": {
+      "add": {
+        "title": "Add horse",
+        "stable": "Stable",
+        "masterData": "Master Data",
+        "owner": "Owner"
+      }
+    }
   },
   "modal": {
     "close": "Close",

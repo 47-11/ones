@@ -3,6 +3,10 @@
         <div class="max-w-6xl m-auto py-12">
             <div class="flex items-start">
                 <page-header>{{ $t("horses.title") }}</page-header>
+
+                <v-button type="button" class="ml-auto mr-6 lg:mr-0" @click.native="addHorse">
+                    <span>{{ $t("horses.add") }}</span>
+                </v-button>
             </div>
 
             <v-table class="mt-8">
@@ -54,6 +58,9 @@ import { HorseDto } from "@/openapi/generated";
 import VHorseHeader from "@/views/horses/modals/VHorseHeader.vue";
 import VHorseContent from "@/views/horses/modals/VHorseContent.vue";
 import VHorseFooter from "@/views/horses/modals/VHorseFooter.vue";
+import VAddHorseHeader from "@/views/horses/modals/addHorse/VAddHorseHeader.vue";
+import VAddHorseContent from "@/views/horses/modals/addHorse/VAddHorseContent.vue";
+import VAddHorseFooter from "@/views/horses/modals/addHorse/VAddHorseFooter.vue";
 
 @Component({
     components: {
@@ -100,6 +107,31 @@ export default class Profile extends Vue {
                     bind: {
                         horse
                     }
+                }
+            },
+            on: {
+                cancel(close: () => void) {
+                    close();
+                }
+            }
+        });
+    }
+
+    public addHorse(): void {
+        this.$vfm.show({
+            bind: {
+                name: "add-horse"
+            },
+            component: "Modal",
+            slots: {
+                header: {
+                    component: VAddHorseHeader
+                },
+                footer: {
+                    component: VAddHorseFooter
+                },
+                default: {
+                    component: VAddHorseContent
                 }
             },
             on: {

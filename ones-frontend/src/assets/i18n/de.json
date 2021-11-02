@@ -269,7 +269,15 @@
     }
   },
   "horses": {
-    "title": "Meine Pferde"
+    "title": "Meine Pferde",
+    "add": "Pferd hinzufügen",
+    "modals": {
+      "add": {
+        "title": "Pferd hinzufügen",
+        "masterData": "Stammdaten",
+        "owner": "Besitzer"
+      }
+    }
   },
   "modal": {
     "close": "Schließen",
