@@ -193,6 +193,7 @@ export default class VAddHorseContent extends Vue {
     private async setData(): Promise<void> {
         try {
             this.assertRequiredFilled();
+            this.assertAllInRange();
             await vxm.horses.add({
                 passportNumber: this.equinePassportNo,
                 chipNumber: this.chipNo,
@@ -233,7 +234,7 @@ export default class VAddHorseContent extends Vue {
         for (const prop of this.requiredProps) {
             const value = this[prop];
             if (!value || (typeof value === "string" && value.length === 0)) {
-                throw new Error(prop + " not filled.");
+                throw new Error(prop + this.$t("horses.modals.add.errors.notFilled").toString());
             }
         }
     }
@@ -263,6 +264,16 @@ export default class VAddHorseContent extends Vue {
             "ownerCity",
             "ownerCountry"
         ];
+    }
+
+    assertAllInRange(): void {
+        const currentYear = new Date().getFullYear();
+        if (this.yearOfBirth && (this.yearOfBirth < (currentYear - 60) || this.yearOfBirth > currentYear)) {
+            throw new Error(this.$t("horses.modals.add.errors.yearInvalid").toString());
+        }
+        if (this.size && (this.size < 40 || this.size > 250)) {
+            throw new Error(this.$t("horses.modals.add.errors.sizeOutOfRange").toString());
+        }
     }
 }
 </script>

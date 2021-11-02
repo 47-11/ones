@@ -280,7 +280,12 @@
         "title": "Pferd hinzufügen",
         "masterData": "Stammdaten",
         "owner": "Besitzer",
-        "confirm": "Pferd hinzufügen"
+        "confirm": "Pferd hinzufügen",
+        "errors": {
+          "notFilled": " nicht gefüllt.",
+          "sizeOutOfRange": "Stockmaß muss zwischen 40 und 250 cm sein.",
+          "yearInvalid": "Geburtsjahr muss innerhalb der letzten 60 Jahre liegen."
+        }
       }
     }
   },
