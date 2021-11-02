@@ -269,7 +269,8 @@
       "genderOptions": {
         "FEMALE": "Stute",
         "MALE": "Hengst"
-      }
+      },
+      "feiNo": "FEI Nummer"
     }
   },
   "horses": {

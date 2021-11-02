@@ -51,6 +51,11 @@
                 <v-input :value="size" type="number" class="w-full" @input="update('size', $event)" :disabled="inputsDisabled"/>
             </div>
 
+            <div class="col-span-12 sm:col-span-6">
+                <v-label>{{ $t("data.horse.feiNo") }}</v-label>
+                <v-input :value="size" type="number" class="w-full" @input="update('feiNo', $event)" :disabled="inputsDisabled"/>
+            </div>
+
             <div class="col-span-12 mt-8">
                 <h1 class="text-xl bold">{{ $t("horses.modals.add.stable") }}</h1>
             </div>
@@ -166,6 +171,7 @@ export default class VAddHorseContent extends Vue {
     color = "";
     yearOfBirth: number | null = null;
     size: number | null = null;
+    feiNo = "";
 
     stableStreet = "";
     stableHouseNumber = "";
@@ -203,6 +209,7 @@ export default class VAddHorseContent extends Vue {
                 color: this.color,
                 size: this.size || 0,
                 yearOfBirth: this.yearOfBirth || 0,
+                // feiNo: this.feiNo, Needs to be added when available
                 stableAddress: {
                     street: this.stableStreet,
                     houseNumber: this.stableHouseNumber,
@@ -249,6 +256,7 @@ export default class VAddHorseContent extends Vue {
             "color",
             "yearOfBirth",
             "size",
+            "feiNo",
             "stableStreet",
             "stableHouseNumber",
             "stableZipCode",

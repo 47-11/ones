@@ -283,7 +283,8 @@
       "genderOptions": {
         "FEMALE": "Mare",
         "MALE": "Stallion"
-      }
+      },
+      "feiNo": "FEI No"
     },
     "address": {
       "street": "Street",
