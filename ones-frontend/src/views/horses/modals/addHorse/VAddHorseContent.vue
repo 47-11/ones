@@ -1,5 +1,6 @@
 <template>
     <div class="w-full p-8">
+        <error-message :error="error"/>
         <div class="grid grid-cols-12 gap-4 mb-5">
             <div class="col-span-12">
                 <h1 class="text-xl bold">{{ $t("horses.modals.add.masterData") }}</h1>
@@ -126,6 +127,8 @@
                 <v-input type="text" class="w-full" @input="update('ownerCountry', $event)" :disabled="inputsDisabled"/>
             </div>
         </div>
+
+        <error-message :error="error"/>
     </div>
 </template>
 
@@ -153,6 +156,7 @@ export default class VAddHorseContent extends Vue {
     }
 
     inputsDisabled = false;
+    error: Error | null = null;
 
     name = "";
     equinePassportNo = "";
@@ -221,7 +225,7 @@ export default class VAddHorseContent extends Vue {
             });
             this.$vfm.hide("add-horse");
         } catch (error) {
-            console.error(error);
+            this.error = error as Error;
         }
     }
 
