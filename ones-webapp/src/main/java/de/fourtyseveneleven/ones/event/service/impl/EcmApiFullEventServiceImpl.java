@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
-
 @Service
 @Primary
 @Qualifier("ecmApiFullEventServiceImpl")
