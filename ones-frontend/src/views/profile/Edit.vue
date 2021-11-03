@@ -3,9 +3,8 @@
     <div class="max-w-6xl m-auto py-12">
       <div class="flex items-start mx-4 lg:mx-0">
         <page-header>{{ $t("profile.title") }}</page-header>
-        <v-button color="danger" class="ml-auto" v-if="user" @click.native="deleteAccount">{{ $t('profile.delete') }}
-        </v-button>
-        <v-button class="ml-4" v-if="user" @click.native="saveAccount">{{ $t('profile.save') }}</v-button>
+
+        <v-button class="ml-4 ml-auto" v-if="user" @click.native="saveAccount">{{ $t('profile.save') }}</v-button>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-6 mx-4 lg:mx-0" v-if="user">
@@ -113,7 +112,6 @@
       </div>
       <div class="flex items-start flex-wrap-reverse mx-4 lg:mx-0 mt-6 gap-4">
         <v-button class="w-full sm:w-auto" color="secondary" @click.native="goBack">{{ $t('shared.back') }}</v-button>
-        <v-button class="w-full sm:w-auto sm:ml-auto" color="danger" v-if="user" @click.native="deleteAccount">{{ $t('profile.delete') }}</v-button>
         <v-button class="w-full sm:w-auto" v-if="user" @click.native="saveAccount">{{ $t('profile.save') }}</v-button>
       </div>
     </div>
@@ -192,14 +190,6 @@ export default class ProfileEdit extends Vue {
         this.assertUserValid();
         await vxm.user.setPersonalData(this.user as UserDto);
         await this.$router.push("/profile");
-    }
-
-    async deleteAccount(): Promise<void> {
-        const deleteAccount = confirm(this.$i18n.t("profile.confirmDelete").toString());
-        if (deleteAccount) {
-            await vxm.user.deleteAccount();
-            this.$router.push("/logout");
-        }
     }
 
     private assertUserValid(): void {
