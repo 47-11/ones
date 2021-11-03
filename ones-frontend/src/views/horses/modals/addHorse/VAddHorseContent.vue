@@ -251,8 +251,7 @@ export default class VAddHorseContent extends Vue {
         "color",
         "yearOfBirth",
         "size",
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        "feiNumber" as any
+        "feiNumber"
     ];
 
     requiredStableProps: Array<keyof AddressDto> = [
