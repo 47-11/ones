@@ -20,7 +20,9 @@
                     </div>
                     <div class="bg-indigo-600 text-white px-3 pt-1 pb-2 rounded-md flex flex-col ml-auto justify-center leading-none text-center">
                         <div class="text-lg">
-                            {{ contest.currentParticipants }} / {{ contest.maximumParticipants }}
+                            {{ contest.currentParticipants || 0 }} /
+                            <span v-if="contest.maximumParticipants">{{ contest.maximumParticipants }}</span>
+                            <span v-else>&infin;</span>
                         </div>
                         <div class="text-2xs">{{$t('details.participants')}}</div>
                     </div>
@@ -32,7 +34,7 @@
                 <card>
                     <div class="px-5 py-4 mb-3 text-lg bg-gray-50">
                         <span class="font-bold">
-                            {{ contest.contestType }}
+                            {{ contest.category }}
                         </span>
                     </div>
 
@@ -43,7 +45,7 @@
                                 </th>
                             <td class="text-left px-5 py-1">
                                 <span class="mr-2">
-                                    {{ contest ? contest.distance : "" }}
+                                    {{ contest ? (contest.distance + " km") : "" }}
                                 </span>
                             </td>
                         </tr>
@@ -56,35 +58,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="text-left px-5 py-1 align-top">
-                                {{$t('details.elevation')}}<sup class="text-gray-400 font-normal">1</sup>
-                            </th>
-                            <td class="text-left px-5 py-1">
-                                {{ contest.altitudeDifference }} m
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-left px-5 py-1 align-top">
-                                {{$t('details.maximumTime')}}<sup class="text-gray-400 font-normal">4</sup>
-                            </th>
-                            <td class="text-left px-5 py-1">
-                                {{ contest.maximumDuration }}
-                            </td>
-                        </tr>
-                        <tr>
                             <th class="pt-4 text-left px-5 py-1 align-top">
                                 {{$t('details.startFee')}}<sup class="text-gray-400 font-normal">3</sup>
                             </th>
                             <td class="pt-4 text-left px-5 py-1">
-                                {{ contest.startFee }} EUR
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="text-left px-5 py-1 align-top">
-                                {{$t('details.signUpDeadline')}}
-                            </th>
-                            <td class="text-left px-5 py-1">
-                                {{ deadline.format("DD.MM.YYYY") }}
+                                {{ contest.startFee }} €
                             </td>
                         </tr>
                         <tr>
@@ -95,28 +73,44 @@
                                 </span>
                             </th>
                             <td class="text-left px-5 py-1">
-                                {{ details.signUpDeadlineMissedFee }} EUR
+                                {{ details.lateSignupFee.amount }} {{ details.lateSignupFee.currency }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top leading-5">
+                                {{$t('details.signupChangeFee')}}
+                            </th>
+                            <td class="text-left px-5 py-1">
+                                {{ details.signupChangeFee.amount }} {{ details.signupChangeFee.currency }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top">
+                                {{$t('details.signUpDeadline')}}
+                            </th>
+                            <td class="text-left px-5 py-1">
+                                {{ deadline.format("DD.MM.YYYY") }}
                             </td>
                         </tr>
                     </table>
 
-                    <div class="px-5 mt-4 mb-1">
-                        <span class="font-bold">{{$t('details.accomodation')}}</span>
+                    <div class="px-5 py-3 mt-2">
+                        <div class="font-bold mb-1.5">{{ $t("signUp.paymentInformation.title") }}</div>
+
+                        {{ details.paymentInformation.bankTransferAccountHolder }} <br>
+                        {{ details.paymentInformation.bankTransferIban }} <br>
+                        {{ details.paymentInformation.bankTransferBic }}
+
+                        <div class="mt-1.5">
+                            <div class="text-sm text-gray-400">
+                                {{ $t("signUp.paymentInformation.remarks") }}
+                            </div>
+                            {{ details.paymentInformation.remarks }}
+                        </div>
                     </div>
 
-                    <table>
-                        <tr v-for="(accommodation, index) in details.availableAccommodations" :key="index">
-                                <th class="text-left px-5 py-1 align-top">{{ accommodation.type }}</th>
-                                <td class="text-left px-5 py-1">
-                                    {{ accommodation.fee }} {{ accommodation.feeUnit }}
-                                </td>
-                                <td class="text-left px-5 py-1">
-                                    {{ accommodation.pledgeFee }} EUR <span class="text-xs text-gray-500">{{$t('details.deposit')}}</span>
-                                </td>
-                            </tr>
-                    </table>
-
-                    <div class="px-5 py-3 mt-2">
+                    <div class="px-5 py-3">
                         <span class="font-bold">{{ $t("signUp.requirements.title") }}</span>
 
                         <ul class="list-inside list-disc mt-2 mb-4">
@@ -174,11 +168,11 @@
                     </form>
                     <div class="text-gray-700" v-else>
                         <div class="text-center my-20">
-                            <h2 class="text-4xl mb-3 font-medium">Sie sind angemeldet!</h2>
-                            <p>Vielen Dank für Ihre Anmeldung.</p>
+                            <h2 class="text-4xl mb-3 font-medium">{{ $t('signUp.signedUp') }}</h2>
+                            <p>{{ $t('signUp.thanks') }}</p>
                         </div>
 
-                        <h3 class="text-xl mb-5">Angemeldete Pferde</h3>
+                        <h3 class="text-xl mb-5">{{ $t('signUp.signedUpHorses') }}</h3>
 
                         <card>
                             <div class="bg-white border-b px-5 py-4" v-for="horse in horses.list" :key="horse.uuid">

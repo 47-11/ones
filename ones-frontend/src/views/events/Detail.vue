@@ -208,7 +208,7 @@
                     </v-td>
                     <v-td>
                         <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'" v-tooltip="contest.signedUpHorses ? $t('details.alreadySignedUp', {horses: contest.signedUpHorses}) : ''">
-                            <v-button :disabled="contest.signedUpHorses && contest.signedUpHorses.length > 0">{{ $t('details.contestDetails') }}</v-button>
+                            <v-button :disabled="contest.signedUpHorses && contest.signedUpHorses.length > 0">{{ $t('details.details') }}</v-button>
                         </router-link>
                     </v-td>
                 </tr>

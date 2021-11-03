@@ -59,6 +59,11 @@ public abstract class FullEventMapper {
     @Mapping(source = "contestantQuantityMin", target = "minimumParticipants")
     @Mapping(source = "contestantQuantityMax", target = "maximumParticipants")
     @Mapping(source = "state", target = "status")
+    @Mapping(source = "paymentReason", target = "paymentInformation.remarks")
+    @Mapping(source = "paymentAccountHolder", target = "paymentInformation.bankTransferAccountHolder")
+    @Mapping(source = "paymentIban", target = "paymentInformation.bankTransferIban")
+    @Mapping(source = "paymentBic", target = "paymentInformation.bankTransferBic")
+    @Mapping(source = "paymentPaypal", target = "paymentInformation.paypalInformation")
     public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {

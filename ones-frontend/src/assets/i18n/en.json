@@ -106,6 +106,7 @@
     "vddQualificationInfo": "From 1th Januar 2018 the {qualification} applies.",
     "vddQualification": "VDD way of qualification",
     "signUpFee": "Sign up Fee",
+    "signupChangeFee": "Sign up Change Fee",
     "caseSignUpDeadlineMissed": "in case Sign up Deadline missed",
     "coordinates": "Coordinates",
     "startingPlace": "Starting Place",
@@ -201,6 +202,10 @@
   },
   "signUp": {
     "title": "Sign up",
+    "paymentInformation": {
+      "title": "Payment Information",
+      "remarks": "Remarks"
+    },
     "requirements": {
       "title": "Requirements",
       "minimumHorseAge": "Horse min. {age} years old",
@@ -212,7 +217,10 @@
       "lifeNumber": "Life number"
     },
     "minHorses": "Please select at least one horse.",
-    "submit": "Sign up"
+    "submit": "Sign up",
+    "signedUp": "You signed up!",
+    "thanks": "Thanks for your enrollment.",
+    "signedUpHorses": "Signed up Horses"
   },
   "password": {
     "password": "Password"
