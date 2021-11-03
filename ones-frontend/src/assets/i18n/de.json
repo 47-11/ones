@@ -93,7 +93,8 @@
     "timeRange": "Zeitraum",
     "region": "Region",
     "country": "Land",
-    "city": "Ort","paymentInformation": {
+    "city": "Ort",
+    "paymentInformation": {
       "title": "Payment Information"
     },
     "vddQualificationInfo": "Ab dem 01. Januar 2018 gilt der {qualification}.",
@@ -205,7 +206,10 @@
       "lifeNumber": "Lebens-Nr."
     },
     "minHorses": "Sie müssen mindestens ein Pferd auswählen.",
-    "submit": "Jetzt anmelden"
+    "submit": "Jetzt anmelden",
+    "signedUp": "Sie sind angemeldet!",
+    "thanks": "Vielen Dank für Ihre Anmeldung.",
+    "signedUpHorses": "Angemeldete Pferde"
   },
   "password": {
     "pasword": "Passwort"

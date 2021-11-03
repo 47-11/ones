@@ -168,11 +168,11 @@
                     </form>
                     <div class="text-gray-700" v-else>
                         <div class="text-center my-20">
-                            <h2 class="text-4xl mb-3 font-medium">Sie sind angemeldet!</h2>
-                            <p>Vielen Dank für Ihre Anmeldung.</p>
+                            <h2 class="text-4xl mb-3 font-medium">{{ $t('signUp.signedUp') }}</h2>
+                            <p>{{ $t('signUp.thanks') }}</p>
                         </div>
 
-                        <h3 class="text-xl mb-5">Angemeldete Pferde</h3>
+                        <h3 class="text-xl mb-5">{{ $t('signUp.signedUpHorses') }}</h3>
 
                         <card>
                             <div class="bg-white border-b px-5 py-4" v-for="horse in horses.list" :key="horse.uuid">

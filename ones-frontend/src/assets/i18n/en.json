@@ -217,7 +217,10 @@
       "lifeNumber": "Life number"
     },
     "minHorses": "Please select at least one horse.",
-    "submit": "Sign up"
+    "submit": "Sign up",
+    "signedUp": "You signed up!",
+    "thanks": "Thanks for your enrollment.",
+    "signedUpHorses": "Signed up Horses"
   },
   "password": {
     "password": "Password"
