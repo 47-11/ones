@@ -800,6 +800,59 @@
         ]
       }
     },
+    "/test/exception": {
+      "get": {
+        "tags": [
+          "exception-throwing-controller"
+        ],
+        "operationId": "throwException",
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/results/my": {
       "get": {
         "tags": [
@@ -1913,6 +1966,29 @@
           "currentParticipants": {
             "type": "integer",
             "format": "int32"
+          },
+          "paymentInformation": {
+            "$ref": "#/components/schemas/PaymentInformation"
+          }
+        }
+      },
+      "PaymentInformation": {
+        "type": "object",
+        "properties": {
+          "remarks": {
+            "type": "string"
+          },
+          "bankTransferAccountHolder": {
+            "type": "string"
+          },
+          "bankTransferIban": {
+            "type": "string"
+          },
+          "bankTransferBic": {
+            "type": "string"
+          },
+          "paypalInformation": {
+            "type": "string"
           }
         }
       },
