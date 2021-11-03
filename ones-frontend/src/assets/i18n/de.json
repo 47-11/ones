@@ -265,14 +265,35 @@
       "passportNumber": "Equidenpass Nr.",
       "chipNumber": "Chip Nr.",
       "stableAddress": "Stall Adresse",
-      "owner": "Besitzer"
+      "owner": "Besitzer",
+      "genderOptions": {
+        "FEMALE": "Stute",
+        "MALE": "Hengst"
+      },
+      "feiNo": "FEI Nummer"
     }
   },
   "horses": {
-    "title": "Meine Pferde"
+    "title": "Meine Pferde",
+    "add": "Pferd hinzufügen",
+    "modals": {
+      "add": {
+        "title": "Pferd hinzufügen",
+        "masterData": "Stammdaten",
+        "owner": "Besitzer",
+        "confirm": "Pferd hinzufügen",
+        "errors": {
+          "notFilled": " nicht gefüllt.",
+          "sizeOutOfRange": "Stockmaß muss zwischen 40 und 250 cm sein.",
+          "yearInvalid": "Geburtsjahr muss innerhalb der letzten 60 Jahre liegen."
+        },
+        "yearPlaceholder": "4 Ziffern"
+      }
+    }
   },
   "modal": {
     "close": "Schließen",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "abort": "Abbrechen"
   }
 }

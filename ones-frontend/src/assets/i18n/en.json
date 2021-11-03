@@ -279,14 +279,44 @@
       "passportNumber": "Equine Passport No",
       "chipNumber": "Chip No",
       "stableAddress": "Stable address",
-      "owner": "Owner"
+      "owner": "Owner",
+      "genderOptions": {
+        "FEMALE": "Mare",
+        "MALE": "Stallion"
+      },
+      "feiNo": "FEI No"
+    },
+    "address": {
+      "street": "Street",
+      "houseNumber": "House number",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "country": "Country"
     }
   },
   "horses": {
-    "title": "My Horses"
+    "title": "My Horses",
+    "add": "Add horse",
+    "modals": {
+      "add": {
+        "title": "Add horse",
+        "stable": "Stable",
+        "masterData": "Master Data",
+        "owner": "Owner",
+        "confirm": "Add horse",
+        "errors": {
+          "notFilled": " not filled.",
+          "sizeOutOfRange": "Size must be greater than 40cms and smaller than 250cms.",
+          "yearInvalid": "Year of birth must be within the last 60 years"
+        },
+        "sizePlaceholder": "40 - 250cm",
+        "yearPlaceholder": "4 Digits"
+      }
+    }
   },
   "modal": {
     "close": "Close",
-    "edit": "Edit"
+    "edit": "Edit",
+    "abort": "Abort"
   }
 }

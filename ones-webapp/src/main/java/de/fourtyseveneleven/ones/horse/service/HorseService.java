@@ -7,4 +7,7 @@ import java.util.List;
 public interface HorseService {
 
     List<HorseDto> getMyHorses();
+
+    void createHorseForCurrentUser(HorseDto horse);
+
 }
