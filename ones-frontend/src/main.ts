@@ -72,9 +72,7 @@ const i18n = new VueI18n({
     silentFallbackWarn: true
 });
 
-vxm.app.checkOnlineState();
-window.addEventListener("online", () => vxm.app.checkOnlineState());
-window.addEventListener("offline", () => vxm.app.checkOnlineState());
+setInterval(() => vxm.app.checkOnlineState(), 10 * 1000);
 
 axios.interceptors.response.use(res => {
     vxm.app.isOffline = false;
