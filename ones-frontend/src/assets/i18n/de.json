@@ -208,6 +208,7 @@
     "yes": "Ja",
     "no": "Nein",
     "unknown": "Unbekannt",
+    "back": "Zurück",
     "countries": {
       "germany": "Deutschland",
       "netherlands": "Niederlande",
@@ -220,16 +221,15 @@
     "message": "Der Server kann nicht erreicht werden. Sind Sie offline?"
   },
   "profile": {
-    "title": "Profil",
+    "title": "Meine Daten",
     "edit": "Bearbeiten",
     "delete": "Account löschen",
     "confirmDelete": "Dies wird diesen Account unwiederbringlich löschen. Sind Sie sicher dass dies wirklich vorgenommen werden soll? Ergebnisdaten im ECM sind von der Löschung ausgenommen.",
-    "edit": "Bearbeiten",
     "personalData": "Persönliche Daten",
     "contactInfo": "Kontaktinformationen",
     "otherData": "Weitere Daten",
-    "title": "Meine Daten",
-    "edit": "Bearbeiten"
+    "save": "Speichern",
+    "lengthNull": " ist leer."
   },
   "data": {
     "user": {
