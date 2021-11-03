@@ -610,6 +610,12 @@ export interface HorseDto {
      * @type {string}
      * @memberof HorseDto
      */
+    feiNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HorseDto
+     */
     name?: string;
     /**
      * 
