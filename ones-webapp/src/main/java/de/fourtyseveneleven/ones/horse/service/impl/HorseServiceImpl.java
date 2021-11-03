@@ -60,20 +60,14 @@ public class HorseServiceImpl implements HorseService {
     @Override
     public void createHorseForCurrentUser(HorseDto horse) {
 
-        horse.setOwner(userService.getCurrentUser());
-        doAddHorse(horse);
-    }
-
-    private void doAddHorse(HorseDto horse) {
-
         try {
-            tryAddHorse(horse);
+            tryCreateHorse(horse);
         } catch (ApiException e) {
             throw new EcmApiException(e);
         }
     }
 
-    private void tryAddHorse(HorseDto horse) throws ApiException {
+    private void tryCreateHorse(HorseDto horse) throws ApiException {
 
         final RegisterHorse registerHorseRequest = horseDtoMapper
                 .horseDtoToRegisterHorse(horse);
