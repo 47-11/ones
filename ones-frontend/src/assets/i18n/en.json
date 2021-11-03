@@ -222,6 +222,7 @@
     "yes": "Yes",
     "no": "No",
     "unknown": "Unknown",
+    "back": "Back",
     "countries": {
       "germany": "Germany",
       "netherlands": "Netherlands",
@@ -234,16 +235,15 @@
     "message": "Cannot reach the server. Are you offline?"
   },
   "profile": {
-    "title": "Profile",
+    "title": "My Data",
     "edit": "Edit",
     "delete": "Delete Account",
     "confirmDelete": "This will permanently and irreversibly delete your account. Are you sure you really want to do that? Notice that this will not affect data within the contest results.",
-    "edit": "Edit",
     "personalData": "Personal Data",
     "contactInfo": "Contact Info",
     "otherData": "Other Data",
-    "title": "My Data",
-    "edit": "Edit"
+    "save": "Save",
+    "lengthNull": " is empty."
   },
   "data": {
     "user": {
