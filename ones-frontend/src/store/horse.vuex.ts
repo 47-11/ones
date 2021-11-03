@@ -23,5 +23,6 @@ export class HorseStore extends VuexModule {
     @action
     async add(horse: HorseDto): Promise<void> {
         await getApi().horses.createHorse(horse);
+        await this.fetch();
     }
 }
