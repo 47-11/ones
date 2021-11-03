@@ -11,6 +11,7 @@ public class HorseDto {
 
     private String passportNumber;
     private String chipNumber;
+    private String feiNumber;
 
     private String name;
     private Gender gender;
@@ -62,6 +63,14 @@ public class HorseDto {
 
     public void setChipNumber(String chipNumber) {
         this.chipNumber = chipNumber;
+    }
+
+    public String getFeiNumber() {
+        return feiNumber;
+    }
+
+    public void setFeiNumber(String feiNumber) {
+        this.feiNumber = feiNumber;
     }
 
     public String getName() {
