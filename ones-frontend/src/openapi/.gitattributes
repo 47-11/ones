@@ -1,5 +1,0 @@
-* text eol=lf
-
-# FILES is recreated with CRLF line endings, so we just check it out with CRLF line endings to prevent git from
-# thinking it has changed
-/generated/.openapi-generator/FILES text eol=crlf
