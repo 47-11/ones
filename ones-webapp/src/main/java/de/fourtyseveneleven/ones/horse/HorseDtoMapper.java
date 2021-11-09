@@ -17,13 +17,8 @@ import java.util.Set;
 
 import static java.util.Objects.isNull;
 
-@Mapper(componentModel = "spring", uses = {CommonMapper.class})
+@Mapper(componentModel = "spring", uses = {CommonMapper.class, UserDtoMapper.class, AddressDtoMapper.class})
 public abstract class HorseDtoMapper {
-
-    @Autowired
-    private UserDtoMapper userDtoMapper;
-    @Autowired
-    private AddressDtoMapper addressDtoMapper;
 
     // TODO: Map owner
     @Mapping(source = "passportNumber", target = "passportId")
@@ -34,41 +29,8 @@ public abstract class HorseDtoMapper {
     // TODO: Map gender
     @Mapping(source = "passportId", target = "passportNumber")
     @Mapping(source = "stickSize", target = "size")
-    @Mapping(source = "stables", target = "stableAddress")
-    @Mapping(source = "ownersx", target = "owner")
-    public abstract HorseDto masterdataHorseToHorseDto(MasterdataHorse masterdataHorse);
-
-    protected AddressDto addressDtoFromStableAddresses(Set<MasterdataHorseStable> masterdataHorseStables) {
-
-        final MasterdataContact masterdataContact = masterdataHorseStables.stream()
-                .findFirst()
-                .map(MasterdataHorseStable::getContact)
-                .orElse(null);
-        if (isNull(masterdataContact)) {
-            return null;
-        }
-
-        final List<MasterdataContactAddress> addresses = masterdataContact.getAddresses();
-        if (isNull(addresses) || addresses.isEmpty()) {
-            return null;
-        }
-
-        return addressDtoMapper.addressDtoFromMasterdataContactAddress(addresses.get(0));
-    }
-
-    protected PersonDto personDtoFromMasterdataHorseOwners(Set<MasterdataHorseOwner> masterdataHorseOwners) {
-
-        final MasterdataContact masterdataContact =  masterdataHorseOwners.stream()
-                .findFirst()
-                .map(MasterdataHorseOwner::getContact)
-                .orElse(null);
-
-        if (isNull(masterdataContact)) {
-            return null;
-        }
-
-        return userDtoMapper.masterdataContactToUserDto(masterdataContact);
-    }
+    @Mapping(source = "stable", target = "stableAddress")
+    public abstract HorseDto registeredHorseToHorseDto(RegisteredHorse masterdataHorse);
 
     protected String mapMasterdataPropertyCharacteristic(MasterdataPropertyCharacteristic masterdataPropertyCharacteristic) {
 
@@ -76,4 +38,6 @@ public abstract class HorseDtoMapper {
                 .map(MasterdataPropertyCharacteristic::getDisplay)
                 .orElse(null);
     }
+
+    protected abstract AddressDto registerContactLegalToAddressDto(RegisterContactLegal registerContactLegal);
 }
