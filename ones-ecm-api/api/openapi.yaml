@@ -37,9 +37,17 @@ paths:
       tags:
       - application-account-controller
       x-accepts: application/json
-  /rest/masterdata/register/horse:
+  /rest/masterdata/horse/account/{uuid}:
     post:
       operationId: postRegisterHorse
+      parameters:
+      - explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -49,7 +57,7 @@ paths:
       responses:
         "200":
           content:
-            application/json:
+            '*/*':
               schema:
                 type: object
           description: OK
@@ -58,73 +66,7 @@ paths:
       tags:
       - masterdata-horse-controller
       x-contentType: application/json
-      x-accepts: application/json
-  /rest/masterdata/register/contact/stable:
-    post:
-      operationId: postRegisterContactStable
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/registerContact'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-contact-controller
-      x-contentType: application/json
-      x-accepts: application/json
-  /rest/masterdata/register/contact/horseOwner:
-    post:
-      operationId: postRegisterContactHorseOwner
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/registerContact'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-contact-controller
-      x-contentType: application/json
-      x-accepts: application/json
-  /rest/masterdata/register/contact/contestant:
-    post:
-      operationId: postRegisterContactContestant
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/registerContact'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-contact-controller
-      x-contentType: application/json
-      x-accepts: application/json
+      x-accepts: '*/*'
   /rest/event/register/nomination:
     post:
       operationId: postRegisterNomination
@@ -169,28 +111,6 @@ paths:
       - application-account-controller
       x-contentType: application/json
       x-accepts: application/json
-  /rest/application/register/account4Member:
-    post:
-      operationId: postRegisterAccount4Member
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/registerAccount4Member'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/registerResponce'
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - application-account-controller
-      x-contentType: application/json
-      x-accepts: application/json
   /rest/masterdata/property/items/{proptery}:
     get:
       operationId: getPropertyItems
@@ -215,77 +135,6 @@ paths:
       - basicAuth: []
       tags:
       - masterdata-property-controller
-      x-accepts: '*/*'
-  /rest/masterdata/horse/{uuid}:
-    get:
-      operationId: getHorseByUuid
-      parameters:
-      - explode: false
-        in: path
-        name: uuid
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/MasterdataHorse'
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-horse-controller
-      x-accepts: '*/*'
-  /rest/masterdata/horse/account/{uuid}:
-    get:
-      operationId: getHorsesByContactUuid
-      parameters:
-      - explode: false
-        in: path
-        name: uuid
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                items:
-                  $ref: '#/components/schemas/MasterdataHorse'
-                type: array
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-horse-controller
-      x-accepts: '*/*'
-  /rest/masterdata/contact/{accountUuid}:
-    get:
-      operationId: getContactByUuid
-      parameters:
-      - explode: false
-        in: path
-        name: accountUuid
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/MasterdataContact'
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - masterdata-contact-controller
       x-accepts: '*/*'
   /rest/event/contests:
     get:
@@ -473,6 +322,29 @@ paths:
       tags:
       - event-contest-controller
       x-accepts: '*/*'
+  /rest/application/register/account/{accountUuid}:
+    get:
+      operationId: getAccoundByUuid
+      parameters:
+      - explode: false
+        in: path
+        name: accountUuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/registeredAccount'
+          description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - application-account-controller
+      x-accepts: '*/*'
 components:
   schemas:
     registerResponce:
@@ -504,6 +376,12 @@ components:
           type: string
       type: object
     registerAddress:
+      example:
+        country: country
+        zipCode: zipCode
+        city: city
+        street: street
+        houseNumber: houseNumber
       properties:
         country:
           maxLength: 255
@@ -529,7 +407,66 @@ components:
       - city
       - street
       type: object
-    registerContact:
+    registerContactLegal:
+      example:
+        phoneNumber: phoneNumber
+        postalAddress:
+          country: country
+          zipCode: zipCode
+          city: city
+          street: street
+          houseNumber: houseNumber
+        foundingDay: 2000-01-23
+        phoneNumberMobile: phoneNumberMobile
+        name: name
+        typeOf: typeOf
+        email: email
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        typeOf:
+          maxLength: 255
+          minLength: 0
+          type: string
+        foundingDay:
+          format: date
+          type: string
+        email:
+          maxLength: 255
+          minLength: 6
+          type: string
+        phoneNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+        phoneNumberMobile:
+          maxLength: 50
+          minLength: 0
+          type: string
+        postalAddress:
+          $ref: '#/components/schemas/registerAddress'
+      required:
+      - name
+      type: object
+    registerContactNatural:
+      example:
+        birthday: 2000-01-23
+        forename: forename
+        emergencyPhoneNumber: emergencyPhoneNumber
+        phoneNumber: phoneNumber
+        postalAddress:
+          country: country
+          zipCode: zipCode
+          city: city
+          street: street
+          houseNumber: houseNumber
+        surname: surname
+        phoneNumberMobile: phoneNumberMobile
+        birthname: birthname
+        salutation: salutation
+        email: email
       properties:
         surname:
           maxLength: 255
@@ -566,18 +503,6 @@ components:
           maxLength: 50
           minLength: 0
           type: string
-        feiMemberId:
-          maxLength: 50
-          minLength: 0
-          type: string
-        fnMemberId:
-          maxLength: 50
-          minLength: 0
-          type: string
-        vddQualificationLevel:
-          maxLength: 5
-          minLength: 0
-          type: string
         postalAddress:
           $ref: '#/components/schemas/registerAddress'
       required:
@@ -591,6 +516,14 @@ components:
           type: string
         passportId:
           maxLength: 255
+          minLength: 0
+          type: string
+        feiPassportId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        fnPassportId:
+          maxLength: 50
           minLength: 0
           type: string
         breed:
@@ -612,9 +545,9 @@ components:
           format: int32
           type: integer
         owner:
-          $ref: '#/components/schemas/registerContact'
+          $ref: '#/components/schemas/registerContactNatural'
         stable:
-          $ref: '#/components/schemas/registerContact'
+          $ref: '#/components/schemas/registerContactLegal'
       required:
       - name
       - passportId
@@ -660,41 +593,47 @@ components:
           maxLength: 5
           minLength: 0
           type: string
-        vddMemberNumber:
-          maxLength: 10
-          minLength: 0
-          type: string
         user:
-          $ref: '#/components/schemas/registerContact'
+          $ref: '#/components/schemas/registerContactNatural'
+        memberships:
+          $ref: '#/components/schemas/registerMembership'
       required:
       - loginIdentification
       - loginKeyword
       type: object
-    registerAccount4Member:
+    registerMembership:
+      example:
+        feiMemberId: feiMemberId
+        vddQualificationLevel: vddQualificationLevel
+        vddMemberId: vddMemberId
+        fnMemberId: fnMemberId
+        fnQualificationLevel: fnQualificationLevel
+        feiQualificationLevel: feiQualificationLevel
       properties:
-        uuid:
-          readOnly: true
+        feiMemberId:
+          maxLength: 50
+          minLength: 0
           type: string
-        vddMemberNumber:
-          format: int32
-          maximum: 10
-          minimum: 0
-          type: integer
-        loginIdentification:
-          maxLength: 255
-          minLength: 1
+        feiQualificationLevel:
+          maxLength: 5
+          minLength: 0
           type: string
-        loginKeyword:
-          maxLength: 255
-          minLength: 1
+        fnMemberId:
+          maxLength: 50
+          minLength: 0
           type: string
-        email:
-          maxLength: 255
-          minLength: 6
+        fnQualificationLevel:
+          maxLength: 5
+          minLength: 0
           type: string
-      required:
-      - loginIdentification
-      - loginKeyword
+        vddMemberId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        vddQualificationLevel:
+          maxLength: 5
+          minLength: 0
+          type: string
       type: object
     MasterdataProperty:
       example:
@@ -814,1090 +753,6 @@ components:
           maxLength: 50
           minLength: 0
           type: string
-      required:
-      - creationTimestamp
-      - uuid
-      type: object
-    MasterdataContact:
-      example:
-        _addresses:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          kind: 7
-          houseNumber: houseNumber
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 2
-          zipcodeCode: zipcodeCode
-          countryCode: countryCode
-          street: street
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          federalStateCode: federalStateCode
-          federalState: federalState
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          kind: 7
-          houseNumber: houseNumber
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 2
-          zipcodeCode: zipcodeCode
-          countryCode: countryCode
-          street: street
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          federalStateCode: federalStateCode
-          federalState: federalState
-        phonePrivate: phonePrivate
-        emailBusiness: emailBusiness
-        uuid: uuid
-        changeCounter: 5
-        forename: forename
-        faxPrivate: faxPrivate
-        emailPrivate: emailPrivate
-        surname: surname
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        titleAddition: titleAddition
-        kind: 5
-        nickName: nickName
-        display: display
-        _roles:
-        - changeCounter: 9
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        - changeCounter: 9
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        bornDate: 2000-01-23T04:56:07.000+00:00
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        titleBusiness: titleBusiness
-        info9: info9
-        info8: info8
-        info7: info7
-        info6: info6
-        nationality: nationality
-        bornName: bornName
-        info1: info1
-        cellPhonePrivate: cellPhonePrivate
-        artistName: artistName
-        salutation: salutation
-        titleAcademic: titleAcademic
-        phoneBusiness: phoneBusiness
-        faxBusiness: faxBusiness
-        info5: info5
-        info4: info4
-        titleNobility: titleNobility
-        info3: info3
-        cellPhoneBusiness: cellPhoneBusiness
-        info2: info2
-      properties:
-        uuid:
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        kind:
-          format: int32
-          type: integer
-        salutation:
-          type: string
-        surname:
-          type: string
-        forename:
-          type: string
-        bornName:
-          type: string
-        bornDate:
-          format: date-time
-          type: string
-        nationality:
-          type: string
-        titleAddition:
-          type: string
-        titleNobility:
-          type: string
-        titleAcademic:
-          type: string
-        titleBusiness:
-          type: string
-        artistName:
-          type: string
-        nickName:
-          type: string
-        phonePrivate:
-          type: string
-        phoneBusiness:
-          type: string
-        cellPhonePrivate:
-          type: string
-        cellPhoneBusiness:
-          type: string
-        faxPrivate:
-          type: string
-        faxBusiness:
-          type: string
-        emailPrivate:
-          type: string
-        emailBusiness:
-          type: string
-        info1:
-          type: string
-        info2:
-          type: string
-        info3:
-          type: string
-        info4:
-          type: string
-        info5:
-          type: string
-        info6:
-          type: string
-        info7:
-          type: string
-        info8:
-          type: string
-        info9:
-          type: string
-        display:
-          type: string
-        _addresses:
-          items:
-            $ref: '#/components/schemas/MasterdataContactAddress'
-          type: array
-        _roles:
-          items:
-            $ref: '#/components/schemas/MasterdataContactRole'
-          type: array
-      type: object
-    MasterdataContactAddress:
-      example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        country: country
-        city: city
-        kind: 7
-        houseNumber: houseNumber
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        changeCounter: 2
-        zipcodeCode: zipcodeCode
-        countryCode: countryCode
-        street: street
-        masterdataContactUuid: masterdataContactUuid
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        federalStateCode: federalStateCode
-        federalState: federalState
-      properties:
-        uuid:
-          maxLength: 40
-          minLength: 1
-          type: string
-        masterdataContactUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        kind:
-          format: int32
-          type: integer
-        countryCode:
-          maxLength: 255
-          minLength: 0
-          type: string
-        country:
-          maxLength: 255
-          minLength: 0
-          type: string
-        city:
-          maxLength: 255
-          minLength: 0
-          type: string
-        federalStateCode:
-          maxLength: 5
-          minLength: 0
-          type: string
-        federalState:
-          maxLength: 255
-          minLength: 0
-          type: string
-        street:
-          maxLength: 255
-          minLength: 0
-          type: string
-        houseNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-        zipcodeCode:
-          type: string
-      required:
-      - creationTimestamp
-      - uuid
-      type: object
-    MasterdataContactRole:
-      example:
-        changeCounter: 9
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        kind: kind
-        masterdataContactUuid: masterdataContactUuid
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-      properties:
-        uuid:
-          maxLength: 40
-          minLength: 1
-          type: string
-        masterdataContactUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        kind:
-          maxLength: 50
-          minLength: 0
-          type: string
-      required:
-      - creationTimestamp
-      - uuid
-      type: object
-    MasterdataHorse:
-      example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        gender: gender
-        color:
-          changeCounter: 6
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          acronym: acronym
-          display: display
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          description: description
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        display: display
-        _ownersx:
-        - changeCounter: 1
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          ownershipUntil: 2000-01-23T04:56:07.000+00:00
-          masterdataHorseUuid: masterdataHorseUuid
-          display: display
-          contact:
-            _addresses:
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            phonePrivate: phonePrivate
-            emailBusiness: emailBusiness
-            uuid: uuid
-            changeCounter: 5
-            forename: forename
-            faxPrivate: faxPrivate
-            emailPrivate: emailPrivate
-            surname: surname
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            titleAddition: titleAddition
-            kind: 5
-            nickName: nickName
-            display: display
-            _roles:
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            bornDate: 2000-01-23T04:56:07.000+00:00
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            titleBusiness: titleBusiness
-            info9: info9
-            info8: info8
-            info7: info7
-            info6: info6
-            nationality: nationality
-            bornName: bornName
-            info1: info1
-            cellPhonePrivate: cellPhonePrivate
-            artistName: artistName
-            salutation: salutation
-            titleAcademic: titleAcademic
-            phoneBusiness: phoneBusiness
-            faxBusiness: faxBusiness
-            info5: info5
-            info4: info4
-            titleNobility: titleNobility
-            info3: info3
-            cellPhoneBusiness: cellPhoneBusiness
-            info2: info2
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          ownershipFrom: 2000-01-23T04:56:07.000+00:00
-          remark: remark
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        - changeCounter: 1
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          ownershipUntil: 2000-01-23T04:56:07.000+00:00
-          masterdataHorseUuid: masterdataHorseUuid
-          display: display
-          contact:
-            _addresses:
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            phonePrivate: phonePrivate
-            emailBusiness: emailBusiness
-            uuid: uuid
-            changeCounter: 5
-            forename: forename
-            faxPrivate: faxPrivate
-            emailPrivate: emailPrivate
-            surname: surname
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            titleAddition: titleAddition
-            kind: 5
-            nickName: nickName
-            display: display
-            _roles:
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            bornDate: 2000-01-23T04:56:07.000+00:00
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            titleBusiness: titleBusiness
-            info9: info9
-            info8: info8
-            info7: info7
-            info6: info6
-            nationality: nationality
-            bornName: bornName
-            info1: info1
-            cellPhonePrivate: cellPhonePrivate
-            artistName: artistName
-            salutation: salutation
-            titleAcademic: titleAcademic
-            phoneBusiness: phoneBusiness
-            faxBusiness: faxBusiness
-            info5: info5
-            info4: info4
-            titleNobility: titleNobility
-            info3: info3
-            cellPhoneBusiness: cellPhoneBusiness
-            info2: info2
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          ownershipFrom: 2000-01-23T04:56:07.000+00:00
-          remark: remark
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        _stables:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          display: display
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 3
-          masterdataHorseUuid: masterdataHorseUuid
-          accommodationFrom: 2000-01-23T04:56:07.000+00:00
-          contact:
-            _addresses:
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            phonePrivate: phonePrivate
-            emailBusiness: emailBusiness
-            uuid: uuid
-            changeCounter: 5
-            forename: forename
-            faxPrivate: faxPrivate
-            emailPrivate: emailPrivate
-            surname: surname
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            titleAddition: titleAddition
-            kind: 5
-            nickName: nickName
-            display: display
-            _roles:
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            bornDate: 2000-01-23T04:56:07.000+00:00
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            titleBusiness: titleBusiness
-            info9: info9
-            info8: info8
-            info7: info7
-            info6: info6
-            nationality: nationality
-            bornName: bornName
-            info1: info1
-            cellPhonePrivate: cellPhonePrivate
-            artistName: artistName
-            salutation: salutation
-            titleAcademic: titleAcademic
-            phoneBusiness: phoneBusiness
-            faxBusiness: faxBusiness
-            info5: info5
-            info4: info4
-            titleNobility: titleNobility
-            info3: info3
-            cellPhoneBusiness: cellPhoneBusiness
-            info2: info2
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          accommodationUntil: 2000-01-23T04:56:07.000+00:00
-          remarks: remarks
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          display: display
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 3
-          masterdataHorseUuid: masterdataHorseUuid
-          accommodationFrom: 2000-01-23T04:56:07.000+00:00
-          contact:
-            _addresses:
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              country: country
-              city: city
-              kind: 7
-              houseNumber: houseNumber
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-              changeCounter: 2
-              zipcodeCode: zipcodeCode
-              countryCode: countryCode
-              street: street
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              federalStateCode: federalStateCode
-              federalState: federalState
-            phonePrivate: phonePrivate
-            emailBusiness: emailBusiness
-            uuid: uuid
-            changeCounter: 5
-            forename: forename
-            faxPrivate: faxPrivate
-            emailPrivate: emailPrivate
-            surname: surname
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            titleAddition: titleAddition
-            kind: 5
-            nickName: nickName
-            display: display
-            _roles:
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            - changeCounter: 9
-              changeTimestamp: 2000-01-23T04:56:07.000+00:00
-              kind: kind
-              masterdataContactUuid: masterdataContactUuid
-              creationTimestamp: 2000-01-23T04:56:07.000+00:00
-              uuid: uuid
-              creationUserUuid: creationUserUuid
-              changeUserUuid: changeUserUuid
-            bornDate: 2000-01-23T04:56:07.000+00:00
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            titleBusiness: titleBusiness
-            info9: info9
-            info8: info8
-            info7: info7
-            info6: info6
-            nationality: nationality
-            bornName: bornName
-            info1: info1
-            cellPhonePrivate: cellPhonePrivate
-            artistName: artistName
-            salutation: salutation
-            titleAcademic: titleAcademic
-            phoneBusiness: phoneBusiness
-            faxBusiness: faxBusiness
-            info5: info5
-            info4: info4
-            titleNobility: titleNobility
-            info3: info3
-            cellPhoneBusiness: cellPhoneBusiness
-            info2: info2
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          accommodationUntil: 2000-01-23T04:56:07.000+00:00
-          remarks: remarks
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        colorUuid: colorUuid
-        breed:
-          changeCounter: 6
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          acronym: acronym
-          display: display
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          description: description
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        changeUserUuid: changeUserUuid
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        name: name
-        passportId: passportId
-        stickSize: 6
-        breedUuid: breedUuid
-        yearOfBirth: 0
-      properties:
-        uuid:
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          type: string
-        changeTimestamp:
-          format: date-time
-          readOnly: true
-          type: string
-        changeUserUuid:
-          type: string
-        display:
-          type: string
-        name:
-          type: string
-        passportId:
-          type: string
-        breed:
-          $ref: '#/components/schemas/MasterdataPropertyCharacteristic'
-        breedUuid:
-          type: string
-        gender:
-          type: string
-        yearOfBirth:
-          format: int32
-          type: integer
-        stickSize:
-          format: int32
-          type: integer
-        color:
-          $ref: '#/components/schemas/MasterdataPropertyCharacteristic'
-        colorUuid:
-          type: string
-        _ownersx:
-          items:
-            $ref: '#/components/schemas/MasterdataHorseOwner'
-          type: array
-          uniqueItems: true
-        _stables:
-          items:
-            $ref: '#/components/schemas/MasterdataHorseStable'
-          type: array
-          uniqueItems: true
-      type: object
-    MasterdataHorseOwner:
-      example:
-        changeCounter: 1
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        ownershipUntil: 2000-01-23T04:56:07.000+00:00
-        masterdataHorseUuid: masterdataHorseUuid
-        display: display
-        contact:
-          _addresses:
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            country: country
-            city: city
-            kind: 7
-            houseNumber: houseNumber
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 2
-            zipcodeCode: zipcodeCode
-            countryCode: countryCode
-            street: street
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            federalStateCode: federalStateCode
-            federalState: federalState
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            country: country
-            city: city
-            kind: 7
-            houseNumber: houseNumber
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 2
-            zipcodeCode: zipcodeCode
-            countryCode: countryCode
-            street: street
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            federalStateCode: federalStateCode
-            federalState: federalState
-          phonePrivate: phonePrivate
-          emailBusiness: emailBusiness
-          uuid: uuid
-          changeCounter: 5
-          forename: forename
-          faxPrivate: faxPrivate
-          emailPrivate: emailPrivate
-          surname: surname
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          titleAddition: titleAddition
-          kind: 5
-          nickName: nickName
-          display: display
-          _roles:
-          - changeCounter: 9
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            kind: kind
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-          - changeCounter: 9
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            kind: kind
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-          bornDate: 2000-01-23T04:56:07.000+00:00
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          titleBusiness: titleBusiness
-          info9: info9
-          info8: info8
-          info7: info7
-          info6: info6
-          nationality: nationality
-          bornName: bornName
-          info1: info1
-          cellPhonePrivate: cellPhonePrivate
-          artistName: artistName
-          salutation: salutation
-          titleAcademic: titleAcademic
-          phoneBusiness: phoneBusiness
-          faxBusiness: faxBusiness
-          info5: info5
-          info4: info4
-          titleNobility: titleNobility
-          info3: info3
-          cellPhoneBusiness: cellPhoneBusiness
-          info2: info2
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        ownershipFrom: 2000-01-23T04:56:07.000+00:00
-        remark: remark
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-      properties:
-        uuid:
-          maxLength: 40
-          minLength: 1
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        display:
-          maxLength: 255
-          minLength: 0
-          type: string
-        ownershipFrom:
-          format: date-time
-          type: string
-        ownershipUntil:
-          format: date-time
-          type: string
-        remark:
-          maxLength: 16777216
-          minLength: 0
-          type: string
-        contact:
-          $ref: '#/components/schemas/MasterdataContact'
-        masterdataHorseUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-      required:
-      - creationTimestamp
-      - uuid
-      type: object
-    MasterdataHorseStable:
-      example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        kind: kind
-        display: display
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        changeCounter: 3
-        masterdataHorseUuid: masterdataHorseUuid
-        accommodationFrom: 2000-01-23T04:56:07.000+00:00
-        contact:
-          _addresses:
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            country: country
-            city: city
-            kind: 7
-            houseNumber: houseNumber
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 2
-            zipcodeCode: zipcodeCode
-            countryCode: countryCode
-            street: street
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            federalStateCode: federalStateCode
-            federalState: federalState
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            country: country
-            city: city
-            kind: 7
-            houseNumber: houseNumber
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 2
-            zipcodeCode: zipcodeCode
-            countryCode: countryCode
-            street: street
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            federalStateCode: federalStateCode
-            federalState: federalState
-          phonePrivate: phonePrivate
-          emailBusiness: emailBusiness
-          uuid: uuid
-          changeCounter: 5
-          forename: forename
-          faxPrivate: faxPrivate
-          emailPrivate: emailPrivate
-          surname: surname
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          titleAddition: titleAddition
-          kind: 5
-          nickName: nickName
-          display: display
-          _roles:
-          - changeCounter: 9
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            kind: kind
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-          - changeCounter: 9
-            changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            kind: kind
-            masterdataContactUuid: masterdataContactUuid
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-          bornDate: 2000-01-23T04:56:07.000+00:00
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          titleBusiness: titleBusiness
-          info9: info9
-          info8: info8
-          info7: info7
-          info6: info6
-          nationality: nationality
-          bornName: bornName
-          info1: info1
-          cellPhonePrivate: cellPhonePrivate
-          artistName: artistName
-          salutation: salutation
-          titleAcademic: titleAcademic
-          phoneBusiness: phoneBusiness
-          faxBusiness: faxBusiness
-          info5: info5
-          info4: info4
-          titleNobility: titleNobility
-          info3: info3
-          cellPhoneBusiness: cellPhoneBusiness
-          info2: info2
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        accommodationUntil: 2000-01-23T04:56:07.000+00:00
-        remarks: remarks
-      properties:
-        uuid:
-          maxLength: 40
-          minLength: 1
-          type: string
-        masterdataHorseUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        kind:
-          maxLength: 5
-          minLength: 0
-          type: string
-        display:
-          maxLength: 255
-          minLength: 0
-          type: string
-        accommodationFrom:
-          format: date-time
-          type: string
-        accommodationUntil:
-          format: date-time
-          type: string
-        remarks:
-          maxLength: 16777216
-          minLength: 0
-          type: string
-        contact:
-          $ref: '#/components/schemas/MasterdataContact'
       required:
       - creationTimestamp
       - uuid
@@ -5617,6 +4472,216 @@ components:
       required:
       - creationTimestamp
       - uuid
+      type: object
+    registeredAccount:
+      example:
+        nativeLanguage: nativeLanguage
+        uuid: uuid
+        loginIdentification: loginIdentification
+        user:
+          birthday: 2000-01-23
+          forename: forename
+          emergencyPhoneNumber: emergencyPhoneNumber
+          phoneNumber: phoneNumber
+          postalAddress:
+            country: country
+            zipCode: zipCode
+            city: city
+            street: street
+            houseNumber: houseNumber
+          surname: surname
+          phoneNumberMobile: phoneNumberMobile
+          birthname: birthname
+          salutation: salutation
+          email: email
+        memberships:
+          feiMemberId: feiMemberId
+          vddQualificationLevel: vddQualificationLevel
+          vddMemberId: vddMemberId
+          fnMemberId: fnMemberId
+          fnQualificationLevel: fnQualificationLevel
+          feiQualificationLevel: feiQualificationLevel
+        horses:
+        - owner:
+            birthday: 2000-01-23
+            forename: forename
+            emergencyPhoneNumber: emergencyPhoneNumber
+            phoneNumber: phoneNumber
+            postalAddress:
+              country: country
+              zipCode: zipCode
+              city: city
+              street: street
+              houseNumber: houseNumber
+            surname: surname
+            phoneNumberMobile: phoneNumberMobile
+            birthname: birthname
+            salutation: salutation
+            email: email
+          gender: gender
+          color: color
+          stable:
+            phoneNumber: phoneNumber
+            postalAddress:
+              country: country
+              zipCode: zipCode
+              city: city
+              street: street
+              houseNumber: houseNumber
+            foundingDay: 2000-01-23
+            phoneNumberMobile: phoneNumberMobile
+            name: name
+            typeOf: typeOf
+            email: email
+          fnPassportId: fnPassportId
+          name: name
+          feiPassportId: feiPassportId
+          uuid: uuid
+          passportId: passportId
+          breed: breed
+          stickSize: 6
+          yearOfBirth: 0
+        - owner:
+            birthday: 2000-01-23
+            forename: forename
+            emergencyPhoneNumber: emergencyPhoneNumber
+            phoneNumber: phoneNumber
+            postalAddress:
+              country: country
+              zipCode: zipCode
+              city: city
+              street: street
+              houseNumber: houseNumber
+            surname: surname
+            phoneNumberMobile: phoneNumberMobile
+            birthname: birthname
+            salutation: salutation
+            email: email
+          gender: gender
+          color: color
+          stable:
+            phoneNumber: phoneNumber
+            postalAddress:
+              country: country
+              zipCode: zipCode
+              city: city
+              street: street
+              houseNumber: houseNumber
+            foundingDay: 2000-01-23
+            phoneNumberMobile: phoneNumberMobile
+            name: name
+            typeOf: typeOf
+            email: email
+          fnPassportId: fnPassportId
+          name: name
+          feiPassportId: feiPassportId
+          uuid: uuid
+          passportId: passportId
+          breed: breed
+          stickSize: 6
+          yearOfBirth: 0
+      properties:
+        uuid:
+          type: string
+        loginIdentification:
+          type: string
+        nativeLanguage:
+          type: string
+        user:
+          $ref: '#/components/schemas/registerContactNatural'
+        memberships:
+          $ref: '#/components/schemas/registerMembership'
+        horses:
+          items:
+            $ref: '#/components/schemas/registeredHorse'
+          type: array
+          uniqueItems: true
+      type: object
+    registeredHorse:
+      example:
+        owner:
+          birthday: 2000-01-23
+          forename: forename
+          emergencyPhoneNumber: emergencyPhoneNumber
+          phoneNumber: phoneNumber
+          postalAddress:
+            country: country
+            zipCode: zipCode
+            city: city
+            street: street
+            houseNumber: houseNumber
+          surname: surname
+          phoneNumberMobile: phoneNumberMobile
+          birthname: birthname
+          salutation: salutation
+          email: email
+        gender: gender
+        color: color
+        stable:
+          phoneNumber: phoneNumber
+          postalAddress:
+            country: country
+            zipCode: zipCode
+            city: city
+            street: street
+            houseNumber: houseNumber
+          foundingDay: 2000-01-23
+          phoneNumberMobile: phoneNumberMobile
+          name: name
+          typeOf: typeOf
+          email: email
+        fnPassportId: fnPassportId
+        name: name
+        feiPassportId: feiPassportId
+        uuid: uuid
+        passportId: passportId
+        breed: breed
+        stickSize: 6
+        yearOfBirth: 0
+      properties:
+        uuid:
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        passportId:
+          maxLength: 255
+          minLength: 0
+          type: string
+        feiPassportId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        fnPassportId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        breed:
+          maxLength: 255
+          minLength: 0
+          type: string
+        gender:
+          maxLength: 255
+          minLength: 0
+          type: string
+        color:
+          maxLength: 255
+          minLength: 0
+          type: string
+        yearOfBirth:
+          format: int32
+          type: integer
+        stickSize:
+          format: int32
+          type: integer
+        owner:
+          $ref: '#/components/schemas/registerContactNatural'
+        stable:
+          $ref: '#/components/schemas/registerContactLegal'
+      required:
+      - name
+      - passportId
       type: object
   securitySchemes:
     basicAuth:

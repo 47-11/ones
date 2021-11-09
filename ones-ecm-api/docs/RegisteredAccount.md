@@ -1,18 +1,18 @@
 
 
-# RegisterAccount
+# RegisteredAccount
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uuid** | **String** |  |  [optional] [readonly]
-**loginIdentification** | **String** |  | 
-**loginKeyword** | **String** |  | 
+**uuid** | **String** |  |  [optional]
+**loginIdentification** | **String** |  |  [optional]
 **nativeLanguage** | **String** |  |  [optional]
 **user** | [**RegisterContactNatural**](RegisterContactNatural.md) |  |  [optional]
 **memberships** | [**RegisterMembership**](RegisterMembership.md) |  |  [optional]
+**horses** | [**Set&lt;RegisteredHorse&gt;**](RegisteredHorse.md) |  |  [optional]
 
 
 

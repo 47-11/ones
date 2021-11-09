@@ -55,12 +55,22 @@
         ]
       }
     },
-    "/rest/masterdata/register/horse": {
+    "/rest/masterdata/horse/account/{uuid}": {
       "post": {
         "tags": [
           "masterdata-horse-controller"
         ],
         "operationId": "postRegisterHorse",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -75,112 +85,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/register/contact/stable": {
-      "post": {
-        "tags": [
-          "masterdata-contact-controller"
-        ],
-        "operationId": "postRegisterContactStable",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/registerContact"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/register/contact/horseOwner": {
-      "post": {
-        "tags": [
-          "masterdata-contact-controller"
-        ],
-        "operationId": "postRegisterContactHorseOwner",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/registerContact"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/register/contact/contestant": {
-      "post": {
-        "tags": [
-          "masterdata-contact-controller"
-        ],
-        "operationId": "postRegisterContactContestant",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/registerContact"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
                   "type": "object"
                 }
@@ -265,41 +170,6 @@
         ]
       }
     },
-    "/rest/application/register/account4Member": {
-      "post": {
-        "tags": [
-          "application-account-controller"
-        ],
-        "operationId": "postRegisterAccount4Member",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/registerAccount4Member"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/registerResponce"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
     "/rest/masterdata/property/items/{proptery}": {
       "get": {
         "tags": [
@@ -326,114 +196,6 @@
                   "items": {
                     "$ref": "#/components/schemas/MasterdataProperty"
                   }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/horse/{uuid}": {
-      "get": {
-        "tags": [
-          "masterdata-horse-controller"
-        ],
-        "operationId": "getHorseByUuid",
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MasterdataHorse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/horse/account/{uuid}": {
-      "get": {
-        "tags": [
-          "masterdata-horse-controller"
-        ],
-        "operationId": "getHorsesByContactUuid",
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MasterdataHorse"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/rest/masterdata/contact/{accountUuid}": {
-      "get": {
-        "tags": [
-          "masterdata-contact-controller"
-        ],
-        "operationId": "getContactByUuid",
-        "parameters": [
-          {
-            "name": "accountUuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MasterdataContact"
                 }
               }
             }
@@ -693,6 +455,41 @@
           }
         ]
       }
+    },
+    "/rest/application/register/account/{accountUuid}": {
+      "get": {
+        "tags": [
+          "application-account-controller"
+        ],
+        "operationId": "getAccoundByUuid",
+        "parameters": [
+          {
+            "name": "accountUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/registeredAccount"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -760,7 +557,47 @@
           }
         }
       },
-      "registerContact": {
+      "registerContactLegal": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "typeOf": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "foundingDay": {
+            "type": "string",
+            "format": "date"
+          },
+          "email": {
+            "maxLength": 255,
+            "minLength": 6,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phoneNumberMobile": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/registerAddress"
+          }
+        }
+      },
+      "registerContactNatural": {
         "required": [
           "surname"
         ],
@@ -810,21 +647,6 @@
             "minLength": 0,
             "type": "string"
           },
-          "feiMemberId": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "fnMemberId": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "vddQualificationLevel": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
-          },
           "postalAddress": {
             "$ref": "#/components/schemas/registerAddress"
           }
@@ -844,6 +666,16 @@
           },
           "passportId": {
             "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "feiPassportId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fnPassportId": {
+            "maxLength": 50,
             "minLength": 0,
             "type": "string"
           },
@@ -871,10 +703,10 @@
             "format": "int32"
           },
           "owner": {
-            "$ref": "#/components/schemas/registerContact"
+            "$ref": "#/components/schemas/registerContactNatural"
           },
           "stable": {
-            "$ref": "#/components/schemas/registerContact"
+            "$ref": "#/components/schemas/registerContactLegal"
           }
         }
       },
@@ -937,46 +769,45 @@
             "minLength": 0,
             "type": "string"
           },
-          "vddMemberNumber": {
-            "maxLength": 10,
-            "minLength": 0,
-            "type": "string"
-          },
           "user": {
-            "$ref": "#/components/schemas/registerContact"
+            "$ref": "#/components/schemas/registerContactNatural"
+          },
+          "memberships": {
+            "$ref": "#/components/schemas/registerMembership"
           }
         }
       },
-      "registerAccount4Member": {
-        "required": [
-          "loginIdentification",
-          "loginKeyword"
-        ],
+      "registerMembership": {
         "type": "object",
         "properties": {
-          "uuid": {
-            "type": "string",
-            "readOnly": true
-          },
-          "vddMemberNumber": {
-            "maximum": 10,
-            "minimum": 0,
-            "type": "integer",
-            "format": "int32"
-          },
-          "loginIdentification": {
-            "maxLength": 255,
-            "minLength": 1,
+          "feiMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
             "type": "string"
           },
-          "loginKeyword": {
-            "maxLength": 255,
-            "minLength": 1,
+          "feiQualificationLevel": {
+            "maxLength": 5,
+            "minLength": 0,
             "type": "string"
           },
-          "email": {
-            "maxLength": 255,
-            "minLength": 6,
+          "fnMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fnQualificationLevel": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddQualificationLevel": {
+            "maxLength": 5,
+            "minLength": 0,
             "type": "string"
           }
         }
@@ -1087,466 +918,6 @@
             "maxLength": 50,
             "minLength": 0,
             "type": "string"
-          }
-        }
-      },
-      "MasterdataContact": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creationUserUuid": {
-            "type": "string"
-          },
-          "changeTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "changeUserUuid": {
-            "type": "string"
-          },
-          "changeCounter": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "kind": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "salutation": {
-            "type": "string"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "forename": {
-            "type": "string"
-          },
-          "bornName": {
-            "type": "string"
-          },
-          "bornDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "nationality": {
-            "type": "string"
-          },
-          "titleAddition": {
-            "type": "string"
-          },
-          "titleNobility": {
-            "type": "string"
-          },
-          "titleAcademic": {
-            "type": "string"
-          },
-          "titleBusiness": {
-            "type": "string"
-          },
-          "artistName": {
-            "type": "string"
-          },
-          "nickName": {
-            "type": "string"
-          },
-          "phonePrivate": {
-            "type": "string"
-          },
-          "phoneBusiness": {
-            "type": "string"
-          },
-          "cellPhonePrivate": {
-            "type": "string"
-          },
-          "cellPhoneBusiness": {
-            "type": "string"
-          },
-          "faxPrivate": {
-            "type": "string"
-          },
-          "faxBusiness": {
-            "type": "string"
-          },
-          "emailPrivate": {
-            "type": "string"
-          },
-          "emailBusiness": {
-            "type": "string"
-          },
-          "info1": {
-            "type": "string"
-          },
-          "info2": {
-            "type": "string"
-          },
-          "info3": {
-            "type": "string"
-          },
-          "info4": {
-            "type": "string"
-          },
-          "info5": {
-            "type": "string"
-          },
-          "info6": {
-            "type": "string"
-          },
-          "info7": {
-            "type": "string"
-          },
-          "info8": {
-            "type": "string"
-          },
-          "info9": {
-            "type": "string"
-          },
-          "display": {
-            "type": "string"
-          },
-          "_addresses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MasterdataContactAddress"
-            }
-          },
-          "_roles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MasterdataContactRole"
-            }
-          }
-        }
-      },
-      "MasterdataContactAddress": {
-        "required": [
-          "creationTimestamp",
-          "uuid"
-        ],
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "maxLength": 40,
-            "minLength": 1,
-            "type": "string"
-          },
-          "masterdataContactUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creationUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "changeUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeCounter": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "kind": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "countryCode": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "country": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "city": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "federalStateCode": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
-          },
-          "federalState": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "street": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "houseNumber": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "zipcodeCode": {
-            "type": "string"
-          }
-        }
-      },
-      "MasterdataContactRole": {
-        "required": [
-          "creationTimestamp",
-          "uuid"
-        ],
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "maxLength": 40,
-            "minLength": 1,
-            "type": "string"
-          },
-          "masterdataContactUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creationUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "changeUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeCounter": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "kind": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          }
-        }
-      },
-      "MasterdataHorse": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creationUserUuid": {
-            "type": "string"
-          },
-          "changeTimestamp": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "changeUserUuid": {
-            "type": "string"
-          },
-          "display": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "passportId": {
-            "type": "string"
-          },
-          "breed": {
-            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
-          },
-          "breedUuid": {
-            "type": "string"
-          },
-          "gender": {
-            "type": "string"
-          },
-          "yearOfBirth": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "stickSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "color": {
-            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
-          },
-          "colorUuid": {
-            "type": "string"
-          },
-          "_ownersx": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MasterdataHorseOwner"
-            }
-          },
-          "_stables": {
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MasterdataHorseStable"
-            }
-          }
-        }
-      },
-      "MasterdataHorseOwner": {
-        "required": [
-          "creationTimestamp",
-          "uuid"
-        ],
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "maxLength": 40,
-            "minLength": 1,
-            "type": "string"
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creationUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "changeUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeCounter": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "display": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "ownershipFrom": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "ownershipUntil": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "remark": {
-            "maxLength": 16777216,
-            "minLength": 0,
-            "type": "string"
-          },
-          "contact": {
-            "$ref": "#/components/schemas/MasterdataContact"
-          },
-          "masterdataHorseUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          }
-        }
-      },
-      "MasterdataHorseStable": {
-        "required": [
-          "creationTimestamp",
-          "uuid"
-        ],
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "maxLength": 40,
-            "minLength": 1,
-            "type": "string"
-          },
-          "masterdataHorseUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "creationTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "creationUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeTimestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "changeUserUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          },
-          "changeCounter": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "kind": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
-          },
-          "display": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "accommodationFrom": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "accommodationUntil": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "remarks": {
-            "maxLength": 16777216,
-            "minLength": 0,
-            "type": "string"
-          },
-          "contact": {
-            "$ref": "#/components/schemas/MasterdataContact"
           }
         }
       },
@@ -3702,6 +3073,94 @@
             "maxLength": 50,
             "minLength": 0,
             "type": "string"
+          }
+        }
+      },
+      "registeredAccount": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "loginIdentification": {
+            "type": "string"
+          },
+          "nativeLanguage": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/registerContactNatural"
+          },
+          "memberships": {
+            "$ref": "#/components/schemas/registerMembership"
+          },
+          "horses": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/registeredHorse"
+            }
+          }
+        }
+      },
+      "registeredHorse": {
+        "required": [
+          "name",
+          "passportId"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "passportId": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "feiPassportId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fnPassportId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "breed": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "gender": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "color": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "yearOfBirth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stickSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/registerContactNatural"
+          },
+          "stable": {
+            "$ref": "#/components/schemas/registerContactLegal"
           }
         }
       }

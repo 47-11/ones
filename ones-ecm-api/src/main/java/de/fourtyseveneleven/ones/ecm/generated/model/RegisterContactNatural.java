@@ -30,25 +30,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * RegisterContact
+ * RegisterContactNatural
  */
 @JsonPropertyOrder({
-  RegisterContact.JSON_PROPERTY_SURNAME,
-  RegisterContact.JSON_PROPERTY_BIRTHNAME,
-  RegisterContact.JSON_PROPERTY_FORENAME,
-  RegisterContact.JSON_PROPERTY_SALUTATION,
-  RegisterContact.JSON_PROPERTY_BIRTHDAY,
-  RegisterContact.JSON_PROPERTY_EMAIL,
-  RegisterContact.JSON_PROPERTY_PHONE_NUMBER,
-  RegisterContact.JSON_PROPERTY_PHONE_NUMBER_MOBILE,
-  RegisterContact.JSON_PROPERTY_EMERGENCY_PHONE_NUMBER,
-  RegisterContact.JSON_PROPERTY_FEI_MEMBER_ID,
-  RegisterContact.JSON_PROPERTY_FN_MEMBER_ID,
-  RegisterContact.JSON_PROPERTY_VDD_QUALIFICATION_LEVEL,
-  RegisterContact.JSON_PROPERTY_POSTAL_ADDRESS
+  RegisterContactNatural.JSON_PROPERTY_SURNAME,
+  RegisterContactNatural.JSON_PROPERTY_BIRTHNAME,
+  RegisterContactNatural.JSON_PROPERTY_FORENAME,
+  RegisterContactNatural.JSON_PROPERTY_SALUTATION,
+  RegisterContactNatural.JSON_PROPERTY_BIRTHDAY,
+  RegisterContactNatural.JSON_PROPERTY_EMAIL,
+  RegisterContactNatural.JSON_PROPERTY_PHONE_NUMBER,
+  RegisterContactNatural.JSON_PROPERTY_PHONE_NUMBER_MOBILE,
+  RegisterContactNatural.JSON_PROPERTY_EMERGENCY_PHONE_NUMBER,
+  RegisterContactNatural.JSON_PROPERTY_POSTAL_ADDRESS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
-public class RegisterContact {
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
+public class RegisterContactNatural {
   public static final String JSON_PROPERTY_SURNAME = "surname";
   private String surname;
 
@@ -76,20 +73,11 @@ public class RegisterContact {
   public static final String JSON_PROPERTY_EMERGENCY_PHONE_NUMBER = "emergencyPhoneNumber";
   private String emergencyPhoneNumber;
 
-  public static final String JSON_PROPERTY_FEI_MEMBER_ID = "feiMemberId";
-  private String feiMemberId;
-
-  public static final String JSON_PROPERTY_FN_MEMBER_ID = "fnMemberId";
-  private String fnMemberId;
-
-  public static final String JSON_PROPERTY_VDD_QUALIFICATION_LEVEL = "vddQualificationLevel";
-  private String vddQualificationLevel;
-
   public static final String JSON_PROPERTY_POSTAL_ADDRESS = "postalAddress";
   private RegisterAddress postalAddress;
 
 
-  public RegisterContact surname(String surname) {
+  public RegisterContactNatural surname(String surname) {
     this.surname = surname;
     return this;
   }
@@ -98,6 +86,7 @@ public class RegisterContact {
    * Get surname
    * @return surname
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SURNAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -114,7 +103,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact birthname(String birthname) {
+  public RegisterContactNatural birthname(String birthname) {
     this.birthname = birthname;
     return this;
   }
@@ -140,7 +129,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact forename(String forename) {
+  public RegisterContactNatural forename(String forename) {
     this.forename = forename;
     return this;
   }
@@ -166,7 +155,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact salutation(String salutation) {
+  public RegisterContactNatural salutation(String salutation) {
     this.salutation = salutation;
     return this;
   }
@@ -192,7 +181,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact birthday(LocalDate birthday) {
+  public RegisterContactNatural birthday(LocalDate birthday) {
     this.birthday = birthday;
     return this;
   }
@@ -218,7 +207,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact email(String email) {
+  public RegisterContactNatural email(String email) {
     this.email = email;
     return this;
   }
@@ -244,7 +233,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact phoneNumber(String phoneNumber) {
+  public RegisterContactNatural phoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -270,7 +259,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact phoneNumberMobile(String phoneNumberMobile) {
+  public RegisterContactNatural phoneNumberMobile(String phoneNumberMobile) {
     this.phoneNumberMobile = phoneNumberMobile;
     return this;
   }
@@ -296,7 +285,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact emergencyPhoneNumber(String emergencyPhoneNumber) {
+  public RegisterContactNatural emergencyPhoneNumber(String emergencyPhoneNumber) {
     this.emergencyPhoneNumber = emergencyPhoneNumber;
     return this;
   }
@@ -322,85 +311,7 @@ public class RegisterContact {
   }
 
 
-  public RegisterContact feiMemberId(String feiMemberId) {
-    this.feiMemberId = feiMemberId;
-    return this;
-  }
-
-   /**
-   * Get feiMemberId
-   * @return feiMemberId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FEI_MEMBER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFeiMemberId() {
-    return feiMemberId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FEI_MEMBER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFeiMemberId(String feiMemberId) {
-    this.feiMemberId = feiMemberId;
-  }
-
-
-  public RegisterContact fnMemberId(String fnMemberId) {
-    this.fnMemberId = fnMemberId;
-    return this;
-  }
-
-   /**
-   * Get fnMemberId
-   * @return fnMemberId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FN_MEMBER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFnMemberId() {
-    return fnMemberId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FN_MEMBER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFnMemberId(String fnMemberId) {
-    this.fnMemberId = fnMemberId;
-  }
-
-
-  public RegisterContact vddQualificationLevel(String vddQualificationLevel) {
-    this.vddQualificationLevel = vddQualificationLevel;
-    return this;
-  }
-
-   /**
-   * Get vddQualificationLevel
-   * @return vddQualificationLevel
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_VDD_QUALIFICATION_LEVEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getVddQualificationLevel() {
-    return vddQualificationLevel;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VDD_QUALIFICATION_LEVEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVddQualificationLevel(String vddQualificationLevel) {
-    this.vddQualificationLevel = vddQualificationLevel;
-  }
-
-
-  public RegisterContact postalAddress(RegisterAddress postalAddress) {
+  public RegisterContactNatural postalAddress(RegisterAddress postalAddress) {
     this.postalAddress = postalAddress;
     return this;
   }
@@ -427,7 +338,7 @@ public class RegisterContact {
 
 
   /**
-   * Return true if this registerContact object is equal to o.
+   * Return true if this registerContactNatural object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -437,31 +348,28 @@ public class RegisterContact {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterContact registerContact = (RegisterContact) o;
-    return Objects.equals(this.surname, registerContact.surname) &&
-        Objects.equals(this.birthname, registerContact.birthname) &&
-        Objects.equals(this.forename, registerContact.forename) &&
-        Objects.equals(this.salutation, registerContact.salutation) &&
-        Objects.equals(this.birthday, registerContact.birthday) &&
-        Objects.equals(this.email, registerContact.email) &&
-        Objects.equals(this.phoneNumber, registerContact.phoneNumber) &&
-        Objects.equals(this.phoneNumberMobile, registerContact.phoneNumberMobile) &&
-        Objects.equals(this.emergencyPhoneNumber, registerContact.emergencyPhoneNumber) &&
-        Objects.equals(this.feiMemberId, registerContact.feiMemberId) &&
-        Objects.equals(this.fnMemberId, registerContact.fnMemberId) &&
-        Objects.equals(this.vddQualificationLevel, registerContact.vddQualificationLevel) &&
-        Objects.equals(this.postalAddress, registerContact.postalAddress);
+    RegisterContactNatural registerContactNatural = (RegisterContactNatural) o;
+    return Objects.equals(this.surname, registerContactNatural.surname) &&
+        Objects.equals(this.birthname, registerContactNatural.birthname) &&
+        Objects.equals(this.forename, registerContactNatural.forename) &&
+        Objects.equals(this.salutation, registerContactNatural.salutation) &&
+        Objects.equals(this.birthday, registerContactNatural.birthday) &&
+        Objects.equals(this.email, registerContactNatural.email) &&
+        Objects.equals(this.phoneNumber, registerContactNatural.phoneNumber) &&
+        Objects.equals(this.phoneNumberMobile, registerContactNatural.phoneNumberMobile) &&
+        Objects.equals(this.emergencyPhoneNumber, registerContactNatural.emergencyPhoneNumber) &&
+        Objects.equals(this.postalAddress, registerContactNatural.postalAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(surname, birthname, forename, salutation, birthday, email, phoneNumber, phoneNumberMobile, emergencyPhoneNumber, feiMemberId, fnMemberId, vddQualificationLevel, postalAddress);
+    return Objects.hash(surname, birthname, forename, salutation, birthday, email, phoneNumber, phoneNumberMobile, emergencyPhoneNumber, postalAddress);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegisterContact {\n");
+    sb.append("class RegisterContactNatural {\n");
     sb.append("    surname: ").append(toIndentedString(surname)).append("\n");
     sb.append("    birthname: ").append(toIndentedString(birthname)).append("\n");
     sb.append("    forename: ").append(toIndentedString(forename)).append("\n");
@@ -471,9 +379,6 @@ public class RegisterContact {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    phoneNumberMobile: ").append(toIndentedString(phoneNumberMobile)).append("\n");
     sb.append("    emergencyPhoneNumber: ").append(toIndentedString(emergencyPhoneNumber)).append("\n");
-    sb.append("    feiMemberId: ").append(toIndentedString(feiMemberId)).append("\n");
-    sb.append("    fnMemberId: ").append(toIndentedString(fnMemberId)).append("\n");
-    sb.append("    vddQualificationLevel: ").append(toIndentedString(vddQualificationLevel)).append("\n");
     sb.append("    postalAddress: ").append(toIndentedString(postalAddress)).append("\n");
     sb.append("}");
     return sb.toString();

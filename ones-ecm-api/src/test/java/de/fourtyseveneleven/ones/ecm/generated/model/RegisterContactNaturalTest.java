@@ -28,17 +28,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for RegisterContact
+ * Model tests for RegisterContactNatural
  */
-public class RegisterContactTest {
-    private final RegisterContact model = new RegisterContact();
+public class RegisterContactNaturalTest {
+    private final RegisterContactNatural model = new RegisterContactNatural();
 
     /**
-     * Model tests for RegisterContact
+     * Model tests for RegisterContactNatural
      */
     @Test
-    public void testRegisterContact() {
-        // TODO: test RegisterContact
+    public void testRegisterContactNatural() {
+        // TODO: test RegisterContactNatural
     }
 
     /**
@@ -111,30 +111,6 @@ public class RegisterContactTest {
     @Test
     public void emergencyPhoneNumberTest() {
         // TODO: test emergencyPhoneNumber
-    }
-
-    /**
-     * Test the property 'feiMemberId'
-     */
-    @Test
-    public void feiMemberIdTest() {
-        // TODO: test feiMemberId
-    }
-
-    /**
-     * Test the property 'fnMemberId'
-     */
-    @Test
-    public void fnMemberIdTest() {
-        // TODO: test fnMemberId
-    }
-
-    /**
-     * Test the property 'vddQualificationLevel'
-     */
-    @Test
-    public void vddQualificationLevelTest() {
-        // TODO: test vddQualificationLevel
     }
 
     /**

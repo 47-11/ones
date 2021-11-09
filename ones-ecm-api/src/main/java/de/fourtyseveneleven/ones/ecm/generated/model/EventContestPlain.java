@@ -90,7 +90,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_LOCATIONS,
   EventContestPlain.JSON_PROPERTY_REMARKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
 public class EventContestPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -249,6 +249,7 @@ public class EventContestPlain {
    * Get uuid
    * @return uuid
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -274,6 +275,7 @@ public class EventContestPlain {
    * Get creationTimestamp
    * @return creationTimestamp
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -28,17 +28,25 @@ import org.junit.Test;
 
 
 /**
- * Model tests for RegisterHorse
+ * Model tests for RegisteredHorse
  */
-public class RegisterHorseTest {
-    private final RegisterHorse model = new RegisterHorse();
+public class RegisteredHorseTest {
+    private final RegisteredHorse model = new RegisteredHorse();
 
     /**
-     * Model tests for RegisterHorse
+     * Model tests for RegisteredHorse
      */
     @Test
-    public void testRegisterHorse() {
-        // TODO: test RegisterHorse
+    public void testRegisteredHorse() {
+        // TODO: test RegisteredHorse
+    }
+
+    /**
+     * Test the property 'uuid'
+     */
+    @Test
+    public void uuidTest() {
+        // TODO: test uuid
     }
 
     /**

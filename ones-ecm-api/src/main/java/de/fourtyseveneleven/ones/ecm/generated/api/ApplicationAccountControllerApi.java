@@ -18,8 +18,8 @@ import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
 import de.fourtyseveneleven.ones.ecm.generated.Pair;
 
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount;
-import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount4Member;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccount;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +38,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
 public class ApplicationAccountControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -60,14 +60,88 @@ public class ApplicationAccountControllerApi {
     memberVarResponseInterceptor = apiClient.getResponseInterceptor();
   }
 
-  protected ApiException createApiException(HttpResponse<InputStream> response, String msgPrefix) throws IOException {
+  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
     String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    if (body != null) {
-      msgPrefix += ": " + body;
-    }
-    return new ApiException(response.statusCode(), msgPrefix, response.headers(), body);
+    String message = formatExceptionMessage(operationId, response.statusCode(), body);
+    return new ApiException(response.statusCode(), message, response.headers(), body);
   }
 
+  private String formatExceptionMessage(String operationId, int statusCode, String body) {
+    if (body == null || body.isEmpty()) {
+      body = "[no body]";
+    }
+    return operationId + " call failed with: " + statusCode + " - " + body;
+  }
+
+  /**
+   * 
+   * 
+   * @param accountUuid  (required)
+   * @return RegisteredAccount
+   * @throws ApiException if fails to make API call
+   */
+  public RegisteredAccount getAccoundByUuid(String accountUuid) throws ApiException {
+    ApiResponse<RegisteredAccount> localVarResponse = getAccoundByUuidWithHttpInfo(accountUuid);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param accountUuid  (required)
+   * @return ApiResponse&lt;RegisteredAccount&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisteredAccount> getAccoundByUuidWithHttpInfo(String accountUuid) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAccoundByUuidRequestBuilder(accountUuid);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw getApiException("getAccoundByUuid", localVarResponse);
+      }
+      return new ApiResponse<RegisteredAccount>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisteredAccount>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAccoundByUuidRequestBuilder(String accountUuid) throws ApiException {
+    // verify the required parameter 'accountUuid' is set
+    if (accountUuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountUuid' when calling getAccoundByUuid");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/application/register/account/{accountUuid}"
+        .replace("{accountUuid}", ApiClient.urlEncode(accountUuid.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
   /**
    * 
    * 
@@ -97,7 +171,7 @@ public class ApplicationAccountControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "postRegisterAccount call received non-success response");
+        throw getApiException("postRegisterAccount", localVarResponse);
       }
       return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),
@@ -145,80 +219,6 @@ public class ApplicationAccountControllerApi {
   /**
    * 
    * 
-   * @param registerAccount4Member  (required)
-   * @return RegisterResponce
-   * @throws ApiException if fails to make API call
-   */
-  public RegisterResponce postRegisterAccount4Member(RegisterAccount4Member registerAccount4Member) throws ApiException {
-    ApiResponse<RegisterResponce> localVarResponse = postRegisterAccount4MemberWithHttpInfo(registerAccount4Member);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param registerAccount4Member  (required)
-   * @return ApiResponse&lt;RegisterResponce&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<RegisterResponce> postRegisterAccount4MemberWithHttpInfo(RegisterAccount4Member registerAccount4Member) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = postRegisterAccount4MemberRequestBuilder(registerAccount4Member);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "postRegisterAccount4Member call received non-success response");
-      }
-      return new ApiResponse<RegisterResponce>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
-        );
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder postRegisterAccount4MemberRequestBuilder(RegisterAccount4Member registerAccount4Member) throws ApiException {
-    // verify the required parameter 'registerAccount4Member' is set
-    if (registerAccount4Member == null) {
-      throw new ApiException(400, "Missing the required parameter 'registerAccount4Member' when calling postRegisterAccount4Member");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/rest/application/register/account4Member";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(registerAccount4Member);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-  /**
-   * 
-   * 
    * @param uuid  (required)
    * @param code  (required)
    * @return RegisterResponce
@@ -247,7 +247,7 @@ public class ApplicationAccountControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "putRegisterAccountUnlock call received non-success response");
+        throw getApiException("putRegisterAccountUnlock", localVarResponse);
       }
       return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),

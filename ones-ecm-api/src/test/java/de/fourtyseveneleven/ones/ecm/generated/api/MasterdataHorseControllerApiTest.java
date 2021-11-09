@@ -14,7 +14,6 @@
 package de.fourtyseveneleven.ones.ecm.generated.api;
 
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
-import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorse;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterHorse;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -43,44 +42,11 @@ public class MasterdataHorseControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getHorseByUuidTest() throws ApiException {
-        String uuid = null;
-        MasterdataHorse response = 
-        api.getHorseByUuid(uuid);
-        
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getHorsesByContactUuidTest() throws ApiException {
-        String uuid = null;
-        List<MasterdataHorse> response = 
-        api.getHorsesByContactUuid(uuid);
-        
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
     public void postRegisterHorseTest() throws ApiException {
+        String uuid = null;
         RegisterHorse registerHorse = null;
         Object response = 
-        api.postRegisterHorse(registerHorse);
+        api.postRegisterHorse(uuid, registerHorse);
         
         // TODO: test validations
     }

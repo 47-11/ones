@@ -1,6 +1,6 @@
 
 
-# RegisterContact
+# RegisterContactNatural
 
 
 ## Properties
@@ -16,9 +16,6 @@ Name | Type | Description | Notes
 **phoneNumber** | **String** |  |  [optional]
 **phoneNumberMobile** | **String** |  |  [optional]
 **emergencyPhoneNumber** | **String** |  |  [optional]
-**feiMemberId** | **String** |  |  [optional]
-**fnMemberId** | **String** |  |  [optional]
-**vddQualificationLevel** | **String** |  |  [optional]
 **postalAddress** | [**RegisterAddress**](RegisterAddress.md) |  |  [optional]
 
 
