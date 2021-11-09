@@ -30,23 +30,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * RegisterHorse
+ * RegisteredHorse
  */
 @JsonPropertyOrder({
-  RegisterHorse.JSON_PROPERTY_NAME,
-  RegisterHorse.JSON_PROPERTY_PASSPORT_ID,
-  RegisterHorse.JSON_PROPERTY_FEI_PASSPORT_ID,
-  RegisterHorse.JSON_PROPERTY_FN_PASSPORT_ID,
-  RegisterHorse.JSON_PROPERTY_BREED,
-  RegisterHorse.JSON_PROPERTY_GENDER,
-  RegisterHorse.JSON_PROPERTY_COLOR,
-  RegisterHorse.JSON_PROPERTY_YEAR_OF_BIRTH,
-  RegisterHorse.JSON_PROPERTY_STICK_SIZE,
-  RegisterHorse.JSON_PROPERTY_OWNER,
-  RegisterHorse.JSON_PROPERTY_STABLE
+  RegisteredHorse.JSON_PROPERTY_UUID,
+  RegisteredHorse.JSON_PROPERTY_NAME,
+  RegisteredHorse.JSON_PROPERTY_PASSPORT_ID,
+  RegisteredHorse.JSON_PROPERTY_FEI_PASSPORT_ID,
+  RegisteredHorse.JSON_PROPERTY_FN_PASSPORT_ID,
+  RegisteredHorse.JSON_PROPERTY_BREED,
+  RegisteredHorse.JSON_PROPERTY_GENDER,
+  RegisteredHorse.JSON_PROPERTY_COLOR,
+  RegisteredHorse.JSON_PROPERTY_YEAR_OF_BIRTH,
+  RegisteredHorse.JSON_PROPERTY_STICK_SIZE,
+  RegisteredHorse.JSON_PROPERTY_OWNER,
+  RegisteredHorse.JSON_PROPERTY_STABLE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
-public class RegisterHorse {
+public class RegisteredHorse {
+  public static final String JSON_PROPERTY_UUID = "uuid";
+  private String uuid;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -81,7 +85,33 @@ public class RegisterHorse {
   private RegisterContactLegal stable;
 
 
-  public RegisterHorse name(String name) {
+  public RegisteredHorse uuid(String uuid) {
+    this.uuid = uuid;
+    return this;
+  }
+
+   /**
+   * Get uuid
+   * @return uuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getUuid() {
+    return uuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
+
+
+  public RegisteredHorse name(String name) {
     this.name = name;
     return this;
   }
@@ -107,7 +137,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse passportId(String passportId) {
+  public RegisteredHorse passportId(String passportId) {
     this.passportId = passportId;
     return this;
   }
@@ -133,7 +163,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse feiPassportId(String feiPassportId) {
+  public RegisteredHorse feiPassportId(String feiPassportId) {
     this.feiPassportId = feiPassportId;
     return this;
   }
@@ -159,7 +189,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse fnPassportId(String fnPassportId) {
+  public RegisteredHorse fnPassportId(String fnPassportId) {
     this.fnPassportId = fnPassportId;
     return this;
   }
@@ -185,7 +215,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse breed(String breed) {
+  public RegisteredHorse breed(String breed) {
     this.breed = breed;
     return this;
   }
@@ -211,7 +241,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse gender(String gender) {
+  public RegisteredHorse gender(String gender) {
     this.gender = gender;
     return this;
   }
@@ -237,7 +267,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse color(String color) {
+  public RegisteredHorse color(String color) {
     this.color = color;
     return this;
   }
@@ -263,7 +293,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse yearOfBirth(Integer yearOfBirth) {
+  public RegisteredHorse yearOfBirth(Integer yearOfBirth) {
     this.yearOfBirth = yearOfBirth;
     return this;
   }
@@ -289,7 +319,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse stickSize(Integer stickSize) {
+  public RegisteredHorse stickSize(Integer stickSize) {
     this.stickSize = stickSize;
     return this;
   }
@@ -315,7 +345,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse owner(RegisterContactNatural owner) {
+  public RegisteredHorse owner(RegisterContactNatural owner) {
     this.owner = owner;
     return this;
   }
@@ -341,7 +371,7 @@ public class RegisterHorse {
   }
 
 
-  public RegisterHorse stable(RegisterContactLegal stable) {
+  public RegisteredHorse stable(RegisterContactLegal stable) {
     this.stable = stable;
     return this;
   }
@@ -368,7 +398,7 @@ public class RegisterHorse {
 
 
   /**
-   * Return true if this registerHorse object is equal to o.
+   * Return true if this registeredHorse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -378,29 +408,31 @@ public class RegisterHorse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterHorse registerHorse = (RegisterHorse) o;
-    return Objects.equals(this.name, registerHorse.name) &&
-        Objects.equals(this.passportId, registerHorse.passportId) &&
-        Objects.equals(this.feiPassportId, registerHorse.feiPassportId) &&
-        Objects.equals(this.fnPassportId, registerHorse.fnPassportId) &&
-        Objects.equals(this.breed, registerHorse.breed) &&
-        Objects.equals(this.gender, registerHorse.gender) &&
-        Objects.equals(this.color, registerHorse.color) &&
-        Objects.equals(this.yearOfBirth, registerHorse.yearOfBirth) &&
-        Objects.equals(this.stickSize, registerHorse.stickSize) &&
-        Objects.equals(this.owner, registerHorse.owner) &&
-        Objects.equals(this.stable, registerHorse.stable);
+    RegisteredHorse registeredHorse = (RegisteredHorse) o;
+    return Objects.equals(this.uuid, registeredHorse.uuid) &&
+        Objects.equals(this.name, registeredHorse.name) &&
+        Objects.equals(this.passportId, registeredHorse.passportId) &&
+        Objects.equals(this.feiPassportId, registeredHorse.feiPassportId) &&
+        Objects.equals(this.fnPassportId, registeredHorse.fnPassportId) &&
+        Objects.equals(this.breed, registeredHorse.breed) &&
+        Objects.equals(this.gender, registeredHorse.gender) &&
+        Objects.equals(this.color, registeredHorse.color) &&
+        Objects.equals(this.yearOfBirth, registeredHorse.yearOfBirth) &&
+        Objects.equals(this.stickSize, registeredHorse.stickSize) &&
+        Objects.equals(this.owner, registeredHorse.owner) &&
+        Objects.equals(this.stable, registeredHorse.stable);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, passportId, feiPassportId, fnPassportId, breed, gender, color, yearOfBirth, stickSize, owner, stable);
+    return Objects.hash(uuid, name, passportId, feiPassportId, fnPassportId, breed, gender, color, yearOfBirth, stickSize, owner, stable);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegisterHorse {\n");
+    sb.append("class RegisteredHorse {\n");
+    sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    passportId: ").append(toIndentedString(passportId)).append("\n");
     sb.append("    feiPassportId: ").append(toIndentedString(feiPassportId)).append("\n");

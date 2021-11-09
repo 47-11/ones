@@ -1,12 +1,13 @@
 
 
-# RegisterHorse
+# RegisteredHorse
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**uuid** | **String** |  |  [optional]
 **name** | **String** |  | 
 **passportId** | **String** |  | 
 **feiPassportId** | **String** |  |  [optional]

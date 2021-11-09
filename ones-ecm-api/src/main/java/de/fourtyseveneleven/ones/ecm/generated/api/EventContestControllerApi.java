@@ -41,7 +41,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
 public class EventContestControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -63,12 +63,17 @@ public class EventContestControllerApi {
     memberVarResponseInterceptor = apiClient.getResponseInterceptor();
   }
 
-  protected ApiException createApiException(HttpResponse<InputStream> response, String msgPrefix) throws IOException {
+  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
     String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    if (body != null) {
-      msgPrefix += ": " + body;
+    String message = formatExceptionMessage(operationId, response.statusCode(), body);
+    return new ApiException(response.statusCode(), message, response.headers(), body);
+  }
+
+  private String formatExceptionMessage(String operationId, int statusCode, String body) {
+    if (body == null || body.isEmpty()) {
+      body = "[no body]";
     }
-    return new ApiException(response.statusCode(), msgPrefix, response.headers(), body);
+    return operationId + " call failed with: " + statusCode + " - " + body;
   }
 
   /**
@@ -100,7 +105,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "getAccountContestCompetitionsResults call received non-success response");
+        throw getApiException("getAccountContestCompetitionsResults", localVarResponse);
       }
       return new ApiResponse<List<EventContestCompetitionResult>>(
           localVarResponse.statusCode(),
@@ -171,7 +176,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "getContestByUuid call received non-success response");
+        throw getApiException("getContestByUuid", localVarResponse);
       }
       return new ApiResponse<EventContest>(
           localVarResponse.statusCode(),
@@ -275,7 +280,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "getContestByYear call received non-success response");
+        throw getApiException("getContestByYear", localVarResponse);
       }
       return new ApiResponse<ResponcePageContestsPlain>(
           localVarResponse.statusCode(),
@@ -357,7 +362,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "getCurrentContestCompetitionsResults call received non-success response");
+        throw getApiException("getCurrentContestCompetitionsResults", localVarResponse);
       }
       return new ApiResponse<List<EventContestCompetitionResult>>(
           localVarResponse.statusCode(),
@@ -421,7 +426,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw createApiException(localVarResponse, "postRegisterNomination call received non-success response");
+        throw getApiException("postRegisterNomination", localVarResponse);
       }
       return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),

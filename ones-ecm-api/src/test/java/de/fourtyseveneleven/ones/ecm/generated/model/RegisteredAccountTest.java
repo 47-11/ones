@@ -20,25 +20,29 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactNatural;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterMembership;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for RegisterAccount
+ * Model tests for RegisteredAccount
  */
-public class RegisterAccountTest {
-    private final RegisterAccount model = new RegisterAccount();
+public class RegisteredAccountTest {
+    private final RegisteredAccount model = new RegisteredAccount();
 
     /**
-     * Model tests for RegisterAccount
+     * Model tests for RegisteredAccount
      */
     @Test
-    public void testRegisterAccount() {
-        // TODO: test RegisterAccount
+    public void testRegisteredAccount() {
+        // TODO: test RegisteredAccount
     }
 
     /**
@@ -55,14 +59,6 @@ public class RegisterAccountTest {
     @Test
     public void loginIdentificationTest() {
         // TODO: test loginIdentification
-    }
-
-    /**
-     * Test the property 'loginKeyword'
-     */
-    @Test
-    public void loginKeywordTest() {
-        // TODO: test loginKeyword
     }
 
     /**
@@ -87,6 +83,14 @@ public class RegisterAccountTest {
     @Test
     public void membershipsTest() {
         // TODO: test memberships
+    }
+
+    /**
+     * Test the property 'horses'
+     */
+    @Test
+    public void horsesTest() {
+        // TODO: test horses
     }
 
 }

@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]
+- Build date: 2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -85,12 +85,12 @@ public class ApplicationAccountControllerApiExample {
         // Configure clients using the `defaultClient` object, such as
         // overriding the host and port, timeout, etc.
         ApplicationAccountControllerApi apiInstance = new ApplicationAccountControllerApi(defaultClient);
-        RegisterAccount registerAccount = new RegisterAccount(); // RegisterAccount | 
+        String accountUuid = "accountUuid_example"; // String | 
         try {
-            RegisterResponce result = apiInstance.postRegisterAccount(registerAccount);
+            RegisteredAccount result = apiInstance.getAccoundByUuid(accountUuid);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ApplicationAccountControllerApi#postRegisterAccount");
+            System.err.println("Exception when calling ApplicationAccountControllerApi#getAccoundByUuid");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -107,10 +107,10 @@ All URIs are relative to *https://vdd4ones.de:9080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ApplicationAccountControllerApi* | [**getAccoundByUuid**](docs/ApplicationAccountControllerApi.md#getAccoundByUuid) | **GET** /rest/application/register/account/{accountUuid} | 
+*ApplicationAccountControllerApi* | [**getAccoundByUuidWithHttpInfo**](docs/ApplicationAccountControllerApi.md#getAccoundByUuidWithHttpInfo) | **GET** /rest/application/register/account/{accountUuid} | 
 *ApplicationAccountControllerApi* | [**postRegisterAccount**](docs/ApplicationAccountControllerApi.md#postRegisterAccount) | **POST** /rest/application/register/account | 
 *ApplicationAccountControllerApi* | [**postRegisterAccountWithHttpInfo**](docs/ApplicationAccountControllerApi.md#postRegisterAccountWithHttpInfo) | **POST** /rest/application/register/account | 
-*ApplicationAccountControllerApi* | [**postRegisterAccount4Member**](docs/ApplicationAccountControllerApi.md#postRegisterAccount4Member) | **POST** /rest/application/register/account4Member | 
-*ApplicationAccountControllerApi* | [**postRegisterAccount4MemberWithHttpInfo**](docs/ApplicationAccountControllerApi.md#postRegisterAccount4MemberWithHttpInfo) | **POST** /rest/application/register/account4Member | 
 *ApplicationAccountControllerApi* | [**putRegisterAccountUnlock**](docs/ApplicationAccountControllerApi.md#putRegisterAccountUnlock) | **PUT** /rest/application/register/account/unlock | 
 *ApplicationAccountControllerApi* | [**putRegisterAccountUnlockWithHttpInfo**](docs/ApplicationAccountControllerApi.md#putRegisterAccountUnlockWithHttpInfo) | **PUT** /rest/application/register/account/unlock | 
 *EventContestControllerApi* | [**getAccountContestCompetitionsResults**](docs/EventContestControllerApi.md#getAccountContestCompetitionsResults) | **GET** /rest/event/contest/result/account/{uuid} | 
@@ -123,20 +123,8 @@ Class | Method | HTTP request | Description
 *EventContestControllerApi* | [**getCurrentContestCompetitionsResultsWithHttpInfo**](docs/EventContestControllerApi.md#getCurrentContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/current | 
 *EventContestControllerApi* | [**postRegisterNomination**](docs/EventContestControllerApi.md#postRegisterNomination) | **POST** /rest/event/register/nomination | 
 *EventContestControllerApi* | [**postRegisterNominationWithHttpInfo**](docs/EventContestControllerApi.md#postRegisterNominationWithHttpInfo) | **POST** /rest/event/register/nomination | 
-*MasterdataContactControllerApi* | [**getContactByUuid**](docs/MasterdataContactControllerApi.md#getContactByUuid) | **GET** /rest/masterdata/contact/{accountUuid} | 
-*MasterdataContactControllerApi* | [**getContactByUuidWithHttpInfo**](docs/MasterdataContactControllerApi.md#getContactByUuidWithHttpInfo) | **GET** /rest/masterdata/contact/{accountUuid} | 
-*MasterdataContactControllerApi* | [**postRegisterContactContestant**](docs/MasterdataContactControllerApi.md#postRegisterContactContestant) | **POST** /rest/masterdata/register/contact/contestant | 
-*MasterdataContactControllerApi* | [**postRegisterContactContestantWithHttpInfo**](docs/MasterdataContactControllerApi.md#postRegisterContactContestantWithHttpInfo) | **POST** /rest/masterdata/register/contact/contestant | 
-*MasterdataContactControllerApi* | [**postRegisterContactHorseOwner**](docs/MasterdataContactControllerApi.md#postRegisterContactHorseOwner) | **POST** /rest/masterdata/register/contact/horseOwner | 
-*MasterdataContactControllerApi* | [**postRegisterContactHorseOwnerWithHttpInfo**](docs/MasterdataContactControllerApi.md#postRegisterContactHorseOwnerWithHttpInfo) | **POST** /rest/masterdata/register/contact/horseOwner | 
-*MasterdataContactControllerApi* | [**postRegisterContactStable**](docs/MasterdataContactControllerApi.md#postRegisterContactStable) | **POST** /rest/masterdata/register/contact/stable | 
-*MasterdataContactControllerApi* | [**postRegisterContactStableWithHttpInfo**](docs/MasterdataContactControllerApi.md#postRegisterContactStableWithHttpInfo) | **POST** /rest/masterdata/register/contact/stable | 
-*MasterdataHorseControllerApi* | [**getHorseByUuid**](docs/MasterdataHorseControllerApi.md#getHorseByUuid) | **GET** /rest/masterdata/horse/{uuid} | 
-*MasterdataHorseControllerApi* | [**getHorseByUuidWithHttpInfo**](docs/MasterdataHorseControllerApi.md#getHorseByUuidWithHttpInfo) | **GET** /rest/masterdata/horse/{uuid} | 
-*MasterdataHorseControllerApi* | [**getHorsesByContactUuid**](docs/MasterdataHorseControllerApi.md#getHorsesByContactUuid) | **GET** /rest/masterdata/horse/account/{uuid} | 
-*MasterdataHorseControllerApi* | [**getHorsesByContactUuidWithHttpInfo**](docs/MasterdataHorseControllerApi.md#getHorsesByContactUuidWithHttpInfo) | **GET** /rest/masterdata/horse/account/{uuid} | 
-*MasterdataHorseControllerApi* | [**postRegisterHorse**](docs/MasterdataHorseControllerApi.md#postRegisterHorse) | **POST** /rest/masterdata/register/horse | 
-*MasterdataHorseControllerApi* | [**postRegisterHorseWithHttpInfo**](docs/MasterdataHorseControllerApi.md#postRegisterHorseWithHttpInfo) | **POST** /rest/masterdata/register/horse | 
+*MasterdataHorseControllerApi* | [**postRegisterHorse**](docs/MasterdataHorseControllerApi.md#postRegisterHorse) | **POST** /rest/masterdata/horse/account/{uuid} | 
+*MasterdataHorseControllerApi* | [**postRegisterHorseWithHttpInfo**](docs/MasterdataHorseControllerApi.md#postRegisterHorseWithHttpInfo) | **POST** /rest/masterdata/horse/account/{uuid} | 
 *MasterdataPropertyControllerApi* | [**getPropertyItems**](docs/MasterdataPropertyControllerApi.md#getPropertyItems) | **GET** /rest/masterdata/property/items/{proptery} | 
 *MasterdataPropertyControllerApi* | [**getPropertyItemsWithHttpInfo**](docs/MasterdataPropertyControllerApi.md#getPropertyItemsWithHttpInfo) | **GET** /rest/masterdata/property/items/{proptery} | 
 
@@ -159,21 +147,18 @@ Class | Method | HTTP request | Description
  - [EventContestRemarkPlain](docs/EventContestRemarkPlain.md)
  - [EventContestRole](docs/EventContestRole.md)
  - [EventContestRolePlain](docs/EventContestRolePlain.md)
- - [MasterdataContact](docs/MasterdataContact.md)
- - [MasterdataContactAddress](docs/MasterdataContactAddress.md)
- - [MasterdataContactRole](docs/MasterdataContactRole.md)
- - [MasterdataHorse](docs/MasterdataHorse.md)
- - [MasterdataHorseOwner](docs/MasterdataHorseOwner.md)
- - [MasterdataHorseStable](docs/MasterdataHorseStable.md)
  - [MasterdataProperty](docs/MasterdataProperty.md)
  - [MasterdataPropertyCharacteristic](docs/MasterdataPropertyCharacteristic.md)
  - [RegisterAccount](docs/RegisterAccount.md)
- - [RegisterAccount4Member](docs/RegisterAccount4Member.md)
  - [RegisterAddress](docs/RegisterAddress.md)
- - [RegisterContact](docs/RegisterContact.md)
+ - [RegisterContactLegal](docs/RegisterContactLegal.md)
+ - [RegisterContactNatural](docs/RegisterContactNatural.md)
  - [RegisterHorse](docs/RegisterHorse.md)
+ - [RegisterMembership](docs/RegisterMembership.md)
  - [RegisterNomination](docs/RegisterNomination.md)
  - [RegisterResponce](docs/RegisterResponce.md)
+ - [RegisteredAccount](docs/RegisteredAccount.md)
+ - [RegisteredHorse](docs/RegisteredHorse.md)
  - [ResponcePageContestsPlain](docs/ResponcePageContestsPlain.md)
 
 

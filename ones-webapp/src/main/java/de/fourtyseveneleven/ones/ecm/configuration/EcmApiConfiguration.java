@@ -25,12 +25,6 @@ public class EcmApiConfiguration {
     }
 
     @Bean
-    public MasterdataContactControllerApi masterdataContactControllerApi(ApiClient apiClient) {
-
-        return new MasterdataContactControllerApi(apiClient);
-    }
-
-    @Bean
     public MasterdataHorseControllerApi masterdataHorseControllerApi(ApiClient apiClient) {
 
         return new MasterdataHorseControllerApi(apiClient);

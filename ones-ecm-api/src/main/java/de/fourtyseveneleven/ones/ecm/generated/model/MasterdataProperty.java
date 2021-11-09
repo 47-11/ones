@@ -47,7 +47,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataProperty.JSON_PROPERTY_DISPLAY,
   MasterdataProperty.JSON_PROPERTY_ITEMS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-19T11:08:50.846901703+02:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
 public class MasterdataProperty {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -89,6 +89,7 @@ public class MasterdataProperty {
    * Get uuid
    * @return uuid
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -114,6 +115,7 @@ public class MasterdataProperty {
    * Get creationTimestamp
    * @return creationTimestamp
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

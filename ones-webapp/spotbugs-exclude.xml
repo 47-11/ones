@@ -8,4 +8,9 @@
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
 
+    <Match>
+        <!-- No idea why spotbugs checks generated files. For now just exclude it explicitly. -->
+        <Class name="de.fourtyseveneleven.ones.user.mapper.UserDtoMapperImpl" />
+    </Match>
+
 </FindBugsFilter>
