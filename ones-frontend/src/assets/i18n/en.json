@@ -249,7 +249,17 @@
       "subtitle": "Please select the horse you want to participate with.",
       "lifeNumber": "Life number"
     },
+    "cancellcation": {
+      "title": "Canellcation",
+      "description": "Cancellation and re-registration please by eMail to organizer"
+    },
     "minHorses": "Please select at least one horse.",
+    "confirm": "You have to confirm the registration bindingly.",
+    "confirmation": {
+      "title": "Confirmation",
+      "description": "I hereby bindingly register for the competition with the selected horses."
+    },
+    "signUpTitle": "Sign up",
     "submit": "Sign up",
     "signedUp": "You signed up!",
     "thanks": "Thanks for your enrollment.",

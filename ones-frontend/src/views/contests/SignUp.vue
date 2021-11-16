@@ -157,23 +157,10 @@
                     <form @submit.prevent="signUp" v-if="!hasSubmitted">
 
                         <h1 class="text-2xl font-bold mb-5">
-                            Nennung
+                            {{ $t('signUp.signUpTitle') }}
                         </h1>
 
                         <error-message :error="error"/>
-
-                        <h2 class="text-lg font-bold mb-2">Voraussetzungen</h2>
-
-                        <ul class="mb-7">
-                            <li class="flex items-center">
-                                <font-awesome-icon :icon="'check'" class="mr-2 text-lime-600"/>
-                                <span>Altersspanne 14 - 68</span>
-                            </li>
-                            <li class="flex items-center">
-                                <font-awesome-icon :icon="'check'" class="mr-2 text-lime-600"/>
-                                <span>Qualistufe 1</span>
-                            </li>
-                        </ul>
 
                         <h2 class="text-lg font-bold">
                             {{ $t('signUp.selectHorse.title') }}
@@ -184,29 +171,6 @@
                         </div>
 
                         <card>
-                            <div class="bg-white border-b px-5 py-4 flex items-center">
-                                <input type="checkbox"
-                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-5">
-                                <div class="leading-5">
-                                    <span>Pferd</span> <br>
-                                    <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} 12354654765
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="bg-gray-50 cursor-not-allowed border-b px-5 py-4 flex items-center">
-                                <input type="checkbox" disabled="true"
-                                       class="cursor-not-allowed rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-5">
-                                <div class="leading-5">
-                                    <span>Pferd</span> <br>
-                                    <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} 12354654765
-                                    </span>
-                                </div>
-                                <div class="ml-auto">
-                                    <badge class="bg-red-700 text-white">Gesperrt</badge>
-                                </div>
-                            </div>
                             <div class="bg-white border-b px-5 py-4 flex items-center" v-for="horse in horses.list"
                                  :key="horse.uuid">
                                 <input type="checkbox" :value="horse.uuid" :id="'horse_' + horse.uuid"
@@ -215,7 +179,7 @@
                                 <div class="leading-5">
                                     <span>{{ horse.name }}</span> <br>
                                     <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.lifeNumber }}
+                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
                                     </span>
                                 </div>
                             </div>
@@ -223,12 +187,11 @@
 
                         <div class="block mt-6">
                             <label class="inline-flex items-start">
-                                <v-checkbox class="mt-1"/>
+                                <input type="checkbox" v-model="confirmed"
+                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1">
                                 <div class="ml-4 text-sm text-gray-600">
-                                    <h4 class="text-base font-bold mb-1">Bestätigung</h4>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                                    eos et accusam et justo du
+                                    <h4 class="text-base font-bold mb-1">{{ $t('signUp.confirmation.title') }}</h4>
+                                    {{ $t('signUp.confirmation.description') }}
                                 </div>
                             </label>
                         </div>
@@ -239,7 +202,7 @@
                             </v-button>
                         </div>
                     </form>
-                    <div class="text-gray-700">
+                    <div class="text-gray-700" v-if="hasSubmitted">
                         <div class="text-center my-20">
                             <h2 class="text-4xl mb-3 font-medium">{{ $t('signUp.signedUp') }}</h2>
                             <p>{{ $t('signUp.thanks') }}</p>
@@ -248,11 +211,11 @@
                         <h3 class="text-xl mb-5">{{ $t('signUp.signedUpHorses') }}</h3>
 
                         <card>
-                            <div class="bg-white border-b px-5 py-4" v-for="horse in contest.signedUpHorses" :key="horse.uuid">
-                                <div class="leading-5">
-                                    <span>Pferdname</span> <br>
+                            <div class="bg-white border-b px-5 py-4" >
+                                <div class="leading-5" v-for="horse in horses.list.filter(horse => contest.signedUpHorses.includes(horse.uuid))" :key="horse.uuid">
+                                    <span>{{ horse.name }}</span><br>
                                     <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} 375489798
+                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
                                     </span>
                                     <span>{{ horse.name }}</span>
                                 </div>
@@ -260,11 +223,11 @@
                         </card>
 
                         <h3 class="font-bold text-gray-500 mt-5">
-                            Ab- und Umeldung
+                            {{ $t('signUp.cancellcation.title') }}
                         </h3>
 
                         <p class="text-sm text-gray-500">
-                            Ab und Ummeldung bitte per eMail an Veranstalter
+                            {{ $t('signUp.cancellcation.description') }}
                         </p>
                     </div>
                 </div>
@@ -328,8 +291,9 @@ import { getVxm } from "@/store";
 export default class SignUp extends Vue {
     selectedHorseId = "a";
     checkedHorses: [] = [];
+    confirmed = false;
 
-    error: Error | null = null;
+    error = null;
     hasSubmitted = false;
     inputsDisabled = false;
 
@@ -351,7 +315,9 @@ export default class SignUp extends Vue {
         this.disableInputs();
 
         try {
+            this.assertValid();
             this.request();
+
             this.hasSubmitted = true;
         } catch (error) {
             this.error = error as Error;
@@ -373,6 +339,10 @@ export default class SignUp extends Vue {
     private assertValid(): void {
         if (this.checkedHorses.length === 0) {
             throw new Error("signUp.minHorses");
+        }
+
+        if (!this.confirmed) {
+            throw new Error("signUp.confirm");
         }
 
         if (this.contestId === null) {

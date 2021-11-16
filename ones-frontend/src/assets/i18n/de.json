@@ -247,10 +247,20 @@
       "lifeNumber": "Lebens-Nr."
     },
     "minHorses": "Sie müssen mindestens ein Pferd auswählen.",
+    "confirm": "Sie müssen die Teilnahme verbindlich bestätigen.",
+    "confirmation": {
+      "title": "Bestätigung",
+      "description": "Hiermit melde ich mich mit den ausgewählten Pferden verbindlich zum Wettbewerb an."
+    },
+    "signUpTitle": "Nennung",
     "submit": "Jetzt anmelden",
     "signedUp": "Sie sind angemeldet!",
     "thanks": "Vielen Dank für Ihre Anmeldung.",
-    "signedUpHorses": "Angemeldete Pferde"
+    "signedUpHorses": "Angemeldete Pferde",
+    "cancellcation": {
+      "title": "Ab- und Ummeldung",
+      "description": "Ab und Ummeldung bitte per eMail an Veranstalter"
+    }
   },
   "password": {
     "password": "Passwort"
