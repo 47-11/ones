@@ -221,7 +221,6 @@ export default class SetPersonalData extends Vue {
             "street",
             "houseNumber",
             "phoneNumber",
-            "phoneNumberMobile",
             "phoneNumberEmergency",
             "zipCode",
             "city",
