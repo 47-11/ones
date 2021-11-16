@@ -33,4 +33,10 @@ public class MockHorseServiceImpl implements HorseService {
     public void createHorseForCurrentUser(FullHorseDto fullHorseDto) {
         // No-Op
     }
+
+    @Override
+    public void update(UUID horseUuid, HorseDto horseDto) {
+
+        // NO-OP
+    }
 }
