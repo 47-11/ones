@@ -249,10 +249,6 @@
       "subtitle": "Please select the horse you want to participate with.",
       "lifeNumber": "Life number"
     },
-    "cancellcation": {
-      "title": "Canellcation",
-      "description": "Cancellation and re-registration please by eMail to organizer"
-    },
     "minHorses": "Please select at least one horse.",
     "confirm": "You have to confirm the registration bindingly.",
     "confirmation": {
@@ -263,7 +259,11 @@
     "submit": "Sign up",
     "signedUp": "You signed up!",
     "thanks": "Thanks for your enrollment.",
-    "signedUpHorses": "Signed up Horses"
+    "signedUpHorses": "Signed up Horses",
+    "cancellcation": {
+      "title": "Canellcation",
+      "description": "Cancellation and re-registration please by eMail to organizer"
+    }
   },
   "password": {
     "password": "Password"
