@@ -9,6 +9,7 @@ import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.model.EcmErrorResponse;
 import de.fourtyseveneleven.ones.message.MessageUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import java.util.Optional;
+
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.joining;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
@@ -121,18 +125,30 @@ public class ExceptionControllerAdvice {
     private String getEcmErrorMessage(EcmApiException ecmApiException) {
 
         try {
-            final EcmErrorResponse ecmErrorResponse = getEcmErrorResponse(ecmApiException);
-            return ecmErrorResponse.getJustification();
-        } catch (JsonProcessingException jsonProcessingException) {
-            LOG.warn("Invalid error response received from ECM", jsonProcessingException);
+            final Optional<EcmErrorResponse> ecmErrorResponse = getEcmErrorResponse(ecmApiException);
+            return ecmErrorResponse
+                    .map(EcmErrorResponse::getJustification)
+                    .filter(StringUtils::isNotBlank)
+                    .orElseGet(() -> getExceptionMessage("ecm.api-exception"));
+        } catch (Exception e) {
+            LOG.warn("ECM call failed without justification", ecmApiException);
             return getExceptionMessage("ecm.api-exception");
         }
     }
 
-    private EcmErrorResponse getEcmErrorResponse(EcmApiException e) throws JsonProcessingException {
+    private Optional<EcmErrorResponse> getEcmErrorResponse(EcmApiException e) throws JsonProcessingException {
 
         final ApiException apiException = e.getCause();
+        if (isNull(apiException)) {
+            return Optional.empty();
+        }
+
         final String responseBody = apiException.getResponseBody();
-        return objectMapper.readValue(responseBody, EcmErrorResponse.class);
+        if (isBlank(responseBody)) {
+            return Optional.empty();
+        }
+
+        final EcmErrorResponse ecmErrorResponse = objectMapper.readValue(responseBody, EcmErrorResponse.class);
+        return Optional.of(ecmErrorResponse);
     }
 }
