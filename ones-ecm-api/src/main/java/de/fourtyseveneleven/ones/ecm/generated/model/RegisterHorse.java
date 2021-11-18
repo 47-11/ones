@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterHorse.JSON_PROPERTY_PASSPORT_ID,
   RegisterHorse.JSON_PROPERTY_FEI_PASSPORT_ID,
   RegisterHorse.JSON_PROPERTY_FN_PASSPORT_ID,
+  RegisterHorse.JSON_PROPERTY_CHIP_ID,
   RegisterHorse.JSON_PROPERTY_BREED,
   RegisterHorse.JSON_PROPERTY_GENDER,
   RegisterHorse.JSON_PROPERTY_COLOR,
@@ -45,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterHorse.JSON_PROPERTY_OWNER,
   RegisterHorse.JSON_PROPERTY_STABLE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]")
 public class RegisterHorse {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -58,6 +59,9 @@ public class RegisterHorse {
 
   public static final String JSON_PROPERTY_FN_PASSPORT_ID = "fnPassportId";
   private String fnPassportId;
+
+  public static final String JSON_PROPERTY_CHIP_ID = "chipId";
+  private String chipId;
 
   public static final String JSON_PROPERTY_BREED = "breed";
   private String breed;
@@ -182,6 +186,32 @@ public class RegisterHorse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFnPassportId(String fnPassportId) {
     this.fnPassportId = fnPassportId;
+  }
+
+
+  public RegisterHorse chipId(String chipId) {
+    this.chipId = chipId;
+    return this;
+  }
+
+   /**
+   * Get chipId
+   * @return chipId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CHIP_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getChipId() {
+    return chipId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CHIP_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setChipId(String chipId) {
+    this.chipId = chipId;
   }
 
 
@@ -383,6 +413,7 @@ public class RegisterHorse {
         Objects.equals(this.passportId, registerHorse.passportId) &&
         Objects.equals(this.feiPassportId, registerHorse.feiPassportId) &&
         Objects.equals(this.fnPassportId, registerHorse.fnPassportId) &&
+        Objects.equals(this.chipId, registerHorse.chipId) &&
         Objects.equals(this.breed, registerHorse.breed) &&
         Objects.equals(this.gender, registerHorse.gender) &&
         Objects.equals(this.color, registerHorse.color) &&
@@ -394,7 +425,7 @@ public class RegisterHorse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, passportId, feiPassportId, fnPassportId, breed, gender, color, yearOfBirth, stickSize, owner, stable);
+    return Objects.hash(name, passportId, feiPassportId, fnPassportId, chipId, breed, gender, color, yearOfBirth, stickSize, owner, stable);
   }
 
   @Override
@@ -405,6 +436,7 @@ public class RegisterHorse {
     sb.append("    passportId: ").append(toIndentedString(passportId)).append("\n");
     sb.append("    feiPassportId: ").append(toIndentedString(feiPassportId)).append("\n");
     sb.append("    fnPassportId: ").append(toIndentedString(fnPassportId)).append("\n");
+    sb.append("    chipId: ").append(toIndentedString(chipId)).append("\n");
     sb.append("    breed: ").append(toIndentedString(breed)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
     sb.append("    color: ").append(toIndentedString(color)).append("\n");

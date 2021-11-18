@@ -1,6 +1,6 @@
 # ApplicationAccountControllerApi
 
-All URIs are relative to *https://vdd4ones.de:9080*
+All URIs are relative to *https://vdd4ones.de:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**getAccoundByUuidWithHttpInfo**](ApplicationAccountControllerApi.md#getAccoundByUuidWithHttpInfo) | **GET** /rest/application/register/account/{accountUuid} | 
 [**postRegisterAccount**](ApplicationAccountControllerApi.md#postRegisterAccount) | **POST** /rest/application/register/account | 
 [**postRegisterAccountWithHttpInfo**](ApplicationAccountControllerApi.md#postRegisterAccountWithHttpInfo) | **POST** /rest/application/register/account | 
+[**putRegisterAccount**](ApplicationAccountControllerApi.md#putRegisterAccount) | **PUT** /rest/application/register/account/{accountUuid} | 
+[**putRegisterAccountWithHttpInfo**](ApplicationAccountControllerApi.md#putRegisterAccountWithHttpInfo) | **PUT** /rest/application/register/account/{accountUuid} | 
 [**putRegisterAccountUnlock**](ApplicationAccountControllerApi.md#putRegisterAccountUnlock) | **PUT** /rest/application/register/account/unlock | 
 [**putRegisterAccountUnlockWithHttpInfo**](ApplicationAccountControllerApi.md#putRegisterAccountUnlockWithHttpInfo) | **PUT** /rest/application/register/account/unlock | 
 
@@ -33,7 +35,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerA
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://vdd4ones.de:9080");
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
         
         // Configure HTTP basic authorization: basicAuth
         HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
@@ -103,7 +105,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerA
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://vdd4ones.de:9080");
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
         
         // Configure HTTP basic authorization: basicAuth
         HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
@@ -175,7 +177,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerA
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://vdd4ones.de:9080");
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
         
         // Configure HTTP basic authorization: basicAuth
         HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
@@ -245,7 +247,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerA
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://vdd4ones.de:9080");
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
         
         // Configure HTTP basic authorization: basicAuth
         HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
@@ -297,6 +299,152 @@ ApiResponse<[**RegisterResponce**](RegisterResponce.md)>
 | **200** | OK |  -  |
 
 
+## putRegisterAccount
+
+> RegisterResponce putRegisterAccount(accountUuid, updateAccount)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        ApplicationAccountControllerApi apiInstance = new ApplicationAccountControllerApi(defaultClient);
+        String accountUuid = "accountUuid_example"; // String | 
+        UpdateAccount updateAccount = new UpdateAccount(); // UpdateAccount | 
+        try {
+            RegisterResponce result = apiInstance.putRegisterAccount(accountUuid, updateAccount);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ApplicationAccountControllerApi#putRegisterAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountUuid** | **String**|  |
+ **updateAccount** | [**UpdateAccount**](UpdateAccount.md)|  |
+
+### Return type
+
+[**RegisterResponce**](RegisterResponce.md)
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+## putRegisterAccountWithHttpInfo
+
+> ApiResponse<RegisterResponce> putRegisterAccount putRegisterAccountWithHttpInfo(accountUuid, updateAccount)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        ApplicationAccountControllerApi apiInstance = new ApplicationAccountControllerApi(defaultClient);
+        String accountUuid = "accountUuid_example"; // String | 
+        UpdateAccount updateAccount = new UpdateAccount(); // UpdateAccount | 
+        try {
+            ApiResponse<RegisterResponce> response = apiInstance.putRegisterAccountWithHttpInfo(accountUuid, updateAccount);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ApplicationAccountControllerApi#putRegisterAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountUuid** | **String**|  |
+ **updateAccount** | [**UpdateAccount**](UpdateAccount.md)|  |
+
+### Return type
+
+ApiResponse<[**RegisterResponce**](RegisterResponce.md)>
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+
 ## putRegisterAccountUnlock
 
 > RegisterResponce putRegisterAccountUnlock(uuid, code)
@@ -317,7 +465,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerA
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://vdd4ones.de:9080");
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
         
         // Configure HTTP basic authorization: basicAuth
         HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
@@ -389,7 +537,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerA
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://vdd4ones.de:9080");
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
         
         // Configure HTTP basic authorization: basicAuth
         HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
