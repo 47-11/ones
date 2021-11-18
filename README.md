@@ -15,7 +15,7 @@ The backend application.
 Generated API client for accessing ECM APIs.
 Code generation is done via the [openapi-generator-maven-plugin](https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-maven-plugin).
 
-To regenerate this module save the latest ECM openapi spec in [ecm-api-docs.json](./ecm-api-docs.json) and run `mvn compile`.
+To regenerate this module save the latest ECM openapi spec in [ecm-spec.json](./ecm-spec.json) and run `mvn compile`.
 
 ### ones-frontend
 The web interface.

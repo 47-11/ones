@@ -20,6 +20,7 @@ import de.fourtyseveneleven.ones.ecm.generated.Pair;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccount;
+import de.fourtyseveneleven.ones.ecm.generated.model.UpdateAccount;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +39,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]")
 public class ApplicationAccountControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -205,6 +206,87 @@ public class ApplicationAccountControllerApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(registerAccount);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+  /**
+   * 
+   * 
+   * @param accountUuid  (required)
+   * @param updateAccount  (required)
+   * @return RegisterResponce
+   * @throws ApiException if fails to make API call
+   */
+  public RegisterResponce putRegisterAccount(String accountUuid, UpdateAccount updateAccount) throws ApiException {
+    ApiResponse<RegisterResponce> localVarResponse = putRegisterAccountWithHttpInfo(accountUuid, updateAccount);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param accountUuid  (required)
+   * @param updateAccount  (required)
+   * @return ApiResponse&lt;RegisterResponce&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisterResponce> putRegisterAccountWithHttpInfo(String accountUuid, UpdateAccount updateAccount) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putRegisterAccountRequestBuilder(accountUuid, updateAccount);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw getApiException("putRegisterAccount", localVarResponse);
+      }
+      return new ApiResponse<RegisterResponce>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder putRegisterAccountRequestBuilder(String accountUuid, UpdateAccount updateAccount) throws ApiException {
+    // verify the required parameter 'accountUuid' is set
+    if (accountUuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountUuid' when calling putRegisterAccount");
+    }
+    // verify the required parameter 'updateAccount' is set
+    if (updateAccount == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAccount' when calling putRegisterAccount");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/application/register/account/{accountUuid}"
+        .replace("{accountUuid}", ApiClient.urlEncode(accountUuid.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAccount);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

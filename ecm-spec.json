@@ -7,11 +7,89 @@
   },
   "servers": [
     {
-      "url": "https://vdd4ones.de:9080",
+      "url": "https://vdd4ones.de:8080",
       "description": "Generated server url"
     }
   ],
   "paths": {
+    "/rest/application/register/account/{accountUuid}": {
+      "get": {
+        "tags": [
+          "application-account-controller"
+        ],
+        "operationId": "getAccoundByUuid",
+        "parameters": [
+          {
+            "name": "accountUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/registeredAccount"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "application-account-controller"
+        ],
+        "operationId": "putRegisterAccount",
+        "parameters": [
+          {
+            "name": "accountUuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerResponce"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
     "/rest/application/register/account/unlock": {
       "put": {
         "tags": [
@@ -455,74 +533,10 @@
           }
         ]
       }
-    },
-    "/rest/application/register/account/{accountUuid}": {
-      "get": {
-        "tags": [
-          "application-account-controller"
-        ],
-        "operationId": "getAccoundByUuid",
-        "parameters": [
-          {
-            "name": "accountUuid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/registeredAccount"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
     }
   },
   "components": {
     "schemas": {
-      "registerResponce": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "state": {
-            "maxLength": 255,
-            "minLength": 1,
-            "type": "string"
-          },
-          "reasonCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "justification": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "registerObjectUuid": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string"
-          }
-        }
-      },
       "registerAddress": {
         "required": [
           "city",
@@ -554,46 +568,6 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string"
-          }
-        }
-      },
-      "registerContactLegal": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "maxLength": 255,
-            "minLength": 1,
-            "type": "string"
-          },
-          "typeOf": {
-            "maxLength": 255,
-            "minLength": 0,
-            "type": "string"
-          },
-          "foundingDay": {
-            "type": "string",
-            "format": "date"
-          },
-          "email": {
-            "maxLength": 255,
-            "minLength": 6,
-            "type": "string"
-          },
-          "phoneNumber": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "phoneNumberMobile": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "postalAddress": {
-            "$ref": "#/components/schemas/registerAddress"
           }
         }
       },
@@ -652,6 +626,144 @@
           }
         }
       },
+      "registerMembership": {
+        "type": "object",
+        "properties": {
+          "feiMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "feiQualificationLevel": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fnMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fnQualificationLevel": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddMemberId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "vddQualificationLevel": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "updateAccount": {
+        "required": [
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "loginIdentification": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "loginKeyword": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "nativeLanguage": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/registerContactNatural"
+          },
+          "memberships": {
+            "$ref": "#/components/schemas/registerMembership"
+          }
+        }
+      },
+      "registerResponce": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "state": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reasonCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "justification": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "registerObjectUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "registerContactLegal": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "typeOf": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "foundingDay": {
+            "type": "string",
+            "format": "date"
+          },
+          "email": {
+            "maxLength": 255,
+            "minLength": 6,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phoneNumberMobile": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/registerAddress"
+          }
+        }
+      },
       "registerHorse": {
         "required": [
           "name",
@@ -675,6 +787,11 @@
             "type": "string"
           },
           "fnPassportId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "chipId": {
             "maxLength": 50,
             "minLength": 0,
             "type": "string"
@@ -774,41 +891,6 @@
           },
           "memberships": {
             "$ref": "#/components/schemas/registerMembership"
-          }
-        }
-      },
-      "registerMembership": {
-        "type": "object",
-        "properties": {
-          "feiMemberId": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "feiQualificationLevel": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
-          },
-          "fnMemberId": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "fnQualificationLevel": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
-          },
-          "vddMemberId": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          },
-          "vddQualificationLevel": {
-            "maxLength": 5,
-            "minLength": 0,
-            "type": "string"
           }
         }
       },
@@ -3129,6 +3211,11 @@
             "type": "string"
           },
           "fnPassportId": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "chipId": {
             "maxLength": 50,
             "minLength": 0,
             "type": "string"

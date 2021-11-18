@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **passportId** | **String** |  | 
 **feiPassportId** | **String** |  |  [optional]
 **fnPassportId** | **String** |  |  [optional]
+**chipId** | **String** |  |  [optional]
 **breed** | **String** |  |  [optional]
 **gender** | **String** |  |  [optional]
 **color** | **String** |  |  [optional]

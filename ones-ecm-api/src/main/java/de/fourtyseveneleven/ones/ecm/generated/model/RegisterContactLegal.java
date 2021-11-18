@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterContactLegal.JSON_PROPERTY_PHONE_NUMBER_MOBILE,
   RegisterContactLegal.JSON_PROPERTY_POSTAL_ADDRESS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]")
 public class RegisterContactLegal {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

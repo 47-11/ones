@@ -30,18 +30,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * RegisterAccount
+ * UpdateAccount
  */
 @JsonPropertyOrder({
-  RegisterAccount.JSON_PROPERTY_UUID,
-  RegisterAccount.JSON_PROPERTY_LOGIN_IDENTIFICATION,
-  RegisterAccount.JSON_PROPERTY_LOGIN_KEYWORD,
-  RegisterAccount.JSON_PROPERTY_NATIVE_LANGUAGE,
-  RegisterAccount.JSON_PROPERTY_USER,
-  RegisterAccount.JSON_PROPERTY_MEMBERSHIPS
+  UpdateAccount.JSON_PROPERTY_UUID,
+  UpdateAccount.JSON_PROPERTY_LOGIN_IDENTIFICATION,
+  UpdateAccount.JSON_PROPERTY_LOGIN_KEYWORD,
+  UpdateAccount.JSON_PROPERTY_NATIVE_LANGUAGE,
+  UpdateAccount.JSON_PROPERTY_USER,
+  UpdateAccount.JSON_PROPERTY_MEMBERSHIPS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]")
-public class RegisterAccount {
+public class UpdateAccount {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
 
@@ -61,23 +61,33 @@ public class RegisterAccount {
   private RegisterMembership memberships;
 
 
+  public UpdateAccount uuid(String uuid) {
+    this.uuid = uuid;
+    return this;
+  }
+
    /**
    * Get uuid
    * @return uuid
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getUuid() {
     return uuid;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
 
 
-  public RegisterAccount loginIdentification(String loginIdentification) {
+  public UpdateAccount loginIdentification(String loginIdentification) {
     this.loginIdentification = loginIdentification;
     return this;
   }
@@ -86,10 +96,10 @@ public class RegisterAccount {
    * Get loginIdentification
    * @return loginIdentification
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_LOGIN_IDENTIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getLoginIdentification() {
     return loginIdentification;
@@ -97,13 +107,13 @@ public class RegisterAccount {
 
 
   @JsonProperty(JSON_PROPERTY_LOGIN_IDENTIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLoginIdentification(String loginIdentification) {
     this.loginIdentification = loginIdentification;
   }
 
 
-  public RegisterAccount loginKeyword(String loginKeyword) {
+  public UpdateAccount loginKeyword(String loginKeyword) {
     this.loginKeyword = loginKeyword;
     return this;
   }
@@ -112,10 +122,10 @@ public class RegisterAccount {
    * Get loginKeyword
    * @return loginKeyword
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_LOGIN_KEYWORD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getLoginKeyword() {
     return loginKeyword;
@@ -123,13 +133,13 @@ public class RegisterAccount {
 
 
   @JsonProperty(JSON_PROPERTY_LOGIN_KEYWORD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLoginKeyword(String loginKeyword) {
     this.loginKeyword = loginKeyword;
   }
 
 
-  public RegisterAccount nativeLanguage(String nativeLanguage) {
+  public UpdateAccount nativeLanguage(String nativeLanguage) {
     this.nativeLanguage = nativeLanguage;
     return this;
   }
@@ -155,7 +165,7 @@ public class RegisterAccount {
   }
 
 
-  public RegisterAccount user(RegisterContactNatural user) {
+  public UpdateAccount user(RegisterContactNatural user) {
     this.user = user;
     return this;
   }
@@ -181,7 +191,7 @@ public class RegisterAccount {
   }
 
 
-  public RegisterAccount memberships(RegisterMembership memberships) {
+  public UpdateAccount memberships(RegisterMembership memberships) {
     this.memberships = memberships;
     return this;
   }
@@ -208,7 +218,7 @@ public class RegisterAccount {
 
 
   /**
-   * Return true if this registerAccount object is equal to o.
+   * Return true if this updateAccount object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -218,13 +228,13 @@ public class RegisterAccount {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterAccount registerAccount = (RegisterAccount) o;
-    return Objects.equals(this.uuid, registerAccount.uuid) &&
-        Objects.equals(this.loginIdentification, registerAccount.loginIdentification) &&
-        Objects.equals(this.loginKeyword, registerAccount.loginKeyword) &&
-        Objects.equals(this.nativeLanguage, registerAccount.nativeLanguage) &&
-        Objects.equals(this.user, registerAccount.user) &&
-        Objects.equals(this.memberships, registerAccount.memberships);
+    UpdateAccount updateAccount = (UpdateAccount) o;
+    return Objects.equals(this.uuid, updateAccount.uuid) &&
+        Objects.equals(this.loginIdentification, updateAccount.loginIdentification) &&
+        Objects.equals(this.loginKeyword, updateAccount.loginKeyword) &&
+        Objects.equals(this.nativeLanguage, updateAccount.nativeLanguage) &&
+        Objects.equals(this.user, updateAccount.user) &&
+        Objects.equals(this.memberships, updateAccount.memberships);
   }
 
   @Override
@@ -235,7 +245,7 @@ public class RegisterAccount {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegisterAccount {\n");
+    sb.append("class UpdateAccount {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    loginIdentification: ").append(toIndentedString(loginIdentification)).append("\n");
     sb.append("    loginKeyword: ").append(toIndentedString(loginKeyword)).append("\n");

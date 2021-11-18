@@ -74,6 +74,14 @@ public class RegisterHorseTest {
     }
 
     /**
+     * Test the property 'chipId'
+     */
+    @Test
+    public void chipIdTest() {
+        // TODO: test chipId
+    }
+
+    /**
      * Test the property 'breed'
      */
     @Test

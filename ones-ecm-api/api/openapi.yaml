@@ -5,8 +5,60 @@ info:
   version: 1.0a
 servers:
 - description: Generated server url
-  url: https://vdd4ones.de:9080
+  url: https://vdd4ones.de:8080
 paths:
+  /rest/application/register/account/{accountUuid}:
+    get:
+      operationId: getAccoundByUuid
+      parameters:
+      - explode: false
+        in: path
+        name: accountUuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/registeredAccount'
+          description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - application-account-controller
+      x-accepts: '*/*'
+    put:
+      operationId: putRegisterAccount
+      parameters:
+      - explode: false
+        in: path
+        name: accountUuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateAccount'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/registerResponce'
+          description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - application-account-controller
+      x-contentType: application/json
+      x-accepts: '*/*'
   /rest/application/register/account/unlock:
     put:
       operationId: putRegisterAccountUnlock
@@ -322,59 +374,8 @@ paths:
       tags:
       - event-contest-controller
       x-accepts: '*/*'
-  /rest/application/register/account/{accountUuid}:
-    get:
-      operationId: getAccoundByUuid
-      parameters:
-      - explode: false
-        in: path
-        name: accountUuid
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/registeredAccount'
-          description: OK
-      security:
-      - basicAuth: []
-      tags:
-      - application-account-controller
-      x-accepts: '*/*'
 components:
   schemas:
-    registerResponce:
-      example:
-        state: state
-        reasonCode: 0
-        justification: justification
-        registerObjectUuid: registerObjectUuid
-        uuid: uuid
-      properties:
-        uuid:
-          maxLength: 255
-          minLength: 0
-          type: string
-        state:
-          maxLength: 255
-          minLength: 1
-          type: string
-        reasonCode:
-          format: int32
-          type: integer
-        justification:
-          maxLength: 255
-          minLength: 0
-          type: string
-        registerObjectUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-      type: object
     registerAddress:
       example:
         country: country
@@ -406,49 +407,6 @@ components:
       required:
       - city
       - street
-      type: object
-    registerContactLegal:
-      example:
-        phoneNumber: phoneNumber
-        postalAddress:
-          country: country
-          zipCode: zipCode
-          city: city
-          street: street
-          houseNumber: houseNumber
-        foundingDay: 2000-01-23
-        phoneNumberMobile: phoneNumberMobile
-        name: name
-        typeOf: typeOf
-        email: email
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        typeOf:
-          maxLength: 255
-          minLength: 0
-          type: string
-        foundingDay:
-          format: date
-          type: string
-        email:
-          maxLength: 255
-          minLength: 6
-          type: string
-        phoneNumber:
-          maxLength: 50
-          minLength: 0
-          type: string
-        phoneNumberMobile:
-          maxLength: 50
-          minLength: 0
-          type: string
-        postalAddress:
-          $ref: '#/components/schemas/registerAddress'
-      required:
-      - name
       type: object
     registerContactNatural:
       example:
@@ -508,6 +466,136 @@ components:
       required:
       - surname
       type: object
+    registerMembership:
+      example:
+        feiMemberId: feiMemberId
+        vddQualificationLevel: vddQualificationLevel
+        vddMemberId: vddMemberId
+        fnMemberId: fnMemberId
+        fnQualificationLevel: fnQualificationLevel
+        feiQualificationLevel: feiQualificationLevel
+      properties:
+        feiMemberId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        feiQualificationLevel:
+          maxLength: 5
+          minLength: 0
+          type: string
+        fnMemberId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        fnQualificationLevel:
+          maxLength: 5
+          minLength: 0
+          type: string
+        vddMemberId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        vddQualificationLevel:
+          maxLength: 5
+          minLength: 0
+          type: string
+      type: object
+    updateAccount:
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        loginIdentification:
+          maxLength: 255
+          minLength: 1
+          type: string
+        loginKeyword:
+          maxLength: 255
+          minLength: 1
+          type: string
+        nativeLanguage:
+          maxLength: 5
+          minLength: 0
+          type: string
+        user:
+          $ref: '#/components/schemas/registerContactNatural'
+        memberships:
+          $ref: '#/components/schemas/registerMembership'
+      required:
+      - uuid
+      type: object
+    registerResponce:
+      example:
+        state: state
+        reasonCode: 0
+        justification: justification
+        registerObjectUuid: registerObjectUuid
+        uuid: uuid
+      properties:
+        uuid:
+          maxLength: 255
+          minLength: 0
+          type: string
+        state:
+          maxLength: 255
+          minLength: 1
+          type: string
+        reasonCode:
+          format: int32
+          type: integer
+        justification:
+          maxLength: 255
+          minLength: 0
+          type: string
+        registerObjectUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+      type: object
+    registerContactLegal:
+      example:
+        phoneNumber: phoneNumber
+        postalAddress:
+          country: country
+          zipCode: zipCode
+          city: city
+          street: street
+          houseNumber: houseNumber
+        foundingDay: 2000-01-23
+        phoneNumberMobile: phoneNumberMobile
+        name: name
+        typeOf: typeOf
+        email: email
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        typeOf:
+          maxLength: 255
+          minLength: 0
+          type: string
+        foundingDay:
+          format: date
+          type: string
+        email:
+          maxLength: 255
+          minLength: 6
+          type: string
+        phoneNumber:
+          maxLength: 50
+          minLength: 0
+          type: string
+        phoneNumberMobile:
+          maxLength: 50
+          minLength: 0
+          type: string
+        postalAddress:
+          $ref: '#/components/schemas/registerAddress'
+      required:
+      - name
+      type: object
     registerHorse:
       properties:
         name:
@@ -523,6 +611,10 @@ components:
           minLength: 0
           type: string
         fnPassportId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        chipId:
           maxLength: 50
           minLength: 0
           type: string
@@ -600,40 +692,6 @@ components:
       required:
       - loginIdentification
       - loginKeyword
-      type: object
-    registerMembership:
-      example:
-        feiMemberId: feiMemberId
-        vddQualificationLevel: vddQualificationLevel
-        vddMemberId: vddMemberId
-        fnMemberId: fnMemberId
-        fnQualificationLevel: fnQualificationLevel
-        feiQualificationLevel: feiQualificationLevel
-      properties:
-        feiMemberId:
-          maxLength: 50
-          minLength: 0
-          type: string
-        feiQualificationLevel:
-          maxLength: 5
-          minLength: 0
-          type: string
-        fnMemberId:
-          maxLength: 50
-          minLength: 0
-          type: string
-        fnQualificationLevel:
-          maxLength: 5
-          minLength: 0
-          type: string
-        vddMemberId:
-          maxLength: 50
-          minLength: 0
-          type: string
-        vddQualificationLevel:
-          maxLength: 5
-          minLength: 0
-          type: string
       type: object
     MasterdataProperty:
       example:
@@ -4520,6 +4578,10 @@ components:
             email: email
           gender: gender
           color: color
+          fnPassportId: fnPassportId
+          feiPassportId: feiPassportId
+          uuid: uuid
+          breed: breed
           stable:
             phoneNumber: phoneNumber
             postalAddress:
@@ -4533,12 +4595,9 @@ components:
             name: name
             typeOf: typeOf
             email: email
-          fnPassportId: fnPassportId
           name: name
-          feiPassportId: feiPassportId
-          uuid: uuid
+          chipId: chipId
           passportId: passportId
-          breed: breed
           stickSize: 6
           yearOfBirth: 0
         - owner:
@@ -4559,6 +4618,10 @@ components:
             email: email
           gender: gender
           color: color
+          fnPassportId: fnPassportId
+          feiPassportId: feiPassportId
+          uuid: uuid
+          breed: breed
           stable:
             phoneNumber: phoneNumber
             postalAddress:
@@ -4572,12 +4635,9 @@ components:
             name: name
             typeOf: typeOf
             email: email
-          fnPassportId: fnPassportId
           name: name
-          feiPassportId: feiPassportId
-          uuid: uuid
+          chipId: chipId
           passportId: passportId
-          breed: breed
           stickSize: 6
           yearOfBirth: 0
       properties:
@@ -4617,6 +4677,10 @@ components:
           email: email
         gender: gender
         color: color
+        fnPassportId: fnPassportId
+        feiPassportId: feiPassportId
+        uuid: uuid
+        breed: breed
         stable:
           phoneNumber: phoneNumber
           postalAddress:
@@ -4630,12 +4694,9 @@ components:
           name: name
           typeOf: typeOf
           email: email
-        fnPassportId: fnPassportId
         name: name
-        feiPassportId: feiPassportId
-        uuid: uuid
+        chipId: chipId
         passportId: passportId
-        breed: breed
         stickSize: 6
         yearOfBirth: 0
       properties:
@@ -4654,6 +4715,10 @@ components:
           minLength: 0
           type: string
         fnPassportId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        chipId:
           maxLength: 50
           minLength: 0
           type: string

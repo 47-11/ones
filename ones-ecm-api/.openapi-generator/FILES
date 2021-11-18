@@ -38,6 +38,7 @@ docs/RegisterResponce.md
 docs/RegisteredAccount.md
 docs/RegisteredHorse.md
 docs/ResponcePageContestsPlain.md
+docs/UpdateAccount.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -90,6 +91,7 @@ src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/RegisterResponce.jav
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/RegisteredAccount.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/RegisteredHorse.java
 src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/ResponcePageContestsPlain.java
+src/main/java/de/fourtyseveneleven/ones/ecm/generated/model/UpdateAccount.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/api/ApplicationAccountControllerApiTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/api/EventContestControllerApiTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/api/MasterdataHorseControllerApiTest.java
@@ -123,3 +125,4 @@ src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/RegisterResponceTest
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/RegisteredAccountTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/RegisteredHorseTest.java
 src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/ResponcePageContestsPlainTest.java
+src/test/java/de/fourtyseveneleven/ones/ecm/generated/model/UpdateAccountTest.java

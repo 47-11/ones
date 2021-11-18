@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-11-09T11:10:50.309099276+01:00[Europe/Berlin]
+- Build date: 2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -103,7 +103,7 @@ public class ApplicationAccountControllerApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://vdd4ones.de:9080*
+All URIs are relative to *https://vdd4ones.de:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -111,6 +111,8 @@ Class | Method | HTTP request | Description
 *ApplicationAccountControllerApi* | [**getAccoundByUuidWithHttpInfo**](docs/ApplicationAccountControllerApi.md#getAccoundByUuidWithHttpInfo) | **GET** /rest/application/register/account/{accountUuid} | 
 *ApplicationAccountControllerApi* | [**postRegisterAccount**](docs/ApplicationAccountControllerApi.md#postRegisterAccount) | **POST** /rest/application/register/account | 
 *ApplicationAccountControllerApi* | [**postRegisterAccountWithHttpInfo**](docs/ApplicationAccountControllerApi.md#postRegisterAccountWithHttpInfo) | **POST** /rest/application/register/account | 
+*ApplicationAccountControllerApi* | [**putRegisterAccount**](docs/ApplicationAccountControllerApi.md#putRegisterAccount) | **PUT** /rest/application/register/account/{accountUuid} | 
+*ApplicationAccountControllerApi* | [**putRegisterAccountWithHttpInfo**](docs/ApplicationAccountControllerApi.md#putRegisterAccountWithHttpInfo) | **PUT** /rest/application/register/account/{accountUuid} | 
 *ApplicationAccountControllerApi* | [**putRegisterAccountUnlock**](docs/ApplicationAccountControllerApi.md#putRegisterAccountUnlock) | **PUT** /rest/application/register/account/unlock | 
 *ApplicationAccountControllerApi* | [**putRegisterAccountUnlockWithHttpInfo**](docs/ApplicationAccountControllerApi.md#putRegisterAccountUnlockWithHttpInfo) | **PUT** /rest/application/register/account/unlock | 
 *EventContestControllerApi* | [**getAccountContestCompetitionsResults**](docs/EventContestControllerApi.md#getAccountContestCompetitionsResults) | **GET** /rest/event/contest/result/account/{uuid} | 
@@ -160,6 +162,7 @@ Class | Method | HTTP request | Description
  - [RegisteredAccount](docs/RegisteredAccount.md)
  - [RegisteredHorse](docs/RegisteredHorse.md)
  - [ResponcePageContestsPlain](docs/ResponcePageContestsPlain.md)
+ - [UpdateAccount](docs/UpdateAccount.md)
 
 
 ## Documentation for Authorization
