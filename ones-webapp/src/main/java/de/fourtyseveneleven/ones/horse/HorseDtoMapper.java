@@ -20,7 +20,7 @@ import static java.util.Objects.isNull;
 @Mapper(componentModel = "spring", uses = {CommonMapper.class, UserDtoMapper.class, AddressDtoMapper.class})
 public abstract class HorseDtoMapper {
 
-    // TODO: Map owner
+    // TODO: Map gender
     @Mapping(source = "passportNumber", target = "passportId")
     @Mapping(source = "size", target = "stickSize")
     @Mapping(source = "stableAddress", target = "stable.postalAddress")
