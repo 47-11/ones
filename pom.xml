@@ -83,7 +83,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/ecm-api-docs.json</inputSpec>
+                            <inputSpec>${project.basedir}/ecm-spec.json</inputSpec>
                             <output>${project.basedir}/ones-ecm-api</output>
                             <generatorName>java</generatorName>
                             <groupId>de.fourtyseveneleven</groupId>
