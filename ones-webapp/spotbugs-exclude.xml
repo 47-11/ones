@@ -10,7 +10,7 @@
 
     <Match>
         <!-- No idea why spotbugs checks generated files. For now just exclude it explicitly. -->
-        <Class name="de.fourtyseveneleven.ones.user.mapper.UserDtoMapperImpl" />
+        <Class name="de.fourtyseveneleven.ones.user.mapper.UserMapperImpl" />
     </Match>
 
 </FindBugsFilter>

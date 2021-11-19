@@ -11,5 +11,5 @@ public interface HorseService {
 
     void createHorseForCurrentUser(FullHorseDto horse);
 
-    void update(UUID horseUuid, HorseDto horseDto);
+    void update(UUID horseUuid, FullHorseDto horseDto);
 }

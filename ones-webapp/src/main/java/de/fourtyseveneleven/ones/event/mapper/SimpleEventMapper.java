@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.event.mapper;
 
-import de.fourtyseveneleven.ones.common.mapper.AddressDtoMapper;
+import de.fourtyseveneleven.ones.common.mapper.AddressMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
@@ -14,7 +14,7 @@ import org.mapstruct.Mapping;
         uses = {
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
-                AddressDtoMapper.class,
+                AddressMapper.class,
                 EventStatusMapper.class
         }
 )

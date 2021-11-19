@@ -6,7 +6,7 @@ import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccount;
-import de.fourtyseveneleven.ones.user.mapper.UserDtoMapper;
+import de.fourtyseveneleven.ones.user.mapper.UserMapper;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.repository.UserRepository;
@@ -26,13 +26,13 @@ import static java.util.Objects.isNull;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserDtoMapper userDtoMapper;
+    private final UserMapper userMapper;
     private final ApplicationAccountControllerApi applicationAccountControllerApi;
     private final EcmRegistrationService ecmRegistrationService;
 
-    public UserServiceImpl(UserRepository userRepository, UserDtoMapper userDtoMapper, ApplicationAccountControllerApi applicationAccountControllerApi, EcmRegistrationService ecmRegistrationService) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, ApplicationAccountControllerApi applicationAccountControllerApi, EcmRegistrationService ecmRegistrationService) {
         this.userRepository = userRepository;
-        this.userDtoMapper = userDtoMapper;
+        this.userMapper = userMapper;
         this.applicationAccountControllerApi = applicationAccountControllerApi;
         this.ecmRegistrationService = ecmRegistrationService;
     }
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
     private UserDto tryGetUserFromEcm(UUID userUuid) throws ApiException {
 
         final RegisteredAccount registeredAccount = applicationAccountControllerApi.getAccoundByUuid(userUuid.toString());
-        return userDtoMapper.registeredAccountToUserDto(registeredAccount);
+        return userMapper.registeredAccountToUserDto(registeredAccount);
     }
 
     @Override
