@@ -533,6 +533,41 @@
           }
         ]
       }
+    },
+    "/rest/application/register/account/{loginIdentification}": {
+      "delete": {
+        "tags": [
+          "application-account-controller"
+        ],
+        "operationId": "deleteRegisteredAccount",
+        "parameters": [
+          {
+            "name": "loginIdentification",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/registerResponce"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -802,9 +837,14 @@
             "type": "string"
           },
           "gender": {
-            "maxLength": 255,
+            "maxLength": 1,
             "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "M",
+              "S",
+              "G"
+            ]
           },
           "color": {
             "maxLength": 255,

@@ -4,6 +4,8 @@ All URIs are relative to *https://vdd4ones.de:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteRegisteredAccount**](ApplicationAccountControllerApi.md#deleteRegisteredAccount) | **DELETE** /rest/application/register/account/{loginIdentification} | 
+[**deleteRegisteredAccountWithHttpInfo**](ApplicationAccountControllerApi.md#deleteRegisteredAccountWithHttpInfo) | **DELETE** /rest/application/register/account/{loginIdentification} | 
 [**getAccoundByUuid**](ApplicationAccountControllerApi.md#getAccoundByUuid) | **GET** /rest/application/register/account/{accountUuid} | 
 [**getAccoundByUuidWithHttpInfo**](ApplicationAccountControllerApi.md#getAccoundByUuidWithHttpInfo) | **GET** /rest/application/register/account/{accountUuid} | 
 [**postRegisterAccount**](ApplicationAccountControllerApi.md#postRegisterAccount) | **POST** /rest/application/register/account | 
@@ -13,6 +15,148 @@ Method | HTTP request | Description
 [**putRegisterAccountUnlock**](ApplicationAccountControllerApi.md#putRegisterAccountUnlock) | **PUT** /rest/application/register/account/unlock | 
 [**putRegisterAccountUnlockWithHttpInfo**](ApplicationAccountControllerApi.md#putRegisterAccountUnlockWithHttpInfo) | **PUT** /rest/application/register/account/unlock | 
 
+
+
+## deleteRegisteredAccount
+
+> RegisterResponce deleteRegisteredAccount(loginIdentification)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        ApplicationAccountControllerApi apiInstance = new ApplicationAccountControllerApi(defaultClient);
+        String loginIdentification = "loginIdentification_example"; // String | 
+        try {
+            RegisterResponce result = apiInstance.deleteRegisteredAccount(loginIdentification);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ApplicationAccountControllerApi#deleteRegisteredAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginIdentification** | **String**|  |
+
+### Return type
+
+[**RegisterResponce**](RegisterResponce.md)
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+## deleteRegisteredAccountWithHttpInfo
+
+> ApiResponse<RegisterResponce> deleteRegisteredAccount deleteRegisteredAccountWithHttpInfo(loginIdentification)
+
+
+
+### Example
+
+```java
+// Import classes:
+import de.fourtyseveneleven.ones.ecm.generated.ApiClient;
+import de.fourtyseveneleven.ones.ecm.generated.ApiException;
+import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
+import de.fourtyseveneleven.ones.ecm.generated.Configuration;
+import de.fourtyseveneleven.ones.ecm.generated.auth.*;
+import de.fourtyseveneleven.ones.ecm.generated.models.*;
+import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://vdd4ones.de:8080");
+        
+        // Configure HTTP basic authorization: basicAuth
+        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+        basicAuth.setUsername("YOUR USERNAME");
+        basicAuth.setPassword("YOUR PASSWORD");
+
+        ApplicationAccountControllerApi apiInstance = new ApplicationAccountControllerApi(defaultClient);
+        String loginIdentification = "loginIdentification_example"; // String | 
+        try {
+            ApiResponse<RegisterResponce> response = apiInstance.deleteRegisteredAccountWithHttpInfo(loginIdentification);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ApplicationAccountControllerApi#deleteRegisteredAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginIdentification** | **String**|  |
+
+### Return type
+
+ApiResponse<[**RegisterResponce**](RegisterResponce.md)>
+
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 
 
 ## getAccoundByUuid

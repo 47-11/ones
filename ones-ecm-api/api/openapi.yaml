@@ -374,6 +374,29 @@ paths:
       tags:
       - event-contest-controller
       x-accepts: '*/*'
+  /rest/application/register/account/{loginIdentification}:
+    delete:
+      operationId: deleteRegisteredAccount
+      parameters:
+      - explode: false
+        in: path
+        name: loginIdentification
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/registerResponce'
+          description: OK
+      security:
+      - basicAuth: []
+      tags:
+      - application-account-controller
+      x-accepts: '*/*'
 components:
   schemas:
     registerAddress:
@@ -623,7 +646,11 @@ components:
           minLength: 0
           type: string
         gender:
-          maxLength: 255
+          enum:
+          - M
+          - S
+          - G
+          maxLength: 1
           minLength: 0
           type: string
         color:

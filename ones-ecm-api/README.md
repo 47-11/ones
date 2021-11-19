@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]
+- Build date: 2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -85,12 +85,12 @@ public class ApplicationAccountControllerApiExample {
         // Configure clients using the `defaultClient` object, such as
         // overriding the host and port, timeout, etc.
         ApplicationAccountControllerApi apiInstance = new ApplicationAccountControllerApi(defaultClient);
-        String accountUuid = "accountUuid_example"; // String | 
+        String loginIdentification = "loginIdentification_example"; // String | 
         try {
-            RegisteredAccount result = apiInstance.getAccoundByUuid(accountUuid);
+            RegisterResponce result = apiInstance.deleteRegisteredAccount(loginIdentification);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ApplicationAccountControllerApi#getAccoundByUuid");
+            System.err.println("Exception when calling ApplicationAccountControllerApi#deleteRegisteredAccount");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -107,6 +107,8 @@ All URIs are relative to *https://vdd4ones.de:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ApplicationAccountControllerApi* | [**deleteRegisteredAccount**](docs/ApplicationAccountControllerApi.md#deleteRegisteredAccount) | **DELETE** /rest/application/register/account/{loginIdentification} | 
+*ApplicationAccountControllerApi* | [**deleteRegisteredAccountWithHttpInfo**](docs/ApplicationAccountControllerApi.md#deleteRegisteredAccountWithHttpInfo) | **DELETE** /rest/application/register/account/{loginIdentification} | 
 *ApplicationAccountControllerApi* | [**getAccoundByUuid**](docs/ApplicationAccountControllerApi.md#getAccoundByUuid) | **GET** /rest/application/register/account/{accountUuid} | 
 *ApplicationAccountControllerApi* | [**getAccoundByUuidWithHttpInfo**](docs/ApplicationAccountControllerApi.md#getAccoundByUuidWithHttpInfo) | **GET** /rest/application/register/account/{accountUuid} | 
 *ApplicationAccountControllerApi* | [**postRegisterAccount**](docs/ApplicationAccountControllerApi.md#postRegisterAccount) | **POST** /rest/application/register/account | 
