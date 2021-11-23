@@ -120,7 +120,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
                     <v-td>
-                        {{$t("events.states." + event.state)}}
+                        {{$t("events.states." + event.status)}}
                     </v-td>
                     <v-td>
                         <date-range :start="event.start" :end="event.end"/>

@@ -181,7 +181,12 @@
       "no": "Nein"
     },
     "states": {
-      "undefined": "Unbekannt"
+      "CANCELLED": "Abgesagt",
+      "DATE_PASSED": "Beendet",
+      "DATE_PRELIMINARY": "Vorläufiges Datum",
+      "DATE_FIX": "Datum festgelegt",
+      "UPDATED": "Aktualisiert",
+      "UNKNOWN": "Unbekannt"
     },
     "shared": {
       "no": "Nein",
