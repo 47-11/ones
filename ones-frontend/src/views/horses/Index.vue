@@ -23,10 +23,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="horse in horses.list" :key="horse.uuid" v-on:click="details(horse)" class="cursor-pointer">
                     <v-td>{{ horse.name }}</v-td>
-                    <v-td>
-                        <font-awesome-icon :icon="'mars'" v-if="horse.gender === 'MALE'"></font-awesome-icon>
-                        <font-awesome-icon :icon="'venus'" v-if="horse.gender === 'FEMALE'"></font-awesome-icon>
-                    </v-td>
+                    <v-td>{{ $t("data.horse.genderOptions." + horse.gender) }}</v-td>
                     <v-td>{{ horse.breed }}</v-td>
                     <v-td>{{ horse.color }}</v-td>
                     <v-td>{{ horse.yearOfBirth }}</v-td>

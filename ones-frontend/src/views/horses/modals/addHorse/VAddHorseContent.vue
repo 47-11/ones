@@ -164,7 +164,7 @@ export default class VAddHorseContent extends Vue {
     error: Error | null = null;
 
     horse: HorseDto = {
-        gender: HorseDtoGenderEnum.Female,
+        gender: HorseDtoGenderEnum.Mare,
         stableAddress: {},
         owner: {
             address: { }

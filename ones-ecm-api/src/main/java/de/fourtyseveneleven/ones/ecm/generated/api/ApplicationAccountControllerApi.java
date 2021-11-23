@@ -39,7 +39,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-18T21:36:06.752097737+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
 public class ApplicationAccountControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -74,6 +74,75 @@ public class ApplicationAccountControllerApi {
     return operationId + " call failed with: " + statusCode + " - " + body;
   }
 
+  /**
+   * 
+   * 
+   * @param loginIdentification  (required)
+   * @return RegisterResponce
+   * @throws ApiException if fails to make API call
+   */
+  public RegisterResponce deleteRegisteredAccount(String loginIdentification) throws ApiException {
+    ApiResponse<RegisterResponce> localVarResponse = deleteRegisteredAccountWithHttpInfo(loginIdentification);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param loginIdentification  (required)
+   * @return ApiResponse&lt;RegisterResponce&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RegisterResponce> deleteRegisteredAccountWithHttpInfo(String loginIdentification) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteRegisteredAccountRequestBuilder(loginIdentification);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      if (localVarResponse.statusCode()/ 100 != 2) {
+        throw getApiException("deleteRegisteredAccount", localVarResponse);
+      }
+      return new ApiResponse<RegisterResponce>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+        );
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteRegisteredAccountRequestBuilder(String loginIdentification) throws ApiException {
+    // verify the required parameter 'loginIdentification' is set
+    if (loginIdentification == null) {
+      throw new ApiException(400, "Missing the required parameter 'loginIdentification' when calling deleteRegisteredAccount");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/rest/application/register/account/{loginIdentification}"
+        .replace("{loginIdentification}", ApiClient.urlEncode(loginIdentification.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
   /**
    * 
    * 

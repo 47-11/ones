@@ -289,8 +289,9 @@
       "stableAddress": "Stable address",
       "owner": "Owner",
       "genderOptions": {
-        "FEMALE": "Mare",
-        "MALE": "Stallion"
+        "MARE": "Mare",
+        "STALLION": "Stallion",
+        "GELDING": "Gelding"
       },
       "feiNo": "FEI No"
     },
