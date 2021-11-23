@@ -14,7 +14,8 @@
                 <div class="flex items-center">
                     <h2 class="text-xl mb-4">{{ $t("events.filter.title") }}</h2>
 
-                    <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer" @click="resetFilter()">
+                    <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer"
+                          @click="resetFilter()">
                         {{ $t("events.filter.reset") }}
                     </span>
                 </div>
@@ -28,20 +29,22 @@
                                 <template v-slot="{ inputValue, inputEvents }">
                                     <div class="flex justify-center items-center">
                                         <input type="text" :value="inputValue" v-on="inputEvents"
-                                        class="w-full lg:w-32 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                               class="w-full lg:w-32 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                                     </div>
                                 </template>
                             </v-date-picker>
 
-                            <svg class="w-4 h-4 flex-shrink-0 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            <svg class="w-4 h-4 flex-shrink-0 mx-2" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
 
                             <v-date-picker :columns="$screens({ default: 1, lg: 2 })" v-model="until">
                                 <template v-slot="{ inputValue, inputEvents }">
                                     <div class="flex justify-center items-center">
                                         <input type="text" :value="inputValue" v-on="inputEvents"
-                                        class="w-full lg:w-32 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                               class="w-full lg:w-32 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                                     </div>
                                 </template>
                             </v-date-picker>
@@ -49,27 +52,34 @@
 
                         <v-label class="mt-5 mb-1">{{ $t("events.filter.region") }}</v-label>
 
-                        <multiselect class="w-full" :multiple="true" :value="selectedRegions" :options="events.regions" :close-on-select="false"
-                            @input="updateRegions" :allow-empty="false" style="width: 100%!important">
-                            <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ $t("events.selectedRegions", { count: values.length}) }}</span></template>
+                        <multiselect class="w-full" :multiple="true" :value="selectedRegions" :options="events.regions"
+                                     :close-on-select="false"
+                                     @input="updateRegions" :allow-empty="false" style="width: 100%!important">
+                            <template slot="selection" slot-scope="{ values, isOpen }"><span class="multiselect__single"
+                                                                                             v-if="values.length &amp;&amp; !isOpen">{{
+                                    $t("events.selectedRegions", {count: values.length})
+                                }}</span></template>
                         </multiselect>
                     </div>
                     <div class="col-span-12 lg:col-span-6 mt-6 lg:mt-0 lg:ml-12">
                         <v-label class="mb-3 flex items-center">
                             {{ $t("events.filter.categories") }}
                             <div class="ml-auto">
-                                <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer" @click="resetCategories()">
+                                <span
+                                    class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer"
+                                    @click="resetCategories()">
                                     {{ $t("events.filter.all") }}
                                 </span>
                             </div>
                         </v-label>
 
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-x-10">
-                            <div class="flex items-center mt-1" v-for="category in events.categories" :key="category.code">
+                            <div class="flex items-center mt-1" v-for="category in events.categories"
+                                 :key="category.code">
                                 <input type="checkbox" v-model="selectedCategories" :value="category.code"
-                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    @change="toggleCategory(category.code)"/>
-                                <div class="ml-2">{{category.description}}</div>
+                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                       @change="toggleCategory(category.code)"/>
+                                <div class="ml-2">{{ category.description }}</div>
                             </div>
                         </div>
                     </div>
@@ -97,50 +107,51 @@
                 </div>
             </div>
             <v-table>
-                <thead class="bg-gray-50">
-                <tr>
-                    <v-th>
-                        {{ $t("events.state") }}
-                    </v-th>
-                    <v-th :sortable="events" sortKey="start">
-                        {{ $t('events.date') }}
-                    </v-th>
-                    <v-th :sortable="events" sortKey="title">
-                        {{ $t('events.ride') }}
-                    </v-th>
-                    <v-th :sortable="events" sortKey="region">
-                        {{ $t('events.region') }}
-                    </v-th>
-                    <v-th>
-                        {{ $t('events.categories') }}
-                    </v-th>
-                    <v-th></v-th>
-                </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
-                    <v-td>
+                <v-thead class="bg-gray-50">
+                    <v-tr>
+                        <v-th class="sm:w-1/12">
+                            {{ $t("events.state") }}
+                        </v-th>
+                        <v-th :sortable="events" sortKey="start" class="sm:w-3/12">
+                            {{ $t('events.date') }}
+                        </v-th>
+                        <v-th :sortable="events" sortKey="title" class="sm:w-3/12">
+                            {{ $t('events.ride') }}
+                        </v-th>
+                        <v-th :sortable="events" sortKey="region" class="sm:w-2/12">
+                            {{ $t('events.region') }}
+                        </v-th>
+                        <v-th class="sm:w-2/12">
+                            {{ $t('events.categories') }}
+                        </v-th>
+                        <v-th class="sm:w-1/12"></v-th>
+                    </v-tr>
+                </v-thead>
+                <v-tbody class="bg-white divide-y divide-gray-200">
+                <v-tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
+                    <v-td class="sm:w-1/12">
                         {{$t("events.states." + event.status)}}
                     </v-td>
-                    <v-td>
+                    <v-td class="sm:w-3/12">
                         <date-range :start="event.start" :end="event.end"/>
                     </v-td>
-                    <v-td>
+                    <v-td class="sm:w-3/12">
                         <router-link :to="'/events/' + event.uuid">
                             <div class="whitespace-normal" style="max-width: 8rem">
                                 {{ event.title }}
                             </div>
                         </router-link>
                     </v-td>
-                    <v-td>{{ event.region || "Buxtehude" }}</v-td>
-                    <v-td>
+                    <v-td class="sm:w-3/12">{{ event.region || "Buxtehude" }}</v-td>
+                    <v-td class="sm:w-2/12">
                         <div class="whitespace-normal" style="max-width: 10rem;">
                             <template v-for="(category, index) in categories(event)">
                                 {{category}}<template v-if="index < categories(event).length - 1">,</template>
                             </template>
                         </div>
                     </v-td>
-                    <v-td>
+                    <v-td class="sm:w-1/12">
+                        <div class="flex">
                         <font-awesome-icon :icon="'map'" class="mx-2 text-gray-200"
                             v-tooltip="event.contests.find(contest => contest.cardRide) ? $t('events.mapRide') : $t('events.noMapRide')"
                             v-bind:class="{
@@ -156,9 +167,10 @@
                             v-bind:class="{
                                 'text-gray-600': event.isInternational
                             }"></font-awesome-icon>
+                        </div>
                     </v-td>
-                </tr>
-                </tbody>
+                </v-tr>
+                </v-tbody>
 
                 <template v-slot:pagination v-if="true">
                     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
@@ -196,9 +208,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/Card.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
-import VTable from "@/components/table/VTable.vue";
-import VTh from "@/components/table/VTh.vue";
-import VTd from "@/components/table/VTd.vue";
 import Badge from "@/components/Badge.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
@@ -218,9 +227,6 @@ import DateRange from "@/components/DateRange.vue";
     components: {
         VLink,
         Pagination,
-        VTable,
-        VTh,
-        VTd,
         AppLayout,
         Card,
         VButton,
@@ -238,7 +244,7 @@ export default class Home extends Vue {
     events = vxm.events;
     locale = window.navigator.language;
 
-    public data(): {range: undefined} {
+    public data(): { range: undefined } {
         return {
             range: undefined
         };

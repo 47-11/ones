@@ -1,5 +1,5 @@
 <template>
-    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 tracking-wider">
+    <div class="table-cell px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
         <div v-if="sortable && sortKey" @click="sort(sortKey)" class="cursor-pointer">
             <slot></slot>
 
@@ -11,7 +11,7 @@
         <div v-else>
             <slot></slot>
         </div>
-    </th>
+    </div>
 </template>
 
 <script lang="ts">

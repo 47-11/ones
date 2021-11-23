@@ -2,11 +2,11 @@
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
+                <div class="min-w-full table divide-y divide-gray-200 dark:divide-gray-800">
                     <slot></slot>
-                </table>
+                </div>
 
-                <div class="bg-white px-4 py-3 justify-between border-t border-gray-200 sm:px-6" v-if="hasPagination()">
+                <div class="bg-white dark:bg-gray-800 px-4 py-3 justify-between border-t border-gray-200 dark:border-gray-900 dark:text-gray-300 dark:divide-gray-800 sm:px-6">
                     <slot name="pagination"></slot>
                 </div>
             </div>
