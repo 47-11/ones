@@ -74,7 +74,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.parent.basedir}/ones-frontend/src/openapi/api-docs.json</inputSpec>
+                            <inputSpec>${project.parent.basedir}/ones-frontend/src/openapi/api-spec.json</inputSpec>
                             <generatorName>typescript-axios</generatorName>
                             <output>${project.parent.basedir}/ones-frontend/src/openapi/generated</output>
                             <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
