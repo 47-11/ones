@@ -4,7 +4,9 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
@@ -14,7 +16,15 @@ import java.time.Duration;
 import static java.time.temporal.ChronoUnit.HOURS;
 
 @Configuration
-public class CacheConfiguration {
+public class CacheConfiguration extends CachingConfigurerSupport {
+
+    @Override
+    @Bean
+    @Qualifier("fullMethodSignatureKeyGenerator")
+    public KeyGenerator keyGenerator() {
+
+        return new FullMethodSignatureKeyGenerator();
+    }
 
     @Bean
     @Qualifier("eventCacheManager")
