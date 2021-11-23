@@ -179,7 +179,12 @@
     "yes": "Yes",
     "no": "No",
     "states": {
-      "undefined": "Unknown"
+      "CANCELLED": "Cancelled",
+      "DATE_PASSED": "Date passed",
+      "DATE_PRELIMINARY": "Date preliminary",
+      "DATE_FIX": "Date fix",
+      "UPDATED": "Updated",
+      "UNKNOWN": "Unknown"
     },
     "filter": {
       "categories": "Categories",
