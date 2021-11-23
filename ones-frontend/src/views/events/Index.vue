@@ -60,6 +60,20 @@
                                     $t("events.selectedRegions", {count: values.length})
                                 }}</span></template>
                         </multiselect>
+
+                        <v-label class="mt-5 mb-1">{{ $t("events.filter.registrationStatus") }}</v-label>
+
+                        <div class="flex items-center mt-1">
+                            <input type="checkbox" checked
+                                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                            <div class="ml-2">genannt</div>
+                        </div>
+
+                        <div class="flex items-center mt-1">
+                            <input type="checkbox" checked
+                                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                            <div class="ml-2">nicht genannt</div>
+                        </div>
                     </div>
                     <div class="col-span-12 lg:col-span-6 mt-6 lg:mt-0 lg:ml-12">
                         <v-label class="mb-3 flex items-center">
@@ -128,7 +142,7 @@
                     </v-tr>
                 </v-thead>
                 <v-tbody class="bg-white divide-y divide-gray-200">
-                <v-tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
+                <v-tr v-for="(event, eventIndex) in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
                     <v-td class="sm:w-1/12">
                         {{$t("events.states." + event.status)}}
                     </v-td>
@@ -166,6 +180,12 @@
                             v-tooltip="event.isInternational ? $t('events.internationalRide') : $t('events.noInternationalRide')"
                             v-bind:class="{
                                 'text-gray-600': event.isInternational
+                            }"></font-awesome-icon>
+
+                        <font-awesome-icon :icon="'check'" class="mx-2 text-gray-200"
+                                           v-tooltip="eventIndex === 1 ? $t('events.registered') : $t('events.notRegistered')"
+                                           v-bind:class="{
+                                'text-lime-600': eventIndex === 1
                             }"></font-awesome-icon>
                         </div>
                     </v-td>
@@ -250,7 +270,7 @@ export default class Home extends Vue {
         };
     }
 
-    showFilter = false;
+    showFilter = true;
 
     mounted(): void {
         vxm.events.fetch();

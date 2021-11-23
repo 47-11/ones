@@ -3,7 +3,22 @@ import ErrorMessage from "@/components/ErrorMessage.vue";
 import Modal from "@/layouts/Modal.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-    faAt, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faExclamationTriangle, faExternalLinkAlt, faFilePdf, faFlag, faGlobe, faHorseHead, faMap, faMars, faPencilAlt, faPhone,
+    faAt,
+    faCheck,
+    faChevronDown,
+    faChevronLeft,
+    faChevronRight,
+    faChevronUp,
+    faExclamationTriangle,
+    faExternalLinkAlt,
+    faFilePdf,
+    faFlag,
+    faGlobe,
+    faHorseHead,
+    faMap,
+    faMars,
+    faPencilAlt,
+    faPhone,
     faTimes,
     faTrailer,
     faVenus
@@ -50,7 +65,8 @@ library.add(
     faMars,
     faVenus,
     faTimes,
-    faPencilAlt
+    faPencilAlt,
+    faCheck
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

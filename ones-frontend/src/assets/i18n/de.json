@@ -178,6 +178,8 @@
     "noInternationalRide": "Kein Internationaler Ritt",
     "nationalChampionship": "Landesmeisterschaft",
     "noNationalChampionship": "Keine Landesmeisterschaft",
+    "registered": "Sie sind genannt",
+    "notRegistered": "Sie sind nicht genannt",
     "details": "Details",
     "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen.",
     "filter": {
@@ -189,6 +191,7 @@
       "region": "Region",
       "categories": "Kategorien",
       "cardRide": "Kartenritt",
+      "registrationStatus": "Nennungsstatus",
       "nationalChampionchip": "Landesmeisterschaft",
       "internationalChampionchip": "Internationaler Ritt",
       "all": "alle",
