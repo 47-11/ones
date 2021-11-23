@@ -22,6 +22,13 @@ import { UserDto } from "./openapi/generated";
 import "./registerServiceWorker";
 import router from "./router";
 import store, { vxm } from "./store";
+import VTable from "@/components/table/VTable.vue";
+import VTh from "@/components/table/VTh.vue";
+import VTd from "@/components/table/VTd.vue";
+import VTr from "@/components/table/VTr.vue";
+import VTbody from "@/components/table/VTbody.vue";
+import VThead from "@/components/table/VThead.vue";
+import VLabel from "@/components/forms/VLabel.vue";
 
 Vue.config.productionTip = false;
 
@@ -48,6 +55,14 @@ library.add(
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("error-message", ErrorMessage);
+
+Vue.component("v-table", VTable);
+Vue.component("v-tbody", VTbody);
+Vue.component("v-td", VTd);
+Vue.component("v-th", VTh);
+Vue.component("v-thead", VThead);
+Vue.component("v-tr", VTr);
+Vue.component("v-label", VLabel);
 
 Vue.component("Modal", Modal);
 

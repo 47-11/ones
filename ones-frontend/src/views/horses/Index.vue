@@ -10,26 +10,26 @@
             </div>
 
             <v-table class="mt-8">
-                <thead class="bg-gray-50">
-                <tr>
+                <v-thead class="bg-gray-50">
+                <v-tr>
                     <v-th>{{ $t('data.horse.name') }}</v-th>
                     <v-th>{{ $t('data.horse.gender') }}</v-th>
                     <v-th>{{ $t('data.horse.breed') }}</v-th>
                     <v-th>{{ $t('data.horse.color') }}</v-th>
                     <v-th>{{ $t('data.horse.yearOfBirth') }}</v-th>
                     <v-th>{{ $t('data.horse.size') }}</v-th>
-                </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="horse in horses.list" :key="horse.uuid" v-on:click="details(horse)" class="cursor-pointer">
+                </v-tr>
+                </v-thead>
+                <v-tbody class="bg-white divide-y divide-gray-200">
+                <v-tr v-for="horse in horses.list" :key="horse.uuid" v-on:click="details(horse)" class="cursor-pointer">
                     <v-td>{{ horse.name }}</v-td>
                     <v-td>{{ $t("data.horse.genderOptions." + horse.gender) }}</v-td>
                     <v-td>{{ horse.breed }}</v-td>
                     <v-td>{{ horse.color }}</v-td>
                     <v-td>{{ horse.yearOfBirth }}</v-td>
                     <v-td>{{ horse.size }} {{ $t("data.horse.sizeUnit") }}</v-td>
-                </tr>
-                </tbody>
+                </v-tr>
+                </v-tbody>
             </v-table>
         </div>
     </app-layout>
@@ -44,9 +44,6 @@ import VLink from "@/components/VLink.vue";
 import VInput from "@/components/forms/VInput.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import VSelect from "@/components/forms/VSelect.vue";
-import VTable from "@/components/table/VTable.vue";
-import VTd from "@/components/table/VTd.vue";
-import VTh from "@/components/table/VTh.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
 import { vxm } from "@/store";
@@ -70,9 +67,6 @@ import VAddHorseFooter from "@/views/horses/modals/addHorse/VAddHorseFooter.vue"
         VInput,
         VLabel,
         VSelect,
-        VTable,
-        VTd,
-        VTh,
         Modal
     }
 })
