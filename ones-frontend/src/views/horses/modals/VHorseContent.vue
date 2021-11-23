@@ -7,12 +7,7 @@
                     {{ $t(`data.horse.${prop}`) }}
                 </dt>
                 <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-gray-800">
-                    <div v-if="prop === 'gender'">
-                        <font-awesome-icon :icon="'mars'"
-                                            v-if="horse.gender === 'MALE'"></font-awesome-icon>
-                        <font-awesome-icon :icon="'venus'"
-                                            v-if="horse.gender === 'FEMALE'"></font-awesome-icon>
-                    </div>
+                    <span v-if="prop === 'gender'">{{ $t("data.horse.genderOptions." + horse[prop]) }}</span>
                     <span v-else>{{ horse[prop] }}</span>
                 </dd>
             </div>
