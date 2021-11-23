@@ -12,8 +12,8 @@ http.get("http://localhost:8080/api/docs/v3", (res) => {
         console.log("(2) Finished reading data.");
         try {
             const prettyData = JSON.stringify(JSON.parse(rawData), null, 4);
-            fs.writeFileSync("./src/openapi/api-docs.json", prettyData);
-            console.log("(3) Wrote api-docs.json.");
+            fs.writeFileSync("./src/openapi/api-spec.json", prettyData);
+            console.log("(3) Wrote api-spec.json.");
             child.execSync("mvn generate-resources -DskipCi", { stdio: "inherit" });
             console.log("(4) Finished generating.");
             console.log("(5) Done.");
