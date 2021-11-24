@@ -43,8 +43,9 @@ export class API {
     }
 
     private get configNoToken(): Configuration {
+        const url = process.env.VUE_APP_API_BASE_URL as string || window.location.origin;
         return {
-            basePath: (process.env.VUE_APP_API_BASE_URL as string).replace(/\/+$/, ""),
+            basePath: url.replace(/\/+$/, ""),
             isJsonMime: () => true
         };
     }
