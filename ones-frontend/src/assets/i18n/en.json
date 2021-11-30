@@ -326,6 +326,10 @@
         },
         "sizePlaceholder": "40 - 250cm",
         "yearPlaceholder": "4 Digits"
+      },
+      "edit": {
+        "title": "Edit Horse",
+        "confirm": "Update Horse"
       }
     }
   },

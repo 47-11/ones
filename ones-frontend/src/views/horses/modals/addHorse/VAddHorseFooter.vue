@@ -5,13 +5,15 @@
             {{ $t('modal.abort') }}
         </v-button>
         <v-button @click.native="confirm" class="ml-2">
-            {{ $t('horses.modals.add.confirm') }}
+            <span v-if="isAdd">{{ $t('horses.modals.add.confirm') }}</span>
+            <span v-if="isUpdate">{{ $t('horses.modals.edit.confirm') }}</span>
         </v-button>
     </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import VButton from "@/components/VButton.vue";
+import { HorseDto } from "@/openapi/generated";
 
 @Component({
     components: {
@@ -24,6 +26,17 @@ export default class VHorseFooter extends Vue {
 
     close(): void {
         this.$vfm.hide("add-horse");
+    }
+
+    @Prop()
+    public horse?: HorseDto;
+
+    public isUpdate(): boolean {
+        return !!(this.horse && this.horse.uuid);
+    }
+
+    public isApp(): boolean {
+        return !this.isUpdate;
     }
 }
 </script>
