@@ -287,7 +287,11 @@ export default class Detail extends Vue {
     }
 
     isRegisteredFor(contest: FullContestDto): boolean {
-        return contest.signedUpHorses.length > 0;
+        if (contest.signedUpHorses === undefined) {
+            return false;
+        }
+
+        return contest?.signedUpHorses?.size > 0;
     }
 }
 </script>

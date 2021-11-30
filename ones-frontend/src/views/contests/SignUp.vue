@@ -76,7 +76,7 @@
                                 {{ details.lateSignupFee.amount }} {{ details.lateSignupFee.currency }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr v-if="details.signupChangeFee">
                             <th class="text-left px-5 py-1 align-top leading-5">
                                 {{$t('details.signupChangeFee')}}
                             </th>

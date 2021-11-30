@@ -1,4 +1,4 @@
-import { HorseDto as Horse, HorseDto } from "@/openapi/generated";
+import { FullHorseDto as Horse, FullHorseDto } from "@/openapi/generated";
 import { getApi } from "@/store/api";
 import { action, createModule } from "vuex-class-component";
 
@@ -21,7 +21,7 @@ export class HorseStore extends VuexModule {
     }
 
     @action
-    async add(horse: HorseDto): Promise<void> {
+    async add(horse: FullHorseDto): Promise<void> {
         await getApi().horses.createHorse(horse);
         await this.fetch();
     }

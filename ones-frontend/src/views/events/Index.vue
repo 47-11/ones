@@ -136,7 +136,7 @@
                     </v-tr>
                 </v-thead>
                 <v-tbody class="bg-white divide-y divide-gray-200">
-                <v-tr v-for="(event, eventIndex) in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
+                <v-tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
                     <v-td class="sm:w-1/12">
                         {{$t("events.states." + event.status)}}
                     </v-td>
@@ -177,9 +177,9 @@
                             }"></font-awesome-icon>
 
                         <font-awesome-icon :icon="'check'" class="mx-2 text-gray-200"
-                                           v-tooltip="eventIndex === 1 ? $t('events.registered') : $t('events.notRegistered')"
+                                           v-tooltip="isRegisteredFor(event) ? $t('events.registered') : $t('events.notRegistered')"
                                            v-bind:class="{
-                                'text-lime-600': eventIndex === 1
+                                'text-lime-600': isRegisteredFor(event)
                             }"></font-awesome-icon>
                         </div>
                     </v-td>
@@ -379,6 +379,10 @@ export default class Home extends Vue {
         } else {
             this.events.removeFilter("until");
         }
+    }
+
+    isRegisteredFor(event: SimpleEventDto): boolean {
+        return event.signedUpHorses && event.signedUpHorses.size() > 0;
     }
 
     get selectedRegions(): string[] {

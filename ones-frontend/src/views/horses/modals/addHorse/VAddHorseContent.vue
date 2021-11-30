@@ -156,7 +156,7 @@ import VInput from "@/components/forms/VInput.vue";
 import VSelect from "@/components/forms/VSelect.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import { vxm } from "@/store";
-import { AddressDto, HorseDto, HorseDtoGenderEnum, PersonDto } from "@/openapi/generated";
+import { AddressDto, FullHorseDto, FullHorseDtoGenderEnum, PersonDto } from "@/openapi/generated";
 
 @Component({
     components: {
@@ -196,9 +196,9 @@ export default class VAddHorseContent extends Vue {
         return !!this.horse.uuid;
     }
 
-    genders = HorseDtoGenderEnum;
+    genders = FullHorseDtoGenderEnum;
 
-    public updateHorse(property: keyof HorseDto, value: string): void {
+    public updateHorse(property: keyof FullHorseDto, value: string): void {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.horse[property] = value as any;
     }
@@ -273,7 +273,7 @@ export default class VAddHorseContent extends Vue {
         }
     }
 
-    requiredProps: Array<keyof HorseDto> = [
+    requiredProps: Array<keyof FullHorseDto> = [
         "name",
         "passportNumber",
         "chipNumber",
