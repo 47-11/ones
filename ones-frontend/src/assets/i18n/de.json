@@ -299,6 +299,7 @@
         "masterData": "Stammdaten",
         "owner": "Besitzer",
         "confirm": "Pferd hinzufügen",
+        "noMasterDataUpdate": "Die Stammdaten eines Pferdes können nach dem Anlegen nicht mehr geändert werden.",
         "errors": {
           "notFilled": " nicht gefüllt.",
           "sizeOutOfRange": "Stockmaß muss zwischen 40 und 250 cm sein.",

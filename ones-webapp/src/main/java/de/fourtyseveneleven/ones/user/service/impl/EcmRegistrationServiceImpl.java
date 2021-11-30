@@ -7,7 +7,7 @@ import de.fourtyseveneleven.ones.ecm.generated.model.RegisterAccount;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactNatural;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterMembership;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
-import de.fourtyseveneleven.ones.user.mapper.UserDtoMapper;
+import de.fourtyseveneleven.ones.user.mapper.UserMapper;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.service.EcmRegistrationService;
@@ -22,11 +22,11 @@ import static java.util.Objects.requireNonNull;
 public class EcmRegistrationServiceImpl implements EcmRegistrationService {
 
     private final ApplicationAccountControllerApi applicationAccountControllerApi;
-    private final UserDtoMapper userDtoMapper;
+    private final UserMapper userMapper;
 
-    public EcmRegistrationServiceImpl(ApplicationAccountControllerApi applicationAccountControllerApi, UserDtoMapper userDtoMapper) {
+    public EcmRegistrationServiceImpl(ApplicationAccountControllerApi applicationAccountControllerApi, UserMapper userMapper) {
         this.applicationAccountControllerApi = applicationAccountControllerApi;
-        this.userDtoMapper = userDtoMapper;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
 
     private RegisterAccount buildRegisterNewMemberRequest(String emailAddress, UserDto personalData) {
 
-        final RegisterAccount registerAccountRequest = userDtoMapper.userDtoToRegisterAccount(personalData);
+        final RegisterAccount registerAccountRequest = userMapper.userDtoToRegisterAccount(personalData);
         registerAccountRequest.setLoginIdentification(emailAddress);
 
         final RegisterContactNatural registerContactNatural = requireNonNull(registerAccountRequest.getUser());

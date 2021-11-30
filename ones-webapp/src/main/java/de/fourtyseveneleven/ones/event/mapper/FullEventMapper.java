@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.event.mapper;
 
-import de.fourtyseveneleven.ones.common.mapper.AddressDtoMapper;
+import de.fourtyseveneleven.ones.common.mapper.AddressMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
@@ -26,7 +26,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
         uses = {
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
-                AddressDtoMapper.class,
+                AddressMapper.class,
                 EventStatusMapper.class
         }
 )

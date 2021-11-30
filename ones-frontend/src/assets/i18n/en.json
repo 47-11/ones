@@ -318,6 +318,7 @@
         "masterData": "Master Data",
         "owner": "Owner",
         "confirm": "Add horse",
+        "noMasterDataUpdate": "The master data of a horse cannot be updated once it was added.",
         "errors": {
           "notFilled": " not filled.",
           "sizeOutOfRange": "Size must be greater than 40cms and smaller than 250cms.",

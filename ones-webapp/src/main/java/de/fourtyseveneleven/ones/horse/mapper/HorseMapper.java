@@ -1,14 +1,12 @@
-package de.fourtyseveneleven.ones.horse;
+package de.fourtyseveneleven.ones.horse.mapper;
 
-import de.fourtyseveneleven.ones.common.mapper.AddressDtoMapper;
+import de.fourtyseveneleven.ones.common.mapper.AddressMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
-import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
-import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactLegal;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterHorse;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredHorse;
 import de.fourtyseveneleven.ones.horse.model.Gender;
+import de.fourtyseveneleven.ones.user.mapper.UserMapper;
 import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
-import de.fourtyseveneleven.ones.user.mapper.UserDtoMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -19,8 +17,8 @@ import static de.fourtyseveneleven.ones.horse.model.Gender.GELDING;
 import static de.fourtyseveneleven.ones.horse.model.Gender.MARE;
 import static de.fourtyseveneleven.ones.horse.model.Gender.STALLION;
 
-@Mapper(componentModel = "spring", uses = {CommonMapper.class, UserDtoMapper.class, AddressDtoMapper.class})
-public abstract class HorseDtoMapper {
+@Mapper(componentModel = "spring", uses = {CommonMapper.class, UserMapper.class, AddressMapper.class})
+public abstract class HorseMapper {
 
     @Mapping(source = "passportNumber", target = "passportId")
     @Mapping(source = "chipNumber", target = "chipId")
@@ -33,8 +31,6 @@ public abstract class HorseDtoMapper {
     @Mapping(source = "stickSize", target = "size")
     @Mapping(source = "stable", target = "stableAddress")
     public abstract FullHorseDto registeredHorseToHorseDto(RegisteredHorse masterdataHorse);
-
-    protected abstract AddressDto registerContactLegalToAddressDto(RegisterContactLegal registerContactLegal);
 
     protected RegisterHorse.GenderEnum mapGender(Gender gender) {
 
@@ -53,4 +49,6 @@ public abstract class HorseDtoMapper {
             case S -> STALLION;
         };
     }
+
+    public abstract RegisterHorse registeredHorseToRegisterHorse(RegisteredHorse registeredHorse);
 }
