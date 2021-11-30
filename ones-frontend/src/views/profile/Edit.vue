@@ -132,6 +132,7 @@ import BadgeCircle from "@/components/BadgeCircle.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
 import { vxm } from "@/store";
 import { AddressDto, UserDto } from "@/openapi/generated";
+import VueI18n from "vue-i18n";
 
 @Component({
     components: {
@@ -166,8 +167,8 @@ export default class ProfileEdit extends Vue {
 
     private error: Error | null = null;
 
-    get user(): UserDto | null {
-        return vxm.user.current;
+    get user(): UserDto {
+        return vxm.user.current as UserDto;
     }
 
     mounted(): void {
@@ -193,14 +194,11 @@ export default class ProfileEdit extends Vue {
     }
 
     private assertUserValid(): void {
-        if (this.user == null) {
-            throw new Error(this.$i18n.t("data.user") + this.$i18n.t("editUser.lengthNull").toString());
-        }
         try {
             this.assertValid(this.user, this.requiredProperties);
             this.assertValid(this.user.address, this.requiredAddressProperties);
         } catch (e) {
-            throw new Error(this.$i18n.t("data.user." + e.message).toString() + this.$i18n.t("profile.lengthNull").toString());
+            throw new Error((this.$i18n.t("data.user") as VueI18n.LocaleMessages)[(e as Error).message as string].toString() + this.$i18n.t("profile.lengthNull").toString());
         }
     }
 

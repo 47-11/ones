@@ -155,7 +155,12 @@
     "signUp": "Details & Sign Up",
     "alreadySignedUp": "Already signed up with {horses}",
     "fee": "Fee",
-    "notAvailable": "N/A"
+    "notAvailable": "N/A",
+    "minHorseAge": "Mindestalter Pferd",
+    "minRiderAge": "Mindestalter Reiter",
+    "paymentInformation": {
+      "title": "Zahlungsinformationen"
+    }
   },
   "events": {
     "start": "Start",
@@ -196,7 +201,10 @@
       "title": "Filter Events",
       "reset": "Reset",
       "period": "Period",
-      "region": "Region"
+      "region": "Region",
+      "nationalChampionchip": "Landesmeisterschaft",
+      "no": "Ja",
+      "yes": "Nein"
     },
     "shared": {
       "yes": "Yes",
