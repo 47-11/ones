@@ -27,7 +27,7 @@ export class HorseStore extends VuexModule {
     }
 
     @action
-    async update(horse: HorseDto): Promise<void> {
+    async update(horse: FullHorseDto): Promise<void> {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await getApi().horses.updateHorse(horse.uuid!, horse);
         await this.fetch();

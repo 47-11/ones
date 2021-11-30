@@ -7,7 +7,7 @@
     </div>
 </template>
 <script lang="ts">
-import { HorseDto } from "@/openapi/generated";
+import { FullHorseDto } from "@/openapi/generated";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class VTitle extends Vue {
     @Prop()
-    public horse?: HorseDto;
+    public horse?: FullHorseDto;
 
     public isUpdate(): boolean {
         return !!(this.horse && this.horse.uuid);

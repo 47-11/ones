@@ -382,7 +382,11 @@ export default class Home extends Vue {
     }
 
     isRegisteredFor(event: SimpleEventDto): boolean {
-        return event.signedUpHorses && event.signedUpHorses.size() > 0;
+        if (event.signedUpHorses === undefined || event.signedUpHorses == null) {
+            return false;
+        }
+
+        return event.signedUpHorses && event.signedUpHorses.size > 0;
     }
 
     get selectedRegions(): string[] {

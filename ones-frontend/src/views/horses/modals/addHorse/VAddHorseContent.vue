@@ -186,7 +186,7 @@ export default class VAddHorseContent extends Vue {
     @Prop({
         default: () => { return {}; }
     })
-    horse!: HorseDto;
+    horse!: FullHorseDto;
 
     get isAdd(): boolean {
         return !this.isUpdate;
