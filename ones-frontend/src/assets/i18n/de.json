@@ -194,6 +194,8 @@
       "registrationStatus": "Nennungsstatus",
       "nationalChampionchip": "Landesmeisterschaft",
       "internationalChampionchip": "Internationaler Ritt",
+      "registered": "genannt",
+      "notRegistered": "nicht genannt",
       "all": "alle",
       "yes": "Ja",
       "no": "Nein"

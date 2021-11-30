@@ -63,17 +63,11 @@
 
                         <v-label class="mt-5 mb-1">{{ $t("events.filter.registrationStatus") }}</v-label>
 
-                        <div class="flex items-center mt-1">
-                            <input type="checkbox" checked
-                                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
-                            <div class="ml-2">genannt</div>
-                        </div>
-
-                        <div class="flex items-center mt-1">
-                            <input type="checkbox" checked
-                                   class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
-                            <div class="ml-2">nicht genannt</div>
-                        </div>
+                        <v-select class="w-full lg:w-44" v-model="alreadySignedUp">
+                            <option value="undefined">---</option>
+                            <option value="true">{{ $t("events.filter.registered") }}</option>
+                            <option value="false">{{ $t("events.filter.notRegistered") }}</option>
+                        </v-select>
                     </div>
                     <div class="col-span-12 lg:col-span-6 mt-6 lg:mt-0 lg:ml-12">
                         <v-label class="mb-3 flex items-center">
@@ -313,6 +307,18 @@ export default class Home extends Vue {
         this.events.addFilter({
             categories: value
         });
+    }
+
+    get alreadySignedUp(): "true" | "false" | "undefined" {
+        return `${this.events.filter.alreadySignedUp}` as "true" | "false" | "undefined";
+    }
+
+    set alreadySignedUp(value: "true" | "false" | "undefined") {
+        if (value === "undefined") {
+            this.events.removeFilter("alreadySignedUp");
+        } else {
+            this.events.addFilter({ alreadySignedUp: value === "true" });
+        }
     }
 
     toggleCategory(category: string): void {

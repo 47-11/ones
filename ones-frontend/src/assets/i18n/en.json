@@ -198,6 +198,8 @@
       "all": "All",
       "cardRide": "Card Ride",
       "internationalChampionchip": "International Championship",
+      "registered": "Registered",
+      "notRegistered": "Not Registered",
       "open": "Open Filter",
       "registrationStatus": "Anmeldestatus",
       "close": "Close Filter",
