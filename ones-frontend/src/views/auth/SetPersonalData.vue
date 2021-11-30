@@ -171,6 +171,7 @@ import { vxm } from "@/store";
 import VLink from "@/components/VLink.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
+import VueI18n from "vue-i18n";
 
 @Component({
     components: {
@@ -266,9 +267,10 @@ export default class SetPersonalData extends Vue {
     }
 
     private assertValid(): void {
+        const translations = this.$i18n.t("data.user") as VueI18n.LocaleMessages;
         for (const property of this.requiredProperties) {
             if ((this[property as keyof this] as unknown as string).length === 0) {
-                throw new Error(this.$i18n.t("data.user." + property).toString() + this.$i18n.t("setPersonalData.lengthNull").toString());
+                throw new Error(translations[property] + this.$i18n.t("setPersonalData.lengthNull").toString());
             }
         }
     }
