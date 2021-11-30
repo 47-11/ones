@@ -33,12 +33,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestCompetitionStagePlain.JSON_PROPERTY_UUID,
-  EventContestCompetitionStagePlain.JSON_PROPERTY_CREATION_TIMESTAMP,
-  EventContestCompetitionStagePlain.JSON_PROPERTY_CREATION_USER_UUID,
-  EventContestCompetitionStagePlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
-  EventContestCompetitionStagePlain.JSON_PROPERTY_CHANGE_USER_UUID,
-  EventContestCompetitionStagePlain.JSON_PROPERTY_CHANGE_COUNTER,
-  EventContestCompetitionStagePlain.JSON_PROPERTY_CURRENT_STATE,
   EventContestCompetitionStagePlain.JSON_PROPERTY_TITLE,
   EventContestCompetitionStagePlain.JSON_PROPERTY_KIND,
   EventContestCompetitionStagePlain.JSON_PROPERTY_BEGINNING,
@@ -54,28 +48,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionStagePlain.JSON_PROPERTY_BREAKS_TOTAL_MINUTES,
   EventContestCompetitionStagePlain.JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestCompetitionStagePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
-
-  public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
-  private OffsetDateTime creationTimestamp;
-
-  public static final String JSON_PROPERTY_CREATION_USER_UUID = "creationUserUuid";
-  private String creationUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_TIMESTAMP = "changeTimestamp";
-  private OffsetDateTime changeTimestamp;
-
-  public static final String JSON_PROPERTY_CHANGE_USER_UUID = "changeUserUuid";
-  private String changeUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
-  private Integer changeCounter;
-
-  public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
-  private Integer currentState;
 
   public static final String JSON_PROPERTY_TITLE = "title";
   private String title;
@@ -143,162 +119,6 @@ public class EventContestCompetitionStagePlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
-  }
-
-
-  public EventContestCompetitionStagePlain creationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-    return this;
-  }
-
-   /**
-   * Get creationTimestamp
-   * @return creationTimestamp
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public OffsetDateTime getCreationTimestamp() {
-    return creationTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-  }
-
-
-  public EventContestCompetitionStagePlain creationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-    return this;
-  }
-
-   /**
-   * Get creationUserUuid
-   * @return creationUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCreationUserUuid() {
-    return creationUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-  }
-
-
-  public EventContestCompetitionStagePlain changeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-    return this;
-  }
-
-   /**
-   * Get changeTimestamp
-   * @return changeTimestamp
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getChangeTimestamp() {
-    return changeTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-  }
-
-
-  public EventContestCompetitionStagePlain changeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-    return this;
-  }
-
-   /**
-   * Get changeUserUuid
-   * @return changeUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangeUserUuid() {
-    return changeUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-  }
-
-
-  public EventContestCompetitionStagePlain changeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-    return this;
-  }
-
-   /**
-   * Get changeCounter
-   * @return changeCounter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getChangeCounter() {
-    return changeCounter;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-  }
-
-
-  public EventContestCompetitionStagePlain currentState(Integer currentState) {
-    this.currentState = currentState;
-    return this;
-  }
-
-   /**
-   * Get currentState
-   * @return currentState
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getCurrentState() {
-    return currentState;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentState(Integer currentState) {
-    this.currentState = currentState;
   }
 
 
@@ -679,12 +499,6 @@ public class EventContestCompetitionStagePlain {
     }
     EventContestCompetitionStagePlain eventContestCompetitionStagePlain = (EventContestCompetitionStagePlain) o;
     return Objects.equals(this.uuid, eventContestCompetitionStagePlain.uuid) &&
-        Objects.equals(this.creationTimestamp, eventContestCompetitionStagePlain.creationTimestamp) &&
-        Objects.equals(this.creationUserUuid, eventContestCompetitionStagePlain.creationUserUuid) &&
-        Objects.equals(this.changeTimestamp, eventContestCompetitionStagePlain.changeTimestamp) &&
-        Objects.equals(this.changeUserUuid, eventContestCompetitionStagePlain.changeUserUuid) &&
-        Objects.equals(this.changeCounter, eventContestCompetitionStagePlain.changeCounter) &&
-        Objects.equals(this.currentState, eventContestCompetitionStagePlain.currentState) &&
         Objects.equals(this.title, eventContestCompetitionStagePlain.title) &&
         Objects.equals(this.kind, eventContestCompetitionStagePlain.kind) &&
         Objects.equals(this.beginning, eventContestCompetitionStagePlain.beginning) &&
@@ -703,7 +517,7 @@ public class EventContestCompetitionStagePlain {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid);
+    return Objects.hash(uuid, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid);
   }
 
   @Override
@@ -711,12 +525,6 @@ public class EventContestCompetitionStagePlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestCompetitionStagePlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
-    sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
-    sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
-    sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
-    sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
-    sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    beginning: ").append(toIndentedString(beginning)).append("\n");

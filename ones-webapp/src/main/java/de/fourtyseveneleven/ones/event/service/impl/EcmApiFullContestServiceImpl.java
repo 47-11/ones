@@ -4,6 +4,7 @@ import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import de.fourtyseveneleven.ones.event.mapper.FullContestMapper;
 import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
 import de.fourtyseveneleven.ones.event.service.FullContestService;
@@ -31,7 +32,7 @@ public class EcmApiFullContestServiceImpl implements FullContestService {
     @Cacheable(cacheNames = "fullContests", cacheManager = "eventCacheManager")
     public List<FullContestDto> getContestsForEvent(String eventUuid) {
 
-        final EventContest eventContest = getEventContestFromEcm(eventUuid);
+        final EventContestPlain eventContest = getEventContestFromEcm(eventUuid);
         if (isNull(eventContest) || isNull(eventContest.getCompetitions())) {
             return emptyList();
         }
@@ -41,7 +42,7 @@ public class EcmApiFullContestServiceImpl implements FullContestService {
                 .toList();
     }
 
-    private EventContest getEventContestFromEcm(String uuid) {
+    private EventContestPlain getEventContestFromEcm(String uuid) {
 
         try {
             return eventContestControllerApi.getContestByUuid(uuid, getAuthenticatedUser().getUuid().toString());

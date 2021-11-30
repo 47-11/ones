@@ -7,8 +7,8 @@ import de.fourtyseveneleven.ones.common.model.dto.SortRequest;
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
-import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContests;
 import de.fourtyseveneleven.ones.event.mapper.EventPageMapper;
 import de.fourtyseveneleven.ones.event.mapper.SimpleEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
@@ -27,7 +27,6 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
-import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 import static java.util.Objects.isNull;
 
 @Service
@@ -58,20 +57,20 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private Optional<SimpleEventDto> tryFindOneByUuid(String eventUuid) throws ApiException {
 
-        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
+        final EventContestPlain eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
         return Optional.ofNullable(eventContest)
-                .map(simpleEventMapper::eventContestToSimpleEventDto);
+                .map(simpleEventMapper::eventContestPlainToSimpleEventDto);
     }
 
     @Override
     @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
     public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
-        final ResponcePageContestsPlain ecmPage = findPageInEcm(filter, pageRequest, sortRequest);
+        final ResponcePageContests ecmPage = findPageInEcm(filter, pageRequest, sortRequest);
         return pageDtoFromResponcePageContestsPlain(ecmPage, pageRequest);
     }
 
-    private ResponcePageContestsPlain findPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
+    private ResponcePageContests findPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
         try {
             return tryFindPageInEcm(filter, pageRequest, sortRequest);
@@ -80,7 +79,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         }
     }
 
-    private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
+    private ResponcePageContests tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
         return eventContestControllerApi
                 .getContestByYear(atStartOfDay(filter.from()),
@@ -158,7 +157,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         };
     }
 
-    private PageDto<SimpleEventDto> pageDtoFromResponcePageContestsPlain(ResponcePageContestsPlain responcePageContestsPlain, PageRequest pageRequest) {
+    private PageDto<SimpleEventDto> pageDtoFromResponcePageContestsPlain(ResponcePageContests responcePageContestsPlain, PageRequest pageRequest) {
 
         final PageDto<SimpleEventDto> page = eventPageMapper.map(responcePageContestsPlain);
         page.setPageNumber(pageRequest.getPageNumber());

@@ -3,7 +3,7 @@ package de.fourtyseveneleven.ones.event.service.impl;
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import de.fourtyseveneleven.ones.event.mapper.FullEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
@@ -41,8 +41,8 @@ public class EcmApiFullEventServiceImpl implements FullEventService {
 
     private Optional<FullEventDto> tryFindOneByUuid(String eventUuid) throws ApiException {
 
-        final EventContest eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
+        final EventContestPlain eventContest = eventContestControllerApi.getContestByUuid(eventUuid, UserUtils.getAuthenticatedUser().getUuid().toString());
         return Optional.ofNullable(eventContest)
-                .map(fullEventMapper::eventContestToFullEventDto);
+                .map(fullEventMapper::eventContestPlainToFullEventDto);
     }
 }

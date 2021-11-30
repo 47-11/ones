@@ -68,8 +68,8 @@ Name | Type | Description | Notes
 **descriptionControlchecks** | **String** |  |  [optional]
 **ratingType** | **Integer** |  |  [optional]
 **descriptionRatingType** | **String** |  |  [optional]
-**displayRegistertHorses** | **String** |  |  [optional]
 **stages** | [**Set&lt;EventContestCompetitionStage&gt;**](EventContestCompetitionStage.md) |  |  [optional]
+**registrations** | [**Set&lt;EventContestCompetitionRegistration&gt;**](EventContestCompetitionRegistration.md) |  |  [optional]
 
 
 

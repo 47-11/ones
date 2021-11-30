@@ -14,12 +14,12 @@
 package de.fourtyseveneleven.ones.ecm.generated.api;
 
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionResult;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import java.time.OffsetDateTime;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNomination;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
-import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContests;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -67,7 +67,7 @@ public class EventContestControllerApiTest {
     public void getContestByUuidTest() throws ApiException {
         String contestUuid = null;
         String accountUuid = null;
-        EventContest response = 
+        EventContestPlain response = 
         api.getContestByUuid(contestUuid, accountUuid);
         
         // TODO: test validations
@@ -95,7 +95,7 @@ public class EventContestControllerApiTest {
         Integer pageNo = null;
         Integer pageSize = null;
         String sortBy = null;
-        ResponcePageContestsPlain response = 
+        ResponcePageContests response = 
         api.getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
         
         // TODO: test validations

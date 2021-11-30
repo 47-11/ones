@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactNatural;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterMembership;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccountImposedLocks;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -91,6 +92,14 @@ public class RegisteredAccountTest {
     @Test
     public void horsesTest() {
         // TODO: test horses
+    }
+
+    /**
+     * Test the property 'imposedLocks'
+     */
+    @Test
+    public void imposedLocksTest() {
+        // TODO: test imposedLocks
     }
 
 }

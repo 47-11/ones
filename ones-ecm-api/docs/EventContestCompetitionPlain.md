@@ -8,29 +8,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **String** |  | 
-**creationTimestamp** | **OffsetDateTime** |  | 
-**creationUserUuid** | **String** |  |  [optional]
-**changeTimestamp** | **OffsetDateTime** |  |  [optional]
-**changeUserUuid** | **String** |  |  [optional]
-**changeCounter** | **Integer** |  |  [optional]
-**currentState** | **Integer** |  |  [optional]
 **state** | **String** |  |  [optional]
 **title** | **String** |  |  [optional]
 **kind** | **String** |  |  [optional]
 **beginning** | **OffsetDateTime** |  |  [optional]
 **ending** | **OffsetDateTime** |  |  [optional]
 **raiseLength** | **Integer** |  |  [optional]
-**minutesMaximum** | **Integer** |  |  [optional]
-**minutesAllowed** | **Integer** |  |  [optional]
-**penaltyPointsTimeout** | **Integer** |  |  [optional]
-**penaltyPointsTimeUnderrun** | **Integer** |  |  [optional]
-**penaltyPointsAtPulseRateOf** | **Integer** |  |  [optional]
-**penaltyPointsPulseRateExceeded** | **Integer** |  |  [optional]
-**breaksTotalNumbers** | **Integer** |  |  [optional]
-**breaksTotalMinutes** | **Integer** |  |  [optional]
-**responsibleVeterinarianUuid** | **String** |  |  [optional]
-**competitionUuidToExtend** | **String** |  |  [optional]
-**competitionUuidToReduce** | **String** |  |  [optional]
 **contestantLimitiationMin** | **Integer** |  |  [optional]
 **contestantLimitiationMax** | **Integer** |  |  [optional]
 **datePreliminaryExamination** | **OffsetDateTime** |  |  [optional]
@@ -68,8 +51,8 @@ Name | Type | Description | Notes
 **descriptionControlchecks** | **String** |  |  [optional]
 **ratingType** | **Integer** |  |  [optional]
 **descriptionRatingType** | **String** |  |  [optional]
-**displayRegistertHorses** | **String** |  |  [optional]
 **stages** | [**Set&lt;EventContestCompetitionStagePlain&gt;**](EventContestCompetitionStagePlain.md) |  |  [optional]
+**registrations** | [**Set&lt;EventContestCompetitionRegistrationPlain&gt;**](EventContestCompetitionRegistrationPlain.md) |  |  [optional]
 
 
 

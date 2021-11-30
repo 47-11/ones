@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]
+- Build date: 2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -138,6 +138,10 @@ Class | Method | HTTP request | Description
  - [EventContest](docs/EventContest.md)
  - [EventContestCompetition](docs/EventContestCompetition.md)
  - [EventContestCompetitionPlain](docs/EventContestCompetitionPlain.md)
+ - [EventContestCompetitionRegistration](docs/EventContestCompetitionRegistration.md)
+ - [EventContestCompetitionRegistrationHorse](docs/EventContestCompetitionRegistrationHorse.md)
+ - [EventContestCompetitionRegistrationHorsePlain](docs/EventContestCompetitionRegistrationHorsePlain.md)
+ - [EventContestCompetitionRegistrationPlain](docs/EventContestCompetitionRegistrationPlain.md)
  - [EventContestCompetitionResult](docs/EventContestCompetitionResult.md)
  - [EventContestCompetitionResultHorse](docs/EventContestCompetitionResultHorse.md)
  - [EventContestCompetitionStage](docs/EventContestCompetitionStage.md)
@@ -162,8 +166,9 @@ Class | Method | HTTP request | Description
  - [RegisterNomination](docs/RegisterNomination.md)
  - [RegisterResponce](docs/RegisterResponce.md)
  - [RegisteredAccount](docs/RegisteredAccount.md)
+ - [RegisteredAccountImposedLocks](docs/RegisteredAccountImposedLocks.md)
  - [RegisteredHorse](docs/RegisteredHorse.md)
- - [ResponcePageContestsPlain](docs/ResponcePageContestsPlain.md)
+ - [ResponcePageContests](docs/ResponcePageContests.md)
  - [UpdateAccount](docs/UpdateAccount.md)
 
 

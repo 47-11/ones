@@ -1,13 +1,13 @@
 package de.fourtyseveneleven.ones.horse.service;
 
-import de.fourtyseveneleven.ones.horse.model.HorseDto;
+import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
 
 import java.util.List;
 
 public interface HorseService {
 
-    List<HorseDto> getMyHorses();
+    List<FullHorseDto> getMyHorses();
 
-    void createHorseForCurrentUser(HorseDto horse);
+    void createHorseForCurrentUser(FullHorseDto horse);
 
 }

@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,11 +32,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestRolePlain.JSON_PROPERTY_UUID,
-  EventContestRolePlain.JSON_PROPERTY_CREATION_TIMESTAMP,
-  EventContestRolePlain.JSON_PROPERTY_CREATION_USER_UUID,
-  EventContestRolePlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
-  EventContestRolePlain.JSON_PROPERTY_CHANGE_USER_UUID,
-  EventContestRolePlain.JSON_PROPERTY_CHANGE_COUNTER,
   EventContestRolePlain.JSON_PROPERTY_CURRENT_STATE,
   EventContestRolePlain.JSON_PROPERTY_KIND,
   EventContestRolePlain.JSON_PROPERTY_MASTERDATA_CONTACT_UUID,
@@ -56,25 +50,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestRolePlain.JSON_PROPERTY_CELL_PHONE,
   EventContestRolePlain.JSON_PROPERTY_EMAIL
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestRolePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
-
-  public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
-  private OffsetDateTime creationTimestamp;
-
-  public static final String JSON_PROPERTY_CREATION_USER_UUID = "creationUserUuid";
-  private String creationUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_TIMESTAMP = "changeTimestamp";
-  private OffsetDateTime changeTimestamp;
-
-  public static final String JSON_PROPERTY_CHANGE_USER_UUID = "changeUserUuid";
-  private String changeUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
-  private Integer changeCounter;
 
   public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
   private Integer currentState;
@@ -151,136 +130,6 @@ public class EventContestRolePlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
-  }
-
-
-  public EventContestRolePlain creationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-    return this;
-  }
-
-   /**
-   * Get creationTimestamp
-   * @return creationTimestamp
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public OffsetDateTime getCreationTimestamp() {
-    return creationTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-  }
-
-
-  public EventContestRolePlain creationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-    return this;
-  }
-
-   /**
-   * Get creationUserUuid
-   * @return creationUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCreationUserUuid() {
-    return creationUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-  }
-
-
-  public EventContestRolePlain changeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-    return this;
-  }
-
-   /**
-   * Get changeTimestamp
-   * @return changeTimestamp
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getChangeTimestamp() {
-    return changeTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-  }
-
-
-  public EventContestRolePlain changeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-    return this;
-  }
-
-   /**
-   * Get changeUserUuid
-   * @return changeUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangeUserUuid() {
-    return changeUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-  }
-
-
-  public EventContestRolePlain changeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-    return this;
-  }
-
-   /**
-   * Get changeCounter
-   * @return changeCounter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getChangeCounter() {
-    return changeCounter;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
   }
 
 
@@ -739,11 +588,6 @@ public class EventContestRolePlain {
     }
     EventContestRolePlain eventContestRolePlain = (EventContestRolePlain) o;
     return Objects.equals(this.uuid, eventContestRolePlain.uuid) &&
-        Objects.equals(this.creationTimestamp, eventContestRolePlain.creationTimestamp) &&
-        Objects.equals(this.creationUserUuid, eventContestRolePlain.creationUserUuid) &&
-        Objects.equals(this.changeTimestamp, eventContestRolePlain.changeTimestamp) &&
-        Objects.equals(this.changeUserUuid, eventContestRolePlain.changeUserUuid) &&
-        Objects.equals(this.changeCounter, eventContestRolePlain.changeCounter) &&
         Objects.equals(this.currentState, eventContestRolePlain.currentState) &&
         Objects.equals(this.kind, eventContestRolePlain.kind) &&
         Objects.equals(this.masterdataContactUuid, eventContestRolePlain.masterdataContactUuid) &&
@@ -765,7 +609,7 @@ public class EventContestRolePlain {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, kind, masterdataContactUuid, display, name1, name2, name3, titleAcademic, street, houseNumber, zipcode, city, country, phone, fax, cellPhone, email);
+    return Objects.hash(uuid, currentState, kind, masterdataContactUuid, display, name1, name2, name3, titleAcademic, street, houseNumber, zipcode, city, country, phone, fax, cellPhone, email);
   }
 
   @Override
@@ -773,11 +617,6 @@ public class EventContestRolePlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestRolePlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
-    sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
-    sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
-    sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
-    sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
     sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    masterdataContactUuid: ").append(toIndentedString(masterdataContactUuid)).append("\n");

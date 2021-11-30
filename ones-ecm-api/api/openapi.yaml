@@ -295,7 +295,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ResponcePageContests_Plain'
+                $ref: '#/components/schemas/ResponcePageContests'
           description: OK
       security:
       - basicAuth: []
@@ -323,15 +323,15 @@ paths:
       responses:
         "200":
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/EventContest'
+                $ref: '#/components/schemas/EventContest_Plain'
           description: OK
       security:
       - basicAuth: []
       tags:
       - event-contest-controller
-      x-accepts: '*/*'
+      x-accepts: application/json
   /rest/event/contest/result/current:
     get:
       operationId: getCurrentContestCompetitionsResults
@@ -842,29 +842,547 @@ components:
       - creationTimestamp
       - uuid
       type: object
-    EventContestCompetitionStage_Plain:
+    EventContest:
       example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        beginning: 2000-01-23T04:56:07.000+00:00
-        breaksTotalNumbers: 6
-        kind: kind
-        minutesMaximum: 6
-        penaltyPointsTimeUnderrun: 7
-        penaltyPointsAtPulseRateOf: 0
-        penaltyPointsPulseRateExceeded: 7
-        title: title
+        country: country
+        currentEvent: 5
+        paymentIban: paymentIban
         uuid: uuid
+        eventNaming: eventNaming
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        changeCounter: 1
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        state: state
+        initialEvent: initialEvent
+        contestantQuantityMax: 7
+        regionCommissionerDescription: regionCommissionerDescription
+        stateCommissionerUuid: stateCommissionerUuid
+        countryRegion: countryRegion
+        _roles:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          country: country
+          city: city
+          kind: kind
+          display: display
+          houseNumber: houseNumber
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 7
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          masterdataContactUuid: masterdataContactUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          titleAcademic: titleAcademic
+          currentState: 5
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          country: country
+          city: city
+          kind: kind
+          display: display
+          houseNumber: houseNumber
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 7
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          masterdataContactUuid: masterdataContactUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          titleAcademic: titleAcademic
+          currentState: 5
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+        _remarks:
+        - changeCounter: 7
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          sortid: 0
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 9
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 7
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          sortid: 0
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 9
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        ending: 2000-01-23T04:56:07.000+00:00
+        paymentBic: paymentBic
+        infoHelmetObligation: infoHelmetObligation
+        _locations:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          country: country
+          city: city
+          houseNumber: houseNumber
+          type: type
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 1
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          salutation: salutation
+          gpsCoordinate: gpsCoordinate
+          currentState: 4
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+          info: info
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          country: country
+          city: city
+          houseNumber: houseNumber
+          type: type
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 1
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          salutation: salutation
+          gpsCoordinate: gpsCoordinate
+          currentState: 4
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+          info: info
+        paymentPaypal: paymentPaypal
+        isCei: true
+        approvalDate: 2000-01-23T04:56:07.000+00:00
+        beginning: 2000-01-23T04:56:07.000+00:00
+        promoterEventUrl: promoterEventUrl
+        approvalInfo: approvalInfo
+        promoterEventTitle: promoterEventTitle
+        isInitialEvent: true
+        infoVaccinationObligation: infoVaccinationObligation
+        title: title
+        stateCommissionerDescription: stateCommissionerDescription
+        contestantQuantityMin: 2
+        paymentReason: paymentReason
+        initialEventUuid: initialEventUuid
+        requestDate: 2000-01-23T04:56:07.000+00:00
+        requestInfo: requestInfo
+        isLateRegistration: true
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        vddPortalUrl: vddPortalUrl
+        registrationClosing: 2000-01-23T04:56:07.000+00:00
+        isCountryChampionship: true
+        _fees:
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          remark: remark
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 3
+          unit: unit
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          deposit: 4.258773108174356
+          currency: currency
+          position: 0
+          currentState: 4
+          value: 6.628464275087742
+          key: key
+        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          remark: remark
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 3
+          unit: unit
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          deposit: 4.258773108174356
+          currency: currency
+          position: 0
+          currentState: 4
+          value: 6.628464275087742
+          key: key
+        regionCommissionerUuid: regionCommissionerUuid
+        paymentAccountHolder: paymentAccountHolder
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        changeCounter: 6
-        ending: 2000-01-23T04:56:07.000+00:00
-        minutesAllowed: 3
-        responsibleVeterinarianUuid: responsibleVeterinarianUuid
-        penaltyPointsTimeout: 3
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        breaksTotalMinutes: 0
-        currentState: 6
-        raiseLength: 5
+        _competitions:
+        - contestantAgeMax: 3
+          breaksTotalNumbers: 7
+          feeCurrency: feeCurrency
+          penaltyPointsPulseRateExceeded: 6
+          contestantLimitiationMin: 4
+          uuid: uuid
+          changeCounter: 9
+          vddQualificationLevel: vddQualificationLevel
+          descriptionRatingType: descriptionRatingType
+          minutesAllowed: 7
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
+          state: state
+          _registrations:
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            remark: remark
+            _horses:
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 4
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            paymentMethod: 7
+            displayHorse: displayHorse
+            currentState: 8
+            insurancePoliceId: insurancePoliceId
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            remark: remark
+            _horses:
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 4
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            paymentMethod: 7
+            displayHorse: displayHorse
+            currentState: 8
+            insurancePoliceId: insurancePoliceId
+          infoAwardCeremony: infoAwardCeremony
+          contestantAgeMin: 6
+          competitionUuidToReduce: competitionUuidToReduce
+          contestantQuantityMax: 1
+          contestantLimitiationMax: 5
+          kind: kind
+          descriptionRoute: descriptionRoute
+          descriptionTerrain: descriptionTerrain
+          descriptionControlchecks: descriptionControlchecks
+          ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
+          infoTransferRelease: infoTransferRelease
+          registrationFeeUnit: registrationFeeUnit
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 1
+          scoringMinimumTime: scoringMinimumTime
+          beginning: 2000-01-23T04:56:07.000+00:00
+          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
+          minutesMaximum: 4
+          penaltyPointsTimeUnderrun: 1
+          title: title
+          infoPreliminaryDiscussion: infoPreliminaryDiscussion
+          scoringPeakTime: scoringPeakTime
+          typeOfRouting: typeOfRouting
+          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
+          altitudeMeters: 9
+          startingFee: 6.683562403749608
+          contestantQuantityMin: 6
+          ratingType: 2
+          descriptionStart: descriptionStart
+          startingFeeUnit: startingFeeUnit
+          raiseLength: 2
+          horseAgeMax: 9
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
+          hoofProtection: hoofProtection
+          registrationFee: 9.369310271410669
+          competitionUuidToExtend: competitionUuidToExtend
+          _stages:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 6
+            kind: kind
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 7
+            penaltyPointsAtPulseRateOf: 0
+            penaltyPointsPulseRateExceeded: 7
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 6
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 3
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 3
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 0
+            currentState: 6
+            raiseLength: 5
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 6
+            kind: kind
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 7
+            penaltyPointsAtPulseRateOf: 0
+            penaltyPointsPulseRateExceeded: 7
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 6
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 3
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 3
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 0
+            currentState: 6
+            raiseLength: 5
+          penaltyPointsAtPulseRateOf: 1
+          infoFollowUpExamination: infoFollowUpExamination
+          horseAgeMin: 8
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          breaksTotalMinutes: 1
+          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
+          currentState: 3
+          infoPreliminaryExamination: infoPreliminaryExamination
+        - contestantAgeMax: 3
+          breaksTotalNumbers: 7
+          feeCurrency: feeCurrency
+          penaltyPointsPulseRateExceeded: 6
+          contestantLimitiationMin: 4
+          uuid: uuid
+          changeCounter: 9
+          vddQualificationLevel: vddQualificationLevel
+          descriptionRatingType: descriptionRatingType
+          minutesAllowed: 7
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
+          state: state
+          _registrations:
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            remark: remark
+            _horses:
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 4
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            paymentMethod: 7
+            displayHorse: displayHorse
+            currentState: 8
+            insurancePoliceId: insurancePoliceId
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            remark: remark
+            _horses:
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            - changeCounter: 3
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              masterdataHorseUuid: masterdataHorseUuid
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              description: description
+              currentState: 3
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 4
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            paymentMethod: 7
+            displayHorse: displayHorse
+            currentState: 8
+            insurancePoliceId: insurancePoliceId
+          infoAwardCeremony: infoAwardCeremony
+          contestantAgeMin: 6
+          competitionUuidToReduce: competitionUuidToReduce
+          contestantQuantityMax: 1
+          contestantLimitiationMax: 5
+          kind: kind
+          descriptionRoute: descriptionRoute
+          descriptionTerrain: descriptionTerrain
+          descriptionControlchecks: descriptionControlchecks
+          ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
+          infoTransferRelease: infoTransferRelease
+          registrationFeeUnit: registrationFeeUnit
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 1
+          scoringMinimumTime: scoringMinimumTime
+          beginning: 2000-01-23T04:56:07.000+00:00
+          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
+          minutesMaximum: 4
+          penaltyPointsTimeUnderrun: 1
+          title: title
+          infoPreliminaryDiscussion: infoPreliminaryDiscussion
+          scoringPeakTime: scoringPeakTime
+          typeOfRouting: typeOfRouting
+          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
+          altitudeMeters: 9
+          startingFee: 6.683562403749608
+          contestantQuantityMin: 6
+          ratingType: 2
+          descriptionStart: descriptionStart
+          startingFeeUnit: startingFeeUnit
+          raiseLength: 2
+          horseAgeMax: 9
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
+          hoofProtection: hoofProtection
+          registrationFee: 9.369310271410669
+          competitionUuidToExtend: competitionUuidToExtend
+          _stages:
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 6
+            kind: kind
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 7
+            penaltyPointsAtPulseRateOf: 0
+            penaltyPointsPulseRateExceeded: 7
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 6
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 3
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 3
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 0
+            currentState: 6
+            raiseLength: 5
+          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 6
+            kind: kind
+            minutesMaximum: 6
+            penaltyPointsTimeUnderrun: 7
+            penaltyPointsAtPulseRateOf: 0
+            penaltyPointsPulseRateExceeded: 7
+            title: title
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+            changeCounter: 6
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 3
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 3
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            breaksTotalMinutes: 0
+            currentState: 6
+            raiseLength: 5
+          penaltyPointsAtPulseRateOf: 1
+          infoFollowUpExamination: infoFollowUpExamination
+          horseAgeMin: 8
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          breaksTotalMinutes: 1
+          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
+          currentState: 3
+          infoPreliminaryExamination: infoPreliminaryExamination
+        promoterTenderingTitle: promoterTenderingTitle
+        isCard: true
+        currentState: 5
       properties:
         uuid:
           maxLength: 40
@@ -890,11 +1408,15 @@ components:
         currentState:
           format: int32
           type: integer
+        eventNaming:
+          maxLength: 255
+          minLength: 0
+          type: string
         title:
           maxLength: 255
           minLength: 0
           type: string
-        kind:
+        state:
           maxLength: 25
           minLength: 0
           type: string
@@ -904,42 +1426,156 @@ components:
         ending:
           format: date-time
           type: string
-        raiseLength:
-          format: int32
-          type: integer
-        minutesMaximum:
-          format: int32
-          type: integer
-        minutesAllowed:
-          format: int32
-          type: integer
-        penaltyPointsTimeout:
-          format: int32
-          type: integer
-        penaltyPointsTimeUnderrun:
-          format: int32
-          type: integer
-        penaltyPointsAtPulseRateOf:
-          format: int32
-          type: integer
-        penaltyPointsPulseRateExceeded:
-          format: int32
-          type: integer
-        breaksTotalNumbers:
-          format: int32
-          type: integer
-        breaksTotalMinutes:
-          format: int32
-          type: integer
-        responsibleVeterinarianUuid:
+        country:
+          maxLength: 50
+          minLength: 0
+          type: string
+        countryRegion:
+          maxLength: 50
+          minLength: 0
+          type: string
+        isCountryChampionship:
+          type: boolean
+        isCei:
+          type: boolean
+        isCard:
+          type: boolean
+        vddPortalUrl:
+          maxLength: 255
+          minLength: 0
+          type: string
+        vddPortalTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterTenderingUrl:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterTenderingTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterEventUrl:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterEventTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+        isInitialEvent:
+          type: boolean
+        initialEventUuid:
           maxLength: 40
           minLength: 0
           type: string
+        initialEvent:
+          maxLength: 50
+          minLength: 0
+          type: string
+        currentEvent:
+          format: int32
+          type: integer
+        requestDate:
+          format: date-time
+          type: string
+        requestInfo:
+          maxLength: 255
+          minLength: 0
+          type: string
+        approvalDate:
+          format: date-time
+          type: string
+        approvalInfo:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stateCommissionerUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        stateCommissionerDescription:
+          maxLength: 255
+          minLength: 0
+          type: string
+        regionCommissionerUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        regionCommissionerDescription:
+          maxLength: 255
+          minLength: 0
+          type: string
+        paymentAccountHolder:
+          maxLength: 100
+          minLength: 0
+          type: string
+        paymentIban:
+          maxLength: 50
+          minLength: 0
+          type: string
+        paymentBic:
+          maxLength: 50
+          minLength: 0
+          type: string
+        paymentPaypal:
+          maxLength: 255
+          minLength: 0
+          type: string
+        paymentReason:
+          maxLength: 255
+          minLength: 0
+          type: string
+        contestantQuantityMin:
+          format: int32
+          type: integer
+        contestantQuantityMax:
+          format: int32
+          type: integer
+        registrationClosing:
+          format: date-time
+          type: string
+        isLateRegistration:
+          type: boolean
+        infoVaccinationObligation:
+          maxLength: 255
+          minLength: 0
+          type: string
+        infoHelmetObligation:
+          maxLength: 255
+          minLength: 0
+          type: string
+        _competitions:
+          items:
+            $ref: '#/components/schemas/EventContestCompetition'
+          type: array
+          uniqueItems: true
+        _roles:
+          items:
+            $ref: '#/components/schemas/EventContestRole'
+          type: array
+          uniqueItems: true
+        _fees:
+          items:
+            $ref: '#/components/schemas/EventContestFee'
+          type: array
+          uniqueItems: true
+        _locations:
+          items:
+            $ref: '#/components/schemas/EventContestLocation'
+          type: array
+          uniqueItems: true
+        _remarks:
+          items:
+            $ref: '#/components/schemas/EventContestRemark'
+          type: array
+          uniqueItems: true
       required:
       - creationTimestamp
       - uuid
       type: object
-    EventContestCompetition_Plain:
+    EventContestCompetition:
       example:
         contestantAgeMax: 3
         breaksTotalNumbers: 7
@@ -955,7 +1591,75 @@ components:
         dateTransferRelease: 2000-01-23T04:56:07.000+00:00
         isCARD: true
         state: state
-        displayRegistertHorses: displayRegistertHorses
+        _registrations:
+        - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          displayContestant: displayContestant
+          registrationAccountUuid: registrationAccountUuid
+          contestantUuid: contestantUuid
+          remark: remark
+          _horses:
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            masterdataHorseUuid: masterdataHorseUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            description: description
+            currentState: 3
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            masterdataHorseUuid: masterdataHorseUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            description: description
+            currentState: 3
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 4
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          paymentMethod: 7
+          displayHorse: displayHorse
+          currentState: 8
+          insurancePoliceId: insurancePoliceId
+        - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          displayContestant: displayContestant
+          registrationAccountUuid: registrationAccountUuid
+          contestantUuid: contestantUuid
+          remark: remark
+          _horses:
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            masterdataHorseUuid: masterdataHorseUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            description: description
+            currentState: 3
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          - changeCounter: 3
+            changeTimestamp: 2000-01-23T04:56:07.000+00:00
+            masterdataHorseUuid: masterdataHorseUuid
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            description: description
+            currentState: 3
+            uuid: uuid
+            creationUserUuid: creationUserUuid
+            changeUserUuid: changeUserUuid
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+          changeCounter: 4
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          paymentMethod: 7
+          displayHorse: displayHorse
+          currentState: 8
+          insurancePoliceId: insurancePoliceId
         infoAwardCeremony: infoAwardCeremony
         contestantAgeMin: 6
         competitionUuidToReduce: competitionUuidToReduce
@@ -1245,18 +1949,266 @@ components:
           type: integer
         descriptionRatingType:
           type: string
-        displayRegistertHorses:
-          type: string
         _stages:
           items:
-            $ref: '#/components/schemas/EventContestCompetitionStage_Plain'
+            $ref: '#/components/schemas/EventContestCompetitionStage'
+          type: array
+          uniqueItems: true
+        _registrations:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionRegistration'
           type: array
           uniqueItems: true
       required:
       - creationTimestamp
       - uuid
       type: object
-    EventContestFee_Plain:
+    EventContestCompetitionRegistration:
+      example:
+        registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        displayContestant: displayContestant
+        registrationAccountUuid: registrationAccountUuid
+        contestantUuid: contestantUuid
+        remark: remark
+        _horses:
+        - changeCounter: 3
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 3
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 3
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          masterdataHorseUuid: masterdataHorseUuid
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 3
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 4
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        paymentMethod: 7
+        displayHorse: displayHorse
+        currentState: 8
+        insurancePoliceId: insurancePoliceId
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        registrationCompetitionDate:
+          format: date-time
+          type: string
+        registrationAccountUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        contestantUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        paymentMethod:
+          format: int32
+          type: integer
+        insurancePoliceId:
+          maxLength: 255
+          minLength: 0
+          type: string
+        remark:
+          maxLength: 255
+          minLength: 0
+          type: string
+        displayContestant:
+          maxLength: 255
+          minLength: 0
+          type: string
+        displayHorse:
+          maxLength: 255
+          minLength: 0
+          type: string
+        _horses:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionRegistrationHorse'
+          type: array
+          uniqueItems: true
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    EventContestCompetitionRegistrationHorse:
+      example:
+        changeCounter: 3
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        masterdataHorseUuid: masterdataHorseUuid
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        description: description
+        currentState: 3
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        masterdataHorseUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    EventContestCompetitionStage:
+      example:
+        changeTimestamp: 2000-01-23T04:56:07.000+00:00
+        beginning: 2000-01-23T04:56:07.000+00:00
+        breaksTotalNumbers: 6
+        kind: kind
+        minutesMaximum: 6
+        penaltyPointsTimeUnderrun: 7
+        penaltyPointsAtPulseRateOf: 0
+        penaltyPointsPulseRateExceeded: 7
+        title: title
+        uuid: uuid
+        creationUserUuid: creationUserUuid
+        changeUserUuid: changeUserUuid
+        changeCounter: 6
+        ending: 2000-01-23T04:56:07.000+00:00
+        minutesAllowed: 3
+        responsibleVeterinarianUuid: responsibleVeterinarianUuid
+        penaltyPointsTimeout: 3
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        breaksTotalMinutes: 0
+        currentState: 6
+        raiseLength: 5
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        creationUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeTimestamp:
+          format: date-time
+          type: string
+        changeUserUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        changeCounter:
+          format: int32
+          type: integer
+        currentState:
+          format: int32
+          type: integer
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+        kind:
+          maxLength: 25
+          minLength: 0
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        raiseLength:
+          format: int32
+          type: integer
+        minutesMaximum:
+          format: int32
+          type: integer
+        minutesAllowed:
+          format: int32
+          type: integer
+        penaltyPointsTimeout:
+          format: int32
+          type: integer
+        penaltyPointsTimeUnderrun:
+          format: int32
+          type: integer
+        penaltyPointsAtPulseRateOf:
+          format: int32
+          type: integer
+        penaltyPointsPulseRateExceeded:
+          format: int32
+          type: integer
+        breaksTotalNumbers:
+          format: int32
+          type: integer
+        breaksTotalMinutes:
+          format: int32
+          type: integer
+        responsibleVeterinarianUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+      required:
+      - creationTimestamp
+      - uuid
+      type: object
+    EventContestFee:
       example:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         kind: kind
@@ -1264,14 +2216,14 @@ components:
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        changeCounter: 7
+        changeCounter: 3
         unit: unit
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        deposit: 5.533258397034986
+        deposit: 4.258773108174356
         currency: currency
-        position: 3
-        currentState: 3
-        value: 7.04836565559697
+        position: 0
+        currentState: 4
+        value: 6.628464275087742
         key: key
       properties:
         uuid:
@@ -1329,7 +2281,7 @@ components:
       - creationTimestamp
       - uuid
       type: object
-    EventContestLocation_Plain:
+    EventContestLocation:
       example:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         country: country
@@ -1339,7 +2291,7 @@ components:
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        changeCounter: 3
+        changeCounter: 1
         zipcode: zipcode
         name3: name3
         phone: phone
@@ -1447,15 +2399,15 @@ components:
       - creationTimestamp
       - uuid
       type: object
-    EventContestRemark_Plain:
+    EventContestRemark:
       example:
-        changeCounter: 0
+        changeCounter: 7
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         kind: kind
-        sortid: 4
+        sortid: 0
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         description: description
-        currentState: 6
+        currentState: 9
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
@@ -1497,7 +2449,7 @@ components:
       - creationTimestamp
       - uuid
       type: object
-    EventContestRole_Plain:
+    EventContestRole:
       example:
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         country: country
@@ -1508,7 +2460,7 @@ components:
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
-        changeCounter: 4
+        changeCounter: 7
         zipcode: zipcode
         name3: name3
         phone: phone
@@ -1516,7 +2468,7 @@ components:
         masterdataContactUuid: masterdataContactUuid
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         titleAcademic: titleAcademic
-        currentState: 8
+        currentState: 5
         name2: name2
         fax: fax
         name1: name1
@@ -1615,596 +2567,7 @@ components:
       - creationTimestamp
       - uuid
       type: object
-    EventContest_Plain:
-      example:
-        country: country
-        currentEvent: 5
-        paymentIban: paymentIban
-        uuid: uuid
-        eventNaming: eventNaming
-        vddPortalTitle: vddPortalTitle
-        promoterTenderingUrl: promoterTenderingUrl
-        changeCounter: 1
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        state: state
-        initialEvent: initialEvent
-        contestantQuantityMax: 7
-        regionCommissionerDescription: regionCommissionerDescription
-        stateCommissionerUuid: stateCommissionerUuid
-        countryRegion: countryRegion
-        _roles:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          kind: kind
-          display: display
-          houseNumber: houseNumber
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 4
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          titleAcademic: titleAcademic
-          currentState: 8
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          kind: kind
-          display: display
-          houseNumber: houseNumber
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 4
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          titleAcademic: titleAcademic
-          currentState: 8
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-        _remarks:
-        - changeCounter: 0
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          sortid: 4
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          description: description
-          currentState: 6
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        - changeCounter: 0
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          sortid: 4
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          description: description
-          currentState: 6
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        ending: 2000-01-23T04:56:07.000+00:00
-        paymentBic: paymentBic
-        infoHelmetObligation: infoHelmetObligation
-        _locations:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          houseNumber: houseNumber
-          type: type
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 3
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          salutation: salutation
-          gpsCoordinate: gpsCoordinate
-          currentState: 4
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-          info: info
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          houseNumber: houseNumber
-          type: type
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 3
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          salutation: salutation
-          gpsCoordinate: gpsCoordinate
-          currentState: 4
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-          info: info
-        paymentPaypal: paymentPaypal
-        isCei: true
-        approvalDate: 2000-01-23T04:56:07.000+00:00
-        beginning: 2000-01-23T04:56:07.000+00:00
-        promoterEventUrl: promoterEventUrl
-        approvalInfo: approvalInfo
-        promoterEventTitle: promoterEventTitle
-        infoVaccinationObligation: infoVaccinationObligation
-        title: title
-        stateCommissionerDescription: stateCommissionerDescription
-        contestantQuantityMin: 2
-        paymentReason: paymentReason
-        requestDate: 2000-01-23T04:56:07.000+00:00
-        requestInfo: requestInfo
-        isLateRegistration: true
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        vddPortalUrl: vddPortalUrl
-        registrationClosing: 2000-01-23T04:56:07.000+00:00
-        isCountryChampionship: true
-        _fees:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          remark: remark
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 7
-          unit: unit
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          deposit: 5.533258397034986
-          currency: currency
-          position: 3
-          currentState: 3
-          value: 7.04836565559697
-          key: key
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          remark: remark
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 7
-          unit: unit
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          deposit: 5.533258397034986
-          currency: currency
-          position: 3
-          currentState: 3
-          value: 7.04836565559697
-          key: key
-        regionCommissionerUuid: regionCommissionerUuid
-        paymentAccountHolder: paymentAccountHolder
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        _competitions:
-        - contestantAgeMax: 3
-          breaksTotalNumbers: 7
-          feeCurrency: feeCurrency
-          penaltyPointsPulseRateExceeded: 6
-          contestantLimitiationMin: 4
-          uuid: uuid
-          changeCounter: 9
-          vddQualificationLevel: vddQualificationLevel
-          descriptionRatingType: descriptionRatingType
-          minutesAllowed: 7
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
-          isCARD: true
-          state: state
-          displayRegistertHorses: displayRegistertHorses
-          infoAwardCeremony: infoAwardCeremony
-          contestantAgeMin: 6
-          competitionUuidToReduce: competitionUuidToReduce
-          contestantQuantityMax: 1
-          contestantLimitiationMax: 5
-          kind: kind
-          descriptionRoute: descriptionRoute
-          descriptionTerrain: descriptionTerrain
-          descriptionControlchecks: descriptionControlchecks
-          ending: 2000-01-23T04:56:07.000+00:00
-          isMARKED: true
-          infoTransferRelease: infoTransferRelease
-          registrationFeeUnit: registrationFeeUnit
-          responsibleVeterinarianUuid: responsibleVeterinarianUuid
-          penaltyPointsTimeout: 1
-          scoringMinimumTime: scoringMinimumTime
-          beginning: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
-          minutesMaximum: 4
-          penaltyPointsTimeUnderrun: 1
-          title: title
-          infoPreliminaryDiscussion: infoPreliminaryDiscussion
-          scoringPeakTime: scoringPeakTime
-          typeOfRouting: typeOfRouting
-          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
-          altitudeMeters: 9
-          startingFee: 6.683562403749608
-          contestantQuantityMin: 6
-          ratingType: 2
-          descriptionStart: descriptionStart
-          startingFeeUnit: startingFeeUnit
-          raiseLength: 2
-          horseAgeMax: 9
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
-          hoofProtection: hoofProtection
-          registrationFee: 9.369310271410669
-          competitionUuidToExtend: competitionUuidToExtend
-          _stages:
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 6
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 7
-            penaltyPointsAtPulseRateOf: 0
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 6
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 3
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 3
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 0
-            currentState: 6
-            raiseLength: 5
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 6
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 7
-            penaltyPointsAtPulseRateOf: 0
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 6
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 3
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 3
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 0
-            currentState: 6
-            raiseLength: 5
-          penaltyPointsAtPulseRateOf: 1
-          infoFollowUpExamination: infoFollowUpExamination
-          horseAgeMin: 8
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          breaksTotalMinutes: 1
-          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
-          currentState: 3
-          infoPreliminaryExamination: infoPreliminaryExamination
-        - contestantAgeMax: 3
-          breaksTotalNumbers: 7
-          feeCurrency: feeCurrency
-          penaltyPointsPulseRateExceeded: 6
-          contestantLimitiationMin: 4
-          uuid: uuid
-          changeCounter: 9
-          vddQualificationLevel: vddQualificationLevel
-          descriptionRatingType: descriptionRatingType
-          minutesAllowed: 7
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
-          isCARD: true
-          state: state
-          displayRegistertHorses: displayRegistertHorses
-          infoAwardCeremony: infoAwardCeremony
-          contestantAgeMin: 6
-          competitionUuidToReduce: competitionUuidToReduce
-          contestantQuantityMax: 1
-          contestantLimitiationMax: 5
-          kind: kind
-          descriptionRoute: descriptionRoute
-          descriptionTerrain: descriptionTerrain
-          descriptionControlchecks: descriptionControlchecks
-          ending: 2000-01-23T04:56:07.000+00:00
-          isMARKED: true
-          infoTransferRelease: infoTransferRelease
-          registrationFeeUnit: registrationFeeUnit
-          responsibleVeterinarianUuid: responsibleVeterinarianUuid
-          penaltyPointsTimeout: 1
-          scoringMinimumTime: scoringMinimumTime
-          beginning: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
-          minutesMaximum: 4
-          penaltyPointsTimeUnderrun: 1
-          title: title
-          infoPreliminaryDiscussion: infoPreliminaryDiscussion
-          scoringPeakTime: scoringPeakTime
-          typeOfRouting: typeOfRouting
-          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
-          altitudeMeters: 9
-          startingFee: 6.683562403749608
-          contestantQuantityMin: 6
-          ratingType: 2
-          descriptionStart: descriptionStart
-          startingFeeUnit: startingFeeUnit
-          raiseLength: 2
-          horseAgeMax: 9
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
-          hoofProtection: hoofProtection
-          registrationFee: 9.369310271410669
-          competitionUuidToExtend: competitionUuidToExtend
-          _stages:
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 6
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 7
-            penaltyPointsAtPulseRateOf: 0
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 6
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 3
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 3
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 0
-            currentState: 6
-            raiseLength: 5
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 6
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 7
-            penaltyPointsAtPulseRateOf: 0
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 6
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 3
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 3
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 0
-            currentState: 6
-            raiseLength: 5
-          penaltyPointsAtPulseRateOf: 1
-          infoFollowUpExamination: infoFollowUpExamination
-          horseAgeMin: 8
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          breaksTotalMinutes: 1
-          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
-          currentState: 3
-          infoPreliminaryExamination: infoPreliminaryExamination
-        promoterTenderingTitle: promoterTenderingTitle
-        isCard: true
-        currentState: 5
-      properties:
-        uuid:
-          maxLength: 40
-          minLength: 1
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        currentState:
-          format: int32
-          type: integer
-        eventNaming:
-          maxLength: 255
-          minLength: 0
-          type: string
-        title:
-          maxLength: 255
-          minLength: 0
-          type: string
-        state:
-          maxLength: 25
-          minLength: 0
-          type: string
-        beginning:
-          format: date-time
-          type: string
-        ending:
-          format: date-time
-          type: string
-        country:
-          maxLength: 50
-          minLength: 0
-          type: string
-        countryRegion:
-          maxLength: 50
-          minLength: 0
-          type: string
-        isCountryChampionship:
-          type: boolean
-        isCei:
-          type: boolean
-        isCard:
-          type: boolean
-        vddPortalUrl:
-          maxLength: 255
-          minLength: 0
-          type: string
-        vddPortalTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterTenderingUrl:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterTenderingTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterEventUrl:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterEventTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-        initialEvent:
-          maxLength: 50
-          minLength: 0
-          type: string
-        currentEvent:
-          format: int32
-          type: integer
-        requestDate:
-          format: date-time
-          type: string
-        requestInfo:
-          maxLength: 255
-          minLength: 0
-          type: string
-        approvalDate:
-          format: date-time
-          type: string
-        approvalInfo:
-          maxLength: 255
-          minLength: 0
-          type: string
-        stateCommissionerUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        stateCommissionerDescription:
-          maxLength: 255
-          minLength: 0
-          type: string
-        regionCommissionerUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        regionCommissionerDescription:
-          maxLength: 255
-          minLength: 0
-          type: string
-        paymentAccountHolder:
-          maxLength: 100
-          minLength: 0
-          type: string
-        paymentIban:
-          maxLength: 50
-          minLength: 0
-          type: string
-        paymentBic:
-          maxLength: 50
-          minLength: 0
-          type: string
-        paymentPaypal:
-          maxLength: 255
-          minLength: 0
-          type: string
-        paymentReason:
-          maxLength: 255
-          minLength: 0
-          type: string
-        contestantQuantityMin:
-          format: int32
-          type: integer
-        contestantQuantityMax:
-          format: int32
-          type: integer
-        registrationClosing:
-          format: date-time
-          type: string
-        isLateRegistration:
-          type: boolean
-        infoVaccinationObligation:
-          maxLength: 255
-          minLength: 0
-          type: string
-        infoHelmetObligation:
-          maxLength: 255
-          minLength: 0
-          type: string
-        _competitions:
-          items:
-            $ref: '#/components/schemas/EventContestCompetition_Plain'
-          type: array
-          uniqueItems: true
-        _roles:
-          items:
-            $ref: '#/components/schemas/EventContestRole_Plain'
-          type: array
-          uniqueItems: true
-        _fees:
-          items:
-            $ref: '#/components/schemas/EventContestFee_Plain'
-          type: array
-          uniqueItems: true
-        _locations:
-          items:
-            $ref: '#/components/schemas/EventContestLocation_Plain'
-          type: array
-          uniqueItems: true
-        _remarks:
-          items:
-            $ref: '#/components/schemas/EventContestRemark_Plain'
-          type: array
-          uniqueItems: true
-      required:
-      - creationTimestamp
-      - uuid
-      type: object
-    ResponcePageContests_Plain:
+    ResponcePageContests:
       example:
         lastPage: 0
         data:
@@ -2233,7 +2596,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 4
+            changeCounter: 7
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2241,7 +2604,7 @@ components:
             masterdataContactUuid: masterdataContactUuid
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             titleAcademic: titleAcademic
-            currentState: 8
+            currentState: 5
             name2: name2
             fax: fax
             name1: name1
@@ -2256,7 +2619,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 4
+            changeCounter: 7
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2264,30 +2627,30 @@ components:
             masterdataContactUuid: masterdataContactUuid
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             titleAcademic: titleAcademic
-            currentState: 8
+            currentState: 5
             name2: name2
             fax: fax
             name1: name1
             cellPhone: cellPhone
             email: email
           _remarks:
-          - changeCounter: 0
+          - changeCounter: 7
             changeTimestamp: 2000-01-23T04:56:07.000+00:00
             kind: kind
-            sortid: 4
+            sortid: 0
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             description: description
-            currentState: 6
+            currentState: 9
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-          - changeCounter: 0
+          - changeCounter: 7
             changeTimestamp: 2000-01-23T04:56:07.000+00:00
             kind: kind
-            sortid: 4
+            sortid: 0
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             description: description
-            currentState: 6
+            currentState: 9
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
@@ -2303,7 +2666,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 3
+            changeCounter: 1
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2326,7 +2689,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 3
+            changeCounter: 1
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2348,11 +2711,13 @@ components:
           promoterEventUrl: promoterEventUrl
           approvalInfo: approvalInfo
           promoterEventTitle: promoterEventTitle
+          isInitialEvent: true
           infoVaccinationObligation: infoVaccinationObligation
           title: title
           stateCommissionerDescription: stateCommissionerDescription
           contestantQuantityMin: 2
           paymentReason: paymentReason
+          initialEventUuid: initialEventUuid
           requestDate: 2000-01-23T04:56:07.000+00:00
           requestInfo: requestInfo
           isLateRegistration: true
@@ -2367,14 +2732,14 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 7
+            changeCounter: 3
             unit: unit
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            deposit: 5.533258397034986
+            deposit: 4.258773108174356
             currency: currency
-            position: 3
-            currentState: 3
-            value: 7.04836565559697
+            position: 0
+            currentState: 4
+            value: 6.628464275087742
             key: key
           - changeTimestamp: 2000-01-23T04:56:07.000+00:00
             kind: kind
@@ -2382,14 +2747,14 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 7
+            changeCounter: 3
             unit: unit
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            deposit: 5.533258397034986
+            deposit: 4.258773108174356
             currency: currency
-            position: 3
-            currentState: 3
-            value: 7.04836565559697
+            position: 0
+            currentState: 4
+            value: 6.628464275087742
             key: key
           regionCommissionerUuid: regionCommissionerUuid
           paymentAccountHolder: paymentAccountHolder
@@ -2410,7 +2775,75 @@ components:
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
             isCARD: true
             state: state
-            displayRegistertHorses: displayRegistertHorses
+            _registrations:
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -2515,7 +2948,75 @@ components:
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
             isCARD: true
             state: state
-            displayRegistertHorses: displayRegistertHorses
+            _registrations:
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -2634,7 +3135,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 4
+            changeCounter: 7
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2642,7 +3143,7 @@ components:
             masterdataContactUuid: masterdataContactUuid
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             titleAcademic: titleAcademic
-            currentState: 8
+            currentState: 5
             name2: name2
             fax: fax
             name1: name1
@@ -2657,7 +3158,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 4
+            changeCounter: 7
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2665,30 +3166,30 @@ components:
             masterdataContactUuid: masterdataContactUuid
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             titleAcademic: titleAcademic
-            currentState: 8
+            currentState: 5
             name2: name2
             fax: fax
             name1: name1
             cellPhone: cellPhone
             email: email
           _remarks:
-          - changeCounter: 0
+          - changeCounter: 7
             changeTimestamp: 2000-01-23T04:56:07.000+00:00
             kind: kind
-            sortid: 4
+            sortid: 0
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             description: description
-            currentState: 6
+            currentState: 9
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-          - changeCounter: 0
+          - changeCounter: 7
             changeTimestamp: 2000-01-23T04:56:07.000+00:00
             kind: kind
-            sortid: 4
+            sortid: 0
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
             description: description
-            currentState: 6
+            currentState: 9
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
@@ -2704,7 +3205,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 3
+            changeCounter: 1
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2727,7 +3228,7 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 3
+            changeCounter: 1
             zipcode: zipcode
             name3: name3
             phone: phone
@@ -2749,11 +3250,13 @@ components:
           promoterEventUrl: promoterEventUrl
           approvalInfo: approvalInfo
           promoterEventTitle: promoterEventTitle
+          isInitialEvent: true
           infoVaccinationObligation: infoVaccinationObligation
           title: title
           stateCommissionerDescription: stateCommissionerDescription
           contestantQuantityMin: 2
           paymentReason: paymentReason
+          initialEventUuid: initialEventUuid
           requestDate: 2000-01-23T04:56:07.000+00:00
           requestInfo: requestInfo
           isLateRegistration: true
@@ -2768,14 +3271,14 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 7
+            changeCounter: 3
             unit: unit
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            deposit: 5.533258397034986
+            deposit: 4.258773108174356
             currency: currency
-            position: 3
-            currentState: 3
-            value: 7.04836565559697
+            position: 0
+            currentState: 4
+            value: 6.628464275087742
             key: key
           - changeTimestamp: 2000-01-23T04:56:07.000+00:00
             kind: kind
@@ -2783,14 +3286,14 @@ components:
             uuid: uuid
             creationUserUuid: creationUserUuid
             changeUserUuid: changeUserUuid
-            changeCounter: 7
+            changeCounter: 3
             unit: unit
             creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            deposit: 5.533258397034986
+            deposit: 4.258773108174356
             currency: currency
-            position: 3
-            currentState: 3
-            value: 7.04836565559697
+            position: 0
+            currentState: 4
+            value: 6.628464275087742
             key: key
           regionCommissionerUuid: regionCommissionerUuid
           paymentAccountHolder: paymentAccountHolder
@@ -2811,7 +3314,75 @@ components:
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
             isCARD: true
             state: state
-            displayRegistertHorses: displayRegistertHorses
+            _registrations:
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -2916,7 +3487,75 @@ components:
             dateTransferRelease: 2000-01-23T04:56:07.000+00:00
             isCARD: true
             state: state
-            displayRegistertHorses: displayRegistertHorses
+            _registrations:
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
+            - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+              changeTimestamp: 2000-01-23T04:56:07.000+00:00
+              displayContestant: displayContestant
+              registrationAccountUuid: registrationAccountUuid
+              contestantUuid: contestantUuid
+              remark: remark
+              _horses:
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              - changeCounter: 3
+                changeTimestamp: 2000-01-23T04:56:07.000+00:00
+                masterdataHorseUuid: masterdataHorseUuid
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                description: description
+                currentState: 3
+                uuid: uuid
+                creationUserUuid: creationUserUuid
+                changeUserUuid: changeUserUuid
+              uuid: uuid
+              creationUserUuid: creationUserUuid
+              changeUserUuid: changeUserUuid
+              changeCounter: 4
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              paymentMethod: 7
+              displayHorse: displayHorse
+              currentState: 8
+              insurancePoliceId: insurancePoliceId
             infoAwardCeremony: infoAwardCeremony
             contestantAgeMin: 6
             competitionUuidToReduce: competitionUuidToReduce
@@ -3020,733 +3659,118 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/EventContest_Plain'
+            $ref: '#/components/schemas/EventContest'
           type: array
       type: object
-    EventContest:
+    EventContestCompetitionRegistrationHorse_Plain:
       example:
-        country: country
-        currentEvent: 1
-        paymentIban: paymentIban
+        masterdataHorseUuid: masterdataHorseUuid
+        description: description
+        currentState: 3
         uuid: uuid
-        eventNaming: eventNaming
-        vddPortalTitle: vddPortalTitle
-        promoterTenderingUrl: promoterTenderingUrl
-        changeCounter: 0
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        state: state
-        initialEvent: initialEvent
-        contestantQuantityMax: 5
-        regionCommissionerDescription: regionCommissionerDescription
-        stateCommissionerUuid: stateCommissionerUuid
-        countryRegion: countryRegion
-        _roles:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          kind: kind
-          display: display
-          houseNumber: houseNumber
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 6
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          titleAcademic: titleAcademic
-          currentState: 0
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          kind: kind
-          display: display
-          houseNumber: houseNumber
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 6
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          masterdataContactUuid: masterdataContactUuid
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          titleAcademic: titleAcademic
-          currentState: 0
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-        _remarks:
-        - changeCounter: 3
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          sortid: 0
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          description: description
-          currentState: 4
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        - changeCounter: 3
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          sortid: 0
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          description: description
-          currentState: 4
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-        ending: 2000-01-23T04:56:07.000+00:00
-        paymentBic: paymentBic
-        infoHelmetObligation: infoHelmetObligation
-        _locations:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          houseNumber: houseNumber
-          type: type
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 7
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          salutation: salutation
-          gpsCoordinate: gpsCoordinate
-          currentState: 5
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-          info: info
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          country: country
-          city: city
-          houseNumber: houseNumber
-          type: type
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 7
-          zipcode: zipcode
-          name3: name3
-          phone: phone
-          street: street
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          salutation: salutation
-          gpsCoordinate: gpsCoordinate
-          currentState: 5
-          name2: name2
-          fax: fax
-          name1: name1
-          cellPhone: cellPhone
-          email: email
-          info: info
-        paymentPaypal: paymentPaypal
-        isCei: true
-        approvalDate: 2000-01-23T04:56:07.000+00:00
-        beginning: 2000-01-23T04:56:07.000+00:00
-        promoterEventUrl: promoterEventUrl
-        approvalInfo: approvalInfo
-        promoterEventTitle: promoterEventTitle
-        infoVaccinationObligation: infoVaccinationObligation
-        title: title
-        stateCommissionerDescription: stateCommissionerDescription
-        contestantQuantityMin: 5
-        paymentReason: paymentReason
-        requestDate: 2000-01-23T04:56:07.000+00:00
-        requestInfo: requestInfo
-        isLateRegistration: true
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        vddPortalUrl: vddPortalUrl
-        registrationClosing: 2000-01-23T04:56:07.000+00:00
-        isCountryChampionship: true
-        _fees:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          remark: remark
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 4
-          unit: unit
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          deposit: 3.0576100241049344
-          currency: currency
-          position: 7
-          currentState: 8
-          value: 3.0205796992916243
-          key: key
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          kind: kind
-          remark: remark
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 4
-          unit: unit
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          deposit: 3.0576100241049344
-          currency: currency
-          position: 7
-          currentState: 8
-          value: 3.0205796992916243
-          key: key
-        regionCommissionerUuid: regionCommissionerUuid
-        paymentAccountHolder: paymentAccountHolder
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        _competitions:
-        - contestantAgeMax: 9
-          breaksTotalNumbers: 1
-          feeCurrency: feeCurrency
-          penaltyPointsPulseRateExceeded: 1
-          contestantLimitiationMin: 7
-          uuid: uuid
-          changeCounter: 2
-          vddQualificationLevel: vddQualificationLevel
-          descriptionRatingType: descriptionRatingType
-          minutesAllowed: 2
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
-          isCARD: true
-          state: state
-          displayRegistertHorses: displayRegistertHorses
-          infoAwardCeremony: infoAwardCeremony
-          contestantAgeMin: 8
-          competitionUuidToReduce: competitionUuidToReduce
-          contestantQuantityMax: 3
-          contestantLimitiationMax: 1
-          kind: kind
-          descriptionRoute: descriptionRoute
-          descriptionTerrain: descriptionTerrain
-          descriptionControlchecks: descriptionControlchecks
-          ending: 2000-01-23T04:56:07.000+00:00
-          isMARKED: true
-          infoTransferRelease: infoTransferRelease
-          registrationFeeUnit: registrationFeeUnit
-          responsibleVeterinarianUuid: responsibleVeterinarianUuid
-          penaltyPointsTimeout: 4
-          scoringMinimumTime: scoringMinimumTime
-          beginning: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
-          minutesMaximum: 3
-          penaltyPointsTimeUnderrun: 7
-          title: title
-          infoPreliminaryDiscussion: infoPreliminaryDiscussion
-          scoringPeakTime: scoringPeakTime
-          typeOfRouting: typeOfRouting
-          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
-          altitudeMeters: 4
-          startingFee: 9.965781217890562
-          contestantQuantityMin: 6
-          ratingType: 6
-          descriptionStart: descriptionStart
-          startingFeeUnit: startingFeeUnit
-          raiseLength: 9
-          horseAgeMax: 6
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
-          hoofProtection: hoofProtection
-          registrationFee: 5.025004791520295
-          competitionUuidToExtend: competitionUuidToExtend
-          _stages:
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 0
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 3
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 1
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 5
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 6
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 7
-            currentState: 2
-            raiseLength: 6
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 0
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 3
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 1
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 5
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 6
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 7
-            currentState: 2
-            raiseLength: 6
-          penaltyPointsAtPulseRateOf: 1
-          infoFollowUpExamination: infoFollowUpExamination
-          horseAgeMin: 9
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          breaksTotalMinutes: 6
-          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
-          currentState: 7
-          infoPreliminaryExamination: infoPreliminaryExamination
-        - contestantAgeMax: 9
-          breaksTotalNumbers: 1
-          feeCurrency: feeCurrency
-          penaltyPointsPulseRateExceeded: 1
-          contestantLimitiationMin: 7
-          uuid: uuid
-          changeCounter: 2
-          vddQualificationLevel: vddQualificationLevel
-          descriptionRatingType: descriptionRatingType
-          minutesAllowed: 2
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
-          isCARD: true
-          state: state
-          displayRegistertHorses: displayRegistertHorses
-          infoAwardCeremony: infoAwardCeremony
-          contestantAgeMin: 8
-          competitionUuidToReduce: competitionUuidToReduce
-          contestantQuantityMax: 3
-          contestantLimitiationMax: 1
-          kind: kind
-          descriptionRoute: descriptionRoute
-          descriptionTerrain: descriptionTerrain
-          descriptionControlchecks: descriptionControlchecks
-          ending: 2000-01-23T04:56:07.000+00:00
-          isMARKED: true
-          infoTransferRelease: infoTransferRelease
-          registrationFeeUnit: registrationFeeUnit
-          responsibleVeterinarianUuid: responsibleVeterinarianUuid
-          penaltyPointsTimeout: 4
-          scoringMinimumTime: scoringMinimumTime
-          beginning: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
-          minutesMaximum: 3
-          penaltyPointsTimeUnderrun: 7
-          title: title
-          infoPreliminaryDiscussion: infoPreliminaryDiscussion
-          scoringPeakTime: scoringPeakTime
-          typeOfRouting: typeOfRouting
-          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
-          altitudeMeters: 4
-          startingFee: 9.965781217890562
-          contestantQuantityMin: 6
-          ratingType: 6
-          descriptionStart: descriptionStart
-          startingFeeUnit: startingFeeUnit
-          raiseLength: 9
-          horseAgeMax: 6
-          changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
-          hoofProtection: hoofProtection
-          registrationFee: 5.025004791520295
-          competitionUuidToExtend: competitionUuidToExtend
-          _stages:
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 0
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 3
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 1
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 5
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 6
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 7
-            currentState: 2
-            raiseLength: 6
-          - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-            beginning: 2000-01-23T04:56:07.000+00:00
-            breaksTotalNumbers: 0
-            kind: kind
-            minutesMaximum: 6
-            penaltyPointsTimeUnderrun: 3
-            penaltyPointsAtPulseRateOf: 3
-            penaltyPointsPulseRateExceeded: 7
-            title: title
-            uuid: uuid
-            creationUserUuid: creationUserUuid
-            changeUserUuid: changeUserUuid
-            changeCounter: 1
-            ending: 2000-01-23T04:56:07.000+00:00
-            minutesAllowed: 5
-            responsibleVeterinarianUuid: responsibleVeterinarianUuid
-            penaltyPointsTimeout: 6
-            creationTimestamp: 2000-01-23T04:56:07.000+00:00
-            breaksTotalMinutes: 7
-            currentState: 2
-            raiseLength: 6
-          penaltyPointsAtPulseRateOf: 1
-          infoFollowUpExamination: infoFollowUpExamination
-          horseAgeMin: 9
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          breaksTotalMinutes: 6
-          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
-          currentState: 7
-          infoPreliminaryExamination: infoPreliminaryExamination
-        promoterTenderingTitle: promoterTenderingTitle
-        isCard: true
-        currentState: 6
       properties:
         uuid:
           maxLength: 40
           minLength: 1
           type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
         currentState:
           format: int32
           type: integer
-        eventNaming:
-          maxLength: 255
-          minLength: 0
-          type: string
-        title:
-          maxLength: 255
-          minLength: 0
-          type: string
-        state:
-          maxLength: 25
-          minLength: 0
-          type: string
-        beginning:
-          format: date-time
-          type: string
-        ending:
-          format: date-time
-          type: string
-        country:
-          maxLength: 50
-          minLength: 0
-          type: string
-        countryRegion:
-          maxLength: 50
-          minLength: 0
-          type: string
-        isCountryChampionship:
-          type: boolean
-        isCei:
-          type: boolean
-        isCard:
-          type: boolean
-        vddPortalUrl:
-          maxLength: 255
-          minLength: 0
-          type: string
-        vddPortalTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterTenderingUrl:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterTenderingTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterEventUrl:
-          maxLength: 255
-          minLength: 0
-          type: string
-        promoterEventTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-        initialEvent:
-          maxLength: 50
-          minLength: 0
-          type: string
-        currentEvent:
-          format: int32
-          type: integer
-        requestDate:
-          format: date-time
-          type: string
-        requestInfo:
-          maxLength: 255
-          minLength: 0
-          type: string
-        approvalDate:
-          format: date-time
-          type: string
-        approvalInfo:
-          maxLength: 255
-          minLength: 0
-          type: string
-        stateCommissionerUuid:
+        masterdataHorseUuid:
           maxLength: 40
           minLength: 0
           type: string
-        stateCommissionerDescription:
-          maxLength: 255
+        description:
+          maxLength: 50
           minLength: 0
           type: string
-        regionCommissionerUuid:
+      required:
+      - uuid
+      type: object
+    EventContestCompetitionRegistration_Plain:
+      example:
+        registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+        displayContestant: displayContestant
+        registrationAccountUuid: registrationAccountUuid
+        contestantUuid: contestantUuid
+        paymentMethod: 6
+        remark: remark
+        displayHorse: displayHorse
+        _horses:
+        - masterdataHorseUuid: masterdataHorseUuid
+          description: description
+          currentState: 3
+          uuid: uuid
+        - masterdataHorseUuid: masterdataHorseUuid
+          description: description
+          currentState: 3
+          uuid: uuid
+        uuid: uuid
+        insurancePoliceId: insurancePoliceId
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        registrationCompetitionDate:
+          format: date-time
+          type: string
+        registrationAccountUuid:
           maxLength: 40
           minLength: 0
           type: string
-        regionCommissionerDescription:
-          maxLength: 255
+        contestantUuid:
+          maxLength: 40
           minLength: 0
           type: string
-        paymentAccountHolder:
-          maxLength: 100
-          minLength: 0
-          type: string
-        paymentIban:
-          maxLength: 50
-          minLength: 0
-          type: string
-        paymentBic:
-          maxLength: 50
-          minLength: 0
-          type: string
-        paymentPaypal:
-          maxLength: 255
-          minLength: 0
-          type: string
-        paymentReason:
-          maxLength: 255
-          minLength: 0
-          type: string
-        contestantQuantityMin:
+        paymentMethod:
           format: int32
           type: integer
-        contestantQuantityMax:
-          format: int32
-          type: integer
-        registrationClosing:
-          format: date-time
-          type: string
-        isLateRegistration:
-          type: boolean
-        infoVaccinationObligation:
+        insurancePoliceId:
           maxLength: 255
           minLength: 0
           type: string
-        infoHelmetObligation:
+        remark:
           maxLength: 255
           minLength: 0
           type: string
-        _competitions:
+        displayContestant:
+          maxLength: 255
+          minLength: 0
+          type: string
+        displayHorse:
+          maxLength: 255
+          minLength: 0
+          type: string
+        _horses:
           items:
-            $ref: '#/components/schemas/EventContestCompetition'
-          type: array
-          uniqueItems: true
-        _roles:
-          items:
-            $ref: '#/components/schemas/EventContestRole'
-          type: array
-          uniqueItems: true
-        _fees:
-          items:
-            $ref: '#/components/schemas/EventContestFee'
-          type: array
-          uniqueItems: true
-        _locations:
-          items:
-            $ref: '#/components/schemas/EventContestLocation'
-          type: array
-          uniqueItems: true
-        _remarks:
-          items:
-            $ref: '#/components/schemas/EventContestRemark'
+            $ref: '#/components/schemas/EventContestCompetitionRegistrationHorse_Plain'
           type: array
           uniqueItems: true
       required:
-      - creationTimestamp
       - uuid
       type: object
-    EventContestCompetition:
+    EventContestCompetitionStage_Plain:
       example:
-        contestantAgeMax: 9
-        breaksTotalNumbers: 1
-        feeCurrency: feeCurrency
-        penaltyPointsPulseRateExceeded: 1
-        contestantLimitiationMin: 7
-        uuid: uuid
-        changeCounter: 2
-        vddQualificationLevel: vddQualificationLevel
-        descriptionRatingType: descriptionRatingType
-        minutesAllowed: 2
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        dateTransferRelease: 2000-01-23T04:56:07.000+00:00
-        isCARD: true
-        state: state
-        displayRegistertHorses: displayRegistertHorses
-        infoAwardCeremony: infoAwardCeremony
-        contestantAgeMin: 8
-        competitionUuidToReduce: competitionUuidToReduce
-        contestantQuantityMax: 3
-        contestantLimitiationMax: 1
-        kind: kind
-        descriptionRoute: descriptionRoute
-        descriptionTerrain: descriptionTerrain
-        descriptionControlchecks: descriptionControlchecks
-        ending: 2000-01-23T04:56:07.000+00:00
-        isMARKED: true
-        infoTransferRelease: infoTransferRelease
-        registrationFeeUnit: registrationFeeUnit
-        responsibleVeterinarianUuid: responsibleVeterinarianUuid
-        penaltyPointsTimeout: 4
-        scoringMinimumTime: scoringMinimumTime
         beginning: 2000-01-23T04:56:07.000+00:00
-        datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
-        minutesMaximum: 3
-        penaltyPointsTimeUnderrun: 7
+        breaksTotalNumbers: 8
+        kind: kind
+        minutesMaximum: 1
+        penaltyPointsTimeUnderrun: 9
+        penaltyPointsAtPulseRateOf: 9
+        penaltyPointsPulseRateExceeded: 6
         title: title
-        infoPreliminaryDiscussion: infoPreliminaryDiscussion
-        scoringPeakTime: scoringPeakTime
-        typeOfRouting: typeOfRouting
-        dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
-        altitudeMeters: 4
-        startingFee: 9.965781217890562
-        contestantQuantityMin: 6
-        ratingType: 6
-        descriptionStart: descriptionStart
-        startingFeeUnit: startingFeeUnit
-        raiseLength: 9
-        horseAgeMax: 6
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
-        hoofProtection: hoofProtection
-        registrationFee: 5.025004791520295
-        competitionUuidToExtend: competitionUuidToExtend
-        _stages:
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          beginning: 2000-01-23T04:56:07.000+00:00
-          breaksTotalNumbers: 0
-          kind: kind
-          minutesMaximum: 6
-          penaltyPointsTimeUnderrun: 3
-          penaltyPointsAtPulseRateOf: 3
-          penaltyPointsPulseRateExceeded: 7
-          title: title
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 1
-          ending: 2000-01-23T04:56:07.000+00:00
-          minutesAllowed: 5
-          responsibleVeterinarianUuid: responsibleVeterinarianUuid
-          penaltyPointsTimeout: 6
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          breaksTotalMinutes: 7
-          currentState: 2
-          raiseLength: 6
-        - changeTimestamp: 2000-01-23T04:56:07.000+00:00
-          beginning: 2000-01-23T04:56:07.000+00:00
-          breaksTotalNumbers: 0
-          kind: kind
-          minutesMaximum: 6
-          penaltyPointsTimeUnderrun: 3
-          penaltyPointsAtPulseRateOf: 3
-          penaltyPointsPulseRateExceeded: 7
-          title: title
-          uuid: uuid
-          creationUserUuid: creationUserUuid
-          changeUserUuid: changeUserUuid
-          changeCounter: 1
-          ending: 2000-01-23T04:56:07.000+00:00
-          minutesAllowed: 5
-          responsibleVeterinarianUuid: responsibleVeterinarianUuid
-          penaltyPointsTimeout: 6
-          creationTimestamp: 2000-01-23T04:56:07.000+00:00
-          breaksTotalMinutes: 7
-          currentState: 2
-          raiseLength: 6
-        penaltyPointsAtPulseRateOf: 1
-        infoFollowUpExamination: infoFollowUpExamination
-        horseAgeMin: 9
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        breaksTotalMinutes: 6
-        dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
-        currentState: 7
-        infoPreliminaryExamination: infoPreliminaryExamination
+        uuid: uuid
+        ending: 2000-01-23T04:56:07.000+00:00
+        minutesAllowed: 4
+        responsibleVeterinarianUuid: responsibleVeterinarianUuid
+        penaltyPointsTimeout: 5
+        breaksTotalMinutes: 9
+        raiseLength: 7
       properties:
         uuid:
           maxLength: 40
           minLength: 1
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        currentState:
-          format: int32
-          type: integer
-        state:
-          maxLength: 25
-          minLength: 0
           type: string
         title:
           maxLength: 255
@@ -3793,14 +3817,149 @@ components:
           maxLength: 40
           minLength: 0
           type: string
-        competitionUuidToExtend:
+      required:
+      - uuid
+      type: object
+    EventContestCompetition_Plain:
+      example:
+        contestantAgeMax: 1
+        scoringMinimumTime: scoringMinimumTime
+        beginning: 2000-01-23T04:56:07.000+00:00
+        datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
+        feeCurrency: feeCurrency
+        contestantLimitiationMin: 5
+        title: title
+        uuid: uuid
+        infoPreliminaryDiscussion: infoPreliminaryDiscussion
+        vddQualificationLevel: vddQualificationLevel
+        scoringPeakTime: scoringPeakTime
+        typeOfRouting: typeOfRouting
+        descriptionRatingType: descriptionRatingType
+        dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
+        altitudeMeters: 7
+        startingFee: 3.616076749251911
+        contestantQuantityMin: 1
+        ratingType: 6
+        descriptionStart: descriptionStart
+        dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+        isCARD: true
+        state: state
+        _registrations:
+        - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+          displayContestant: displayContestant
+          registrationAccountUuid: registrationAccountUuid
+          contestantUuid: contestantUuid
+          paymentMethod: 6
+          remark: remark
+          displayHorse: displayHorse
+          _horses:
+          - masterdataHorseUuid: masterdataHorseUuid
+            description: description
+            currentState: 3
+            uuid: uuid
+          - masterdataHorseUuid: masterdataHorseUuid
+            description: description
+            currentState: 3
+            uuid: uuid
+          uuid: uuid
+          insurancePoliceId: insurancePoliceId
+        - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+          displayContestant: displayContestant
+          registrationAccountUuid: registrationAccountUuid
+          contestantUuid: contestantUuid
+          paymentMethod: 6
+          remark: remark
+          displayHorse: displayHorse
+          _horses:
+          - masterdataHorseUuid: masterdataHorseUuid
+            description: description
+            currentState: 3
+            uuid: uuid
+          - masterdataHorseUuid: masterdataHorseUuid
+            description: description
+            currentState: 3
+            uuid: uuid
+          uuid: uuid
+          insurancePoliceId: insurancePoliceId
+        startingFeeUnit: startingFeeUnit
+        raiseLength: 5
+        infoAwardCeremony: infoAwardCeremony
+        horseAgeMax: 4
+        contestantAgeMin: 7
+        datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
+        contestantQuantityMax: 1
+        hoofProtection: hoofProtection
+        contestantLimitiationMax: 2
+        registrationFee: 9.301444243932576
+        kind: kind
+        _stages:
+        - beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 8
+          kind: kind
+          minutesMaximum: 1
+          penaltyPointsTimeUnderrun: 9
+          penaltyPointsAtPulseRateOf: 9
+          penaltyPointsPulseRateExceeded: 6
+          title: title
+          uuid: uuid
+          ending: 2000-01-23T04:56:07.000+00:00
+          minutesAllowed: 4
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 5
+          breaksTotalMinutes: 9
+          raiseLength: 7
+        - beginning: 2000-01-23T04:56:07.000+00:00
+          breaksTotalNumbers: 8
+          kind: kind
+          minutesMaximum: 1
+          penaltyPointsTimeUnderrun: 9
+          penaltyPointsAtPulseRateOf: 9
+          penaltyPointsPulseRateExceeded: 6
+          title: title
+          uuid: uuid
+          ending: 2000-01-23T04:56:07.000+00:00
+          minutesAllowed: 4
+          responsibleVeterinarianUuid: responsibleVeterinarianUuid
+          penaltyPointsTimeout: 5
+          breaksTotalMinutes: 9
+          raiseLength: 7
+        infoFollowUpExamination: infoFollowUpExamination
+        horseAgeMin: 2
+        descriptionRoute: descriptionRoute
+        descriptionTerrain: descriptionTerrain
+        descriptionControlchecks: descriptionControlchecks
+        ending: 2000-01-23T04:56:07.000+00:00
+        isMARKED: true
+        infoTransferRelease: infoTransferRelease
+        registrationFeeUnit: registrationFeeUnit
+        dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
+        infoPreliminaryExamination: infoPreliminaryExamination
+      properties:
+        uuid:
           maxLength: 40
+          minLength: 1
+          type: string
+        state:
+          maxLength: 25
           minLength: 0
           type: string
-        competitionUuidToReduce:
-          maxLength: 40
+        title:
+          maxLength: 255
           minLength: 0
           type: string
+        kind:
+          maxLength: 25
+          minLength: 0
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        raiseLength:
+          format: int32
+          type: integer
         contestantLimitiationMin:
           format: int32
           type: integer
@@ -3918,153 +4077,36 @@ components:
           type: integer
         descriptionRatingType:
           type: string
-        displayRegistertHorses:
-          type: string
         _stages:
           items:
-            $ref: '#/components/schemas/EventContestCompetitionStage'
+            $ref: '#/components/schemas/EventContestCompetitionStage_Plain'
+          type: array
+          uniqueItems: true
+        _registrations:
+          items:
+            $ref: '#/components/schemas/EventContestCompetitionRegistration_Plain'
           type: array
           uniqueItems: true
       required:
-      - creationTimestamp
       - uuid
       type: object
-    EventContestCompetitionStage:
+    EventContestFee_Plain:
       example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        beginning: 2000-01-23T04:56:07.000+00:00
-        breaksTotalNumbers: 0
-        kind: kind
-        minutesMaximum: 6
-        penaltyPointsTimeUnderrun: 3
-        penaltyPointsAtPulseRateOf: 3
-        penaltyPointsPulseRateExceeded: 7
-        title: title
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        changeCounter: 1
-        ending: 2000-01-23T04:56:07.000+00:00
-        minutesAllowed: 5
-        responsibleVeterinarianUuid: responsibleVeterinarianUuid
-        penaltyPointsTimeout: 6
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        breaksTotalMinutes: 7
-        currentState: 2
-        raiseLength: 6
-      properties:
-        uuid:
-          maxLength: 40
-          minLength: 1
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        currentState:
-          format: int32
-          type: integer
-        title:
-          maxLength: 255
-          minLength: 0
-          type: string
-        kind:
-          maxLength: 25
-          minLength: 0
-          type: string
-        beginning:
-          format: date-time
-          type: string
-        ending:
-          format: date-time
-          type: string
-        raiseLength:
-          format: int32
-          type: integer
-        minutesMaximum:
-          format: int32
-          type: integer
-        minutesAllowed:
-          format: int32
-          type: integer
-        penaltyPointsTimeout:
-          format: int32
-          type: integer
-        penaltyPointsTimeUnderrun:
-          format: int32
-          type: integer
-        penaltyPointsAtPulseRateOf:
-          format: int32
-          type: integer
-        penaltyPointsPulseRateExceeded:
-          format: int32
-          type: integer
-        breaksTotalNumbers:
-          format: int32
-          type: integer
-        breaksTotalMinutes:
-          format: int32
-          type: integer
-        responsibleVeterinarianUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-      required:
-      - creationTimestamp
-      - uuid
-      type: object
-    EventContestFee:
-      example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
-        kind: kind
-        remark: remark
-        uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        changeCounter: 4
         unit: unit
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        deposit: 3.0576100241049344
+        kind: kind
+        deposit: 6.878052220127876
         currency: currency
-        position: 7
-        currentState: 8
-        value: 3.0205796992916243
+        remark: remark
+        position: 2
+        currentState: 1
+        uuid: uuid
+        value: 6.778324963048013
         key: key
       properties:
         uuid:
           maxLength: 40
           minLength: 1
           type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
         currentState:
           format: int32
           type: integer
@@ -4096,28 +4138,19 @@ components:
         remark:
           type: string
       required:
-      - creationTimestamp
       - uuid
       type: object
-    EventContestLocation:
+    EventContestLocation_Plain:
       example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
         country: country
         city: city
         houseNumber: houseNumber
-        type: type
         uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        changeCounter: 7
         zipcode: zipcode
         name3: name3
         phone: phone
         street: street
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
-        salutation: salutation
         gpsCoordinate: gpsCoordinate
-        currentState: 5
         name2: name2
         fax: fax
         name1: name1
@@ -4128,34 +4161,6 @@ components:
         uuid:
           maxLength: 40
           minLength: 1
-          type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
-        currentState:
-          format: int32
-          type: integer
-        type:
-          maxLength: 50
-          minLength: 0
-          type: string
-        salutation:
-          maxLength: 255
-          minLength: 0
           type: string
         name1:
           maxLength: 255
@@ -4214,18 +4219,17 @@ components:
           minLength: 0
           type: string
       required:
-      - creationTimestamp
       - uuid
       type: object
-    EventContestRemark:
+    EventContestRemark_Plain:
       example:
-        changeCounter: 3
+        changeCounter: 5
         changeTimestamp: 2000-01-23T04:56:07.000+00:00
         kind: kind
-        sortid: 0
+        sortid: 3
         creationTimestamp: 2000-01-23T04:56:07.000+00:00
         description: description
-        currentState: 4
+        currentState: 6
         uuid: uuid
         creationUserUuid: creationUserUuid
         changeUserUuid: changeUserUuid
@@ -4267,26 +4271,21 @@ components:
       - creationTimestamp
       - uuid
       type: object
-    EventContestRole:
+    EventContestRole_Plain:
       example:
-        changeTimestamp: 2000-01-23T04:56:07.000+00:00
         country: country
         city: city
         kind: kind
         display: display
         houseNumber: houseNumber
         uuid: uuid
-        creationUserUuid: creationUserUuid
-        changeUserUuid: changeUserUuid
-        changeCounter: 6
         zipcode: zipcode
         name3: name3
         phone: phone
         street: street
         masterdataContactUuid: masterdataContactUuid
-        creationTimestamp: 2000-01-23T04:56:07.000+00:00
         titleAcademic: titleAcademic
-        currentState: 0
+        currentState: 6
         name2: name2
         fax: fax
         name1: name1
@@ -4297,23 +4296,6 @@ components:
           maxLength: 40
           minLength: 1
           type: string
-        creationTimestamp:
-          format: date-time
-          type: string
-        creationUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeTimestamp:
-          format: date-time
-          type: string
-        changeUserUuid:
-          maxLength: 40
-          minLength: 0
-          type: string
-        changeCounter:
-          format: int32
-          type: integer
         currentState:
           format: int32
           type: integer
@@ -4382,7 +4364,516 @@ components:
           minLength: 0
           type: string
       required:
-      - creationTimestamp
+      - uuid
+      type: object
+    EventContest_Plain:
+      example:
+        country: country
+        isCei: true
+        currentEvent: 0
+        beginning: 2000-01-23T04:56:07.000+00:00
+        promoterEventUrl: promoterEventUrl
+        paymentIban: paymentIban
+        promoterEventTitle: promoterEventTitle
+        isInitialEvent: true
+        infoVaccinationObligation: infoVaccinationObligation
+        title: title
+        uuid: uuid
+        eventNaming: eventNaming
+        vddPortalTitle: vddPortalTitle
+        promoterTenderingUrl: promoterTenderingUrl
+        contestantQuantityMin: 6
+        paymentReason: paymentReason
+        initialEventUuid: initialEventUuid
+        state: state
+        initialEvent: initialEvent
+        isLateRegistration: true
+        contestantQuantityMax: 1
+        vddPortalUrl: vddPortalUrl
+        registrationClosing: 2000-01-23T04:56:07.000+00:00
+        isCountryChampionship: true
+        _fees:
+        - unit: unit
+          kind: kind
+          deposit: 6.878052220127876
+          currency: currency
+          remark: remark
+          position: 2
+          currentState: 1
+          uuid: uuid
+          value: 6.778324963048013
+          key: key
+        - unit: unit
+          kind: kind
+          deposit: 6.878052220127876
+          currency: currency
+          remark: remark
+          position: 2
+          currentState: 1
+          uuid: uuid
+          value: 6.778324963048013
+          key: key
+        countryRegion: countryRegion
+        _roles:
+        - country: country
+          city: city
+          kind: kind
+          display: display
+          houseNumber: houseNumber
+          uuid: uuid
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          masterdataContactUuid: masterdataContactUuid
+          titleAcademic: titleAcademic
+          currentState: 6
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+        - country: country
+          city: city
+          kind: kind
+          display: display
+          houseNumber: houseNumber
+          uuid: uuid
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          masterdataContactUuid: masterdataContactUuid
+          titleAcademic: titleAcademic
+          currentState: 6
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+        _remarks:
+        - changeCounter: 5
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          sortid: 3
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 6
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        - changeCounter: 5
+          changeTimestamp: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          sortid: 3
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          description: description
+          currentState: 6
+          uuid: uuid
+          creationUserUuid: creationUserUuid
+          changeUserUuid: changeUserUuid
+        paymentAccountHolder: paymentAccountHolder
+        _competitions:
+        - contestantAgeMax: 1
+          scoringMinimumTime: scoringMinimumTime
+          beginning: 2000-01-23T04:56:07.000+00:00
+          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
+          feeCurrency: feeCurrency
+          contestantLimitiationMin: 5
+          title: title
+          uuid: uuid
+          infoPreliminaryDiscussion: infoPreliminaryDiscussion
+          vddQualificationLevel: vddQualificationLevel
+          scoringPeakTime: scoringPeakTime
+          typeOfRouting: typeOfRouting
+          descriptionRatingType: descriptionRatingType
+          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
+          altitudeMeters: 7
+          startingFee: 3.616076749251911
+          contestantQuantityMin: 1
+          ratingType: 6
+          descriptionStart: descriptionStart
+          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
+          state: state
+          _registrations:
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            paymentMethod: 6
+            remark: remark
+            displayHorse: displayHorse
+            _horses:
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            uuid: uuid
+            insurancePoliceId: insurancePoliceId
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            paymentMethod: 6
+            remark: remark
+            displayHorse: displayHorse
+            _horses:
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            uuid: uuid
+            insurancePoliceId: insurancePoliceId
+          startingFeeUnit: startingFeeUnit
+          raiseLength: 5
+          infoAwardCeremony: infoAwardCeremony
+          horseAgeMax: 4
+          contestantAgeMin: 7
+          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
+          contestantQuantityMax: 1
+          hoofProtection: hoofProtection
+          contestantLimitiationMax: 2
+          registrationFee: 9.301444243932576
+          kind: kind
+          _stages:
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 8
+            kind: kind
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 9
+            penaltyPointsAtPulseRateOf: 9
+            penaltyPointsPulseRateExceeded: 6
+            title: title
+            uuid: uuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 4
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 5
+            breaksTotalMinutes: 9
+            raiseLength: 7
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 8
+            kind: kind
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 9
+            penaltyPointsAtPulseRateOf: 9
+            penaltyPointsPulseRateExceeded: 6
+            title: title
+            uuid: uuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 4
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 5
+            breaksTotalMinutes: 9
+            raiseLength: 7
+          infoFollowUpExamination: infoFollowUpExamination
+          horseAgeMin: 2
+          descriptionRoute: descriptionRoute
+          descriptionTerrain: descriptionTerrain
+          descriptionControlchecks: descriptionControlchecks
+          ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
+          infoTransferRelease: infoTransferRelease
+          registrationFeeUnit: registrationFeeUnit
+          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
+          infoPreliminaryExamination: infoPreliminaryExamination
+        - contestantAgeMax: 1
+          scoringMinimumTime: scoringMinimumTime
+          beginning: 2000-01-23T04:56:07.000+00:00
+          datePreliminaryDiscussion: 2000-01-23T04:56:07.000+00:00
+          feeCurrency: feeCurrency
+          contestantLimitiationMin: 5
+          title: title
+          uuid: uuid
+          infoPreliminaryDiscussion: infoPreliminaryDiscussion
+          vddQualificationLevel: vddQualificationLevel
+          scoringPeakTime: scoringPeakTime
+          typeOfRouting: typeOfRouting
+          descriptionRatingType: descriptionRatingType
+          dateFollowUpExamination: 2000-01-23T04:56:07.000+00:00
+          altitudeMeters: 7
+          startingFee: 3.616076749251911
+          contestantQuantityMin: 1
+          ratingType: 6
+          descriptionStart: descriptionStart
+          dateTransferRelease: 2000-01-23T04:56:07.000+00:00
+          isCARD: true
+          state: state
+          _registrations:
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            paymentMethod: 6
+            remark: remark
+            displayHorse: displayHorse
+            _horses:
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            uuid: uuid
+            insurancePoliceId: insurancePoliceId
+          - registrationCompetitionDate: 2000-01-23T04:56:07.000+00:00
+            displayContestant: displayContestant
+            registrationAccountUuid: registrationAccountUuid
+            contestantUuid: contestantUuid
+            paymentMethod: 6
+            remark: remark
+            displayHorse: displayHorse
+            _horses:
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            - masterdataHorseUuid: masterdataHorseUuid
+              description: description
+              currentState: 3
+              uuid: uuid
+            uuid: uuid
+            insurancePoliceId: insurancePoliceId
+          startingFeeUnit: startingFeeUnit
+          raiseLength: 5
+          infoAwardCeremony: infoAwardCeremony
+          horseAgeMax: 4
+          contestantAgeMin: 7
+          datePreliminaryExamination: 2000-01-23T04:56:07.000+00:00
+          contestantQuantityMax: 1
+          hoofProtection: hoofProtection
+          contestantLimitiationMax: 2
+          registrationFee: 9.301444243932576
+          kind: kind
+          _stages:
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 8
+            kind: kind
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 9
+            penaltyPointsAtPulseRateOf: 9
+            penaltyPointsPulseRateExceeded: 6
+            title: title
+            uuid: uuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 4
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 5
+            breaksTotalMinutes: 9
+            raiseLength: 7
+          - beginning: 2000-01-23T04:56:07.000+00:00
+            breaksTotalNumbers: 8
+            kind: kind
+            minutesMaximum: 1
+            penaltyPointsTimeUnderrun: 9
+            penaltyPointsAtPulseRateOf: 9
+            penaltyPointsPulseRateExceeded: 6
+            title: title
+            uuid: uuid
+            ending: 2000-01-23T04:56:07.000+00:00
+            minutesAllowed: 4
+            responsibleVeterinarianUuid: responsibleVeterinarianUuid
+            penaltyPointsTimeout: 5
+            breaksTotalMinutes: 9
+            raiseLength: 7
+          infoFollowUpExamination: infoFollowUpExamination
+          horseAgeMin: 2
+          descriptionRoute: descriptionRoute
+          descriptionTerrain: descriptionTerrain
+          descriptionControlchecks: descriptionControlchecks
+          ending: 2000-01-23T04:56:07.000+00:00
+          isMARKED: true
+          infoTransferRelease: infoTransferRelease
+          registrationFeeUnit: registrationFeeUnit
+          dateAwardCeremony: 2000-01-23T04:56:07.000+00:00
+          infoPreliminaryExamination: infoPreliminaryExamination
+        ending: 2000-01-23T04:56:07.000+00:00
+        paymentBic: paymentBic
+        promoterTenderingTitle: promoterTenderingTitle
+        infoHelmetObligation: infoHelmetObligation
+        _locations:
+        - country: country
+          city: city
+          houseNumber: houseNumber
+          uuid: uuid
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          gpsCoordinate: gpsCoordinate
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+          info: info
+        - country: country
+          city: city
+          houseNumber: houseNumber
+          uuid: uuid
+          zipcode: zipcode
+          name3: name3
+          phone: phone
+          street: street
+          gpsCoordinate: gpsCoordinate
+          name2: name2
+          fax: fax
+          name1: name1
+          cellPhone: cellPhone
+          email: email
+          info: info
+        isCard: true
+        paymentPaypal: paymentPaypal
+      properties:
+        uuid:
+          maxLength: 40
+          minLength: 1
+          type: string
+        eventNaming:
+          maxLength: 255
+          minLength: 0
+          type: string
+        title:
+          maxLength: 255
+          minLength: 0
+          type: string
+        state:
+          maxLength: 25
+          minLength: 0
+          type: string
+        beginning:
+          format: date-time
+          type: string
+        ending:
+          format: date-time
+          type: string
+        country:
+          maxLength: 50
+          minLength: 0
+          type: string
+        countryRegion:
+          maxLength: 50
+          minLength: 0
+          type: string
+        isCountryChampionship:
+          type: boolean
+        isCei:
+          type: boolean
+        isCard:
+          type: boolean
+        vddPortalUrl:
+          maxLength: 255
+          minLength: 0
+          type: string
+        vddPortalTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterTenderingUrl:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterTenderingTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterEventUrl:
+          maxLength: 255
+          minLength: 0
+          type: string
+        promoterEventTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+        isInitialEvent:
+          type: boolean
+        initialEventUuid:
+          maxLength: 40
+          minLength: 0
+          type: string
+        initialEvent:
+          maxLength: 50
+          minLength: 0
+          type: string
+        currentEvent:
+          format: int32
+          type: integer
+        paymentAccountHolder:
+          maxLength: 100
+          minLength: 0
+          type: string
+        paymentIban:
+          maxLength: 50
+          minLength: 0
+          type: string
+        paymentBic:
+          maxLength: 50
+          minLength: 0
+          type: string
+        paymentPaypal:
+          maxLength: 255
+          minLength: 0
+          type: string
+        paymentReason:
+          maxLength: 255
+          minLength: 0
+          type: string
+        contestantQuantityMin:
+          format: int32
+          type: integer
+        contestantQuantityMax:
+          format: int32
+          type: integer
+        registrationClosing:
+          format: date-time
+          type: string
+        isLateRegistration:
+          type: boolean
+        infoVaccinationObligation:
+          maxLength: 255
+          minLength: 0
+          type: string
+        infoHelmetObligation:
+          maxLength: 255
+          minLength: 0
+          type: string
+        _competitions:
+          items:
+            $ref: '#/components/schemas/EventContestCompetition_Plain'
+          type: array
+          uniqueItems: true
+        _roles:
+          items:
+            $ref: '#/components/schemas/EventContestRole_Plain'
+          type: array
+          uniqueItems: true
+        _fees:
+          items:
+            $ref: '#/components/schemas/EventContestFee_Plain'
+          type: array
+          uniqueItems: true
+        _locations:
+          items:
+            $ref: '#/components/schemas/EventContestLocation_Plain'
+          type: array
+          uniqueItems: true
+        _remarks:
+          items:
+            $ref: '#/components/schemas/EventContestRemark_Plain'
+          type: array
+          uniqueItems: true
+      required:
       - uuid
       type: object
     EventContestCompetitionResult:
@@ -4560,6 +5051,15 @@ components:
       type: object
     registeredAccount:
       example:
+        imposedLocks:
+        - lockedFrom: 2000-01-23
+          lockedUntil: 2000-01-23
+          reasonCode: 1
+          uuid: uuid
+        - lockedFrom: 2000-01-23
+          lockedUntil: 2000-01-23
+          reasonCode: 1
+          uuid: uuid
         nativeLanguage: nativeLanguage
         uuid: uuid
         loginIdentification: loginIdentification
@@ -4603,7 +5103,7 @@ components:
             birthname: birthname
             salutation: salutation
             email: email
-          gender: gender
+          gender: M
           color: color
           fnPassportId: fnPassportId
           feiPassportId: feiPassportId
@@ -4643,7 +5143,7 @@ components:
             birthname: birthname
             salutation: salutation
             email: email
-          gender: gender
+          gender: M
           color: color
           fnPassportId: fnPassportId
           feiPassportId: feiPassportId
@@ -4683,6 +5183,30 @@ components:
             $ref: '#/components/schemas/registeredHorse'
           type: array
           uniqueItems: true
+        imposedLocks:
+          items:
+            $ref: '#/components/schemas/registeredAccountImposedLocks'
+          type: array
+          uniqueItems: true
+      type: object
+    registeredAccountImposedLocks:
+      example:
+        lockedFrom: 2000-01-23
+        lockedUntil: 2000-01-23
+        reasonCode: 1
+        uuid: uuid
+      properties:
+        uuid:
+          type: string
+        lockedFrom:
+          format: date
+          type: string
+        lockedUntil:
+          format: date
+          type: string
+        reasonCode:
+          format: int32
+          type: integer
       type: object
     registeredHorse:
       example:
@@ -4702,7 +5226,7 @@ components:
           birthname: birthname
           salutation: salutation
           email: email
-        gender: gender
+        gender: M
         color: color
         fnPassportId: fnPassportId
         feiPassportId: feiPassportId
@@ -4754,7 +5278,11 @@ components:
           minLength: 0
           type: string
         gender:
-          maxLength: 255
+          enum:
+          - M
+          - S
+          - G
+          maxLength: 1
           minLength: 0
           type: string
         color:

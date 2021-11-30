@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistration;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionStage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -97,10 +98,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetition.JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS,
   EventContestCompetition.JSON_PROPERTY_RATING_TYPE,
   EventContestCompetition.JSON_PROPERTY_DESCRIPTION_RATING_TYPE,
-  EventContestCompetition.JSON_PROPERTY_DISPLAY_REGISTERT_HORSES,
-  EventContestCompetition.JSON_PROPERTY_STAGES
+  EventContestCompetition.JSON_PROPERTY_STAGES,
+  EventContestCompetition.JSON_PROPERTY_REGISTRATIONS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestCompetition {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -285,11 +286,11 @@ public class EventContestCompetition {
   public static final String JSON_PROPERTY_DESCRIPTION_RATING_TYPE = "descriptionRatingType";
   private String descriptionRatingType;
 
-  public static final String JSON_PROPERTY_DISPLAY_REGISTERT_HORSES = "displayRegistertHorses";
-  private String displayRegistertHorses;
-
   public static final String JSON_PROPERTY_STAGES = "_stages";
   private Set<EventContestCompetitionStage> stages = null;
+
+  public static final String JSON_PROPERTY_REGISTRATIONS = "_registrations";
+  private Set<EventContestCompetitionRegistration> registrations = null;
 
 
   public EventContestCompetition uuid(String uuid) {
@@ -1878,32 +1879,6 @@ public class EventContestCompetition {
   }
 
 
-  public EventContestCompetition displayRegistertHorses(String displayRegistertHorses) {
-    this.displayRegistertHorses = displayRegistertHorses;
-    return this;
-  }
-
-   /**
-   * Get displayRegistertHorses
-   * @return displayRegistertHorses
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDisplayRegistertHorses() {
-    return displayRegistertHorses;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisplayRegistertHorses(String displayRegistertHorses) {
-    this.displayRegistertHorses = displayRegistertHorses;
-  }
-
-
   public EventContestCompetition stages(Set<EventContestCompetitionStage> stages) {
     this.stages = stages;
     return this;
@@ -1935,6 +1910,40 @@ public class EventContestCompetition {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStages(Set<EventContestCompetitionStage> stages) {
     this.stages = stages;
+  }
+
+
+  public EventContestCompetition registrations(Set<EventContestCompetitionRegistration> registrations) {
+    this.registrations = registrations;
+    return this;
+  }
+
+  public EventContestCompetition addRegistrationsItem(EventContestCompetitionRegistration registrationsItem) {
+    if (this.registrations == null) {
+      this.registrations = new LinkedHashSet<>();
+    }
+    this.registrations.add(registrationsItem);
+    return this;
+  }
+
+   /**
+   * Get registrations
+   * @return registrations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestCompetitionRegistration> getRegistrations() {
+    return registrations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrations(Set<EventContestCompetitionRegistration> registrations) {
+    this.registrations = registrations;
   }
 
 
@@ -2011,13 +2020,13 @@ public class EventContestCompetition {
         Objects.equals(this.descriptionControlchecks, eventContestCompetition.descriptionControlchecks) &&
         Objects.equals(this.ratingType, eventContestCompetition.ratingType) &&
         Objects.equals(this.descriptionRatingType, eventContestCompetition.descriptionRatingType) &&
-        Objects.equals(this.displayRegistertHorses, eventContestCompetition.displayRegistertHorses) &&
-        Objects.equals(this.stages, eventContestCompetition.stages);
+        Objects.equals(this.stages, eventContestCompetition.stages) &&
+        Objects.equals(this.registrations, eventContestCompetition.registrations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, state, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, isCARD, isMARKED, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, displayRegistertHorses, stages);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, state, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, isCARD, isMARKED, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, stages, registrations);
   }
 
   @Override
@@ -2085,8 +2094,8 @@ public class EventContestCompetition {
     sb.append("    descriptionControlchecks: ").append(toIndentedString(descriptionControlchecks)).append("\n");
     sb.append("    ratingType: ").append(toIndentedString(ratingType)).append("\n");
     sb.append("    descriptionRatingType: ").append(toIndentedString(descriptionRatingType)).append("\n");
-    sb.append("    displayRegistertHorses: ").append(toIndentedString(displayRegistertHorses)).append("\n");
     sb.append("    stages: ").append(toIndentedString(stages)).append("\n");
+    sb.append("    registrations: ").append(toIndentedString(registrations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

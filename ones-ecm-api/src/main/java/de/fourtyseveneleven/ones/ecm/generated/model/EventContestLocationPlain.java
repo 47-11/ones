@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,14 +32,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestLocationPlain.JSON_PROPERTY_UUID,
-  EventContestLocationPlain.JSON_PROPERTY_CREATION_TIMESTAMP,
-  EventContestLocationPlain.JSON_PROPERTY_CREATION_USER_UUID,
-  EventContestLocationPlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
-  EventContestLocationPlain.JSON_PROPERTY_CHANGE_USER_UUID,
-  EventContestLocationPlain.JSON_PROPERTY_CHANGE_COUNTER,
-  EventContestLocationPlain.JSON_PROPERTY_CURRENT_STATE,
-  EventContestLocationPlain.JSON_PROPERTY_TYPE,
-  EventContestLocationPlain.JSON_PROPERTY_SALUTATION,
   EventContestLocationPlain.JSON_PROPERTY_NAME1,
   EventContestLocationPlain.JSON_PROPERTY_NAME2,
   EventContestLocationPlain.JSON_PROPERTY_NAME3,
@@ -56,34 +47,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestLocationPlain.JSON_PROPERTY_GPS_COORDINATE,
   EventContestLocationPlain.JSON_PROPERTY_INFO
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestLocationPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
-
-  public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
-  private OffsetDateTime creationTimestamp;
-
-  public static final String JSON_PROPERTY_CREATION_USER_UUID = "creationUserUuid";
-  private String creationUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_TIMESTAMP = "changeTimestamp";
-  private OffsetDateTime changeTimestamp;
-
-  public static final String JSON_PROPERTY_CHANGE_USER_UUID = "changeUserUuid";
-  private String changeUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
-  private Integer changeCounter;
-
-  public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
-  private Integer currentState;
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
-
-  public static final String JSON_PROPERTY_SALUTATION = "salutation";
-  private String salutation;
 
   public static final String JSON_PROPERTY_NAME1 = "name1";
   private String name1;
@@ -151,214 +118,6 @@ public class EventContestLocationPlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
-  }
-
-
-  public EventContestLocationPlain creationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-    return this;
-  }
-
-   /**
-   * Get creationTimestamp
-   * @return creationTimestamp
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public OffsetDateTime getCreationTimestamp() {
-    return creationTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-  }
-
-
-  public EventContestLocationPlain creationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-    return this;
-  }
-
-   /**
-   * Get creationUserUuid
-   * @return creationUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCreationUserUuid() {
-    return creationUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-  }
-
-
-  public EventContestLocationPlain changeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-    return this;
-  }
-
-   /**
-   * Get changeTimestamp
-   * @return changeTimestamp
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getChangeTimestamp() {
-    return changeTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-  }
-
-
-  public EventContestLocationPlain changeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-    return this;
-  }
-
-   /**
-   * Get changeUserUuid
-   * @return changeUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangeUserUuid() {
-    return changeUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-  }
-
-
-  public EventContestLocationPlain changeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-    return this;
-  }
-
-   /**
-   * Get changeCounter
-   * @return changeCounter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getChangeCounter() {
-    return changeCounter;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-  }
-
-
-  public EventContestLocationPlain currentState(Integer currentState) {
-    this.currentState = currentState;
-    return this;
-  }
-
-   /**
-   * Get currentState
-   * @return currentState
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getCurrentState() {
-    return currentState;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentState(Integer currentState) {
-    this.currentState = currentState;
-  }
-
-
-  public EventContestLocationPlain type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  public EventContestLocationPlain salutation(String salutation) {
-    this.salutation = salutation;
-    return this;
-  }
-
-   /**
-   * Get salutation
-   * @return salutation
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SALUTATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSalutation() {
-    return salutation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SALUTATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSalutation(String salutation) {
-    this.salutation = salutation;
   }
 
 
@@ -739,14 +498,6 @@ public class EventContestLocationPlain {
     }
     EventContestLocationPlain eventContestLocationPlain = (EventContestLocationPlain) o;
     return Objects.equals(this.uuid, eventContestLocationPlain.uuid) &&
-        Objects.equals(this.creationTimestamp, eventContestLocationPlain.creationTimestamp) &&
-        Objects.equals(this.creationUserUuid, eventContestLocationPlain.creationUserUuid) &&
-        Objects.equals(this.changeTimestamp, eventContestLocationPlain.changeTimestamp) &&
-        Objects.equals(this.changeUserUuid, eventContestLocationPlain.changeUserUuid) &&
-        Objects.equals(this.changeCounter, eventContestLocationPlain.changeCounter) &&
-        Objects.equals(this.currentState, eventContestLocationPlain.currentState) &&
-        Objects.equals(this.type, eventContestLocationPlain.type) &&
-        Objects.equals(this.salutation, eventContestLocationPlain.salutation) &&
         Objects.equals(this.name1, eventContestLocationPlain.name1) &&
         Objects.equals(this.name2, eventContestLocationPlain.name2) &&
         Objects.equals(this.name3, eventContestLocationPlain.name3) &&
@@ -765,7 +516,7 @@ public class EventContestLocationPlain {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, type, salutation, name1, name2, name3, street, houseNumber, zipcode, city, country, phone, fax, cellPhone, email, gpsCoordinate, info);
+    return Objects.hash(uuid, name1, name2, name3, street, houseNumber, zipcode, city, country, phone, fax, cellPhone, email, gpsCoordinate, info);
   }
 
   @Override
@@ -773,14 +524,6 @@ public class EventContestLocationPlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestLocationPlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
-    sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
-    sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
-    sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
-    sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
-    sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    salutation: ").append(toIndentedString(salutation)).append("\n");
     sb.append("    name1: ").append(toIndentedString(name1)).append("\n");
     sb.append("    name2: ").append(toIndentedString(name2)).append("\n");
     sb.append("    name3: ").append(toIndentedString(name3)).append("\n");
