@@ -40,7 +40,7 @@ public class HorseController {
 
     @PatchMapping("/{horseUuid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateHorse(@PathVariable UUID horseUuid, FullHorseDto horseDto) {
+    public void updateHorse(@PathVariable UUID horseUuid,@RequestBody FullHorseDto horseDto) {
 
         horseService.update(horseUuid, horseDto);
     }

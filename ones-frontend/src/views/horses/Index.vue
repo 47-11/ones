@@ -87,7 +87,8 @@ export default class Profile extends Vue {
                 header: {
                     component: VHorseHeader,
                     bind: {
-                        text: horse.name
+                        text: horse.name,
+                        horse: horse
                     }
                 },
                 footer: {
