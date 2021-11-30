@@ -1,6 +1,6 @@
 <template>
     <button class="inline-flex justify-center border border-transparent font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 py-1.5 px-4"
-            :disabled="disabled" v-bind:class="{ 'opacity-50 cursor-not-allowed': disabled, primary: color == undefined, secondary: color == 'secondary', danger: color == 'danger' }">
+            :disabled="disabled" v-bind:class="{ 'opacity-50 cursor-not-allowed': disabled, primary: color == undefined || color === 'primary', secondary: color == 'secondary', danger: color == 'danger' }">
         <slot></slot>
     </button>
 </template>
