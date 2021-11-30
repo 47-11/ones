@@ -166,8 +166,8 @@ export default class ProfileEdit extends Vue {
 
     private error: Error | null = null;
 
-    get user(): UserDto | null {
-        return vxm.user.current;
+    get user(): UserDto {
+        return vxm.user.current as UserDto;
     }
 
     mounted(): void {
@@ -193,9 +193,6 @@ export default class ProfileEdit extends Vue {
     }
 
     private assertUserValid(): void {
-        if (this.user == null) {
-            throw new Error(this.$i18n.t("data.user") + this.$i18n.t("editUser.lengthNull").toString());
-        }
         try {
             this.assertValid(this.user, this.requiredProperties);
             this.assertValid(this.user.address, this.requiredAddressProperties);

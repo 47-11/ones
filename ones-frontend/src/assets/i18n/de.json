@@ -9,7 +9,8 @@
     "horses": "Meine Pferde"
   },
   "pagination": {
-    "back": "Zurück"
+    "back": "Zurück",
+    "forward": "Vorwärts"
   },
   "forgotPassword": {
     "success": "Eine E-Mail ist auf dem Weg...",
@@ -57,6 +58,13 @@
         "title": "Daten erfassen",
         "description": "Ist Ihre E-Mail Adresse dem VDD bekannt, werden Ihre Daten automatisch übernommen. Andernfalls müssen Sie im zweiten Schritt Ihre persönlichen Daten erfassen."
       }
+    },
+    "setPersonalData": {
+      "description": "Bitte persönliche Daten vervollständigen um fortzufahren.",
+      "lengthNull": "ist nicht gesetzt.",
+      "logout": "Logout",
+      "submit": "Speichern",
+      "title": "Persönliche Daten"
     }
   },
   "resetPassword": {
@@ -76,7 +84,8 @@
     "description": "Um fortzufahren, vervollständigen Sie bitte Ihre Daten.",
     "lengthNull": " ist leer.",
     "submit": "Speichern",
-    "logout": "Ausloggen"
+    "logout": "Ausloggen",
+    "salutation": "Anrede"
   },
   "verified": {
     "wait": "Bitte warten...",
@@ -145,7 +154,13 @@
     "signUp": "Details & Anmeldung",
     "alreadySignedUp": "Bereits angemeldet mit {horses}",
     "fee": "Gebühr",
-    "notAvailable": "k. A."
+    "notAvailable": "k. A.",
+    "coordinates": "Koordinaten",
+    "horseAge": "Alter des Pferds",
+    "riderAge": "Alter des Teilnehmers",
+    "signUpAfterDeadlinePossible": "Nennung nach Nennschluss möglich",
+    "signUpFeeAfterDeadlineMissed": "Nachnenngebühr",
+    "startingPlace": "Startort"
   },
   "events": {
     "title": "Veranstaltungen",
@@ -192,7 +207,11 @@
       "no": "Nein",
       "yes": "Ja"
     },
-    "selectedRegions": "{count} Regionen ausgewählt."
+    "selectedRegions": "{count} Regionen ausgewählt.",
+    "end": "Ende",
+    "no": "Nein",
+    "start": "Start",
+    "yes": "Ja"
   },
   "signUp": {
     "title": "Anmeldung zum Wettbewerb",
@@ -217,7 +236,7 @@
     "signedUpHorses": "Angemeldete Pferde"
   },
   "password": {
-    "pasword": "Passwort"
+    "password": "Passwort"
   },
   "shared": {
     "error": "Es ist ein Fehler aufgetreten",
@@ -288,6 +307,13 @@
         "GELDING": "Wallach"
       },
       "feiNo": "FEI Nummer"
+    },
+    "address": {
+      "city": "Stadt",
+      "country": "Land",
+      "houseNumber": "Hausnummer",
+      "street": "Straße",
+      "zipCode": "Postleitzahl"
     }
   },
   "horses": {
@@ -305,7 +331,9 @@
           "sizeOutOfRange": "Stockmaß muss zwischen 40 und 250 cm sein.",
           "yearInvalid": "Geburtsjahr muss innerhalb der letzten 60 Jahre liegen."
         },
-        "yearPlaceholder": "4 Ziffern"
+        "yearPlaceholder": "4 Ziffern",
+        "sizePlaceholder": "40 - 250 cm",
+        "stable": "Stall"
       },
       "edit": {
         "title": "Pferd bearbeiten",
