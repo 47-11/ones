@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistration;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionStage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -533,19 +534,19 @@ public class EventContestCompetitionTest {
     }
 
     /**
-     * Test the property 'displayRegistertHorses'
-     */
-    @Test
-    public void displayRegistertHorsesTest() {
-        // TODO: test displayRegistertHorses
-    }
-
-    /**
      * Test the property 'stages'
      */
     @Test
     public void stagesTest() {
         // TODO: test stages
+    }
+
+    /**
+     * Test the property 'registrations'
+     */
+    @Test
+    public void registrationsTest() {
+        // TODO: test registrations
     }
 
 }

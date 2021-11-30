@@ -30,6 +30,8 @@ Name | Type | Description | Notes
 **promoterTenderingTitle** | **String** |  |  [optional]
 **promoterEventUrl** | **String** |  |  [optional]
 **promoterEventTitle** | **String** |  |  [optional]
+**isInitialEvent** | **Boolean** |  |  [optional]
+**initialEventUuid** | **String** |  |  [optional]
 **initialEvent** | **String** |  |  [optional]
 **currentEvent** | **Integer** |  |  [optional]
 **requestDate** | **OffsetDateTime** |  |  [optional]

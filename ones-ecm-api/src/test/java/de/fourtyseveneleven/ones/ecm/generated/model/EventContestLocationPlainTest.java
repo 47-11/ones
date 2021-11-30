@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -46,70 +45,6 @@ public class EventContestLocationPlainTest {
     @Test
     public void uuidTest() {
         // TODO: test uuid
-    }
-
-    /**
-     * Test the property 'creationTimestamp'
-     */
-    @Test
-    public void creationTimestampTest() {
-        // TODO: test creationTimestamp
-    }
-
-    /**
-     * Test the property 'creationUserUuid'
-     */
-    @Test
-    public void creationUserUuidTest() {
-        // TODO: test creationUserUuid
-    }
-
-    /**
-     * Test the property 'changeTimestamp'
-     */
-    @Test
-    public void changeTimestampTest() {
-        // TODO: test changeTimestamp
-    }
-
-    /**
-     * Test the property 'changeUserUuid'
-     */
-    @Test
-    public void changeUserUuidTest() {
-        // TODO: test changeUserUuid
-    }
-
-    /**
-     * Test the property 'changeCounter'
-     */
-    @Test
-    public void changeCounterTest() {
-        // TODO: test changeCounter
-    }
-
-    /**
-     * Test the property 'currentState'
-     */
-    @Test
-    public void currentStateTest() {
-        // TODO: test currentState
-    }
-
-    /**
-     * Test the property 'type'
-     */
-    @Test
-    public void typeTest() {
-        // TODO: test type
-    }
-
-    /**
-     * Test the property 'salutation'
-     */
-    @Test
-    public void salutationTest() {
-        // TODO: test salutation
     }
 
     /**

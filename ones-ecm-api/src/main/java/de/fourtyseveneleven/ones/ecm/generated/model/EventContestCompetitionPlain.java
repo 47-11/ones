@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistrationPlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionStagePlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -37,29 +38,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestCompetitionPlain.JSON_PROPERTY_UUID,
-  EventContestCompetitionPlain.JSON_PROPERTY_CREATION_TIMESTAMP,
-  EventContestCompetitionPlain.JSON_PROPERTY_CREATION_USER_UUID,
-  EventContestCompetitionPlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
-  EventContestCompetitionPlain.JSON_PROPERTY_CHANGE_USER_UUID,
-  EventContestCompetitionPlain.JSON_PROPERTY_CHANGE_COUNTER,
-  EventContestCompetitionPlain.JSON_PROPERTY_CURRENT_STATE,
   EventContestCompetitionPlain.JSON_PROPERTY_STATE,
   EventContestCompetitionPlain.JSON_PROPERTY_TITLE,
   EventContestCompetitionPlain.JSON_PROPERTY_KIND,
   EventContestCompetitionPlain.JSON_PROPERTY_BEGINNING,
   EventContestCompetitionPlain.JSON_PROPERTY_ENDING,
   EventContestCompetitionPlain.JSON_PROPERTY_RAISE_LENGTH,
-  EventContestCompetitionPlain.JSON_PROPERTY_MINUTES_MAXIMUM,
-  EventContestCompetitionPlain.JSON_PROPERTY_MINUTES_ALLOWED,
-  EventContestCompetitionPlain.JSON_PROPERTY_PENALTY_POINTS_TIMEOUT,
-  EventContestCompetitionPlain.JSON_PROPERTY_PENALTY_POINTS_TIME_UNDERRUN,
-  EventContestCompetitionPlain.JSON_PROPERTY_PENALTY_POINTS_AT_PULSE_RATE_OF,
-  EventContestCompetitionPlain.JSON_PROPERTY_PENALTY_POINTS_PULSE_RATE_EXCEEDED,
-  EventContestCompetitionPlain.JSON_PROPERTY_BREAKS_TOTAL_NUMBERS,
-  EventContestCompetitionPlain.JSON_PROPERTY_BREAKS_TOTAL_MINUTES,
-  EventContestCompetitionPlain.JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID,
-  EventContestCompetitionPlain.JSON_PROPERTY_COMPETITION_UUID_TO_EXTEND,
-  EventContestCompetitionPlain.JSON_PROPERTY_COMPETITION_UUID_TO_REDUCE,
   EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN,
   EventContestCompetitionPlain.JSON_PROPERTY_CONTESTANT_LIMITIATION_MAX,
   EventContestCompetitionPlain.JSON_PROPERTY_DATE_PRELIMINARY_EXAMINATION,
@@ -97,31 +81,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_CONTROLCHECKS,
   EventContestCompetitionPlain.JSON_PROPERTY_RATING_TYPE,
   EventContestCompetitionPlain.JSON_PROPERTY_DESCRIPTION_RATING_TYPE,
-  EventContestCompetitionPlain.JSON_PROPERTY_DISPLAY_REGISTERT_HORSES,
-  EventContestCompetitionPlain.JSON_PROPERTY_STAGES
+  EventContestCompetitionPlain.JSON_PROPERTY_STAGES,
+  EventContestCompetitionPlain.JSON_PROPERTY_REGISTRATIONS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
-
-  public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
-  private OffsetDateTime creationTimestamp;
-
-  public static final String JSON_PROPERTY_CREATION_USER_UUID = "creationUserUuid";
-  private String creationUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_TIMESTAMP = "changeTimestamp";
-  private OffsetDateTime changeTimestamp;
-
-  public static final String JSON_PROPERTY_CHANGE_USER_UUID = "changeUserUuid";
-  private String changeUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
-  private Integer changeCounter;
-
-  public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
-  private Integer currentState;
 
   public static final String JSON_PROPERTY_STATE = "state";
   private String state;
@@ -140,39 +106,6 @@ public class EventContestCompetitionPlain {
 
   public static final String JSON_PROPERTY_RAISE_LENGTH = "raiseLength";
   private Integer raiseLength;
-
-  public static final String JSON_PROPERTY_MINUTES_MAXIMUM = "minutesMaximum";
-  private Integer minutesMaximum;
-
-  public static final String JSON_PROPERTY_MINUTES_ALLOWED = "minutesAllowed";
-  private Integer minutesAllowed;
-
-  public static final String JSON_PROPERTY_PENALTY_POINTS_TIMEOUT = "penaltyPointsTimeout";
-  private Integer penaltyPointsTimeout;
-
-  public static final String JSON_PROPERTY_PENALTY_POINTS_TIME_UNDERRUN = "penaltyPointsTimeUnderrun";
-  private Integer penaltyPointsTimeUnderrun;
-
-  public static final String JSON_PROPERTY_PENALTY_POINTS_AT_PULSE_RATE_OF = "penaltyPointsAtPulseRateOf";
-  private Integer penaltyPointsAtPulseRateOf;
-
-  public static final String JSON_PROPERTY_PENALTY_POINTS_PULSE_RATE_EXCEEDED = "penaltyPointsPulseRateExceeded";
-  private Integer penaltyPointsPulseRateExceeded;
-
-  public static final String JSON_PROPERTY_BREAKS_TOTAL_NUMBERS = "breaksTotalNumbers";
-  private Integer breaksTotalNumbers;
-
-  public static final String JSON_PROPERTY_BREAKS_TOTAL_MINUTES = "breaksTotalMinutes";
-  private Integer breaksTotalMinutes;
-
-  public static final String JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID = "responsibleVeterinarianUuid";
-  private String responsibleVeterinarianUuid;
-
-  public static final String JSON_PROPERTY_COMPETITION_UUID_TO_EXTEND = "competitionUuidToExtend";
-  private String competitionUuidToExtend;
-
-  public static final String JSON_PROPERTY_COMPETITION_UUID_TO_REDUCE = "competitionUuidToReduce";
-  private String competitionUuidToReduce;
 
   public static final String JSON_PROPERTY_CONTESTANT_LIMITIATION_MIN = "contestantLimitiationMin";
   private Integer contestantLimitiationMin;
@@ -285,11 +218,11 @@ public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_DESCRIPTION_RATING_TYPE = "descriptionRatingType";
   private String descriptionRatingType;
 
-  public static final String JSON_PROPERTY_DISPLAY_REGISTERT_HORSES = "displayRegistertHorses";
-  private String displayRegistertHorses;
-
   public static final String JSON_PROPERTY_STAGES = "_stages";
   private Set<EventContestCompetitionStagePlain> stages = null;
+
+  public static final String JSON_PROPERTY_REGISTRATIONS = "_registrations";
+  private Set<EventContestCompetitionRegistrationPlain> registrations = null;
 
 
   public EventContestCompetitionPlain uuid(String uuid) {
@@ -315,162 +248,6 @@ public class EventContestCompetitionPlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
-  }
-
-
-  public EventContestCompetitionPlain creationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-    return this;
-  }
-
-   /**
-   * Get creationTimestamp
-   * @return creationTimestamp
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public OffsetDateTime getCreationTimestamp() {
-    return creationTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-  }
-
-
-  public EventContestCompetitionPlain creationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-    return this;
-  }
-
-   /**
-   * Get creationUserUuid
-   * @return creationUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCreationUserUuid() {
-    return creationUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-  }
-
-
-  public EventContestCompetitionPlain changeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-    return this;
-  }
-
-   /**
-   * Get changeTimestamp
-   * @return changeTimestamp
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getChangeTimestamp() {
-    return changeTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-  }
-
-
-  public EventContestCompetitionPlain changeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-    return this;
-  }
-
-   /**
-   * Get changeUserUuid
-   * @return changeUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangeUserUuid() {
-    return changeUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-  }
-
-
-  public EventContestCompetitionPlain changeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-    return this;
-  }
-
-   /**
-   * Get changeCounter
-   * @return changeCounter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getChangeCounter() {
-    return changeCounter;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-  }
-
-
-  public EventContestCompetitionPlain currentState(Integer currentState) {
-    this.currentState = currentState;
-    return this;
-  }
-
-   /**
-   * Get currentState
-   * @return currentState
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getCurrentState() {
-    return currentState;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentState(Integer currentState) {
-    this.currentState = currentState;
   }
 
 
@@ -627,292 +404,6 @@ public class EventContestCompetitionPlain {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRaiseLength(Integer raiseLength) {
     this.raiseLength = raiseLength;
-  }
-
-
-  public EventContestCompetitionPlain minutesMaximum(Integer minutesMaximum) {
-    this.minutesMaximum = minutesMaximum;
-    return this;
-  }
-
-   /**
-   * Get minutesMaximum
-   * @return minutesMaximum
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MINUTES_MAXIMUM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getMinutesMaximum() {
-    return minutesMaximum;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MINUTES_MAXIMUM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinutesMaximum(Integer minutesMaximum) {
-    this.minutesMaximum = minutesMaximum;
-  }
-
-
-  public EventContestCompetitionPlain minutesAllowed(Integer minutesAllowed) {
-    this.minutesAllowed = minutesAllowed;
-    return this;
-  }
-
-   /**
-   * Get minutesAllowed
-   * @return minutesAllowed
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MINUTES_ALLOWED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getMinutesAllowed() {
-    return minutesAllowed;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MINUTES_ALLOWED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinutesAllowed(Integer minutesAllowed) {
-    this.minutesAllowed = minutesAllowed;
-  }
-
-
-  public EventContestCompetitionPlain penaltyPointsTimeout(Integer penaltyPointsTimeout) {
-    this.penaltyPointsTimeout = penaltyPointsTimeout;
-    return this;
-  }
-
-   /**
-   * Get penaltyPointsTimeout
-   * @return penaltyPointsTimeout
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPenaltyPointsTimeout() {
-    return penaltyPointsTimeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPenaltyPointsTimeout(Integer penaltyPointsTimeout) {
-    this.penaltyPointsTimeout = penaltyPointsTimeout;
-  }
-
-
-  public EventContestCompetitionPlain penaltyPointsTimeUnderrun(Integer penaltyPointsTimeUnderrun) {
-    this.penaltyPointsTimeUnderrun = penaltyPointsTimeUnderrun;
-    return this;
-  }
-
-   /**
-   * Get penaltyPointsTimeUnderrun
-   * @return penaltyPointsTimeUnderrun
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_TIME_UNDERRUN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPenaltyPointsTimeUnderrun() {
-    return penaltyPointsTimeUnderrun;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_TIME_UNDERRUN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPenaltyPointsTimeUnderrun(Integer penaltyPointsTimeUnderrun) {
-    this.penaltyPointsTimeUnderrun = penaltyPointsTimeUnderrun;
-  }
-
-
-  public EventContestCompetitionPlain penaltyPointsAtPulseRateOf(Integer penaltyPointsAtPulseRateOf) {
-    this.penaltyPointsAtPulseRateOf = penaltyPointsAtPulseRateOf;
-    return this;
-  }
-
-   /**
-   * Get penaltyPointsAtPulseRateOf
-   * @return penaltyPointsAtPulseRateOf
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_AT_PULSE_RATE_OF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPenaltyPointsAtPulseRateOf() {
-    return penaltyPointsAtPulseRateOf;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_AT_PULSE_RATE_OF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPenaltyPointsAtPulseRateOf(Integer penaltyPointsAtPulseRateOf) {
-    this.penaltyPointsAtPulseRateOf = penaltyPointsAtPulseRateOf;
-  }
-
-
-  public EventContestCompetitionPlain penaltyPointsPulseRateExceeded(Integer penaltyPointsPulseRateExceeded) {
-    this.penaltyPointsPulseRateExceeded = penaltyPointsPulseRateExceeded;
-    return this;
-  }
-
-   /**
-   * Get penaltyPointsPulseRateExceeded
-   * @return penaltyPointsPulseRateExceeded
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_PULSE_RATE_EXCEEDED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPenaltyPointsPulseRateExceeded() {
-    return penaltyPointsPulseRateExceeded;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PENALTY_POINTS_PULSE_RATE_EXCEEDED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPenaltyPointsPulseRateExceeded(Integer penaltyPointsPulseRateExceeded) {
-    this.penaltyPointsPulseRateExceeded = penaltyPointsPulseRateExceeded;
-  }
-
-
-  public EventContestCompetitionPlain breaksTotalNumbers(Integer breaksTotalNumbers) {
-    this.breaksTotalNumbers = breaksTotalNumbers;
-    return this;
-  }
-
-   /**
-   * Get breaksTotalNumbers
-   * @return breaksTotalNumbers
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_BREAKS_TOTAL_NUMBERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getBreaksTotalNumbers() {
-    return breaksTotalNumbers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BREAKS_TOTAL_NUMBERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBreaksTotalNumbers(Integer breaksTotalNumbers) {
-    this.breaksTotalNumbers = breaksTotalNumbers;
-  }
-
-
-  public EventContestCompetitionPlain breaksTotalMinutes(Integer breaksTotalMinutes) {
-    this.breaksTotalMinutes = breaksTotalMinutes;
-    return this;
-  }
-
-   /**
-   * Get breaksTotalMinutes
-   * @return breaksTotalMinutes
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_BREAKS_TOTAL_MINUTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getBreaksTotalMinutes() {
-    return breaksTotalMinutes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BREAKS_TOTAL_MINUTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBreaksTotalMinutes(Integer breaksTotalMinutes) {
-    this.breaksTotalMinutes = breaksTotalMinutes;
-  }
-
-
-  public EventContestCompetitionPlain responsibleVeterinarianUuid(String responsibleVeterinarianUuid) {
-    this.responsibleVeterinarianUuid = responsibleVeterinarianUuid;
-    return this;
-  }
-
-   /**
-   * Get responsibleVeterinarianUuid
-   * @return responsibleVeterinarianUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getResponsibleVeterinarianUuid() {
-    return responsibleVeterinarianUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponsibleVeterinarianUuid(String responsibleVeterinarianUuid) {
-    this.responsibleVeterinarianUuid = responsibleVeterinarianUuid;
-  }
-
-
-  public EventContestCompetitionPlain competitionUuidToExtend(String competitionUuidToExtend) {
-    this.competitionUuidToExtend = competitionUuidToExtend;
-    return this;
-  }
-
-   /**
-   * Get competitionUuidToExtend
-   * @return competitionUuidToExtend
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_COMPETITION_UUID_TO_EXTEND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCompetitionUuidToExtend() {
-    return competitionUuidToExtend;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMPETITION_UUID_TO_EXTEND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompetitionUuidToExtend(String competitionUuidToExtend) {
-    this.competitionUuidToExtend = competitionUuidToExtend;
-  }
-
-
-  public EventContestCompetitionPlain competitionUuidToReduce(String competitionUuidToReduce) {
-    this.competitionUuidToReduce = competitionUuidToReduce;
-    return this;
-  }
-
-   /**
-   * Get competitionUuidToReduce
-   * @return competitionUuidToReduce
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_COMPETITION_UUID_TO_REDUCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCompetitionUuidToReduce() {
-    return competitionUuidToReduce;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMPETITION_UUID_TO_REDUCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompetitionUuidToReduce(String competitionUuidToReduce) {
-    this.competitionUuidToReduce = competitionUuidToReduce;
   }
 
 
@@ -1878,32 +1369,6 @@ public class EventContestCompetitionPlain {
   }
 
 
-  public EventContestCompetitionPlain displayRegistertHorses(String displayRegistertHorses) {
-    this.displayRegistertHorses = displayRegistertHorses;
-    return this;
-  }
-
-   /**
-   * Get displayRegistertHorses
-   * @return displayRegistertHorses
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDisplayRegistertHorses() {
-    return displayRegistertHorses;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DISPLAY_REGISTERT_HORSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisplayRegistertHorses(String displayRegistertHorses) {
-    this.displayRegistertHorses = displayRegistertHorses;
-  }
-
-
   public EventContestCompetitionPlain stages(Set<EventContestCompetitionStagePlain> stages) {
     this.stages = stages;
     return this;
@@ -1938,6 +1403,40 @@ public class EventContestCompetitionPlain {
   }
 
 
+  public EventContestCompetitionPlain registrations(Set<EventContestCompetitionRegistrationPlain> registrations) {
+    this.registrations = registrations;
+    return this;
+  }
+
+  public EventContestCompetitionPlain addRegistrationsItem(EventContestCompetitionRegistrationPlain registrationsItem) {
+    if (this.registrations == null) {
+      this.registrations = new LinkedHashSet<>();
+    }
+    this.registrations.add(registrationsItem);
+    return this;
+  }
+
+   /**
+   * Get registrations
+   * @return registrations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<EventContestCompetitionRegistrationPlain> getRegistrations() {
+    return registrations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrations(Set<EventContestCompetitionRegistrationPlain> registrations) {
+    this.registrations = registrations;
+  }
+
+
   /**
    * Return true if this EventContestCompetition_Plain object is equal to o.
    */
@@ -1951,29 +1450,12 @@ public class EventContestCompetitionPlain {
     }
     EventContestCompetitionPlain eventContestCompetitionPlain = (EventContestCompetitionPlain) o;
     return Objects.equals(this.uuid, eventContestCompetitionPlain.uuid) &&
-        Objects.equals(this.creationTimestamp, eventContestCompetitionPlain.creationTimestamp) &&
-        Objects.equals(this.creationUserUuid, eventContestCompetitionPlain.creationUserUuid) &&
-        Objects.equals(this.changeTimestamp, eventContestCompetitionPlain.changeTimestamp) &&
-        Objects.equals(this.changeUserUuid, eventContestCompetitionPlain.changeUserUuid) &&
-        Objects.equals(this.changeCounter, eventContestCompetitionPlain.changeCounter) &&
-        Objects.equals(this.currentState, eventContestCompetitionPlain.currentState) &&
         Objects.equals(this.state, eventContestCompetitionPlain.state) &&
         Objects.equals(this.title, eventContestCompetitionPlain.title) &&
         Objects.equals(this.kind, eventContestCompetitionPlain.kind) &&
         Objects.equals(this.beginning, eventContestCompetitionPlain.beginning) &&
         Objects.equals(this.ending, eventContestCompetitionPlain.ending) &&
         Objects.equals(this.raiseLength, eventContestCompetitionPlain.raiseLength) &&
-        Objects.equals(this.minutesMaximum, eventContestCompetitionPlain.minutesMaximum) &&
-        Objects.equals(this.minutesAllowed, eventContestCompetitionPlain.minutesAllowed) &&
-        Objects.equals(this.penaltyPointsTimeout, eventContestCompetitionPlain.penaltyPointsTimeout) &&
-        Objects.equals(this.penaltyPointsTimeUnderrun, eventContestCompetitionPlain.penaltyPointsTimeUnderrun) &&
-        Objects.equals(this.penaltyPointsAtPulseRateOf, eventContestCompetitionPlain.penaltyPointsAtPulseRateOf) &&
-        Objects.equals(this.penaltyPointsPulseRateExceeded, eventContestCompetitionPlain.penaltyPointsPulseRateExceeded) &&
-        Objects.equals(this.breaksTotalNumbers, eventContestCompetitionPlain.breaksTotalNumbers) &&
-        Objects.equals(this.breaksTotalMinutes, eventContestCompetitionPlain.breaksTotalMinutes) &&
-        Objects.equals(this.responsibleVeterinarianUuid, eventContestCompetitionPlain.responsibleVeterinarianUuid) &&
-        Objects.equals(this.competitionUuidToExtend, eventContestCompetitionPlain.competitionUuidToExtend) &&
-        Objects.equals(this.competitionUuidToReduce, eventContestCompetitionPlain.competitionUuidToReduce) &&
         Objects.equals(this.contestantLimitiationMin, eventContestCompetitionPlain.contestantLimitiationMin) &&
         Objects.equals(this.contestantLimitiationMax, eventContestCompetitionPlain.contestantLimitiationMax) &&
         Objects.equals(this.datePreliminaryExamination, eventContestCompetitionPlain.datePreliminaryExamination) &&
@@ -2011,13 +1493,13 @@ public class EventContestCompetitionPlain {
         Objects.equals(this.descriptionControlchecks, eventContestCompetitionPlain.descriptionControlchecks) &&
         Objects.equals(this.ratingType, eventContestCompetitionPlain.ratingType) &&
         Objects.equals(this.descriptionRatingType, eventContestCompetitionPlain.descriptionRatingType) &&
-        Objects.equals(this.displayRegistertHorses, eventContestCompetitionPlain.displayRegistertHorses) &&
-        Objects.equals(this.stages, eventContestCompetitionPlain.stages);
+        Objects.equals(this.stages, eventContestCompetitionPlain.stages) &&
+        Objects.equals(this.registrations, eventContestCompetitionPlain.registrations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, state, title, kind, beginning, ending, raiseLength, minutesMaximum, minutesAllowed, penaltyPointsTimeout, penaltyPointsTimeUnderrun, penaltyPointsAtPulseRateOf, penaltyPointsPulseRateExceeded, breaksTotalNumbers, breaksTotalMinutes, responsibleVeterinarianUuid, competitionUuidToExtend, competitionUuidToReduce, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, isCARD, isMARKED, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, displayRegistertHorses, stages);
+    return Objects.hash(uuid, state, title, kind, beginning, ending, raiseLength, contestantLimitiationMin, contestantLimitiationMax, datePreliminaryExamination, infoPreliminaryExamination, datePreliminaryDiscussion, infoPreliminaryDiscussion, dateFollowUpExamination, infoFollowUpExamination, dateTransferRelease, infoTransferRelease, dateAwardCeremony, infoAwardCeremony, vddQualificationLevel, altitudeMeters, feeCurrency, registrationFee, registrationFeeUnit, startingFee, startingFeeUnit, scoringMinimumTime, scoringPeakTime, horseAgeMin, horseAgeMax, contestantAgeMin, contestantAgeMax, contestantQuantityMin, contestantQuantityMax, hoofProtection, isCARD, isMARKED, descriptionRoute, typeOfRouting, descriptionStart, descriptionTerrain, descriptionControlchecks, ratingType, descriptionRatingType, stages, registrations);
   }
 
   @Override
@@ -2025,29 +1507,12 @@ public class EventContestCompetitionPlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestCompetitionPlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
-    sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
-    sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
-    sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
-    sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
-    sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    beginning: ").append(toIndentedString(beginning)).append("\n");
     sb.append("    ending: ").append(toIndentedString(ending)).append("\n");
     sb.append("    raiseLength: ").append(toIndentedString(raiseLength)).append("\n");
-    sb.append("    minutesMaximum: ").append(toIndentedString(minutesMaximum)).append("\n");
-    sb.append("    minutesAllowed: ").append(toIndentedString(minutesAllowed)).append("\n");
-    sb.append("    penaltyPointsTimeout: ").append(toIndentedString(penaltyPointsTimeout)).append("\n");
-    sb.append("    penaltyPointsTimeUnderrun: ").append(toIndentedString(penaltyPointsTimeUnderrun)).append("\n");
-    sb.append("    penaltyPointsAtPulseRateOf: ").append(toIndentedString(penaltyPointsAtPulseRateOf)).append("\n");
-    sb.append("    penaltyPointsPulseRateExceeded: ").append(toIndentedString(penaltyPointsPulseRateExceeded)).append("\n");
-    sb.append("    breaksTotalNumbers: ").append(toIndentedString(breaksTotalNumbers)).append("\n");
-    sb.append("    breaksTotalMinutes: ").append(toIndentedString(breaksTotalMinutes)).append("\n");
-    sb.append("    responsibleVeterinarianUuid: ").append(toIndentedString(responsibleVeterinarianUuid)).append("\n");
-    sb.append("    competitionUuidToExtend: ").append(toIndentedString(competitionUuidToExtend)).append("\n");
-    sb.append("    competitionUuidToReduce: ").append(toIndentedString(competitionUuidToReduce)).append("\n");
     sb.append("    contestantLimitiationMin: ").append(toIndentedString(contestantLimitiationMin)).append("\n");
     sb.append("    contestantLimitiationMax: ").append(toIndentedString(contestantLimitiationMax)).append("\n");
     sb.append("    datePreliminaryExamination: ").append(toIndentedString(datePreliminaryExamination)).append("\n");
@@ -2085,8 +1550,8 @@ public class EventContestCompetitionPlain {
     sb.append("    descriptionControlchecks: ").append(toIndentedString(descriptionControlchecks)).append("\n");
     sb.append("    ratingType: ").append(toIndentedString(ratingType)).append("\n");
     sb.append("    descriptionRatingType: ").append(toIndentedString(descriptionRatingType)).append("\n");
-    sb.append("    displayRegistertHorses: ").append(toIndentedString(displayRegistertHorses)).append("\n");
     sb.append("    stages: ").append(toIndentedString(stages)).append("\n");
+    sb.append("    registrations: ").append(toIndentedString(registrations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

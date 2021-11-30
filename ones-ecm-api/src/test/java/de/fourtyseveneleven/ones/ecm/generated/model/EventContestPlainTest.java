@@ -57,54 +57,6 @@ public class EventContestPlainTest {
     }
 
     /**
-     * Test the property 'creationTimestamp'
-     */
-    @Test
-    public void creationTimestampTest() {
-        // TODO: test creationTimestamp
-    }
-
-    /**
-     * Test the property 'creationUserUuid'
-     */
-    @Test
-    public void creationUserUuidTest() {
-        // TODO: test creationUserUuid
-    }
-
-    /**
-     * Test the property 'changeTimestamp'
-     */
-    @Test
-    public void changeTimestampTest() {
-        // TODO: test changeTimestamp
-    }
-
-    /**
-     * Test the property 'changeUserUuid'
-     */
-    @Test
-    public void changeUserUuidTest() {
-        // TODO: test changeUserUuid
-    }
-
-    /**
-     * Test the property 'changeCounter'
-     */
-    @Test
-    public void changeCounterTest() {
-        // TODO: test changeCounter
-    }
-
-    /**
-     * Test the property 'currentState'
-     */
-    @Test
-    public void currentStateTest() {
-        // TODO: test currentState
-    }
-
-    /**
      * Test the property 'eventNaming'
      */
     @Test
@@ -233,6 +185,22 @@ public class EventContestPlainTest {
     }
 
     /**
+     * Test the property 'isInitialEvent'
+     */
+    @Test
+    public void isInitialEventTest() {
+        // TODO: test isInitialEvent
+    }
+
+    /**
+     * Test the property 'initialEventUuid'
+     */
+    @Test
+    public void initialEventUuidTest() {
+        // TODO: test initialEventUuid
+    }
+
+    /**
      * Test the property 'initialEvent'
      */
     @Test
@@ -246,70 +214,6 @@ public class EventContestPlainTest {
     @Test
     public void currentEventTest() {
         // TODO: test currentEvent
-    }
-
-    /**
-     * Test the property 'requestDate'
-     */
-    @Test
-    public void requestDateTest() {
-        // TODO: test requestDate
-    }
-
-    /**
-     * Test the property 'requestInfo'
-     */
-    @Test
-    public void requestInfoTest() {
-        // TODO: test requestInfo
-    }
-
-    /**
-     * Test the property 'approvalDate'
-     */
-    @Test
-    public void approvalDateTest() {
-        // TODO: test approvalDate
-    }
-
-    /**
-     * Test the property 'approvalInfo'
-     */
-    @Test
-    public void approvalInfoTest() {
-        // TODO: test approvalInfo
-    }
-
-    /**
-     * Test the property 'stateCommissionerUuid'
-     */
-    @Test
-    public void stateCommissionerUuidTest() {
-        // TODO: test stateCommissionerUuid
-    }
-
-    /**
-     * Test the property 'stateCommissionerDescription'
-     */
-    @Test
-    public void stateCommissionerDescriptionTest() {
-        // TODO: test stateCommissionerDescription
-    }
-
-    /**
-     * Test the property 'regionCommissionerUuid'
-     */
-    @Test
-    public void regionCommissionerUuidTest() {
-        // TODO: test regionCommissionerUuid
-    }
-
-    /**
-     * Test the property 'regionCommissionerDescription'
-     */
-    @Test
-    public void regionCommissionerDescriptionTest() {
-        // TODO: test regionCommissionerDescription
     }
 
     /**

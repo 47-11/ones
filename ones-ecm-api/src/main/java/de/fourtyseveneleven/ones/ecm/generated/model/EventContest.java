@@ -63,6 +63,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContest.JSON_PROPERTY_PROMOTER_TENDERING_TITLE,
   EventContest.JSON_PROPERTY_PROMOTER_EVENT_URL,
   EventContest.JSON_PROPERTY_PROMOTER_EVENT_TITLE,
+  EventContest.JSON_PROPERTY_IS_INITIAL_EVENT,
+  EventContest.JSON_PROPERTY_INITIAL_EVENT_UUID,
   EventContest.JSON_PROPERTY_INITIAL_EVENT,
   EventContest.JSON_PROPERTY_CURRENT_EVENT,
   EventContest.JSON_PROPERTY_REQUEST_DATE,
@@ -90,7 +92,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContest.JSON_PROPERTY_LOCATIONS,
   EventContest.JSON_PROPERTY_REMARKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContest {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -160,6 +162,12 @@ public class EventContest {
 
   public static final String JSON_PROPERTY_PROMOTER_EVENT_TITLE = "promoterEventTitle";
   private String promoterEventTitle;
+
+  public static final String JSON_PROPERTY_IS_INITIAL_EVENT = "isInitialEvent";
+  private Boolean isInitialEvent;
+
+  public static final String JSON_PROPERTY_INITIAL_EVENT_UUID = "initialEventUuid";
+  private String initialEventUuid;
 
   public static final String JSON_PROPERTY_INITIAL_EVENT = "initialEvent";
   private String initialEvent;
@@ -835,6 +843,58 @@ public class EventContest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPromoterEventTitle(String promoterEventTitle) {
     this.promoterEventTitle = promoterEventTitle;
+  }
+
+
+  public EventContest isInitialEvent(Boolean isInitialEvent) {
+    this.isInitialEvent = isInitialEvent;
+    return this;
+  }
+
+   /**
+   * Get isInitialEvent
+   * @return isInitialEvent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_INITIAL_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsInitialEvent() {
+    return isInitialEvent;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_INITIAL_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsInitialEvent(Boolean isInitialEvent) {
+    this.isInitialEvent = isInitialEvent;
+  }
+
+
+  public EventContest initialEventUuid(String initialEventUuid) {
+    this.initialEventUuid = initialEventUuid;
+    return this;
+  }
+
+   /**
+   * Get initialEventUuid
+   * @return initialEventUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INITIAL_EVENT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInitialEventUuid() {
+    return initialEventUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INITIAL_EVENT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInitialEventUuid(String initialEventUuid) {
+    this.initialEventUuid = initialEventUuid;
   }
 
 
@@ -1589,6 +1649,8 @@ public class EventContest {
         Objects.equals(this.promoterTenderingTitle, eventContest.promoterTenderingTitle) &&
         Objects.equals(this.promoterEventUrl, eventContest.promoterEventUrl) &&
         Objects.equals(this.promoterEventTitle, eventContest.promoterEventTitle) &&
+        Objects.equals(this.isInitialEvent, eventContest.isInitialEvent) &&
+        Objects.equals(this.initialEventUuid, eventContest.initialEventUuid) &&
         Objects.equals(this.initialEvent, eventContest.initialEvent) &&
         Objects.equals(this.currentEvent, eventContest.currentEvent) &&
         Objects.equals(this.requestDate, eventContest.requestDate) &&
@@ -1619,7 +1681,7 @@ public class EventContest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, eventNaming, title, state, beginning, ending, country, countryRegion, isCountryChampionship, isCei, isCard, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, initialEvent, currentEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, paymentAccountHolder, paymentIban, paymentBic, paymentPaypal, paymentReason, contestantQuantityMin, contestantQuantityMax, registrationClosing, isLateRegistration, infoVaccinationObligation, infoHelmetObligation, competitions, roles, fees, locations, remarks);
+    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, eventNaming, title, state, beginning, ending, country, countryRegion, isCountryChampionship, isCei, isCard, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, isInitialEvent, initialEventUuid, initialEvent, currentEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, paymentAccountHolder, paymentIban, paymentBic, paymentPaypal, paymentReason, contestantQuantityMin, contestantQuantityMax, registrationClosing, isLateRegistration, infoVaccinationObligation, infoHelmetObligation, competitions, roles, fees, locations, remarks);
   }
 
   @Override
@@ -1649,6 +1711,8 @@ public class EventContest {
     sb.append("    promoterTenderingTitle: ").append(toIndentedString(promoterTenderingTitle)).append("\n");
     sb.append("    promoterEventUrl: ").append(toIndentedString(promoterEventUrl)).append("\n");
     sb.append("    promoterEventTitle: ").append(toIndentedString(promoterEventTitle)).append("\n");
+    sb.append("    isInitialEvent: ").append(toIndentedString(isInitialEvent)).append("\n");
+    sb.append("    initialEventUuid: ").append(toIndentedString(initialEventUuid)).append("\n");
     sb.append("    initialEvent: ").append(toIndentedString(initialEvent)).append("\n");
     sb.append("    currentEvent: ").append(toIndentedString(currentEvent)).append("\n");
     sb.append("    requestDate: ").append(toIndentedString(requestDate)).append("\n");

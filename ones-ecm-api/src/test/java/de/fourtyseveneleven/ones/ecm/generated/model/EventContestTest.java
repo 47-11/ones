@@ -233,6 +233,22 @@ public class EventContestTest {
     }
 
     /**
+     * Test the property 'isInitialEvent'
+     */
+    @Test
+    public void isInitialEventTest() {
+        // TODO: test isInitialEvent
+    }
+
+    /**
+     * Test the property 'initialEventUuid'
+     */
+    @Test
+    public void initialEventUuidTest() {
+        // TODO: test initialEventUuid
+    }
+
+    /**
      * Test the property 'initialEvent'
      */
     @Test

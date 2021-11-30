@@ -7,7 +7,7 @@ import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataHorseControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterHorse;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredHorse;
 import de.fourtyseveneleven.ones.horse.HorseDtoMapper;
-import de.fourtyseveneleven.ones.horse.model.HorseDto;
+import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
 import de.fourtyseveneleven.ones.horse.service.HorseService;
 import de.fourtyseveneleven.ones.security.util.UserUtils;
 import de.fourtyseveneleven.ones.user.model.User;
@@ -35,7 +35,7 @@ public class HorseServiceImpl implements HorseService {
     }
 
     @Override
-    public List<HorseDto> getMyHorses() {
+    public List<FullHorseDto> getMyHorses() {
 
         final User authenticatedUser = getAuthenticatedUser();
         return getHorsesFromEcm(authenticatedUser)
@@ -60,7 +60,7 @@ public class HorseServiceImpl implements HorseService {
     }
 
     @Override
-    public void createHorseForCurrentUser(HorseDto horse) {
+    public void createHorseForCurrentUser(FullHorseDto horse) {
 
         try {
             tryCreateHorse(horse);
@@ -69,7 +69,7 @@ public class HorseServiceImpl implements HorseService {
         }
     }
 
-    private void tryCreateHorse(HorseDto horse) throws ApiException {
+    private void tryCreateHorse(FullHorseDto horse) throws ApiException {
 
         final String userUuid = UserUtils.getAuthenticatedUser().getUuid().toString();
         final RegisterHorse registerHorseRequest = horseDtoMapper

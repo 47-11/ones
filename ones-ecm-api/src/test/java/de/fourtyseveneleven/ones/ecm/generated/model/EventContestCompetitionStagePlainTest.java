@@ -49,54 +49,6 @@ public class EventContestCompetitionStagePlainTest {
     }
 
     /**
-     * Test the property 'creationTimestamp'
-     */
-    @Test
-    public void creationTimestampTest() {
-        // TODO: test creationTimestamp
-    }
-
-    /**
-     * Test the property 'creationUserUuid'
-     */
-    @Test
-    public void creationUserUuidTest() {
-        // TODO: test creationUserUuid
-    }
-
-    /**
-     * Test the property 'changeTimestamp'
-     */
-    @Test
-    public void changeTimestampTest() {
-        // TODO: test changeTimestamp
-    }
-
-    /**
-     * Test the property 'changeUserUuid'
-     */
-    @Test
-    public void changeUserUuidTest() {
-        // TODO: test changeUserUuid
-    }
-
-    /**
-     * Test the property 'changeCounter'
-     */
-    @Test
-    public void changeCounterTest() {
-        // TODO: test changeCounter
-    }
-
-    /**
-     * Test the property 'currentState'
-     */
-    @Test
-    public void currentStateTest() {
-        // TODO: test currentState
-    }
-
-    /**
      * Test the property 'title'
      */
     @Test

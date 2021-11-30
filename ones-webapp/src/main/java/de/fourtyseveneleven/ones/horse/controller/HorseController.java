@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.horse.controller;
 
-import de.fourtyseveneleven.ones.horse.model.HorseDto;
+import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
 import de.fourtyseveneleven.ones.horse.service.HorseService;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,14 @@ public class HorseController {
     }
 
     @GetMapping("/my")
-    public List<HorseDto> getMyHorses() {
+    public List<FullHorseDto> getMyHorses() {
 
         return horseService.getMyHorses();
     }
 
     @PostMapping("/my")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void createHorse(@RequestBody HorseDto horse) {
+    public void createHorse(@RequestBody FullHorseDto horse) {
 
         horseService.createHorseForCurrentUser(horse);
     }

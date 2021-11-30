@@ -41,12 +41,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestPlain.JSON_PROPERTY_UUID,
-  EventContestPlain.JSON_PROPERTY_CREATION_TIMESTAMP,
-  EventContestPlain.JSON_PROPERTY_CREATION_USER_UUID,
-  EventContestPlain.JSON_PROPERTY_CHANGE_TIMESTAMP,
-  EventContestPlain.JSON_PROPERTY_CHANGE_USER_UUID,
-  EventContestPlain.JSON_PROPERTY_CHANGE_COUNTER,
-  EventContestPlain.JSON_PROPERTY_CURRENT_STATE,
   EventContestPlain.JSON_PROPERTY_EVENT_NAMING,
   EventContestPlain.JSON_PROPERTY_TITLE,
   EventContestPlain.JSON_PROPERTY_STATE,
@@ -63,16 +57,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_PROMOTER_TENDERING_TITLE,
   EventContestPlain.JSON_PROPERTY_PROMOTER_EVENT_URL,
   EventContestPlain.JSON_PROPERTY_PROMOTER_EVENT_TITLE,
+  EventContestPlain.JSON_PROPERTY_IS_INITIAL_EVENT,
+  EventContestPlain.JSON_PROPERTY_INITIAL_EVENT_UUID,
   EventContestPlain.JSON_PROPERTY_INITIAL_EVENT,
   EventContestPlain.JSON_PROPERTY_CURRENT_EVENT,
-  EventContestPlain.JSON_PROPERTY_REQUEST_DATE,
-  EventContestPlain.JSON_PROPERTY_REQUEST_INFO,
-  EventContestPlain.JSON_PROPERTY_APPROVAL_DATE,
-  EventContestPlain.JSON_PROPERTY_APPROVAL_INFO,
-  EventContestPlain.JSON_PROPERTY_STATE_COMMISSIONER_UUID,
-  EventContestPlain.JSON_PROPERTY_STATE_COMMISSIONER_DESCRIPTION,
-  EventContestPlain.JSON_PROPERTY_REGION_COMMISSIONER_UUID,
-  EventContestPlain.JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION,
   EventContestPlain.JSON_PROPERTY_PAYMENT_ACCOUNT_HOLDER,
   EventContestPlain.JSON_PROPERTY_PAYMENT_IBAN,
   EventContestPlain.JSON_PROPERTY_PAYMENT_BIC,
@@ -90,28 +78,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_LOCATIONS,
   EventContestPlain.JSON_PROPERTY_REMARKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
-
-  public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
-  private OffsetDateTime creationTimestamp;
-
-  public static final String JSON_PROPERTY_CREATION_USER_UUID = "creationUserUuid";
-  private String creationUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_TIMESTAMP = "changeTimestamp";
-  private OffsetDateTime changeTimestamp;
-
-  public static final String JSON_PROPERTY_CHANGE_USER_UUID = "changeUserUuid";
-  private String changeUserUuid;
-
-  public static final String JSON_PROPERTY_CHANGE_COUNTER = "changeCounter";
-  private Integer changeCounter;
-
-  public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
-  private Integer currentState;
 
   public static final String JSON_PROPERTY_EVENT_NAMING = "eventNaming";
   private String eventNaming;
@@ -161,35 +131,17 @@ public class EventContestPlain {
   public static final String JSON_PROPERTY_PROMOTER_EVENT_TITLE = "promoterEventTitle";
   private String promoterEventTitle;
 
+  public static final String JSON_PROPERTY_IS_INITIAL_EVENT = "isInitialEvent";
+  private Boolean isInitialEvent;
+
+  public static final String JSON_PROPERTY_INITIAL_EVENT_UUID = "initialEventUuid";
+  private String initialEventUuid;
+
   public static final String JSON_PROPERTY_INITIAL_EVENT = "initialEvent";
   private String initialEvent;
 
   public static final String JSON_PROPERTY_CURRENT_EVENT = "currentEvent";
   private Integer currentEvent;
-
-  public static final String JSON_PROPERTY_REQUEST_DATE = "requestDate";
-  private OffsetDateTime requestDate;
-
-  public static final String JSON_PROPERTY_REQUEST_INFO = "requestInfo";
-  private String requestInfo;
-
-  public static final String JSON_PROPERTY_APPROVAL_DATE = "approvalDate";
-  private OffsetDateTime approvalDate;
-
-  public static final String JSON_PROPERTY_APPROVAL_INFO = "approvalInfo";
-  private String approvalInfo;
-
-  public static final String JSON_PROPERTY_STATE_COMMISSIONER_UUID = "stateCommissionerUuid";
-  private String stateCommissionerUuid;
-
-  public static final String JSON_PROPERTY_STATE_COMMISSIONER_DESCRIPTION = "stateCommissionerDescription";
-  private String stateCommissionerDescription;
-
-  public static final String JSON_PROPERTY_REGION_COMMISSIONER_UUID = "regionCommissionerUuid";
-  private String regionCommissionerUuid;
-
-  public static final String JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION = "regionCommissionerDescription";
-  private String regionCommissionerDescription;
 
   public static final String JSON_PROPERTY_PAYMENT_ACCOUNT_HOLDER = "paymentAccountHolder";
   private String paymentAccountHolder;
@@ -263,162 +215,6 @@ public class EventContestPlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
-  }
-
-
-  public EventContestPlain creationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-    return this;
-  }
-
-   /**
-   * Get creationTimestamp
-   * @return creationTimestamp
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public OffsetDateTime getCreationTimestamp() {
-    return creationTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreationTimestamp(OffsetDateTime creationTimestamp) {
-    this.creationTimestamp = creationTimestamp;
-  }
-
-
-  public EventContestPlain creationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-    return this;
-  }
-
-   /**
-   * Get creationUserUuid
-   * @return creationUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCreationUserUuid() {
-    return creationUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATION_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreationUserUuid(String creationUserUuid) {
-    this.creationUserUuid = creationUserUuid;
-  }
-
-
-  public EventContestPlain changeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-    return this;
-  }
-
-   /**
-   * Get changeTimestamp
-   * @return changeTimestamp
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getChangeTimestamp() {
-    return changeTimestamp;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_TIMESTAMP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeTimestamp(OffsetDateTime changeTimestamp) {
-    this.changeTimestamp = changeTimestamp;
-  }
-
-
-  public EventContestPlain changeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-    return this;
-  }
-
-   /**
-   * Get changeUserUuid
-   * @return changeUserUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getChangeUserUuid() {
-    return changeUserUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_USER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeUserUuid(String changeUserUuid) {
-    this.changeUserUuid = changeUserUuid;
-  }
-
-
-  public EventContestPlain changeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-    return this;
-  }
-
-   /**
-   * Get changeCounter
-   * @return changeCounter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getChangeCounter() {
-    return changeCounter;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANGE_COUNTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChangeCounter(Integer changeCounter) {
-    this.changeCounter = changeCounter;
-  }
-
-
-  public EventContestPlain currentState(Integer currentState) {
-    this.currentState = currentState;
-    return this;
-  }
-
-   /**
-   * Get currentState
-   * @return currentState
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getCurrentState() {
-    return currentState;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CURRENT_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentState(Integer currentState) {
-    this.currentState = currentState;
   }
 
 
@@ -838,6 +634,58 @@ public class EventContestPlain {
   }
 
 
+  public EventContestPlain isInitialEvent(Boolean isInitialEvent) {
+    this.isInitialEvent = isInitialEvent;
+    return this;
+  }
+
+   /**
+   * Get isInitialEvent
+   * @return isInitialEvent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_INITIAL_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsInitialEvent() {
+    return isInitialEvent;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_INITIAL_EVENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsInitialEvent(Boolean isInitialEvent) {
+    this.isInitialEvent = isInitialEvent;
+  }
+
+
+  public EventContestPlain initialEventUuid(String initialEventUuid) {
+    this.initialEventUuid = initialEventUuid;
+    return this;
+  }
+
+   /**
+   * Get initialEventUuid
+   * @return initialEventUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INITIAL_EVENT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInitialEventUuid() {
+    return initialEventUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INITIAL_EVENT_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInitialEventUuid(String initialEventUuid) {
+    this.initialEventUuid = initialEventUuid;
+  }
+
+
   public EventContestPlain initialEvent(String initialEvent) {
     this.initialEvent = initialEvent;
     return this;
@@ -887,214 +735,6 @@ public class EventContestPlain {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrentEvent(Integer currentEvent) {
     this.currentEvent = currentEvent;
-  }
-
-
-  public EventContestPlain requestDate(OffsetDateTime requestDate) {
-    this.requestDate = requestDate;
-    return this;
-  }
-
-   /**
-   * Get requestDate
-   * @return requestDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REQUEST_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getRequestDate() {
-    return requestDate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REQUEST_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestDate(OffsetDateTime requestDate) {
-    this.requestDate = requestDate;
-  }
-
-
-  public EventContestPlain requestInfo(String requestInfo) {
-    this.requestInfo = requestInfo;
-    return this;
-  }
-
-   /**
-   * Get requestInfo
-   * @return requestInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REQUEST_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRequestInfo() {
-    return requestInfo;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REQUEST_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestInfo(String requestInfo) {
-    this.requestInfo = requestInfo;
-  }
-
-
-  public EventContestPlain approvalDate(OffsetDateTime approvalDate) {
-    this.approvalDate = approvalDate;
-    return this;
-  }
-
-   /**
-   * Get approvalDate
-   * @return approvalDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_APPROVAL_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getApprovalDate() {
-    return approvalDate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_APPROVAL_DATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApprovalDate(OffsetDateTime approvalDate) {
-    this.approvalDate = approvalDate;
-  }
-
-
-  public EventContestPlain approvalInfo(String approvalInfo) {
-    this.approvalInfo = approvalInfo;
-    return this;
-  }
-
-   /**
-   * Get approvalInfo
-   * @return approvalInfo
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_APPROVAL_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getApprovalInfo() {
-    return approvalInfo;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_APPROVAL_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApprovalInfo(String approvalInfo) {
-    this.approvalInfo = approvalInfo;
-  }
-
-
-  public EventContestPlain stateCommissionerUuid(String stateCommissionerUuid) {
-    this.stateCommissionerUuid = stateCommissionerUuid;
-    return this;
-  }
-
-   /**
-   * Get stateCommissionerUuid
-   * @return stateCommissionerUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STATE_COMMISSIONER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getStateCommissionerUuid() {
-    return stateCommissionerUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATE_COMMISSIONER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStateCommissionerUuid(String stateCommissionerUuid) {
-    this.stateCommissionerUuid = stateCommissionerUuid;
-  }
-
-
-  public EventContestPlain stateCommissionerDescription(String stateCommissionerDescription) {
-    this.stateCommissionerDescription = stateCommissionerDescription;
-    return this;
-  }
-
-   /**
-   * Get stateCommissionerDescription
-   * @return stateCommissionerDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_STATE_COMMISSIONER_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getStateCommissionerDescription() {
-    return stateCommissionerDescription;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATE_COMMISSIONER_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStateCommissionerDescription(String stateCommissionerDescription) {
-    this.stateCommissionerDescription = stateCommissionerDescription;
-  }
-
-
-  public EventContestPlain regionCommissionerUuid(String regionCommissionerUuid) {
-    this.regionCommissionerUuid = regionCommissionerUuid;
-    return this;
-  }
-
-   /**
-   * Get regionCommissionerUuid
-   * @return regionCommissionerUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REGION_COMMISSIONER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRegionCommissionerUuid() {
-    return regionCommissionerUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGION_COMMISSIONER_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegionCommissionerUuid(String regionCommissionerUuid) {
-    this.regionCommissionerUuid = regionCommissionerUuid;
-  }
-
-
-  public EventContestPlain regionCommissionerDescription(String regionCommissionerDescription) {
-    this.regionCommissionerDescription = regionCommissionerDescription;
-    return this;
-  }
-
-   /**
-   * Get regionCommissionerDescription
-   * @return regionCommissionerDescription
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRegionCommissionerDescription() {
-    return regionCommissionerDescription;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGION_COMMISSIONER_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegionCommissionerDescription(String regionCommissionerDescription) {
-    this.regionCommissionerDescription = regionCommissionerDescription;
   }
 
 
@@ -1567,12 +1207,6 @@ public class EventContestPlain {
     }
     EventContestPlain eventContestPlain = (EventContestPlain) o;
     return Objects.equals(this.uuid, eventContestPlain.uuid) &&
-        Objects.equals(this.creationTimestamp, eventContestPlain.creationTimestamp) &&
-        Objects.equals(this.creationUserUuid, eventContestPlain.creationUserUuid) &&
-        Objects.equals(this.changeTimestamp, eventContestPlain.changeTimestamp) &&
-        Objects.equals(this.changeUserUuid, eventContestPlain.changeUserUuid) &&
-        Objects.equals(this.changeCounter, eventContestPlain.changeCounter) &&
-        Objects.equals(this.currentState, eventContestPlain.currentState) &&
         Objects.equals(this.eventNaming, eventContestPlain.eventNaming) &&
         Objects.equals(this.title, eventContestPlain.title) &&
         Objects.equals(this.state, eventContestPlain.state) &&
@@ -1589,16 +1223,10 @@ public class EventContestPlain {
         Objects.equals(this.promoterTenderingTitle, eventContestPlain.promoterTenderingTitle) &&
         Objects.equals(this.promoterEventUrl, eventContestPlain.promoterEventUrl) &&
         Objects.equals(this.promoterEventTitle, eventContestPlain.promoterEventTitle) &&
+        Objects.equals(this.isInitialEvent, eventContestPlain.isInitialEvent) &&
+        Objects.equals(this.initialEventUuid, eventContestPlain.initialEventUuid) &&
         Objects.equals(this.initialEvent, eventContestPlain.initialEvent) &&
         Objects.equals(this.currentEvent, eventContestPlain.currentEvent) &&
-        Objects.equals(this.requestDate, eventContestPlain.requestDate) &&
-        Objects.equals(this.requestInfo, eventContestPlain.requestInfo) &&
-        Objects.equals(this.approvalDate, eventContestPlain.approvalDate) &&
-        Objects.equals(this.approvalInfo, eventContestPlain.approvalInfo) &&
-        Objects.equals(this.stateCommissionerUuid, eventContestPlain.stateCommissionerUuid) &&
-        Objects.equals(this.stateCommissionerDescription, eventContestPlain.stateCommissionerDescription) &&
-        Objects.equals(this.regionCommissionerUuid, eventContestPlain.regionCommissionerUuid) &&
-        Objects.equals(this.regionCommissionerDescription, eventContestPlain.regionCommissionerDescription) &&
         Objects.equals(this.paymentAccountHolder, eventContestPlain.paymentAccountHolder) &&
         Objects.equals(this.paymentIban, eventContestPlain.paymentIban) &&
         Objects.equals(this.paymentBic, eventContestPlain.paymentBic) &&
@@ -1619,7 +1247,7 @@ public class EventContestPlain {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, eventNaming, title, state, beginning, ending, country, countryRegion, isCountryChampionship, isCei, isCard, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, initialEvent, currentEvent, requestDate, requestInfo, approvalDate, approvalInfo, stateCommissionerUuid, stateCommissionerDescription, regionCommissionerUuid, regionCommissionerDescription, paymentAccountHolder, paymentIban, paymentBic, paymentPaypal, paymentReason, contestantQuantityMin, contestantQuantityMax, registrationClosing, isLateRegistration, infoVaccinationObligation, infoHelmetObligation, competitions, roles, fees, locations, remarks);
+    return Objects.hash(uuid, eventNaming, title, state, beginning, ending, country, countryRegion, isCountryChampionship, isCei, isCard, vddPortalUrl, vddPortalTitle, promoterTenderingUrl, promoterTenderingTitle, promoterEventUrl, promoterEventTitle, isInitialEvent, initialEventUuid, initialEvent, currentEvent, paymentAccountHolder, paymentIban, paymentBic, paymentPaypal, paymentReason, contestantQuantityMin, contestantQuantityMax, registrationClosing, isLateRegistration, infoVaccinationObligation, infoHelmetObligation, competitions, roles, fees, locations, remarks);
   }
 
   @Override
@@ -1627,12 +1255,6 @@ public class EventContestPlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestPlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
-    sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
-    sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");
-    sb.append("    changeUserUuid: ").append(toIndentedString(changeUserUuid)).append("\n");
-    sb.append("    changeCounter: ").append(toIndentedString(changeCounter)).append("\n");
-    sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
     sb.append("    eventNaming: ").append(toIndentedString(eventNaming)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
@@ -1649,16 +1271,10 @@ public class EventContestPlain {
     sb.append("    promoterTenderingTitle: ").append(toIndentedString(promoterTenderingTitle)).append("\n");
     sb.append("    promoterEventUrl: ").append(toIndentedString(promoterEventUrl)).append("\n");
     sb.append("    promoterEventTitle: ").append(toIndentedString(promoterEventTitle)).append("\n");
+    sb.append("    isInitialEvent: ").append(toIndentedString(isInitialEvent)).append("\n");
+    sb.append("    initialEventUuid: ").append(toIndentedString(initialEventUuid)).append("\n");
     sb.append("    initialEvent: ").append(toIndentedString(initialEvent)).append("\n");
     sb.append("    currentEvent: ").append(toIndentedString(currentEvent)).append("\n");
-    sb.append("    requestDate: ").append(toIndentedString(requestDate)).append("\n");
-    sb.append("    requestInfo: ").append(toIndentedString(requestInfo)).append("\n");
-    sb.append("    approvalDate: ").append(toIndentedString(approvalDate)).append("\n");
-    sb.append("    approvalInfo: ").append(toIndentedString(approvalInfo)).append("\n");
-    sb.append("    stateCommissionerUuid: ").append(toIndentedString(stateCommissionerUuid)).append("\n");
-    sb.append("    stateCommissionerDescription: ").append(toIndentedString(stateCommissionerDescription)).append("\n");
-    sb.append("    regionCommissionerUuid: ").append(toIndentedString(regionCommissionerUuid)).append("\n");
-    sb.append("    regionCommissionerDescription: ").append(toIndentedString(regionCommissionerDescription)).append("\n");
     sb.append("    paymentAccountHolder: ").append(toIndentedString(paymentAccountHolder)).append("\n");
     sb.append("    paymentIban: ").append(toIndentedString(paymentIban)).append("\n");
     sb.append("    paymentBic: ").append(toIndentedString(paymentBic)).append("\n");

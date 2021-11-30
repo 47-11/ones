@@ -1,7 +1,10 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
+import de.fourtyseveneleven.ones.horse.model.SimpleHorseDto;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class FullContestDto extends SimpleContestDto{
 
@@ -27,7 +30,7 @@ public class FullContestDto extends SimpleContestDto{
 
     private String markings;
 
-    private String signedUpHorses;
+    private Set<SimpleHorseDto> signedUpHorses;
 
     public LocalDateTime getStart() {
         return start;
@@ -141,11 +144,11 @@ public class FullContestDto extends SimpleContestDto{
         this.markings = markings;
     }
 
-    public String getSignedUpHorses() {
+    public Set<SimpleHorseDto> getSignedUpHorses() {
         return signedUpHorses;
     }
 
-    public void setSignedUpHorses(String signedUpHorses) {
+    public void setSignedUpHorses(Set<SimpleHorseDto> signedUpHorses) {
         this.signedUpHorses = signedUpHorses;
     }
 }

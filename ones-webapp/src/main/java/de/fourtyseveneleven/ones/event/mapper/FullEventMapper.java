@@ -5,10 +5,7 @@ import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFee;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemark;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRole;
+import de.fourtyseveneleven.ones.ecm.generated.model.*;
 import de.fourtyseveneleven.ones.event.model.dto.AccommodationDto;
 import de.fourtyseveneleven.ones.event.model.dto.FeeDto;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
@@ -64,34 +61,34 @@ public abstract class FullEventMapper {
     @Mapping(source = "paymentIban", target = "paymentInformation.bankTransferIban")
     @Mapping(source = "paymentBic", target = "paymentInformation.bankTransferBic")
     @Mapping(source = "paymentPaypal", target = "paymentInformation.paypalInformation")
-    public abstract FullEventDto eventContestToFullEventDto(EventContest eventContest);
+    public abstract FullEventDto eventContestPlainToFullEventDto(EventContestPlain eventContest);
 
-    protected List<String> remarksToAdditionalComments(Set<EventContestRemark> remarks) {
+    protected List<String> remarksToAdditionalComments(Set<EventContestRemarkPlain> remarks) {
 
         return remarks.stream()
-                .map(EventContestRemark::getDescription)
+                .map(EventContestRemarkPlain::getDescription)
                 .toList();
     }
 
     @Named("eventHostFromRoles")
-    protected PersonDto eventHostFromRoles(Set<EventContestRole> roles) {
+    protected PersonDto eventHostFromRoles(Set<EventContestRolePlain> roles) {
 
         return findPersonByRoleKind(roles, "PROMOTER");
     }
 
     @Named("eventOrganizerFromRoles")
-    protected PersonDto eventOrganizerFromRoles(Set<EventContestRole> roles) {
+    protected PersonDto eventOrganizerFromRoles(Set<EventContestRolePlain> roles) {
 
         return findPersonByRoleKind(roles, "ORGANIZER");
     }
 
     @Named("contactPersonFromRoles")
-    protected PersonDto contactPersonFromRoles(Set<EventContestRole> roles) {
+    protected PersonDto contactPersonFromRoles(Set<EventContestRolePlain> roles) {
 
         return findPersonByRoleKind(roles, "REGISTRATION");
     }
 
-    private PersonDto findPersonByRoleKind(Set<EventContestRole> roles, String roleKind) {
+    private PersonDto findPersonByRoleKind(Set<EventContestRolePlain> roles, String roleKind) {
 
         return roles.stream()
                 .filter(role -> roleKind.equalsIgnoreCase(role.getKind()))
@@ -100,7 +97,7 @@ public abstract class FullEventMapper {
                 .orElse(null);
     }
 
-    private PersonDto personDtoFromRole(EventContestRole role) {
+    private PersonDto personDtoFromRole(EventContestRolePlain role) {
 
         final PersonDto personDto = new PersonDto();
         personDto.setFirstName(role.getName1());
@@ -126,7 +123,7 @@ public abstract class FullEventMapper {
         }
     }
 
-    private AddressDto addressDtoFromRole(EventContestRole role) {
+    private AddressDto addressDtoFromRole(EventContestRolePlain role) {
 
         final AddressDto addressDto = new AddressDto();
         addressDto.setStreet(role.getStreet());
@@ -138,7 +135,7 @@ public abstract class FullEventMapper {
     }
 
     @Named("lateSignupFee")
-    protected FeeDto lateSignupFee(Set<EventContestFee> fees) {
+    protected FeeDto lateSignupFee(Set<EventContestFeePlain> fees) {
 
         return fees.stream()
                 .filter(f -> "ADMINISTRATION".equalsIgnoreCase(f.getKind()))
@@ -149,7 +146,7 @@ public abstract class FullEventMapper {
     }
 
     @Named("signupChangeFee")
-    protected FeeDto signupChangeFee(Set<EventContestFee> fees) {
+    protected FeeDto signupChangeFee(Set<EventContestFeePlain> fees) {
 
         return fees.stream()
                 .filter(f -> "ADMINISTRATION".equalsIgnoreCase(f.getKind()))
@@ -159,7 +156,7 @@ public abstract class FullEventMapper {
                 .orElse(null);
     }
 
-    private FeeDto feeDtoFromEventContestFee(EventContestFee eventContestFee) {
+    private FeeDto feeDtoFromEventContestFee(EventContestFeePlain eventContestFee) {
 
         if (isNull(eventContestFee.getValue())) {
             return new FeeDto(null, null);

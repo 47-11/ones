@@ -8,12 +8,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **String** |  | 
-**creationTimestamp** | **OffsetDateTime** |  | 
-**creationUserUuid** | **String** |  |  [optional]
-**changeTimestamp** | **OffsetDateTime** |  |  [optional]
-**changeUserUuid** | **String** |  |  [optional]
-**changeCounter** | **Integer** |  |  [optional]
-**currentState** | **Integer** |  |  [optional]
 **eventNaming** | **String** |  |  [optional]
 **title** | **String** |  |  [optional]
 **state** | **String** |  |  [optional]
@@ -30,16 +24,10 @@ Name | Type | Description | Notes
 **promoterTenderingTitle** | **String** |  |  [optional]
 **promoterEventUrl** | **String** |  |  [optional]
 **promoterEventTitle** | **String** |  |  [optional]
+**isInitialEvent** | **Boolean** |  |  [optional]
+**initialEventUuid** | **String** |  |  [optional]
 **initialEvent** | **String** |  |  [optional]
 **currentEvent** | **Integer** |  |  [optional]
-**requestDate** | **OffsetDateTime** |  |  [optional]
-**requestInfo** | **String** |  |  [optional]
-**approvalDate** | **OffsetDateTime** |  |  [optional]
-**approvalInfo** | **String** |  |  [optional]
-**stateCommissionerUuid** | **String** |  |  [optional]
-**stateCommissionerDescription** | **String** |  |  [optional]
-**regionCommissionerUuid** | **String** |  |  [optional]
-**regionCommissionerDescription** | **String** |  |  [optional]
 **paymentAccountHolder** | **String** |  |  [optional]
 **paymentIban** | **String** |  |  [optional]
 **paymentBic** | **String** |  |  [optional]

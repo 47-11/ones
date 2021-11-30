@@ -45,6 +45,23 @@ public class ApplicationAccountControllerApiTest {
      *          if the Api call fails
      */
     @Test
+    public void deleteRegisteredAccountTest() throws ApiException {
+        String loginIdentification = null;
+        RegisterResponce response = 
+        api.deleteRegisteredAccount(loginIdentification);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
     public void getAccoundByUuidTest() throws ApiException {
         String accountUuid = null;
         RegisteredAccount response = 

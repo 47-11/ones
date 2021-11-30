@@ -47,7 +47,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisteredHorse.JSON_PROPERTY_OWNER,
   RegisteredHorse.JSON_PROPERTY_STABLE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class RegisteredHorse {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -70,8 +70,45 @@ public class RegisteredHorse {
   public static final String JSON_PROPERTY_BREED = "breed";
   private String breed;
 
+  /**
+   * Gets or Sets gender
+   */
+  public enum GenderEnum {
+    M("M"),
+    
+    S("S"),
+    
+    G("G");
+
+    private String value;
+
+    GenderEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GenderEnum fromValue(String value) {
+      for (GenderEnum b : GenderEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_GENDER = "gender";
-  private String gender;
+  private GenderEnum gender;
 
   public static final String JSON_PROPERTY_COLOR = "color";
   private String color;
@@ -271,7 +308,7 @@ public class RegisteredHorse {
   }
 
 
-  public RegisteredHorse gender(String gender) {
+  public RegisteredHorse gender(GenderEnum gender) {
     this.gender = gender;
     return this;
   }
@@ -285,14 +322,14 @@ public class RegisteredHorse {
   @JsonProperty(JSON_PROPERTY_GENDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getGender() {
+  public GenderEnum getGender() {
     return gender;
   }
 
 
   @JsonProperty(JSON_PROPERTY_GENDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGender(String gender) {
+  public void setGender(GenderEnum gender) {
     this.gender = gender;
   }
 

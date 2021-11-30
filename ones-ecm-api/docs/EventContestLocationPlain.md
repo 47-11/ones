@@ -8,14 +8,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **String** |  | 
-**creationTimestamp** | **OffsetDateTime** |  | 
-**creationUserUuid** | **String** |  |  [optional]
-**changeTimestamp** | **OffsetDateTime** |  |  [optional]
-**changeUserUuid** | **String** |  |  [optional]
-**changeCounter** | **Integer** |  |  [optional]
-**currentState** | **Integer** |  |  [optional]
-**type** | **String** |  |  [optional]
-**salutation** | **String** |  |  [optional]
 **name1** | **String** |  |  [optional]
 **name2** | **String** |  |  [optional]
 **name3** | **String** |  |  [optional]

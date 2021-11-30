@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactNatural;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterMembership;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccountImposedLocks;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -42,9 +43,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisteredAccount.JSON_PROPERTY_NATIVE_LANGUAGE,
   RegisteredAccount.JSON_PROPERTY_USER,
   RegisteredAccount.JSON_PROPERTY_MEMBERSHIPS,
-  RegisteredAccount.JSON_PROPERTY_HORSES
+  RegisteredAccount.JSON_PROPERTY_HORSES,
+  RegisteredAccount.JSON_PROPERTY_IMPOSED_LOCKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class RegisteredAccount {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -63,6 +65,9 @@ public class RegisteredAccount {
 
   public static final String JSON_PROPERTY_HORSES = "horses";
   private Set<RegisteredHorse> horses = null;
+
+  public static final String JSON_PROPERTY_IMPOSED_LOCKS = "imposedLocks";
+  private Set<RegisteredAccountImposedLocks> imposedLocks = null;
 
 
   public RegisteredAccount uuid(String uuid) {
@@ -229,6 +234,40 @@ public class RegisteredAccount {
   }
 
 
+  public RegisteredAccount imposedLocks(Set<RegisteredAccountImposedLocks> imposedLocks) {
+    this.imposedLocks = imposedLocks;
+    return this;
+  }
+
+  public RegisteredAccount addImposedLocksItem(RegisteredAccountImposedLocks imposedLocksItem) {
+    if (this.imposedLocks == null) {
+      this.imposedLocks = new LinkedHashSet<>();
+    }
+    this.imposedLocks.add(imposedLocksItem);
+    return this;
+  }
+
+   /**
+   * Get imposedLocks
+   * @return imposedLocks
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IMPOSED_LOCKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Set<RegisteredAccountImposedLocks> getImposedLocks() {
+    return imposedLocks;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IMPOSED_LOCKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImposedLocks(Set<RegisteredAccountImposedLocks> imposedLocks) {
+    this.imposedLocks = imposedLocks;
+  }
+
+
   /**
    * Return true if this registeredAccount object is equal to o.
    */
@@ -246,12 +285,13 @@ public class RegisteredAccount {
         Objects.equals(this.nativeLanguage, registeredAccount.nativeLanguage) &&
         Objects.equals(this.user, registeredAccount.user) &&
         Objects.equals(this.memberships, registeredAccount.memberships) &&
-        Objects.equals(this.horses, registeredAccount.horses);
+        Objects.equals(this.horses, registeredAccount.horses) &&
+        Objects.equals(this.imposedLocks, registeredAccount.imposedLocks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, loginIdentification, nativeLanguage, user, memberships, horses);
+    return Objects.hash(uuid, loginIdentification, nativeLanguage, user, memberships, horses, imposedLocks);
   }
 
   @Override
@@ -264,6 +304,7 @@ public class RegisteredAccount {
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    memberships: ").append(toIndentedString(memberships)).append("\n");
     sb.append("    horses: ").append(toIndentedString(horses)).append("\n");
+    sb.append("    imposedLocks: ").append(toIndentedString(imposedLocks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

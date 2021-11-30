@@ -17,12 +17,12 @@ import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiResponse;
 import de.fourtyseveneleven.ones.ecm.generated.Pair;
 
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionResult;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import java.time.OffsetDateTime;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNomination;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
-import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,7 +41,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
 public class EventContestControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -150,11 +150,11 @@ public class EventContestControllerApi {
    * 
    * @param contestUuid  (required)
    * @param accountUuid  (required)
-   * @return EventContest
+   * @return EventContestPlain
    * @throws ApiException if fails to make API call
    */
-  public EventContest getContestByUuid(String contestUuid, String accountUuid) throws ApiException {
-    ApiResponse<EventContest> localVarResponse = getContestByUuidWithHttpInfo(contestUuid, accountUuid);
+  public EventContestPlain getContestByUuid(String contestUuid, String accountUuid) throws ApiException {
+    ApiResponse<EventContestPlain> localVarResponse = getContestByUuidWithHttpInfo(contestUuid, accountUuid);
     return localVarResponse.getData();
   }
 
@@ -163,10 +163,10 @@ public class EventContestControllerApi {
    * 
    * @param contestUuid  (required)
    * @param accountUuid  (required)
-   * @return ApiResponse&lt;EventContest&gt;
+   * @return ApiResponse&lt;EventContestPlain&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<EventContest> getContestByUuidWithHttpInfo(String contestUuid, String accountUuid) throws ApiException {
+  public ApiResponse<EventContestPlain> getContestByUuidWithHttpInfo(String contestUuid, String accountUuid) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getContestByUuidRequestBuilder(contestUuid, accountUuid);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -178,10 +178,10 @@ public class EventContestControllerApi {
       if (localVarResponse.statusCode()/ 100 != 2) {
         throw getApiException("getContestByUuid", localVarResponse);
       }
-      return new ApiResponse<EventContest>(
+      return new ApiResponse<EventContestPlain>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<EventContest>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<EventContestPlain>() {})
         );
     } catch (IOException e) {
       throw new ApiException(e);
@@ -244,11 +244,11 @@ public class EventContestControllerApi {
    * @param pageNo  (optional, default to 0)
    * @param pageSize  (optional, default to 10)
    * @param sortBy  (optional, default to beginning)
-   * @return ResponcePageContestsPlain
+   * @return ResponcePageContests
    * @throws ApiException if fails to make API call
    */
-  public ResponcePageContestsPlain getContestByYear(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
-    ApiResponse<ResponcePageContestsPlain> localVarResponse = getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
+  public ResponcePageContests getContestByYear(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+    ApiResponse<ResponcePageContests> localVarResponse = getContestByYearWithHttpInfo(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
     return localVarResponse.getData();
   }
 
@@ -267,10 +267,10 @@ public class EventContestControllerApi {
    * @param pageNo  (optional, default to 0)
    * @param pageSize  (optional, default to 10)
    * @param sortBy  (optional, default to beginning)
-   * @return ApiResponse&lt;ResponcePageContestsPlain&gt;
+   * @return ApiResponse&lt;ResponcePageContests&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ResponcePageContestsPlain> getContestByYearWithHttpInfo(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
+  public ApiResponse<ResponcePageContests> getContestByYearWithHttpInfo(OffsetDateTime fromDate, OffsetDateTime untilDate, List<String> countryRegions, List<String> contestKinds, Integer isCountryChampionship, Integer isCEI, Integer isCard, Boolean onlyRegistered, String accountUuid, Integer pageNo, Integer pageSize, String sortBy) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getContestByYearRequestBuilder(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -282,10 +282,10 @@ public class EventContestControllerApi {
       if (localVarResponse.statusCode()/ 100 != 2) {
         throw getApiException("getContestByYear", localVarResponse);
       }
-      return new ApiResponse<ResponcePageContestsPlain>(
+      return new ApiResponse<ResponcePageContests>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ResponcePageContestsPlain>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ResponcePageContests>() {})
         );
     } catch (IOException e) {
       throw new ApiException(e);

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -31,15 +31,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * ResponcePageContestsPlain
+ * ResponcePageContests
  */
 @JsonPropertyOrder({
-  ResponcePageContestsPlain.JSON_PROPERTY_LAST_PAGE,
-  ResponcePageContestsPlain.JSON_PROPERTY_TOTAL_ELEMENTS,
-  ResponcePageContestsPlain.JSON_PROPERTY_DATA
+  ResponcePageContests.JSON_PROPERTY_LAST_PAGE,
+  ResponcePageContests.JSON_PROPERTY_TOTAL_ELEMENTS,
+  ResponcePageContests.JSON_PROPERTY_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-19T17:51:39.567128100+01:00[Europe/Berlin]")
-public class ResponcePageContestsPlain {
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
+public class ResponcePageContests {
   public static final String JSON_PROPERTY_LAST_PAGE = "lastPage";
   private Integer lastPage;
 
@@ -47,10 +47,10 @@ public class ResponcePageContestsPlain {
   private Long totalElements;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private List<EventContestPlain> data = null;
+  private List<EventContest> data = null;
 
 
-  public ResponcePageContestsPlain lastPage(Integer lastPage) {
+  public ResponcePageContests lastPage(Integer lastPage) {
     this.lastPage = lastPage;
     return this;
   }
@@ -76,7 +76,7 @@ public class ResponcePageContestsPlain {
   }
 
 
-  public ResponcePageContestsPlain totalElements(Long totalElements) {
+  public ResponcePageContests totalElements(Long totalElements) {
     this.totalElements = totalElements;
     return this;
   }
@@ -102,12 +102,12 @@ public class ResponcePageContestsPlain {
   }
 
 
-  public ResponcePageContestsPlain data(List<EventContestPlain> data) {
+  public ResponcePageContests data(List<EventContest> data) {
     this.data = data;
     return this;
   }
 
-  public ResponcePageContestsPlain addDataItem(EventContestPlain dataItem) {
+  public ResponcePageContests addDataItem(EventContest dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -124,20 +124,20 @@ public class ResponcePageContestsPlain {
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<EventContestPlain> getData() {
+  public List<EventContest> getData() {
     return data;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setData(List<EventContestPlain> data) {
+  public void setData(List<EventContest> data) {
     this.data = data;
   }
 
 
   /**
-   * Return true if this ResponcePageContests_Plain object is equal to o.
+   * Return true if this ResponcePageContests object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -147,10 +147,10 @@ public class ResponcePageContestsPlain {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResponcePageContestsPlain responcePageContestsPlain = (ResponcePageContestsPlain) o;
-    return Objects.equals(this.lastPage, responcePageContestsPlain.lastPage) &&
-        Objects.equals(this.totalElements, responcePageContestsPlain.totalElements) &&
-        Objects.equals(this.data, responcePageContestsPlain.data);
+    ResponcePageContests responcePageContests = (ResponcePageContests) o;
+    return Objects.equals(this.lastPage, responcePageContests.lastPage) &&
+        Objects.equals(this.totalElements, responcePageContests.totalElements) &&
+        Objects.equals(this.data, responcePageContests.data);
   }
 
   @Override
@@ -161,7 +161,7 @@ public class ResponcePageContestsPlain {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResponcePageContestsPlain {\n");
+    sb.append("class ResponcePageContests {\n");
     sb.append("    lastPage: ").append(toIndentedString(lastPage)).append("\n");
     sb.append("    totalElements: ").append(toIndentedString(totalElements)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");

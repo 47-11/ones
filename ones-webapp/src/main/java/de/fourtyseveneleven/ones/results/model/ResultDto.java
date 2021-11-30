@@ -1,7 +1,7 @@
 package de.fourtyseveneleven.ones.results.model;
 
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
-import de.fourtyseveneleven.ones.horse.model.HorseDto;
+import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
@@ -10,7 +10,7 @@ import java.util.List;
 public class ResultDto {
 
     private SimpleContestDto contest;
-    private List<HorseDto> horses = new LinkedList<>();
+    private List<FullHorseDto> horses = new LinkedList<>();
     private int placement;
     /**
      *  In km/h
@@ -25,11 +25,11 @@ public class ResultDto {
         this.contest = contest;
     }
 
-    public List<HorseDto> getHorses() {
+    public List<FullHorseDto> getHorses() {
         return horses;
     }
 
-    public void setHorses(List<HorseDto> horses) {
+    public void setHorses(List<FullHorseDto> horses) {
         this.horses = horses;
     }
 

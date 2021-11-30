@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistrationPlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionStagePlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -50,54 +51,6 @@ public class EventContestCompetitionPlainTest {
     @Test
     public void uuidTest() {
         // TODO: test uuid
-    }
-
-    /**
-     * Test the property 'creationTimestamp'
-     */
-    @Test
-    public void creationTimestampTest() {
-        // TODO: test creationTimestamp
-    }
-
-    /**
-     * Test the property 'creationUserUuid'
-     */
-    @Test
-    public void creationUserUuidTest() {
-        // TODO: test creationUserUuid
-    }
-
-    /**
-     * Test the property 'changeTimestamp'
-     */
-    @Test
-    public void changeTimestampTest() {
-        // TODO: test changeTimestamp
-    }
-
-    /**
-     * Test the property 'changeUserUuid'
-     */
-    @Test
-    public void changeUserUuidTest() {
-        // TODO: test changeUserUuid
-    }
-
-    /**
-     * Test the property 'changeCounter'
-     */
-    @Test
-    public void changeCounterTest() {
-        // TODO: test changeCounter
-    }
-
-    /**
-     * Test the property 'currentState'
-     */
-    @Test
-    public void currentStateTest() {
-        // TODO: test currentState
     }
 
     /**
@@ -146,94 +99,6 @@ public class EventContestCompetitionPlainTest {
     @Test
     public void raiseLengthTest() {
         // TODO: test raiseLength
-    }
-
-    /**
-     * Test the property 'minutesMaximum'
-     */
-    @Test
-    public void minutesMaximumTest() {
-        // TODO: test minutesMaximum
-    }
-
-    /**
-     * Test the property 'minutesAllowed'
-     */
-    @Test
-    public void minutesAllowedTest() {
-        // TODO: test minutesAllowed
-    }
-
-    /**
-     * Test the property 'penaltyPointsTimeout'
-     */
-    @Test
-    public void penaltyPointsTimeoutTest() {
-        // TODO: test penaltyPointsTimeout
-    }
-
-    /**
-     * Test the property 'penaltyPointsTimeUnderrun'
-     */
-    @Test
-    public void penaltyPointsTimeUnderrunTest() {
-        // TODO: test penaltyPointsTimeUnderrun
-    }
-
-    /**
-     * Test the property 'penaltyPointsAtPulseRateOf'
-     */
-    @Test
-    public void penaltyPointsAtPulseRateOfTest() {
-        // TODO: test penaltyPointsAtPulseRateOf
-    }
-
-    /**
-     * Test the property 'penaltyPointsPulseRateExceeded'
-     */
-    @Test
-    public void penaltyPointsPulseRateExceededTest() {
-        // TODO: test penaltyPointsPulseRateExceeded
-    }
-
-    /**
-     * Test the property 'breaksTotalNumbers'
-     */
-    @Test
-    public void breaksTotalNumbersTest() {
-        // TODO: test breaksTotalNumbers
-    }
-
-    /**
-     * Test the property 'breaksTotalMinutes'
-     */
-    @Test
-    public void breaksTotalMinutesTest() {
-        // TODO: test breaksTotalMinutes
-    }
-
-    /**
-     * Test the property 'responsibleVeterinarianUuid'
-     */
-    @Test
-    public void responsibleVeterinarianUuidTest() {
-        // TODO: test responsibleVeterinarianUuid
-    }
-
-    /**
-     * Test the property 'competitionUuidToExtend'
-     */
-    @Test
-    public void competitionUuidToExtendTest() {
-        // TODO: test competitionUuidToExtend
-    }
-
-    /**
-     * Test the property 'competitionUuidToReduce'
-     */
-    @Test
-    public void competitionUuidToReduceTest() {
-        // TODO: test competitionUuidToReduce
     }
 
     /**
@@ -533,19 +398,19 @@ public class EventContestCompetitionPlainTest {
     }
 
     /**
-     * Test the property 'displayRegistertHorses'
-     */
-    @Test
-    public void displayRegistertHorsesTest() {
-        // TODO: test displayRegistertHorses
-    }
-
-    /**
      * Test the property 'stages'
      */
     @Test
     public void stagesTest() {
         // TODO: test stages
+    }
+
+    /**
+     * Test the property 'registrations'
+     */
+    @Test
+    public void registrationsTest() {
+        // TODO: test registrations
     }
 
 }

@@ -21,17 +21,7 @@ import org.slf4j.LoggerFactory;
                 EventStatusMapper.class
         }
 )
-public abstract class SimpleEventMapper {
-
-
-    @Mapping(source = "beginning", target = "start")
-    @Mapping(source = "ending", target = "end")
-    @Mapping(source = "locations", target = "addresses")
-    @Mapping(source = "isCountryChampionship", target = "isNationalChampionship")
-    @Mapping(source = "isCei", target = "isInternational")
-    @Mapping(source = "countryRegion", target = "region")
-    @Mapping(source = "state", target = "status")
-    public abstract SimpleEventDto eventContestPlainToSimpleEventDto(EventContestPlain eventContestPlain);
+public interface SimpleEventMapper {
 
     @Mapping(source = "beginning", target = "start")
     @Mapping(source = "ending", target = "end")
@@ -40,5 +30,5 @@ public abstract class SimpleEventMapper {
     @Mapping(source = "isCei", target = "isInternational")
     @Mapping(source = "countryRegion", target = "region")
     @Mapping(source = "state", target = "status")
-    public abstract SimpleEventDto eventContestToSimpleEventDto(EventContest eventContest);
+    SimpleEventDto eventContestPlainToSimpleEventDto(EventContestPlain eventContestPlain);
 }
