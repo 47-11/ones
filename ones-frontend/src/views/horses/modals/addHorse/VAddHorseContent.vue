@@ -4,56 +4,69 @@
         <div class="grid grid-cols-12 gap-4 mb-5" v-if="!needsSetup">
             <div class="col-span-12">
                 <h1 class="text-xl bold">{{ $t("horses.modals.add.masterData") }}</h1>
+                <span class="text-yellow-400" v-if="isUpdate">
+                    <font-awesome-icon icon="exclamation-triangle"></font-awesome-icon>
+                    {{$t("horses.modals.add.noMasterDataUpdate")}}
+                </span>
             </div>
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.name") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.name" @input="updateHorse('name', $event)" :disabled="inputsDisabled"/>
+                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.name" @input="updateHorse('name', $event)" :disabled="inputsDisabled"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.name}}</span>
             </div>
 
             <div class="col-span-6 sm:invisible"></div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.passportNumber") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.passportNumber" @input="updateHorse('passportNumber', $event)" :disabled="inputsDisabled"/>
+                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.passportNumber" @input="updateHorse('passportNumber', $event)" :disabled="inputsDisabled"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.passportNumber}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.chipNumber") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.chipNumber" @input="updateHorse('chipNumber', $event)" :disabled="inputsDisabled"/>
+                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.chipNumber" @input="updateHorse('chipNumber', $event)" :disabled="inputsDisabled"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.chipNumber}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.gender") }}</v-label>
-                <v-select :value="horse.gender" type="text" class="w-full" @input="updateHorse('gender', $event)" :disabled="inputsDisabled">
+                <v-select v-if="isAdd" :value="horse.gender" type="text" class="w-full" @input="updateHorse('gender', $event)" :disabled="inputsDisabled">
                     <option v-for="(gender, index) in genders" :key="index" :value="gender">
                         {{ $t("data.horse.genderOptions." + gender) }}
                     </option>
                 </v-select>
+                <span class="text-lg" v-if="isUpdate">{{ $t("data.horse.genderOptions." + horse.gender) }}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.breed") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.breed" @input="updateHorse('breed', $event)" :disabled="inputsDisabled"/>
+                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.breed" @input="updateHorse('breed', $event)" :disabled="inputsDisabled"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.breed}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.color") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.color" @input="updateHorse('color', $event)" :disabled="inputsDisabled"/>
+                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.color" @input="updateHorse('color', $event)" :disabled="inputsDisabled"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.color}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.yearOfBirth") }}</v-label>
-                <v-input type="number" class="w-full" v-model="horse.yearOfBirth" @input="updateHorse('yearOfBirth', $event)" :disabled="inputsDisabled" :placeholder="$t('horses.modals.add.yearPlaceholder')"/>
+                <v-input v-if="isAdd" type="number" class="w-full" v-model="horse.yearOfBirth" @input="updateHorse('yearOfBirth', $event)" :disabled="inputsDisabled" :placeholder="$t('horses.modals.add.yearPlaceholder')"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.yearOfBirth}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.size") }}</v-label>
-                <v-input type="number" class="w-full" v-model="horse.size" @input="updateHorse('size', $event)" :disabled="inputsDisabled" :placeholder="$t('horses.modals.add.sizePlaceholder')"/>
+                <v-input v-if="isAdd" type="number" class="w-full" v-model="horse.size" @input="updateHorse('size', $event)" :disabled="inputsDisabled" :placeholder="$t('horses.modals.add.sizePlaceholder')"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.size}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.feiNo") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.feiNumber" @input="updateHorse('feiNumber', $event)" :disabled="inputsDisabled"/>
+                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.feiNumber" @input="updateHorse('feiNumber', $event)" :disabled="inputsDisabled"/>
+                <span class="text-lg" v-if="isUpdate">{{horse.feiNumber}}</span>
             </div>
 
             <div class="col-span-12 mt-8">
@@ -175,6 +188,14 @@ export default class VAddHorseContent extends Vue {
     })
     horse!: HorseDto;
 
+    get isAdd(): boolean {
+        return !this.isUpdate;
+    }
+
+    get isUpdate(): boolean {
+        return !!this.horse.uuid;
+    }
+
     genders = HorseDtoGenderEnum;
 
     public updateHorse(property: keyof HorseDto, value: string): void {
@@ -202,7 +223,7 @@ export default class VAddHorseContent extends Vue {
             this.assertRequiredFilled();
             this.assertAllInRange();
 
-            if (this.horse.uuid) {
+            if (this.isUpdate) {
                 await vxm.horses.update(this.horse);
             } else {
                 await vxm.horses.add(this.horse);
@@ -222,9 +243,11 @@ export default class VAddHorseContent extends Vue {
             return new Error(this.$t(propNameKey) + this.$t("horses.modals.add.errors.notFilled").toString());
         };
 
-        for (const prop of this.requiredProps) {
-            if (checkValue(this.horse[prop])) {
-                throw notFilled("data.horse." + prop);
+        if (this.isAdd) {
+            for (const prop of this.requiredProps) {
+                if (checkValue(this.horse[prop])) {
+                    throw notFilled("data.horse." + prop);
+                }
             }
         }
 
@@ -280,6 +303,10 @@ export default class VAddHorseContent extends Vue {
     requiredOwnerAddressProps = this.requiredStableProps;
 
     assertAllInRange(): void {
+        if (this.isUpdate) {
+            return;
+        }
+
         const currentYear = new Date().getFullYear();
         if (this.horse.yearOfBirth && (this.horse.yearOfBirth < (currentYear - 60) || this.horse.yearOfBirth > currentYear)) {
             throw new Error(this.$t("horses.modals.add.errors.yearInvalid").toString());
