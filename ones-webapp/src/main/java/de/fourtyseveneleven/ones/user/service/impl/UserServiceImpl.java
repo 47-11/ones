@@ -5,7 +5,9 @@ import de.fourtyseveneleven.ones.common.exception.ElementNotFoundException;
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactNatural;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccount;
+import de.fourtyseveneleven.ones.ecm.generated.model.UpdateAccount;
 import de.fourtyseveneleven.ones.user.mapper.UserMapper;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
@@ -121,7 +123,23 @@ public class UserServiceImpl implements UserService {
 
     private void updatePersonalData(User user, UserDto personalData) {
 
-        // TODO: Update personal data in ECM
+        try {
+            tryUpdatePersonalData(user, personalData);
+        } catch (ApiException e) {
+            throw new EcmApiException(e);
+        }
+    }
+
+    private void tryUpdatePersonalData(User user, UserDto personalData) throws ApiException {
+
+        final String userUuid = user.getUuid().toString();
+        final RegisteredAccount existingAccount = applicationAccountControllerApi.getAccoundByUuid(userUuid);
+
+        final UpdateAccount accountToUpdate = userMapper.registeredAccountToUpdateAcount(existingAccount);
+        final RegisterContactNatural personalDataToUpdate = accountToUpdate.getUser();
+
+        userMapper.applyPersonDtoToRegisterContactNatural(personalData, personalDataToUpdate);
+        applicationAccountControllerApi.putRegisterAccount(userUuid, accountToUpdate);
     }
 
     @Override

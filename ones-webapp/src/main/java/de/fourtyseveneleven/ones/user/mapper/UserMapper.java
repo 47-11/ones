@@ -14,6 +14,8 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring", uses = {CommonMapper.class, AddressMapper.class})
 public interface UserMapper {
 
+    UpdateAccount registeredAccountToUpdateAcount(RegisteredAccount registeredAccount);
+
     @Mapping(source = "firstName", target = "forename")
     @Mapping(source = "lastName", target = "surname")
     @Mapping(source = "phoneNumber", target = "phoneNumber")
