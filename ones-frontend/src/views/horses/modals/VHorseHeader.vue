@@ -43,12 +43,16 @@ export default class VTitle extends Vue {
             component: "Modal",
             slots: {
                 header: {
-                    component: VAddHorseHeader
+                    component: VAddHorseHeader,
+                    bind: {
+                        horse: this.horse
+                    }
                 },
                 footer: {
                     component: VAddHorseFooter,
                     bind: {
-                        confirm: onConfirm
+                        confirm: onConfirm,
+                        horse: this.horse
                     }
                 },
                 default: {
