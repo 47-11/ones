@@ -22,12 +22,14 @@ public abstract class HorseMapper {
 
     @Mapping(source = "passportNumber", target = "passportId")
     @Mapping(source = "chipNumber", target = "chipId")
+    @Mapping(source = "feiNumber", target = "feiPassportId")
     @Mapping(source = "size", target = "stickSize")
     @Mapping(source = "stableAddress", target = "stable.postalAddress")
     public abstract RegisterHorse horseDtoToRegisterHorse(FullHorseDto fullHorseDto);
 
     @Mapping(source = "passportId", target = "passportNumber")
     @Mapping(source = "chipId", target = "chipNumber")
+    @Mapping(source = "feiPassportId", target = "feiNumber")
     @Mapping(source = "stickSize", target = "size")
     @Mapping(source = "stable", target = "stableAddress")
     public abstract FullHorseDto registeredHorseToHorseDto(RegisteredHorse masterdataHorse);
