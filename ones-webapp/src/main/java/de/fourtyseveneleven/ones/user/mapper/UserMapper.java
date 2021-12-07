@@ -26,17 +26,20 @@ public interface UserMapper {
     @InheritConfiguration(name = "personDtoToRegisterContactNatural")
     void applyPersonDtoToRegisterContactNatural(PersonDto personDto, @MappingTarget RegisterContactNatural registerContactNatural);
 
-    @Mapping(source = "birthName", target = "user.birthname")
     @Mapping(source = "phoneNumberEmergency", target = "user.emergencyPhoneNumber")
     @Mapping(source = "vddNumber", target = "memberships.vddMemberId")
     @Mapping(source = "feiNumber", target = "memberships.feiMemberId")
     @Mapping(source = "fnNumber", target = "memberships.fnMemberId")
+    @Mapping(source = "qualificationLevel", target = "memberships.vddQualificationLevel")
+    // TODO: @Mapping(source = "?", target = "qualificationLevelApproved")
     @Mapping(source = "firstName", target = "user.forename")
     @Mapping(source = "lastName", target = "user.surname")
     @Mapping(source = "phoneNumber", target = "user.phoneNumber")
     @Mapping(source = "phoneNumberMobile", target = "user.phoneNumberMobile")
     @Mapping(source = "emailAddress", target = "user.email")
     @Mapping(source = "address", target = "user.postalAddress")
+    @Mapping(source = "birthName", target = "user.birthname")
+    @Mapping(source = "birthday", target = "user.birthday")
     RegisterAccount userDtoToRegisterAccount(UserDto userDto);
 
     @Mapping(source = "user.forename", target = "firstName")
