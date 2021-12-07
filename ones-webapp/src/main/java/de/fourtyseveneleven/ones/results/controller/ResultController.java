@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @AuthenticatedApiController
@@ -28,7 +29,8 @@ public class ResultController {
     public ResultOverviewDto getMyResults() {
 
         final SimpleHorseDto horse = new SimpleHorseDto(UUID.randomUUID(), "Shadowfax");
-        final ResultDto resultDto = new ResultDto(new SimpleContestDto(),
+        final ResultDto resultDto = new ResultDto(
+                new SimpleContestDto(),
                 new SimpleEventDto(),
                 Collections.singletonList(horse),
                 3,

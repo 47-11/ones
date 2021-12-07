@@ -22,7 +22,7 @@
                 <tr v-for="result in results.list" :key="result.uuid">
                     <v-td><date-range :start="result.contest.start" :end="result.contest.end"/></v-td>
                     <v-td>{{ result.event.title }}</v-td>
-                    <v-td>{{ contest.contestType }}</v-td>
+                    <v-td>{{ result.contest.category }}</v-td>
                     <v-td class="whitespace-nowrap">
                         <div v-for="horse in result.horses" :key="horse.uuid">
                             {{ horse.name }}
