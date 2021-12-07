@@ -2,14 +2,10 @@ package de.fourtyseveneleven.ones.user.mapper;
 
 import de.fourtyseveneleven.ones.common.mapper.AddressMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
-import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
 import de.fourtyseveneleven.ones.ecm.generated.model.*;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
-import org.mapstruct.InheritConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", uses = {CommonMapper.class, AddressMapper.class})
 public interface UserMapper {
@@ -23,6 +19,9 @@ public interface UserMapper {
     @Mapping(source = "emailAddress", target = "email")
     @Mapping(source = "address", target = "postalAddress")
     RegisterContactNatural personDtoToRegisterContactNatural(PersonDto personDto);
+
+    @InheritInverseConfiguration(name = "personDtoToRegisterContactNatural")
+    PersonDto registerContactNaturalToPersonDto(RegisterContactNatural registerContactNatural);
 
     @InheritConfiguration(name = "personDtoToRegisterContactNatural")
     void applyPersonDtoToRegisterContactNatural(PersonDto personDto, @MappingTarget RegisterContactNatural registerContactNatural);
