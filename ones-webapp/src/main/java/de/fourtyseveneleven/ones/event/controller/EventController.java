@@ -16,7 +16,6 @@ import de.fourtyseveneleven.ones.event.service.FullContestService;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
 import de.fourtyseveneleven.ones.event.service.SignupService;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
-import de.fourtyseveneleven.ones.horse.model.HorseDto;
 import de.fourtyseveneleven.ones.openapi.AuthenticatedApiController;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.ws.rs.Path;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -109,7 +107,7 @@ public class EventController {
     }
 
     @GetMapping("/contest/{contestUuid}/my-horses")
-    public List<HorseDto> getSignedUpHorsesForContest(@PathVariable UUID contestUuid) {
+    public List<FullContestDto> getSignedUpHorsesForContest(@PathVariable UUID contestUuid) {
 
         return Collections.emptyList();
     }
