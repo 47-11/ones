@@ -11,12 +11,9 @@
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <nav-link to="/events">{{$t("navigation.events")}}</nav-link>
+                        <nav-link to="/results">{{$t("navigation.results")}}</nav-link>
                         <nav-link to="/profile">{{$t("navigation.profile")}}</nav-link>
                         <nav-link to="/horses">{{$t("navigation.horses")}}</nav-link>
-                    </div>
-
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <nav-link to="/results">{{$t("navigation.results")}}</nav-link>
                     </div>
                 </div>
 

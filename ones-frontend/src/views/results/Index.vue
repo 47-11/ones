@@ -31,7 +31,7 @@
                             </span>
                         </div>
                     </v-td>
-                    <v-td>{{ result.contest.distance }}</v-td>
+                    <v-td>{{ result.contest.distance }} km</v-td>
                     <v-td>{{ result.placement }}</v-td>
                     <v-td>{{ result.averageSpeed }} km/h</v-td>
                     <v-td>{{ result.pace }} min/km</v-td>

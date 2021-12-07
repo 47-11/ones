@@ -27,12 +27,23 @@ public class ResultController {
 
     @GetMapping("/my")
     public ResultOverviewDto getMyResults() {
+        final SimpleHorseDto horse = new SimpleHorseDto(
+                UUID.randomUUID(),
+                "Shadowfax"
+        );
+        final List<SimpleHorseDto> horses = Collections.singletonList(horse);
 
-        final SimpleHorseDto horse = new SimpleHorseDto(UUID.randomUUID(), "Shadowfax");
+        final SimpleContestDto contest = new SimpleContestDto();
+        contest.setCategory("TEST");
+        contest.setDistance(BigDecimal.valueOf(42));
+
+        final SimpleEventDto event = new SimpleEventDto();
+        event.setTitle("Demo Event");
+
         final ResultDto resultDto = new ResultDto(
-                new SimpleContestDto(),
-                new SimpleEventDto(),
-                Collections.singletonList(horse),
+                contest,
+                event,
+                horses,
                 3,
                 7671246,
                 BigDecimal.TEN,
