@@ -99,6 +99,6 @@ export default class VHorseContent extends Vue {
             return {};
         }
     })
-    horse!: HorseDto;
+    horse!: FullHorseDto;
 }
 </script>
