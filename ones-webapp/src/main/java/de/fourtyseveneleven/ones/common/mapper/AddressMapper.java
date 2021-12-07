@@ -9,13 +9,22 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.Optional;
+
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
 
     AddressDto registerAddressToAddressDto(RegisterAddress registerAddress);
+
     RegisterAddress addressDtoToRegisterAddress(AddressDto addressDto);
 
-    AddressDto registerContactLegalToAddressDto(RegisterContactLegal registerContactLegal);
+    default AddressDto registerContactLegalToAddressDto(RegisterContactLegal registerContactLegal) {
+
+        return Optional.ofNullable(registerContactLegal)
+                .map(RegisterContactLegal::getPostalAddress)
+                .map(this::registerAddressToAddressDto)
+                .orElse(null);
+    }
 
     void applyAddressDtoToRegisterContactLegal(AddressDto addressDto, @MappingTarget RegisterContactLegal registerContactLegal);
 

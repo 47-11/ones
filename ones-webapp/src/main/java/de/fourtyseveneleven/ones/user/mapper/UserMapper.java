@@ -2,14 +2,10 @@ package de.fourtyseveneleven.ones.user.mapper;
 
 import de.fourtyseveneleven.ones.common.mapper.AddressMapper;
 import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
-import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
 import de.fourtyseveneleven.ones.ecm.generated.model.*;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
-import org.mapstruct.InheritConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", uses = {CommonMapper.class, AddressMapper.class})
 public interface UserMapper {
@@ -24,20 +20,26 @@ public interface UserMapper {
     @Mapping(source = "address", target = "postalAddress")
     RegisterContactNatural personDtoToRegisterContactNatural(PersonDto personDto);
 
+    @InheritInverseConfiguration(name = "personDtoToRegisterContactNatural")
+    PersonDto registerContactNaturalToPersonDto(RegisterContactNatural registerContactNatural);
+
     @InheritConfiguration(name = "personDtoToRegisterContactNatural")
     void applyPersonDtoToRegisterContactNatural(PersonDto personDto, @MappingTarget RegisterContactNatural registerContactNatural);
 
-    @Mapping(source = "birthName", target = "user.birthname")
     @Mapping(source = "phoneNumberEmergency", target = "user.emergencyPhoneNumber")
     @Mapping(source = "vddNumber", target = "memberships.vddMemberId")
     @Mapping(source = "feiNumber", target = "memberships.feiMemberId")
     @Mapping(source = "fnNumber", target = "memberships.fnMemberId")
+    @Mapping(source = "qualificationLevel", target = "memberships.vddQualificationLevel")
+    // TODO: @Mapping(source = "?", target = "qualificationLevelApproved")
     @Mapping(source = "firstName", target = "user.forename")
     @Mapping(source = "lastName", target = "user.surname")
     @Mapping(source = "phoneNumber", target = "user.phoneNumber")
     @Mapping(source = "phoneNumberMobile", target = "user.phoneNumberMobile")
     @Mapping(source = "emailAddress", target = "user.email")
     @Mapping(source = "address", target = "user.postalAddress")
+    @Mapping(source = "birthName", target = "user.birthname")
+    @Mapping(source = "birthday", target = "user.birthday")
     RegisterAccount userDtoToRegisterAccount(UserDto userDto);
 
     @Mapping(source = "user.forename", target = "firstName")
