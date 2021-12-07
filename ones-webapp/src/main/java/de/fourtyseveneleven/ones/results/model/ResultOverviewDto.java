@@ -27,7 +27,7 @@ public record ResultOverviewDto(List<ResultDto> results, BigDecimal totalDistanc
         return results.stream()
                 .map(ResultDto::duration)
                 .filter(Objects::nonNull)
-                .reduce(0L, Long::sum);
+                .reduce(0, Integer::sum);
     }
 
     private static BigDecimal calculateAverageSpeed(List<ResultDto> results) {
