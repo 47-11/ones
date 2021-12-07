@@ -52,7 +52,7 @@ import VInput from "@/components/forms/VInput.vue";
 import VLabel from "@/components/forms/VLabel.vue";
 import VButton from "@/components/VButton.vue";
 import GuestLayout from "@/layouts/GuestLayout.vue";
-import store, { vxm } from "@/store";
+import { getVxm } from "@/store";
 import router from "@/router";
 import { Component, Vue } from "vue-property-decorator";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -71,15 +71,14 @@ import VLink from "@/components/VLink.vue";
         AuthCard,
         GuestLayout,
         FontAwesomeIcon
-    },
-    store
+    }
 })
 export default class Login extends Vue {
     email = "";
     password = "";
     remember = Boolean();
-    error = null;
-    user = vxm.user;
+    error: Error | null = null;
+    user = getVxm().user;
     inputsDisabled = true;
     myIcon= faSignInAlt;
 
@@ -102,7 +101,7 @@ export default class Login extends Vue {
 
             router.push("/").catch(() => { /* has been redirected to track personal data */ });
         } catch (error) {
-            this.error = error;
+            this.error = error as Error;
         } finally {
             loader.hide();
         }

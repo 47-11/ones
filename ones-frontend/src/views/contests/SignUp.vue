@@ -30,6 +30,8 @@
             </div>
         </template>
         <div class="max-w-7xl md:px-4 sm:px-6 lg:px-8 m-auto py-8 md:py-10">
+            <page-header>{{ $t('signUp.title') }}</page-header>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3">
                 <card>
                     <div class="px-5 py-4 mb-3 text-lg bg-gray-50">
@@ -39,6 +41,14 @@
                     </div>
 
                     <table>
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top">
+                                {{$t('details.details')}}
+                                </th>
+                            <td class="text-left px-5 py-1">
+                                {{ details.address.locationName }} <br> {{ start.format("DD.MM.YYYY") }}
+                            </td>
+                        </tr>
                         <tr>
                             <th class="text-left px-5 py-1 align-top">
                                 {{$t('details.distance')}}
@@ -223,9 +233,9 @@ import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import DateRange from "@/components/DateRange.vue";
-import { vxm } from "@/store";
 import moment from "moment";
 import { FullContestDto as FullContest, FullEventDto as FullEvent } from "@/openapi/generated";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -244,11 +254,11 @@ export default class SignUp extends Vue {
     selectedHorseId = "a";
     checkedHorses: [] = [];
 
-    error = null;
+    error: Error | null = null;
     hasSubmitted = false;
     inputsDisabled = false;
 
-    horses = vxm.horses;
+    horses = getVxm().horses;
 
     eventId: string = this.$route.params.eventId;
     contestId: string | null = this.$route.params.contestId;
@@ -256,9 +266,9 @@ export default class SignUp extends Vue {
     mounted(): void {
         this.contestId = this.contestId === "null" ? null : this.contestId;
 
-        vxm.horses.fetch();
-        vxm.events.fetchEvent(this.eventId);
-        vxm.events.selectContest(this.contestId);
+        getVxm().horses.fetch();
+        getVxm().events.fetchEvent(this.eventId);
+        getVxm().events.selectContest(this.contestId);
     }
 
     async signUp(): Promise<void> {
@@ -269,7 +279,7 @@ export default class SignUp extends Vue {
             this.request();
             this.hasSubmitted = true;
         } catch (error) {
-            this.error = error;
+            this.error = error as Error;
         }
 
         loader.hide();
@@ -279,7 +289,7 @@ export default class SignUp extends Vue {
     private async request() {
         this.assertValid();
 
-        await vxm.events.signUp({
+        await getVxm().events.signUp({
             contestUuid: this.contestId as string,
             horseUuids: this.checkedHorses
         });
@@ -304,11 +314,11 @@ export default class SignUp extends Vue {
     }
 
     get contest(): FullContest | null {
-        return vxm.events.selectedContest;
+        return getVxm().events.selectedContest;
     }
 
     get details(): FullEvent | null {
-        return vxm.events.eventDetails;
+        return getVxm().events.eventDetails;
     }
 
     get deadline(): moment.Moment {

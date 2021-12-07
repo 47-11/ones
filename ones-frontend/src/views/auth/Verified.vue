@@ -44,7 +44,7 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Feedback from "@/components/Feedback.vue";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -74,7 +74,7 @@ export default class Verified extends Vue {
         const code = this.$route.query.code as string;
 
         try {
-            await vxm.user.verify({ code });
+            await getVxm().user.verify({ code });
             this.verified = true;
         } catch (error) {
             this.error = error;

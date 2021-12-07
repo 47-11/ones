@@ -1,51 +1,12 @@
 package de.fourtyseveneleven.ones.results.model;
 
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
-import de.fourtyseveneleven.ones.horse.model.FullHorseDto;
+import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
+import de.fourtyseveneleven.ones.horse.model.SimpleHorseDto;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
 import java.util.List;
 
-public class ResultDto {
-
-    private SimpleContestDto contest;
-    private List<FullHorseDto> horses = new LinkedList<>();
-    private int placement;
-    /**
-     *  In km/h
-     */
-    private BigDecimal averageSpeed;
-
-    public SimpleContestDto getContest() {
-        return contest;
-    }
-
-    public void setContest(SimpleContestDto contest) {
-        this.contest = contest;
-    }
-
-    public List<FullHorseDto> getHorses() {
-        return horses;
-    }
-
-    public void setHorses(List<FullHorseDto> horses) {
-        this.horses = horses;
-    }
-
-    public int getPlacement() {
-        return placement;
-    }
-
-    public void setPlacement(int placement) {
-        this.placement = placement;
-    }
-
-    public BigDecimal getAverageSpeed() {
-        return averageSpeed;
-    }
-
-    public void setAverageSpeed(BigDecimal averageSpeed) {
-        this.averageSpeed = averageSpeed;
-    }
-}
+public record ResultDto(SimpleContestDto contest, SimpleEventDto event,
+                        List<SimpleHorseDto> horses, Integer placement, Integer duration,
+                        BigDecimal averageSpeed, BigDecimal pace, String failureReason) {}

@@ -46,7 +46,6 @@ import VLabel from "@/components/forms/VLabel.vue";
 import VSelect from "@/components/forms/VSelect.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
-import { vxm } from "@/store";
 import Modal from "@/layouts/Modal.vue";
 import { FullHorseDto } from "@/openapi/generated";
 import VHorseHeader from "@/views/horses/modals/VHorseHeader.vue";
@@ -55,6 +54,7 @@ import VHorseFooter from "@/views/horses/modals/VHorseFooter.vue";
 import VAddHorseHeader from "@/views/horses/modals/addHorse/VAddHorseHeader.vue";
 import VAddHorseContent from "@/views/horses/modals/addHorse/VAddHorseContent.vue";
 import VAddHorseFooter from "@/views/horses/modals/addHorse/VAddHorseFooter.vue";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -71,10 +71,10 @@ import VAddHorseFooter from "@/views/horses/modals/addHorse/VAddHorseFooter.vue"
     }
 })
 export default class Profile extends Vue {
-    horses = vxm.horses;
+    horses = getVxm().horses;
 
     mounted(): void {
-        vxm.horses.fetch();
+        getVxm().horses.fetch();
     }
 
     public details(horse: FullHorseDto): void {

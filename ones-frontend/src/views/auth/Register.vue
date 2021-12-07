@@ -105,7 +105,7 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import PageHeader from "@/components/PageHeader.vue";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 import VLink from "@/components/VLink.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
 
@@ -158,7 +158,7 @@ export default class Register extends Vue {
             this.assertValid();
 
             const vddNumber = this.vddNumber ? parseInt(this.vddNumber) : undefined;
-            await vxm.user.register({
+            await getVxm().user.register({
                 email: this.email,
                 password: this.password,
                 vddNumber

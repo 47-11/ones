@@ -1,5 +1,13 @@
 import "@/assets/css/tailwind.css";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import VLabel from "@/components/forms/VLabel.vue";
+import PageHeader from "@/components/PageHeader.vue";
+import VTable from "@/components/table/VTable.vue";
+import VTbody from "@/components/table/VTbody.vue";
+import VTd from "@/components/table/VTd.vue";
+import VTh from "@/components/table/VTh.vue";
+import VThead from "@/components/table/VThead.vue";
+import VTr from "@/components/table/VTr.vue";
 import Modal from "@/layouts/Modal.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -36,104 +44,102 @@ import App from "./App.vue";
 import { UserDto } from "./openapi/generated";
 import "./registerServiceWorker";
 import router from "./router";
-import store, { vxm } from "./store";
-import VTable from "@/components/table/VTable.vue";
-import VTh from "@/components/table/VTh.vue";
-import VTd from "@/components/table/VTd.vue";
-import VTr from "@/components/table/VTr.vue";
-import VTbody from "@/components/table/VTbody.vue";
-import VThead from "@/components/table/VThead.vue";
-import VLabel from "@/components/forms/VLabel.vue";
+import { getStore, getVxm } from "./store";
 
-Vue.config.productionTip = false;
+setTimeout(() => {
+    Vue.config.productionTip = false;
 
-library.add(
-    faChevronLeft,
-    faChevronRight,
-    faChevronDown,
-    faChevronUp,
-    faPhone,
-    faAt,
-    faFilePdf,
-    faTrailer,
-    faHorseHead,
-    faExclamationTriangle,
-    faExternalLinkAlt,
-    faMap,
-    faGlobe,
-    faFlag,
-    faMars,
-    faVenus,
-    faTimes,
-    faPencilAlt,
-    faCheck
-);
+    library.add(
+        faChevronLeft,
+        faChevronRight,
+        faChevronDown,
+        faChevronUp,
+        faPhone,
+        faAt,
+        faFilePdf,
+        faTrailer,
+        faHorseHead,
+        faExclamationTriangle,
+        faExternalLinkAlt,
+        faMap,
+        faGlobe,
+        faFlag,
+        faMars,
+        faVenus,
+        faTimes,
+        faPencilAlt,
+        faCheck
+    );
 
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-Vue.component("error-message", ErrorMessage);
+    Vue.component("font-awesome-icon", FontAwesomeIcon);
+    Vue.component("error-message", ErrorMessage);
+    Vue.component("page-header", PageHeader);
 
-Vue.component("v-table", VTable);
-Vue.component("v-tbody", VTbody);
-Vue.component("v-td", VTd);
-Vue.component("v-th", VTh);
-Vue.component("v-thead", VThead);
-Vue.component("v-tr", VTr);
-Vue.component("v-label", VLabel);
+    Vue.component("v-table", VTable);
+    Vue.component("v-tbody", VTbody);
+    Vue.component("v-td", VTd);
+    Vue.component("v-th", VTh);
+    Vue.component("v-thead", VThead);
+    Vue.component("v-tr", VTr);
+    Vue.component("v-label", VLabel);
 
-Vue.component("Modal", Modal);
+    Vue.component("Modal", Modal);
 
-Vue.use(vToolTip);
-Vue.use(VueI18n);
-Vue.use(VueLoading, {
-    color: "rgb(79, 70, 229)",
-    loader: "dots",
-    backgroundColor: "#ffffff"
-});
+    Vue.use(vToolTip);
+    Vue.use(VueI18n);
+    Vue.use(VueLoading, {
+        color: "rgb(79, 70, 229)",
+        loader: "dots",
+        backgroundColor: "#ffffff"
+    });
 
-Vue.use(VCalendar);
-Vue.use(vfmPlugin());
+    Vue.use(VCalendar);
+    Vue.use(vfmPlugin());
 
-const i18n = new VueI18n({
-    locale: navigator.language,
-    fallbackLocale: "en",
-    messages: {
-        en: require("@/assets/i18n/en"),
-        de: require("@/assets/i18n/de")
-    },
-    silentFallbackWarn: true
-});
+    const i18n = new VueI18n({
+        locale: navigator.language,
+        fallbackLocale: "en",
+        messages: {
+            en: require("@/assets/i18n/en"),
+            de: require("@/assets/i18n/de")
+        },
+        silentFallbackWarn: true
+    });
 
-setInterval(() => vxm.app.checkOnlineState(), 10 * 1000);
+    setInterval(() => getVxm().app.checkOnlineState(), 10 * 1000);
 
-axios.interceptors.response.use(res => {
-    vxm.app.isOffline = false;
-    return res;
-}, (res) => {
-    if (res.message === "Network Error") {
-        vxm.app.isOffline = true;
-        throw new Error(i18n.t("offlineWarning.noConnection").toString());
-    } else {
-        vxm.app.isOffline = false;
-    }
-
-    if (res.response?.status === 403) {
-        if (vxm.user.authenticated) {
-            router.push("/logout").catch(() => { /* ignore error that occurs because logout will redirect us to login in the end" */ });
-            throw new Error("Token is invalid or has expired.");
+    axios.interceptors.response.use(res => {
+        getVxm().app.isOffline = false;
+        return res;
+    }, (res) => {
+        if (res.message === "Network Error") {
+            getVxm().app.isOffline = true;
+            throw new Error(i18n.t("offlineWarning.noConnection").toString());
+        } else {
+            getVxm().app.isOffline = false;
         }
-    }
-    throw res;
-});
 
-vxm.user.$watch("current", (current: UserDto | null) => {
-    if (current && current.uuid === null && router.currentRoute.path !== "/set-personal-data") {
-        router.push("/set-personal-data");
-    }
-});
+        if (res.response?.status === 403) {
+            if (getVxm().user.authenticated) {
+                router.push("/logout").catch(() => { /* ignore error that occurs because logout will redirect us to login in the end" */ });
+                throw new Error("Token is invalid or has expired.");
+            }
+        }
+        throw res;
+    });
 
-new Vue({
-    router,
-    store,
-    i18n,
-    render: h => h(App)
-}).$mount("#app");
+    getVxm().user.$watch("current", (current: UserDto | null) => {
+        if (current && current.uuid === null && router.currentRoute.path !== "/set-personal-data") {
+            router.push("/set-personal-data");
+        }
+    });
+
+    const store = getStore();
+
+    new Vue({
+        router,
+        store,
+        i18n,
+        render: h => h(App)
+    }).$mount("#app");
+}, 0);

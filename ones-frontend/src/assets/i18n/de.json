@@ -2,6 +2,7 @@
   "navigation": {
     "dashboard": "Dashboard",
     "events": "Events",
+    "results": "Ergebnisse",
     "logout": "Ausloggen",
     "user": "Benutzer",
     "mail": "E-Mail",
@@ -218,6 +219,16 @@
     "no": "Nein",
     "start": "Start",
     "yes": "Ja"
+  },
+  "results": {
+    "title": "Ergebnisse",
+    "date": "Datum",
+    "name": "Name",
+    "contestType": "Wettkampfart",
+    "horses": "Pferde",
+    "distance": "Distanz",
+    "placement": "Platzierung",
+    "averageSpeed": "Ø-Geschwindigkeit"
   },
   "signUp": {
     "title": "Anmeldung zum Wettbewerb",

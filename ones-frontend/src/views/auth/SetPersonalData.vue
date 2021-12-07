@@ -167,7 +167,7 @@ import VPassword from "@/components/forms/VPassword.vue";
 import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 import VLink from "@/components/VLink.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
@@ -238,7 +238,7 @@ export default class SetPersonalData extends Vue {
         try {
             this.assertValid();
 
-            await vxm.user.setPersonalData({
+            await getVxm().user.setPersonalData({
                 firstName: this.firstName,
                 lastName: this.lastName,
                 birthName: this.birthName,
