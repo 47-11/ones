@@ -47,7 +47,7 @@ public class EcmApiResultServiceImpl implements ResultService {
         try {
             return eventContestControllerApi.getAccountContestCompetitionsResults(userUuid);
         } catch (ApiException e) {
-            throw new EcmApiException(getExceptionMessage("ecm.api-exception"), e);
+            throw new EcmApiException(e);
         }
     }
 }
