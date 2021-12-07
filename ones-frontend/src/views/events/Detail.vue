@@ -249,9 +249,9 @@ import Badge from "@/components/Badge.vue";
 import VButton from "@/components/VButton.vue";
 import DateRange from "@/components/DateRange.vue";
 import Person from "./partials/Person.vue";
-import { vxm } from "@/store";
 import moment from "moment";
 import { FullContestDto, FullEventDto } from "@/openapi/generated/api";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -267,15 +267,15 @@ export default class Detail extends Vue {
     eventId = this.$route.params.eventId;
 
     get details(): FullEventDto | null {
-        return vxm.events.eventDetails;
+        return getVxm().events.eventDetails;
     }
 
     get contests(): FullContestDto[] {
-        return vxm.events.eventContests;
+        return getVxm().events.eventContests;
     }
 
     mounted(): void {
-        vxm.events.fetchEvent(this.eventId);
+        getVxm().events.fetchEvent(this.eventId);
     }
 
     get deadline(): moment.Moment {

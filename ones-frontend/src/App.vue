@@ -84,10 +84,10 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import { vxm } from "./store";
+import { getVxm } from "./store";
 
 @Component
 export default class App extends Vue {
-    app = vxm.app;
+    app = getVxm().app;
 }
 </script>

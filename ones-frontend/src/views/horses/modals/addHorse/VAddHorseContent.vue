@@ -155,8 +155,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import VInput from "@/components/forms/VInput.vue";
 import VSelect from "@/components/forms/VSelect.vue";
 import VLabel from "@/components/forms/VLabel.vue";
-import { vxm } from "@/store";
 import { AddressDto, FullHorseDto, FullHorseDtoGenderEnum, PersonDto } from "@/openapi/generated";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -224,9 +224,9 @@ export default class VAddHorseContent extends Vue {
             this.assertAllInRange();
 
             if (this.isUpdate) {
-                await vxm.horses.update(this.horse);
+                await getVxm().horses.update(this.horse);
             } else {
-                await vxm.horses.add(this.horse);
+                await getVxm().horses.add(this.horse);
             }
             this.$vfm.hide("add-horse");
         } catch (error) {

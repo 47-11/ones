@@ -1,4 +1,4 @@
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 import ForgotPassword from "@/views/auth/ForgotPassword.vue";
 import ResetPassword from "@/views/auth/ResetPassword.vue";
 import SetPersonalData from "@/views/auth/SetPersonalData.vue";
@@ -84,22 +84,22 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, f, next) => {
-    if (needsAuth(to) && !vxm.user.authenticated) {
+    if (needsAuth(to) && !getVxm().user.authenticated) {
         next("/login");
         return;
-    } else if (!needsAuth(to) && vxm.user.authenticated) {
+    } else if (!needsAuth(to) && getVxm().user.authenticated) {
         next("/");
         return;
     }
 
     if (to.path === "/logout") {
-        vxm.user.logout();
+        getVxm().user.logout();
         router.go(0);
         next("/login");
         return;
     }
 
-    const currentUser = vxm.user.current;
+    const currentUser = getVxm().user.current;
 
     if (currentUser && needsToSetPersonalData() && to.path !== "/set-personal-data") {
         next("/set-personal-data");
@@ -118,7 +118,7 @@ function needsAuth(to: Route) {
 }
 
 function needsToSetPersonalData(): boolean {
-    return vxm.user.current?.uuid === null;
+    return getVxm().user.current?.uuid === null;
 }
 
 function isPersonalDataKnown(): boolean {

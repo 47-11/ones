@@ -49,7 +49,7 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Feedback from "@/components/Feedback.vue";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -86,7 +86,7 @@ export default class ResetPassword extends Vue {
 
         try {
             this.assertValid();
-            await vxm.user.setNewPasswordByCode({
+            await getVxm().user.setNewPasswordByCode({
                 password: this.password,
                 code
             });

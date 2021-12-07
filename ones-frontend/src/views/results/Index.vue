@@ -55,7 +55,7 @@ import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
 import VLink from "@/components/VLink.vue";
 import DateRange from "@/components/DateRange.vue";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -71,11 +71,11 @@ import { vxm } from "@/store";
     }
 })
 export default class Home extends Vue {
-    results = vxm.results;
+    results = getVxm().results;
     locale = window.navigator.language;
 
     mounted(): void {
-        vxm.results.fetchOwn();
+        getVxm().results.fetchOwn();
     }
 
     formattedDuration(duration: number): string {

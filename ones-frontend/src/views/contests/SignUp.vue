@@ -233,9 +233,9 @@ import VTh from "@/components/table/VTh.vue";
 import VTd from "@/components/table/VTd.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import DateRange from "@/components/DateRange.vue";
-import { vxm } from "@/store";
 import moment from "moment";
 import { FullContestDto as FullContest, FullEventDto as FullEvent } from "@/openapi/generated";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -254,11 +254,11 @@ export default class SignUp extends Vue {
     selectedHorseId = "a";
     checkedHorses: [] = [];
 
-    error = null;
+    error: Error | null = null;
     hasSubmitted = false;
     inputsDisabled = false;
 
-    horses = vxm.horses;
+    horses = getVxm().horses;
 
     eventId: string = this.$route.params.eventId;
     contestId: string | null = this.$route.params.contestId;
@@ -266,9 +266,9 @@ export default class SignUp extends Vue {
     mounted(): void {
         this.contestId = this.contestId === "null" ? null : this.contestId;
 
-        vxm.horses.fetch();
-        vxm.events.fetchEvent(this.eventId);
-        vxm.events.selectContest(this.contestId);
+        getVxm().horses.fetch();
+        getVxm().events.fetchEvent(this.eventId);
+        getVxm().events.selectContest(this.contestId);
     }
 
     async signUp(): Promise<void> {
@@ -279,7 +279,7 @@ export default class SignUp extends Vue {
             this.request();
             this.hasSubmitted = true;
         } catch (error) {
-            this.error = error;
+            this.error = error as Error;
         }
 
         loader.hide();
@@ -289,7 +289,7 @@ export default class SignUp extends Vue {
     private async request() {
         this.assertValid();
 
-        await vxm.events.signUp({
+        await getVxm().events.signUp({
             contestUuid: this.contestId as string,
             horseUuids: this.checkedHorses
         });
@@ -314,11 +314,11 @@ export default class SignUp extends Vue {
     }
 
     get contest(): FullContest | null {
-        return vxm.events.selectedContest;
+        return getVxm().events.selectedContest;
     }
 
     get details(): FullEvent | null {
-        return vxm.events.eventDetails;
+        return getVxm().events.eventDetails;
     }
 
     get deadline(): moment.Moment {

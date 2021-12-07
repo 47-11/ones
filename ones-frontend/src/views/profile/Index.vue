@@ -109,8 +109,8 @@ import VLabel from "@/components/forms/VLabel.vue";
 import VSelect from "@/components/forms/VSelect.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
-import { vxm } from "@/store";
 import { UserDto } from "@/openapi/generated";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -128,17 +128,17 @@ import { UserDto } from "@/openapi/generated";
 })
 export default class Profile extends Vue {
     get user(): UserDto | null {
-        return vxm.user.current;
+        return getVxm().user.current;
     }
 
     mounted(): void {
-        vxm.user.fetchCurrent();
+        getVxm().user.fetchCurrent();
     }
 
     async deleteAccount(): Promise<void> {
         const deleteAccount = confirm(this.$i18n.t("profile.confirmDelete").toString());
         if (deleteAccount) {
-            await vxm.user.deleteAccount();
+            await getVxm().user.deleteAccount();
             this.$router.push("/logout");
         }
     }

@@ -46,7 +46,7 @@ import VButton from "@/components/VButton.vue";
 import VHint from "@/components/forms/VHint.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import Feedback from "@/components/Feedback.vue";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -79,7 +79,7 @@ export default class ForgotPassword extends Vue {
         try {
             this.error = null;
 
-            await vxm.user.forgotPassword({ email: this.email });
+            await getVxm().user.forgotPassword({ email: this.email });
             this.mailSend = true;
         } catch (error) {
             this.error = error;

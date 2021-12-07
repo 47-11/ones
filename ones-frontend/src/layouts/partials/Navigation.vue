@@ -101,7 +101,7 @@ import ResponsiveNavLink from "@/layouts/partials/ResponsiveNavLink.vue";
 import Dropdown from "@/components/dropdown/Dropdown.vue";
 import DropdownLink from "@/components/dropdown/DropdownLink.vue";
 
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -119,8 +119,8 @@ export default class Navigation extends Vue {
     }
 
     get userName(): string {
-        const firstName = vxm.user.current?.firstName || "";
-        const lastName = vxm.user.current?.lastName || "";
+        const firstName = getVxm().user.current?.firstName || "";
+        const lastName = getVxm().user.current?.lastName || "";
         return `${firstName} ${lastName}`.trim();
     }
 }

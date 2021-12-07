@@ -226,7 +226,6 @@ import Badge from "@/components/Badge.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import VButton from "@/components/VButton.vue";
 import VLink from "@/components/VLink.vue";
-import { vxm } from "@/store";
 import { SimpleEventDto } from "@/openapi/generated";
 import VSelect from "@/components/forms/VSelect.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
@@ -236,6 +235,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import moment from "moment";
 import Multiselect from "vue-multiselect/src/Multiselect.vue";
 import DateRange from "@/components/DateRange.vue";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -255,7 +255,7 @@ import DateRange from "@/components/DateRange.vue";
     }
 })
 export default class Home extends Vue {
-    events = vxm.events;
+    events = getVxm().events;
     locale = window.navigator.language;
 
     public data(): { range: undefined } {
@@ -267,7 +267,7 @@ export default class Home extends Vue {
     showFilter = true;
 
     mounted(): void {
-        vxm.events.fetch();
+        getVxm().events.fetch();
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

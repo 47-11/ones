@@ -1,5 +1,5 @@
 import { Configuration, ConnectionTestControllerApi, EventControllerApi, ForgotPasswordControllerApi, HorseControllerApi, LoginControllerApi, RegistrationControllerApi, ResultControllerApi, UserControllerApi } from "@/openapi/generated";
-import { vxm } from "@/store";
+import { getVxm } from "@/store";
 import { UserStore } from "@/store/user.vuex";
 import { createProxy } from "vuex-class-component";
 
@@ -38,7 +38,7 @@ export class API {
 
     private get configWithToken(): Configuration {
         const bareConfig = this.configNoToken;
-        bareConfig.accessToken = createProxy(vxm, UserStore).token;
+        bareConfig.accessToken = createProxy(getVxm(), UserStore).token;
         return bareConfig;
     }
 

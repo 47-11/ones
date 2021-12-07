@@ -130,9 +130,9 @@ import VLabel from "@/components/forms/VLabel.vue";
 import VSelect from "@/components/forms/VSelect.vue";
 import BadgeCircle from "@/components/BadgeCircle.vue";
 import AppLayout from "@/layouts/AppLayout.vue";
-import { vxm } from "@/store";
 import { AddressDto, UserDto } from "@/openapi/generated";
 import VueI18n from "vue-i18n";
+import { getVxm } from "@/store";
 
 @Component({
     components: {
@@ -168,11 +168,11 @@ export default class ProfileEdit extends Vue {
     private error: Error | null = null;
 
     get user(): UserDto {
-        return vxm.user.current as UserDto;
+        return getVxm().user.current as UserDto;
     }
 
     mounted(): void {
-        vxm.user.fetchCurrent();
+        getVxm().user.fetchCurrent();
     }
 
     goBack(): void {
@@ -183,13 +183,13 @@ export default class ProfileEdit extends Vue {
         try {
             await this.trySaveAccount();
         } catch (e) {
-            this.error = e;
+            this.error = e as Error;
         }
     }
 
     async trySaveAccount(): Promise<void> {
         this.assertUserValid();
-        await vxm.user.setPersonalData(this.user as UserDto);
+        await getVxm().user.setPersonalData(this.user as UserDto);
         await this.$router.push("/profile");
     }
 
