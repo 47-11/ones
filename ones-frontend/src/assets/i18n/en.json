@@ -202,7 +202,7 @@
       "registered": "Registered",
       "notRegistered": "Not Registered",
       "open": "Open Filter",
-      "registrationStatus": "Anmeldestatus",
+      "registrationStatus": "Registration status",
       "close": "Close Filter",
       "title": "Filter Events",
       "reset": "Reset",
