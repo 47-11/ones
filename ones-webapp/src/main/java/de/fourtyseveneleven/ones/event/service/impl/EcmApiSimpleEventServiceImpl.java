@@ -157,6 +157,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
             case "title" -> "title";
             case "start" -> "beginning";
             case "end" -> "ending";
+            case "region" -> "countryRegion";
             default -> throw new IllegalArgumentException("Can't sort by " + attributeName);
         };
     }
