@@ -12,7 +12,8 @@ export interface FilterType extends Record<string, string | boolean | string[] |
     isInternational?: boolean;
     isCard?: boolean;
     regions: string[];
-    categories: string[]
+    categories: string[],
+    alreadySignedUp?: boolean
 }
 
 export enum SortDirection {
@@ -139,6 +140,7 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
             this._filter.isCard,
             this._filter.isCountryChampionship,
             this._filter.isInternational,
+            this._filter.alreadySignedUp,
             this.selectedPage,
             this.selectedPageSize,
             this.selectedSortCriterion,

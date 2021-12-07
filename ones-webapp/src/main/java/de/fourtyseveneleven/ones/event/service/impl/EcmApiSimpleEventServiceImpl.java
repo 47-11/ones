@@ -63,7 +63,12 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
+    @Cacheable(
+            cacheNames = "simpleEvents",
+            cacheManager = "eventCacheManager",
+            // If the alreadySignedUp filter is present, the output is  user-specific, so results will be broken.
+            condition = "#filter.alreadySignedUp() == null"
+    )
     public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
         final ResponcePageContests ecmPage = findPageInEcm(filter, pageRequest, sortRequest);
@@ -81,6 +86,13 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private ResponcePageContests tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
+        final String userUuid;
+        if (isNull(filter.alreadySignedUp())) {
+            userUuid = null;
+        } else {
+            userUuid = UserUtils.getAuthenticatedUser().getUuid().toString();
+        }
+
         return eventContestControllerApi
                 .getContestByYear(atStartOfDay(filter.from()),
                         atEndOfDay(filter.until()),
@@ -89,8 +101,8 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
                         booleanToInteger(filter.isCountryChampionship()),
                         booleanToInteger(filter.isInternational()),
                         booleanToInteger(filter.isMap()),
-                        false,
-                        null,
+                        filter.alreadySignedUp(),
+                        userUuid,
                         pageRequest.getPageNumber(),
                         pageRequest.getPageSize(),
                         getSortByValue(sortRequest));
@@ -136,7 +148,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
         final String mappedAttributeName = mapSortByAttributeName(attributeName);
         final String sortDirectionSuffix = getSortDirectionSuffix(sortRequest.getSortDirection());
-        return mappedAttributeName +  sortDirectionSuffix;
+        return mappedAttributeName + sortDirectionSuffix;
     }
 
     private String mapSortByAttributeName(String attributeName) {

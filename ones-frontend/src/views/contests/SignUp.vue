@@ -76,7 +76,7 @@
                                 {{ details.lateSignupFee.amount }} {{ details.lateSignupFee.currency }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr v-if="details.signupChangeFee">
                             <th class="text-left px-5 py-1 align-top leading-5">
                                 {{$t('details.signupChangeFee')}}
                             </th>
@@ -175,12 +175,9 @@
                         <h3 class="text-xl mb-5">{{ $t('signUp.signedUpHorses') }}</h3>
 
                         <card>
-                            <div class="bg-white border-b px-5 py-4" v-for="horse in horses.list" :key="horse.uuid">
+                            <div class="bg-white border-b px-5 py-4" v-for="horse in contest.signedUpHorses" :key="horse.uuid">
                                 <div class="leading-5">
-                                    <span>{{ horse.name }}</span> <br>
-                                    <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.lifeNumber }}
-                                    </span>
+                                    <span>{{ horse.name }}</span>
                                 </div>
                             </div>
                         </card>

@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import VButton from "@/components/VButton.vue";
-import { HorseDto } from "@/openapi/generated";
+import { FullHorseDto } from "@/openapi/generated";
 
 @Component({
     components: {
@@ -29,7 +29,7 @@ export default class VHorseFooter extends Vue {
     }
 
     @Prop()
-    public horse?: HorseDto;
+    public horse?: FullHorseDto;
 
     public isUpdate(): boolean {
         return !!(this.horse && this.horse.uuid);

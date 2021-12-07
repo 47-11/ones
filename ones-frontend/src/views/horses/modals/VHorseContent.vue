@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import { HorseDto } from "@/openapi/generated";
+import { FullHorseDto } from "@/openapi/generated";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import VAddress from "@/components/VAddress.vue";
 @Component({
@@ -99,6 +99,6 @@ export default class VHorseContent extends Vue {
             return {};
         }
     })
-    horse!: HorseDto;
+    horse!: FullHorseDto;
 }
 </script>

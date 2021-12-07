@@ -60,6 +60,14 @@
                                     $t("events.selectedRegions", {count: values.length})
                                 }}</span></template>
                         </multiselect>
+
+                        <v-label class="mt-5 mb-1">{{ $t("events.filter.registrationStatus") }}</v-label>
+
+                        <v-select class="w-full lg:w-44" v-model="alreadySignedUp">
+                            <option value="undefined">---</option>
+                            <option value="true">{{ $t("events.filter.registered") }}</option>
+                            <option value="false">{{ $t("events.filter.notRegistered") }}</option>
+                        </v-select>
                     </div>
                     <div class="col-span-12 lg:col-span-6 mt-6 lg:mt-0 lg:ml-12">
                         <v-label class="mb-3 flex items-center">
@@ -167,6 +175,12 @@
                             v-bind:class="{
                                 'text-gray-600': event.isInternational
                             }"></font-awesome-icon>
+
+                        <font-awesome-icon :icon="'check'" class="mx-2 text-gray-200"
+                                           v-tooltip="isRegisteredFor(event) ? $t('events.registered') : $t('events.notRegistered')"
+                                           v-bind:class="{
+                                'text-lime-600': isRegisteredFor(event)
+                            }"></font-awesome-icon>
                         </div>
                     </v-td>
                 </v-tr>
@@ -250,7 +264,7 @@ export default class Home extends Vue {
         };
     }
 
-    showFilter = false;
+    showFilter = true;
 
     mounted(): void {
         vxm.events.fetch();
@@ -293,6 +307,18 @@ export default class Home extends Vue {
         this.events.addFilter({
             categories: value
         });
+    }
+
+    get alreadySignedUp(): "true" | "false" | "undefined" {
+        return `${this.events.filter.alreadySignedUp}` as "true" | "false" | "undefined";
+    }
+
+    set alreadySignedUp(value: "true" | "false" | "undefined") {
+        if (value === "undefined") {
+            this.events.removeFilter("alreadySignedUp");
+        } else {
+            this.events.addFilter({ alreadySignedUp: value === "true" });
+        }
     }
 
     toggleCategory(category: string): void {
@@ -353,6 +379,14 @@ export default class Home extends Vue {
         } else {
             this.events.removeFilter("until");
         }
+    }
+
+    isRegisteredFor(event: SimpleEventDto): boolean {
+        if (event.signedUpHorses === undefined || event.signedUpHorses == null) {
+            return false;
+        }
+
+        return event.signedUpHorses && event.signedUpHorses.size > 0;
     }
 
     get selectedRegions(): string[] {

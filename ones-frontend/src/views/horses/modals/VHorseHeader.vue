@@ -17,7 +17,7 @@ import VButton from "@/components/VButton.vue";
 import VAddHorseHeader from "@/views/horses/modals/addHorse/VAddHorseHeader.vue";
 import VAddHorseContent from "@/views/horses/modals/addHorse/VAddHorseContent.vue";
 import VAddHorseFooter from "@/views/horses/modals/addHorse/VAddHorseFooter.vue";
-import { HorseDto } from "@/openapi/generated";
+import { FullHorseDto } from "@/openapi/generated";
 
 @Component({
     components: {
@@ -31,7 +31,7 @@ export default class VTitle extends Vue {
     public text!: string;
 
     @Prop()
-    public horse!: HorseDto;
+    public horse!: FullHorseDto;
 
     public edit(): void {
         let listener: null | (() => void) = null;

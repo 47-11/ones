@@ -223,8 +223,15 @@
                         <span class="text-xl" v-else>&infin;</span>
                     </v-td>
                     <v-td>
-                        <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'" v-tooltip="contest.signedUpHorses ? $t('details.alreadySignedUp', {horses: contest.signedUpHorses}) : ''">
-                            <v-button :disabled="contest.signedUpHorses && contest.signedUpHorses.length > 0">{{ $t('details.details') }}</v-button>
+                        <router-link :to="'/events/' + eventId + '/contests/' + contest.uuid + '/sign-up'" v-tooltip="isRegisteredFor(contest) ? $t('details.alreadySignedUp', {horses: contest.signedUpHorses}) : ''">
+                            <v-button :color="isRegisteredFor(contest) ? 'secondary' : 'primary'">
+                                <span v-if="isRegisteredFor(contest)">
+                                    {{ $t('details.details') }}
+                                </span>
+                                <span v-else>
+                                    {{ $t('details.register') }}
+                                </span>
+                            </v-button>
                         </router-link>
                     </v-td>
                 </v-tr>
@@ -277,6 +284,14 @@ export default class Detail extends Vue {
 
     toMoment(date: string): moment.Moment {
         return moment(date);
+    }
+
+    isRegisteredFor(contest: FullContestDto): boolean {
+        if (contest.signedUpHorses === undefined) {
+            return false;
+        }
+
+        return contest?.signedUpHorses?.size > 0;
     }
 }
 </script>
