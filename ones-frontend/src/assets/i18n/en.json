@@ -301,6 +301,7 @@
       "chipNumber": "Chip No",
       "stableAddress": "Stable address",
       "owner": "Owner",
+      "ownerAddress": "Address",
       "genderOptions": {
         "MARE": "Mare",
         "STALLION": "Stallion",

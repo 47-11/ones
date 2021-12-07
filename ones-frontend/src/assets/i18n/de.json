@@ -299,8 +299,9 @@
       "sizeUnit": "cm",
       "passportNumber": "Equidenpass Nr.",
       "chipNumber": "Chip Nr.",
-      "stableAddress": "Stall Adresse",
+      "stableAddress": "Adresse des Stalls",
       "owner": "Besitzer",
+      "ownerAddress": "Adresse",
       "genderOptions": {
         "MARE": "Stute",
         "STALLION": "Hengst",
@@ -309,11 +310,11 @@
       "feiNo": "FEI Nummer"
     },
     "address": {
-      "city": "Stadt",
-      "country": "Land",
-      "houseNumber": "Hausnummer",
       "street": "Straße",
-      "zipCode": "Postleitzahl"
+      "houseNumber": "Hausnummer",
+      "zipCode": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land"
     }
   },
   "horses": {
