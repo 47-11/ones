@@ -162,7 +162,8 @@
     "riderAge": "Alter des Teilnehmers",
     "signUpAfterDeadlinePossible": "Nennung nach Nennschluss möglich",
     "signUpFeeAfterDeadlineMissed": "Nachnenngebühr",
-    "startingPlace": "Startort"
+    "startingPlace": "Startort",
+    "place": "Ort"
   },
   "events": {
     "title": "Veranstaltungen",

@@ -162,7 +162,8 @@
     "minRiderAge": "Mindestalter Reiter",
     "paymentInformation": {
       "title": "Zahlungsinformationen"
-    }
+    },
+    "place": "Place"
   },
   "events": {
     "start": "Start",
