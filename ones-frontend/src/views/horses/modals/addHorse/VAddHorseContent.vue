@@ -276,13 +276,11 @@ export default class VAddHorseContent extends Vue {
     requiredProps: Array<keyof FullHorseDto> = [
         "name",
         "passportNumber",
-        "chipNumber",
         "gender",
         "breed",
         "color",
         "yearOfBirth",
-        "size",
-        "feiNumber"
+        "size"
     ];
 
     requiredStableProps: Array<keyof AddressDto> = [
