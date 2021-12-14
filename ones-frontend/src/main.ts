@@ -49,27 +49,27 @@ import { getStore, getVxm } from "./store";
 setTimeout(() => {
     Vue.config.productionTip = false;
 
-library.add(
-    faChevronLeft,
-    faChevronRight,
-    faChevronDown,
-    faChevronUp,
-    faPhone,
-    faAt,
-    faFilePdf,
-    faTrailer,
-    faHorseHead,
-    faExclamationTriangle,
-    faExternalLinkAlt,
-    faMap,
-    faGlobe,
-    faFlag,
-    faMars,
-    faVenus,
-    faTimes,
-    faPencilAlt,
-    faCheck
-);
+    library.add(
+        faChevronLeft,
+        faChevronRight,
+        faChevronDown,
+        faChevronUp,
+        faPhone,
+        faAt,
+        faFilePdf,
+        faTrailer,
+        faHorseHead,
+        faExclamationTriangle,
+        faExternalLinkAlt,
+        faMap,
+        faGlobe,
+        faFlag,
+        faMars,
+        faVenus,
+        faTimes,
+        faPencilAlt,
+        faCheck
+    );
 
     Vue.component("font-awesome-icon", FontAwesomeIcon);
     Vue.component("error-message", ErrorMessage);

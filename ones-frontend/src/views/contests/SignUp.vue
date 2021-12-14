@@ -293,7 +293,7 @@ export default class SignUp extends Vue {
     checkedHorses: [] = [];
     confirmed = false;
 
-    error = null;
+    error: Error | null = null;
     hasSubmitted = false;
     inputsDisabled = false;
 
