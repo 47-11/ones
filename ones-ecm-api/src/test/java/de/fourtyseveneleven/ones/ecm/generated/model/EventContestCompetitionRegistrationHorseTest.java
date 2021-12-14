@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistration;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
@@ -46,6 +48,14 @@ public class EventContestCompetitionRegistrationHorseTest {
     @Test
     public void uuidTest() {
         // TODO: test uuid
+    }
+
+    /**
+     * Test the property 'eventContestCompetitionRegistration'
+     */
+    @Test
+    public void eventContestCompetitionRegistrationTest() {
+        // TODO: test eventContestCompetitionRegistration
     }
 
     /**
@@ -97,19 +107,43 @@ public class EventContestCompetitionRegistrationHorseTest {
     }
 
     /**
-     * Test the property 'masterdataHorseUuid'
+     * Test the property 'registrationAccountUuid'
      */
     @Test
-    public void masterdataHorseUuidTest() {
-        // TODO: test masterdataHorseUuid
+    public void registrationAccountUuidTest() {
+        // TODO: test registrationAccountUuid
     }
 
     /**
-     * Test the property 'description'
+     * Test the property 'horse'
      */
     @Test
-    public void descriptionTest() {
-        // TODO: test description
+    public void horseTest() {
+        // TODO: test horse
+    }
+
+    /**
+     * Test the property 'insurancePoliceId'
+     */
+    @Test
+    public void insurancePoliceIdTest() {
+        // TODO: test insurancePoliceId
+    }
+
+    /**
+     * Test the property 'remark'
+     */
+    @Test
+    public void remarkTest() {
+        // TODO: test remark
+    }
+
+    /**
+     * Test the property 'displayHorse'
+     */
+    @Test
+    public void displayHorseTest() {
+        // TODO: test displayHorse
     }
 
 }

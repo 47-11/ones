@@ -126,10 +126,11 @@ public class EventContestControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void postRegisterNominationTest() throws ApiException {
+    public void postAccountNominationTest() throws ApiException {
+        String uuid = null;
         RegisterNomination registerNomination = null;
         RegisterResponce response = 
-        api.postRegisterNomination(registerNomination);
+        api.postAccountNomination(uuid, registerNomination);
         
         // TODO: test validations
     }

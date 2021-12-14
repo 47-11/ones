@@ -8,6 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **String** |  | 
+**eventContestCompetitionUuuid** | **String** |  | 
 **registrationCompetitionDate** | **OffsetDateTime** |  |  [optional]
 **registrationAccountUuid** | **String** |  |  [optional]
 **contestantUuid** | **String** |  |  [optional]

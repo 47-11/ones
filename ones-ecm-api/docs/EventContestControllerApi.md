@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**getContestByYearWithHttpInfo**](EventContestControllerApi.md#getContestByYearWithHttpInfo) | **GET** /rest/event/contests | 
 [**getCurrentContestCompetitionsResults**](EventContestControllerApi.md#getCurrentContestCompetitionsResults) | **GET** /rest/event/contest/result/current | 
 [**getCurrentContestCompetitionsResultsWithHttpInfo**](EventContestControllerApi.md#getCurrentContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/current | 
-[**postRegisterNomination**](EventContestControllerApi.md#postRegisterNomination) | **POST** /rest/event/register/nomination | 
-[**postRegisterNominationWithHttpInfo**](EventContestControllerApi.md#postRegisterNominationWithHttpInfo) | **POST** /rest/event/register/nomination | 
+[**postAccountNomination**](EventContestControllerApi.md#postAccountNomination) | **POST** /rest/event/nomination/account/{uuid} | 
+[**postAccountNominationWithHttpInfo**](EventContestControllerApi.md#postAccountNominationWithHttpInfo) | **POST** /rest/event/nomination/account/{uuid} | 
 
 
 
@@ -625,9 +625,9 @@ ApiResponse<[**List&lt;EventContestCompetitionResult&gt;**](EventContestCompetit
 | **200** | OK |  -  |
 
 
-## postRegisterNomination
+## postAccountNomination
 
-> RegisterResponce postRegisterNomination(registerNomination)
+> RegisterResponce postAccountNomination(uuid, registerNomination)
 
 
 
@@ -653,12 +653,13 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        String uuid = "uuid_example"; // String | 
         RegisterNomination registerNomination = new RegisterNomination(); // RegisterNomination | 
         try {
-            RegisterResponce result = apiInstance.postRegisterNomination(registerNomination);
+            RegisterResponce result = apiInstance.postAccountNomination(uuid, registerNomination);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling EventContestControllerApi#postRegisterNomination");
+            System.err.println("Exception when calling EventContestControllerApi#postAccountNomination");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -673,6 +674,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **uuid** | **String**|  |
  **registerNomination** | [**RegisterNomination**](RegisterNomination.md)|  |
 
 ### Return type
@@ -687,16 +689,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
-## postRegisterNominationWithHttpInfo
+## postAccountNominationWithHttpInfo
 
-> ApiResponse<RegisterResponce> postRegisterNomination postRegisterNominationWithHttpInfo(registerNomination)
+> ApiResponse<RegisterResponce> postAccountNomination postAccountNominationWithHttpInfo(uuid, registerNomination)
 
 
 
@@ -723,14 +725,15 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         EventContestControllerApi apiInstance = new EventContestControllerApi(defaultClient);
+        String uuid = "uuid_example"; // String | 
         RegisterNomination registerNomination = new RegisterNomination(); // RegisterNomination | 
         try {
-            ApiResponse<RegisterResponce> response = apiInstance.postRegisterNominationWithHttpInfo(registerNomination);
+            ApiResponse<RegisterResponce> response = apiInstance.postAccountNominationWithHttpInfo(uuid, registerNomination);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling EventContestControllerApi#postRegisterNomination");
+            System.err.println("Exception when calling EventContestControllerApi#postAccountNomination");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -745,6 +748,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **uuid** | **String**|  |
  **registerNomination** | [**RegisterNomination**](RegisterNomination.md)|  |
 
 ### Return type
@@ -759,7 +763,7 @@ ApiResponse<[**RegisterResponce**](RegisterResponce.md)>
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |

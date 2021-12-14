@@ -22,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistrationPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorsePlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -32,23 +34,39 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_UUID,
+  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_EVENT_CONTEST_COMPETITION_REGISTRATION,
   EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_CURRENT_STATE,
-  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_MASTERDATA_HORSE_UUID,
-  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_DESCRIPTION
+  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_REGISTRATION_ACCOUNT_UUID,
+  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_HORSE,
+  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_INSURANCE_POLICE_ID,
+  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_REMARK,
+  EventContestCompetitionRegistrationHorsePlain.JSON_PROPERTY_DISPLAY_HORSE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
 public class EventContestCompetitionRegistrationHorsePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
 
+  public static final String JSON_PROPERTY_EVENT_CONTEST_COMPETITION_REGISTRATION = "eventContestCompetitionRegistration";
+  private EventContestCompetitionRegistrationPlain eventContestCompetitionRegistration;
+
   public static final String JSON_PROPERTY_CURRENT_STATE = "currentState";
   private Integer currentState;
 
-  public static final String JSON_PROPERTY_MASTERDATA_HORSE_UUID = "masterdataHorseUuid";
-  private String masterdataHorseUuid;
+  public static final String JSON_PROPERTY_REGISTRATION_ACCOUNT_UUID = "registrationAccountUuid";
+  private String registrationAccountUuid;
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
+  public static final String JSON_PROPERTY_HORSE = "horse";
+  private MasterdataHorsePlain horse;
+
+  public static final String JSON_PROPERTY_INSURANCE_POLICE_ID = "insurancePoliceId";
+  private String insurancePoliceId;
+
+  public static final String JSON_PROPERTY_REMARK = "remark";
+  private String remark;
+
+  public static final String JSON_PROPERTY_DISPLAY_HORSE = "displayHorse";
+  private String displayHorse;
 
 
   public EventContestCompetitionRegistrationHorsePlain uuid(String uuid) {
@@ -74,6 +92,32 @@ public class EventContestCompetitionRegistrationHorsePlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
+  }
+
+
+  public EventContestCompetitionRegistrationHorsePlain eventContestCompetitionRegistration(EventContestCompetitionRegistrationPlain eventContestCompetitionRegistration) {
+    this.eventContestCompetitionRegistration = eventContestCompetitionRegistration;
+    return this;
+  }
+
+   /**
+   * Get eventContestCompetitionRegistration
+   * @return eventContestCompetitionRegistration
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_COMPETITION_REGISTRATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public EventContestCompetitionRegistrationPlain getEventContestCompetitionRegistration() {
+    return eventContestCompetitionRegistration;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_COMPETITION_REGISTRATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEventContestCompetitionRegistration(EventContestCompetitionRegistrationPlain eventContestCompetitionRegistration) {
+    this.eventContestCompetitionRegistration = eventContestCompetitionRegistration;
   }
 
 
@@ -103,55 +147,133 @@ public class EventContestCompetitionRegistrationHorsePlain {
   }
 
 
-  public EventContestCompetitionRegistrationHorsePlain masterdataHorseUuid(String masterdataHorseUuid) {
-    this.masterdataHorseUuid = masterdataHorseUuid;
+  public EventContestCompetitionRegistrationHorsePlain registrationAccountUuid(String registrationAccountUuid) {
+    this.registrationAccountUuid = registrationAccountUuid;
     return this;
   }
 
    /**
-   * Get masterdataHorseUuid
-   * @return masterdataHorseUuid
+   * Get registrationAccountUuid
+   * @return registrationAccountUuid
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MASTERDATA_HORSE_UUID)
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_ACCOUNT_UUID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getMasterdataHorseUuid() {
-    return masterdataHorseUuid;
+  public String getRegistrationAccountUuid() {
+    return registrationAccountUuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MASTERDATA_HORSE_UUID)
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_ACCOUNT_UUID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMasterdataHorseUuid(String masterdataHorseUuid) {
-    this.masterdataHorseUuid = masterdataHorseUuid;
+  public void setRegistrationAccountUuid(String registrationAccountUuid) {
+    this.registrationAccountUuid = registrationAccountUuid;
   }
 
 
-  public EventContestCompetitionRegistrationHorsePlain description(String description) {
-    this.description = description;
+  public EventContestCompetitionRegistrationHorsePlain horse(MasterdataHorsePlain horse) {
+    this.horse = horse;
     return this;
   }
 
    /**
-   * Get description
-   * @return description
+   * Get horse
+   * @return horse
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(JSON_PROPERTY_HORSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDescription() {
-    return description;
+  public MasterdataHorsePlain getHorse() {
+    return horse;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(JSON_PROPERTY_HORSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
+  public void setHorse(MasterdataHorsePlain horse) {
+    this.horse = horse;
+  }
+
+
+  public EventContestCompetitionRegistrationHorsePlain insurancePoliceId(String insurancePoliceId) {
+    this.insurancePoliceId = insurancePoliceId;
+    return this;
+  }
+
+   /**
+   * Get insurancePoliceId
+   * @return insurancePoliceId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INSURANCE_POLICE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInsurancePoliceId() {
+    return insurancePoliceId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INSURANCE_POLICE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInsurancePoliceId(String insurancePoliceId) {
+    this.insurancePoliceId = insurancePoliceId;
+  }
+
+
+  public EventContestCompetitionRegistrationHorsePlain remark(String remark) {
+    this.remark = remark;
+    return this;
+  }
+
+   /**
+   * Get remark
+   * @return remark
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REMARK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRemark() {
+    return remark;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REMARK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
+
+  public EventContestCompetitionRegistrationHorsePlain displayHorse(String displayHorse) {
+    this.displayHorse = displayHorse;
+    return this;
+  }
+
+   /**
+   * Get displayHorse
+   * @return displayHorse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DISPLAY_HORSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDisplayHorse() {
+    return displayHorse;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DISPLAY_HORSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDisplayHorse(String displayHorse) {
+    this.displayHorse = displayHorse;
   }
 
 
@@ -168,14 +290,18 @@ public class EventContestCompetitionRegistrationHorsePlain {
     }
     EventContestCompetitionRegistrationHorsePlain eventContestCompetitionRegistrationHorsePlain = (EventContestCompetitionRegistrationHorsePlain) o;
     return Objects.equals(this.uuid, eventContestCompetitionRegistrationHorsePlain.uuid) &&
+        Objects.equals(this.eventContestCompetitionRegistration, eventContestCompetitionRegistrationHorsePlain.eventContestCompetitionRegistration) &&
         Objects.equals(this.currentState, eventContestCompetitionRegistrationHorsePlain.currentState) &&
-        Objects.equals(this.masterdataHorseUuid, eventContestCompetitionRegistrationHorsePlain.masterdataHorseUuid) &&
-        Objects.equals(this.description, eventContestCompetitionRegistrationHorsePlain.description);
+        Objects.equals(this.registrationAccountUuid, eventContestCompetitionRegistrationHorsePlain.registrationAccountUuid) &&
+        Objects.equals(this.horse, eventContestCompetitionRegistrationHorsePlain.horse) &&
+        Objects.equals(this.insurancePoliceId, eventContestCompetitionRegistrationHorsePlain.insurancePoliceId) &&
+        Objects.equals(this.remark, eventContestCompetitionRegistrationHorsePlain.remark) &&
+        Objects.equals(this.displayHorse, eventContestCompetitionRegistrationHorsePlain.displayHorse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, currentState, masterdataHorseUuid, description);
+    return Objects.hash(uuid, eventContestCompetitionRegistration, currentState, registrationAccountUuid, horse, insurancePoliceId, remark, displayHorse);
   }
 
   @Override
@@ -183,9 +309,13 @@ public class EventContestCompetitionRegistrationHorsePlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestCompetitionRegistrationHorsePlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    eventContestCompetitionRegistration: ").append(toIndentedString(eventContestCompetitionRegistration)).append("\n");
     sb.append("    currentState: ").append(toIndentedString(currentState)).append("\n");
-    sb.append("    masterdataHorseUuid: ").append(toIndentedString(masterdataHorseUuid)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    registrationAccountUuid: ").append(toIndentedString(registrationAccountUuid)).append("\n");
+    sb.append("    horse: ").append(toIndentedString(horse)).append("\n");
+    sb.append("    insurancePoliceId: ").append(toIndentedString(insurancePoliceId)).append("\n");
+    sb.append("    remark: ").append(toIndentedString(remark)).append("\n");
+    sb.append("    displayHorse: ").append(toIndentedString(displayHorse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

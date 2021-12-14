@@ -18,10 +18,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNominationFee;
+import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNominationHorse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -50,19 +54,11 @@ public class RegisterNominationTest {
     }
 
     /**
-     * Test the property 'contactUuid'
+     * Test the property 'horses'
      */
     @Test
-    public void contactUuidTest() {
-        // TODO: test contactUuid
-    }
-
-    /**
-     * Test the property 'horsesUuids'
-     */
-    @Test
-    public void horsesUuidsTest() {
-        // TODO: test horsesUuids
+    public void horsesTest() {
+        // TODO: test horses
     }
 
     /**

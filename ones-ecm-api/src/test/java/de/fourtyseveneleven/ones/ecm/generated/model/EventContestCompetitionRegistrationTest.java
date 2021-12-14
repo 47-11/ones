@@ -53,6 +53,14 @@ public class EventContestCompetitionRegistrationTest {
     }
 
     /**
+     * Test the property 'eventContestCompetitionUuuid'
+     */
+    @Test
+    public void eventContestCompetitionUuuidTest() {
+        // TODO: test eventContestCompetitionUuuid
+    }
+
+    /**
      * Test the property 'creationTimestamp'
      */
     @Test

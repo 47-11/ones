@@ -41,7 +41,7 @@ import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
 public class EventContestControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -400,24 +400,26 @@ public class EventContestControllerApi {
   /**
    * 
    * 
+   * @param uuid  (required)
    * @param registerNomination  (required)
    * @return RegisterResponce
    * @throws ApiException if fails to make API call
    */
-  public RegisterResponce postRegisterNomination(RegisterNomination registerNomination) throws ApiException {
-    ApiResponse<RegisterResponce> localVarResponse = postRegisterNominationWithHttpInfo(registerNomination);
+  public RegisterResponce postAccountNomination(String uuid, RegisterNomination registerNomination) throws ApiException {
+    ApiResponse<RegisterResponce> localVarResponse = postAccountNominationWithHttpInfo(uuid, registerNomination);
     return localVarResponse.getData();
   }
 
   /**
    * 
    * 
+   * @param uuid  (required)
    * @param registerNomination  (required)
    * @return ApiResponse&lt;RegisterResponce&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<RegisterResponce> postRegisterNominationWithHttpInfo(RegisterNomination registerNomination) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = postRegisterNominationRequestBuilder(registerNomination);
+  public ApiResponse<RegisterResponce> postAccountNominationWithHttpInfo(String uuid, RegisterNomination registerNomination) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = postAccountNominationRequestBuilder(uuid, registerNomination);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -426,7 +428,7 @@ public class EventContestControllerApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       if (localVarResponse.statusCode()/ 100 != 2) {
-        throw getApiException("postRegisterNomination", localVarResponse);
+        throw getApiException("postAccountNomination", localVarResponse);
       }
       return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),
@@ -442,15 +444,20 @@ public class EventContestControllerApi {
     }
   }
 
-  private HttpRequest.Builder postRegisterNominationRequestBuilder(RegisterNomination registerNomination) throws ApiException {
+  private HttpRequest.Builder postAccountNominationRequestBuilder(String uuid, RegisterNomination registerNomination) throws ApiException {
+    // verify the required parameter 'uuid' is set
+    if (uuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'uuid' when calling postAccountNomination");
+    }
     // verify the required parameter 'registerNomination' is set
     if (registerNomination == null) {
-      throw new ApiException(400, "Missing the required parameter 'registerNomination' when calling postRegisterNomination");
+      throw new ApiException(400, "Missing the required parameter 'registerNomination' when calling postAccountNomination");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/rest/event/register/nomination";
+    String localVarPath = "/rest/event/nomination/account/{uuid}"
+        .replace("{uuid}", ApiClient.urlEncode(uuid.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

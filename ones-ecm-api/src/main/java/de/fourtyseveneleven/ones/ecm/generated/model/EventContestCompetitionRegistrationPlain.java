@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestCompetitionRegistrationPlain.JSON_PROPERTY_UUID,
+  EventContestCompetitionRegistrationPlain.JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID,
   EventContestCompetitionRegistrationPlain.JSON_PROPERTY_REGISTRATION_COMPETITION_DATE,
   EventContestCompetitionRegistrationPlain.JSON_PROPERTY_REGISTRATION_ACCOUNT_UUID,
   EventContestCompetitionRegistrationPlain.JSON_PROPERTY_CONTESTANT_UUID,
@@ -47,10 +48,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionRegistrationPlain.JSON_PROPERTY_DISPLAY_HORSE,
   EventContestCompetitionRegistrationPlain.JSON_PROPERTY_HORSES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
 public class EventContestCompetitionRegistrationPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
+
+  public static final String JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID = "eventContestCompetitionUuuid";
+  private String eventContestCompetitionUuuid;
 
   public static final String JSON_PROPERTY_REGISTRATION_COMPETITION_DATE = "registrationCompetitionDate";
   private OffsetDateTime registrationCompetitionDate;
@@ -103,6 +107,32 @@ public class EventContestCompetitionRegistrationPlain {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
+  }
+
+
+  public EventContestCompetitionRegistrationPlain eventContestCompetitionUuuid(String eventContestCompetitionUuuid) {
+    this.eventContestCompetitionUuuid = eventContestCompetitionUuuid;
+    return this;
+  }
+
+   /**
+   * Get eventContestCompetitionUuuid
+   * @return eventContestCompetitionUuuid
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getEventContestCompetitionUuuid() {
+    return eventContestCompetitionUuuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEventContestCompetitionUuuid(String eventContestCompetitionUuuid) {
+    this.eventContestCompetitionUuuid = eventContestCompetitionUuuid;
   }
 
 
@@ -361,6 +391,7 @@ public class EventContestCompetitionRegistrationPlain {
     }
     EventContestCompetitionRegistrationPlain eventContestCompetitionRegistrationPlain = (EventContestCompetitionRegistrationPlain) o;
     return Objects.equals(this.uuid, eventContestCompetitionRegistrationPlain.uuid) &&
+        Objects.equals(this.eventContestCompetitionUuuid, eventContestCompetitionRegistrationPlain.eventContestCompetitionUuuid) &&
         Objects.equals(this.registrationCompetitionDate, eventContestCompetitionRegistrationPlain.registrationCompetitionDate) &&
         Objects.equals(this.registrationAccountUuid, eventContestCompetitionRegistrationPlain.registrationAccountUuid) &&
         Objects.equals(this.contestantUuid, eventContestCompetitionRegistrationPlain.contestantUuid) &&
@@ -374,7 +405,7 @@ public class EventContestCompetitionRegistrationPlain {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, registrationCompetitionDate, registrationAccountUuid, contestantUuid, paymentMethod, insurancePoliceId, remark, displayContestant, displayHorse, horses);
+    return Objects.hash(uuid, eventContestCompetitionUuuid, registrationCompetitionDate, registrationAccountUuid, contestantUuid, paymentMethod, insurancePoliceId, remark, displayContestant, displayHorse, horses);
   }
 
   @Override
@@ -382,6 +413,7 @@ public class EventContestCompetitionRegistrationPlain {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestCompetitionRegistrationPlain {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    eventContestCompetitionUuuid: ").append(toIndentedString(eventContestCompetitionUuuid)).append("\n");
     sb.append("    registrationCompetitionDate: ").append(toIndentedString(registrationCompetitionDate)).append("\n");
     sb.append("    registrationAccountUuid: ").append(toIndentedString(registrationAccountUuid)).append("\n");
     sb.append("    contestantUuid: ").append(toIndentedString(contestantUuid)).append("\n");
