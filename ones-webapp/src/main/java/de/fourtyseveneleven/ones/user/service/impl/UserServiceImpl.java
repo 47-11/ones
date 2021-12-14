@@ -10,6 +10,7 @@ import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccount;
 import de.fourtyseveneleven.ones.ecm.generated.model.UpdateAccount;
 import de.fourtyseveneleven.ones.user.mapper.UserMapper;
 import de.fourtyseveneleven.ones.user.model.User;
+import de.fourtyseveneleven.ones.user.model.dto.SetPersonalDataRequest;
 import de.fourtyseveneleven.ones.user.model.dto.UserDto;
 import de.fourtyseveneleven.ones.user.repository.UserRepository;
 import de.fourtyseveneleven.ones.user.service.EcmRegistrationService;
@@ -23,6 +24,7 @@ import java.util.UUID;
 
 import static de.fourtyseveneleven.ones.security.util.UserUtils.getAuthenticatedUser;
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -104,13 +106,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void setPersonalDataForCurrentUser(UserDto personalData) {
+    public void setPersonalData(SetPersonalDataRequest request) {
+
+        Optional.ofNullable(request.vddNumber())
+                .ifPresentOrElse(this::setPersonalDataByVddNumber,
+                        () -> setPersonalData(request.personalData()));
+    }
+
+    private void setPersonalDataByVddNumber(int vddNumber) {
+
+        final User currentUser = getAuthenticatedUser();
+        ecmRegistrationService.registerNewMemberByVddNumber(currentUser, vddNumber);
+    }
+
+    private void setPersonalData(UserDto personalData) {
 
         final User currentUser = getAuthenticatedUser();
         if (isNull(currentUser.getUuid())) {
             setPersonalData(currentUser, personalData);
         } else {
-            updatePersonalData(currentUser, personalData);
+            throw new IllegalArgumentException("Personal data already set.");
         }
     }
 
@@ -119,6 +134,13 @@ public class UserServiceImpl implements UserService {
         final UUID uuid = ecmRegistrationService.registerNewMember(user, personalData);
         user.setUuid(uuid);
         updateUser(user);
+    }
+
+    @Override
+    public void updatePersonalData(UserDto personalData) {
+
+        final User currentUser = getAuthenticatedUser();
+        updatePersonalData(currentUser, personalData);
     }
 
     private void updatePersonalData(User user, UserDto personalData) {

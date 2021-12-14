@@ -1,9 +1,9 @@
 package de.fourtyseveneleven.ones.user.service.impl;
 
 import de.fourtyseveneleven.ones.user.model.User;
-import de.fourtyseveneleven.ones.user.model.dto.LoginDto;
 import de.fourtyseveneleven.ones.user.exception.RegistrationIncompleteException;
 import de.fourtyseveneleven.ones.security.service.JwtTokenBuilderService;
+import de.fourtyseveneleven.ones.user.model.dto.EmailPasswordDto;
 import de.fourtyseveneleven.ones.user.service.LoginService;
 import de.fourtyseveneleven.ones.user.service.UserService;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,12 +26,12 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public String login(LoginDto loginDto) {
+    public String login(EmailPasswordDto emailPasswordDto) {
 
-        final User user = userService.findOneByEmailAddress(loginDto.getEmailAddress())
+        final User user = userService.findOneByEmailAddress(emailPasswordDto.emailAddress())
                 .orElseThrow(() -> new BadCredentialsException(getExceptionMessage("authentication.login.bad-credentials")));
 
-        if (!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(emailPasswordDto.password(), user.getPassword())) {
             throw new BadCredentialsException(getExceptionMessage("authentication.login.bad-credentials"));
         }
 
