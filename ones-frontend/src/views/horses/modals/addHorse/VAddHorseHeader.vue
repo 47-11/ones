@@ -1,7 +1,7 @@
 <template>
     <div class="flex w-full items-center">
         <h1 class="text-xl">
-            <span v-if="isUpdate">{{ $t('horses.modals.edit.title') }}</span>
+            <span v-if="isUpdate()">{{ $t('horses.modals.edit.title') }}</span>
             <span v-else>{{ $t('horses.modals.add.title') }}</span>
         </h1>
     </div>

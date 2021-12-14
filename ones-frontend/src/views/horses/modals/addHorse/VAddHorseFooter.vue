@@ -5,7 +5,7 @@
             {{ $t('modal.abort') }}
         </v-button>
         <v-button @click.native="confirm" class="ml-2">
-            <span v-if="isUpdate">{{ $t('horses.modals.edit.confirm') }}</span>
+            <span v-if="isUpdate()">{{ $t('horses.modals.edit.confirm') }}</span>
             <span v-else>{{ $t('horses.modals.add.confirm') }}</span>
         </v-button>
     </div>

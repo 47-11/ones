@@ -42,14 +42,24 @@
                     </div>
 
                     <table>
-                        <tr>
+                        <tr v-if="details.addresses[0].locationName">
                             <th class="text-left px-5 py-1 align-top">
-                                {{$t('details.details')}}
+                                {{$t('details.place')}}
                                 </th>
                             <td class="text-left px-5 py-1">
-                                {{ details.address.locationName }} <br> {{ start.format("DD.MM.YYYY") }}
+                                {{ details.addresses[0].locationName }} <br v-if="details.addresses[0].locationName">
                             </td>
                         </tr>
+
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top">
+                                {{$t('details.date')}}
+                                </th>
+                            <td class="text-left px-5 py-1">
+                                {{ start.format("DD.MM.YYYY") }}
+                            </td>
+                        </tr>
+
                         <tr>
                             <th class="text-left px-5 py-1 align-top">
                                 {{ $t('details.distance') }}
