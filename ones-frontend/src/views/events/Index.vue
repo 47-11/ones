@@ -73,10 +73,13 @@
                         <v-label class="mb-3 flex items-center">
                             {{ $t("events.filter.categories") }}
                             <div class="ml-auto">
-                                <span
-                                    class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer"
+                                <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer"
                                     @click="resetCategories()">
                                     {{ $t("events.filter.all") }}
+                                </span>
+                                <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-2 cursor-pointer"
+                                      @click="noneCategories()">
+                                    {{ $t("events.filter.none") }}
                                 </span>
                             </div>
                         </v-label>
@@ -85,8 +88,7 @@
                             <div class="flex items-center mt-1" v-for="category in events.categories"
                                  :key="category.code">
                                 <input type="checkbox" v-model="selectedCategories" :value="category.code"
-                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                       @change="toggleCategory(category.code)"/>
+                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                                 <div class="ml-2">{{ category.description }}</div>
                             </div>
                         </div>
@@ -297,6 +299,10 @@ export default class Home extends Vue {
 
     async resetCategories(): Promise<void> {
         await this.events.resetCategories();
+    }
+
+    async noneCategories(): Promise<void> {
+        await this.events.addFilter({ categories: [] });
     }
 
     get selectedCategories(): string[] {

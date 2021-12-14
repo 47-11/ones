@@ -199,6 +199,7 @@
     "filter": {
       "categories": "Categories",
       "all": "All",
+      "none": "None",
       "cardRide": "Card Ride",
       "internationalChampionchip": "International Championship",
       "registered": "Registered",
