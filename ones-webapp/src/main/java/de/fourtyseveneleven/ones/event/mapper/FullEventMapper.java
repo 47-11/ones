@@ -5,8 +5,12 @@ import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
-import de.fourtyseveneleven.ones.ecm.generated.model.*;
-import de.fourtyseveneleven.ones.event.model.dto.AccommodationDto;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFeePlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestLocationPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRemarkPlain;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestRolePlain;
+import de.fourtyseveneleven.ones.event.model.dto.EventAddressDto;
 import de.fourtyseveneleven.ones.event.model.dto.FeeDto;
 import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import org.mapstruct.Mapper;
@@ -63,6 +67,9 @@ public abstract class FullEventMapper {
     @Mapping(source = "paymentPaypal", target = "paymentInformation.paypalInformation")
     public abstract FullEventDto eventContestPlainToFullEventDto(EventContestPlain eventContest);
 
+    @Mapping(source = "name1", target = "locationName")
+    protected abstract EventAddressDto eventContestLocationPlainToEventAddressDto(EventContestLocationPlain eventContestLocationPlain);
+
     protected List<String> remarksToAdditionalComments(Set<EventContestRemarkPlain> remarks) {
 
         return remarks.stream()
@@ -114,15 +121,6 @@ public abstract class FullEventMapper {
         return personDto;
     }
 
-    private String emptyIfNull(String value) {
-
-        if (isNull(value)) {
-            return "";
-        } else {
-            return value;
-        }
-    }
-
     private AddressDto addressDtoFromRole(EventContestRolePlain role) {
 
         final AddressDto addressDto = new AddressDto();
@@ -163,14 +161,6 @@ public abstract class FullEventMapper {
         } else {
             return new FeeDto(BigDecimal.valueOf(eventContestFee.getValue()), eventContestFee.getCurrency());
         }
-    }
-
-    protected List<AccommodationDto> accommodationFees(Set<EventContestFee> eventContestFees) {
-
-        return eventContestFees.stream()
-                .filter(f -> "ACCOMMODATION".equalsIgnoreCase(f.getKind()))
-                .map(accommodationDtoMapper::fromEventContestFee)
-                .toList();
     }
 }
 
