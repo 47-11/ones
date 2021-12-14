@@ -1346,6 +1346,85 @@
                 ]
             }
         },
+        "/api/v1/event/contest/{contestUuid}/my-horses": {
+            "get": {
+                "tags": [
+                    "event-controller"
+                ],
+                "operationId": "getSignedUpHorsesForContest",
+                "parameters": [
+                    {
+                        "name": "contestUuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/FullContestDto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/event/categories": {
             "get": {
                 "tags": [
@@ -1706,58 +1785,6 @@
                     }
                 }
             },
-            "ResultDto": {
-                "type": "object",
-                "properties": {
-                    "contest": {
-                        "$ref": "#/components/schemas/SimpleContestDto"
-                    },
-                    "horses": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/FullHorseDto"
-                        }
-                    },
-                    "placement": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "averageSpeed": {
-                        "type": "number"
-                    }
-                }
-            },
-            "ResultOverviewDto": {
-                "type": "object",
-                "properties": {
-                    "results": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ResultDto"
-                        }
-                    },
-                    "totalDistance": {
-                        "type": "number"
-                    },
-                    "averageSpeed": {
-                        "type": "number"
-                    }
-                }
-            },
-            "SimpleContestDto": {
-                "type": "object",
-                "properties": {
-                    "uuid": {
-                        "type": "string"
-                    },
-                    "category": {
-                        "type": "string"
-                    },
-                    "distance": {
-                        "type": "number"
-                    }
-                }
-            },
             "EventAddressDto": {
                 "type": "object",
                 "properties": {
@@ -1787,26 +1814,72 @@
                     }
                 }
             },
-            "PageDtoSimpleEventDto": {
+            "ResultDto": {
                 "type": "object",
                 "properties": {
-                    "elements": {
+                    "contest": {
+                        "$ref": "#/components/schemas/SimpleContestDto"
+                    },
+                    "event": {
+                        "$ref": "#/components/schemas/SimpleEventDto"
+                    },
+                    "horses": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/SimpleEventDto"
+                            "$ref": "#/components/schemas/SimpleHorseDto"
                         }
                     },
-                    "pageNumber": {
+                    "placement": {
                         "type": "integer",
                         "format": "int32"
                     },
-                    "pageSize": {
+                    "duration": {
                         "type": "integer",
                         "format": "int32"
                     },
-                    "totalElements": {
+                    "averageSpeed": {
+                        "type": "number"
+                    },
+                    "pace": {
+                        "type": "number"
+                    },
+                    "failureReason": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResultOverviewDto": {
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResultDto"
+                        }
+                    },
+                    "totalDistance": {
+                        "type": "number"
+                    },
+                    "totalDuration": {
                         "type": "integer",
-                        "format": "int32"
+                        "format": "int64"
+                    },
+                    "averageSpeed": {
+                        "type": "number"
+                    }
+                }
+            },
+            "SimpleContestDto": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "distance": {
+                        "type": "number"
                     }
                 }
             },
@@ -1877,6 +1950,29 @@
                     },
                     "name": {
                         "type": "string"
+                    }
+                }
+            },
+            "PageDtoSimpleEventDto": {
+                "type": "object",
+                "properties": {
+                    "elements": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SimpleEventDto"
+                        }
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int32"
                     }
                 }
             },
