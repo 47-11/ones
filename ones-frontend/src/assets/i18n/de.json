@@ -324,7 +324,7 @@
         "STALLION": "Hengst",
         "GELDING": "Wallach"
       },
-      "feiNo": "FEI Nummer"
+      "feiNumber": "FEI Nummer"
     },
     "address": {
       "street": "Straße",

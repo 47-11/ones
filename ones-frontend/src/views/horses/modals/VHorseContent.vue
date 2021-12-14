@@ -37,8 +37,8 @@
         <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-gray-800">{{ horse.size }}</dd>
       </div>
         <div class="w-full bg-white dark:bg-gray-700 border-b dark:border-gray-800 py-3 sm:grid sm:grid-cols-3 sm:gap-4 px-6">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">{{ $t("data.horse.feiNo") }}</dt>
-            <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-gray-800">{{ horse.feiNo }}</dd>
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">{{ $t("data.horse.feiNumber") }}</dt>
+            <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-gray-800">{{ horse.feiNumber }}</dd>
         </div>
       <div class="w-full bg-white dark:bg-gray-700 border-b dark:border-gray-800 py-3 sm:grid sm:grid-cols-3 sm:gap-4 px-6">
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">{{ $t("data.horse.stableAddress") }}</dt>

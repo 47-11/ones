@@ -327,7 +327,7 @@
         "STALLION": "Stallion",
         "GELDING": "Gelding"
       },
-      "feiNo": "FEI No"
+      "feiNumber": "FEI No"
     },
     "address": {
       "street": "Street",

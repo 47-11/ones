@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-span-12 sm:col-span-6">
-                <v-label>{{ $t("data.horse.feiNo") }}</v-label>
+                <v-label>{{ $t("data.horse.feiNumber") }}</v-label>
                 <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.feiNumber" @input="updateHorse('feiNumber', $event)" :disabled="inputsDisabled"/>
                 <span class="text-lg" v-if="isUpdate">{{horse.feiNumber}}</span>
             </div>
@@ -193,7 +193,7 @@ export default class VAddHorseContent extends Vue {
     }
 
     get isUpdate(): boolean {
-        return !!this.horse.uuid;
+        return !!this.horse?.uuid;
     }
 
     genders = FullHorseDtoGenderEnum;
