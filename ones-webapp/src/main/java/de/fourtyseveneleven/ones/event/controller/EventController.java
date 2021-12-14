@@ -28,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @AuthenticatedApiController
 @RequestMapping("/api/v1/event")
@@ -102,5 +104,11 @@ public class EventController {
 
         final SignupDto signupDto = new SignupDto(contestUuid, request);
         signupService.signup(signupDto);
+    }
+
+    @GetMapping("/contest/{contestUuid}/my-horses")
+    public List<FullContestDto> getSignedUpHorsesForContest(@PathVariable UUID contestUuid) {
+
+        return Collections.emptyList();
     }
 }

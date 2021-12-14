@@ -250,10 +250,20 @@
       "lifeNumber": "Life number"
     },
     "minHorses": "Please select at least one horse.",
+    "confirm": "You have to confirm the registration bindingly.",
+    "confirmation": {
+      "title": "Confirmation",
+      "description": "I hereby bindingly register for the competition with the selected horses."
+    },
+    "signUpTitle": "Sign up",
     "submit": "Sign up",
     "signedUp": "You signed up!",
     "thanks": "Thanks for your enrollment.",
-    "signedUpHorses": "Signed up Horses"
+    "signedUpHorses": "Signed up Horses",
+    "cancellcation": {
+      "title": "Canellcation",
+      "description": "Cancellation and re-registration please by eMail to organizer"
+    }
   },
   "password": {
     "password": "Password"
