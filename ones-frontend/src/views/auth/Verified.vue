@@ -8,10 +8,7 @@
                 </feedback>
             </div>
             <div class="px-6 py-5" v-if="hasError">
-                <feedback color="danger" class="mb-5" >
-                    <h2 class="text-lg">{{$t('verified.error')}}</h2>
-                    {{ error }}
-                </feedback>
+                <error-message :error="error"></error-message>
             </div>
             <div class="px-6 py-5" v-if="verified && !hasError">
                 <div class="text-sm text-gray-600">
