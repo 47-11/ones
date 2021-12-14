@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterMembership.JSON_PROPERTY_VDD_MEMBER_ID,
   RegisterMembership.JSON_PROPERTY_VDD_QUALIFICATION_LEVEL
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
 public class RegisterMembership {
   public static final String JSON_PROPERTY_FEI_MEMBER_ID = "feiMemberId";
   private String feiMemberId;

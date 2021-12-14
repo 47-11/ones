@@ -178,12 +178,22 @@
         ]
       }
     },
-    "/rest/event/register/nomination": {
+    "/rest/event/nomination/account/{uuid}": {
       "post": {
         "tags": [
           "event-contest-controller"
         ],
-        "operationId": "postRegisterNomination",
+        "operationId": "postAccountNomination",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -198,7 +208,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/registerResponce"
                 }
@@ -870,7 +880,7 @@
       "registerNomination": {
         "required": [
           "competitionUuid",
-          "contactUuid"
+          "horses"
         ],
         "type": "object",
         "properties": {
@@ -879,24 +889,56 @@
             "minLength": 1,
             "type": "string"
           },
-          "contactUuid": {
-            "maxLength": 255,
-            "minLength": 1,
-            "type": "string"
-          },
-          "horsesUuids": {
+          "horses": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/registerNominationHorse"
             }
           },
           "bookingFeeUuids": {
             "maxItems": 40,
             "minItems": 1,
+            "uniqueItems": true,
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/registerNominationFee"
             }
+          }
+        }
+      },
+      "registerNominationFee": {
+        "required": [
+          "feeUuid"
+        ],
+        "type": "object",
+        "properties": {
+          "feeUuid": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "registerNominationHorse": {
+        "required": [
+          "horseUuid"
+        ],
+        "type": "object",
+        "properties": {
+          "horseUuid": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "escortHorse": {
+            "type": "boolean"
+          },
+          "insurancePoliceId": {
+            "type": "string"
           }
         }
       },
@@ -1580,6 +1622,7 @@
       "EventContestCompetitionRegistration": {
         "required": [
           "creationTimestamp",
+          "eventContestCompetitionUuuid",
           "uuid"
         ],
         "type": "object",
@@ -1587,6 +1630,9 @@
           "uuid": {
             "maxLength": 40,
             "minLength": 1,
+            "type": "string"
+          },
+          "eventContestCompetitionUuuid": {
             "type": "string"
           },
           "creationTimestamp": {
@@ -1674,6 +1720,9 @@
             "minLength": 1,
             "type": "string"
           },
+          "eventContestCompetitionRegistration": {
+            "$ref": "#/components/schemas/EventContestCompetitionRegistration"
+          },
           "creationTimestamp": {
             "type": "string",
             "format": "date-time"
@@ -1700,13 +1749,26 @@
             "type": "integer",
             "format": "int32"
           },
-          "masterdataHorseUuid": {
+          "registrationAccountUuid": {
             "maxLength": 40,
             "minLength": 0,
             "type": "string"
           },
-          "description": {
-            "maxLength": 50,
+          "horse": {
+            "$ref": "#/components/schemas/MasterdataHorse"
+          },
+          "insurancePoliceId": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "remark": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "displayHorse": {
+            "maxLength": 255,
             "minLength": 0,
             "type": "string"
           }
@@ -2178,6 +2240,479 @@
           }
         }
       },
+      "MasterdataContact": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salutation": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "forename": {
+            "type": "string"
+          },
+          "bornName": {
+            "type": "string"
+          },
+          "bornDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "titleAddition": {
+            "type": "string"
+          },
+          "titleNobility": {
+            "type": "string"
+          },
+          "titleAcademic": {
+            "type": "string"
+          },
+          "titleBusiness": {
+            "type": "string"
+          },
+          "artistName": {
+            "type": "string"
+          },
+          "nickName": {
+            "type": "string"
+          },
+          "phonePrivate": {
+            "type": "string"
+          },
+          "phoneBusiness": {
+            "type": "string"
+          },
+          "cellPhonePrivate": {
+            "type": "string"
+          },
+          "cellPhoneBusiness": {
+            "type": "string"
+          },
+          "faxPrivate": {
+            "type": "string"
+          },
+          "faxBusiness": {
+            "type": "string"
+          },
+          "emailPrivate": {
+            "type": "string"
+          },
+          "emailBusiness": {
+            "type": "string"
+          },
+          "info1": {
+            "type": "string"
+          },
+          "info2": {
+            "type": "string"
+          },
+          "info3": {
+            "type": "string"
+          },
+          "info4": {
+            "type": "string"
+          },
+          "info5": {
+            "type": "string"
+          },
+          "info6": {
+            "type": "string"
+          },
+          "info7": {
+            "type": "string"
+          },
+          "info8": {
+            "type": "string"
+          },
+          "info9": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "_addresses": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataContactAddress"
+            }
+          },
+          "_roles": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataContactRole"
+            }
+          }
+        }
+      },
+      "MasterdataContactAddress": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "masterdataContactUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "countryCode": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "federalStateCode": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "federalState": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "zipcodeCode": {
+            "type": "string"
+          }
+        }
+      },
+      "MasterdataContactRole": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "masterdataContactUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "MasterdataHorse": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "changeUserUuid": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "passportId": {
+            "type": "string"
+          },
+          "feiPassportId": {
+            "type": "string"
+          },
+          "fnPassportId": {
+            "type": "string"
+          },
+          "chipId": {
+            "type": "string"
+          },
+          "breed": {
+            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
+          },
+          "breedUuid": {
+            "type": "string"
+          },
+          "gender": {
+            "maxLength": 1,
+            "minLength": 0,
+            "type": "string"
+          },
+          "yearOfBirth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stickSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "color": {
+            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic"
+          },
+          "colorUuid": {
+            "type": "string"
+          },
+          "_owners": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataHorseOwner"
+            }
+          },
+          "_stables": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataHorseStable"
+            }
+          }
+        }
+      },
+      "MasterdataHorseOwner": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "display": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "ownershipFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownershipUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "remark": {
+            "maxLength": 16777216,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/MasterdataContact"
+          },
+          "masterdataHorseUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "MasterdataHorseStable": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "masterdataHorseUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "accommodationFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "accommodationUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "remarks": {
+            "maxLength": 16777216,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/MasterdataContact"
+          }
+        }
+      },
       "ResponcePageContests": {
         "type": "object",
         "properties": {
@@ -2208,17 +2743,33 @@
             "minLength": 1,
             "type": "string"
           },
+          "eventContestCompetitionRegistration": {
+            "$ref": "#/components/schemas/EventContestCompetitionRegistration_Plain"
+          },
           "currentState": {
             "type": "integer",
             "format": "int32"
           },
-          "masterdataHorseUuid": {
+          "registrationAccountUuid": {
             "maxLength": 40,
             "minLength": 0,
             "type": "string"
           },
-          "description": {
-            "maxLength": 50,
+          "horse": {
+            "$ref": "#/components/schemas/MasterdataHorse_Plain"
+          },
+          "insurancePoliceId": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "remark": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "displayHorse": {
+            "maxLength": 255,
             "minLength": 0,
             "type": "string"
           }
@@ -2226,6 +2777,7 @@
       },
       "EventContestCompetitionRegistration_Plain": {
         "required": [
+          "eventContestCompetitionUuuid",
           "uuid"
         ],
         "type": "object",
@@ -2233,6 +2785,9 @@
           "uuid": {
             "maxLength": 40,
             "minLength": 1,
+            "type": "string"
+          },
+          "eventContestCompetitionUuuid": {
             "type": "string"
           },
           "registrationCompetitionDate": {
@@ -3030,6 +3585,530 @@
             "items": {
               "$ref": "#/components/schemas/EventContestRemark_Plain"
             }
+          }
+        }
+      },
+      "MasterdataContactAddress_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "masterdataContactUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "countryCode": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "country": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "federalStateCode": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "federalState": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "zipcodeCode": {
+            "type": "string"
+          }
+        }
+      },
+      "MasterdataContactRole_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "masterdataContactUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "MasterdataContact_Plain": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salutation": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "forename": {
+            "type": "string"
+          },
+          "bornName": {
+            "type": "string"
+          },
+          "bornDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "titleAddition": {
+            "type": "string"
+          },
+          "titleNobility": {
+            "type": "string"
+          },
+          "titleAcademic": {
+            "type": "string"
+          },
+          "titleBusiness": {
+            "type": "string"
+          },
+          "artistName": {
+            "type": "string"
+          },
+          "nickName": {
+            "type": "string"
+          },
+          "phonePrivate": {
+            "type": "string"
+          },
+          "phoneBusiness": {
+            "type": "string"
+          },
+          "cellPhonePrivate": {
+            "type": "string"
+          },
+          "cellPhoneBusiness": {
+            "type": "string"
+          },
+          "faxPrivate": {
+            "type": "string"
+          },
+          "faxBusiness": {
+            "type": "string"
+          },
+          "emailPrivate": {
+            "type": "string"
+          },
+          "emailBusiness": {
+            "type": "string"
+          },
+          "info1": {
+            "type": "string"
+          },
+          "info2": {
+            "type": "string"
+          },
+          "info3": {
+            "type": "string"
+          },
+          "info4": {
+            "type": "string"
+          },
+          "info5": {
+            "type": "string"
+          },
+          "info6": {
+            "type": "string"
+          },
+          "info7": {
+            "type": "string"
+          },
+          "info8": {
+            "type": "string"
+          },
+          "info9": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "_addresses": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataContactAddress_Plain"
+            }
+          },
+          "_roles": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataContactRole_Plain"
+            }
+          }
+        }
+      },
+      "MasterdataHorseOwner_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "display": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "ownershipFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownershipUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "remark": {
+            "maxLength": 16777216,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/MasterdataContact_Plain"
+          },
+          "masterdataHorseUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "MasterdataHorseStable_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "masterdataHorseUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kind": {
+            "maxLength": 5,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "accommodationFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "accommodationUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "remarks": {
+            "maxLength": 16777216,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/MasterdataContact_Plain"
+          }
+        }
+      },
+      "MasterdataHorse_Plain": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "changeUserUuid": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "passportId": {
+            "type": "string"
+          },
+          "feiPassportId": {
+            "type": "string"
+          },
+          "fnPassportId": {
+            "type": "string"
+          },
+          "chipId": {
+            "type": "string"
+          },
+          "breed": {
+            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic_Plain"
+          },
+          "breedUuid": {
+            "type": "string"
+          },
+          "gender": {
+            "maxLength": 1,
+            "minLength": 0,
+            "type": "string"
+          },
+          "yearOfBirth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stickSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "color": {
+            "$ref": "#/components/schemas/MasterdataPropertyCharacteristic_Plain"
+          },
+          "colorUuid": {
+            "type": "string"
+          },
+          "_owners": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataHorseOwner_Plain"
+            }
+          },
+          "_stables": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MasterdataHorseStable_Plain"
+            }
+          }
+        }
+      },
+      "MasterdataPropertyCharacteristic_Plain": {
+        "required": [
+          "creationTimestamp",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string"
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creationUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "changeUserUuid": {
+            "maxLength": 40,
+            "minLength": 0,
+            "type": "string"
+          },
+          "changeCounter": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "acronym": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string"
+          },
+          "display": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
           }
         }
       },

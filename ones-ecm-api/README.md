@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]
+- Build date: 2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -125,8 +125,8 @@ Class | Method | HTTP request | Description
 *EventContestControllerApi* | [**getContestByYearWithHttpInfo**](docs/EventContestControllerApi.md#getContestByYearWithHttpInfo) | **GET** /rest/event/contests | 
 *EventContestControllerApi* | [**getCurrentContestCompetitionsResults**](docs/EventContestControllerApi.md#getCurrentContestCompetitionsResults) | **GET** /rest/event/contest/result/current | 
 *EventContestControllerApi* | [**getCurrentContestCompetitionsResultsWithHttpInfo**](docs/EventContestControllerApi.md#getCurrentContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/current | 
-*EventContestControllerApi* | [**postRegisterNomination**](docs/EventContestControllerApi.md#postRegisterNomination) | **POST** /rest/event/register/nomination | 
-*EventContestControllerApi* | [**postRegisterNominationWithHttpInfo**](docs/EventContestControllerApi.md#postRegisterNominationWithHttpInfo) | **POST** /rest/event/register/nomination | 
+*EventContestControllerApi* | [**postAccountNomination**](docs/EventContestControllerApi.md#postAccountNomination) | **POST** /rest/event/nomination/account/{uuid} | 
+*EventContestControllerApi* | [**postAccountNominationWithHttpInfo**](docs/EventContestControllerApi.md#postAccountNominationWithHttpInfo) | **POST** /rest/event/nomination/account/{uuid} | 
 *MasterdataHorseControllerApi* | [**postRegisterHorse**](docs/MasterdataHorseControllerApi.md#postRegisterHorse) | **POST** /rest/masterdata/horse/account/{uuid} | 
 *MasterdataHorseControllerApi* | [**postRegisterHorseWithHttpInfo**](docs/MasterdataHorseControllerApi.md#postRegisterHorseWithHttpInfo) | **POST** /rest/masterdata/horse/account/{uuid} | 
 *MasterdataPropertyControllerApi* | [**getPropertyItems**](docs/MasterdataPropertyControllerApi.md#getPropertyItems) | **GET** /rest/masterdata/property/items/{proptery} | 
@@ -155,8 +155,21 @@ Class | Method | HTTP request | Description
  - [EventContestRemarkPlain](docs/EventContestRemarkPlain.md)
  - [EventContestRole](docs/EventContestRole.md)
  - [EventContestRolePlain](docs/EventContestRolePlain.md)
+ - [MasterdataContact](docs/MasterdataContact.md)
+ - [MasterdataContactAddress](docs/MasterdataContactAddress.md)
+ - [MasterdataContactAddressPlain](docs/MasterdataContactAddressPlain.md)
+ - [MasterdataContactPlain](docs/MasterdataContactPlain.md)
+ - [MasterdataContactRole](docs/MasterdataContactRole.md)
+ - [MasterdataContactRolePlain](docs/MasterdataContactRolePlain.md)
+ - [MasterdataHorse](docs/MasterdataHorse.md)
+ - [MasterdataHorseOwner](docs/MasterdataHorseOwner.md)
+ - [MasterdataHorseOwnerPlain](docs/MasterdataHorseOwnerPlain.md)
+ - [MasterdataHorsePlain](docs/MasterdataHorsePlain.md)
+ - [MasterdataHorseStable](docs/MasterdataHorseStable.md)
+ - [MasterdataHorseStablePlain](docs/MasterdataHorseStablePlain.md)
  - [MasterdataProperty](docs/MasterdataProperty.md)
  - [MasterdataPropertyCharacteristic](docs/MasterdataPropertyCharacteristic.md)
+ - [MasterdataPropertyCharacteristicPlain](docs/MasterdataPropertyCharacteristicPlain.md)
  - [RegisterAccount](docs/RegisterAccount.md)
  - [RegisterAddress](docs/RegisterAddress.md)
  - [RegisterContactLegal](docs/RegisterContactLegal.md)
@@ -164,6 +177,8 @@ Class | Method | HTTP request | Description
  - [RegisterHorse](docs/RegisterHorse.md)
  - [RegisterMembership](docs/RegisterMembership.md)
  - [RegisterNomination](docs/RegisterNomination.md)
+ - [RegisterNominationFee](docs/RegisterNominationFee.md)
+ - [RegisterNominationHorse](docs/RegisterNominationHorse.md)
  - [RegisterResponce](docs/RegisterResponce.md)
  - [RegisteredAccount](docs/RegisteredAccount.md)
  - [RegisteredAccountImposedLocks](docs/RegisteredAccountImposedLocks.md)

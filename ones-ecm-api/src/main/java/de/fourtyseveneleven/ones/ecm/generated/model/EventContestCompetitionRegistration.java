@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   EventContestCompetitionRegistration.JSON_PROPERTY_UUID,
+  EventContestCompetitionRegistration.JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID,
   EventContestCompetitionRegistration.JSON_PROPERTY_CREATION_TIMESTAMP,
   EventContestCompetitionRegistration.JSON_PROPERTY_CREATION_USER_UUID,
   EventContestCompetitionRegistration.JSON_PROPERTY_CHANGE_TIMESTAMP,
@@ -53,10 +54,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionRegistration.JSON_PROPERTY_DISPLAY_HORSE,
   EventContestCompetitionRegistration.JSON_PROPERTY_HORSES
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-30T10:23:10.438880610+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
 public class EventContestCompetitionRegistration {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
+
+  public static final String JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID = "eventContestCompetitionUuuid";
+  private String eventContestCompetitionUuuid;
 
   public static final String JSON_PROPERTY_CREATION_TIMESTAMP = "creationTimestamp";
   private OffsetDateTime creationTimestamp;
@@ -127,6 +131,32 @@ public class EventContestCompetitionRegistration {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(String uuid) {
     this.uuid = uuid;
+  }
+
+
+  public EventContestCompetitionRegistration eventContestCompetitionUuuid(String eventContestCompetitionUuuid) {
+    this.eventContestCompetitionUuuid = eventContestCompetitionUuuid;
+    return this;
+  }
+
+   /**
+   * Get eventContestCompetitionUuuid
+   * @return eventContestCompetitionUuuid
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getEventContestCompetitionUuuid() {
+    return eventContestCompetitionUuuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EVENT_CONTEST_COMPETITION_UUUID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEventContestCompetitionUuuid(String eventContestCompetitionUuuid) {
+    this.eventContestCompetitionUuuid = eventContestCompetitionUuuid;
   }
 
 
@@ -541,6 +571,7 @@ public class EventContestCompetitionRegistration {
     }
     EventContestCompetitionRegistration eventContestCompetitionRegistration = (EventContestCompetitionRegistration) o;
     return Objects.equals(this.uuid, eventContestCompetitionRegistration.uuid) &&
+        Objects.equals(this.eventContestCompetitionUuuid, eventContestCompetitionRegistration.eventContestCompetitionUuuid) &&
         Objects.equals(this.creationTimestamp, eventContestCompetitionRegistration.creationTimestamp) &&
         Objects.equals(this.creationUserUuid, eventContestCompetitionRegistration.creationUserUuid) &&
         Objects.equals(this.changeTimestamp, eventContestCompetitionRegistration.changeTimestamp) &&
@@ -560,7 +591,7 @@ public class EventContestCompetitionRegistration {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, registrationCompetitionDate, registrationAccountUuid, contestantUuid, paymentMethod, insurancePoliceId, remark, displayContestant, displayHorse, horses);
+    return Objects.hash(uuid, eventContestCompetitionUuuid, creationTimestamp, creationUserUuid, changeTimestamp, changeUserUuid, changeCounter, currentState, registrationCompetitionDate, registrationAccountUuid, contestantUuid, paymentMethod, insurancePoliceId, remark, displayContestant, displayHorse, horses);
   }
 
   @Override
@@ -568,6 +599,7 @@ public class EventContestCompetitionRegistration {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventContestCompetitionRegistration {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("    eventContestCompetitionUuuid: ").append(toIndentedString(eventContestCompetitionUuuid)).append("\n");
     sb.append("    creationTimestamp: ").append(toIndentedString(creationTimestamp)).append("\n");
     sb.append("    creationUserUuid: ").append(toIndentedString(creationUserUuid)).append("\n");
     sb.append("    changeTimestamp: ").append(toIndentedString(changeTimestamp)).append("\n");

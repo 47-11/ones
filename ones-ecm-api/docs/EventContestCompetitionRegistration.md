@@ -8,6 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **String** |  | 
+**eventContestCompetitionUuuid** | **String** |  | 
 **creationTimestamp** | **OffsetDateTime** |  | 
 **creationUserUuid** | **String** |  |  [optional]
 **changeTimestamp** | **OffsetDateTime** |  |  [optional]
