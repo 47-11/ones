@@ -21,7 +21,7 @@ export default class VTitle extends Vue {
         return !!(this.horse && this.horse.uuid);
     }
 
-    public isApp(): boolean {
+    public isAdd(): boolean {
         return !this.isUpdate;
     }
 }
