@@ -5,8 +5,8 @@
             {{ $t('modal.abort') }}
         </v-button>
         <v-button @click.native="confirm" class="ml-2">
-            <span v-if="isAdd">{{ $t('horses.modals.add.confirm') }}</span>
             <span v-if="isUpdate">{{ $t('horses.modals.edit.confirm') }}</span>
+            <span v-else>{{ $t('horses.modals.add.confirm') }}</span>
         </v-button>
     </div>
 </template>
@@ -32,11 +32,7 @@ export default class VHorseFooter extends Vue {
     public horse?: FullHorseDto;
 
     public isUpdate(): boolean {
-        return !!(this.horse && this.horse.uuid);
-    }
-
-    public isAdd(): boolean {
-        return !this.isUpdate;
+        return !!this.horse?.uuid;
     }
 }
 </script>
