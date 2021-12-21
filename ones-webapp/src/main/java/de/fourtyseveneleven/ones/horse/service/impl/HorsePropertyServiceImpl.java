@@ -1,52 +1,53 @@
-package de.fourtyseveneleven.ones.event.service.impl;
+package de.fourtyseveneleven.ones.horse.service.impl;
 
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataPropertyControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataProperty;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataPropertyCharacteristic;
-import de.fourtyseveneleven.ones.event.model.dto.ContestCategory;
-import de.fourtyseveneleven.ones.event.service.EventMetadataService;
+import de.fourtyseveneleven.ones.horse.service.HorsePropertyService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
-import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
+import java.util.stream.Collectors;
 
 @Service
-public class EcmApiEventMetadataServiceImpl implements EventMetadataService {
+public class HorsePropertyServiceImpl implements HorsePropertyService {
 
     private final MasterdataPropertyControllerApi masterdataPropertyControllerApi;
 
-    public EcmApiEventMetadataServiceImpl(MasterdataPropertyControllerApi masterdataPropertyControllerApi) {
+    public HorsePropertyServiceImpl(MasterdataPropertyControllerApi masterdataPropertyControllerApi) {
         this.masterdataPropertyControllerApi = masterdataPropertyControllerApi;
     }
 
     @Override
-    public List<ContestCategory> getAllCategories() {
+    @Cacheable(cacheNames = "allBreeds", cacheManager = "propertyCacheManager")
+    public List<String> getAllBreeds() {
 
-        return getOptionsForProperty("CONTEST_KIND").stream()
-                .map(property -> new ContestCategory(property.getAcronym(), property.getDisplay()))
-                .toList();
+        return getOptionsForProperty("HORSE_BREED");
+
     }
 
     @Override
-    public List<String> getAllRegions() {
+    @Cacheable(cacheNames = "allColors", cacheManager = "propertyCacheManager")
+    public List<String> getAllColors() {
 
-        return getOptionsForProperty("REGION_NAT").stream()
-                .map(MasterdataPropertyCharacteristic::getDisplay)
-                .toList();
+        return getOptionsForProperty("HORSE_COLOR");
     }
 
-    private List<MasterdataPropertyCharacteristic> getOptionsForProperty(String propertyName) {
+    private List<String> getOptionsForProperty(String propertyName) {
 
         return getProperties(propertyName).stream()
                 .map(MasterdataProperty::getItems)
                 .filter(Objects::nonNull)
                 .flatMap(Set::stream)
-                .toList();
+                .map(MasterdataPropertyCharacteristic::getDisplay)
+                .filter(Objects::nonNull)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private List<MasterdataProperty> getProperties(String propertyName) {

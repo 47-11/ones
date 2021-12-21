@@ -9,6 +9,7 @@ import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
 
 import java.time.Duration;
@@ -27,8 +28,23 @@ public class CacheConfiguration extends CachingConfigurerSupport {
     }
 
     @Bean
+    @Qualifier("defaultCacheManager")
+    @Primary
+    public CacheManager defaultCacheManager() {
+
+        return new OnesCacheManager(1000, Duration.of(1, HOURS));
+    }
+
+    @Bean
     @Qualifier("eventCacheManager")
     public CacheManager eventCacheManager() {
+
+        return new OnesCacheManager(10_000, Duration.of(1, HOURS));
+    }
+
+    @Bean
+    @Qualifier("propertyCacheManager")
+    public CacheManager propertyCacheManager() {
 
         return new OnesCacheManager(10_000, Duration.of(1, HOURS));
     }
