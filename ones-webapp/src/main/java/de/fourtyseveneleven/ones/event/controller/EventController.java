@@ -11,7 +11,7 @@ import de.fourtyseveneleven.ones.event.model.dto.FullEventDto;
 import de.fourtyseveneleven.ones.event.model.dto.SignupDto;
 import de.fourtyseveneleven.ones.event.model.dto.SignupRequestDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
-import de.fourtyseveneleven.ones.event.service.EventMetadataService;
+import de.fourtyseveneleven.ones.event.service.EventPropertyService;
 import de.fourtyseveneleven.ones.event.service.FullContestService;
 import de.fourtyseveneleven.ones.event.service.FullEventService;
 import de.fourtyseveneleven.ones.event.service.SignupService;
@@ -40,16 +40,16 @@ public class EventController {
     private final FullEventService fullEventService;
     private final FullContestService fullContestService;
     private final SignupService signupService;
-    private final EventMetadataService eventMetadataService;
+    private final EventPropertyService eventPropertyService;
 
     public EventController(SimpleEventService simpleEventService, FullEventService fullEventService,
-                           FullContestService fullContestService, SignupService signupService, EventMetadataService eventMetadataService) {
+                           FullContestService fullContestService, SignupService signupService, EventPropertyService eventPropertyService) {
 
         this.simpleEventService = simpleEventService;
         this.fullEventService = fullEventService;
         this.fullContestService = fullContestService;
         this.signupService = signupService;
-        this.eventMetadataService = eventMetadataService;
+        this.eventPropertyService = eventPropertyService;
     }
 
     @GetMapping
@@ -75,13 +75,13 @@ public class EventController {
     @GetMapping("/categories")
     public List<ContestCategory> getAllCategories() {
 
-        return eventMetadataService.getAllCategories();
+        return eventPropertyService.getAllCategories();
     }
 
     @GetMapping("/regions")
     public List<String> getAllRegions() {
 
-        return eventMetadataService.getAllRegions();
+        return eventPropertyService.getAllRegions();
     }
 
     @GetMapping("/{uuid}")

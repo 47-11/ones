@@ -41,13 +41,23 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.breed") }}</v-label>
-                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.breed" @input="updateHorse('breed', $event)" :disabled="inputsDisabled"/>
+
+                <v-select v-if="isAdd" :value="horse.breed" type="text" class="w-full" @input="updateHorse('breed', $event)" :disabled="inputsDisabled">
+                    <option v-for="(breed, index) in breeds" :key="index" :value="breed">
+                        {{ breed }}
+                    </option>
+                </v-select>
                 <span class="text-lg" v-if="isUpdate">{{horse.breed}}</span>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.horse.color") }}</v-label>
-                <v-input v-if="isAdd" type="text" class="w-full" v-model="horse.color" @input="updateHorse('color', $event)" :disabled="inputsDisabled"/>
+
+                <v-select v-if="isAdd" :value="horse.color" type="text" class="w-full" @input="updateHorse('color', $event)" :disabled="inputsDisabled">
+                    <option v-for="(color, index) in colors" :key="index" :value="color">
+                        {{ color }}
+                    </option>
+                </v-select>
                 <span class="text-lg" v-if="isUpdate">{{horse.color}}</span>
             </div>
 
@@ -132,7 +142,7 @@
 
             <div class="col-span-12 sm:col-span-6">
                 <v-label>{{ $t("data.address.zipCode") }}</v-label>
-                <v-input type="text" class="w-full" v-model="horse.owner.address.zipCode" @input="updateOwnerAddress('zipCode', $event)" :disabled="inputsDisabled"/>
+                <v-input type="number" class="w-full" v-model="horse.owner.address.zipCode" @input="updateOwnerAddress('zipCode', $event)" :disabled="inputsDisabled"/>
             </div>
 
             <div class="col-span-12 sm:col-span-6">
@@ -194,6 +204,14 @@ export default class VAddHorseContent extends Vue {
 
     get isUpdate(): boolean {
         return !!this.horse?.uuid;
+    }
+
+    get breeds(): string[] {
+        return getVxm().horses.breeds;
+    }
+
+    get colors(): string[] {
+        return getVxm().horses.colors;
     }
 
     genders = FullHorseDtoGenderEnum;

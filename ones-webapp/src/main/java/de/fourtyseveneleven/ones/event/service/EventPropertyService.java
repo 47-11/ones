@@ -4,7 +4,7 @@ import de.fourtyseveneleven.ones.event.model.dto.ContestCategory;
 
 import java.util.List;
 
-public interface EventMetadataService {
+public interface EventPropertyService {
 
     List<ContestCategory> getAllCategories();
 
