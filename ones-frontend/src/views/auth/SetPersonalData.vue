@@ -238,7 +238,19 @@ export default class SetPersonalData extends Vue {
         try {
             this.assertValid();
 
-            await getVxm().user.setPersonalData({
+            await this.handleNewUser();
+            await this.$router.push("/");
+        } catch (error) {
+            this.error = error;
+        } finally {
+            this.inputsDisabled = false;
+            loader.hide();
+        }
+    }
+
+    private async handleNewUser(): Promise<void> {
+        await getVxm().user.setPersonalData({
+            personalData: {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 birthName: this.birthName,
@@ -256,14 +268,8 @@ export default class SetPersonalData extends Vue {
                 qualificationLevel: this.qualificationStage,
                 feiNumber: this.feiNo,
                 fnNumber: this.fnNo
-            });
-            await this.$router.push("/");
-        } catch (error) {
-            this.error = error;
-        } finally {
-            this.inputsDisabled = false;
-            loader.hide();
-        }
+            }
+        });
     }
 
     private assertValid(): void {
