@@ -50,7 +50,19 @@
                             </v-date-picker>
                         </div>
 
-                        <v-label class="mt-5 mb-1">{{ $t("events.filter.region") }}</v-label>
+                        <v-label class="mt-5 mb-1 flex items-center">
+                            {{ $t("events.filter.region") }}
+                            <div class="ml-auto">
+                                <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-auto cursor-pointer"
+                                    @click="resetRegions()">
+                                    {{ $t("events.filter.all") }}
+                                </span>
+                                <span class="text-sm text-indigo-500 hover:text-indigo-600 font-bold ml-2 cursor-pointer"
+                                      @click="noneRegions()">
+                                    {{ $t("events.filter.none") }}
+                                </span>
+                            </div>
+                        </v-label>
 
                         <multiselect class="w-full" :multiple="true" :value="selectedRegions" :options="events.regions"
                                      :close-on-select="false"
@@ -303,6 +315,14 @@ export default class Home extends Vue {
 
     async noneCategories(): Promise<void> {
         await this.events.addFilter({ categories: [] });
+    }
+
+    async resetRegions(): Promise<void> {
+        await this.events.resetRegions();
+    }
+
+    async noneRegions(): Promise<void> {
+        await this.events.addFilter({ regions: [] });
     }
 
     get selectedCategories(): string[] {

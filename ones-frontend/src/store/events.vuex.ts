@@ -191,6 +191,12 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     }
 
     @action
+    public async resetRegions(): Promise<void> {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        await this.addFilter({ regions: this.regions });
+    }
+
+    @action
     private async fetchContestsOf(eventId: string): Promise<void> {
         const response = await getApi().events.getFullContests(eventId);
         this.contests = response.data;
