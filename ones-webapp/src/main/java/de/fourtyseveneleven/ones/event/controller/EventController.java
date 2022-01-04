@@ -105,10 +105,4 @@ public class EventController {
         final SignupDto signupDto = new SignupDto(contestUuid, request);
         signupService.signup(signupDto);
     }
-
-    @GetMapping("/contest/{contestUuid}/my-horses")
-    public List<FullContestDto> getSignedUpHorsesForContest(@PathVariable UUID contestUuid) {
-
-        return Collections.emptyList();
-    }
 }
