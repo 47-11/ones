@@ -3,6 +3,7 @@ package de.fourtyseveneleven.ones.horse.model;
 import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.common.model.dto.PersonDto;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class FullHorseDto extends SimpleHorseDto {
@@ -113,5 +114,33 @@ public class FullHorseDto extends SimpleHorseDto {
 
     public void setOwner(PersonDto owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        FullHorseDto that = (FullHorseDto) o;
+        return size == that.size
+                && yearOfBirth == that.yearOfBirth
+                && Objects.equals(passportNumber, that.passportNumber)
+                && Objects.equals(chipNumber, that.chipNumber)
+                && Objects.equals(feiNumber, that.feiNumber) && gender == that.gender
+                && Objects.equals(breed, that.breed)
+                && Objects.equals(color, that.color)
+                && Objects.equals(stableAddress, that.stableAddress)
+                && Objects.equals(owner, that.owner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), passportNumber, chipNumber, feiNumber, gender, breed, color, size, yearOfBirth, stableAddress, owner);
     }
 }
