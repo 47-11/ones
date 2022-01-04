@@ -7,8 +7,7 @@ import java.util.UUID;
 
 public interface EcmRegistrationService {
 
-    UUID registerExistingMember(User user, int vddMemberNumber);
+    UUID registerNewMemberByVddNumber(User user, int vddNumber);
 
     UUID registerNewMember(User user, UserDto personalData);
-
 }

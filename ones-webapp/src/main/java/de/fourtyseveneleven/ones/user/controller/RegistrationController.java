@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.user.controller;
 
-import de.fourtyseveneleven.ones.user.model.dto.RegistrationDto;
+import de.fourtyseveneleven.ones.user.model.dto.EmailPasswordDto;
 import de.fourtyseveneleven.ones.user.service.RegistrationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +22,9 @@ public class RegistrationController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void createRegistration(@RequestBody RegistrationDto registration) {
+    public void createRegistration(@RequestBody EmailPasswordDto emailPasswordDto) {
 
-        registrationService.createRegistration(registration);
+        registrationService.createRegistration(emailPasswordDto);
     }
 
     @PostMapping("/confirm")

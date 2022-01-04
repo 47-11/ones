@@ -1,6 +1,6 @@
 package de.fourtyseveneleven.ones.user.controller;
 
-import de.fourtyseveneleven.ones.user.model.dto.LoginDto;
+import de.fourtyseveneleven.ones.user.model.dto.EmailPasswordDto;
 import de.fourtyseveneleven.ones.user.service.LoginService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +18,8 @@ public class LoginController {
     }
 
     @PostMapping("")
-    public String login(@RequestBody LoginDto loginDto) {
+    public String login(@RequestBody EmailPasswordDto emailPasswordDto) {
 
-        return loginService.login(loginDto);
+        return loginService.login(emailPasswordDto);
     }
 }

@@ -30,7 +30,7 @@ public class EcmRegistrationServiceImpl implements EcmRegistrationService {
     }
 
     @Override
-    public UUID registerExistingMember(User user, int vddMemberNumber) {
+    public UUID registerNewMemberByVddNumber(User user, int vddMemberNumber) {
 
         final RegisterResponce registerResponce = tryRegisterMemberByVddNumber(user.getEmailAddress(), vddMemberNumber);
         return getUserUuidFromEcmRegistrationResponse(registerResponce);

@@ -1,8 +1,8 @@
 package de.fourtyseveneleven.ones.user.service;
 
-import de.fourtyseveneleven.ones.user.model.dto.LoginDto;
+import de.fourtyseveneleven.ones.user.model.dto.EmailPasswordDto;
 
 public interface LoginService {
 
-    String login(LoginDto loginDto);
+    String login(EmailPasswordDto emailPasswordDto);
 }

@@ -3,8 +3,8 @@ package de.fourtyseveneleven.ones.user.service.impl;
 import de.fourtyseveneleven.ones.common.exception.ElementAlreadyPresentException;
 import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
 import de.fourtyseveneleven.ones.user.model.User;
-import de.fourtyseveneleven.ones.user.model.dto.RegistrationDto;
 import de.fourtyseveneleven.ones.user.exception.RegistrationException;
+import de.fourtyseveneleven.ones.user.model.dto.EmailPasswordDto;
 import de.fourtyseveneleven.ones.user.service.EcmRegistrationService;
 import de.fourtyseveneleven.ones.user.service.RegistrationConfirmationMessageService;
 import de.fourtyseveneleven.ones.user.service.RegistrationService;
@@ -26,42 +26,39 @@ public class RegistrationServiceImpl implements RegistrationService {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final RegistrationConfirmationMessageService registrationConfirmationMessageService;
-    private final EcmRegistrationService ecmRegistrationService;
 
     private final SecureRandom secureRandom = new SecureRandom();
 
     public RegistrationServiceImpl(PasswordEncoder passwordEncoder, UserService userService,
-                                   RegistrationConfirmationMessageService registrationConfirmationMessageService, ApplicationAccountControllerApi applicationAccountControllerApi, EcmRegistrationService ecmRegistrationService) {
+                                   RegistrationConfirmationMessageService registrationConfirmationMessageService) {
 
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
         this.registrationConfirmationMessageService = registrationConfirmationMessageService;
-        this.ecmRegistrationService = ecmRegistrationService;
     }
 
     @Override
     @Transactional
-    public void createRegistration(RegistrationDto registrationDto) {
+    public void createRegistration(EmailPasswordDto emailPasswordDto) {
 
-        final User user = createNewUser(registrationDto);
-        registerUserInEcmIfNecessary(user, registrationDto);
+        final User user = createNewUser(emailPasswordDto);
         sendRegistrationEmail(user);
     }
 
-    private User createNewUser(RegistrationDto registrationDto) {
+    private User createNewUser(EmailPasswordDto emailPasswordDto) {
 
         try {
-            return doCreateUser(registrationDto);
+            return doCreateUser(emailPasswordDto);
         } catch (ElementAlreadyPresentException e) {
-            throw new RegistrationException(getExceptionMessage("registration.email-address-already-in-use", registrationDto.getEmailAddress()), e);
+            throw new RegistrationException(getExceptionMessage("registration.email-address-already-in-use", emailPasswordDto.emailAddress()), e);
         }
     }
 
-    private User doCreateUser(RegistrationDto registrationDto) {
+    private User doCreateUser(EmailPasswordDto emailPasswordDto) {
 
         final var user = new User();
-        user.setEmailAddress(registrationDto.getEmailAddress());
-        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
+        user.setEmailAddress(emailPasswordDto.emailAddress());
+        user.setPassword(passwordEncoder.encode(emailPasswordDto.password()));
         user.setRegistrationConfirmed(false);
         user.setRegistrationConfirmationCode(newRegistrationConfirmationCode());
 
@@ -71,21 +68,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     private String newRegistrationConfirmationCode() {
 
         return RandomStringUtils.random(255, 0, 0, true, true, null, secureRandom);
-    }
-
-    private void registerUserInEcmIfNecessary(User user, RegistrationDto registrationDto) {
-
-        final Integer vddMemberNumber = registrationDto.getVddMemberNumber();
-        if (nonNull(vddMemberNumber)) {
-            registerUserInEcm(user, vddMemberNumber);
-        }
-    }
-
-    private void registerUserInEcm(User user, int vddMemberNumber) {
-
-        final UUID uuid = ecmRegistrationService.registerExistingMember(user, vddMemberNumber);
-        user.setUuid(uuid);
-        userService.updateUser(user);
     }
 
     private void sendRegistrationEmail(User user) {

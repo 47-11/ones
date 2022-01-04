@@ -1,4 +1,4 @@
-import { UserDto as PersonalData, UserDto as User, UserDto } from "@/openapi/generated";
+import { EmailPasswordDto, SetPersonalDataRequest, UserDto as User, UserDto } from "@/openapi/generated";
 import { getApi } from "@/store/api";
 import { action, createModule, mutation } from "vuex-class-component";
 
@@ -11,12 +11,6 @@ export interface LoginPayload {
     email: string;
     password: string;
     staySignedIn?: boolean;
-}
-
-export interface RegistrationPayload {
-    email: string;
-    password: string;
-    vddNumber?: number;
 }
 
 export interface VerificationPayload {
@@ -80,12 +74,8 @@ export class UserStore extends VuexModule {
     }
 
     @action
-    async register(payload: RegistrationPayload): Promise<void> {
-        await getApi().registration.createRegistration({
-            emailAddress: payload.email,
-            password: payload.password,
-            vddMemberNumber: payload.vddNumber
-        });
+    async register(payload: EmailPasswordDto): Promise<void> {
+        await getApi().registration.createRegistration(payload);
     }
 
     @action
@@ -123,8 +113,14 @@ export class UserStore extends VuexModule {
     }
 
     @action
-    async setPersonalData(payload: PersonalData): Promise<void> {
+    async setPersonalData(payload: SetPersonalDataRequest): Promise<void> {
         await getApi().user.setPersonalData(payload);
+        await this.fetchCurrent();
+    }
+
+    @action
+    async updatePersonalData(payload: UserDto): Promise<void> {
+        await getApi().user.updatePersonalData(payload);
         await this.fetchCurrent();
     }
 
