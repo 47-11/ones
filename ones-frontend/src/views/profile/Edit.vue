@@ -189,7 +189,7 @@ export default class ProfileEdit extends Vue {
 
     async trySaveAccount(): Promise<void> {
         this.assertUserValid();
-        await getVxm().user.setPersonalData(this.user as UserDto);
+        await getVxm().user.updatePersonalData(this.user as UserDto);
         await this.$router.push("/profile");
     }
 

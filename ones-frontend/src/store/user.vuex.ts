@@ -119,6 +119,12 @@ export class UserStore extends VuexModule {
     }
 
     @action
+    async updatePersonalData(payload: UserDto): Promise<void> {
+        await getApi().user.updatePersonalData(payload);
+        await this.fetchCurrent();
+    }
+
+    @action
     async deleteAccount(): Promise<void> {
         await getApi().user.deleteSelf();
     }
