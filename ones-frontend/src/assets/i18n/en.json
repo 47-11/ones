@@ -36,7 +36,7 @@
     "nextRegistration": "Next Registration",
     "error": "Oops! Something has gone wrong.",
     "email": "E-Mail",
-    "sameMail": "Already participated in an event? Use the same email address and enter your VDD number to copy existing data.",
+    "sameMail": "Already participated in an event? Use the same email address to copy existing data.",
     "vddNumber": "VDD Number",
     "optional": "optional",
     "password": "Password",
@@ -86,7 +86,13 @@
     "salutation": "Salutation",
     "lengthNull": " is empty",
     "submit": "Save",
-    "logout": "Log out"
+    "logout": "Log out",
+    "vddMember": "I am a VDD member",
+    "enterVddNumber": "Enter VDD number",
+    "vddNumberNotice": "Using your VDD Number your personal data can be automatically copied to ONES.",
+    "noVddMember": "I am {no} VDD member",
+    "no": "no",
+    "enterPersonalData": "Enter personal data"
   },
   "verified": {
     "wait": "Please wait a second...",

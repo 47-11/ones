@@ -36,7 +36,7 @@
     "nextRegistration": "Nächste Registrierung",
     "error": "Oops! Etwas ist schief gelaufen.",
     "email": "E-Mail",
-    "sameMail": "Bereits an Veranstaltungen teilgenommen? Nutzen Sie die gleiche E-Mail Adresse und geben Sie Ihre VDD Nummer ein, sodass Daten übernommen werden.",
+    "sameMail": "Bereits an Veranstaltungen teilgenommen? Nutzen Sie die gleiche E-Mail Adresse um die Daten zu übernehmen.",
     "vddNumber": "VDD Nummer",
     "optional": "optional",
     "password": "Passwort",
@@ -86,7 +86,13 @@
     "lengthNull": " ist leer.",
     "submit": "Speichern",
     "logout": "Ausloggen",
-    "salutation": "Anrede"
+    "salutation": "Anrede",
+    "vddMember": "Ich bin VDD Mitglied",
+    "enterVddNumber": "VDD Nummer eingeben",
+    "vddNumberNotice": "Mithilfe ihrer VDD Nummer können Ihre persönlichen Daten automatisch ins ONES übernommen werden.",
+    "noVddMember": "Ich bin {no} VDD Mitglied",
+    "no": "kein",
+    "enterPersonalData": "Persönliche Daten eingeben"
   },
   "verified": {
     "wait": "Bitte warten...",

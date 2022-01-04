@@ -15,14 +15,16 @@
                                 <input class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                        type="radio" v-model="hasVddNumber" v-bind:value="true"/>
                                 <div class="ml-3">
-                                    Ich bin VDD-Mitglied
+                                    {{ $t('setPersonalData.vddMember') }}
                                 </div>
                             </div>
 
                             <div class="px-6 py-5" v-if="hasVddNumber">
-                                <h2 class="text-lg font-bold mb-2 text-indigo-700">VDD-Nummer angeben</h2>
+                                <h2 class="text-lg font-bold mb-2 text-indigo-700">
+                                    {{ $t("setPersonalData.enterVddNumber") }}
+                                </h2>
                                 <p>
-                                    Mithilfe Ihrer VDD-Nummer können Ihre Daten automatisch ins ONES übernommen werden.
+                                    {{ $t("setPersonalData.vddNumberNotice") }}
                                 </p>
 
                                 <error-message :error="error"/>
@@ -36,11 +38,17 @@
                                 <input class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                        type="radio" v-model="hasVddNumber" v-bind:value="false"/>
                                 <div class="ml-3">
-                                    Ich bin <strong>keine</strong> VDD-Mitglied
+                                    <i18n path="setPersonalData.noVddMember">
+                                        <template v-slot:no>
+                                            <strong>{{$t("setPersonalData.no")}}</strong>
+                                        </template>
+                                    </i18n>
                                 </div>
                             </div>
                             <div class="px-6 py-5" v-if="!hasVddNumber">
-                                <h2 class="text-lg font-bold mb-4 text-indigo-700">Persönliche Daten angeben</h2>
+                                <h2 class="text-lg font-bold mb-4 text-indigo-700">
+                                    {{ $t("setPersonalData.enterPersonalData") }}
+                                </h2>
 
                                 <error-message :error="error"/>
 
@@ -350,9 +358,18 @@ export default class SetPersonalData extends Vue {
 
     private assertValid(): void {
         const translations = this.$i18n.t("data.user") as VueI18n.LocaleMessages;
-        for (const property of this.requiredProperties) {
-            if ((this[property as keyof this] as unknown as string).length === 0) {
-                throw new Error(translations[property] + this.$i18n.t("setPersonalData.lengthNull").toString());
+        if (this.hasVddNumber) {
+            if (this.vddNumber.length === 0) {
+                throw new Error(
+                    this.$i18n.t("data.user.vddNumber").toString() +
+                    this.$i18n.t("setPersonalData.lengthNull").toString()
+                );
+            }
+        } else {
+            for (const property of this.requiredProperties) {
+                if ((this[property as keyof this] as unknown as string).length === 0) {
+                    throw new Error(translations[property] + this.$i18n.t("setPersonalData.lengthNull").toString());
+                }
             }
         }
     }

@@ -31,11 +31,6 @@
                                     </v-hint>
                                 </div>
 
-                                <div>
-                                    <v-label>{{ $t("register.vddNumber") }} ({{ $t("register.optional")}})</v-label>
-                                    <v-input type="number" class="w-full" v-model="vddNumber" :disabled="inputsDisabled"></v-input>
-                                </div>
-
                                 <v-password v-model="password" v-on:score="scoreChanged" :disabled="inputsDisabled"></v-password>
 
                                 <div class="mt-5">
@@ -129,7 +124,6 @@ export default class Register extends Vue {
     email = "";
     password = "";
     score = 0;
-    vddNumber: string | undefined;
 
     data(): Record<string, undefined> {
         return {
@@ -157,11 +151,9 @@ export default class Register extends Vue {
         try {
             this.assertValid();
 
-            const vddNumber = this.vddNumber ? parseInt(this.vddNumber) : undefined;
             await getVxm().user.register({
-                email: this.email,
-                password: this.password,
-                vddNumber
+                emailAddress: this.email,
+                password: this.password
             });
             this.registrationDone = true;
         } catch (error) {
