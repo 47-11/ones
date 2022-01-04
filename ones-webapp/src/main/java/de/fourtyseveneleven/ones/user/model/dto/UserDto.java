@@ -14,7 +14,6 @@ public class UserDto extends PersonDto {
     private String fnNumber;
 
     private String qualificationLevel;
-    private boolean qualificationLevelApproved;
 
     private String phoneNumberEmergency;
 
@@ -66,14 +65,6 @@ public class UserDto extends PersonDto {
 
     public void setQualificationLevel(String qualificationLevel) {
         this.qualificationLevel = qualificationLevel;
-    }
-
-    public boolean isQualificationLevelApproved() {
-        return qualificationLevelApproved;
-    }
-
-    public void setQualificationLevelApproved(boolean qualificationLevelApproved) {
-        this.qualificationLevelApproved = qualificationLevelApproved;
     }
 
     public String getPhoneNumberEmergency() {
