@@ -13,7 +13,7 @@ public class UserDto extends PersonDto {
     private String feiNumber;
     private String fnNumber;
 
-    private byte qualificationLevel;
+    private String qualificationLevel;
     private boolean qualificationLevelApproved;
 
     private String phoneNumberEmergency;
@@ -60,11 +60,11 @@ public class UserDto extends PersonDto {
         this.fnNumber = fnNumber;
     }
 
-    public byte getQualificationLevel() {
+    public String getQualificationLevel() {
         return qualificationLevel;
     }
 
-    public void setQualificationLevel(byte qualificationLevel) {
+    public void setQualificationLevel(String qualificationLevel) {
         this.qualificationLevel = qualificationLevel;
     }
 
