@@ -148,5 +148,15 @@ public class UserServiceImpl implements UserService {
 
         final User toDelete = getAuthenticatedUser();
         userRepository.delete(toDelete);
+        deleteUserInEcm(toDelete);
+    }
+
+    private void deleteUserInEcm(User user) {
+
+        try {
+            applicationAccountControllerApi.deleteRegisteredAccount(user.getEmailAddress());
+        } catch (ApiException e) {
+            throw new EcmApiException(e);
+        }
     }
 }
