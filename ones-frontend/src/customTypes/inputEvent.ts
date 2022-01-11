@@ -4,6 +4,6 @@ export type InputEvent = Event & {
 
 export type CheckboxInputEvent = Event & {
     target: {
-        value: boolean
+        value: "true" | "false"
     }
 };
