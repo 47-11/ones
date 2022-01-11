@@ -9,7 +9,11 @@
                 </v-button>
             </div>
 
-            <v-table class="mt-8">
+            <no-results v-if="horses.list.length === 0">
+                {{ $t("horses.noHorses")}}
+            </no-results>
+
+            <v-table class="mt-8" v-else>
                 <v-thead class="bg-gray-50">
                 <v-tr>
                     <v-th>{{ $t('data.horse.name') }}</v-th>
