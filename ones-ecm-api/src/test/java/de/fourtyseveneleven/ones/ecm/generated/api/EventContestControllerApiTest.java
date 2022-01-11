@@ -19,7 +19,7 @@ import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import java.time.OffsetDateTime;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNomination;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterResponce;
-import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContests;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -64,11 +65,21 @@ public class EventContestControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getContestByUuidTest() throws ApiException {
-        String contestUuid = null;
+    public void getContestByFiltersTest() throws ApiException {
+        OffsetDateTime fromDate = null;
+        OffsetDateTime untilDate = null;
+        List<String> countryRegions = null;
+        List<String> contestKinds = null;
+        Integer isCountryChampionship = null;
+        Integer isCEI = null;
+        Integer isCard = null;
+        Boolean onlyRegistered = null;
         String accountUuid = null;
-        EventContestPlain response = 
-        api.getContestByUuid(contestUuid, accountUuid);
+        Integer pageNo = null;
+        Integer pageSize = null;
+        String sortBy = null;
+        ResponcePageContestsPlain response = 
+        api.getContestByFilters(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
         
         // TODO: test validations
     }
@@ -82,21 +93,11 @@ public class EventContestControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getContestByYearTest() throws ApiException {
-        OffsetDateTime fromDate = null;
-        OffsetDateTime untilDate = null;
-        List<String> countryRegions = null;
-        List<String> contestKinds = null;
-        Integer isCountryChampionship = null;
-        Integer isCEI = null;
-        Integer isCard = null;
-        Boolean onlyRegistered = null;
+    public void getContestByUuidTest() throws ApiException {
+        String contestUuid = null;
         String accountUuid = null;
-        Integer pageNo = null;
-        Integer pageSize = null;
-        String sortBy = null;
-        ResponcePageContests response = 
-        api.getContestByYear(fromDate, untilDate, countryRegions, contestKinds, isCountryChampionship, isCEI, isCard, onlyRegistered, accountUuid, pageNo, pageSize, sortBy);
+        EventContestPlain response = 
+        api.getContestByUuid(contestUuid, accountUuid);
         
         // TODO: test validations
     }

@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterNominationHorse.JSON_PROPERTY_ESCORT_HORSE,
   RegisterNominationHorse.JSON_PROPERTY_INSURANCE_POLICE_ID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class RegisterNominationHorse {
   public static final String JSON_PROPERTY_HORSE_UUID = "horseUuid";
   private String horseUuid;
@@ -46,6 +46,8 @@ public class RegisterNominationHorse {
   public static final String JSON_PROPERTY_INSURANCE_POLICE_ID = "insurancePoliceId";
   private String insurancePoliceId;
 
+  public RegisterNominationHorse() { 
+  }
 
   public RegisterNominationHorse horseUuid(String horseUuid) {
     this.horseUuid = horseUuid;

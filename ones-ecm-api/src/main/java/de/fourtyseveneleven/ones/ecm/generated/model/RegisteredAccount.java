@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterContactNatural;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterMembership;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisteredAccountImposedLocks;
@@ -46,7 +47,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisteredAccount.JSON_PROPERTY_HORSES,
   RegisteredAccount.JSON_PROPERTY_IMPOSED_LOCKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class RegisteredAccount {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -69,6 +70,8 @@ public class RegisteredAccount {
   public static final String JSON_PROPERTY_IMPOSED_LOCKS = "imposedLocks";
   private Set<RegisteredAccountImposedLocks> imposedLocks = null;
 
+  public RegisteredAccount() { 
+  }
 
   public RegisteredAccount uuid(String uuid) {
     this.uuid = uuid;
@@ -227,6 +230,7 @@ public class RegisteredAccount {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_HORSES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHorses(Set<RegisteredHorse> horses) {
@@ -261,6 +265,7 @@ public class RegisteredAccount {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_IMPOSED_LOCKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImposedLocks(Set<RegisteredAccountImposedLocks> imposedLocks) {

@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestFeePlain.JSON_PROPERTY_DEPOSIT,
   EventContestFeePlain.JSON_PROPERTY_REMARK
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class EventContestFeePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -74,6 +74,8 @@ public class EventContestFeePlain {
   public static final String JSON_PROPERTY_REMARK = "remark";
   private String remark;
 
+  public EventContestFeePlain() { 
+  }
 
   public EventContestFeePlain uuid(String uuid) {
     this.uuid = uuid;

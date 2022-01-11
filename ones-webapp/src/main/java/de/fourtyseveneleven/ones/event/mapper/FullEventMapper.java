@@ -68,9 +68,6 @@ public abstract class FullEventMapper {
     @Mapping(source = "paymentPaypal", target = "paymentInformation.paypalInformation")
     public abstract FullEventDto eventContestPlainToFullEventDto(EventContestPlain eventContest);
 
-    @Mapping(source = "name1", target = "locationName")
-    protected abstract EventAddressDto eventContestLocationPlainToEventAddressDto(EventContestLocationPlain eventContestLocationPlain);
-
     protected List<String> remarksToAdditionalComments(Set<EventContestRemarkPlain> remarks) {
 
         return remarks.stream()

@@ -5,8 +5,6 @@ import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionPlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistrationHorsePlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistrationPlain;
-import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataHorsePlain;
-import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
 import de.fourtyseveneleven.ones.event.model.dto.SimpleContestDto;
 import de.fourtyseveneleven.ones.horse.model.SimpleHorseDto;
 import org.mapstruct.Mapper;
@@ -42,10 +40,11 @@ public interface SimpleContestMapper {
                 .map(EventContestCompetitionRegistrationPlain::getHorses)
                 .filter(Objects::nonNull)
                 .flatMap(Set::stream)
-                .map(EventContestCompetitionRegistrationHorsePlain::getHorse)
-                .map(this::masterdataHorsePlainToSimpleHorseDto)
+                .map(this::eventContestCompetitionRegistrationHorsePlainToSimpleHorseDto)
                 .collect(toSet());
     }
 
-    SimpleHorseDto masterdataHorsePlainToSimpleHorseDto(MasterdataHorsePlain masterdataHorse);
+    @Mapping(source = "horseUuid", target = "uuid")
+    @Mapping(source = "displayHorse", target = "name")
+    SimpleHorseDto eventContestCompetitionRegistrationHorsePlainToSimpleHorseDto(EventContestCompetitionRegistrationHorsePlain eventContestCompetitionRegistrationHorsePlain);
 }

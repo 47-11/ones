@@ -38,8 +38,9 @@ import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class ApplicationAccountControllerApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -47,6 +48,7 @@ public class ApplicationAccountControllerApi {
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
+  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
   public ApplicationAccountControllerApi() {
     this(new ApiClient());
@@ -59,6 +61,7 @@ public class ApplicationAccountControllerApi {
     memberVarInterceptor = apiClient.getRequestInterceptor();
     memberVarReadTimeout = apiClient.getReadTimeout();
     memberVarResponseInterceptor = apiClient.getResponseInterceptor();
+    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
@@ -102,14 +105,18 @@ public class ApplicationAccountControllerApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
-      if (localVarResponse.statusCode()/ 100 != 2) {
-        throw getApiException("deleteRegisteredAccount", localVarResponse);
-      }
-      return new ApiResponse<RegisterResponce>(
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteRegisteredAccount", localVarResponse);
+        }
+        return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {}) // closes the InputStream
+          
         );
+      } finally {
+      }
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -171,14 +178,18 @@ public class ApplicationAccountControllerApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
-      if (localVarResponse.statusCode()/ 100 != 2) {
-        throw getApiException("getAccoundByUuid", localVarResponse);
-      }
-      return new ApiResponse<RegisteredAccount>(
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAccoundByUuid", localVarResponse);
+        }
+        return new ApiResponse<RegisteredAccount>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisteredAccount>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisteredAccount>() {}) // closes the InputStream
+          
         );
+      } finally {
+      }
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -240,14 +251,18 @@ public class ApplicationAccountControllerApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
-      if (localVarResponse.statusCode()/ 100 != 2) {
-        throw getApiException("postRegisterAccount", localVarResponse);
-      }
-      return new ApiResponse<RegisterResponce>(
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("postRegisterAccount", localVarResponse);
+        }
+        return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {}) // closes the InputStream
+          
         );
+      } finally {
+      }
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -316,14 +331,18 @@ public class ApplicationAccountControllerApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
-      if (localVarResponse.statusCode()/ 100 != 2) {
-        throw getApiException("putRegisterAccount", localVarResponse);
-      }
-      return new ApiResponse<RegisterResponce>(
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("putRegisterAccount", localVarResponse);
+        }
+        return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {}) // closes the InputStream
+          
         );
+      } finally {
+      }
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -397,14 +416,18 @@ public class ApplicationAccountControllerApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
-      if (localVarResponse.statusCode()/ 100 != 2) {
-        throw getApiException("putRegisterAccountUnlock", localVarResponse);
-      }
-      return new ApiResponse<RegisterResponce>(
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("putRegisterAccountUnlock", localVarResponse);
+        }
+        return new ApiResponse<RegisterResponce>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {})
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<RegisterResponce>() {}) // closes the InputStream
+          
         );
+      } finally {
+      }
     } catch (IOException e) {
       throw new ApiException(e);
     }

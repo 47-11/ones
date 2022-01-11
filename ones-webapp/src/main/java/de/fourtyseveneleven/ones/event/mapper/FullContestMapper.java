@@ -52,10 +52,11 @@ public interface FullContestMapper {
                 .map(EventContestCompetitionRegistrationPlain::getHorses)
                 .filter(Objects::nonNull)
                 .flatMap(Set::stream)
-                .map(EventContestCompetitionRegistrationHorsePlain::getHorse)
-                .map(this::masterdataHorsePlainToSimpleHorseDto)
+                .map(this::eventContestCompetitionRegistrationHorsePlainToSimpleHorseDto)
                 .collect(toSet());
     }
 
-    SimpleHorseDto masterdataHorsePlainToSimpleHorseDto(MasterdataHorsePlain masterdataHorse);
+    @Mapping(source = "horseUuid", target = "uuid")
+    @Mapping(source = "displayHorse", target = "name")
+    SimpleHorseDto eventContestCompetitionRegistrationHorsePlainToSimpleHorseDto(EventContestCompetitionRegistrationHorsePlain eventContestCompetitionRegistrationHorsePlain);
 }

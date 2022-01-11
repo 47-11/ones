@@ -48,7 +48,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionStagePlain.JSON_PROPERTY_BREAKS_TOTAL_MINUTES,
   EventContestCompetitionStagePlain.JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class EventContestCompetitionStagePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -95,6 +95,8 @@ public class EventContestCompetitionStagePlain {
   public static final String JSON_PROPERTY_RESPONSIBLE_VETERINARIAN_UUID = "responsibleVeterinarianUuid";
   private String responsibleVeterinarianUuid;
 
+  public EventContestCompetitionStagePlain() { 
+  }
 
   public EventContestCompetitionStagePlain uuid(String uuid) {
     this.uuid = uuid;

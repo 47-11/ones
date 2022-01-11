@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionPlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFeePlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestLocationPlain;
