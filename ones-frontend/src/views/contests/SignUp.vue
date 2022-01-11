@@ -235,28 +235,6 @@
                             <h2 class="text-4xl mb-3 font-medium">{{ $t('signUp.signedUp') }}</h2>
                             <p>{{ $t('signUp.thanks') }}</p>
                         </div>
-
-                        <h3 class="text-xl mb-5">{{ $t('signUp.signedUpHorses') }}</h3>
-
-                        <card>
-                            <div class="bg-white border-b px-5 py-4" >
-                                <div class="leading-5" v-for="horse in horses.list.filter(horse => contest.signedUpHorses.includes(horse.uuid))" :key="horse.uuid">
-                                    <span>{{ horse.name }}</span><br>
-                                    <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
-                                    </span>
-                                    <span>{{ horse.name }}</span>
-                                </div>
-                            </div>
-                        </card>
-
-                        <h3 class="font-bold text-gray-500 mt-5">
-                            {{ $t('signUp.cancellcation.title') }}
-                        </h3>
-
-                        <p class="text-sm text-gray-500">
-                            {{ $t('signUp.cancellcation.description') }}
-                        </p>
                     </div>
                 </div>
             </div>
