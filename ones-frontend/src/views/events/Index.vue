@@ -284,21 +284,10 @@ export default class Home extends Vue {
         getVxm().events.fetch();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public rideTypes(event: SimpleEventDto): string[] {
-        return [
-            "Fahrt",
-            "Ritt"
-        ];
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public categories(event: SimpleEventDto): string[] {
-        return [
-            "EFR",
-            "MTR",
-            "EFR"
-        ];
+        return event.contests?.map(
+            contest => contest.category || ""
+        ) || [];
     }
 
     public details(event: SimpleEventDto): void {
