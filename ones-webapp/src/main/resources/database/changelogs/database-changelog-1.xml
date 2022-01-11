@@ -144,4 +144,71 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="add user_registration table" author="Nikos Epping">
+        <createTable tableName="user_registration">
+            <!-- AbstractBaseEntity -->
+            <column
+                    name="id"
+                    type="bigint">
+                <constraints
+                        nullable="false"
+                        primaryKey="true"
+                        primaryKeyName="pk_user_registration"/>
+            </column>
+            <column
+                    name="version"
+                    type="int"
+                    defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="created"
+                    type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="last_modified"
+                    type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- UserRegistration -->
+            <column
+                    name="email_address"
+                    type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="password"
+                    type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column
+                    name="confirmation_code"
+                    type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet
+            id="create sequence user_registration_seq"
+            author="Nikos Epping">
+        <createSequence
+                sequenceName="user_registration_seq"
+                incrementBy="1"/>
+    </changeSet>
+
+    <changeSet
+            id="drop column user.registration_confirmed" author="Nikos Epping">
+        <dropColumn tableName="user" columnName="registration_confirmed" />
+    </changeSet>
+
+    <changeSet
+            id="drop column user.registration_confirmation_code" author="Nikos Epping">
+        <dropColumn tableName="user" columnName="registration_confirmation_code" />
+    </changeSet>
+
 </databaseChangeLog>

@@ -1,7 +1,7 @@
 package de.fourtyseveneleven.ones.user.service.impl;
 
-import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.message.service.EmailService;
+import de.fourtyseveneleven.ones.user.model.UserRegistration;
 import de.fourtyseveneleven.ones.user.service.RegistrationConfirmationMessageService;
 import de.fourtyseveneleven.ones.message.MessageUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,15 +27,15 @@ public class EmailRegistrationConfirmationMessageService implements Registration
     }
 
     @Override
-    public void sendRegistrationConfirmationMessage(User user) {
+    public void sendRegistrationConfirmationMessage(UserRegistration registration) {
 
         final Locale locale = MessageUtils.getLocale();
 
-        final String recipientEmailAddress = user.getEmailAddress();
+        final String recipientEmailAddress = registration.getEmailAddress();
         final String subject = getSubject(locale);
 
-        final String plainTextMessage = buildPlainTextMessage(user, locale);
-        final String htmlMessage = buildHtmlMessage(user, locale);
+        final String plainTextMessage = buildPlainTextMessage(registration, locale);
+        final String htmlMessage = buildHtmlMessage(registration, locale);
 
         emailService.sendEmail(recipientEmailAddress, subject, plainTextMessage, htmlMessage);
     }
@@ -45,9 +45,9 @@ public class EmailRegistrationConfirmationMessageService implements Registration
         return getMessage("registration.confirmation.subject", locale);
     }
 
-    private String buildPlainTextMessage(User user, Locale locale) {
+    private String buildPlainTextMessage(UserRegistration registration, Locale locale) {
 
-        return getMessage("registration.confirmation.plain-text", locale, buildConfirmationUri(user));
+        return getMessage("registration.confirmation.plain-text", locale, buildConfirmationUri(registration));
     }
 
     private String getMessage(String key, Locale locale, String... arguments) {
@@ -55,20 +55,20 @@ public class EmailRegistrationConfirmationMessageService implements Registration
         return emailMessageSource.getMessage(key, arguments, locale);
     }
 
-    private String buildHtmlMessage(User user, Locale locale) {
+    private String buildHtmlMessage(UserRegistration registration, Locale locale) {
 
         final Context context =  new Context(locale);
-        context.setVariable("confirmationUri", buildConfirmationUri(user));
+        context.setVariable("confirmationUri", buildConfirmationUri(registration));
         context.setLocale(locale);
 
         return templateEngine.process("mail/registration-confirmation", context);
     }
 
-    private String buildConfirmationUri(User user) {
+    private String buildConfirmationUri(UserRegistration registration) {
 
         return ServletUriComponentsBuilder.fromCurrentContextPath()
                 .pathSegment("verified")
-                .queryParam("code", user.getRegistrationConfirmationCode())
+                .queryParam("code", registration.getConfirmationCode())
                 .toUriString();
     }
 }

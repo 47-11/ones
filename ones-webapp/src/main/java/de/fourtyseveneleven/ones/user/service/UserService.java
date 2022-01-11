@@ -10,13 +10,13 @@ public interface UserService {
 
     Optional<User> findOneByEmailAddress(String emailAddress);
 
-    Optional<User> findByIncompleteRegistration(String registrationConfirmationCode);
-
     User createNewUser(User newUser);
 
     User updateUser(User updatedUser);
 
     UserDto getCurrentUser();
+
+    boolean existsByEmailAddress(String emailAddress);
 
     void setPersonalData(SetPersonalDataRequest request);
 

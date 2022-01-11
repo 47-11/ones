@@ -1,11 +1,10 @@
 package de.fourtyseveneleven.ones.user.service.impl;
 
-import de.fourtyseveneleven.ones.common.exception.ElementAlreadyPresentException;
-import de.fourtyseveneleven.ones.ecm.generated.api.ApplicationAccountControllerApi;
 import de.fourtyseveneleven.ones.user.model.User;
 import de.fourtyseveneleven.ones.user.exception.RegistrationException;
+import de.fourtyseveneleven.ones.user.model.UserRegistration;
 import de.fourtyseveneleven.ones.user.model.dto.EmailPasswordDto;
-import de.fourtyseveneleven.ones.user.service.EcmRegistrationService;
+import de.fourtyseveneleven.ones.user.repository.UserRegistrationRepository;
 import de.fourtyseveneleven.ones.user.service.RegistrationConfirmationMessageService;
 import de.fourtyseveneleven.ones.user.service.RegistrationService;
 import de.fourtyseveneleven.ones.user.service.UserService;
@@ -15,23 +14,25 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
-import static java.util.Objects.nonNull;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 
+    private final UserRegistrationRepository userRegistrationRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final RegistrationConfirmationMessageService registrationConfirmationMessageService;
 
     private final SecureRandom secureRandom = new SecureRandom();
 
-    public RegistrationServiceImpl(PasswordEncoder passwordEncoder, UserService userService,
+    public RegistrationServiceImpl(UserRegistrationRepository userRegistrationRepository, PasswordEncoder passwordEncoder, UserService userService,
                                    RegistrationConfirmationMessageService registrationConfirmationMessageService) {
 
+        this.userRegistrationRepository = userRegistrationRepository;
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
         this.registrationConfirmationMessageService = registrationConfirmationMessageService;
@@ -41,28 +42,45 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Transactional
     public void createRegistration(EmailPasswordDto emailPasswordDto) {
 
-        final User user = createNewUser(emailPasswordDto);
-        sendRegistrationEmail(user);
+        requireNewUser(emailPasswordDto.emailAddress());
+        final UserRegistration registration = doCreateRegistration(emailPasswordDto);
+        sendRegistrationEmail(registration);
     }
 
-    private User createNewUser(EmailPasswordDto emailPasswordDto) {
+    private void requireNewUser(String emailAddress) {
 
-        try {
-            return doCreateUser(emailPasswordDto);
-        } catch (ElementAlreadyPresentException e) {
-            throw new RegistrationException(getExceptionMessage("registration.email-address-already-in-use", emailPasswordDto.emailAddress()), e);
+        final boolean emailAddressAlreadyUsed = isEmailAddressAlreadyUsed(emailAddress);
+        if (emailAddressAlreadyUsed) {
+            throw new RegistrationException(getExceptionMessage("registration.email-address-already-in-use", emailAddress));
         }
     }
 
-    private User doCreateUser(EmailPasswordDto emailPasswordDto) {
+    private boolean isEmailAddressAlreadyUsed(String emailAddress) {
 
-        final var user = new User();
-        user.setEmailAddress(emailPasswordDto.emailAddress());
-        user.setPassword(passwordEncoder.encode(emailPasswordDto.password()));
-        user.setRegistrationConfirmed(false);
-        user.setRegistrationConfirmationCode(newRegistrationConfirmationCode());
+        final boolean existingUser = userService.existsByEmailAddress(emailAddress);
+        if (existingUser) {
+            return true;
+        }
 
-        return userService.createNewUser(user);
+        final Optional<UserRegistration> existingRegistration = userRegistrationRepository.findOneByEmailAddress(emailAddress);
+        if (existingRegistration.isEmpty()) {
+            return false;
+        } else if (existingRegistration.get().isExpired()) {
+            userRegistrationRepository.delete(existingRegistration.get());
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private UserRegistration doCreateRegistration(EmailPasswordDto emailPasswordDto) {
+
+        final var registration = new UserRegistration();
+        registration.setEmailAddress(emailPasswordDto.emailAddress());
+        registration.setPassword(passwordEncoder.encode(emailPasswordDto.password()));
+        registration.setConfirmationCode(newRegistrationConfirmationCode());
+
+        return userRegistrationRepository.save(registration);
     }
 
     private String newRegistrationConfirmationCode() {
@@ -70,19 +88,32 @@ public class RegistrationServiceImpl implements RegistrationService {
         return RandomStringUtils.random(255, 0, 0, true, true, null, secureRandom);
     }
 
-    private void sendRegistrationEmail(User user) {
+    private void sendRegistrationEmail(UserRegistration registration) {
 
-        registrationConfirmationMessageService.sendRegistrationConfirmationMessage(user);
+        registrationConfirmationMessageService.sendRegistrationConfirmationMessage(registration);
     }
 
     @Override
     @Transactional
     public void confirmRegistration(String registrationConfirmationCode) {
 
-        final User user = userService.findByIncompleteRegistration(registrationConfirmationCode)
+        final UserRegistration userRegistration = userRegistrationRepository.findOneByConfirmationCode(registrationConfirmationCode)
                 .orElseThrow(() -> new RegistrationException(getExceptionMessage("registration.confirmation.invalid-code")));
-        user.setRegistrationConfirmed(true);
-        user.setRegistrationConfirmationCode(null);
-        userService.updateUser(user);
+
+        if (userRegistration.isExpired()) {
+            throw  new RegistrationException(getExceptionMessage("registration.confirmation.expired"));
+        }
+
+        createUser(userRegistration);
+        userRegistrationRepository.delete(userRegistration);
+    }
+
+    private void createUser(UserRegistration registration) {
+
+        final var user = new User();
+        user.setEmailAddress(registration.getEmailAddress());
+        user.setPassword(registration.getPassword());
+
+        userService.createNewUser(user);
     }
 }
