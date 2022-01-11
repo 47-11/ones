@@ -408,11 +408,9 @@ export default class Home extends Vue {
     }
 
     isRegisteredFor(event: SimpleEventDto): boolean {
-        if (event.signedUpHorses === undefined || event.signedUpHorses == null) {
-            return false;
-        }
-
-        return event.signedUpHorses && event.signedUpHorses.size > 0;
+        return event.contests?.some(
+            contest => (contest.signedUpHorses?.length || 0) > 0
+        ) || false;
     }
 
     get selectedRegions(): string[] {
