@@ -13,7 +13,7 @@ export default class VCheckbox extends Vue {
     @Prop() public value!: boolean;
 
     handleInput(e: CheckboxInputEvent): void {
-        this.$emit("input", e.target.value);
+        this.$emit("input", e.target.value === "true");
     }
 }
 </script>
