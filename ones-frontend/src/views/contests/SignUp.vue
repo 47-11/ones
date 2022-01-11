@@ -171,12 +171,11 @@
 
                         <card>
                             <div class="bg-white border-b px-5 py-4" >
-                                <div class="leading-5" v-for="horse in horses.list.filter(horse => contest.signedUpHorses.includes(horse.uuid))" :key="horse.uuid">
+                                <div class="leading-5" v-for="horse in signedUpHorses" :key="horse.uuid">
                                     <span>{{ horse.name }}</span><br>
                                     <span class="text-gray-400 text-xs">
                                         {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
                                     </span>
-                                    <span>{{ horse.name }}</span>
                                 </div>
                             </div>
                         </card>
@@ -387,6 +386,15 @@ export default class SignUp extends Vue {
             .map(horses => horses.uuid);
         return this.horses.list.filter(
             horse => !signedUpHorseIds.includes(horse.uuid)
+        );
+    }
+
+    get signedUpHorses(): FullHorseDto[] {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const signedUpHorseIds = Array.from(this.contest!.signedUpHorses!)
+            .map(horses => horses.uuid);
+        return this.horses.list.filter(
+            horse => signedUpHorseIds.includes(horse.uuid)
         );
     }
 }
