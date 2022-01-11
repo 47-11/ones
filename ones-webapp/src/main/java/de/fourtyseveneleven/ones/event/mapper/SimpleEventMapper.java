@@ -31,6 +31,7 @@ public interface SimpleEventMapper {
     @Mapping(source = "isCountryChampionship", target = "isNationalChampionship")
     @Mapping(source = "isCei", target = "isInternational")
     @Mapping(source = "countryRegion", target = "region")
+    @Mapping(source = "isCard", target = "isMap")
     @Mapping(source = "state", target = "status")
     @Mapping(source = "competitions", target = "contests")
     SimpleEventDto eventContestPlainToSimpleEventDto(EventContestPlain eventContest);

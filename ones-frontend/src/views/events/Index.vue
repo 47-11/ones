@@ -175,9 +175,9 @@
                     <v-td class="sm:w-1/12">
                         <div class="flex">
                         <font-awesome-icon :icon="'map'" class="mx-2 text-gray-200"
-                            v-tooltip="event.contests.find(contest => contest.cardRide) ? $t('events.mapRide') : $t('events.noMapRide')"
+                            v-tooltip="event.isMap ? $t('events.mapRide') : $t('events.noMapRide')"
                             v-bind:class="{
-                                'text-gray-600': event.contests.find(contest => contest.cardRide)
+                                'text-gray-600': event.isMap
                             }"></font-awesome-icon>
                         <font-awesome-icon :icon="'flag'" class="mx-2 text-gray-200"
                             v-tooltip="event.isNationalChampionship ? $t('events.nationalChampionship') : $t('events.noNationalChampionship')"

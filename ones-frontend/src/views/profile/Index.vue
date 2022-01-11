@@ -21,8 +21,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <span class="text-xs text-gray-400">{{$t('data.user.fullName')}}</span> <br>
-                                <span v-if="user.firstName">{{user.firstName}} {{user.fullName}}</span>
+                                <span class="text-xs text-gray-400">{{$t('data.user.firstName')}}</span> <br>
+                                <span v-if="user.firstName">{{user.firstName}}</span>
+                                <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-xs text-gray-400">{{$t('data.user.lastName')}}</span> <br>
+                                <span v-if="user.lastName">{{user.lastName}}</span>
                                 <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
                             </div>
 
