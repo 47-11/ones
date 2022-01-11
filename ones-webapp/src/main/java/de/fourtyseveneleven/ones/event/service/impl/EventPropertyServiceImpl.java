@@ -7,7 +7,6 @@ import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataProperty;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataPropertyCharacteristic;
 import de.fourtyseveneleven.ones.event.model.dto.ContestCategory;
 import de.fourtyseveneleven.ones.event.service.EventPropertyService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -25,7 +24,6 @@ public class EventPropertyServiceImpl implements EventPropertyService {
     }
 
     @Override
-    @Cacheable(cacheNames = "allCategories", cacheManager = "propertyCacheManager")
     public List<ContestCategory> getAllCategories() {
 
         return getOptionsForProperty("CONTEST_KIND").stream()
@@ -34,7 +32,6 @@ public class EventPropertyServiceImpl implements EventPropertyService {
     }
 
     @Override
-    @Cacheable(cacheNames = "allRegions", cacheManager = "propertyCacheManager")
     public List<String> getAllRegions() {
 
         return getOptionsForProperty("REGION_NAT").stream()
