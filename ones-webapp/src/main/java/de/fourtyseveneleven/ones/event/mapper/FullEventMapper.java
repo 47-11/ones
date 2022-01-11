@@ -31,7 +31,8 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
                 AddressMapper.class,
-                EventStatusMapper.class
+                EventStatusMapper.class,
+                SimpleContestMapper.class
         }
 )
 public abstract class FullEventMapper {

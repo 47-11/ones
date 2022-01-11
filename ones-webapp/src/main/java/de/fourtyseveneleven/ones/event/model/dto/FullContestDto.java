@@ -29,9 +29,6 @@ public class FullContestDto extends SimpleContestDto{
     private BigDecimal startFee;
 
     private String markings;
-
-    private Set<SimpleHorseDto> signedUpHorses;
-
     public LocalDateTime getStart() {
         return start;
     }
@@ -142,13 +139,5 @@ public class FullContestDto extends SimpleContestDto{
 
     public void setMarkings(String markings) {
         this.markings = markings;
-    }
-
-    public Set<SimpleHorseDto> getSignedUpHorses() {
-        return signedUpHorses;
-    }
-
-    public void setSignedUpHorses(Set<SimpleHorseDto> signedUpHorses) {
-        this.signedUpHorses = signedUpHorses;
     }
 }

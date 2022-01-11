@@ -19,7 +19,8 @@ import static java.util.Objects.isNull;
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
                 AddressMapper.class,
-                EventStatusMapper.class
+                EventStatusMapper.class,
+                SimpleContestMapper.class
         }
 )
 public interface SimpleEventMapper {
@@ -31,6 +32,7 @@ public interface SimpleEventMapper {
     @Mapping(source = "isCei", target = "isInternational")
     @Mapping(source = "countryRegion", target = "region")
     @Mapping(source = "state", target = "status")
+    @Mapping(source = "competitions", target = "contests")
     SimpleEventDto eventContestPlainToSimpleEventDto(EventContestPlain eventContest);
 
     @Mapping(source = "beginning", target = "start")
@@ -40,26 +42,7 @@ public interface SimpleEventMapper {
     @Mapping(source = "isCei", target = "isInternational")
     @Mapping(source = "countryRegion", target = "region")
     @Mapping(source = "state", target = "status")
+    @Mapping(source = "competitions", target = "contests")
     SimpleEventDto eventContestToSimpleEventDto(EventContest eventContest);
 
-    @AfterMapping
-    default void eventContestToSimpleEventDto(EventContest eventContest, @MappingTarget SimpleEventDto simpleEventDto) {
-
-        final Set<EventContestCompetition> competitions = Optional.ofNullable(eventContest.getCompetitions())
-                .orElseGet(Collections::emptySet);
-        final Set<SimpleHorseDto> signedUpHorses = competitions.stream()
-                .map(EventContestCompetition::getRegistrations)
-                .filter(Objects::nonNull)
-                .flatMap(Set::stream)
-                .map(EventContestCompetitionRegistration::getHorses)
-                .filter(Objects::nonNull)
-                .flatMap(Set::stream)
-                .map(EventContestCompetitionRegistrationHorse::getHorse)
-                .map(this::masterdataHorseToSimpleHorseDto)
-                .collect(Collectors.toSet());
-
-        simpleEventDto.setSignedUpHorses(signedUpHorses);
-    }
-
-    SimpleHorseDto masterdataHorseToSimpleHorseDto(MasterdataHorse masterdataHorse);
 }
