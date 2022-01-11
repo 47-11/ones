@@ -284,21 +284,10 @@ export default class Home extends Vue {
         getVxm().events.fetch();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public rideTypes(event: SimpleEventDto): string[] {
-        return [
-            "Fahrt",
-            "Ritt"
-        ];
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public categories(event: SimpleEventDto): string[] {
-        return [
-            "EFR",
-            "MTR",
-            "EFR"
-        ];
+        return event.contests?.map(
+            contest => contest.category || ""
+        ) || [];
     }
 
     public details(event: SimpleEventDto): void {
@@ -408,11 +397,9 @@ export default class Home extends Vue {
     }
 
     isRegisteredFor(event: SimpleEventDto): boolean {
-        if (event.signedUpHorses === undefined || event.signedUpHorses == null) {
-            return false;
-        }
-
-        return event.signedUpHorses && event.signedUpHorses.size > 0;
+        return event.contests?.some(
+            contest => (contest.signedUpHorses?.length || 0) > 0
+        ) || false;
     }
 
     get selectedRegions(): string[] {

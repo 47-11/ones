@@ -164,6 +164,23 @@
                     </div>
                 </card>
                 <div class="col-span-2">
+                    <div class="mb-5">
+                        <h1 class="text-2xl font-bold mb-5">
+                            {{ $t('signUp.signedUpHorses') }}
+                        </h1>
+
+                        <card>
+                            <div class="bg-white border-b px-5 py-4" >
+                                <div class="leading-5" v-for="horse in signedUpHorses" :key="horse.uuid">
+                                    <span>{{ horse.name }}</span><br>
+                                    <span class="text-gray-400 text-xs">
+                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
+                                    </span>
+                                </div>
+                            </div>
+                        </card>
+                    </div>
+
                     <form @submit.prevent="signUp" v-if="!hasSubmitted">
 
                         <h1 class="text-2xl font-bold mb-5">
@@ -181,7 +198,7 @@
                         </div>
 
                         <card>
-                            <div class="bg-white border-b px-5 py-4 flex items-center" v-for="horse in horses.list"
+                            <div class="bg-white border-b px-5 py-4 flex items-center" v-for="horse in horsesNotSignedUp"
                                  :key="horse.uuid">
                                 <input type="checkbox" :value="horse.uuid" :id="'horse_' + horse.uuid"
                                        v-model="checkedHorses" :disabled="inputsDisabled"
@@ -217,28 +234,6 @@
                             <h2 class="text-4xl mb-3 font-medium">{{ $t('signUp.signedUp') }}</h2>
                             <p>{{ $t('signUp.thanks') }}</p>
                         </div>
-
-                        <h3 class="text-xl mb-5">{{ $t('signUp.signedUpHorses') }}</h3>
-
-                        <card>
-                            <div class="bg-white border-b px-5 py-4" >
-                                <div class="leading-5" v-for="horse in horses.list.filter(horse => contest.signedUpHorses.includes(horse.uuid))" :key="horse.uuid">
-                                    <span>{{ horse.name }}</span><br>
-                                    <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
-                                    </span>
-                                    <span>{{ horse.name }}</span>
-                                </div>
-                            </div>
-                        </card>
-
-                        <h3 class="font-bold text-gray-500 mt-5">
-                            {{ $t('signUp.cancellcation.title') }}
-                        </h3>
-
-                        <p class="text-sm text-gray-500">
-                            {{ $t('signUp.cancellcation.description') }}
-                        </p>
                     </div>
                 </div>
             </div>
@@ -282,7 +277,7 @@ import VTd from "@/components/table/VTd.vue";
 import VCheckbox from "@/components/forms/VCheckbox.vue";
 import DateRange from "@/components/DateRange.vue";
 import moment from "moment";
-import { FullContestDto as FullContest, FullEventDto as FullEvent } from "@/openapi/generated";
+import { FullContestDto as FullContest, FullEventDto as FullEvent, FullHorseDto } from "@/openapi/generated";
 import { getVxm } from "@/store";
 
 @Component({
@@ -327,6 +322,7 @@ export default class SignUp extends Vue {
         try {
             this.assertValid();
             this.request();
+            getVxm().events.fetchEvent(this.eventId);
 
             this.hasSubmitted = true;
         } catch (error) {
@@ -382,6 +378,24 @@ export default class SignUp extends Vue {
 
     get start(): moment.Moment {
         return moment(this.contest?.start);
+    }
+
+    get horsesNotSignedUp(): FullHorseDto[] {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const signedUpHorseIds = Array.from(this.contest!.signedUpHorses!)
+            .map(horses => horses.uuid);
+        return this.horses.list.filter(
+            horse => !signedUpHorseIds.includes(horse.uuid)
+        );
+    }
+
+    get signedUpHorses(): FullHorseDto[] {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const signedUpHorseIds = Array.from(this.contest!.signedUpHorses!)
+            .map(horses => horses.uuid);
+        return this.horses.list.filter(
+            horse => signedUpHorseIds.includes(horse.uuid)
+        );
     }
 }
 </script>

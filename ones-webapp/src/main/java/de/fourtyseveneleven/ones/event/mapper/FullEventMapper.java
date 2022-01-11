@@ -31,7 +31,8 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
                 DateTimeFormatMapper.class,
                 CommonMapper.class,
                 AddressMapper.class,
-                EventStatusMapper.class
+                EventStatusMapper.class,
+                SimpleContestMapper.class
         }
 )
 public abstract class FullEventMapper {
@@ -66,9 +67,6 @@ public abstract class FullEventMapper {
     @Mapping(source = "paymentBic", target = "paymentInformation.bankTransferBic")
     @Mapping(source = "paymentPaypal", target = "paymentInformation.paypalInformation")
     public abstract FullEventDto eventContestPlainToFullEventDto(EventContestPlain eventContest);
-
-    @Mapping(source = "name1", target = "locationName")
-    protected abstract EventAddressDto eventContestLocationPlainToEventAddressDto(EventContestLocationPlain eventContestLocationPlain);
 
     protected List<String> remarksToAdditionalComments(Set<EventContestRemarkPlain> remarks) {
 

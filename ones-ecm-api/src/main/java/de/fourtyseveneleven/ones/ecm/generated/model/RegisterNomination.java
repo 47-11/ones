@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNominationFee;
 import de.fourtyseveneleven.ones.ecm.generated.model.RegisterNominationHorse;
 import io.swagger.annotations.ApiModel;
@@ -41,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegisterNomination.JSON_PROPERTY_HORSES,
   RegisterNomination.JSON_PROPERTY_BOOKING_FEE_UUIDS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class RegisterNomination {
   public static final String JSON_PROPERTY_COMPETITION_UUID = "competitionUuid";
   private String competitionUuid;
@@ -52,6 +53,8 @@ public class RegisterNomination {
   public static final String JSON_PROPERTY_BOOKING_FEE_UUIDS = "bookingFeeUuids";
   private Set<RegisterNominationFee> bookingFeeUuids = null;
 
+  public RegisterNomination() { 
+  }
 
   public RegisterNomination competitionUuid(String competitionUuid) {
     this.competitionUuid = competitionUuid;
@@ -137,6 +140,7 @@ public class RegisterNomination {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_BOOKING_FEE_UUIDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBookingFeeUuids(Set<RegisterNominationFee> bookingFeeUuids) {

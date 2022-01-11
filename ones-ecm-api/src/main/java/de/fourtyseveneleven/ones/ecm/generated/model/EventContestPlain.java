@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionPlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestFeePlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestLocationPlain;
@@ -78,7 +79,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestPlain.JSON_PROPERTY_LOCATIONS,
   EventContestPlain.JSON_PROPERTY_REMARKS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class EventContestPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -191,6 +192,8 @@ public class EventContestPlain {
   public static final String JSON_PROPERTY_REMARKS = "_remarks";
   private Set<EventContestRemarkPlain> remarks = null;
 
+  public EventContestPlain() { 
+  }
 
   public EventContestPlain uuid(String uuid) {
     this.uuid = uuid;
@@ -1051,6 +1054,7 @@ public class EventContestPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_COMPETITIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompetitions(Set<EventContestCompetitionPlain> competitions) {
@@ -1085,6 +1089,7 @@ public class EventContestPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_ROLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoles(Set<EventContestRolePlain> roles) {
@@ -1119,6 +1124,7 @@ public class EventContestPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_FEES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFees(Set<EventContestFeePlain> fees) {
@@ -1153,6 +1159,7 @@ public class EventContestPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_LOCATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocations(Set<EventContestLocationPlain> locations) {
@@ -1187,6 +1194,7 @@ public class EventContestPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_REMARKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRemarks(Set<EventContestRemarkPlain> remarks) {

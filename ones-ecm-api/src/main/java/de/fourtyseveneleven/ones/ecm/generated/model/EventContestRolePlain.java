@@ -50,7 +50,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestRolePlain.JSON_PROPERTY_CELL_PHONE,
   EventContestRolePlain.JSON_PROPERTY_EMAIL
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class EventContestRolePlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -106,6 +106,8 @@ public class EventContestRolePlain {
   public static final String JSON_PROPERTY_EMAIL = "email";
   private String email;
 
+  public EventContestRolePlain() { 
+  }
 
   public EventContestRolePlain uuid(String uuid) {
     this.uuid = uuid;

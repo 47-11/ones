@@ -3,12 +3,10 @@ package de.fourtyseveneleven.ones.event.service.impl;
 import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import de.fourtyseveneleven.ones.event.mapper.FullContestMapper;
 import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
 import de.fourtyseveneleven.ones.event.service.FullContestService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +27,6 @@ public class EcmApiFullContestServiceImpl implements FullContestService {
     }
 
     @Override
-    @Cacheable(cacheNames = "fullContests", cacheManager = "eventCacheManager")
     public List<FullContestDto> getContestsForEvent(String eventUuid) {
 
         final EventContestPlain eventContest = getEventContestFromEcm(eventUuid);

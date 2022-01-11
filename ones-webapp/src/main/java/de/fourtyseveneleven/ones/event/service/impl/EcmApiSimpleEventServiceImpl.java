@@ -8,7 +8,7 @@ import de.fourtyseveneleven.ones.ecm.exception.EcmApiException;
 import de.fourtyseveneleven.ones.ecm.generated.ApiException;
 import de.fourtyseveneleven.ones.ecm.generated.api.EventContestControllerApi;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
-import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContests;
+import de.fourtyseveneleven.ones.ecm.generated.model.ResponcePageContestsPlain;
 import de.fourtyseveneleven.ones.event.mapper.EventPageMapper;
 import de.fourtyseveneleven.ones.event.mapper.SimpleEventMapper;
 import de.fourtyseveneleven.ones.event.model.dto.EventFilterDto;
@@ -16,7 +16,6 @@ import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.event.service.SimpleEventService;
 import de.fourtyseveneleven.ones.security.util.UserUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +44,6 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    @Cacheable(cacheNames = "simpleEvents", cacheManager = "eventCacheManager")
     public Optional<SimpleEventDto> findOneByUuid(String eventUuid) {
 
         try {
@@ -63,19 +61,13 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
     }
 
     @Override
-    @Cacheable(
-            cacheNames = "simpleEvents",
-            cacheManager = "eventCacheManager",
-            // If the alreadySignedUp filter is present, the output is  user-specific, so results will be broken.
-            condition = "#filter.alreadySignedUp() == null"
-    )
     public PageDto<SimpleEventDto> findAll(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
-        final ResponcePageContests ecmPage = findPageInEcm(filter, pageRequest, sortRequest);
+        final ResponcePageContestsPlain ecmPage = findPageInEcm(filter, pageRequest, sortRequest);
         return pageDtoFromResponcePageContestsPlain(ecmPage, pageRequest);
     }
 
-    private ResponcePageContests findPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
+    private ResponcePageContestsPlain findPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) {
 
         try {
             return tryFindPageInEcm(filter, pageRequest, sortRequest);
@@ -84,7 +76,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         }
     }
 
-    private ResponcePageContests tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
+    private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
         final String userUuid;
         if (isNull(filter.alreadySignedUp())) {
@@ -93,8 +85,8 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
             userUuid = UserUtils.getAuthenticatedUser().getUuid().toString();
         }
 
-        return eventContestControllerApi
-                .getContestByYear(atStartOfDay(filter.from()),
+        return eventContestControllerApi.getContestByFilters(
+                atStartOfDay(filter.from()),
                         atEndOfDay(filter.until()),
                         filter.regions(),
                         filter.categories(),
@@ -170,7 +162,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
         };
     }
 
-    private PageDto<SimpleEventDto> pageDtoFromResponcePageContestsPlain(ResponcePageContests responcePageContestsPlain, PageRequest pageRequest) {
+    private PageDto<SimpleEventDto> pageDtoFromResponcePageContestsPlain(ResponcePageContestsPlain responcePageContestsPlain, PageRequest pageRequest) {
 
         final PageDto<SimpleEventDto> page = eventPageMapper.map(responcePageContestsPlain);
         page.setPageNumber(pageRequest.getPageNumber());

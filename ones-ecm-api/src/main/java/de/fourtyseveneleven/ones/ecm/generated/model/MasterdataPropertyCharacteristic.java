@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MasterdataPropertyCharacteristic.JSON_PROPERTY_ACRONYM,
   MasterdataPropertyCharacteristic.JSON_PROPERTY_DISPLAY
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class MasterdataPropertyCharacteristic {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -71,6 +71,8 @@ public class MasterdataPropertyCharacteristic {
   public static final String JSON_PROPERTY_DISPLAY = "display";
   private String display;
 
+  public MasterdataPropertyCharacteristic() { 
+  }
 
   public MasterdataPropertyCharacteristic uuid(String uuid) {
     this.uuid = uuid;

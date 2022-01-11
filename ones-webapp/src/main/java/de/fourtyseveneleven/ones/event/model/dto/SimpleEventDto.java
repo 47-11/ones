@@ -1,14 +1,11 @@
 package de.fourtyseveneleven.ones.event.model.dto;
 
 
-import de.fourtyseveneleven.ones.common.model.dto.AddressDto;
 import de.fourtyseveneleven.ones.event.model.EventStatus;
-import de.fourtyseveneleven.ones.horse.model.SimpleHorseDto;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class SimpleEventDto {
 
@@ -25,8 +22,6 @@ public class SimpleEventDto {
     private boolean isInternational;
 
     private List<SimpleContestDto> contests = new LinkedList<>();
-
-    private Set<SimpleHorseDto> signedUpHorses;
 
     public String getUuid() {
         return uuid;
@@ -106,13 +101,5 @@ public class SimpleEventDto {
 
     public void setContests(List<SimpleContestDto> contests) {
         this.contests = contests;
-    }
-
-    public Set<SimpleHorseDto> getSignedUpHorses() {
-        return signedUpHorses;
-    }
-
-    public void setSignedUpHorses(Set<SimpleHorseDto> signedUpHorses) {
-        this.signedUpHorses = signedUpHorses;
     }
 }

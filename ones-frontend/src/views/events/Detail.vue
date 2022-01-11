@@ -291,7 +291,7 @@ export default class Detail extends Vue {
             return false;
         }
 
-        return contest?.signedUpHorses?.size > 0;
+        return contest?.signedUpHorses?.length > 0;
     }
 }
 </script>

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.fourtyseveneleven.ones.ecm.generated.model.EventContest;
+import de.fourtyseveneleven.ones.ecm.generated.model.EventContestPlain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -29,17 +29,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for ResponcePageContests
+ * Model tests for ResponcePageContestsPlain
  */
-public class ResponcePageContestsTest {
-    private final ResponcePageContests model = new ResponcePageContests();
+public class ResponcePageContestsPlainTest {
+    private final ResponcePageContestsPlain model = new ResponcePageContestsPlain();
 
     /**
-     * Model tests for ResponcePageContests
+     * Model tests for ResponcePageContestsPlain
      */
     @Test
-    public void testResponcePageContests() {
-        // TODO: test ResponcePageContests
+    public void testResponcePageContestsPlain() {
+        // TODO: test ResponcePageContestsPlain
     }
 
     /**

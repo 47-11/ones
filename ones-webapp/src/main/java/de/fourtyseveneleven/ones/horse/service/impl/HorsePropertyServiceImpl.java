@@ -6,7 +6,6 @@ import de.fourtyseveneleven.ones.ecm.generated.api.MasterdataPropertyControllerA
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataProperty;
 import de.fourtyseveneleven.ones.ecm.generated.model.MasterdataPropertyCharacteristic;
 import de.fourtyseveneleven.ones.horse.service.HorsePropertyService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +23,6 @@ public class HorsePropertyServiceImpl implements HorsePropertyService {
     }
 
     @Override
-    @Cacheable(cacheNames = "allBreeds", cacheManager = "propertyCacheManager")
     public List<String> getAllBreeds() {
 
         return getOptionsForProperty("HORSE_BREED");
@@ -32,7 +30,6 @@ public class HorsePropertyServiceImpl implements HorsePropertyService {
     }
 
     @Override
-    @Cacheable(cacheNames = "allColors", cacheManager = "propertyCacheManager")
     public List<String> getAllColors() {
 
         return getOptionsForProperty("HORSE_COLOR");

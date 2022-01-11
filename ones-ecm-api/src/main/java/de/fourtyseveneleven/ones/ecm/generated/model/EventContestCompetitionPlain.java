@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionRegistrationPlain;
 import de.fourtyseveneleven.ones.ecm.generated.model.EventContestCompetitionStagePlain;
 import io.swagger.annotations.ApiModel;
@@ -84,7 +85,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   EventContestCompetitionPlain.JSON_PROPERTY_STAGES,
   EventContestCompetitionPlain.JSON_PROPERTY_REGISTRATIONS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]")
 public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
@@ -224,6 +225,8 @@ public class EventContestCompetitionPlain {
   public static final String JSON_PROPERTY_REGISTRATIONS = "_registrations";
   private Set<EventContestCompetitionRegistrationPlain> registrations = null;
 
+  public EventContestCompetitionPlain() { 
+  }
 
   public EventContestCompetitionPlain uuid(String uuid) {
     this.uuid = uuid;
@@ -1396,6 +1399,7 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_STAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStages(Set<EventContestCompetitionStagePlain> stages) {
@@ -1430,6 +1434,7 @@ public class EventContestCompetitionPlain {
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(JSON_PROPERTY_REGISTRATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistrations(Set<EventContestCompetitionRegistrationPlain> registrations) {

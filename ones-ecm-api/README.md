@@ -4,7 +4,7 @@ vdd4ones
 
 - API version: 1.0a
 
-- Build date: 2021-12-14T11:16:59.043131602+01:00[Europe/Berlin]
+- Build date: 2022-01-11T10:56:24.580179898+01:00[Europe/Berlin]
 
 Rest-Interface for ONES
 
@@ -119,10 +119,10 @@ Class | Method | HTTP request | Description
 *ApplicationAccountControllerApi* | [**putRegisterAccountUnlockWithHttpInfo**](docs/ApplicationAccountControllerApi.md#putRegisterAccountUnlockWithHttpInfo) | **PUT** /rest/application/register/account/unlock | 
 *EventContestControllerApi* | [**getAccountContestCompetitionsResults**](docs/EventContestControllerApi.md#getAccountContestCompetitionsResults) | **GET** /rest/event/contest/result/account/{uuid} | 
 *EventContestControllerApi* | [**getAccountContestCompetitionsResultsWithHttpInfo**](docs/EventContestControllerApi.md#getAccountContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/account/{uuid} | 
+*EventContestControllerApi* | [**getContestByFilters**](docs/EventContestControllerApi.md#getContestByFilters) | **GET** /rest/event/contests | 
+*EventContestControllerApi* | [**getContestByFiltersWithHttpInfo**](docs/EventContestControllerApi.md#getContestByFiltersWithHttpInfo) | **GET** /rest/event/contests | 
 *EventContestControllerApi* | [**getContestByUuid**](docs/EventContestControllerApi.md#getContestByUuid) | **GET** /rest/event/contest | 
 *EventContestControllerApi* | [**getContestByUuidWithHttpInfo**](docs/EventContestControllerApi.md#getContestByUuidWithHttpInfo) | **GET** /rest/event/contest | 
-*EventContestControllerApi* | [**getContestByYear**](docs/EventContestControllerApi.md#getContestByYear) | **GET** /rest/event/contests | 
-*EventContestControllerApi* | [**getContestByYearWithHttpInfo**](docs/EventContestControllerApi.md#getContestByYearWithHttpInfo) | **GET** /rest/event/contests | 
 *EventContestControllerApi* | [**getCurrentContestCompetitionsResults**](docs/EventContestControllerApi.md#getCurrentContestCompetitionsResults) | **GET** /rest/event/contest/result/current | 
 *EventContestControllerApi* | [**getCurrentContestCompetitionsResultsWithHttpInfo**](docs/EventContestControllerApi.md#getCurrentContestCompetitionsResultsWithHttpInfo) | **GET** /rest/event/contest/result/current | 
 *EventContestControllerApi* | [**postAccountNomination**](docs/EventContestControllerApi.md#postAccountNomination) | **POST** /rest/event/nomination/account/{uuid} | 
@@ -135,41 +135,19 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [EventContest](docs/EventContest.md)
- - [EventContestCompetition](docs/EventContestCompetition.md)
  - [EventContestCompetitionPlain](docs/EventContestCompetitionPlain.md)
- - [EventContestCompetitionRegistration](docs/EventContestCompetitionRegistration.md)
- - [EventContestCompetitionRegistrationHorse](docs/EventContestCompetitionRegistrationHorse.md)
  - [EventContestCompetitionRegistrationHorsePlain](docs/EventContestCompetitionRegistrationHorsePlain.md)
  - [EventContestCompetitionRegistrationPlain](docs/EventContestCompetitionRegistrationPlain.md)
  - [EventContestCompetitionResult](docs/EventContestCompetitionResult.md)
  - [EventContestCompetitionResultHorse](docs/EventContestCompetitionResultHorse.md)
- - [EventContestCompetitionStage](docs/EventContestCompetitionStage.md)
  - [EventContestCompetitionStagePlain](docs/EventContestCompetitionStagePlain.md)
- - [EventContestFee](docs/EventContestFee.md)
  - [EventContestFeePlain](docs/EventContestFeePlain.md)
- - [EventContestLocation](docs/EventContestLocation.md)
  - [EventContestLocationPlain](docs/EventContestLocationPlain.md)
  - [EventContestPlain](docs/EventContestPlain.md)
- - [EventContestRemark](docs/EventContestRemark.md)
  - [EventContestRemarkPlain](docs/EventContestRemarkPlain.md)
- - [EventContestRole](docs/EventContestRole.md)
  - [EventContestRolePlain](docs/EventContestRolePlain.md)
- - [MasterdataContact](docs/MasterdataContact.md)
- - [MasterdataContactAddress](docs/MasterdataContactAddress.md)
- - [MasterdataContactAddressPlain](docs/MasterdataContactAddressPlain.md)
- - [MasterdataContactPlain](docs/MasterdataContactPlain.md)
- - [MasterdataContactRole](docs/MasterdataContactRole.md)
- - [MasterdataContactRolePlain](docs/MasterdataContactRolePlain.md)
- - [MasterdataHorse](docs/MasterdataHorse.md)
- - [MasterdataHorseOwner](docs/MasterdataHorseOwner.md)
- - [MasterdataHorseOwnerPlain](docs/MasterdataHorseOwnerPlain.md)
- - [MasterdataHorsePlain](docs/MasterdataHorsePlain.md)
- - [MasterdataHorseStable](docs/MasterdataHorseStable.md)
- - [MasterdataHorseStablePlain](docs/MasterdataHorseStablePlain.md)
  - [MasterdataProperty](docs/MasterdataProperty.md)
  - [MasterdataPropertyCharacteristic](docs/MasterdataPropertyCharacteristic.md)
- - [MasterdataPropertyCharacteristicPlain](docs/MasterdataPropertyCharacteristicPlain.md)
  - [RegisterAccount](docs/RegisterAccount.md)
  - [RegisterAddress](docs/RegisterAddress.md)
  - [RegisterContactLegal](docs/RegisterContactLegal.md)
@@ -183,7 +161,7 @@ Class | Method | HTTP request | Description
  - [RegisteredAccount](docs/RegisteredAccount.md)
  - [RegisteredAccountImposedLocks](docs/RegisteredAccountImposedLocks.md)
  - [RegisteredHorse](docs/RegisteredHorse.md)
- - [ResponcePageContests](docs/ResponcePageContests.md)
+ - [ResponcePageContestsPlain](docs/ResponcePageContestsPlain.md)
  - [UpdateAccount](docs/UpdateAccount.md)
 
 
