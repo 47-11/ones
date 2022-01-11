@@ -10,10 +10,14 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 @Mapper(componentModel = "spring",
@@ -42,10 +46,10 @@ public interface FullContestMapper {
     FullContestDto fromEcmDto(EventContestCompetitionPlain eventContestCompetition);
 
     @Named("registrationsToHorseDtos")
-    default Set<SimpleHorseDto> registrationsToHorseDtos(Set<EventContestCompetitionRegistrationPlain> eventContestCompetitionRegistrations) {
+    default List<SimpleHorseDto> registrationsToHorseDtos(Set<EventContestCompetitionRegistrationPlain> eventContestCompetitionRegistrations) {
 
         if (isNull(eventContestCompetitionRegistrations)) {
-            return Collections.emptySet();
+            return emptyList();
         }
 
         return eventContestCompetitionRegistrations.stream()
@@ -53,7 +57,8 @@ public interface FullContestMapper {
                 .filter(Objects::nonNull)
                 .flatMap(Set::stream)
                 .map(this::eventContestCompetitionRegistrationHorsePlainToSimpleHorseDto)
-                .collect(toSet());
+                .distinct()
+                .collect(toList());
     }
 
     @Mapping(source = "horseUuid", target = "uuid")
