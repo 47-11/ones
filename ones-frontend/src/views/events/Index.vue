@@ -128,7 +128,7 @@
                     </div>
                 </div>
             </div>
-            <v-table>
+            <v-table class="relative" ref="eventTableBody">
                 <v-thead class="bg-gray-50">
                     <v-tr>
                         <v-th class="sm:w-1/12">
@@ -149,7 +149,7 @@
                         <v-th class="sm:w-1/12"></v-th>
                     </v-tr>
                 </v-thead>
-                <v-tbody class="bg-white divide-y divide-gray-200">
+                <v-tbody class="bg-white divide-y divide-gray-200" isLoading="isLoading">
                 <v-tr v-for="event in events.list" :key="event.uuid" v-on:click="details(event)" class="cursor-pointer">
                     <v-td class="sm:w-1/12">
                         {{$t("events.states." + event.status)}}
@@ -250,6 +250,7 @@ import moment from "moment";
 import Multiselect from "vue-multiselect/src/Multiselect.vue";
 import DateRange from "@/components/DateRange.vue";
 import { getVxm } from "@/store";
+import { LoaderComponent } from "vue-loading-overlay";
 
 @Component({
     components: {
@@ -280,8 +281,19 @@ export default class Home extends Vue {
 
     showFilter = true;
 
+    private loading?: LoaderComponent;
+
     mounted(): void {
         getVxm().events.fetch();
+
+        getVxm().events.$watch("isLoading", (isLoading: boolean) => {
+            if (isLoading) {
+                this.loading = this.$loading.show();
+            } else {
+                // eslint-disable-next-line no-unused-expressions
+                this.loading?.hide();
+            }
+        });
     }
 
     public categories(event: SimpleEventDto): string[] {
@@ -410,6 +422,10 @@ export default class Home extends Vue {
         this.events.addFilter({
             regions: values
         });
+    }
+
+    get isLoading(): boolean {
+        return getVxm().events.isLoading;
     }
 }
 </script>
