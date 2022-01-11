@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static de.fourtyseveneleven.ones.message.MessageUtils.getExceptionMessage;
 
@@ -55,9 +57,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     private boolean isEmailAddressAlreadyUsed(String emailAddress) {
 
-        final boolean existingRegistration =  userRegistrationRepository.existsByEmailAddress(emailAddress);
         final boolean existingUser = userService.existsByEmailAddress(emailAddress);
-        return existingRegistration || existingUser;
+        if (existingUser) {
+            return true;
+        }
+
+        final Optional<UserRegistration> existingRegistration = userRegistrationRepository.findOneByEmailAddress(emailAddress);
+        if (existingRegistration.isEmpty()) {
+            return false;
+        } else if (existingRegistration.get().isExpired()) {
+            userRegistrationRepository.delete(existingRegistration.get());
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private UserRegistration doCreateRegistration(EmailPasswordDto emailPasswordDto) {
@@ -86,6 +99,10 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         final UserRegistration userRegistration = userRegistrationRepository.findOneByConfirmationCode(registrationConfirmationCode)
                 .orElseThrow(() -> new RegistrationException(getExceptionMessage("registration.confirmation.invalid-code")));
+
+        if (userRegistration.isExpired()) {
+            throw  new RegistrationException(getExceptionMessage("registration.confirmation.expired"));
+        }
 
         createUser(userRegistration);
         userRegistrationRepository.delete(userRegistration);

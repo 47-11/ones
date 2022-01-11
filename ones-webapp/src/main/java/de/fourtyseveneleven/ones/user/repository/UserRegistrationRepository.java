@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserRegistrationRepository extends JpaRepository<UserRegistration, Long> {
 
-    boolean existsByEmailAddress(String emailAddress);
+    Optional<UserRegistration> findOneByEmailAddress(String emailAddress);
 
     Optional<UserRegistration> findOneByConfirmationCode(String confirmationCode);
 }

@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serial;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +19,13 @@ public class UserRegistration extends AbstractBaseEntity {
     private String emailAddress;
     private String password;
     private String confirmationCode;
+
+    @Transient
+    public boolean isExpired() {
+
+        final LocalDateTime threshold = LocalDateTime.now().minusDays(1);
+        return getCreated().isBefore(threshold);
+    }
 
     @NotBlank(message = "{user-registration.email-address.not-blank}")
     @Email(message = "{user-registration.email-address.email}")
