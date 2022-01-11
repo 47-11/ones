@@ -261,7 +261,7 @@
     "confirm": "You have to confirm the registration bindingly.",
     "confirmation": {
       "title": "Confirmation",
-      "description": "I hereby bindingly register for the competition with the selected horses."
+      "description": "I hereby bindingly register for the competition with the selected horses. Cancelling or changing the sign up is not possible afterwards."
     },
     "signUpTitle": "Sign up",
     "submit": "Sign up",
