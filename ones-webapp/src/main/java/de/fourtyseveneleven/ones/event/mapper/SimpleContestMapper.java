@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
@@ -30,6 +29,7 @@ public interface SimpleContestMapper {
 
     @Mapping(source = "raiseLength", target = "distance")
     @Mapping(source = "registrations", target = "signedUpHorses", qualifiedByName = "registrationsToHorseDtos")
+    @Mapping(source = "kind", target = "category")
     SimpleContestDto fromEcmDto(EventContestCompetitionPlain eventContestCompetition);
 
     @Named("registrationsToHorseDtos")
