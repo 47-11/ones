@@ -45,6 +45,7 @@ public abstract class FullEventMapper {
     @Mapping(source = "locations", target = "addresses")
     @Mapping(source = "isCountryChampionship", target = "isNationalChampionship")
     @Mapping(source = "isCei", target = "isInternational")
+    @Mapping(source = "isCard", target = "isMap")
     @Mapping(source = "registrationClosing", target = "signupDeadline")
     @Mapping(source = "infoVaccinationObligation", target = "vaccinationInformation")
     @Mapping(source = "infoHelmetObligation", target = "helmetInformation")

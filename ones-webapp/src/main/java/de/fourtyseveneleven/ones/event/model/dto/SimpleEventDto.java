@@ -20,6 +20,7 @@ public class SimpleEventDto {
 
     private boolean isNationalChampionship;
     private boolean isInternational;
+    private boolean isMap;
 
     private List<SimpleContestDto> contests = new LinkedList<>();
 
@@ -93,6 +94,14 @@ public class SimpleEventDto {
 
     public void setIsInternational(boolean isInternational) {
         this.isInternational = isInternational;
+    }
+
+    public boolean getIsMap() {
+        return isMap;
+    }
+
+    public void setIsMap(boolean isMap) {
+        this.isMap = isMap;
     }
 
     public List<SimpleContestDto> getContests() {
