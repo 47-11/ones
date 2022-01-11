@@ -4,18 +4,14 @@ import de.fourtyseveneleven.ones.common.mapper.CommonMapper;
 import de.fourtyseveneleven.ones.common.mapper.DateTimeFormatMapper;
 import de.fourtyseveneleven.ones.ecm.generated.model.*;
 import de.fourtyseveneleven.ones.event.model.dto.FullContestDto;
-import de.fourtyseveneleven.ones.event.model.dto.SimpleEventDto;
 import de.fourtyseveneleven.ones.horse.model.SimpleHorseDto;
-import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 
 import java.util.Collections;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toSet;
@@ -42,25 +38,24 @@ public interface FullContestMapper {
     @Mapping(source = "isMARKED", target = "markings")
     @Mapping(source = "registrationFee", target = "signupFee")
     @Mapping(source = "startingFee", target = "startFee")
-    @Mapping(source = "registrations", target = "signedUpHorses")
+    @Mapping(source = "registrations", target = "signedUpHorses", qualifiedByName = "registrationsToHorseDtos")
     FullContestDto fromEcmDto(EventContestCompetitionPlain eventContestCompetition);
 
-    @AfterMapping
-    default void fromEcmDto(EventContestCompetitionPlain eventContestCompetition, @MappingTarget FullContestDto fullContestDto) {
+    @Named("registrationsToHorseDtos")
+    default Set<SimpleHorseDto> registrationsToHorseDtos(Set<EventContestCompetitionRegistrationPlain> eventContestCompetitionRegistrations) {
 
-        final Set<EventContestCompetitionRegistrationPlain> registrations = Optional.ofNullable(eventContestCompetition.getRegistrations())
-                .orElseGet(Collections::emptySet);
+        if (isNull(eventContestCompetitionRegistrations)) {
+            return Collections.emptySet();
+        }
 
-        final Set<SimpleHorseDto> signedUpHorses = registrations.stream()
+        return eventContestCompetitionRegistrations.stream()
                 .map(EventContestCompetitionRegistrationPlain::getHorses)
                 .filter(Objects::nonNull)
                 .flatMap(Set::stream)
                 .map(EventContestCompetitionRegistrationHorsePlain::getHorse)
-                .map(this::masterdataHorseToSimpleHorseDto)
-                .collect(Collectors.toSet());
-
-        fullContestDto.setSignedUpHorses(signedUpHorses);
+                .map(this::masterdataHorsePlainToSimpleHorseDto)
+                .collect(toSet());
     }
 
-    SimpleHorseDto masterdataHorseToSimpleHorseDto(MasterdataHorsePlain masterdataHorsePlain);
+    SimpleHorseDto masterdataHorsePlainToSimpleHorseDto(MasterdataHorsePlain masterdataHorse);
 }
