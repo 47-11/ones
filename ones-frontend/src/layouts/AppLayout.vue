@@ -15,6 +15,12 @@
             <!-- Page Content -->
             <slot></slot>
         </main>
+
+        <div class="mx-auto my-8">
+            <a href="/data-policy">
+                Datenschutz
+            </a>
+        </div>
     </div>
 </template>
 

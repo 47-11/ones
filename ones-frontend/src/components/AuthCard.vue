@@ -5,5 +5,11 @@
         <div class="w-full sm:max-w-md mt-6 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <slot></slot>
         </div>
+
+        <div class="mx-auto my-8">
+            <a href="/data-policy">
+                Datenschutz
+            </a>
+        </div>
     </div>
 </template>
