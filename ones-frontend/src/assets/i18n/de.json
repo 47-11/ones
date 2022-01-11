@@ -200,7 +200,7 @@
       "region": "Region",
       "categories": "Kategorien",
       "cardRide": "Kartenritt",
-      "registrationStatus": "Nennungsstatus",
+      "registrationStatus": "Meine Ritte",
       "nationalChampionchip": "Landesmeisterschaft",
       "internationalChampionchip": "Internationaler Ritt",
       "registered": "genannt",
@@ -258,7 +258,7 @@
     "confirm": "Sie müssen die Teilnahme verbindlich bestätigen.",
     "confirmation": {
       "title": "Bestätigung",
-      "description": "Hiermit melde ich mich mit den ausgewählten Pferden verbindlich zum Wettbewerb an."
+      "description": "Hiermit melde ich mich mit den ausgewählten Pferden verbindlich zum Wettbewerb an. Ein Ab- oder Ummeldung ist danach nicht mehr möglich!"
     },
     "signUpTitle": "Nennung",
     "submit": "Jetzt anmelden",

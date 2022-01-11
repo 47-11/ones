@@ -42,6 +42,11 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
     private _categories: ContestCategory[] = [];
     private _regions: string[] = [];
     private dynamicOptionsFetched = false;
+    private loadingCounter = 0;
+
+    get isLoading(): boolean {
+        return this.loadingCounter > 0;
+    }
 
     get list(): SimpleEvent[] {
         return this.events;
@@ -113,10 +118,12 @@ export class EventsStore extends VuexModule implements Paginateable, Sortable {
 
     @action
     async fetch(): Promise<void> {
+        this.loadingCounter++;
         await this.assureDynamicOptionsFetched();
         const fetchResponse = await getApi().events.findAll(...await this.optionsAsArray);
         this.events = fetchResponse.data.elements || [];
         this._totalCount = fetchResponse.data.totalElements || 0;
+        this.loadingCounter--;
     }
 
     @action
