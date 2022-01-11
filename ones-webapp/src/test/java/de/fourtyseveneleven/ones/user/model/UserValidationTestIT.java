@@ -23,7 +23,6 @@ class UserValidationTestIT extends AbstractValidationTestIT<User> {
         final var user = new User();
         user.setEmailAddress("foo@example.com");
         user.setPassword("*".repeat(60));
-        user.setRegistrationConfirmationCode("*".repeat(255));
         return user;
     }
 
@@ -94,19 +93,6 @@ class UserValidationTestIT extends AbstractValidationTestIT<User> {
         assertValidationFailsWithMessages(user, expectedMessage);
 
         user.setPassword("*".repeat(59));
-        assertValidationFailsWithMessages(user, expectedMessage);
-    }
-
-    @Test
-    void registrationConfirmationCodeSize() {
-
-        final User user = buildValidEntity();
-        final String expectedMessage = "Generated confirmation code is not valid. Should be 255 characters long.";
-
-        user.setRegistrationConfirmationCode("*".repeat(254));
-        assertValidationFailsWithMessages(user, expectedMessage);
-
-        user.setRegistrationConfirmationCode("*".repeat(256));
         assertValidationFailsWithMessages(user, expectedMessage);
     }
 }

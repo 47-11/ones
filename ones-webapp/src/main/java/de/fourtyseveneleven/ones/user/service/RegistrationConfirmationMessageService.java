@@ -1,8 +1,8 @@
 package de.fourtyseveneleven.ones.user.service;
 
-import de.fourtyseveneleven.ones.user.model.User;
+import de.fourtyseveneleven.ones.user.model.UserRegistration;
 
 public interface RegistrationConfirmationMessageService {
 
-    void sendRegistrationConfirmationMessage(User user);
+    void sendRegistrationConfirmationMessage(UserRegistration registration);
 }

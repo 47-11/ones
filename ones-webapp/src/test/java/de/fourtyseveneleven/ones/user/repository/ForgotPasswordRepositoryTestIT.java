@@ -49,7 +49,6 @@ class ForgotPasswordRepositoryTestIT extends AbstractRepositoryTestIT<ForgotPass
         final var newUser = new User();
         newUser.setEmailAddress("test@example.com");
         newUser.setPassword("*".repeat(60));
-        newUser.setRegistrationConfirmed(true);
 
         this.user = userRepository.save(newUser);
     }

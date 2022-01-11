@@ -22,8 +22,6 @@ public class User extends AbstractBaseEntity {
 
     private String emailAddress;
     private String password;
-    private boolean registrationConfirmed;
-    private String registrationConfirmationCode;
     private UUID uuid;
 
     @NotBlank(message = "{user.email-address.not-blank}")
@@ -45,23 +43,6 @@ public class User extends AbstractBaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isRegistrationConfirmed() {
-        return registrationConfirmed;
-    }
-
-    public void setRegistrationConfirmed(boolean registrationConfirmed) {
-        this.registrationConfirmed = registrationConfirmed;
-    }
-
-    @Size(min=255, max = 255, message = "{user.registration-confirmation-code.size}")
-    public String getRegistrationConfirmationCode() {
-        return registrationConfirmationCode;
-    }
-
-    public void setRegistrationConfirmationCode(String registrationConfirmationCode) {
-        this.registrationConfirmationCode = registrationConfirmationCode;
     }
 
     public UUID getUuid() {

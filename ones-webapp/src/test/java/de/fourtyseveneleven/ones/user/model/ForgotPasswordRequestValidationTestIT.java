@@ -34,7 +34,6 @@ class ForgotPasswordRequestValidationTestIT extends AbstractValidationTestIT<For
         final var user = new User();
         user.setEmailAddress("foo@example.com");
         user.setPassword("*".repeat(60));
-        user.setRegistrationConfirmationCode("*".repeat(255));
         this.testUser = userRepository.save(user);
     }
 

@@ -35,10 +35,6 @@ public class LoginServiceImpl implements LoginService {
             throw new BadCredentialsException(getExceptionMessage("authentication.login.bad-credentials"));
         }
 
-        if (!user.isRegistrationConfirmed()) {
-            throw new RegistrationIncompleteException(getExceptionMessage("authentication.login.registration-incomplete"));
-        }
-
         return jwtTokenBuilderService.buildToken(user);
     }
 }

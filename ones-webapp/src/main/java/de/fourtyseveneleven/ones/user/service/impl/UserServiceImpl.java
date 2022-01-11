@@ -48,12 +48,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByIncompleteRegistration(String registrationConfirmationCode) {
-
-        return userRepository.findOneByRegistrationConfirmationCodeAndRegistrationConfirmedIsFalse(registrationConfirmationCode);
-    }
-
-    @Override
     @Transactional
     public User createNewUser(User newUser) {
 
@@ -103,6 +97,12 @@ public class UserServiceImpl implements UserService {
 
         final RegisteredAccount registeredAccount = applicationAccountControllerApi.getAccoundByUuid(userUuid.toString());
         return userMapper.registeredAccountToUserDto(registeredAccount);
+    }
+
+    @Override
+    public boolean existsByEmailAddress(String emailAddress) {
+
+        return userRepository.existsByEmailAddress(emailAddress);
     }
 
     @Override
