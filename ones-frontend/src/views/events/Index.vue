@@ -128,7 +128,12 @@
                     </div>
                 </div>
             </div>
-            <v-table class="relative" ref="eventTableBody">
+
+            <no-results v-if="events.list.length === 0">
+                {{ $t("events.noEvents")}}
+            </no-results>
+
+            <v-table class="relative" ref="eventTableBody" v-else>
                 <v-thead class="bg-gray-50">
                     <v-tr>
                         <v-th class="sm:w-1/12">
@@ -279,7 +284,7 @@ export default class Home extends Vue {
         };
     }
 
-    showFilter = true;
+    showFilter = false;
 
     private loading?: LoaderComponent;
 

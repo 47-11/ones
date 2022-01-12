@@ -190,6 +190,7 @@
     "registered": "Sie sind genannt",
     "notRegistered": "Sie sind nicht genannt",
     "details": "Details",
+    "noEvents": "Keine Ereignisse gefunden",
     "pagination": "Zeigt {from} bis {to} von {of} Veranstaltungen.",
     "filter": {
       "open": "Filter öffnen",
@@ -254,6 +255,8 @@
       "subtitle": "Bitte wählen Sie das Pferd aus, mit welchem Sie teilnehmen wollen.",
       "lifeNumber": "Lebens-Nr."
     },
+    "noHorses": "Keine Pferde verfügbar",
+    "noHorsesSignedUp": "Keine Pferde angemeldet",
     "minHorses": "Sie müssen mindestens ein Pferd auswählen.",
     "confirm": "Sie müssen die Teilnahme verbindlich bestätigen.",
     "confirmation": {
@@ -355,6 +358,7 @@
   "horses": {
     "title": "Meine Pferde",
     "add": "Pferd hinzufügen",
+    "noHorses": "Keine Pferde bekannt",
     "modals": {
       "add": {
         "title": "Pferd hinzufügen",

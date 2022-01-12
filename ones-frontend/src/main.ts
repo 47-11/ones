@@ -8,6 +8,7 @@ import VTd from "@/components/table/VTd.vue";
 import VTh from "@/components/table/VTh.vue";
 import VThead from "@/components/table/VThead.vue";
 import VTr from "@/components/table/VTr.vue";
+import NoResults from "@/components/NoResults.vue";
 import Modal from "@/layouts/Modal.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -26,6 +27,7 @@ import {
     faMap,
     faMars,
     faPencilAlt,
+    faExclamationCircle,
     faPhone,
     faTimes,
     faTrailer,
@@ -63,6 +65,7 @@ setTimeout(() => {
         faExternalLinkAlt,
         faMap,
         faGlobe,
+        faExclamationCircle,
         faFlag,
         faMars,
         faVenus,
@@ -82,6 +85,7 @@ setTimeout(() => {
     Vue.component("v-thead", VThead);
     Vue.component("v-tr", VTr);
     Vue.component("v-label", VLabel);
+    Vue.component("no-results", NoResults);
 
     Vue.component("Modal", Modal);
 

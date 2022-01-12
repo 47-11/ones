@@ -190,6 +190,7 @@
     "noNationalChampionship": "No National Championship",
     "registered": "Signed up",
     "notRegistered": "Not signed up",
+    "noEvents": "No results found",
     "details": "Details",
     "pagination": "Shows {from} to {to} of {of} events.",
     "yes": "Yes",
@@ -257,6 +258,8 @@
       "subtitle": "Please select the horse you want to participate with.",
       "lifeNumber": "Life number"
     },
+    "noHorses": "No horses available",
+    "noHorsesSignedUp": "No horses signed up",
     "minHorses": "Please select at least one horse.",
     "confirm": "You have to confirm the registration bindingly.",
     "confirmation": {
@@ -358,6 +361,7 @@
   "horses": {
     "title": "My Horses",
     "add": "Add horse",
+    "noHorses": "No horses known",
     "modals": {
       "add": {
         "title": "Add horse",

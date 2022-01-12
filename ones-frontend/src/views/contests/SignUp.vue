@@ -169,7 +169,11 @@
                             {{ $t('signUp.signedUpHorses') }}
                         </h1>
 
-                        <card>
+                        <no-results v-if="signedUpHorses.length === 0">
+                            {{ $t("signUp.noHorsesSignedUp")}}
+                        </no-results>
+
+                        <card v-else>
                             <div class="bg-white border-b px-5 py-4" >
                                 <div class="leading-5" v-for="horse in signedUpHorses" :key="horse.uuid">
                                     <span>{{ horse.name }}</span><br>
@@ -187,46 +191,53 @@
                             {{ $t('signUp.signUpTitle') }}
                         </h1>
 
-                        <error-message :error="error"/>
+                        <no-results v-if="horsesNotSignedUp.length === 0">
+                            {{ $t("signUp.noHorses")}}
+                        </no-results>
 
-                        <h2 class="text-lg font-bold">
-                            {{ $t('signUp.selectHorse.title') }}
-                        </h2>
+                        <div v-else>
 
-                        <div class="text-gray-500 mb-5">
-                            {{ $t('signUp.selectHorse.subtitle') }}
-                        </div>
+                            <error-message :error="error"/>
 
-                        <card>
-                            <div class="bg-white border-b px-5 py-4 flex items-center" v-for="horse in horsesNotSignedUp"
-                                 :key="horse.uuid">
-                                <input type="checkbox" :value="horse.uuid" :id="'horse_' + horse.uuid"
-                                       v-model="checkedHorses" :disabled="inputsDisabled"
-                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-5">
-                                <div class="leading-5">
-                                    <span>{{ horse.name }}</span> <br>
-                                    <span class="text-gray-400 text-xs">
-                                        {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
-                                    </span>
-                                </div>
+                            <h2 class="text-lg font-bold">
+                                {{ $t('signUp.selectHorse.title') }}
+                            </h2>
+
+                            <div class="text-gray-500 mb-5">
+                                {{ $t('signUp.selectHorse.subtitle') }}
                             </div>
-                        </card>
 
-                        <div class="block mt-6">
-                            <label class="inline-flex items-start">
-                                <input type="checkbox" v-model="confirmed"
-                                       class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1">
-                                <div class="ml-4 text-sm text-gray-600">
-                                    <h4 class="text-base font-bold mb-1">{{ $t('signUp.confirmation.title') }}</h4>
-                                    {{ $t('signUp.confirmation.description') }}
+                            <card>
+                                <div class="bg-white border-b px-5 py-4 flex items-center" v-for="horse in horsesNotSignedUp"
+                                     :key="horse.uuid">
+                                    <input type="checkbox" :value="horse.uuid" :id="'horse_' + horse.uuid"
+                                           v-model="checkedHorses" :disabled="inputsDisabled"
+                                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-5">
+                                    <div class="leading-5">
+                                        <span>{{ horse.name }}</span> <br>
+                                        <span class="text-gray-400 text-xs">
+                                            {{ $t('signUp.selectHorse.lifeNumber') }} {{ horse.chipNumber }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </label>
-                        </div>
+                            </card>
 
-                        <div class="flex w-full justify-center mt-8">
-                            <v-button class="text-lg px-8 pt-2 pb-2" :disabled="inputsDisabled">
-                                {{ $t('signUp.submit') }}
-                            </v-button>
+                            <div class="block mt-6">
+                                <label class="inline-flex items-start">
+                                    <input type="checkbox" v-model="confirmed"
+                                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1">
+                                    <div class="ml-4 text-sm text-gray-600">
+                                        <h4 class="text-base font-bold mb-1">{{ $t('signUp.confirmation.title') }}</h4>
+                                        {{ $t('signUp.confirmation.description') }}
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="flex w-full justify-center mt-8">
+                                <v-button class="text-lg px-8 pt-2 pb-2" :disabled="inputsDisabled">
+                                    {{ $t('signUp.submit') }}
+                                </v-button>
+                            </div>
                         </div>
                     </form>
                     <div class="text-gray-700" v-if="hasSubmitted">
