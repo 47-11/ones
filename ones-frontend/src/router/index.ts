@@ -14,6 +14,7 @@ import Vue from "vue";
 import VueRouter, { Route, RouteConfig } from "vue-router";
 import Login from "../views/auth/Login.vue";
 import Register from "../views/auth/Register.vue";
+import DataPolicy from "../views/DataPolicy.vue";
 
 Vue.use(VueRouter);
 
@@ -74,6 +75,10 @@ const routes: Array<RouteConfig> = [
     {
         path: "/horses",
         component: HorsesIndex
+    },
+    {
+        path: "/data-policy",
+        component: DataPolicy
     }
 ];
 
@@ -113,7 +118,7 @@ router.beforeEach((to, f, next) => {
 });
 
 function needsAuth(to: Route) {
-    const needsNoAuth = ["/login", "/register", "/forgot-password", "/reset-password", "/verified"].includes(to.path);
+    const needsNoAuth = ["/login", "/register", "/forgot-password", "/reset-password", "/verified", "/data-policy"].includes(to.path);
     return !needsNoAuth;
 }
 
