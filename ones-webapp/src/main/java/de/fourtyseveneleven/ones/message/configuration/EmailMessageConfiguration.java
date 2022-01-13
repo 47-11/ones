@@ -50,13 +50,9 @@ public class EmailMessageConfiguration extends AbstractMessageConfiguration {
             mailSender.setPort(emailSettings.getPort());
         }
 
-        mailSender.setProtocol("smtp");
         mailSender.setDefaultEncoding(UTF_8.name());
 
         final Properties properties = mailSender.getJavaMailProperties();
-        properties.put("mail.transport.protocol", "smtp");
-
-        properties.put("mail.smtp.starttls.enable", emailSettings.isEnableTls());
 
         final String username = emailSettings.getUsername();
         final String password = emailSettings.getPassword();
@@ -66,6 +62,14 @@ public class EmailMessageConfiguration extends AbstractMessageConfiguration {
             mailSender.setUsername(username);
             mailSender.setPassword(password);
             properties.put("mail.smtp.auth", "true");
+        }
+
+        final boolean enableTls = emailSettings.isEnableTls();
+        properties.put("mail.smtp.starttls.enable", enableTls);
+        if (enableTls) {
+            properties.put("mail.transport.protocol", "smtps");
+        } else {
+            properties.put("mail.transport.protocol", "smtp");
         }
 
         return mailSender;
