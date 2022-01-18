@@ -32,6 +32,7 @@
     "submit": "Login"
   },
   "register": {
+    "title": "Register",
     "success": "Registration-Mail has been sent to {email}. Please follow the instructions contained.",
     "nextRegistration": "Next Registration",
     "error": "Oops! Something has gone wrong.",
