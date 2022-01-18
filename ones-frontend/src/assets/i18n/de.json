@@ -32,7 +32,7 @@
     "submit": "Einloggen"
   },
   "register": {
-    "success": "Registrierungs-Mail wurde an {email} versendet. Bitte folge den Anweisungen um die Registierung abzuschließen.",
+    "success": "Registrierungs-Mail wurde an {email} versendet. Bitte folge den Anweisungen um die Registrierung abzuschließen.",
     "nextRegistration": "Nächste Registrierung",
     "error": "Oops! Etwas ist schief gelaufen.",
     "email": "E-Mail",
@@ -99,7 +99,7 @@
     "authenticationRunning": "Authentifizierung läuft...",
     "error": "Oops! Etwas ist schief gelaufen.",
     "emailConfirmed": "E-Mail erfolgreich bestätigt.",
-    "nextRegistration": "Zur Registierung",
+    "nextRegistration": "Zur Registrierung",
     "toLogin": "Zum Login"
   },
   "details": {
@@ -261,7 +261,7 @@
     "confirm": "Sie müssen die Teilnahme verbindlich bestätigen.",
     "confirmation": {
       "title": "Bestätigung",
-      "description": "Hiermit melde ich mich mit den ausgewählten Pferden verbindlich zum Wettbewerb an. Ein Ab- oder Ummeldung ist danach nicht mehr möglich!"
+      "description": "Hiermit melde ich mich mit dem/den ausgewählten Pferd/en verbindlich zum Wettbewerb an. Eine Ab- oder Ummeldung ist danach nicht mehr möglich!"
     },
     "signUpTitle": "Nennung",
     "submit": "Jetzt anmelden",
