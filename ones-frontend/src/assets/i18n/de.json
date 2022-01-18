@@ -67,7 +67,8 @@
       "logout": "Logout",
       "submit": "Speichern",
       "title": "Persönliche Daten"
-    }
+    },
+    "toLogin": "Zum Login"
   },
   "resetPassword": {
     "success": "Passwort geändert.",

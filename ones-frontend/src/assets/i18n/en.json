@@ -67,7 +67,8 @@
       "lengthNull": " is not set.",
       "submit": "Save",
       "logout": "Logout"
-    }
+    },
+    "toLogin": "To Login"
   },
   "resetPassword": {
     "success": "Password changed.",

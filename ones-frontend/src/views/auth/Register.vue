@@ -8,7 +8,9 @@
                     </template>
                 </i18n>
                 <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
-                    <v-button @click.native="nextRegistration">{{$t("register.nextRegistration")}}</v-button>
+                    <v-button @click.native="toLogin">
+                        {{$t("register.toLogin")}}
+                    </v-button>
                 </div>
             </div>
         </auth-card>
@@ -165,8 +167,8 @@ export default class Register extends Vue {
         this.inputsDisabled = false;
     }
 
-    public nextRegistration(): void {
-        this.registrationDone = false;
+    public toLogin(): void {
+        this.$router.push("/login");
     }
 
     public scoreChanged(newScore: number): void {
