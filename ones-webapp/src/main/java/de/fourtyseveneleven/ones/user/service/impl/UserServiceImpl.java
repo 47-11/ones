@@ -116,7 +116,9 @@ public class UserServiceImpl implements UserService {
     private void setPersonalDataByVddNumber(int vddNumber) {
 
         final User currentUser = getAuthenticatedUser();
-        ecmRegistrationService.registerNewMemberByVddNumber(currentUser, vddNumber);
+        final UUID uuid = ecmRegistrationService.registerNewMemberByVddNumber(currentUser, vddNumber);
+        currentUser.setUuid(uuid);
+        updateUser(currentUser);
     }
 
     private void setPersonalData(UserDto personalData) {
