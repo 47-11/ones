@@ -332,8 +332,8 @@ export default class SignUp extends Vue {
 
         try {
             this.assertValid();
-            this.request();
-            getVxm().events.fetchEvent(this.eventId);
+            await this.request();
+            await getVxm().events.fetchEvent(this.eventId);
 
             this.hasSubmitted = true;
         } catch (error) {
