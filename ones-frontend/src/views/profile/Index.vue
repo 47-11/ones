@@ -86,7 +86,7 @@
 
                             <div class="mb-3">
                                 <span class="text-xs text-gray-400">{{$t('data.user.feiNo')}}</span> <br>
-                                <span v-if="user.feiNo">{{user.feiNo}}</span>
+                                <span v-if="user.feiNumber">{{user.feiNumber}}</span>
                                 <span class="italic" v-else>{{ $t('data.user.unset') }}</span>
                             </div>
 
