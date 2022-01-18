@@ -33,6 +33,7 @@
   },
   "register": {
     "success": "Registrierungs-Mail wurde an {email} versendet. Bitte folge den Anweisungen um die Registrierung abzuschließen.",
+    "title": "Registierung",
     "nextRegistration": "Nächste Registrierung",
     "error": "Oops! Etwas ist schief gelaufen.",
     "email": "E-Mail",
