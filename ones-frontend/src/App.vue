@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="font-sans">
-        <div class="absolute w-full h-full z-50 bg-gray-700 bg-opacity-50 flex felx-col items-center justify-center" v-if="app.isOffline">
+        <div class="fixed w-full h-full z-50 bg-gray-700 bg-opacity-50 flex felx-col items-center justify-center" v-if="app.isOffline">
             <div class="bg-red-600 text-white text-center p-2 w-1/2 shadow-2xl rounded-lg">
                 <h2 class="text-lg">
                     <font-awesome-icon :icon="'exclamation-triangle'" class="ml-2"/>
