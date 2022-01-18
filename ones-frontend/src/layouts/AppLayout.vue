@@ -16,10 +16,12 @@
             <slot></slot>
         </main>
 
-        <div class="mx-auto my-8">
-            <a href="/data-policy">
-                Datenschutz
-            </a>
+        <div class="w-full">
+            <div class="mx-auto py-8 text-center">
+                <a href="/data-policy">
+                    Datenschutz
+                </a>
+            </div>
         </div>
     </div>
 </template>

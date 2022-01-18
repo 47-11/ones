@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="max-w-5xl m-auto py-12">
+        <div class="max-w-5xl m-auto py-12 px-6 sm:px-0">
             <page-header>Datenschutz</page-header>
 
             <p class="mb-3">Im Folgenden informieren wir Sie über die Verarbeitung Ihrer personenbezogenen Daten durch uns und die
