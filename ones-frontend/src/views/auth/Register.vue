@@ -15,7 +15,7 @@
 
         <div v-else class="min-h-screen flex flex-col sm:justify-center items-center pt-6 md:pt-0 bg-gray-100">
             <div class="max-w-3xl">
-                <page-header>{{ $('register.title') }}</page-header>
+                <page-header>{{ $t("register.title") }}</page-header>
 
                 <div class="flex flex-col md:flex-row">
                     <div class="md:w-2/3 order-2 md:order-1 md:mt-6 md:mr-12 bg-white shadow-md overflow-hidden sm:rounded-lg">
