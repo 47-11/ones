@@ -291,14 +291,17 @@ export default class Home extends Vue {
     mounted(): void {
         getVxm().events.fetch();
 
-        getVxm().events.$watch("isLoading", (isLoading: boolean) => {
-            if (isLoading) {
-                this.loading = this.$loading.show();
-            } else {
-                // eslint-disable-next-line no-unused-expressions
-                this.loading?.hide();
-            }
-        });
+        this.handleLoading(true);
+        getVxm().events.$watch("isLoading", this.handleLoading.bind(this));
+    }
+
+    private handleLoading(isLoading: boolean): void {
+        if (isLoading) {
+            this.loading = this.$loading.show();
+        } else {
+            // eslint-disable-next-line no-unused-expressions
+            this.loading?.hide();
+        }
     }
 
     public categories(event: SimpleEventDto): string[] {
