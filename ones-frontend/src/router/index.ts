@@ -89,10 +89,15 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, f, next) => {
-    if (needsAuth(to) && !getVxm().user.authenticated) {
+    if (!needsAuth(to)) {
+        next();
+        return;
+    }
+
+    if (isGuestRoute(to) && !getVxm().user.authenticated) {
         next("/login");
         return;
-    } else if (!needsAuth(to) && getVxm().user.authenticated) {
+    } else if (!isGuestRoute(to) && getVxm().user.authenticated) {
         next("/");
         return;
     }
@@ -117,9 +122,14 @@ router.beforeEach((to, f, next) => {
     next();
 });
 
+function isGuestRoute(to: Route) {
+    const isGuestRoute = ["/login", "/register", "/forgot-password", "/reset-password", "/verified"].includes(to.path);
+    return !isGuestRoute;
+}
+
 function needsAuth(to: Route) {
-    const needsNoAuth = ["/login", "/register", "/forgot-password", "/reset-password", "/verified", "/data-policy"].includes(to.path);
-    return !needsNoAuth;
+    const needsAuth = ["/data-policy"].includes(to.path);
+    return !needsAuth;
 }
 
 function needsToSetPersonalData(): boolean {
