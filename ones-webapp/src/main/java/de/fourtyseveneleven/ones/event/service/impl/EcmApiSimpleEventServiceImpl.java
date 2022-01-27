@@ -78,13 +78,7 @@ public class EcmApiSimpleEventServiceImpl implements SimpleEventService {
 
     private ResponcePageContestsPlain tryFindPageInEcm(EventFilterDto filter, PageRequest pageRequest, SortRequest sortRequest) throws ApiException {
 
-        final String userUuid;
-        if (isNull(filter.alreadySignedUp())) {
-            userUuid = null;
-        } else {
-            userUuid = UserUtils.getAuthenticatedUser().getUuid().toString();
-        }
-
+        final String userUuid = UserUtils.getAuthenticatedUser().getUuid().toString();
         return eventContestControllerApi.getContestByFilters(
                 atStartOfDay(filter.from()),
                         atEndOfDay(filter.until()),

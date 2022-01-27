@@ -103,7 +103,7 @@
                                     {{$t('details.vaccinationRequirements')}}
                                 </th>
                                 <td class="text-left px-5 py-1">
-                                    {{ details.isVaccinationRequired || $t("shared.unknown") }}
+                                    {{ details.vaccinationInformation || $t("shared.unknown") }}
                                 </td>
                             </tr>
                             <tr>
@@ -111,7 +111,7 @@
                                     {{$t('details.helmetRequirements')}}
                                 </th>
                                 <td class="text-left px-5 py-1">
-                                    {{ details.isHelmetMandatory || $t("shared.unknown") }}
+                                    {{ details.helmetInformation || $t("shared.unknown") }}
                                 </td>
                             </tr>
                         </table>
