@@ -114,6 +114,22 @@
                                 {{ deadline.format("DD.MM.YYYY") }}
                             </td>
                         </tr>
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top leading-5">
+                                {{$t('details.vaccinationRequirements')}}
+                            </th>
+                            <td class="text-left px-5 py-1">
+                                {{ details.vaccinationInformation || $t("shared.unknown") }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-left px-5 py-1 align-top leading-5">
+                                {{$t('details.helmetRequirements')}}
+                            </th>
+                            <td class="text-left px-5 py-1">
+                                {{ details.helmetInformation || $t("shared.unknown") }}
+                            </td>
+                        </tr>
                     </table>
 
                     <div class="px-5 py-3 mt-2">
@@ -141,26 +157,6 @@
                                 }}
                             </li>
                         </ul>
-
-                        <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2"
-                               v-if="details.isVaccinationMandatory">
-                            {{ $t('details.vaccinationMandatory') }}
-                        </badge>
-
-                        <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2"
-                               v-if="!details.isVaccinationMandatory">
-                            {{ $t('details.vaccinationNotMandatory') }}
-                        </badge>
-
-                        <badge class="bg-amber-500 text-white text-xs font-medium mr-2 mb-2"
-                               v-if="details.isHelmetMandatory">
-                            {{ $t('details.helmetMandatory') }}
-                        </badge>
-
-                        <badge class="bg-gray-200 text-gray-600 text-xs font-medium mr-2 mb-2"
-                               v-if="!details.isHelmetMandatory">
-                            {{ $t('details.helmetNotMandatory') }}
-                        </badge>
                     </div>
                 </card>
                 <div class="col-span-2">
